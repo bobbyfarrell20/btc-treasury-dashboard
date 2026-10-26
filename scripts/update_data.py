@@ -256,14 +256,12 @@ def main():
             m, s = mean_std([w.get("mnav_spread") for w in win[:-1]] + [r["mnav_spread"]])
             if s: r["spread_z"] = round((r["mnav_spread"] - m) / s, 3)
         if r["MSTR"] and r["ASST"]: r["ratio"] = round(r["ASST"] / r["MSTR"], 5)
-        # drawdowns from rolling high (calendar days)
-        cutoff = (dt.date.fromisoformat(r["date"]) - dt.timedelta(days=dc["rolling_high_days"])).isoformat()
-        for t, key in (("MSTR", "MSTR"), ("ASST", "ASST")):
-            if r[key] is None: continue
-            hi = max(v for d, v in prices[t].items() if cutoff < d <= r["date"])
-            r["dd_" + t] = round(r[key] / hi - 1, 4)
-        hi = max(v for d, v in btc.items() if cutoff < d <= r["date"])
-        r["dd_BTC"] = round(r["btc"] / hi - 1, 4)
+        # short-window changes for the dip rule (trading days, no reliance on prior highs)
+        n = dc["lookback_days"]
+        if i >= n:
+            b = rows[i - n]
+            for key, out in (("btc", "btc_chg"), ("MSTR", "mstr_chg"), ("ASST", "asst_chg"), ("mstr_mnav", "mstr_mnav_chg"), ("asst_mnav", "asst_mnav_chg")):
+                if r.get(key) and b.get(key): r[out] = round(r[key] / b[key] - 1, 4)
 
     dates = [r["date"] for r in rows]
     for pref in ("STRC", "SATA"):
@@ -282,11 +280,12 @@ def main():
         rot = "NEUTRAL"
         if z is not None and z <= mc["spread_z_favor_asst"]: rot = "FAVOR_ASST"
         elif z is not None and z >= mc["spread_z_favor_mstr"]: rot = "FAVOR_MSTR"
-        dip = r.get("dd_BTC") is not None and r["dd_BTC"] <= -dc["btc_drawdown_trigger"]
+        dip = r.get("btc_chg") is not None and r["btc_chg"] <= -dc["btc_drop_pct"]
         hardest = None
-        cands = [(r.get("dd_MSTR"), "MSTR"), (r.get("dd_ASST"), "ASST")]
-        cands = [c for c in cands if c[0] is not None]
-        if cands: hardest = min(cands)[1]
+        m, a_ = r.get("mstr_mnav_chg"), r.get("asst_mnav_chg")
+        if m is not None and a_ is not None:
+            if abs(m - a_) > dc.get("tie_tolerance", 0.005): hardest = "MSTR" if m < a_ else "ASST"
+            elif r.get("mstr_chg") is not None and r.get("asst_chg") is not None: hardest = "MSTR" if r["mstr_chg"] < r["asst_chg"] else "ASST"
         per = {}
         for asset, pref in (("MSTR", "STRC"), ("ASST", "SATA")):
             ps = r.get("peg_" + pref)
@@ -294,8 +293,8 @@ def main():
             if both_oh: act = CFG["mnav"].get("both_overheated_action", "SELL_TO_BTC")
             per[asset] = {"peg_state": ps, "action": act, "mnav": r.get(asset.lower() + "_mnav"),
                           "mnav_pct_1y": r.get(asset.lower() + "_mnav_pct"), "overheated": oh[asset.lower()],
-                          "drawdown_1y_high": r.get("dd_" + asset)}
-        out.update(per=per, both_overheated=both_oh, rotation=rot, dip=dip, dip_target=hardest if dip else None)
+                          "price_chg_dip_window": r.get(asset.lower() + "_chg"), "mnav_chg_dip_window": r.get(asset.lower() + "_mnav_chg")}
+        out.update(per=per, both_overheated=both_oh, rotation=rot, dip=dip, dip_target=hardest if dip else None, cheapened_most=hardest)
         # headline
         if both_oh: head = "BOTH OVERHEATED -> SELL_TO_BTC: sell MSTR + ASST, hold BTC"
         else:
@@ -308,13 +307,35 @@ def main():
             if sells: parts.append("SELL/TRIM " + " + ".join(sells) + " (preferred off peg & falling)")
             watch = [a for a in ("MSTR", "ASST") if per[a]["action"] == "WATCH"]
             if watch: parts.append("WATCH " + " + ".join(watch) + " (preferred lost peg)")
-            if dip: parts.append(f"DIP-BUY zone: BTC {r['dd_BTC']*100:.0f}% off 1y high; hardest hit = {hardest}")
+            if dip: parts.append(f"DIP-BUY: BTC {r['btc_chg']*100:.0f}% in {dc['lookback_days']} trading days; buy {hardest} (mNAV fell most)")
             if not parts: parts.append("No strong signal - hold cash / stay patient")
             head = "; ".join(parts)
         out["headline"] = head
         return out
 
     for r in rows: r["sig"] = day_signal(r)
+
+    # ---- valuation zones (who's cheap vs expensive)
+    vc = CFG.get("valuation", {"cheap_below_mnav": 1.0, "fair_max_percentile": 0.5})
+    def zone(v, p):
+        if v is None: return None
+        if v >= mc["overheated_min_mnav"] or (p is not None and p >= mc["overheated_percentile"]): return "OVERVALUED"
+        if v < vc["cheap_below_mnav"]: return "CHEAP"
+        if p is None or p <= vc["fair_max_percentile"]: return "FAIR"
+        return "RICH"
+    for r in rows:
+        for a in ("mstr", "asst"): r[a + "_zone"] = zone(r.get(a + "_mnav"), r.get(a + "_mnav_pct"))
+    def verdict(r):
+        z, m, s = r.get("spread_z"), r.get("mstr_mnav"), r.get("asst_mnav")
+        if m is None or s is None: return None
+        lower = "MSTR" if m < s else "ASST"
+        if z is not None and z <= mc["spread_z_favor_asst"]:
+            return f"ASST is cheaper than MSTR right now (spread z {z:+.2f}: ASST's premium is unusually low vs MSTR's)"
+        if z is not None and z >= mc["spread_z_favor_mstr"]:
+            return f"MSTR is cheaper than ASST right now (spread z {z:+.2f}: ASST's premium is unusually high vs MSTR's)"
+        zt = f"{z:+.2f}" if z is not None else "n/a"
+        return (f"Neither is clearly cheaper vs its usual gap (spread z {zt}, within ±1); "
+                f"{lower} has the lower mNAV today ({min(m, s):.2f}x vs {max(m, s):.2f}x)")
 
     # ---- flywheel fuel series
     strc_atm = {}
@@ -388,6 +409,16 @@ def main():
         log("prediction markets all failed; keeping previous markets.json")
     else:
         (DATA / "markets.json").write_text(json.dumps(pm_out, separators=(",", ":")))
+    # ---- odds jumps (from whatever markets.json now holds)
+    oj = {"jumps": [], "summary": []}
+    try:
+        import odds_jumps
+        src = json.loads((DATA / "markets.json").read_text()).get("events", []) if (DATA / "markets.json").exists() else pm
+        oj = odds_jumps.build(src, CFG["odds_jumps"], today)
+        oj["generated_utc"] = dt.datetime.now(dt.timezone.utc).isoformat(timespec="seconds")
+        (DATA / "odds_jumps.json").write_text(json.dumps(oj, indent=1, ensure_ascii=False))
+    except Exception as e:
+        log("odds jumps failed", e)
 
     out_rows = [r for r in rows if r["date"] >= (dt.date.fromisoformat(start) - dt.timedelta(days=200)).isoformat()]
     gen = dt.datetime.now(dt.timezone.utc).isoformat(timespec="seconds")
@@ -400,15 +431,24 @@ def main():
     sig = {"generated_utc": gen, "as_of": last["date"], "disclaimer": "Rules-based indicator, not financial advice.",
            "headline": last["sig"]["headline"], "per_asset": last["sig"]["per"],
            "both_overheated": last["sig"]["both_overheated"], "rotation": last["sig"]["rotation"],
-           "dip": {"active": last["sig"]["dip"], "target": last["sig"]["dip_target"], "btc_drawdown": last.get("dd_BTC")},
+           "dip": {"active": last["sig"]["dip"], "target": last["sig"]["dip_target"], "lookback_trading_days": dc["lookback_days"],
+                   "trigger_btc_drop": dc["btc_drop_pct"], "btc_change": last.get("btc_chg"), "cheapened_most": last["sig"]["cheapened_most"],
+                   "mstr_price_change": last.get("mstr_chg"), "asst_price_change": last.get("asst_chg"),
+                   "mstr_mnav_change": last.get("mstr_mnav_chg"), "asst_mnav_change": last.get("asst_mnav_chg")},
            "peg": {p: {"price": last.get(p), "state": last.get("peg_" + p),
                        "distance_from_par": round(last[p] - pc["par"], 3) if last.get(p) else None} for p in ("STRC", "SATA")},
            "values": {k: last.get(k) for k in ("MSTR", "ASST", "btc", "mstr_mnav", "asst_mnav", "mnav_avg", "mnav_spread",
-                                               "spread_z", "ratio", "dd_MSTR", "dd_ASST", "dd_BTC", "mstr_nav_ps", "asst_nav_ps")},
+                                               "spread_z", "ratio", "btc_chg", "mstr_chg", "asst_chg", "mstr_mnav_chg", "asst_mnav_chg", "mstr_nav_ps", "asst_nav_ps")},
+           "valuation": {**{A: {"zone": last.get(a + "_zone"), "diluted_mnav": last.get(a + "_mnav"), "mnav_pct_1y": last.get(a + "_mnav_pct"),
+                                 "price": last.get(A), "btc_nav_per_share": last.get(a + "_nav_ps"),
+                                 "premium_to_nav": round(last[A] / last[a + "_nav_ps"] - 1, 4) if last.get(A) and last.get(a + "_nav_ps") else None}
+                             for A, a in (("MSTR", "mstr"), ("ASST", "asst"))},
+                         "spread_z": last.get("spread_z"), "relative_verdict": verdict(last)},
            "valuation_snapshot": {k: {kk: vv for kk, vv in v.items() if kk != "inputs"} for k, v in ev.items()},
            "latest_big_move": big[0] if big else None,
            "big_moves_last_30d": [m for m in big if m["date"] >= (today - dt.timedelta(days=30)).isoformat()],
            "upcoming_events_7d": upcoming,
+           "odds_jumps": oj.get("jumps", []), "key_odds": oj.get("summary", []),
            "prediction_markets": [{"source": x["source"], "label": x.get("label"), "url": x.get("url"),
                                    "top": sorted([{"outcome": o["outcome"], "yes": o["yes"]} for o in x.get("outcomes", []) if o.get("yes") is not None],
                                                  key=lambda o: -o["yes"])[:4]} for x in pm if not x.get("error")],

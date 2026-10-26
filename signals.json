@@ -2,7 +2,7 @@
   "generated_utc": "2026-10-26T20:15:06+00:00",
   "as_of": "2026-10-26",
   "disclaimer": "Rules-based indicator, not financial advice.",
-  "headline": "SELL/TRIM ASST (preferred off peg & falling); WATCH MSTR (preferred lost peg); DIP-BUY zone: BTC -30% off 1y high; hardest hit = MSTR",
+  "headline": "SELL/TRIM ASST (preferred off peg & falling); WATCH MSTR (preferred lost peg)",
   "per_asset": {
     "MSTR": {
       "peg_state": "WATCH",
@@ -10,7 +10,8 @@
       "mnav": 0.933,
       "mnav_pct_1y": 0.44,
       "overheated": false,
-      "drawdown_1y_high": -0.527
+      "price_chg_dip_window": -0.0842,
+      "mnav_chg_dip_window": -0.0619
     },
     "ASST": {
       "peg_state": "SELL",
@@ -18,7 +19,8 @@
       "mnav": 0.9973,
       "mnav_pct_1y": 0.484,
       "overheated": false,
-      "drawdown_1y_high": -0.1976
+      "price_chg_dip_window": -0.0502,
+      "mnav_chg_dip_window": -0.1468
     }
   },
   "both_overheated": false,
@@ -165,6 +167,111 @@
       "source": "https://www.strategy.com/press/strategy-declares-conditional-daily-dividends-on-strc-for-november-2026_10-16-2026"
     }
   ],
+  "odds_jumps": [
+    {
+      "date": "2026-10-23",
+      "window": "7d",
+      "source": "polymarket",
+      "group": "Fed",
+      "market": "Fed decision - Oct 28",
+      "outcome": "No change",
+      "question": "Will there be no change in Fed interest rates after the October 2026 meeting?",
+      "url": "https://polymarket.com/event/fed-decision-in-october-20260617190323537",
+      "from": 0.705,
+      "to": 0.935,
+      "change_pts": 23.0,
+      "from_date": "2026-10-16",
+      "news": {
+        "headline": "Week Ahead for FX, Bonds: Decisions From Fed, Other Central Banks in Focus - WSJ",
+        "url": "https://news.google.com/rss/articles/CBMirAFBVV95cUxPZl9NRnpPb3laN0tSUlB6NFUwekhQWkUyNG11ck5jQmxHZUxTZl82RzJoVmlLMzlQY2JCS1BuTC1mMDlZYjdXVHFFeTgxTXJ5eGJZazZOcGdLaDg4RFhvaDNidXhySlVzRFBTUmoyeTJ4YjYtMUR2M0RYT1M2WVZSRTIxYlNQQjk2RGJmWmRTMml5MEoyV1h5bHpSQ2dFaExzZVJmU1N3djBENFhM?oc=5",
+        "published": "Fri, 23 Oct 2026 16:23:00 GMT",
+        "publisher": "WSJ",
+        "via": "Google News RSS"
+      }
+    },
+    {
+      "date": "2026-10-21",
+      "window": "7d",
+      "source": "polymarket",
+      "group": "MSTR",
+      "market": "MSTR delisted from MSCI",
+      "outcome": "December 31",
+      "question": "Microstrategy delisted from MSCI index by December 31?",
+      "url": "https://polymarket.com/event/will-microstrategy-be-delisted-from-the-msci-index-by-march-31",
+      "from": 0.79,
+      "to": 0.94,
+      "change_pts": 15.0,
+      "from_date": "2026-10-14",
+      "news": {
+        "headline": "Strategy (MSTR) Could Be 13% Overvalued As Stablecoin Rules Lift Crypto Stocks - Yahoo Finance",
+        "url": "https://news.google.com/rss/articles/CBMinwFBVV95cUxNMVpoZXNyUlM5MGhtMG9zR0lZdkdFclVTeFM2ZXpXZlhyVGVQekRwNVlMUVZieHk3UTBCOVJ4cm9PbTZtcXFoSU9kU0pWQVZTVE81dkJ2WFA0WUI2cU5ScDBYVjhtdlJmRjZOcnVyLUVKU2tCTV9EYzFtaEhwWXN1N1FkZDBzSnI0ajFQd3lCaS04ZUlfYVpJNFdaX3RMWUk?oc=5",
+        "published": "Thu, 22 Oct 2026 02:12:00 GMT",
+        "publisher": "Yahoo Finance",
+        "via": "Google News RSS"
+      }
+    }
+  ],
+  "key_odds": [
+    {
+      "short": "BTC in 2026",
+      "url": "https://polymarket.com/event/what-price-will-bitcoin-hit-before-2027",
+      "source": "polymarket",
+      "odds": [
+        {
+          "outcome": "\u2191 100,000",
+          "yes": 0.175
+        },
+        {
+          "outcome": "\u2193 55,000",
+          "yes": 0.115
+        }
+      ]
+    },
+    {
+      "short": "Fed Oct 28",
+      "url": "https://polymarket.com/event/fed-decision-in-october-20260617190323537",
+      "source": "polymarket",
+      "odds": [
+        {
+          "outcome": "No change",
+          "yes": 0.9265
+        }
+      ]
+    },
+    {
+      "short": "CLARITY law in 2026",
+      "url": "https://kalshi.com/markets/kxcryptostructure",
+      "source": "kalshi",
+      "odds": [
+        {
+          "outcome": "Before Jan 1, 2027",
+          "yes": 0.07
+        }
+      ]
+    },
+    {
+      "short": "House",
+      "url": "https://polymarket.com/event/which-party-will-win-the-house-in-2026",
+      "source": "polymarket",
+      "odds": [
+        {
+          "outcome": "Democratic Party",
+          "yes": 0.915
+        }
+      ]
+    },
+    {
+      "short": "Senate",
+      "url": "https://polymarket.com/event/which-party-will-win-the-senate-in-2026",
+      "source": "polymarket",
+      "odds": [
+        {
+          "outcome": "Democratic Party",
+          "yes": 0.655
+        }
+      ]
+    }
+  ],
   "prediction_markets": [
     {
       "source": "polymarket",
@@ -302,11 +409,11 @@
       "top": [
         {
           "outcome": "Democratic Party",
-          "yes": 0.645
+          "yes": 0.655
         },
         {
           "outcome": "Republican Party",
-          "yes": 0.355
+          "yes": 0.345
         }
       ]
     },
@@ -509,9 +616,16 @@
       "both_overheated_action": "SELL_TO_BTC",
       "_both_overheated_comment": "when MSTR and ASST are both overheated, sell both and hold BTC (overrides peg actions)"
     },
+    "valuation": {
+      "_comment": "Zones for the 'who's cheap vs expensive' module. CHEAP: diluted mNAV < cheap_below_mnav. OVERVALUED: mNAV >= mnav.overheated_min_mnav OR 1y percentile >= mnav.overheated_percentile. FAIR: otherwise, with percentile <= fair_max_percentile (median). RICH: between the median and OVERVALUED.",
+      "cheap_below_mnav": 1.0,
+      "fair_max_percentile": 0.5
+    },
     "dip": {
-      "btc_drawdown_trigger": 0.25,
-      "rolling_high_days": 365
+      "_comment": "Dip = BTC down >= btc_drop_pct over the last lookback_days trading days. Target = whichever of MSTR/ASST had the larger % drop in diluted mNAV over the same window (got cheaper vs its own bitcoin); tie (within tie_tolerance) broken by the larger price drop.",
+      "btc_drop_pct": 0.15,
+      "lookback_days": 10,
+      "tie_tolerance": 0.005
     },
     "big_moves": {
       "_comment": "absolute daily close-to-close % move that counts as a Big Move",
@@ -537,8 +651,59 @@
         "debt_m": 0,
         "debt_note": "Strive's weekly table lists no debt line; debt assumed 0 (verify in 10-Q)."
       }
+    },
+    "odds_jumps": {
+      "_comment": "Odds Jumps module: flag tracked prediction markets whose Yes probability moved >= jump_24h_pts in one day or >= jump_7d_pts over 7 days, within the last window_days.",
+      "jump_24h_pts": 10,
+      "jump_7d_pts": 15,
+      "window_days": 7,
+      "find_news": true,
+      "news_queries": {
+        "BTC": "bitcoin price",
+        "Fed": "Federal Reserve rate decision",
+        "Congress": "CLARITY Act crypto Senate",
+        "Midterms": "midterm elections House Senate",
+        "MSTR": "MicroStrategy Strategy bitcoin"
+      },
+      "summary_markets": [
+        {
+          "source": "polymarket",
+          "id": "what-price-will-bitcoin-hit-before-2027",
+          "short": "BTC in 2026",
+          "outcomes": [
+            "\u2191 100,000",
+            "\u2193 55,000"
+          ]
+        },
+        {
+          "source": "polymarket",
+          "id": "fed-decision-in-october-20260617190323537",
+          "short": "Fed Oct 28",
+          "top": 1
+        },
+        {
+          "source": "kalshi",
+          "id": "KXCRYPTOSTRUCTURE-26JAN",
+          "short": "CLARITY law in 2026",
+          "outcomes": [
+            "Before Jan 1, 2027"
+          ]
+        },
+        {
+          "source": "polymarket",
+          "id": "which-party-will-win-the-house-in-2026",
+          "short": "House",
+          "top": 1
+        },
+        {
+          "source": "polymarket",
+          "id": "which-party-will-win-the-senate-in-2026",
+          "short": "Senate",
+          "top": 1
+        }
+      ]
     }
   },
-  "changed_since_prev_close": true,
-  "prev_headline": "SELL/TRIM ASST (preferred off peg & falling); WATCH MSTR (preferred lost peg); DIP-BUY zone: BTC -29% off 1y high; hardest hit = MSTR"
+  "changed_since_prev_close": false,
+  "prev_headline": "SELL/TRIM ASST (preferred off peg & falling); WATCH MSTR (preferred lost peg)"
 }
