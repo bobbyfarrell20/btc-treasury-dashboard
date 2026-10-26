@@ -1,0 +1,135 @@
+{
+  "_comment": "Hand-curated capital-structure events taken from SEC filings (each has its source). Used only to place known jumps BETWEEN the automatic anchors (10-Q/10-K XBRL quarter-ends, weekly 8-K balances, Strategy KPI API). The automatic anchors always win on their own dates. Amounts in USD millions unless noted.",
+  "MSTR": {
+    "debt_flows": [
+      {
+        "date": "2024-09-19",
+        "delta_m": 1010,
+        "note": "Issued $1.01B 0.625% convertible notes due 2028 (8-K 2024-09-20). The $500M 6.125% senior secured notes redemption around the same time is picked up by the 2024-09-30 10-Q anchor.",
+        "src": "https://www.sec.gov/Archives/edgar/data/1050446/000119312524222462/d887785d8k.htm"
+      },
+      {
+        "date": "2024-11-21",
+        "delta_m": 3000,
+        "note": "Issued $3B 0% convertible notes due 2029 (8-K 2024-11-21)",
+        "src": "https://www.sec.gov/Archives/edgar/data/1050446/000119312524263404/d905221d8k.htm"
+      },
+      {
+        "date": "2025-02-21",
+        "delta_m": 2000,
+        "note": "Issued $2B 0% convertible notes due 2030 (8-K 2025-02-24). Conversions or redemptions of older notes in Q1 2025 appear only at the 2025-03-31 10-Q anchor.",
+        "src": "https://www.sec.gov/Archives/edgar/data/1050446/000119312525032800/d851880d8k.htm"
+      }
+    ],
+    "debt_anchors": [
+      {
+        "date": "2026-05-25",
+        "level_m": 6710,
+        "note": "Repurchased $1.5B of 2029 notes during May 11-25, 2026; principal went from $8.21B to $6.71B (press release 2026-05-26 and 8-K 2026-07-27)",
+        "src": "https://www.sec.gov/Archives/edgar/data/1050446/000119312526237907/mstr-20260526.htm"
+      }
+    ],
+    "preferred_ipos": [
+      {
+        "date": "2025-02-05",
+        "series": "STRK",
+        "shares": 7300000,
+        "src": "https://www.sec.gov/Archives/edgar/data/1050446/000119312525020868/d791994d8k.htm"
+      },
+      {
+        "date": "2025-03-25",
+        "series": "STRF",
+        "shares": 8500000,
+        "src": "https://www.sec.gov/Archives/edgar/data/1050446/000119312525062523/d943742d8k.htm"
+      },
+      {
+        "date": "2025-06-10",
+        "series": "STRD",
+        "shares": 11764700,
+        "src": "https://www.sec.gov/Archives/edgar/data/1050446/000119312525138477/d941529d8k.htm"
+      },
+      {
+        "date": "2025-07-29",
+        "series": "STRC",
+        "shares": 28011111,
+        "src": "https://www.sec.gov/Archives/edgar/data/1050446/000119312525167987/d43815d8k.htm"
+      },
+      {
+        "date": "2025-11-13",
+        "series": "STRE",
+        "shares": 7750000,
+        "note": "EUR 100 stated amount; converted to USD at that day's EURUSD",
+        "src": "https://www.sec.gov/Archives/edgar/data/1050446/000119312525280178/d205736d8k.htm"
+      }
+    ],
+    "preferred_check": [
+      {
+        "date": "2026-05-25",
+        "notional_m": 15500,
+        "note": "'$15.5 billion aggregate notional amount of preferred stock outstanding' (press release 2026-05-26), rounded; used only as a check",
+        "src": "https://www.sec.gov/Archives/edgar/data/1050446/000119312526237907/mstr-20260526.htm"
+      }
+    ]
+  },
+  "ASST": {
+    "debt_anchors": [
+      {
+        "date": "2025-09-12",
+        "level_m": 0,
+        "note": "Strive had no debt before the Semler merger (10-Q 2025-09-30)",
+        "src": "https://www.sec.gov/Archives/edgar/data/1920406/000162828025052343/asst-20250930.htm"
+      },
+      {
+        "date": "2026-01-16",
+        "level_m": 120,
+        "approx": true,
+        "note": "Semler merger: assumed Semler's 4.25% convertible notes due 2030 (~$100M = $90M later exchanged + ~$10M left, see below) plus a $20M Coinbase loan (8-K 2026-01-28; 10-Q shows $20M debt assumed)",
+        "src": "https://www.sec.gov/Archives/edgar/data/1920406/000114036126002606/ny20063534x6_8k.htm"
+      },
+      {
+        "date": "2026-01-27",
+        "level_m": 10,
+        "approx": true,
+        "note": "$90M of Semler notes exchanged for ~930k SATA, and the $20M Coinbase loan retired (8-K 2026-01-28). About $10M of notes left (10-Q fair value $9.7M at 2026-03-31).",
+        "src": "https://www.sec.gov/Archives/edgar/data/1920406/000114036126002606/ny20063534x6_8k.htm"
+      },
+      {
+        "date": "2026-06-30",
+        "level_m": 0,
+        "approx": true,
+        "note": "Remaining notes repaid in Q2 2026 (10-Q: notes repayments $9.97M); exact date not disclosed, so the step is placed at quarter-end",
+        "src": "https://www.sec.gov/Archives/edgar/data/1920406/000162828026054985/asst-20260630.htm"
+      }
+    ],
+    "sata_points": [
+      {
+        "date": "2025-11-10",
+        "sata": 2012729,
+        "approx": true,
+        "note": "SATA IPO settled 2025-11-10 (8-K). The IPO share count is not in the 8-K text, so the 2025-12-31 count (2,012,729) is back-filled.",
+        "src": "https://www.sec.gov/Archives/edgar/data/1920406/000114036125041295/ny20056805x8_8k.htm"
+      },
+      {
+        "date": "2026-01-27",
+        "sata": 4262729,
+        "approx": true,
+        "note": "Follow-on of 1,320,000 SATA plus ~930,000 SATA from the notes exchange, added to the year-end 2,012,729 (8-K 2026-01-28). The 2026-02-11 count was 4,265,518.",
+        "src": "https://www.sec.gov/Archives/edgar/data/1920406/000114036126002606/ny20063534x6_8k.htm"
+      }
+    ],
+    "sats_points": [
+      {
+        "date": "2025-09-12",
+        "sats": 0,
+        "note": "SATS did not exist until its October 2026 IPO",
+        "src": "https://www.sec.gov/Archives/edgar/data/1920406/000095010326015690/dp255095_8k.htm"
+      },
+      {
+        "date": "2026-10-23",
+        "sats": 7000000,
+        "note": "SATS IPO settled 2026-10-20 (8-K 2026-10-16). The step is placed on 2026-10-23, the date of the first weekly 8-K table showing both the 7,000,000 SATS and the cash/BTC from the raise, so EV doesn't count the new preferred for 3 days before its proceeds show up.",
+        "src": "https://www.sec.gov/Archives/edgar/data/1920406/000095010326015690/dp255095_8k.htm"
+      }
+    ]
+  }
+}

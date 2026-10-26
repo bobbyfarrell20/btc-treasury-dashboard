@@ -1,5 +1,5 @@
 {
-  "generated_utc": "2026-10-26T20:21:51+00:00",
+  "generated_utc": "2026-10-26T20:54:49+00:00",
   "as_of": "2026-10-26",
   "disclaimer": "Rules-based indicator, not financial advice.",
   "headline": "SELL/TRIM ASST (preferred off peg & falling); WATCH MSTR (preferred lost peg)",
@@ -7,20 +7,20 @@
     "MSTR": {
       "peg_state": "WATCH",
       "action": "WATCH",
-      "mnav": 0.9332,
-      "mnav_pct_1y": 0.448,
+      "mnav": 1.0945,
+      "mnav_pct_1y": 0.381,
       "overheated": false,
       "price_chg_dip_window": -0.0842,
-      "mnav_chg_dip_window": -0.0624
+      "mnav_chg_dip_window": -0.0537
     },
     "ASST": {
       "peg_state": "SELL",
       "action": "SELL",
-      "mnav": 0.9975,
-      "mnav_pct_1y": 0.488,
+      "mnav": 1.4293,
+      "mnav_pct_1y": 0.647,
       "overheated": false,
       "price_chg_dip_window": -0.0502,
-      "mnav_chg_dip_window": -0.1472
+      "mnav_chg_dip_window": -0.0661
     }
   },
   "both_overheated": false,
@@ -30,12 +30,12 @@
     "target": null,
     "lookback_trading_days": 10,
     "trigger_btc_drop": 0.15,
-    "btc_change": -0.024,
+    "btc_change": -0.0249,
     "cheapened_most": "ASST",
     "mstr_price_change": -0.0842,
     "asst_price_change": -0.0502,
-    "mstr_mnav_change": -0.0624,
-    "asst_mnav_change": -0.1472
+    "mstr_mnav_change": -0.0537,
+    "asst_mnav_change": -0.0661
   },
   "peg": {
     "STRC": {
@@ -49,58 +49,90 @@
       "distance_from_par": -1.64
     }
   },
+  "signal_basis": "ev",
+  "signal_basis_label": "mNAV all-in (EV): (price x basic shares + debt + preferred notional - cash) / BTC NAV",
   "values": {
     "MSTR": 139.82,
     "ASST": 26.32,
-    "btc": 79802.1016,
-    "mstr_mnav": 0.9332,
-    "asst_mnav": 0.9975,
-    "mnav_avg": 0.9654,
-    "mnav_spread": 0.0643,
-    "spread_z": -0.146,
+    "btc": 79723.8438,
+    "mstr_mnav": 1.0945,
+    "asst_mnav": 1.4293,
+    "mnav_avg": 1.2619,
+    "mnav_spread": 0.3348,
+    "spread_z": 0.554,
     "ratio": 0.18824,
-    "btc_chg": -0.024,
+    "mstr_mnav_basic": 0.873,
+    "asst_mnav_basic": 0.9776,
+    "mstr_mnav_ev": 1.0945,
+    "asst_mnav_ev": 1.4293,
+    "mstr_mnav_diluted": 0.9341,
+    "asst_mnav_diluted": 0.9984,
+    "mstr_ev_m": 74037.6,
+    "asst_ev_m": 4899.7,
+    "btc_chg": -0.0249,
     "mstr_chg": -0.0842,
     "asst_chg": -0.0502,
-    "mstr_mnav_chg": -0.0624,
-    "asst_mnav_chg": -0.1472,
-    "mstr_nav_ps": 149.83,
-    "asst_nav_ps": 26.39
+    "mstr_mnav_chg": -0.0537,
+    "asst_mnav_chg": -0.0661,
+    "mstr_nav_ps": 149.68,
+    "asst_nav_ps": 26.36
   },
   "valuation": {
     "MSTR": {
-      "zone": "CHEAP",
-      "diluted_mnav": 0.9332,
-      "mnav_pct_1y": 0.448,
+      "signal_basis": "ev",
+      "zone": "FAIR",
+      "market_standard": {
+        "mnav": 0.873,
+        "mnav_pct_1y": 0.528,
+        "zone": "CHEAP"
+      },
+      "all_in_ev": {
+        "mnav": 1.0945,
+        "mnav_pct_1y": 0.381,
+        "zone": "FAIR"
+      },
+      "diluted_equity_mnav": 0.9341,
       "price": 139.82,
-      "btc_nav_per_share": 149.83,
-      "premium_to_nav": -0.0668
+      "btc_held": 848517.0,
+      "basic_shares": 422357317.0,
+      "debt_m": 6714.0,
+      "preferred_notional_m": 13344.6,
+      "cash_m": 5075.0,
+      "enterprise_value_m": 74037.6,
+      "btc_nav_m": 67647,
+      "btc_nav_per_basic_share": 160.17
     },
     "ASST": {
-      "zone": "CHEAP",
-      "diluted_mnav": 0.9975,
-      "mnav_pct_1y": 0.488,
+      "signal_basis": "ev",
+      "zone": "OVERVALUED",
+      "market_standard": {
+        "mnav": 0.9776,
+        "mnav_pct_1y": 0.46,
+        "zone": "CHEAP"
+      },
+      "all_in_ev": {
+        "mnav": 1.4293,
+        "mnav_pct_1y": 0.647,
+        "zone": "OVERVALUED"
+      },
+      "diluted_equity_mnav": 0.9984,
       "price": 26.32,
-      "btc_nav_per_share": 26.39,
-      "premium_to_nav": -0.0027
+      "btc_held": 43000.0,
+      "basic_shares": 127328346.0,
+      "debt_m": 0.0,
+      "preferred_notional_m": 2103.0,
+      "cash_m": 554.6,
+      "enterprise_value_m": 4899.7,
+      "btc_nav_m": 3428,
+      "btc_nav_per_basic_share": 26.92
     },
-    "spread_z": -0.146,
-    "relative_verdict": "Neither is clearly cheaper vs its usual gap (spread z -0.15, within \u00b11); MSTR has the lower mNAV today (0.93x vs 1.00x)"
-  },
-  "valuation_snapshot": {
-    "MSTR": {
-      "basic_equity_mnav": 0.8721,
-      "diluted_equity_mnav": 0.9332,
-      "ev_mnav": 1.0934,
-      "enterprise_value_m": 74038,
-      "btc_nav_m": 67713
+    "spread_z": {
+      "basic": -0.272,
+      "ev": 0.554
     },
-    "ASST": {
-      "basic_equity_mnav": 0.9766,
-      "diluted_equity_mnav": 0.9975,
-      "ev_mnav": 1.4279,
-      "enterprise_value_m": 4900,
-      "btc_nav_m": 3431
+    "relative_verdict": {
+      "basic": "Neither is clearly cheaper vs its usual gap (spread z -0.27, within \u00b11); MSTR has the lower mNAV today (0.87x vs 0.98x)",
+      "ev": "Neither is clearly cheaper vs its usual gap (spread z +0.55, within \u00b11); MSTR has the lower mNAV today (1.09x vs 1.43x)"
     }
   },
   "latest_big_move": {
@@ -110,7 +142,7 @@
     "close": 26.32,
     "prev_close": 28.97,
     "threshold": 0.07,
-    "btc_change_same_day": -0.0028
+    "btc_change_same_day": -0.0038
   },
   "big_moves_last_30d": [
     {
@@ -120,7 +152,7 @@
       "close": 26.32,
       "prev_close": 28.97,
       "threshold": 0.07,
-      "btc_change_same_day": -0.0028
+      "btc_change_same_day": -0.0038
     },
     {
       "date": "2026-10-21",
@@ -464,7 +496,7 @@
       "top": [
         {
           "outcome": "December 31",
-          "yes": 0.895
+          "yes": 0.89
         }
       ]
     },
@@ -601,11 +633,11 @@
       "top": [
         {
           "outcome": "Democratic Party",
-          "yes": 0.91
+          "yes": 0.911
         },
         {
           "outcome": "Republican Party",
-          "yes": 0.095
+          "yes": 0.096
         }
       ]
     },
@@ -643,15 +675,19 @@
       "spread_z_favor_asst": -1.0,
       "spread_z_favor_mstr": 1.0,
       "both_overheated_action": "SELL_TO_BTC",
-      "_both_overheated_comment": "when MSTR and ASST are both overheated, sell both and hold BTC (overrides peg actions)"
+      "_both_overheated_comment": "when MSTR and ASST are both overheated, sell both and hold BTC (overrides peg actions)",
+      "signal_basis": "ev",
+      "_signal_basis_comment": "Which mNAV drives overheated / rotation / dip / zones: 'ev' (all-in: equity at basic shares + debt + preferred notional - cash, over BTC NAV), 'basic' (market-standard: price x basic shares / BTC NAV) or 'diluted' (price x assumed-diluted shares / BTC NAV).",
+      "ev_share_basis": "basic",
+      "_ev_share_basis_comment": "Share count used for the equity leg of EV. 'basic' (Strategy's own EV definition) avoids double-counting convertible notes, which are already in debt. 'diluted' is an option."
     },
     "valuation": {
-      "_comment": "Zones for the 'who's cheap vs expensive' module. CHEAP: diluted mNAV < cheap_below_mnav. OVERVALUED: mNAV >= mnav.overheated_min_mnav OR 1y percentile >= mnav.overheated_percentile. FAIR: otherwise, with percentile <= fair_max_percentile (median). RICH: between the median and OVERVALUED.",
+      "_comment": "Zones for the 'who's cheap vs expensive' module, applied to each mNAV basis separately. CHEAP: mNAV < cheap_below_mnav. OVERVALUED: mNAV >= mnav.overheated_min_mnav OR 1y percentile >= mnav.overheated_percentile. FAIR: otherwise, with percentile <= fair_max_percentile (median). RICH: between the median and OVERVALUED.",
       "cheap_below_mnav": 1.0,
       "fair_max_percentile": 0.5
     },
     "dip": {
-      "_comment": "Dip = BTC down >= btc_drop_pct over the last lookback_days trading days. Target = whichever of MSTR/ASST had the larger % drop in diluted mNAV over the same window (got cheaper vs its own bitcoin); tie (within tie_tolerance) broken by the larger price drop.",
+      "_comment": "Dip = BTC down >= btc_drop_pct over the last lookback_days trading days. Target = whichever of MSTR/ASST had the larger % drop in mNAV (mnav.signal_basis) over the same window (got cheaper vs its own bitcoin); tie (within tie_tolerance) broken by the larger price drop.",
       "btc_drop_pct": 0.15,
       "lookback_days": 10,
       "tie_tolerance": 0.005
@@ -665,21 +701,11 @@
     "events": {
       "upcoming_window_days": 7
     },
-    "ev_snapshot": {
-      "_comment": "Inputs for the CURRENT enterprise-value mNAV (snapshot only). EV mNAV = (price x basic shares + debt + preferred notional - cash) / (BTC held x BTC price). ASST inputs are auto-read from Strive's latest weekly 8-K table (cash, STRC held, SATA & SATS counts at $100 stated amount); MSTR inputs below must be updated by hand from strategy.com.",
-      "MSTR": {
-        "as_of": "2026-10-26",
-        "source": "https://www.strategy.com/ (dashboard snapshot 10/26/2026 11:51 AM ET: mkt cap $60,501M at $143.25, debt $6,714M, pref $13,347M, USD Reserve $4,833M, cash $242M)",
-        "basic_shares": 422345000,
-        "debt_m": 6714,
-        "preferred_notional_m": 13347,
-        "cash_m": 5075
-      },
-      "ASST": {
-        "preferred_stated_value": 100.0,
-        "debt_m": 0,
-        "debt_note": "Strive's weekly table lists no debt line; debt assumed 0 (verify in 10-Q)."
-      }
+    "capital": {
+      "_comment": "Inputs for the all-in (EV) mNAV. Debt, preferred and cash timelines are built automatically from SEC filings + Strategy's KPI API (scripts/capital.py, data/capital_events.json); nothing here is a hand-typed balance.",
+      "asst_preferred_stated_value": 100.0,
+      "mstr_preferred_stated_value_usd": 100.0,
+      "mstr_stre_stated_value_eur": 100.0
     },
     "odds_jumps": {
       "_comment": "Odds Jumps module: flag tracked prediction markets whose Yes probability moved >= jump_24h_pts in one day or >= jump_7d_pts over 7 days, within the last window_days.",

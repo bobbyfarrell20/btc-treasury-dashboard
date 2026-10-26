@@ -8,6 +8,9 @@ Sources
 - MSTR STRC ATM issuance / repurchases: Strategy weekly 8-Ks (SEC EDGAR).
 - ASST BTC holdings, share counts, SATA shares outstanding: Strive 8-K/10-Q/10-K filings (SEC EDGAR) +
   data/asst_seed.json for the pre-weekly-table period.
+- Capital structure for the all-in (EV) mNAV (basic shares, debt, preferred notional, cash/USD reserve):
+  scripts/capital.py -> data/capital_timeline.json (10-Q/10-K covers, XBRL companyfacts, weekly 8-Ks,
+  Strategy KPI API, data/capital_events.json). EUR/USD (for STRE) from Yahoo EURUSD=X.
 """
 import json, re, html, time, math, os, sys, datetime as dt
 from pathlib import Path
@@ -19,8 +22,8 @@ CFG = json.loads((ROOT / "config.json").read_text())
 UA_SEC = {"User-Agent": os.environ.get("SEC_USER_AGENT", "BtcTreasuryDashboard research contact@example.com"),
           "Accept-Encoding": "gzip, deflate"}
 UA_WEB = {"User-Agent": "Mozilla/5.0"}
-TICKERS = ["MSTR", "ASST", "BTC-USD", "STRC", "SATA", "SATS"]
-PARSER_VERSION = 2
+TICKERS = ["MSTR", "ASST", "BTC-USD", "STRC", "SATA", "SATS", "EURUSD=X"]
+PARSER_VERSION = 3
 CIK = {"MSTR": "1050446", "ASST": "1920406"}
 MONTHS = {m: i for i, m in enumerate(["January","February","March","April","May","June","July","August",
                                        "September","October","November","December"], 1)}
@@ -49,7 +52,7 @@ def fetch_prices():
             except Exception as e:
                 log("yahoo retry", t, e); time.sleep(3 + attempt * 3)
         else:
-            if t in ("SATS",):
+            if t in ("SATS", "EURUSD=X"):
                 log("optional ticker unavailable", t); out[t] = {}; continue
             raise RuntimeError(f"Yahoo fetch failed for {t}")
         tz = dt.timezone(dt.timedelta(seconds=res["meta"].get("gmtoffset", 0)))
@@ -220,6 +223,21 @@ def main():
     a_btc = step_lookup(a_ev, "btc"); a_sh = step_lookup(a_ev, "shares")
     sata_ev = sorted({e["date"]: e["sata"] for e in a_ev + seed.get("sata_other", []) if "sata" in e}.items())
 
+    # ---- capital-structure timelines for the all-in (EV) mNAV
+    sys.path.insert(0, str(ROOT / "scripts")); import capital
+    cap = capital.build(UA_SEC, UA_WEB, cache, a_ev, seed)
+    cache_f.write_text(json.dumps(cache, indent=0))
+    (DATA / "capital_timeline.json").write_text(json.dumps(cap, indent=1))
+    fx_ser = sorted(prices.get("EURUSD=X", {}).items())
+    def eurusd(d):
+        v = None
+        for fd, fv in fx_ser:
+            if fd <= d: v = fv
+            else: break
+        return v
+    mc0 = CFG["mnav"]; BASIS = mc0.get("signal_basis", "ev"); EV_SH = mc0.get("ev_share_basis", "basic")
+    BASES = ("basic", "ev", "diluted")
+
     # ---- build daily table on trading days (MSTR calendar)
     btc = prices["BTC-USD"]
     days = sorted(prices["MSTR"])
@@ -233,13 +251,27 @@ def main():
         ms = m_sh(d)
         if r["MSTR"] and mb and ms:
             r["mstr_btc"], r["mstr_shares"] = mb, ms
-            r["mstr_mnav"] = round(r["MSTR"] * ms / (mb * b), 4)
+            r["mstr_mnav_diluted"] = round(r["MSTR"] * ms / (mb * b), 4)
             r["mstr_nav_ps"] = round(mb * b / ms, 2)
         ab, ash = a_btc(d), a_sh(d)
         if r["ASST"] and ab and ash:
             r["asst_btc"], r["asst_shares"] = ab, ash
-            r["asst_mnav"] = round(r["ASST"] * ash / (ab * b), 4)
+            r["asst_mnav_diluted"] = round(r["ASST"] * ash / (ab * b), 4)
             r["asst_nav_ps"] = round(ab * b / ash, 2)
+        for A, a, bt, dil in (("MSTR", "mstr", mb, ms), ("ASST", "asst", ab, ash)):
+            if not (r[A] and bt): continue
+            x = capital.ev_inputs(cap, A, d, eurusd, CFG.get("capital"))
+            if not x or x.get("missing_fx"): continue
+            nav = bt * b
+            r[a + "_basic_shares"] = x["basic_shares"]
+            r[a + "_mnav_basic"] = round(r[A] * x["basic_shares"] / nav, 4)
+            eq_sh = dil if (EV_SH == "diluted" and dil) else x["basic_shares"]
+            evv = r[A] * eq_sh + x["debt"] + x["pref"] - x["cash"]
+            r[a + "_mnav_ev"] = round(evv / nav, 4)
+            r[a + "_ev_m"] = round(evv / 1e6, 1)
+            r[a + "_debt_m"], r[a + "_pref_m"], r[a + "_cash_m"] = round(x["debt"] / 1e6, 1), round(x["pref"] / 1e6, 1), round(x["cash"] / 1e6, 1)
+        for a in ("mstr", "asst"):
+            if r.get(a + "_mnav_" + BASIS) is not None: r[a + "_mnav"] = r[a + "_mnav_" + BASIS]
         rows.append(r)
 
     # ---- rolling stats
@@ -247,14 +279,17 @@ def main():
     L = mc["lookback_trading_days"]
     for i, r in enumerate(rows):
         win = rows[max(0, i - L + 1): i + 1]
-        for k in ("mstr_mnav", "asst_mnav"):
-            if r.get(k) is not None:
-                r[k + "_pct"] = round(pct_rank([w.get(k) for w in win], r[k]), 3)
-        if r.get("mstr_mnav") and r.get("asst_mnav"):
-            r["mnav_spread"] = round(r["asst_mnav"] - r["mstr_mnav"], 4)
-            r["mnav_avg"] = round((r["asst_mnav"] + r["mstr_mnav"]) / 2, 4)
-            m, s = mean_std([w.get("mnav_spread") for w in win[:-1]] + [r["mnav_spread"]])
-            if s: r["spread_z"] = round((r["mnav_spread"] - m) / s, 3)
+        for bs in BASES + ("",):
+            sfx = "_" + bs if bs else ""
+            for k in ("mstr_mnav" + sfx, "asst_mnav" + sfx):
+                if r.get(k) is not None:
+                    r[k + "_pct"] = round(pct_rank([w.get(k) for w in win], r[k]), 3)
+            m_, a_ = r.get("mstr_mnav" + sfx), r.get("asst_mnav" + sfx)
+            if m_ and a_:
+                r["mnav_spread" + sfx] = round(a_ - m_, 4)
+                r["mnav_avg" + sfx] = round((a_ + m_) / 2, 4)
+                m, s = mean_std([w.get("mnav_spread" + sfx) for w in win[:-1]] + [r["mnav_spread" + sfx]])
+                if s: r["spread_z" + sfx] = round((r["mnav_spread" + sfx] - m) / s, 3)
         if r["MSTR"] and r["ASST"]: r["ratio"] = round(r["ASST"] / r["MSTR"], 5)
         # short-window changes for the dip rule (trading days, no reliance on prior highs)
         n = dc["lookback_days"]
@@ -324,9 +359,13 @@ def main():
         if p is None or p <= vc["fair_max_percentile"]: return "FAIR"
         return "RICH"
     for r in rows:
-        for a in ("mstr", "asst"): r[a + "_zone"] = zone(r.get(a + "_mnav"), r.get(a + "_mnav_pct"))
-    def verdict(r):
-        z, m, s = r.get("spread_z"), r.get("mstr_mnav"), r.get("asst_mnav")
+        for a in ("mstr", "asst"):
+            r[a + "_zone"] = zone(r.get(a + "_mnav"), r.get(a + "_mnav_pct"))
+            for bs in ("basic", "ev"):
+                r[a + "_zone_" + bs] = zone(r.get(a + "_mnav_" + bs), r.get(a + "_mnav_" + bs + "_pct"))
+    def verdict(r, bs=""):
+        sfx = "_" + bs if bs else ""
+        z, m, s = r.get("spread_z" + sfx), r.get("mstr_mnav" + sfx), r.get("asst_mnav" + sfx)
         if m is None or s is None: return None
         lower = "MSTR" if m < s else "ASST"
         if z is not None and z <= mc["spread_z_favor_asst"]:
@@ -372,30 +411,13 @@ def main():
     horizon = (today + dt.timedelta(days=CFG["events"]["upcoming_window_days"])).isoformat()
     upcoming = [e for e in evf if e.get("date") and today.isoformat() <= e["date"] <= horizon]
 
-    # ---- EV / basic snapshot (current only)
-    last = rows[-1]; b = last["btc"]
-    ev = {}
-    mi = CFG["ev_snapshot"]["MSTR"]
-    if last.get("MSTR") and last.get("mstr_btc"):
-        nav = last["mstr_btc"] * b
-        mc_basic = last["MSTR"] * mi["basic_shares"]
-        evv = mc_basic + (mi["debt_m"] + mi["preferred_notional_m"] - mi["cash_m"]) * 1e6
-        ev["MSTR"] = {"basic_equity_mnav": round(mc_basic / nav, 4), "diluted_equity_mnav": last.get("mstr_mnav"),
-                      "ev_mnav": round(evv / nav, 4), "enterprise_value_m": round(evv / 1e6), "btc_nav_m": round(nav / 1e6),
-                      "inputs": dict(mi, btc_held=last["mstr_btc"], price=last["MSTR"], btc_price=b)}
-    ai = CFG["ev_snapshot"]["ASST"]
-    la = [e for e in a_ev if "cash_k" in e]
-    if last.get("ASST") and la:
-        e = la[-1]; nav = e["btc"] * b
-        mc_basic = last["ASST"] * e["shares_basic"]
-        pref = (e.get("sata", 0) + e.get("sats", 0)) * ai["preferred_stated_value"]
-        cash = (e.get("cash_k", 0) + e.get("strc_fv_k", 0)) * 1e3
-        evv = mc_basic + pref + ai["debt_m"] * 1e6 - cash
-        ev["ASST"] = {"basic_equity_mnav": round(mc_basic / nav, 4), "diluted_equity_mnav": last.get("asst_mnav"),
-                      "ev_mnav": round(evv / nav, 4), "enterprise_value_m": round(evv / 1e6), "btc_nav_m": round(nav / 1e6),
-                      "inputs": {"as_of": e["date"], "source": e.get("src"), "btc_held": e["btc"], "basic_shares": e["shares_basic"],
-                                 "sata_shares": e.get("sata"), "sats_shares": e.get("sats"), "cash_k": e.get("cash_k"),
-                                 "strc_fair_value_k": e.get("strc_fv_k"), "debt_m": ai["debt_m"], "price": last["ASST"], "btc_price": b}}
+    last = rows[-1]
+    def asset_val(A, a, bs):
+        v = last.get(a + "_mnav_" + bs)
+        return {"mnav": v, "mnav_pct_1y": last.get(a + "_mnav_" + bs + "_pct"), "zone": last.get(a + "_zone_" + bs)}
+    BASIS_LABEL = {"basic": "mNAV (market standard): price x basic shares / BTC NAV",
+                   "ev": "mNAV all-in (EV): (price x basic shares + debt + preferred notional - cash) / BTC NAV",
+                   "diluted": "diluted equity mNAV: price x assumed-diluted shares / BTC NAV"}
 
     # ---- prediction markets
     pm = []
@@ -424,7 +446,8 @@ def main():
     gen = dt.datetime.now(dt.timezone.utc).isoformat(timespec="seconds")
     dash = {"generated_utc": gen, "config": CFG, "rows": out_rows, "fuel": fuel,
             "asst_events": a_ev, "mstr_holdings_edgar": edgar_h,
-            "latest_btc_spot": {"date": max(btc), "price": btc[max(btc)]}, "big_moves": big, "ev_snapshot": ev,
+            "latest_btc_spot": {"date": max(btc), "price": btc[max(btc)]}, "big_moves": big, "signal_basis": BASIS, "basis_labels": BASIS_LABEL,
+            "capital_residuals": cap["MSTR"]["residuals"], "strategy_kpi_latest": cap["MSTR"].get("strategy_kpi_latest"),
             "sats": prices.get("SATS", {})}
     (DATA / "dashboard.json").write_text(json.dumps(dash, separators=(",", ":")))
 
@@ -437,14 +460,20 @@ def main():
                    "mstr_mnav_change": last.get("mstr_mnav_chg"), "asst_mnav_change": last.get("asst_mnav_chg")},
            "peg": {p: {"price": last.get(p), "state": last.get("peg_" + p),
                        "distance_from_par": round(last[p] - pc["par"], 3) if last.get(p) else None} for p in ("STRC", "SATA")},
+           "signal_basis": BASIS, "signal_basis_label": BASIS_LABEL[BASIS],
            "values": {k: last.get(k) for k in ("MSTR", "ASST", "btc", "mstr_mnav", "asst_mnav", "mnav_avg", "mnav_spread",
-                                               "spread_z", "ratio", "btc_chg", "mstr_chg", "asst_chg", "mstr_mnav_chg", "asst_mnav_chg", "mstr_nav_ps", "asst_nav_ps")},
-           "valuation": {**{A: {"zone": last.get(a + "_zone"), "diluted_mnav": last.get(a + "_mnav"), "mnav_pct_1y": last.get(a + "_mnav_pct"),
-                                 "price": last.get(A), "btc_nav_per_share": last.get(a + "_nav_ps"),
-                                 "premium_to_nav": round(last[A] / last[a + "_nav_ps"] - 1, 4) if last.get(A) and last.get(a + "_nav_ps") else None}
+                                               "spread_z", "ratio", "mstr_mnav_basic", "asst_mnav_basic", "mstr_mnav_ev", "asst_mnav_ev",
+                                               "mstr_mnav_diluted", "asst_mnav_diluted", "mstr_ev_m", "asst_ev_m", "btc_chg", "mstr_chg", "asst_chg", "mstr_mnav_chg", "asst_mnav_chg", "mstr_nav_ps", "asst_nav_ps")},
+           "valuation": {**{A: {"signal_basis": BASIS, "zone": last.get(a + "_zone"),
+                                 "market_standard": asset_val(A, a, "basic"), "all_in_ev": asset_val(A, a, "ev"),
+                                 "diluted_equity_mnav": last.get(a + "_mnav_diluted"),
+                                 "price": last.get(A), "btc_held": last.get(a + "_btc"), "basic_shares": last.get(a + "_basic_shares"),
+                                 "debt_m": last.get(a + "_debt_m"), "preferred_notional_m": last.get(a + "_pref_m"), "cash_m": last.get(a + "_cash_m"),
+                                 "enterprise_value_m": last.get(a + "_ev_m"), "btc_nav_m": round(last[a + "_btc"] * last["btc"] / 1e6) if last.get(a + "_btc") else None,
+                                 "btc_nav_per_basic_share": round(last[a + "_btc"] * last["btc"] / last[a + "_basic_shares"], 2) if last.get(a + "_basic_shares") else None}
                              for A, a in (("MSTR", "mstr"), ("ASST", "asst"))},
-                         "spread_z": last.get("spread_z"), "relative_verdict": verdict(last)},
-           "valuation_snapshot": {k: {kk: vv for kk, vv in v.items() if kk != "inputs"} for k, v in ev.items()},
+                         "spread_z": {"basic": last.get("spread_z_basic"), "ev": last.get("spread_z_ev")},
+                         "relative_verdict": {"basic": verdict(last, "basic"), "ev": verdict(last, "ev")}},
            "latest_big_move": big[0] if big else None,
            "big_moves_last_30d": [m for m in big if m["date"] >= (today - dt.timedelta(days=30)).isoformat()],
            "upcoming_events_7d": upcoming,

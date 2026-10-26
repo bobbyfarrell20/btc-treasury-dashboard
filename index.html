@@ -46,7 +46,12 @@ details summary{cursor:pointer;color:var(--b)}
 .vbig{font-size:30px;font-weight:800}.gauge{position:relative;height:16px;border-radius:8px;overflow:hidden;display:flex;margin:22px 0 4px}
 .gauge div{height:100%}.gmark{position:absolute;top:-6px;width:3px;height:28px;background:#fff;box-shadow:0 0 6px #fff;border-radius:2px}
 .gwrap{position:relative}.glab{position:absolute;top:-20px;transform:translateX(-50%);font-size:11px;font-weight:700;white-space:nowrap}
-.gticks{position:relative;height:16px;font-size:10.5px;color:var(--mut)}.gticks span{position:absolute;transform:translateX(-50%)}
+.gticks{position:relative;height:16px;margin-bottom:10px;font-size:10.5px;color:var(--mut)}.gticks span{position:absolute;transform:translateX(-50%)}
+.seg{display:inline-flex;gap:0;margin-left:8px;vertical-align:middle;flex-wrap:wrap}.seg button{background:#21262d;color:#c9d1d9;border:1px solid #30363d;padding:3px 9px;font-size:12px;cursor:pointer}
+.seg button:first-child{border-radius:6px 0 0 6px}.seg button:last-child{border-radius:0 6px 6px 0}.seg button.on{background:#388bfd33;color:#fff;border-color:#388bfd}
+.vbasis{border-top:1px solid #30363d;margin-top:12px;padding-top:8px}.vbasis h3{font-size:13.5px;margin:0 0 4px;display:flex;gap:8px;align-items:center;flex-wrap:wrap}
+.sigtag{font-size:10.5px;color:#f7c948;border:1px solid #f7c94866;border-radius:4px;padding:0 5px}.tip{border-bottom:1px dotted #8b949e;cursor:help}
+.vplain{font-size:13px;margin:6px 0 2px}
 </style></head><body>
 <header class="hero"><div class="hero-in">
  <div class="brand"><div class="logo" aria-hidden="true">₿</div><div><h1>Flywheel Rotation Tracker</h1><div class="tag">MSTR vs ASST, powered by STRC &amp; SATA, with BTC as home base</div></div></div>
@@ -62,8 +67,10 @@ details summary{cursor:pointer;color:var(--b)}
 
 <section class="card" id="valuation"><h2>Valuation: who's cheap vs expensive</h2>
 <div class="verdict" id="verdict">…</div>
+<div class="note" id="basisnote" style="margin:-4px 0 10px"></div>
 <div class="grid g2" id="valcards"></div>
-<h2 style="margin-top:14px">Valuation zone history (diluted mNAV percentile vs trailing 1y; dots colored by zone)</h2>
+<h2 style="margin-top:14px">Valuation zone history (mNAV percentile vs trailing 1y; dots colored by zone)
+ <span class="seg" id="zbasis"><button data-b="basic">market standard</button><button data-b="ev">all-in (EV)</button></span></h2>
 <div id="c_zone" class="chart"></div>
 <div class="note" id="valnote"></div></section>
 
@@ -74,9 +81,10 @@ details summary{cursor:pointer;color:var(--b)}
 <div class="note">Source of truth: <a href="data/events.json">data/events.json</a> (edit to add/update). Dates not yet confirmed are marked <span class="tbd">TBD</span>/estimated, never guessed.</div></section>
 
 <section class="card"><h2>1 · Normalized performance (% change from first visible date; re-bases when you zoom or slide)</h2><div id="c_norm" class="chart"></div></section>
-<section class="card"><h2>2 · mNAV: MSTR vs ASST (fully-diluted equity basis)</h2><div id="c_mnav" class="chart"></div>
-<div class="note">mNAV = share price × share count ÷ (BTC held × BTC close). Dashed: 1.0x and the overheated floor (config). Current enterprise-value (EV) mNAV is shown in the signal panel (snapshot only).</div></section>
-<section class="card"><h2>3 · ASST/MSTR price ratio, mNAV spread &amp; average mNAV</h2><div id="c_ratio" class="chart"></div></section>
+<section class="card"><h2>2 · mNAV: MSTR vs ASST, market standard vs all-in (EV)
+ <span class="seg" id="mbasis"><button data-b="both">both</button><button data-b="basic">market standard</button><button data-b="ev">all-in (EV)</button></span></h2><div id="c_mnav" class="chart"></div>
+<div class="note">Solid = all-in (EV) mNAV: (price × basic shares + debt + preferred notional − cash) ÷ BTC NAV. Dotted = market-standard mNAV: price × basic shares ÷ BTC NAV. Diluted equity mNAV (price × assumed-diluted shares ÷ BTC NAV) is hidden; click it in the legend to show it. Dashed lines: 1.0x and the overheated floor (config). Step jumps happen where filings change debt, preferreds or cash (see Method).</div></section>
+<section class="card"><h2>3 · ASST/MSTR price ratio, mNAV spread &amp; average mNAV (<span id="spbasis"></span>)</h2><div id="c_ratio" class="chart"></div></section>
 <section class="card"><h2>4 · Price vs BTC NAV per share (price ÷ mNAV)</h2><div id="c_navps" class="chart"></div>
 <div class="note">BTC NAV per share = BTC held × BTC price ÷ shares. Price above the NAV line = premium (mNAV &gt; 1); below = discount.</div></section>
 <section class="card"><h2>5 · Flywheel fuel: STRC &amp; SATA vs $100 par (peg state bands)</h2>
@@ -128,7 +136,9 @@ function rebaseNorm(){const el=document.getElementById('c_norm');if(!el||!el._fu
   Plotly.restyle(el,{y:ys},NORM.map((_,i)=>i));
   if(isFinite(lo)){const pad=Math.max((hi-lo)*0.06,0.01);Plotly.relayout(el,{'yaxis.range':[lo-pad,hi+pad],'yaxis.autorange':false})}}
 let syncing=false;
-function linkCharts(){TS.forEach(id=>{const el=document.getElementById(id);el.on('plotly_relayout',ev=>{if(syncing)return;let r=null;
+function linkCharts(){TS.forEach(id=>{const el=document.getElementById(id);if(!el.on)return;if(el.removeAllListeners)el.removeAllListeners('plotly_relayout');
+  if(id==='c_norm')el.on('plotly_relayout',ev=>{if(Object.keys(ev).some(k=>k.startsWith('xaxis')))rebaseNorm()});
+  el.on('plotly_relayout',ev=>{if(syncing)return;let r=null;
   if(ev['xaxis.range[0]'])r=[ev['xaxis.range[0]'],ev['xaxis.range[1]']];else if(ev['xaxis.range'])r=ev['xaxis.range'];else if(ev['xaxis.autorange'])r=null;else return;
   if(!document.getElementById('linkx')?.checked)return;syncing=true;
   Promise.all(TS.filter(o=>o!==id).map(o=>Plotly.relayout(o,r?{'xaxis.range':r}:{'xaxis.autorange':true}))).then(()=>syncing=false)})})}
@@ -141,19 +151,18 @@ function hline(y,c,dash='dash'){return{type:'line',xref:'paper',x0:0,x1:1,yref:'
 function renderSignal(){
   document.getElementById('headline').textContent=S.headline;
   const v=S.values, p=S.peg, cards=[];
-  for(const a of ['MSTR','ASST']){const pa=S.per_asset[a], pref=a==='MSTR'?'STRC':'SATA', vs=(S.valuation_snapshot||{})[a]||{};
+  for(const a of ['MSTR','ASST']){const pa=S.per_asset[a], pref=a==='MSTR'?'STRC':'SATA', vs=null;
     cards.push(`<div class="card" style="margin:0"><h2>${a} <span class="pill ${pa.action}">${pa.action}</span></h2>
     <div class="kv"><span>Price</span><span>$${fmt(v[a])}</span></div>
     <div class="kv"><span>${pref} (peg driver)</span><span>$${fmt(p[pref].price)} (${p[pref].distance_from_par>=0?'+':''}${fmt(p[pref].distance_from_par)}) <span class="pill ${p[pref].state}">${p[pref].state}</span></span></div>
-    <div class="kv"><span>mNAV diluted equity</span><span>${fmt(pa.mnav,3)}x</span></div>
-    <div class="kv"><span>mNAV basic equity / EV (snapshot)</span><span>${fmt(vs.basic_equity_mnav,2)}x / ${fmt(vs.ev_mnav,2)}x</span></div>
-    <div class="kv"><span>mNAV 1y percentile</span><span>${pct(pa.mnav_pct_1y,0)}</span></div>
+    <div class="kv"><span>mNAV market standard / all-in (EV)</span><span>${fmt(v[a.toLowerCase()+'_mnav_basic'],3)}x / ${fmt(v[a.toLowerCase()+'_mnav_ev'],3)}x</span></div>
+    <div class="kv"><span>Signal mNAV (${BL(S.signal_basis)}) 1y pct</span><span>${pct(pa.mnav_pct_1y,0)}</span></div>
     <div class="kv"><span>Overheated?</span><span>${pa.overheated?'YES':'no'}</span></div>
     <div class="kv"><span>BTC NAV / share</span><span>$${fmt(v[a.toLowerCase()+'_nav_ps'])}</span></div>
     <div class="kv"><span>Last ${S.dip.lookback_trading_days}d: price / mNAV</span><span><span class="${cls(pa.price_chg_dip_window)}">${pct(pa.price_chg_dip_window)}</span> / <span class="${cls(pa.mnav_chg_dip_window)}">${pct(pa.mnav_chg_dip_window)}</span></span></div></div>`)}
   cards.push(`<div class="card" style="margin:0"><h2>Rotation <span class="pill ${S.rotation}">${S.rotation}</span></h2>
     <div class="kv"><span>ASST/MSTR price ratio</span><span>${fmt(v.ratio,4)}</span></div>
-    <div class="kv"><span>mNAV spread (ASST−MSTR)</span><span>${fmt(v.mnav_spread,3)}</span></div>
+    <div class="kv"><span>mNAV spread ASST−MSTR (${BL(S.signal_basis)})</span><span>${fmt(v.mnav_spread,3)}</span></div>
     <div class="kv"><span>Spread z-score (1y)</span><span>${fmt(v.spread_z,2)}</span></div>
     <div class="kv"><span>Average mNAV</span><span>${fmt(v.mnav_avg,3)}x</span></div>
     <div class="kv"><span>Both overheated → SELL_TO_BTC?</span><span>${S.both_overheated?'<span class="pill SELL">YES</span>':'no'}</span></div></div>`);
@@ -167,7 +176,7 @@ function renderSignal(){
     <div class="kv"><span>Events next 7d</span><span>${(S.upcoming_events_7d||[]).length}</span></div></div>`);
   document.getElementById('sigcards').innerHTML=cards.join('');
   const t=S.thresholds;
-  document.getElementById('signote').innerHTML=`As of ${S.as_of} (latest bar may be intraday if refreshed during market hours). Rules: peg ON = close ≥ $${t.peg.on_threshold} for ${t.peg.on_consecutive_days} days → BUY parent; WATCH = close &lt; $${t.peg.watch_below}; SELL = close &lt; $${t.peg.sell_below} or ${t.peg.sell_consecutive_down_closes_below_peg}+ straight down closes below peg. Overheated = mNAV ≥ ${t.mnav.overheated_min_mnav}x AND ≥ ${t.mnav.overheated_percentile*100}th pct of ${t.mnav.lookback_trading_days}-day history; both overheated → SELL_TO_BTC: sell both, hold BTC (overrides). Rotation: spread z ≤ ${t.mnav.spread_z_favor_asst} → favor ASST (cheap vs MSTR), ≥ ${t.mnav.spread_z_favor_mstr} → favor MSTR. Dip: BTC down ≥ ${t.dip.btc_drop_pct*100}% over the last ${t.dip.lookback_days} trading days → buy whichever of MSTR/ASST had the larger mNAV drop over that window (got cheaper vs its own bitcoin; tie → larger price drop). Machine-readable: <a href="signals.json">signals.json</a>.`;
+  document.getElementById('signote').innerHTML=`As of ${S.as_of} (latest bar may be intraday if refreshed during market hours). Rules: peg ON = close ≥ $${t.peg.on_threshold} for ${t.peg.on_consecutive_days} days → BUY parent; WATCH = close &lt; $${t.peg.watch_below}; SELL = close &lt; $${t.peg.sell_below} or ${t.peg.sell_consecutive_down_closes_below_peg}+ straight down closes below peg. All mNAV rules use the <b>${BL(S.signal_basis)}</b> mNAV (config <code>mnav.signal_basis</code>). Overheated = mNAV ≥ ${t.mnav.overheated_min_mnav}x AND ≥ ${t.mnav.overheated_percentile*100}th pct of ${t.mnav.lookback_trading_days}-day history; both overheated → SELL_TO_BTC: sell both, hold BTC (overrides). Rotation: spread z ≤ ${t.mnav.spread_z_favor_asst} → favor ASST (cheap vs MSTR), ≥ ${t.mnav.spread_z_favor_mstr} → favor MSTR. Dip: BTC down ≥ ${t.dip.btc_drop_pct*100}% over the last ${t.dip.lookback_days} trading days → buy whichever of MSTR/ASST had the larger mNAV drop over that window (got cheaper vs its own bitcoin; tie → larger price drop). Machine-readable: <a href="signals.json">signals.json</a>.`;
   document.getElementById('pegnote').innerHTML=`Now: STRC $${fmt(p.STRC.price)} <span class="pill ${p.STRC.state}">${p.STRC.state}</span> · SATA $${fmt(p.SATA.price)} <span class="pill ${p.SATA.state}">${p.SATA.state}</span>`;
 }
 
@@ -182,31 +191,48 @@ function renderHero(){
   const el=document.getElementById('hlpill');el.className='hlpill '+c;el.textContent=h}
 function trailing(k,n){const R=D.rows.filter(r=>r[k]!=null);return R.slice(-n).map(r=>r[k]).sort((a,b)=>a-b)}
 const q=(a,p)=>a.length?a[Math.min(a.length-1,Math.floor(p*(a.length-1)))]:null;
+const BL=b=>({basic:'market standard',ev:'all-in (EV)',diluted:'diluted equity'}[b]||b);
+let ZB=null,MB='both';
+function gauge(a,bs,x){const mc=D.config.mnav,vc=D.config.valuation||{cheap_below_mnav:1,fair_max_percentile:0.5};
+  const k=a.toLowerCase()+'_mnav_'+bs,arr=trailing(k,mc.lookback_trading_days),v=x.mnav;if(!arr.length||v==null)return '<div class="note">— not available</div>';
+  const med=q(arr,vc.fair_max_percentile),p90=q(arr,mc.overheated_percentile),ovr=Math.min(mc.overheated_min_mnav,p90);
+  const cheap=vc.cheap_below_mnav, fairTop=Math.max(cheap,Math.min(med,ovr)), lo=Math.min(0.5,arr[0]-0.05,v-0.05), hi=Math.max(mc.overheated_min_mnav+0.35,v+0.1,arr[arr.length-1]+0.05);
+  const W=t=>Math.max(0,Math.min(100,(t-lo)/(hi-lo)*100));
+  const segs=[['CHEAP',lo,cheap],['FAIR',cheap,fairTop],['RICH',fairTop,ovr],['OVERVALUED',ovr,hi]].filter(z=>z[2]>z[1]);
+  const ticks=[];[cheap,fairTop,ovr].sort((m,n)=>m-n).forEach(t=>{if(!ticks.length||W(t)-W(ticks[ticks.length-1])>9)ticks.push(t)});
+  return `<div class="gwrap"><div class="gauge">${segs.map(z=>`<div title="${z[0]} ${z[1].toFixed(2)}–${z[2].toFixed(2)}x" style="width:${W(z[2])-W(z[1])}%;background:${ZC[z[0]]}99"></div>`).join('')}</div>
+      <div class="gmark" style="left:calc(${W(v)}% - 1px);top:16px"></div><div class="glab" style="left:${W(v)}%;top:-4px">${fmt(v,2)}x now</div></div>
+     <div class="gticks">${ticks.map(t=>`<span style="left:${W(t)}%">${t.toFixed(2)}x</span>`).join('')}</div>
+     <div class="note">CHEAP &lt; ${cheap}x · FAIR to 1y median (${fmt(med,2)}x) · RICH above median · OVERVALUED ≥ ${mc.overheated_min_mnav}x or ≥ ${mc.overheated_percentile*100}th pct (${fmt(p90,2)}x)</div>`}
+function plain(a,bs,x){const v=x.mnav,z=x.zone;if(v==null)return 'Not available.';
+  const prem=v-1,what=bs==='ev'?'all its claims (stock + debt + preferreds − cash)':'its stock';
+  const pr=Math.abs(prem)<0.005?'about equal to':prem<0?`${pct(-prem,0)} less than`:`${pct(prem,0)} more than`;
+  const zt={CHEAP:'cheap: below its bitcoin',FAIR:'fair: at or below its usual (1y median) level',RICH:'rich: above its usual level',OVERVALUED:'overvalued: at the top of its 1y range or above the overheated floor'}[z]||'';
+  return `The market values ${what} at <b>${pr}</b> the bitcoin it holds. It is higher than ${pct(x.mnav_pct_1y,0)} of the last year's readings. Zone: <b>${zt}</b>.`}
 function renderValuation(){
-  const V=S.valuation||{},mc=D.config.mnav,vc=D.config.valuation||{cheap_below_mnav:1,fair_max_percentile:0.5};
-  document.getElementById('verdict').textContent=V.relative_verdict||'Relative verdict unavailable';
-  document.getElementById('valcards').innerHTML=['MSTR','ASST'].map(a=>{const x=V[a]||{},k=a.toLowerCase()+'_mnav',arr=trailing(k,mc.lookback_trading_days);
-    const med=q(arr,vc.fair_max_percentile),p90=q(arr,mc.overheated_percentile),ovr=Math.min(mc.overheated_min_mnav,p90);
-    const cheap=vc.cheap_below_mnav, fairTop=Math.max(cheap,Math.min(med,ovr)), lo=Math.min(0.5,arr[0]-0.05), hi=Math.max(mc.overheated_min_mnav+0.35,x.diluted_mnav+0.1,arr[arr.length-1]+0.05);
-    const W=v=>Math.max(0,Math.min(100,(v-lo)/(hi-lo)*100));
-    const segs=[['CHEAP',lo,cheap],['FAIR',cheap,fairTop],['RICH',fairTop,ovr],['OVERVALUED',ovr,hi]].filter(z=>z[2]>z[1]);
-    const ticks=[...new Set([cheap,fairTop,ovr].map(v=>+v.toFixed(2)))];
-    const prem=x.premium_to_nav;
-    return `<div class="card" style="margin:0;border-color:${ZC[x.zone]||'#30363d'}55"><h2>${a} <span class="pill vz z-${x.zone}">${x.zone||'—'}</span></h2>
-     <div style="display:flex;gap:22px;flex-wrap:wrap;align-items:flex-end"><div><div class="note">diluted mNAV</div><div class="vbig">${fmt(x.diluted_mnav,3)}x</div></div>
-     <div><div class="note">1y percentile</div><div class="vbig" style="font-size:22px">${pct(x.mnav_pct_1y,0)}</div></div>
-     <div><div class="note">price vs BTC NAV/share</div><div class="vbig ${prem<0?'pos':'neg'}" style="font-size:22px">${prem==null?'—':(prem>=0?'+':'')+pct(prem,1)} ${prem==null?'':prem<0?'discount':'premium'}</div><div class="note">$${fmt(x.price)} vs NAV $${fmt(x.btc_nav_per_share)}</div></div></div>
-     <div class="gwrap"><div class="gauge">${segs.map(z=>`<div title="${z[0]} ${z[1].toFixed(2)}–${z[2].toFixed(2)}x" style="width:${W(z[2])-W(z[1])}%;background:${ZC[z[0]]}99"></div>`).join('')}</div>
-      <div class="gmark" style="left:calc(${W(x.diluted_mnav)}% - 1px);top:16px"></div><div class="glab" style="left:${W(x.diluted_mnav)}%;top:-4px">${fmt(x.diluted_mnav,2)}x now</div></div>
-     <div class="gticks">${ticks.map(v=>`<span style="left:${W(v)}%">${v.toFixed(2)}x</span>`).join('')}</div>
-     <div class="note">Zones: <span style="color:${ZC.CHEAP}">CHEAP</span> &lt; ${cheap}x · <span style="color:${ZC.FAIR}">FAIR</span> to 1y median (${fmt(med,2)}x) · <span style="color:${ZC.RICH}">RICH</span> above median · <span style="color:${ZC.OVERVALUED}">OVERVALUED</span> ≥ ${mc.overheated_min_mnav}x or ≥ ${mc.overheated_percentile*100}th pct (${fmt(p90,2)}x)</div></div>`}).join('');
-  document.getElementById('valnote').innerHTML=`Percentile = where today's diluted mNAV ranks within its own trailing ${mc.lookback_trading_days} trading days. Zone thresholds come from <a href="config.json">config.json</a> (<code>valuation</code> + <code>mnav</code>). The relative verdict uses the ASST−MSTR mNAV spread z-score (≤ ${mc.spread_z_favor_asst}: ASST cheaper; ≥ +${mc.spread_z_favor_mstr}: MSTR cheaper). Price vs BTC NAV/share = price ÷ (BTC held × BTC price ÷ diluted shares) − 1.`}
-function plotZone(){const R=D.rows.filter(r=>r.date>=D.config.window_start),mc=D.config.mnav,vc=D.config.valuation||{fair_max_percentile:0.5};
-  const tr=['MSTR','ASST'].map(a=>{const k=a.toLowerCase(),rr=R.filter(r=>r[k+'_mnav_pct']!=null);
-    return{name:a+' percentile',x:rr.map(r=>r.date),y:rr.map(r=>r[k+'_mnav_pct']),mode:'lines+markers',line:{color:C[a],width:2},
-      marker:{size:5,color:rr.map(r=>ZC[r[k+'_zone']]||'#888'),line:{width:0}},customdata:rr.map(r=>[r[k+'_zone'],r[k+'_mnav']]),
+  const V=S.valuation||{},mc=D.config.mnav,sb=S.signal_basis||'ev';
+  const RV=V.relative_verdict||{};
+  document.getElementById('verdict').innerHTML=`<div>All-in (EV)${sb==='ev'?' <span class="sigtag">drives signals</span>':''}: ${RV.ev||'—'}</div><div style="font-size:14px;font-weight:600;margin-top:4px;color:#c9d1d9">Market standard${sb==='basic'?' <span class="sigtag">drives signals</span>':''}: ${RV.basic||'—'}</div>`;
+  document.getElementById('basisnote').innerHTML=`<b>Market standard mNAV</b> = price × basic shares ÷ BTC NAV (the number most sites quote). <b>All-in (EV) mNAV</b> = (price × basic shares + debt + preferred notional − cash/USD reserve) ÷ BTC NAV, so it counts every claim ahead of or alongside common. Overheated, rotation, dip and zone rules use <b>${BL(sb)}</b>.`;
+  document.getElementById('valcards').innerHTML=['MSTR','ASST'].map(a=>{const x=V[a]||{},B=x.market_standard||{},E=x.all_in_ev||{};
+    const blk=(bs,o,title)=>`<div class="vbasis"><h3>${title} ${bs===sb?'<span class="sigtag">signal basis</span>':''}<span class="pill vz z-${o.zone}">${o.zone||'—'}</span></h3>
+      <div style="display:flex;gap:22px;flex-wrap:wrap;align-items:flex-end"><div><div class="vbig">${fmt(o.mnav,3)}x</div></div><div><div class="note">1y percentile</div><div class="vbig" style="font-size:22px">${pct(o.mnav_pct_1y,0)}</div></div></div>
+      ${gauge(a,bs,o)}<div class="vplain">${plain(a,bs,o)}</div></div>`;
+    const dl=`Diluted equity mNAV (price × assumed-diluted shares ÷ BTC NAV): ${fmt(x.diluted_equity_mnav,3)}x. Shown for reference only; it counts convertible notes as shares, so it isn't used in either gauge.`;
+    return `<div class="card" style="margin:0;border-color:${ZC[x.zone]||'#30363d'}55"><h2>${a} <span class="pill vz z-${x.zone}">${x.zone||'—'}</span> <span class="note" style="font-weight:400">on ${BL(sb)}</span></h2>
+     <div class="note">Price $${fmt(x.price)} · BTC held ${fmt(x.btc_held,0)} · BTC NAV $${fmt(x.btc_nav_m,0)}M ($${fmt(x.btc_nav_per_basic_share)}/basic share) · <span class="tip" title="${dl}">diluted mNAV ${fmt(x.diluted_equity_mnav,2)}x ⓘ</span></div>
+     <div class="note">EV $${fmt(x.enterprise_value_m,0)}M = equity $${fmt(x.price*x.basic_shares/1e6,0)}M (${fmt(x.basic_shares/1e6,1)}M basic sh) + debt $${fmt(x.debt_m,0)}M + preferred $${fmt(x.preferred_notional_m,0)}M − cash $${fmt(x.cash_m,0)}M</div>
+     ${blk('basic',B,'mNAV (market standard)')}${blk('ev',E,'mNAV all-in (EV)')}</div>`}).join('');
+  document.getElementById('valnote').innerHTML=`Percentile = where today's value ranks within its own trailing ${mc.lookback_trading_days} trading days, for each basis separately. Zone thresholds come from <a href="config.json">config.json</a> (<code>valuation</code> + <code>mnav</code>) and are the same for both bases. The relative verdicts use the ASST−MSTR spread z-score on each basis (≤ ${mc.spread_z_favor_asst}: ASST cheaper; ≥ +${mc.spread_z_favor_mstr}: MSTR cheaper).`;
+  ZB=ZB||sb;segInit('zbasis',ZB,b=>{ZB=b;TS=TS.filter(t=>t!=='c_zone');plotZone();linkCharts()})}
+function segInit(id,cur,fn){const el=document.getElementById(id);el.querySelectorAll('button').forEach(b=>{b.classList.toggle('on',b.dataset.b===cur);
+  b.onclick=()=>{el.querySelectorAll('button').forEach(o=>o.classList.toggle('on',o===b));fn(b.dataset.b)}})}
+function plotZone(){const R=D.rows.filter(r=>r.date>=D.config.window_start),mc=D.config.mnav,vc=D.config.valuation||{fair_max_percentile:0.5},bs=ZB||S.signal_basis||'ev';
+  const tr=['MSTR','ASST'].map(a=>{const k=a.toLowerCase(),rr=R.filter(r=>r[k+'_mnav_'+bs+'_pct']!=null);
+    return{name:a+' percentile ('+BL(bs)+')',x:rr.map(r=>r.date),y:rr.map(r=>r[k+'_mnav_'+bs+'_pct']),mode:'lines+markers',line:{color:C[a],width:2},
+      marker:{size:5,color:rr.map(r=>ZC[r[k+'_zone_'+bs]]||'#888'),line:{width:0}},customdata:rr.map(r=>[r[k+'_zone_'+bs],r[k+'_mnav_'+bs]]),
       hovertemplate:a+': %{y:.0%} pct · %{customdata[1]:.3f}x · %{customdata[0]}<extra></extra>'}});
-  plot('c_zone',tr,baseLayout('1y mNAV percentile',{yaxis:{range:[-0.03,1.03],tickformat:'.0%',title:'1y mNAV percentile',gridcolor:'#21262d'},
+  plot('c_zone',tr,baseLayout('1y mNAV percentile',{yaxis:{range:[-0.03,1.03],tickformat:'.0%',title:'1y percentile · '+BL(bs),gridcolor:'#21262d'},
     shapes:[{type:'rect',xref:'paper',yref:'y',x0:0,x1:1,y0:mc.overheated_percentile,y1:1.03,fillcolor:'rgba(248,81,73,0.10)',line:{width:0},layer:'below'},
             {type:'rect',xref:'paper',yref:'y',x0:0,x1:1,y0:vc.fair_max_percentile,y1:mc.overheated_percentile,fillcolor:'rgba(210,153,34,0.07)',line:{width:0},layer:'below'},
             hline(vc.fair_max_percentile,'#8b949e'),hline(mc.overheated_percentile,'#f85149')]}))}
@@ -221,11 +247,11 @@ function renderCharts(){
     NORM=[['MSTR','MSTR'],['ASST','ASST'],['btc','BTC']].map(([k,n])=>{const R=D.rows.filter(r=>r.date>=D.config.window_start&&r[k]!=null);return{name:n,x:R.map(r=>r.date),v:R.map(r=>r[k])}});
   plot('c_norm',NORM.map(t=>({name:t.name,x:t.x,y:t.v.map(v=>v/t.v[0]-1),line:{color:C[t.name]},hovertemplate:'%{x}: %{y:.1%}<extra>'+t.name+'</extra>'})),
     baseLayout('Change since first visible date',{yaxis:{tickformat:'.0%',title:'Change since first visible date',gridcolor:'#21262d',zeroline:true,zerolinecolor:'#8b949e'}}));
-  rebaseNorm();document.getElementById('c_norm').on('plotly_relayout',ev=>{if(Object.keys(ev).some(k=>k.startsWith('xaxis')))rebaseNorm()});
+  rebaseNorm();
   plotZone();
   const oh=D.config.mnav.overheated_min_mnav;
-  plot('c_mnav',[Object.assign(series('mstr_mnav'),{name:'MSTR mNAV',line:{color:C.MSTR}}),Object.assign(series('asst_mnav'),{name:'ASST mNAV',line:{color:C.ASST}}),
-    Object.assign(series('mnav_avg'),{name:'Average',line:{color:C.AVG,dash:'dot'}})],baseLayout('mNAV (x)',{shapes:[hline(1,'#8b949e'),hline(oh,'#f85149')]}));
+  plotMnav();segInit('mbasis',MB,b=>{MB=b;plotMnav()});
+  document.getElementById('spbasis').textContent=BL(S.signal_basis)+' basis, which drives the rotation rule';
   plot('c_ratio',[Object.assign(series('ratio'),{name:'ASST/MSTR price ratio',line:{color:'#79c0ff'}}),
     Object.assign(series('mnav_spread'),{name:'mNAV spread ASST−MSTR (right)',yaxis:'y2',line:{color:'#d2a8ff'}}),
     Object.assign(series('mnav_avg'),{name:'Average mNAV (right)',yaxis:'y2',line:{color:C.AVG,dash:'dot'}}),
@@ -246,6 +272,14 @@ function renderCharts(){
     baseLayout('$M',{barmode:'relative',yaxis2:{overlaying:'y',side:'right',title:'SATA shares (M)',showgrid:false}}));
   linkCharts();
 }
+function plotMnav(){const oh=D.config.mnav.overheated_min_mnav,tr=[];
+  for(const a of ['MSTR','ASST']){const k=a.toLowerCase();
+    if(MB!=='basic')tr.push(Object.assign(series(k+'_mnav_ev'),{name:a+' all-in (EV)',line:{color:C[a],width:2.2}}));
+    if(MB!=='ev')tr.push(Object.assign(series(k+'_mnav_basic'),{name:a+' market standard',line:{color:C[a],dash:MB==='both'?'dot':'solid',width:MB==='both'?1.6:2.2}}));
+    tr.push(Object.assign(series(k+'_mnav_diluted'),{name:a+' diluted equity',visible:'legendonly',line:{color:C[a],dash:'dashdot',width:1}}))}
+  const el=document.getElementById('c_mnav'),xr=el&&el._fullLayout?el._fullLayout.xaxis.range:null;
+  const L=baseLayout('mNAV (x)',{shapes:[hline(1,'#8b949e'),hline(oh,'#f85149')]});if(xr)L.xaxis.range=xr;
+  plot('c_mnav',tr,L);linkCharts()}
 function renderBig(){const B=D.big_moves||[],t=D.config.big_moves;
   document.getElementById('bmnote').innerHTML=`Daily close-to-close moves since ${D.config.window_start}: |MSTR| or |ASST| ≥ ${pct(t.MSTR,0)}, |BTC| ≥ ${pct(t.BTC,0)} (configurable in config.json → big_moves). ${B.length} moves. BTC trades 7 days/week (Yahoo BTC-USD UTC daily close); equities on trading days.`;
   document.getElementById('bmtable').innerHTML='<tr><th>Date</th><th>Asset</th><th>Move</th><th>Close</th><th>Prev close</th><th>BTC same day</th><th>Event that day</th></tr>'+B.map(m=>{
@@ -262,16 +296,23 @@ function renderPM(){const O=S.odds_jumps||[],K=S.key_odds||[],r=(S.thresholds||{
      <td>${j.news?`<a href="${j.news.url}" target="_blank" rel="noopener">${esc(j.news.headline)}</a>`:''}</td></tr>`).join('')+'</table></div>'+keyline;
   document.getElementById('ojbody').innerHTML=h;
   document.getElementById('ojnote').innerHTML=`Flags a tracked market when its Yes probability moves ≥ ${r.jump_24h_pts} pts in a day or ≥ ${r.jump_7d_pts} pts over 7 days (last ${r.window_days} days; thresholds in config.json → odds_jumps). Polymarket (gamma-api + clob prices-history) and Kalshi (trade-api v2), refreshed with the data job. "Likely news" = top Google News result for that topic around that date, matched automatically, so it may not be the cause. Full odds stay in <a href="data/markets.json">markets.json</a> and <a href="signals.json">signals.json</a>.`}
-function renderMethod(){const ev=D.ev_snapshot||{},m=ev.MSTR||{},a=ev.ASST||{};
+function renderMethod(){const K=D.strategy_kpi_latest||{},R=D.capital_residuals||{},sb=BL(S.signal_basis);
+ const res=(k,u)=>(R[k]||[]).map(r=>`${r.date}: ${r.residual>=0?'+':''}${fmt(r.residual/u,u===1?0:2)}${u===1e6?'M':''}`).join(', ');
  document.getElementById('methodbody').innerHTML=`
- <p><b>Prices:</b> Yahoo Finance chart API (daily closes; split-adjusted: ASST 1-for-20 reverse split on 2026-02-06). Tickers MSTR, ASST, BTC-USD, STRC, SATA${(D.sats&&Object.keys(D.sats).length)?', SATS':''}.</p>
- <p><b>mNAV (history, one formula for both):</b> price × share count ÷ (BTC held × BTC-USD close), with BTC held and shares as step functions that change on each disclosed "as of" date.
- <br>• <b>MSTR</b>: share count = Strategy's assumed diluted shares outstanding (ADSO) from the <a href="https://www.btcexposure.com/data/mstr-mnav-history.csv">btcexposure.com CSV</a> (compiled from Strategy filings, interpolated between reports). BTC held from that CSV, overridden from 2025-10-19 on by Strategy's weekly 8-Ks on SEC EDGAR.
- <br>• <b>ASST</b>: BTC held and shares from Strive SEC filings: hand-curated seed (<a href="data/asst_seed.json">asst_seed.json</a>) up to May 2026, then parsed weekly 8-K tables. Shares = "Assumed Fully Diluted Shares" where reported (from mid-Jul 2026), otherwise Effective Common (Class A + B, plus pre-funded warrants pre-merger). So ASST mNAV before Jul 2026 is about 2-3% lower than a fully-diluted figure would be. The share count for 2026-01-16 to 02-11 (Semler merger) is back-filled from the Feb 11 count, so it is an estimate.</p>
- <p><b>EV mNAV (current snapshot only, no history):</b> (price × basic shares + debt + preferred notional − cash) ÷ BTC NAV.
- MSTR inputs: strategy.com dashboard 2026-10-26 (debt $6,714M, preferred $13,347M, USD reserve + cash $5,075M, basic shares ≈ ${fmt(m.inputs?.basic_shares/1e6,1)}M), giving EV mNAV ${fmt(m.ev_mnav,3)}x. ASST inputs from Strive's ${a.inputs?.as_of||''} 8-K (SATA + SATS at $100 stated, minus cash and STRC held, debt assumed 0), giving EV mNAV ${fmt(a.ev_mnav,3)}x.</p>
+ <p><b>Prices:</b> Yahoo Finance chart API (daily closes; split-adjusted: MSTR 10-for-1 on 2024-08-08, ASST 1-for-20 reverse split on 2026-02-06). Tickers MSTR, ASST, BTC-USD, STRC, SATA${(D.sats&&Object.keys(D.sats).length)?', SATS':''}, EURUSD=X (for STRE).</p>
+ <p><b>Three mNAVs, one formula for both stocks</b> (BTC NAV = BTC held × BTC-USD close; every input is a daily step function that changes on each disclosed "as of" date):
+ <br>• <b>mNAV (market standard)</b> = price × basic shares ÷ BTC NAV.
+ <br>• <b>mNAV all-in (EV)</b> = (price × basic shares + debt at notional + preferred notional, all series − cash/USD reserve) ÷ BTC NAV. Basic shares are used for the equity leg, Strategy's own definition, so convertible notes aren't counted twice (config <code>mnav.ev_share_basis</code>). Today this matches Strategy's own EV (api.strategy.com${K.ev_m?': EV $'+fmt(K.ev_m,0)+'M':''}).
+ <br>• <b>Diluted equity mNAV</b> (reference only, shown in tooltips and in the mNAV chart legend) = price × assumed-diluted shares ÷ BTC NAV. MSTR: Strategy ADSO from the <a href="https://www.btcexposure.com/data/mstr-mnav-history.csv">btcexposure.com CSV</a>. ASST: "Assumed Fully Diluted Shares" from mid-Jul 2026, otherwise effective common.
+ <br>Signals (overheated, rotation, dip, zones) use <b>${sb}</b> (config <code>mnav.signal_basis</code>).</p>
+ <p><b>MSTR capital timeline</b> (<a href="data/capital_timeline.json">capital_timeline.json</a>, built by <code>scripts/capital.py</code>):
+ <br>• <b>Basic shares</b> (class A + B): anchored to every 10-Q/10-K cover count and to today's count from Strategy's KPI API. Between anchors, the weekly 8-K ATM sales minus buybacks are added. Some weeks' tables weren't machine-readable, so each anchor absorbs a residual (shares): ${res('basic_shares',1e6)||'—'}.
+ <br>• <b>Debt</b> at notional: XBRL LongTermDebt at each quarter-end (carrying value, within ~0.5% of notional), plus dated issuances from 8-Ks (2028 notes Sep 2024, 2029 notes Nov 2024, 2030 notes Feb 2025), the May 2026 repurchase of $1.5B of 2029 notes (8-K), and today's API figure. Redemptions and conversions not dated in an 8-K (e.g. 2027 notes in Q1 2025, 6.125% notes in Sep 2024) show up as a step at the next quarter-end.
+ <br>• <b>Preferreds</b> (STRK, STRF, STRD, STRC at $100; STRE at €100 × EURUSD): IPO sizes from 8-Ks, plus weekly ATM sales and STRC buybacks. Anchored to XBRL temporary-equity share totals at quarter-ends and to today's per-series counts from the API. Residuals (USD series, shares): ${res('pref_usd_shares',1e6)||'—'}.
+ <br>• <b>Cash</b>: XBRL cash at quarter-ends until Dec 2025. From 2025-12-01, the USD Reserve (+ USD cash when disclosed) from weekly 8-Ks. A Q1 2026 quarter-end XBRL cash point fills the Jan to May 2026 gap with no weekly reserve figure. Until Aug 30 2026 the 8-Ks give the reserve without separate USD cash, so cash there may be slightly understated.</p>
+ <p><b>ASST capital timeline:</b> basic shares = Effective Common Shares (Class A + B incl. pre-funded warrants) from weekly 8-Ks and the seed. Preferred = (SATA + SATS) × $100 stated amount. SATA counts come from filings. The IPO count (Nov 10 2025) is back-filled from the 12/31 count, and the Jan 27 2026 follow-on and notes exchange is approximated (1.32M + ~0.93M). SATS is 7.0M from the 2026-10-23 weekly table (IPO settled 10/20). Cash = cash + STRC held (fair value) from the weekly tables from May 2026, and XBRL quarter-ends before that. Debt: Semler's ~$100M convertible notes + $20M Coinbase loan, assumed at the 2026-01-16 merger. $90M was exchanged into SATA and the loan was repaid by 2026-01-27, and the ~$10M left was repaid in Q2 2026 (exact date unknown, stepped at 6/30). All of these are documented with links in <a href="data/capital_events.json">capital_events.json</a>.</p>
  <p><b>Flywheel fuel:</b> STRC ATM sales and STRC repurchases parsed from Strategy weekly 8-Ks (EDGAR), covering Oct 2025 onward only. SATA shares outstanding from Strive filings.</p>
- <p><b>Not available / approximations:</b> no free historical EV-mNAV series. STRC ATM before Oct 2025 is not shown. The SATS price history is short (listed Oct 2026). The ASST Jan 16 to Feb 11, 2026 share count is estimated. Yahoo's latest bar can be intraday. Prediction-market history depends on what each API returns.</p>
+ <p><b>Not available / approximations:</b> EV history is rebuilt from filings, not taken from a published series. Between filings it is a step function, so it lags real issuance by up to a week, or a quarter for undated debt changes. ASST EV starts 2025-09-30 (first BTC disclosure). STRC ATM before Oct 2025 is not in the fuel chart. The SATS price history is short (listed Oct 2026). The ASST Jan 16 to Feb 11, 2026 share count is estimated. Yahoo's latest bar can be intraday.</p>
  <p><b>Refresh:</b> GitHub Actions runs <code>scripts/update_data.py</code> every weekday after the US close (and on demand) and redeploys this page. Code and data: <a href="https://github.com/bobbyfarrell20/btc-treasury-dashboard">GitHub repo</a>.</p>`}
 (async()=>{try{[D,S,E]=await Promise.all([J('data/dashboard.json'),J('signals.json'),J('data/events.json')]);try{M=await J('data/markets.json')}catch(e){M=null}
  document.getElementById('gen').innerHTML=`Data generated ${D.generated_utc} UTC · last bar ${S.as_of} · window from ${D.config.window_start} · <label style="color:#8b949e"><input type="checkbox" id="linkx" checked> link time axes across charts</label>`;

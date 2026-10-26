@@ -1,206 +1,200 @@
 {
- "_comment": "All signal thresholds live here. Edit and push; the daily workflow (or a manual run) recomputes signals.json and the dashboard.",
- "window_start": "2025-10-27",
- "peg": {
-  "par": 100.0,
-  "on_threshold": 99.95,
-  "on_consecutive_days": 3,
-  "watch_below": 99.9,
-  "sell_below": 99.0,
-  "sell_consecutive_down_closes_below_peg": 3
- },
- "mnav": {
-  "lookback_trading_days": 252,
-  "overheated_percentile": 0.9,
-  "overheated_min_mnav": 1.25,
-  "spread_z_favor_asst": -1.0,
-  "spread_z_favor_mstr": 1.0,
-  "both_overheated_action": "SELL_TO_BTC",
-  "_both_overheated_comment": "when MSTR and ASST are both overheated, sell both and hold BTC (overrides peg actions)"
- },
- "valuation": {
-  "_comment": "Zones for the 'who's cheap vs expensive' module. CHEAP: diluted mNAV < cheap_below_mnav. OVERVALUED: mNAV >= mnav.overheated_min_mnav OR 1y percentile >= mnav.overheated_percentile. FAIR: otherwise, with percentile <= fair_max_percentile (median). RICH: between the median and OVERVALUED.",
-  "cheap_below_mnav": 1.0,
-  "fair_max_percentile": 0.5
- },
- "dip": {
-  "_comment": "Dip = BTC down >= btc_drop_pct over the last lookback_days trading days. Target = whichever of MSTR/ASST had the larger % drop in diluted mNAV over the same window (got cheaper vs its own bitcoin); tie (within tie_tolerance) broken by the larger price drop.",
-  "btc_drop_pct": 0.15,
-  "lookback_days": 10,
-  "tie_tolerance": 0.005
- },
- "big_moves": {
-  "_comment": "absolute daily close-to-close % move that counts as a Big Move",
-  "MSTR": 0.07,
-  "ASST": 0.07,
-  "BTC": 0.04
- },
- "events": {
-  "upcoming_window_days": 7
- },
- "ev_snapshot": {
-  "_comment": "Inputs for the CURRENT enterprise-value mNAV (snapshot only). EV mNAV = (price x basic shares + debt + preferred notional - cash) / (BTC held x BTC price). ASST inputs are auto-read from Strive's latest weekly 8-K table (cash, STRC held, SATA & SATS counts at $100 stated amount); MSTR inputs below must be updated by hand from strategy.com.",
-  "MSTR": {
-   "as_of": "2026-10-26",
-   "source": "https://www.strategy.com/ (dashboard snapshot 10/26/2026 11:51 AM ET: mkt cap $60,501M at $143.25, debt $6,714M, pref $13,347M, USD Reserve $4,833M, cash $242M)",
-   "basic_shares": 422345000,
-   "debt_m": 6714,
-   "preferred_notional_m": 13347,
-   "cash_m": 5075
+  "_comment": "All signal thresholds live here. Edit and push; the daily workflow (or a manual run) recomputes signals.json and the dashboard.",
+  "window_start": "2025-10-27",
+  "peg": {
+    "par": 100.0,
+    "on_threshold": 99.95,
+    "on_consecutive_days": 3,
+    "watch_below": 99.9,
+    "sell_below": 99.0,
+    "sell_consecutive_down_closes_below_peg": 3
   },
-  "ASST": {
-   "preferred_stated_value": 100.0,
-   "debt_m": 0,
-   "debt_note": "Strive's weekly table lists no debt line; debt assumed 0 (verify in 10-Q)."
+  "mnav": {
+    "lookback_trading_days": 252,
+    "overheated_percentile": 0.9,
+    "overheated_min_mnav": 1.25,
+    "spread_z_favor_asst": -1.0,
+    "spread_z_favor_mstr": 1.0,
+    "both_overheated_action": "SELL_TO_BTC",
+    "_both_overheated_comment": "when MSTR and ASST are both overheated, sell both and hold BTC (overrides peg actions)",
+    "signal_basis": "ev",
+    "_signal_basis_comment": "Which mNAV drives overheated / rotation / dip / zones: 'ev' (all-in: equity at basic shares + debt + preferred notional - cash, over BTC NAV), 'basic' (market-standard: price x basic shares / BTC NAV) or 'diluted' (price x assumed-diluted shares / BTC NAV).",
+    "ev_share_basis": "basic",
+    "_ev_share_basis_comment": "Share count used for the equity leg of EV. 'basic' (Strategy's own EV definition) avoids double-counting convertible notes, which are already in debt. 'diluted' is an option."
+  },
+  "valuation": {
+    "_comment": "Zones for the 'who's cheap vs expensive' module, applied to each mNAV basis separately. CHEAP: mNAV < cheap_below_mnav. OVERVALUED: mNAV >= mnav.overheated_min_mnav OR 1y percentile >= mnav.overheated_percentile. FAIR: otherwise, with percentile <= fair_max_percentile (median). RICH: between the median and OVERVALUED.",
+    "cheap_below_mnav": 1.0,
+    "fair_max_percentile": 0.5
+  },
+  "dip": {
+    "_comment": "Dip = BTC down >= btc_drop_pct over the last lookback_days trading days. Target = whichever of MSTR/ASST had the larger % drop in mNAV (mnav.signal_basis) over the same window (got cheaper vs its own bitcoin); tie (within tie_tolerance) broken by the larger price drop.",
+    "btc_drop_pct": 0.15,
+    "lookback_days": 10,
+    "tie_tolerance": 0.005
+  },
+  "big_moves": {
+    "_comment": "absolute daily close-to-close % move that counts as a Big Move",
+    "MSTR": 0.07,
+    "ASST": 0.07,
+    "BTC": 0.04
+  },
+  "events": {
+    "upcoming_window_days": 7
+  },
+  "capital": {
+    "_comment": "Inputs for the all-in (EV) mNAV. Debt, preferred and cash timelines are built automatically from SEC filings + Strategy's KPI API (scripts/capital.py, data/capital_events.json); nothing here is a hand-typed balance.",
+    "asst_preferred_stated_value": 100.0,
+    "mstr_preferred_stated_value_usd": 100.0,
+    "mstr_stre_stated_value_eur": 100.0
+  },
+  "prediction_markets": {
+    "_comment": "Events to track. Polymarket by event slug (polymarket.com/event/<slug>), Kalshi by event ticker. Dead/closed events are skipped and shown as errors.",
+    "history_outcomes": 3,
+    "polymarket": [
+      {
+        "slug": "what-price-will-bitcoin-hit-before-2027",
+        "label": "BTC price targets hit in 2026",
+        "group": "BTC"
+      },
+      {
+        "slug": "fed-decision-in-october-20260617190323537",
+        "label": "Fed decision - Oct 28",
+        "group": "Fed"
+      },
+      {
+        "slug": "fed-decision-in-december-20260729232808632",
+        "label": "Fed decision - Dec 9",
+        "group": "Fed"
+      },
+      {
+        "slug": "how-many-fed-rate-cuts-in-2026",
+        "label": "Fed cuts in 2026",
+        "group": "Fed"
+      },
+      {
+        "slug": "clarity-act-signed-into-law-in-2026",
+        "label": "CLARITY Act signed in 2026",
+        "group": "Congress"
+      },
+      {
+        "slug": "crypto-market-structure-legislation-becomes-law-in-2026-20260727223933088",
+        "label": "Market-structure law in 2026",
+        "group": "Congress"
+      },
+      {
+        "slug": "which-party-will-win-the-house-in-2026",
+        "label": "House control (midterms)",
+        "group": "Midterms"
+      },
+      {
+        "slug": "which-party-will-win-the-senate-in-2026",
+        "label": "Senate control (midterms)",
+        "group": "Midterms"
+      },
+      {
+        "slug": "will-microstrategy-announce-holding-800k-btc-by-december-31-2026",
+        "label": "MSTR BTC holdings by Dec 31",
+        "group": "MSTR"
+      },
+      {
+        "slug": "will-microstrategy-be-delisted-from-the-msci-index-by-march-31",
+        "label": "MSTR delisted from MSCI",
+        "group": "MSTR"
+      },
+      {
+        "slug": "will-microstrategy-be-margin-called-in-2026",
+        "label": "MSTR margin called in 2026",
+        "group": "MSTR"
+      }
+    ],
+    "kalshi": [
+      {
+        "event": "KXBTCMAXY-26DEC31",
+        "label": "How high will BTC get in 2026",
+        "group": "BTC"
+      },
+      {
+        "event": "KXBTCMINY-27JAN01",
+        "label": "How low will BTC get in 2026",
+        "group": "BTC"
+      },
+      {
+        "event": "KXFEDDECISION-26OCT",
+        "label": "Fed decision - Oct 2026",
+        "group": "Fed"
+      },
+      {
+        "event": "KXFEDDECISION-26DEC",
+        "label": "Fed decision - Dec 2026",
+        "group": "Fed"
+      },
+      {
+        "event": "KXCRYPTOSTRUCTURE-26JAN",
+        "label": "Will the CLARITY Act become law (by date)",
+        "group": "Congress"
+      },
+      {
+        "event": "CONTROLH-2026",
+        "label": "House control (midterms)",
+        "group": "Midterms"
+      },
+      {
+        "event": "CONTROLS-2026",
+        "label": "Senate control (midterms)",
+        "group": "Midterms"
+      }
+    ]
+  },
+  "odds_jumps": {
+    "_comment": "Odds Jumps module: flag tracked prediction markets whose Yes probability moved >= jump_24h_pts in one day or >= jump_7d_pts over 7 days, within the last window_days.",
+    "jump_24h_pts": 10,
+    "jump_7d_pts": 15,
+    "window_days": 7,
+    "find_news": true,
+    "news_queries": {
+      "BTC": "bitcoin price",
+      "Fed": "Federal Reserve rate decision",
+      "Congress": "CLARITY Act crypto Senate",
+      "Midterms": "midterm elections House Senate",
+      "MSTR": "MicroStrategy Strategy bitcoin"
+    },
+    "summary_markets": [
+      {
+        "source": "polymarket",
+        "id": "what-price-will-bitcoin-hit-before-2027",
+        "short": "BTC in 2026",
+        "outcomes": [
+          "↑ 100,000",
+          "↓ 55,000"
+        ]
+      },
+      {
+        "source": "polymarket",
+        "id": "fed-decision-in-october-20260617190323537",
+        "short": "Fed Oct 28",
+        "top": 1
+      },
+      {
+        "source": "kalshi",
+        "id": "KXCRYPTOSTRUCTURE-26JAN",
+        "short": "CLARITY law in 2026",
+        "outcomes": [
+          "Before Jan 1, 2027"
+        ]
+      },
+      {
+        "source": "polymarket",
+        "id": "which-party-will-win-the-house-in-2026",
+        "short": "House",
+        "top": 1
+      },
+      {
+        "source": "polymarket",
+        "id": "which-party-will-win-the-senate-in-2026",
+        "short": "Senate",
+        "top": 1
+      }
+    ]
   }
- },
- "prediction_markets": {
-  "_comment": "Events to track. Polymarket by event slug (polymarket.com/event/<slug>), Kalshi by event ticker. Dead/closed events are skipped and shown as errors.",
-  "history_outcomes": 3,
-  "polymarket": [
-   {
-    "slug": "what-price-will-bitcoin-hit-before-2027",
-    "label": "BTC price targets hit in 2026",
-    "group": "BTC"
-   },
-   {
-    "slug": "fed-decision-in-october-20260617190323537",
-    "label": "Fed decision - Oct 28",
-    "group": "Fed"
-   },
-   {
-    "slug": "fed-decision-in-december-20260729232808632",
-    "label": "Fed decision - Dec 9",
-    "group": "Fed"
-   },
-   {
-    "slug": "how-many-fed-rate-cuts-in-2026",
-    "label": "Fed cuts in 2026",
-    "group": "Fed"
-   },
-   {
-    "slug": "clarity-act-signed-into-law-in-2026",
-    "label": "CLARITY Act signed in 2026",
-    "group": "Congress"
-   },
-   {
-    "slug": "crypto-market-structure-legislation-becomes-law-in-2026-20260727223933088",
-    "label": "Market-structure law in 2026",
-    "group": "Congress"
-   },
-   {
-    "slug": "which-party-will-win-the-house-in-2026",
-    "label": "House control (midterms)",
-    "group": "Midterms"
-   },
-   {
-    "slug": "which-party-will-win-the-senate-in-2026",
-    "label": "Senate control (midterms)",
-    "group": "Midterms"
-   },
-   {
-    "slug": "will-microstrategy-announce-holding-800k-btc-by-december-31-2026",
-    "label": "MSTR BTC holdings by Dec 31",
-    "group": "MSTR"
-   },
-   {
-    "slug": "will-microstrategy-be-delisted-from-the-msci-index-by-march-31",
-    "label": "MSTR delisted from MSCI",
-    "group": "MSTR"
-   },
-   {
-    "slug": "will-microstrategy-be-margin-called-in-2026",
-    "label": "MSTR margin called in 2026",
-    "group": "MSTR"
-   }
-  ],
-  "kalshi": [
-   {
-    "event": "KXBTCMAXY-26DEC31",
-    "label": "How high will BTC get in 2026",
-    "group": "BTC"
-   },
-   {
-    "event": "KXBTCMINY-27JAN01",
-    "label": "How low will BTC get in 2026",
-    "group": "BTC"
-   },
-   {
-    "event": "KXFEDDECISION-26OCT",
-    "label": "Fed decision - Oct 2026",
-    "group": "Fed"
-   },
-   {
-    "event": "KXFEDDECISION-26DEC",
-    "label": "Fed decision - Dec 2026",
-    "group": "Fed"
-   },
-   {
-    "event": "KXCRYPTOSTRUCTURE-26JAN",
-    "label": "Will the CLARITY Act become law (by date)",
-    "group": "Congress"
-   },
-   {
-    "event": "CONTROLH-2026",
-    "label": "House control (midterms)",
-    "group": "Midterms"
-   },
-   {
-    "event": "CONTROLS-2026",
-    "label": "Senate control (midterms)",
-    "group": "Midterms"
-   }
-  ]
- },
- "odds_jumps": {
-  "_comment": "Odds Jumps module: flag tracked prediction markets whose Yes probability moved >= jump_24h_pts in one day or >= jump_7d_pts over 7 days, within the last window_days.",
-  "jump_24h_pts": 10,
-  "jump_7d_pts": 15,
-  "window_days": 7,
-  "find_news": true,
-  "news_queries": {
-   "BTC": "bitcoin price",
-   "Fed": "Federal Reserve rate decision",
-   "Congress": "CLARITY Act crypto Senate",
-   "Midterms": "midterm elections House Senate",
-   "MSTR": "MicroStrategy Strategy bitcoin"
-  },
-  "summary_markets": [
-   {
-    "source": "polymarket",
-    "id": "what-price-will-bitcoin-hit-before-2027",
-    "short": "BTC in 2026",
-    "outcomes": [
-     "↑ 100,000",
-     "↓ 55,000"
-    ]
-   },
-   {
-    "source": "polymarket",
-    "id": "fed-decision-in-october-20260617190323537",
-    "short": "Fed Oct 28",
-    "top": 1
-   },
-   {
-    "source": "kalshi",
-    "id": "KXCRYPTOSTRUCTURE-26JAN",
-    "short": "CLARITY law in 2026",
-    "outcomes": [
-     "Before Jan 1, 2027"
-    ]
-   },
-   {
-    "source": "polymarket",
-    "id": "which-party-will-win-the-house-in-2026",
-    "short": "House",
-    "top": 1
-   },
-   {
-    "source": "polymarket",
-    "id": "which-party-will-win-the-senate-in-2026",
-    "short": "Senate",
-    "top": 1
-   }
-  ]
- }
 }
