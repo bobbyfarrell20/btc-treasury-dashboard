@@ -1,5 +1,5 @@
 {
-  "generated_utc": "2026-10-26T20:15:06+00:00",
+  "generated_utc": "2026-10-26T20:21:51+00:00",
   "as_of": "2026-10-26",
   "disclaimer": "Rules-based indicator, not financial advice.",
   "headline": "SELL/TRIM ASST (preferred off peg & falling); WATCH MSTR (preferred lost peg)",
@@ -7,28 +7,35 @@
     "MSTR": {
       "peg_state": "WATCH",
       "action": "WATCH",
-      "mnav": 0.933,
-      "mnav_pct_1y": 0.44,
+      "mnav": 0.9332,
+      "mnav_pct_1y": 0.448,
       "overheated": false,
       "price_chg_dip_window": -0.0842,
-      "mnav_chg_dip_window": -0.0619
+      "mnav_chg_dip_window": -0.0624
     },
     "ASST": {
       "peg_state": "SELL",
       "action": "SELL",
-      "mnav": 0.9973,
-      "mnav_pct_1y": 0.484,
+      "mnav": 0.9975,
+      "mnav_pct_1y": 0.488,
       "overheated": false,
       "price_chg_dip_window": -0.0502,
-      "mnav_chg_dip_window": -0.1468
+      "mnav_chg_dip_window": -0.1472
     }
   },
   "both_overheated": false,
   "rotation": "NEUTRAL",
   "dip": {
-    "active": true,
-    "target": "MSTR",
-    "btc_drawdown": -0.3006
+    "active": false,
+    "target": null,
+    "lookback_trading_days": 10,
+    "trigger_btc_drop": 0.15,
+    "btc_change": -0.024,
+    "cheapened_most": "ASST",
+    "mstr_price_change": -0.0842,
+    "asst_price_change": -0.0502,
+    "mstr_mnav_change": -0.0624,
+    "asst_mnav_change": -0.1472
   },
   "peg": {
     "STRC": {
@@ -45,33 +52,55 @@
   "values": {
     "MSTR": 139.82,
     "ASST": 26.32,
-    "btc": 79815.7109,
-    "mstr_mnav": 0.933,
-    "asst_mnav": 0.9973,
-    "mnav_avg": 0.9651,
+    "btc": 79802.1016,
+    "mstr_mnav": 0.9332,
+    "asst_mnav": 0.9975,
+    "mnav_avg": 0.9654,
     "mnav_spread": 0.0643,
     "spread_z": -0.146,
     "ratio": 0.18824,
-    "dd_MSTR": -0.527,
-    "dd_ASST": -0.1976,
-    "dd_BTC": -0.3006,
-    "mstr_nav_ps": 149.86,
+    "btc_chg": -0.024,
+    "mstr_chg": -0.0842,
+    "asst_chg": -0.0502,
+    "mstr_mnav_chg": -0.0624,
+    "asst_mnav_chg": -0.1472,
+    "mstr_nav_ps": 149.83,
     "asst_nav_ps": 26.39
+  },
+  "valuation": {
+    "MSTR": {
+      "zone": "CHEAP",
+      "diluted_mnav": 0.9332,
+      "mnav_pct_1y": 0.448,
+      "price": 139.82,
+      "btc_nav_per_share": 149.83,
+      "premium_to_nav": -0.0668
+    },
+    "ASST": {
+      "zone": "CHEAP",
+      "diluted_mnav": 0.9975,
+      "mnav_pct_1y": 0.488,
+      "price": 26.32,
+      "btc_nav_per_share": 26.39,
+      "premium_to_nav": -0.0027
+    },
+    "spread_z": -0.146,
+    "relative_verdict": "Neither is clearly cheaper vs its usual gap (spread z -0.15, within \u00b11); MSTR has the lower mNAV today (0.93x vs 1.00x)"
   },
   "valuation_snapshot": {
     "MSTR": {
-      "basic_equity_mnav": 0.8719,
-      "diluted_equity_mnav": 0.933,
-      "ev_mnav": 1.0932,
+      "basic_equity_mnav": 0.8721,
+      "diluted_equity_mnav": 0.9332,
+      "ev_mnav": 1.0934,
       "enterprise_value_m": 74038,
-      "btc_nav_m": 67725
+      "btc_nav_m": 67713
     },
     "ASST": {
-      "basic_equity_mnav": 0.9765,
-      "diluted_equity_mnav": 0.9973,
-      "ev_mnav": 1.4276,
+      "basic_equity_mnav": 0.9766,
+      "diluted_equity_mnav": 0.9975,
+      "ev_mnav": 1.4279,
       "enterprise_value_m": 4900,
-      "btc_nav_m": 3432
+      "btc_nav_m": 3431
     }
   },
   "latest_big_move": {
@@ -81,7 +110,7 @@
     "close": 26.32,
     "prev_close": 28.97,
     "threshold": 0.07,
-    "btc_change_same_day": -0.0026
+    "btc_change_same_day": -0.0028
   },
   "big_moves_last_30d": [
     {
@@ -91,7 +120,7 @@
       "close": 26.32,
       "prev_close": 28.97,
       "threshold": 0.07,
-      "btc_change_same_day": -0.0026
+      "btc_change_same_day": -0.0028
     },
     {
       "date": "2026-10-21",
@@ -303,7 +332,7 @@
       "top": [
         {
           "outcome": "No change",
-          "yes": 0.926
+          "yes": 0.9265
         },
         {
           "outcome": "25 bps increase",
@@ -572,11 +601,11 @@
       "top": [
         {
           "outcome": "Democratic Party",
-          "yes": 0.911
+          "yes": 0.91
         },
         {
           "outcome": "Republican Party",
-          "yes": 0.096
+          "yes": 0.095
         }
       ]
     },
