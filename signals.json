@@ -1,5 +1,5 @@
 {
-  "generated_utc": "2026-10-26T20:12:03+00:00",
+  "generated_utc": "2026-10-26T20:12:46+00:00",
   "as_of": "2026-10-26",
   "disclaimer": "Rules-based indicator, not financial advice.",
   "headline": "SELL/TRIM ASST (preferred off peg & falling); WATCH MSTR (preferred lost peg); DIP-BUY zone: BTC -30% off 1y high; hardest hit = MSTR",
@@ -7,7 +7,7 @@
     "MSTR": {
       "peg_state": "WATCH",
       "action": "WATCH",
-      "mnav": 0.9334,
+      "mnav": 0.9335,
       "mnav_pct_1y": 0.452,
       "overheated": false,
       "drawdown_1y_high": -0.527
@@ -43,31 +43,31 @@
   "values": {
     "MSTR": 139.82,
     "ASST": 26.32,
-    "btc": 79784.1797,
-    "mstr_mnav": 0.9334,
+    "btc": 79779.4531,
+    "mstr_mnav": 0.9335,
     "asst_mnav": 0.9977,
     "mnav_avg": 0.9656,
-    "mnav_spread": 0.0643,
+    "mnav_spread": 0.0642,
     "spread_z": -0.146,
     "ratio": 0.18824,
     "dd_MSTR": -0.527,
     "dd_ASST": -0.1976,
     "dd_BTC": -0.3009,
-    "mstr_nav_ps": 149.8,
+    "mstr_nav_ps": 149.79,
     "asst_nav_ps": 26.38
   },
   "valuation_snapshot": {
     "MSTR": {
       "basic_equity_mnav": 0.8723,
-      "diluted_equity_mnav": 0.9334,
+      "diluted_equity_mnav": 0.9335,
       "ev_mnav": 1.0937,
       "enterprise_value_m": 74038,
-      "btc_nav_m": 67698
+      "btc_nav_m": 67694
     },
     "ASST": {
-      "basic_equity_mnav": 0.9768,
+      "basic_equity_mnav": 0.9769,
       "diluted_equity_mnav": 0.9977,
-      "ev_mnav": 1.4282,
+      "ev_mnav": 1.4283,
       "enterprise_value_m": 4900,
       "btc_nav_m": 3431
     }
@@ -79,7 +79,7 @@
     "close": 26.32,
     "prev_close": 28.97,
     "threshold": 0.07,
-    "btc_change_same_day": -0.003
+    "btc_change_same_day": -0.0031
   },
   "big_moves_last_30d": [
     {
@@ -89,7 +89,7 @@
       "close": 26.32,
       "prev_close": 28.97,
       "threshold": 0.07,
-      "btc_change_same_day": -0.003
+      "btc_change_same_day": -0.0031
     },
     {
       "date": "2026-10-21",
