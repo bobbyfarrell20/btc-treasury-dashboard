@@ -1,5 +1,5 @@
 {
-  "generated_utc": "2026-10-26T20:54:49+00:00",
+  "generated_utc": "2026-10-26T20:57:11+00:00",
   "as_of": "2026-10-26",
   "disclaimer": "Rules-based indicator, not financial advice.",
   "headline": "SELL/TRIM ASST (preferred off peg & falling); WATCH MSTR (preferred lost peg)",
@@ -7,20 +7,20 @@
     "MSTR": {
       "peg_state": "WATCH",
       "action": "WATCH",
-      "mnav": 1.0945,
+      "mnav": 1.0944,
       "mnav_pct_1y": 0.381,
       "overheated": false,
       "price_chg_dip_window": -0.0842,
-      "mnav_chg_dip_window": -0.0537
+      "mnav_chg_dip_window": -0.0538
     },
     "ASST": {
       "peg_state": "SELL",
       "action": "SELL",
-      "mnav": 1.4293,
+      "mnav": 1.4292,
       "mnav_pct_1y": 0.647,
       "overheated": false,
       "price_chg_dip_window": -0.0502,
-      "mnav_chg_dip_window": -0.0661
+      "mnav_chg_dip_window": -0.0662
     }
   },
   "both_overheated": false,
@@ -34,8 +34,8 @@
     "cheapened_most": "ASST",
     "mstr_price_change": -0.0842,
     "asst_price_change": -0.0502,
-    "mstr_mnav_change": -0.0537,
-    "asst_mnav_change": -0.0661
+    "mstr_mnav_change": -0.0538,
+    "asst_mnav_change": -0.0662
   },
   "peg": {
     "STRC": {
@@ -54,17 +54,17 @@
   "values": {
     "MSTR": 139.82,
     "ASST": 26.32,
-    "btc": 79723.8438,
-    "mstr_mnav": 1.0945,
-    "asst_mnav": 1.4293,
-    "mnav_avg": 1.2619,
+    "btc": 79727.8906,
+    "mstr_mnav": 1.0944,
+    "asst_mnav": 1.4292,
+    "mnav_avg": 1.2618,
     "mnav_spread": 0.3348,
     "spread_z": 0.554,
     "ratio": 0.18824,
-    "mstr_mnav_basic": 0.873,
-    "asst_mnav_basic": 0.9776,
-    "mstr_mnav_ev": 1.0945,
-    "asst_mnav_ev": 1.4293,
+    "mstr_mnav_basic": 0.8729,
+    "asst_mnav_basic": 0.9775,
+    "mstr_mnav_ev": 1.0944,
+    "asst_mnav_ev": 1.4292,
     "mstr_mnav_diluted": 0.9341,
     "asst_mnav_diluted": 0.9984,
     "mstr_ev_m": 74037.6,
@@ -72,9 +72,9 @@
     "btc_chg": -0.0249,
     "mstr_chg": -0.0842,
     "asst_chg": -0.0502,
-    "mstr_mnav_chg": -0.0537,
-    "asst_mnav_chg": -0.0661,
-    "mstr_nav_ps": 149.68,
+    "mstr_mnav_chg": -0.0538,
+    "asst_mnav_chg": -0.0662,
+    "mstr_nav_ps": 149.69,
     "asst_nav_ps": 26.36
   },
   "valuation": {
@@ -82,12 +82,12 @@
       "signal_basis": "ev",
       "zone": "FAIR",
       "market_standard": {
-        "mnav": 0.873,
+        "mnav": 0.8729,
         "mnav_pct_1y": 0.528,
         "zone": "CHEAP"
       },
       "all_in_ev": {
-        "mnav": 1.0945,
+        "mnav": 1.0944,
         "mnav_pct_1y": 0.381,
         "zone": "FAIR"
       },
@@ -99,19 +99,19 @@
       "preferred_notional_m": 13344.6,
       "cash_m": 5075.0,
       "enterprise_value_m": 74037.6,
-      "btc_nav_m": 67647,
+      "btc_nav_m": 67650,
       "btc_nav_per_basic_share": 160.17
     },
     "ASST": {
       "signal_basis": "ev",
       "zone": "OVERVALUED",
       "market_standard": {
-        "mnav": 0.9776,
+        "mnav": 0.9775,
         "mnav_pct_1y": 0.46,
         "zone": "CHEAP"
       },
       "all_in_ev": {
-        "mnav": 1.4293,
+        "mnav": 1.4292,
         "mnav_pct_1y": 0.647,
         "zone": "OVERVALUED"
       },
@@ -142,7 +142,7 @@
     "close": 26.32,
     "prev_close": 28.97,
     "threshold": 0.07,
-    "btc_change_same_day": -0.0038
+    "btc_change_same_day": -0.0037
   },
   "big_moves_last_30d": [
     {
@@ -152,7 +152,7 @@
       "close": 26.32,
       "prev_close": 28.97,
       "threshold": 0.07,
-      "btc_change_same_day": -0.0038
+      "btc_change_same_day": -0.0037
     },
     {
       "date": "2026-10-21",
@@ -295,7 +295,7 @@
       "odds": [
         {
           "outcome": "No change",
-          "yes": 0.9265
+          "yes": 0.927
         }
       ]
     },
@@ -364,7 +364,7 @@
       "top": [
         {
           "outcome": "No change",
-          "yes": 0.9265
+          "yes": 0.927
         },
         {
           "outcome": "25 bps increase",
@@ -387,7 +387,7 @@
       "top": [
         {
           "outcome": "25 bps increase",
-          "yes": 0.735
+          "yes": 0.745
         },
         {
           "outcome": "No change",
@@ -564,11 +564,11 @@
       "top": [
         {
           "outcome": "Fed maintains rate",
-          "yes": 0.91
+          "yes": 0.92
         },
         {
           "outcome": "Hike 25bps",
-          "yes": 0.09
+          "yes": 0.08
         },
         {
           "outcome": "Cut 25bps",
