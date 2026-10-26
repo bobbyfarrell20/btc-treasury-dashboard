@@ -19,7 +19,7 @@ CFG = json.loads((ROOT / "config.json").read_text())
 UA_SEC = {"User-Agent": os.environ.get("SEC_USER_AGENT", "BtcTreasuryDashboard research contact@example.com"),
           "Accept-Encoding": "gzip, deflate"}
 UA_WEB = {"User-Agent": "Mozilla/5.0"}
-TICKERS = ["MSTR", "ASST", "FBTC", "BTC-USD", "STRC", "SATA", "SATS"]
+TICKERS = ["MSTR", "ASST", "BTC-USD", "STRC", "SATA", "SATS"]
 PARSER_VERSION = 2
 CIK = {"MSTR": "1050446", "ASST": "1920406"}
 MONTHS = {m: i for i, m in enumerate(["January","February","March","April","May","June","July","August",
@@ -228,7 +228,7 @@ def main():
         b = btc.get(d)
         if b is None: continue
         r = {"date": d, "btc": b}
-        for t in ("MSTR", "ASST", "FBTC", "STRC", "SATA"): r[t] = prices[t].get(d)
+        for t in ("MSTR", "ASST", "STRC", "SATA"): r[t] = prices[t].get(d)
         mb = m_btc_edgar(d) if (edgar_h and d >= edgar_h[0][0]) else m_btc_bx(d)
         ms = m_sh(d)
         if r["MSTR"] and mb and ms:
@@ -258,7 +258,7 @@ def main():
         if r["MSTR"] and r["ASST"]: r["ratio"] = round(r["ASST"] / r["MSTR"], 5)
         # drawdowns from rolling high (calendar days)
         cutoff = (dt.date.fromisoformat(r["date"]) - dt.timedelta(days=dc["rolling_high_days"])).isoformat()
-        for t, key in (("MSTR", "MSTR"), ("ASST", "ASST"), ("FBTC", "FBTC")):
+        for t, key in (("MSTR", "MSTR"), ("ASST", "ASST")):
             if r[key] is None: continue
             hi = max(v for d, v in prices[t].items() if cutoff < d <= r["date"])
             r["dd_" + t] = round(r[key] / hi - 1, 4)
@@ -291,13 +291,13 @@ def main():
         for asset, pref in (("MSTR", "STRC"), ("ASST", "SATA")):
             ps = r.get("peg_" + pref)
             act = {"ON": "BUY", "NEAR": "HOLD", "WATCH": "WATCH", "SELL": "SELL", None: "NO_DATA"}[ps]
-            if both_oh: act = "SELL_TO_FBTC"
+            if both_oh: act = CFG["mnav"].get("both_overheated_action", "SELL_TO_BTC")
             per[asset] = {"peg_state": ps, "action": act, "mnav": r.get(asset.lower() + "_mnav"),
                           "mnav_pct_1y": r.get(asset.lower() + "_mnav_pct"), "overheated": oh[asset.lower()],
                           "drawdown_1y_high": r.get("dd_" + asset)}
         out.update(per=per, both_overheated=both_oh, rotation=rot, dip=dip, dip_target=hardest if dip else None)
         # headline
-        if both_oh: head = "BOTH OVERHEATED -> rotate MSTR + ASST into FBTC"
+        if both_oh: head = "BOTH OVERHEATED -> SELL_TO_BTC: sell MSTR + ASST, hold BTC"
         else:
             buys = [a for a in ("MSTR", "ASST") if per[a]["action"] == "BUY"]
             sells = [a for a in ("MSTR", "ASST") if per[a]["action"] == "SELL"]
@@ -329,7 +329,7 @@ def main():
     # ---- big moves (close-to-close), within window
     start = CFG["window_start"]
     big = []
-    for t, key in (("MSTR", "MSTR"), ("ASST", "ASST"), ("FBTC", "FBTC"), ("BTC", "BTC-USD")):
+    for t, key in (("MSTR", "MSTR"), ("ASST", "ASST"), ("BTC", "BTC-USD")):
         thr = CFG["big_moves"][t]; ser = sorted(prices[key].items()); prev = None
         for d, c in ser:
             if prev and d >= start:
@@ -403,8 +403,8 @@ def main():
            "dip": {"active": last["sig"]["dip"], "target": last["sig"]["dip_target"], "btc_drawdown": last.get("dd_BTC")},
            "peg": {p: {"price": last.get(p), "state": last.get("peg_" + p),
                        "distance_from_par": round(last[p] - pc["par"], 3) if last.get(p) else None} for p in ("STRC", "SATA")},
-           "values": {k: last.get(k) for k in ("MSTR", "ASST", "FBTC", "btc", "mstr_mnav", "asst_mnav", "mnav_avg", "mnav_spread",
-                                               "spread_z", "ratio", "dd_MSTR", "dd_ASST", "dd_FBTC", "dd_BTC", "mstr_nav_ps", "asst_nav_ps")},
+           "values": {k: last.get(k) for k in ("MSTR", "ASST", "btc", "mstr_mnav", "asst_mnav", "mnav_avg", "mnav_spread",
+                                               "spread_z", "ratio", "dd_MSTR", "dd_ASST", "dd_BTC", "mstr_nav_ps", "asst_nav_ps")},
            "valuation_snapshot": {k: {kk: vv for kk, vv in v.items() if kk != "inputs"} for k, v in ev.items()},
            "latest_big_move": big[0] if big else None,
            "big_moves_last_30d": [m for m in big if m["date"] >= (today - dt.timedelta(days=30)).isoformat()],

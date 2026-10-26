@@ -1,5 +1,5 @@
 {
-  "generated_utc": "2026-10-26T20:06:13+00:00",
+  "generated_utc": "2026-10-26T20:12:03+00:00",
   "as_of": "2026-10-26",
   "disclaimer": "Rules-based indicator, not financial advice.",
   "headline": "SELL/TRIM ASST (preferred off peg & falling); WATCH MSTR (preferred lost peg); DIP-BUY zone: BTC -30% off 1y high; hardest hit = MSTR",
@@ -7,15 +7,15 @@
     "MSTR": {
       "peg_state": "WATCH",
       "action": "WATCH",
-      "mnav": 0.9332,
-      "mnav_pct_1y": 0.448,
+      "mnav": 0.9334,
+      "mnav_pct_1y": 0.452,
       "overheated": false,
       "drawdown_1y_high": -0.527
     },
     "ASST": {
       "peg_state": "SELL",
       "action": "SELL",
-      "mnav": 0.9975,
+      "mnav": 0.9977,
       "mnav_pct_1y": 0.488,
       "overheated": false,
       "drawdown_1y_high": -0.1976
@@ -26,7 +26,7 @@
   "dip": {
     "active": true,
     "target": "MSTR",
-    "btc_drawdown": -0.3007
+    "btc_drawdown": -0.3009
   },
   "peg": {
     "STRC": {
@@ -43,33 +43,31 @@
   "values": {
     "MSTR": 139.82,
     "ASST": 26.32,
-    "FBTC": 69.47,
-    "btc": 79801.7969,
-    "mstr_mnav": 0.9332,
-    "asst_mnav": 0.9975,
-    "mnav_avg": 0.9654,
+    "btc": 79784.1797,
+    "mstr_mnav": 0.9334,
+    "asst_mnav": 0.9977,
+    "mnav_avg": 0.9656,
     "mnav_spread": 0.0643,
     "spread_z": -0.146,
     "ratio": 0.18824,
     "dd_MSTR": -0.527,
     "dd_ASST": -0.1976,
-    "dd_FBTC": -0.3072,
-    "dd_BTC": -0.3007,
-    "mstr_nav_ps": 149.83,
-    "asst_nav_ps": 26.39
+    "dd_BTC": -0.3009,
+    "mstr_nav_ps": 149.8,
+    "asst_nav_ps": 26.38
   },
   "valuation_snapshot": {
     "MSTR": {
-      "basic_equity_mnav": 0.8721,
-      "diluted_equity_mnav": 0.9332,
-      "ev_mnav": 1.0934,
+      "basic_equity_mnav": 0.8723,
+      "diluted_equity_mnav": 0.9334,
+      "ev_mnav": 1.0937,
       "enterprise_value_m": 74038,
-      "btc_nav_m": 67713
+      "btc_nav_m": 67698
     },
     "ASST": {
-      "basic_equity_mnav": 0.9766,
-      "diluted_equity_mnav": 0.9975,
-      "ev_mnav": 1.4279,
+      "basic_equity_mnav": 0.9768,
+      "diluted_equity_mnav": 0.9977,
+      "ev_mnav": 1.4282,
       "enterprise_value_m": 4900,
       "btc_nav_m": 3431
     }
@@ -81,7 +79,7 @@
     "close": 26.32,
     "prev_close": 28.97,
     "threshold": 0.07,
-    "btc_change_same_day": -0.0028
+    "btc_change_same_day": -0.003
   },
   "big_moves_last_30d": [
     {
@@ -91,7 +89,7 @@
       "close": 26.32,
       "prev_close": 28.97,
       "threshold": 0.07,
-      "btc_change_same_day": -0.0028
+      "btc_change_same_day": -0.003
     },
     {
       "date": "2026-10-21",
@@ -467,11 +465,11 @@
       "top": [
         {
           "outcome": "Democratic Party",
-          "yes": 0.911
+          "yes": 0.91
         },
         {
           "outcome": "Republican Party",
-          "yes": 0.096
+          "yes": 0.097
         }
       ]
     },
@@ -507,7 +505,9 @@
       "overheated_percentile": 0.9,
       "overheated_min_mnav": 1.25,
       "spread_z_favor_asst": -1.0,
-      "spread_z_favor_mstr": 1.0
+      "spread_z_favor_mstr": 1.0,
+      "both_overheated_action": "SELL_TO_BTC",
+      "_both_overheated_comment": "when MSTR and ASST are both overheated, sell both and hold BTC (overrides peg actions)"
     },
     "dip": {
       "btc_drawdown_trigger": 0.25,
@@ -517,8 +517,7 @@
       "_comment": "absolute daily close-to-close % move that counts as a Big Move",
       "MSTR": 0.07,
       "ASST": 0.07,
-      "BTC": 0.04,
-      "FBTC": 0.04
+      "BTC": 0.04
     },
     "events": {
       "upcoming_window_days": 7

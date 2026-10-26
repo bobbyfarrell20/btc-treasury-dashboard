@@ -1,7 +1,7 @@
 <!doctype html>
 <html lang="en"><head>
 <meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
-<title>BTC Treasury Rotation Dashboard: MSTR / ASST / FBTC</title>
+<title>BTC Treasury Rotation Dashboard: MSTR / ASST / BTC</title>
 <script src="https://cdn.plot.ly/plotly-2.35.2.min.js"></script>
 <style>
 :root{--bg:#0d1117;--panel:#161b22;--line:#30363d;--fg:#e6edf3;--mut:#8b949e;--g:#2ea043;--y:#d29922;--r:#f85149;--b:#58a6ff;--o:#f0883e}
@@ -12,7 +12,7 @@ header{padding:18px 22px;border-bottom:1px solid var(--line)}h1{margin:0;font-si
 .grid{display:grid;gap:12px}.g4{grid-template-columns:repeat(auto-fit,minmax(230px,1fr))}.g2{grid-template-columns:repeat(auto-fit,minmax(480px,1fr))}
 .headline{font-size:18px;font-weight:600;padding:12px;border-radius:8px;background:#1f2937;margin-bottom:12px}
 .pill{display:inline-block;padding:2px 8px;border-radius:999px;font-weight:700;font-size:12px}
-.ON,.BUY{background:#14532d;color:#86efac}.NEAR,.HOLD,.NEUTRAL{background:#1e3a5f;color:#93c5fd}.WATCH{background:#713f12;color:#fde68a}.SELL,.SELL_TO_FBTC{background:#7f1d1d;color:#fecaca}
+.ON,.BUY{background:#14532d;color:#86efac}.NEAR,.HOLD,.NEUTRAL{background:#1e3a5f;color:#93c5fd}.WATCH{background:#713f12;color:#fde68a}.SELL,.SELL_TO_BTC{background:#7f1d1d;color:#fecaca}
 .FAVOR_ASST,.FAVOR_MSTR{background:#4c1d95;color:#ddd6fe}
 .kv{display:flex;justify-content:space-between;border-bottom:1px dashed #263040;padding:3px 0}.kv span:first-child{color:var(--mut)}
 table{border-collapse:collapse;width:100%;font-size:13px}th,td{border-bottom:1px solid var(--line);padding:5px 6px;text-align:left;vertical-align:top}th{color:var(--mut);font-weight:600;position:sticky;top:0;background:var(--panel)}
@@ -24,7 +24,7 @@ table{border-collapse:collapse;width:100%;font-size:13px}th,td{border-bottom:1px
 .pmname{width:190px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
 details summary{cursor:pointer;color:var(--b)}
 </style></head><body>
-<header><h1>BTC Treasury Rotation Dashboard: MSTR · ASST · FBTC</h1>
+<header><h1>BTC Treasury Rotation Dashboard: MSTR · ASST · BTC</h1>
 <div class="sub" id="gen">loading…</div></header>
 <main>
 <div class="disc"><b>Rules-based indicator, not financial advice.</b> Signals are produced mechanically from public data and the thresholds in <a href="config.json">config.json</a>. Data can be late, wrong or missing. Do your own research.</div>
@@ -62,7 +62,7 @@ details summary{cursor:pointer;color:var(--b)}
 <section class="card" id="method"><h2>Method, sources &amp; caveats</h2><div id="methodbody"></div></section>
 </main>
 <script>
-const C={MSTR:'#f0883e',ASST:'#a371f7',FBTC:'#3fb950',BTC:'#f7c948',STRC:'#58a6ff',SATA:'#ff7b72',AVG:'#8b949e'};
+const C={MSTR:'#f0883e',ASST:'#a371f7',BTC:'#f7c948',STRC:'#58a6ff',SATA:'#ff7b72',AVG:'#8b949e'};
 const BAND={ON:'rgba(46,160,67,0.28)',NEAR:'rgba(88,166,255,0.12)',WATCH:'rgba(210,153,34,0.28)',SELL:'rgba(248,81,73,0.30)'};
 const CATC={earnings:'#f0883e',fomc:'#58a6ff',macro:'#8b949e',election:'#ff7b72',congress:'#a371f7',preferred:'#3fb950',asst:'#d2a8ff',mstr:'#ffa657',market:'#f7c948',index:'#79c0ff'};
 const fmt=(v,d=2)=>v==null||isNaN(v)?'—':Number(v).toLocaleString(undefined,{minimumFractionDigits:d,maximumFractionDigits:d});
@@ -116,18 +116,16 @@ function renderSignal(){
     <div class="kv"><span>mNAV spread (ASST−MSTR)</span><span>${fmt(v.mnav_spread,3)}</span></div>
     <div class="kv"><span>Spread z-score (1y)</span><span>${fmt(v.spread_z,2)}</span></div>
     <div class="kv"><span>Average mNAV</span><span>${fmt(v.mnav_avg,3)}x</span></div>
-    <div class="kv"><span>Both overheated → FBTC?</span><span>${S.both_overheated?'<span class="pill SELL">YES</span>':'no'}</span></div></div>`);
+    <div class="kv"><span>Both overheated → SELL_TO_BTC?</span><span>${S.both_overheated?'<span class="pill SELL">YES</span>':'no'}</span></div></div>`);
   cards.push(`<div class="card" style="margin:0"><h2>Dip / BTC <span class="pill ${S.dip.active?'BUY':'NEUTRAL'}">${S.dip.active?'DIP ZONE':'NO DIP'}</span></h2>
     <div class="kv"><span>BTC</span><span>$${fmt(v.btc,0)}</span></div>
-    <div class="kv"><span>FBTC</span><span>$${fmt(v.FBTC)}</span></div>
     <div class="kv"><span>BTC drawdown</span><span class="neg">${pct(v.dd_BTC)}</span></div>
-    <div class="kv"><span>FBTC drawdown</span><span class="neg">${pct(v.dd_FBTC)}</span></div>
     <div class="kv"><span>Hardest hit (dip target)</span><span>${S.dip.target||'—'}</span></div>
     <div class="kv"><span>Latest big move</span><span>${S.latest_big_move?S.latest_big_move.date+' '+S.latest_big_move.asset+' '+pct(S.latest_big_move.change):'—'}</span></div>
     <div class="kv"><span>Events next 7d</span><span>${(S.upcoming_events_7d||[]).length}</span></div></div>`);
   document.getElementById('sigcards').innerHTML=cards.join('');
   const t=S.thresholds;
-  document.getElementById('signote').innerHTML=`As of ${S.as_of} (latest bar may be intraday if refreshed during market hours). Rules: peg ON = close ≥ $${t.peg.on_threshold} for ${t.peg.on_consecutive_days} days → BUY parent; WATCH = close &lt; $${t.peg.watch_below}; SELL = close &lt; $${t.peg.sell_below} or ${t.peg.sell_consecutive_down_closes_below_peg}+ straight down closes below peg. Overheated = mNAV ≥ ${t.mnav.overheated_min_mnav}x AND ≥ ${t.mnav.overheated_percentile*100}th pct of ${t.mnav.lookback_trading_days}-day history; both overheated → sell both into FBTC (overrides). Rotation: spread z ≤ ${t.mnav.spread_z_favor_asst} → favor ASST (cheap vs MSTR), ≥ ${t.mnav.spread_z_favor_mstr} → favor MSTR. Dip: BTC ≥ ${t.dip.btc_drawdown_trigger*100}% below its ${t.dip.rolling_high_days}-day high → buy whichever of MSTR/ASST is down most. Machine-readable: <a href="signals.json">signals.json</a>.`;
+  document.getElementById('signote').innerHTML=`As of ${S.as_of} (latest bar may be intraday if refreshed during market hours). Rules: peg ON = close ≥ $${t.peg.on_threshold} for ${t.peg.on_consecutive_days} days → BUY parent; WATCH = close &lt; $${t.peg.watch_below}; SELL = close &lt; $${t.peg.sell_below} or ${t.peg.sell_consecutive_down_closes_below_peg}+ straight down closes below peg. Overheated = mNAV ≥ ${t.mnav.overheated_min_mnav}x AND ≥ ${t.mnav.overheated_percentile*100}th pct of ${t.mnav.lookback_trading_days}-day history; both overheated → SELL_TO_BTC: sell both, hold BTC (overrides). Rotation: spread z ≤ ${t.mnav.spread_z_favor_asst} → favor ASST (cheap vs MSTR), ≥ ${t.mnav.spread_z_favor_mstr} → favor MSTR. Dip: BTC ≥ ${t.dip.btc_drawdown_trigger*100}% below its ${t.dip.rolling_high_days}-day high → buy whichever of MSTR/ASST is down most. Machine-readable: <a href="signals.json">signals.json</a>.`;
   document.getElementById('pegnote').innerHTML=`Now: STRC $${fmt(p.STRC.price)} <span class="pill ${p.STRC.state}">${p.STRC.state}</span> · SATA $${fmt(p.SATA.price)} <span class="pill ${p.SATA.state}">${p.SATA.state}</span>`;
 }
 function renderEvents(){const today=new Date().toISOString().slice(0,10),h=new Date(Date.now()+7*864e5).toISOString().slice(0,10);
@@ -139,10 +137,9 @@ function renderEvents(){const today=new Date().toISOString().slice(0,10),h=new D
 function renderCharts(){
   const R=D.rows.filter(r=>r.date>=D.config.window_start);
   const norm=k=>{const f=R.find(r=>r[k]!=null);return{x:R.map(r=>r.date),y:R.map(r=>r[k]!=null?r[k]/f[k]*100:null)}};
-  plot('c_norm',[['MSTR','MSTR'],['ASST','ASST'],['FBTC','FBTC'],['btc','BTC']].map(([k,n])=>Object.assign(norm(k),{name:n,line:{color:C[n]}})),baseLayout('Index (start=100)',{yaxis:{type:'log',title:'Index (log)',gridcolor:'#21262d'}}));
-  plot('c_raw',[Object.assign(series('MSTR'),{name:'MSTR $',line:{color:C.MSTR}}),Object.assign(series('ASST'),{name:'ASST $ (split-adj)',line:{color:C.ASST}}),
-    Object.assign(series('FBTC'),{name:'FBTC $',line:{color:C.FBTC}}),Object.assign(series('btc'),{name:'BTC $ (right)',yaxis:'y2',line:{color:C.BTC}})],
-    baseLayout('USD (log)',{yaxis:{type:'log',title:'MSTR / ASST / FBTC (log)',gridcolor:'#21262d'},yaxis2:{overlaying:'y',side:'right',title:'BTC',showgrid:false}}));
+  plot('c_norm',[['MSTR','MSTR'],['ASST','ASST'],['btc','BTC']].map(([k,n])=>Object.assign(norm(k),{name:n,line:{color:C[n]}})),baseLayout('Index (start=100)',{yaxis:{type:'log',title:'Index (log)',gridcolor:'#21262d'}}));
+  plot('c_raw',[Object.assign(series('MSTR'),{name:'MSTR $',line:{color:C.MSTR}}),Object.assign(series('ASST'),{name:'ASST $ (split-adj)',line:{color:C.ASST}}),Object.assign(series('btc'),{name:'BTC $ (right)',yaxis:'y2',line:{color:C.BTC}})],
+    baseLayout('USD (log)',{yaxis:{type:'log',title:'MSTR / ASST (log)',gridcolor:'#21262d'},yaxis2:{overlaying:'y',side:'right',title:'BTC',showgrid:false}}));
   const oh=D.config.mnav.overheated_min_mnav;
   plot('c_mnav',[Object.assign(series('mstr_mnav'),{name:'MSTR mNAV',line:{color:C.MSTR}}),Object.assign(series('asst_mnav'),{name:'ASST mNAV',line:{color:C.ASST}}),
     Object.assign(series('mnav_avg'),{name:'Average',line:{color:C.AVG,dash:'dot'}})],baseLayout('mNAV (x)',{shapes:[hline(1,'#8b949e'),hline(oh,'#f85149')]}));
@@ -164,12 +161,12 @@ function renderCharts(){
     {type:'bar',name:'STRC repurchased $M (week, negative)',x:F.strc_repurchase.map(a=>a.end),y:F.strc_repurchase.map(a=>-a.usd_m),marker:{color:'#f85149'}},
     {type:'scatter',mode:'lines+markers',line:{shape:'hv',color:C.SATA},name:'SATA shares outstanding (M, right)',x:F.sata_outstanding.map(a=>a.date),y:F.sata_outstanding.map(a=>a.shares/1e6),yaxis:'y2'}],
     baseLayout('$M',{barmode:'relative',yaxis2:{overlaying:'y',side:'right',title:'SATA shares (M)',showgrid:false}}));
-  plot('c_dd',[['dd_MSTR','MSTR'],['dd_ASST','ASST'],['dd_FBTC','FBTC'],['dd_BTC','BTC']].map(([k,n])=>Object.assign(series(k),{name:n,line:{color:C[n]}})),
+  plot('c_dd',[['dd_MSTR','MSTR'],['dd_ASST','ASST'],['dd_BTC','BTC']].map(([k,n])=>Object.assign(series(k),{name:n,line:{color:C[n]}})),
     baseLayout('Drawdown',{yaxis:{tickformat:'.0%',gridcolor:'#21262d',title:'from rolling 1y high'},shapes:[hline(-D.config.dip.btc_drawdown_trigger,'#f7c948')]}));
   linkCharts();
 }
 function renderBig(){const B=D.big_moves||[],t=D.config.big_moves;
-  document.getElementById('bmnote').innerHTML=`Daily close-to-close moves since ${D.config.window_start}: |MSTR| or |ASST| ≥ ${pct(t.MSTR,0)}, |BTC| or |FBTC| ≥ ${pct(t.BTC,0)} (configurable in config.json → big_moves). ${B.length} moves. BTC trades 7 days/week (Yahoo BTC-USD UTC daily close); equities on trading days.`;
+  document.getElementById('bmnote').innerHTML=`Daily close-to-close moves since ${D.config.window_start}: |MSTR| or |ASST| ≥ ${pct(t.MSTR,0)}, |BTC| ≥ ${pct(t.BTC,0)} (configurable in config.json → big_moves). ${B.length} moves. BTC trades 7 days/week (Yahoo BTC-USD UTC daily close); equities on trading days.`;
   document.getElementById('bmtable').innerHTML='<tr><th>Date</th><th>Asset</th><th>Move</th><th>Close</th><th>Prev close</th><th>BTC same day</th><th>Event that day</th></tr>'+B.map(m=>{
     const ev=E.events.filter(e=>e.date===m.date).map(e=>e.title).join('; ');
     return `<tr><td>${m.date}</td><td style="color:${C[m.asset]}">${m.asset}</td><td class="${cls(m.change)}"><b>${(m.change>0?'+':'')+pct(m.change)}</b></td><td>${fmt(m.close)}</td><td>${fmt(m.prev_close)}</td><td class="${cls(m.btc_change_same_day)}">${pct(m.btc_change_same_day)}</td><td class="note">${ev}</td></tr>`}).join('')}
@@ -187,7 +184,7 @@ function renderPM(){const box=document.getElementById('pm');
       yaxis:{tickformat:'.0%',range:[0,1],gridcolor:'#21262d'},xaxis:{type:'date',gridcolor:'#21262d'},hovermode:'x unified'},{displaylogo:false,responsive:true})})}
 function renderMethod(){const ev=D.ev_snapshot||{},m=ev.MSTR||{},a=ev.ASST||{};
  document.getElementById('methodbody').innerHTML=`
- <p><b>Prices:</b> Yahoo Finance chart API (daily closes; split-adjusted: ASST 1-for-20 reverse split on 2026-02-06). Tickers MSTR, ASST, FBTC, BTC-USD, STRC, SATA${(D.sats&&Object.keys(D.sats).length)?', SATS':''}.</p>
+ <p><b>Prices:</b> Yahoo Finance chart API (daily closes; split-adjusted: ASST 1-for-20 reverse split on 2026-02-06). Tickers MSTR, ASST, BTC-USD, STRC, SATA${(D.sats&&Object.keys(D.sats).length)?', SATS':''}.</p>
  <p><b>mNAV (history, one formula for both):</b> price × share count ÷ (BTC held × BTC-USD close), with BTC held and shares as step functions that change on each disclosed "as of" date.
  <br>• <b>MSTR</b>: share count = Strategy's assumed diluted shares outstanding (ADSO) from the <a href="https://www.btcexposure.com/data/mstr-mnav-history.csv">btcexposure.com CSV</a> (compiled from Strategy filings, interpolated between reports). BTC held from that CSV, overridden from 2025-10-19 on by Strategy's weekly 8-Ks on SEC EDGAR.
  <br>• <b>ASST</b>: BTC held and shares from Strive SEC filings: hand-curated seed (<a href="data/asst_seed.json">asst_seed.json</a>) up to May 2026, then parsed weekly 8-K tables. Shares = "Assumed Fully Diluted Shares" where reported (from mid-Jul 2026), otherwise Effective Common (Class A + B, plus pre-funded warrants pre-merger). So ASST mNAV before Jul 2026 is about 2-3% lower than a fully-diluted figure would be. The share count for 2026-01-16 to 02-11 (Semler merger) is back-filled from the Feb 11 count, so it is an estimate.</p>

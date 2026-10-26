@@ -14,7 +14,9 @@
   "overheated_percentile": 0.9,
   "overheated_min_mnav": 1.25,
   "spread_z_favor_asst": -1.0,
-  "spread_z_favor_mstr": 1.0
+  "spread_z_favor_mstr": 1.0,
+  "both_overheated_action": "SELL_TO_BTC",
+  "_both_overheated_comment": "when MSTR and ASST are both overheated, sell both and hold BTC (overrides peg actions)"
  },
  "dip": {
   "btc_drawdown_trigger": 0.25,
@@ -24,8 +26,7 @@
   "_comment": "absolute daily close-to-close % move that counts as a Big Move",
   "MSTR": 0.07,
   "ASST": 0.07,
-  "BTC": 0.04,
-  "FBTC": 0.04
+  "BTC": 0.04
  },
  "events": {
   "upcoming_window_days": 7

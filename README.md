@@ -1,13 +1,13 @@
-# BTC Treasury Rotation Dashboard: MSTR · ASST · FBTC
+# BTC Treasury Rotation Dashboard: MSTR · ASST · BTC
 
 Live: https://bobbyfarrell20.github.io/btc-treasury-dashboard/
 
-A free, static dashboard (GitHub Pages + GitHub Actions) for rotating between **Strategy (MSTR)**, **Strive (ASST)** and the **FBTC** spot-bitcoin ETF over the BTC cycle. The window is the last year, starting from the Oct 2025 cycle top.
+A free, static dashboard (GitHub Pages + GitHub Actions) for rotating between **Strategy (MSTR)**, **Strive (ASST)** and **bitcoin (BTC)** itself over the BTC cycle. The window is the last year, starting from the Oct 2025 cycle top.
 
 **Rules-based indicator, not financial advice.**
 
 ## What's on it
-- **Current signal panel**: per-asset action, driven primarily by the preferred's peg (STRC → MSTR, SATA → ASST). It also covers mNAV rotation, the "both overheated, rotate to FBTC" rule, the BTC-dip rule (buy whichever is hit hardest), EV/basic/diluted mNAV, events in the next 7 days and the latest big move.
+- **Current signal panel**: per-asset action, driven primarily by the preferred's peg (STRC → MSTR, SATA → ASST). It also covers mNAV rotation, the "both overheated → SELL_TO_BTC" rule, the BTC-dip rule (buy whichever is hit hardest), EV/basic/diluted mNAV, events in the next 7 days and the latest big move.
 - **Interactive charts** (Plotly, with time sliders and linked axes):
   - normalized performance
   - raw prices
@@ -20,7 +20,7 @@ A free, static dashboard (GitHub Pages + GitHub Actions) for rotating between **
   - event markers on every chart
 - **Key dates** (`data/events.json`): earnings, preferred record/dividend dates, FOMC, CPI, midterms, and crypto bills in Congress.
 - **Prediction markets** (`data/markets.json`): Polymarket and Kalshi odds plus daily history.
-- **Big moves log**: daily moves ≥ ±7% for MSTR/ASST and ≥ ±4% for BTC/FBTC.
+- **Big moves log**: daily moves ≥ ±7% for MSTR/ASST and ≥ ±4% for BTC.
 - **`signals.json`**: machine-readable current signal, for alerts and monitors.
 
 ## Configure
@@ -36,7 +36,7 @@ Edit these files to change what the dashboard tracks:
 | WATCH | close < $99.90 |
 | SELL / trim parent | close < $99.00, or 3+ straight down closes below $99.90 |
 | Overheated | mNAV ≥ 1.25x and ≥ 90th percentile of the trailing 252 trading days |
-| Both overheated | sell MSTR + ASST into FBTC (overrides the peg actions) |
+| Both overheated | SELL_TO_BTC: sell MSTR + ASST, hold BTC (overrides the peg actions) |
 | Rotation | z-score of (ASST mNAV − MSTR mNAV) over 252 days: ≤ −1 favor ASST, ≥ +1 favor MSTR |
 | Dip | BTC ≥ 25% below its 365-day high → buy whichever of MSTR/ASST has the deeper drawdown |
 
