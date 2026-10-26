@@ -1,5 +1,5 @@
 {
-  "generated_utc": "2026-10-26T20:12:46+00:00",
+  "generated_utc": "2026-10-26T20:15:06+00:00",
   "as_of": "2026-10-26",
   "disclaimer": "Rules-based indicator, not financial advice.",
   "headline": "SELL/TRIM ASST (preferred off peg & falling); WATCH MSTR (preferred lost peg); DIP-BUY zone: BTC -30% off 1y high; hardest hit = MSTR",
@@ -7,16 +7,16 @@
     "MSTR": {
       "peg_state": "WATCH",
       "action": "WATCH",
-      "mnav": 0.9335,
-      "mnav_pct_1y": 0.452,
+      "mnav": 0.933,
+      "mnav_pct_1y": 0.44,
       "overheated": false,
       "drawdown_1y_high": -0.527
     },
     "ASST": {
       "peg_state": "SELL",
       "action": "SELL",
-      "mnav": 0.9977,
-      "mnav_pct_1y": 0.488,
+      "mnav": 0.9973,
+      "mnav_pct_1y": 0.484,
       "overheated": false,
       "drawdown_1y_high": -0.1976
     }
@@ -26,7 +26,7 @@
   "dip": {
     "active": true,
     "target": "MSTR",
-    "btc_drawdown": -0.3009
+    "btc_drawdown": -0.3006
   },
   "peg": {
     "STRC": {
@@ -43,33 +43,33 @@
   "values": {
     "MSTR": 139.82,
     "ASST": 26.32,
-    "btc": 79779.4531,
-    "mstr_mnav": 0.9335,
-    "asst_mnav": 0.9977,
-    "mnav_avg": 0.9656,
-    "mnav_spread": 0.0642,
+    "btc": 79815.7109,
+    "mstr_mnav": 0.933,
+    "asst_mnav": 0.9973,
+    "mnav_avg": 0.9651,
+    "mnav_spread": 0.0643,
     "spread_z": -0.146,
     "ratio": 0.18824,
     "dd_MSTR": -0.527,
     "dd_ASST": -0.1976,
-    "dd_BTC": -0.3009,
-    "mstr_nav_ps": 149.79,
-    "asst_nav_ps": 26.38
+    "dd_BTC": -0.3006,
+    "mstr_nav_ps": 149.86,
+    "asst_nav_ps": 26.39
   },
   "valuation_snapshot": {
     "MSTR": {
-      "basic_equity_mnav": 0.8723,
-      "diluted_equity_mnav": 0.9335,
-      "ev_mnav": 1.0937,
+      "basic_equity_mnav": 0.8719,
+      "diluted_equity_mnav": 0.933,
+      "ev_mnav": 1.0932,
       "enterprise_value_m": 74038,
-      "btc_nav_m": 67694
+      "btc_nav_m": 67725
     },
     "ASST": {
-      "basic_equity_mnav": 0.9769,
-      "diluted_equity_mnav": 0.9977,
-      "ev_mnav": 1.4283,
+      "basic_equity_mnav": 0.9765,
+      "diluted_equity_mnav": 0.9973,
+      "ev_mnav": 1.4276,
       "enterprise_value_m": 4900,
-      "btc_nav_m": 3431
+      "btc_nav_m": 3432
     }
   },
   "latest_big_move": {
@@ -79,7 +79,7 @@
     "close": 26.32,
     "prev_close": 28.97,
     "threshold": 0.07,
-    "btc_change_same_day": -0.0031
+    "btc_change_same_day": -0.0026
   },
   "big_moves_last_30d": [
     {
@@ -89,7 +89,7 @@
       "close": 26.32,
       "prev_close": 28.97,
       "threshold": 0.07,
-      "btc_change_same_day": -0.0031
+      "btc_change_same_day": -0.0026
     },
     {
       "date": "2026-10-21",
@@ -196,7 +196,7 @@
       "top": [
         {
           "outcome": "No change",
-          "yes": 0.9255
+          "yes": 0.926
         },
         {
           "outcome": "25 bps increase",
@@ -396,7 +396,7 @@
       "top": [
         {
           "outcome": "Fed maintains rate",
-          "yes": 0.92
+          "yes": 0.91
         },
         {
           "outcome": "Hike 25bps",
@@ -419,7 +419,7 @@
       "top": [
         {
           "outcome": "Hike 25bps",
-          "yes": 0.71
+          "yes": 0.74
         },
         {
           "outcome": "Fed maintains rate",
@@ -454,7 +454,7 @@
         },
         {
           "outcome": "Before Apr 1, 2027",
-          "yes": 0.11
+          "yes": 0.09
         }
       ]
     },
@@ -465,11 +465,11 @@
       "top": [
         {
           "outcome": "Democratic Party",
-          "yes": 0.91
+          "yes": 0.911
         },
         {
           "outcome": "Republican Party",
-          "yes": 0.097
+          "yes": 0.096
         }
       ]
     },
