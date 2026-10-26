@@ -1,0 +1,334 @@
+{
+ "_comment": "Key dates. Edit freely: date (YYYY-MM-DD) or null when unknown (shown as TBD). status: scheduled | estimated | done | pending | TBD. Times are US Eastern. Never add a date you have not verified; put null + status TBD instead.",
+ "events": [
+  {
+   "date": "2025-07-17",
+   "category": "congress",
+   "title": "House passes CLARITY Act (H.R.3633) 294-134",
+   "status": "done",
+   "source": "https://www.congress.gov/bill/119th-congress/house-bill/3633/all-info"
+  },
+  {
+   "date": "2025-10-06",
+   "category": "market",
+   "title": "BTC all-time high ~$126k (last cycle top)",
+   "status": "done",
+   "source": "research notes"
+  },
+  {
+   "date": "2025-10-10",
+   "category": "market",
+   "title": "~$19B crypto liquidation cascade",
+   "status": "done",
+   "source": "research notes"
+  },
+  {
+   "date": "2025-10-29",
+   "category": "fomc",
+   "title": "FOMC decision (Oct 28-29, 2025)",
+   "status": "done",
+   "source": "https://www.federalreserve.gov/monetarypolicy/fomccalendars.htm"
+  },
+  {
+   "date": "2025-10-30",
+   "category": "earnings",
+   "title": "MSTR Q3 2025 results (8-K Item 2.02)",
+   "status": "done",
+   "source": "https://www.sec.gov/Archives/edgar/data/1050446/000119312525258690/mstr-20251030.htm"
+  },
+  {
+   "date": "2025-11-14",
+   "category": "earnings",
+   "title": "ASST Q3 2025 results (8-K Item 2.02)",
+   "status": "done",
+   "source": "https://www.sec.gov/Archives/edgar/data/1920406/000162828025052342/asst-20251114.htm"
+  },
+  {
+   "date": "2025-12-10",
+   "category": "fomc",
+   "title": "FOMC decision (Dec 9-10, 2025)",
+   "status": "done",
+   "source": "https://www.federalreserve.gov/monetarypolicy/fomccalendars.htm"
+  },
+  {
+   "date": "2026-01-06",
+   "category": "index",
+   "title": "MSCI decision: DATs kept in indexes, share counts frozen",
+   "status": "done",
+   "source": "research notes"
+  },
+  {
+   "date": "2026-01-16",
+   "category": "asst",
+   "title": "Strive completes Semler Scientific merger",
+   "status": "done",
+   "source": "https://www.sec.gov/Archives/edgar/data/1920406/000095010326000616/dp240082_8k.htm"
+  },
+  {
+   "date": "2026-01-28",
+   "category": "fomc",
+   "title": "FOMC decision (Jan 27-28)",
+   "status": "done",
+   "source": "https://www.federalreserve.gov/monetarypolicy/fomccalendars.htm"
+  },
+  {
+   "date": "2026-02-05",
+   "category": "earnings",
+   "title": "MSTR Q4/FY2025 results (8-K Item 2.02)",
+   "status": "done",
+   "source": "https://www.sec.gov/Archives/edgar/data/1050446/000105044626000012/mstr-20260205.htm"
+  },
+  {
+   "date": "2026-02-06",
+   "category": "asst",
+   "title": "ASST 1-for-20 reverse split effective",
+   "status": "done",
+   "source": "research notes; Yahoo Finance split event"
+  },
+  {
+   "date": "2026-03-18",
+   "category": "fomc",
+   "title": "FOMC decision (Mar 17-18, SEP)",
+   "status": "done",
+   "source": "https://www.federalreserve.gov/monetarypolicy/fomccalendars.htm"
+  },
+  {
+   "date": "2026-03-19",
+   "category": "earnings",
+   "title": "ASST Q4/FY2025 results (8-K Item 2.02)",
+   "status": "done",
+   "source": "https://www.sec.gov/Archives/edgar/data/1920406/000162828026019636/asst-20260319.htm"
+  },
+  {
+   "date": "2026-04-29",
+   "category": "fomc",
+   "title": "FOMC decision (Apr 28-29)",
+   "status": "done",
+   "source": "https://www.federalreserve.gov/monetarypolicy/fomccalendars.htm"
+  },
+  {
+   "date": "2026-05-05",
+   "category": "earnings",
+   "title": "MSTR Q1 2026 results (8-K Item 2.02)",
+   "status": "done",
+   "source": "https://www.sec.gov/Archives/edgar/data/1050446/000105044626000024/mstr-20260505.htm"
+  },
+  {
+   "date": "2026-05-14",
+   "category": "congress",
+   "title": "Senate Banking orders CLARITY Act reported (substitute)",
+   "status": "done",
+   "source": "https://www.congress.gov/bill/119th-congress/house-bill/3633/all-info"
+  },
+  {
+   "date": "2026-05-14",
+   "category": "earnings",
+   "title": "ASST Q1 2026 results (8-K Item 2.02)",
+   "status": "done",
+   "source": "https://www.sec.gov/Archives/edgar/data/1920406/000162828026034804/asst-20260514.htm"
+  },
+  {
+   "date": "2026-06-17",
+   "category": "fomc",
+   "title": "FOMC decision (Jun 16-17, SEP)",
+   "status": "done",
+   "source": "https://www.federalreserve.gov/monetarypolicy/fomccalendars.htm"
+  },
+  {
+   "date": "2026-06-26",
+   "category": "mstr",
+   "title": "MSTR mNAV cycle low ~0.64x (btcexposure)",
+   "status": "done",
+   "source": "https://www.btcexposure.com/data/mstr-mnav-history"
+  },
+  {
+   "date": "2026-06-29",
+   "category": "mstr",
+   "title": "Strategy capital framework: buybacks, possible BTC sales, STRC 12%",
+   "status": "done",
+   "source": "research notes"
+  },
+  {
+   "date": "2026-07-29",
+   "category": "fomc",
+   "title": "FOMC decision (Jul 28-29)",
+   "status": "done",
+   "source": "https://www.federalreserve.gov/monetarypolicy/fomccalendars.htm"
+  },
+  {
+   "date": "2026-07-30",
+   "category": "earnings",
+   "title": "MSTR Q2 2026 results (8-K Item 2.02)",
+   "status": "done",
+   "source": "https://www.sec.gov/Archives/edgar/data/1050446/000162828026051027/mstr-20260730.htm"
+  },
+  {
+   "date": "2026-08-10",
+   "category": "earnings",
+   "title": "ASST Q2 2026 results (8-K Item 2.02)",
+   "status": "done",
+   "source": "https://www.sec.gov/Archives/edgar/data/1920406/000162828026054984/asst-20260810.htm"
+  },
+  {
+   "date": "2026-09-15",
+   "category": "congress",
+   "title": "Senate cloture on CLARITY Act motion to proceed fails 49-50 (motion to reconsider entered)",
+   "status": "done",
+   "source": "https://www.senate.gov/legislative/cloture/119.htm"
+  },
+  {
+   "date": "2026-09-16",
+   "category": "fomc",
+   "title": "FOMC decision (Sep 15-16, SEP)",
+   "status": "done",
+   "source": "https://www.federalreserve.gov/monetarypolicy/fomccalendars.htm"
+  },
+  {
+   "date": "2026-10-14",
+   "category": "macro",
+   "title": "CPI (September data)",
+   "status": "done",
+   "source": "https://www.bls.gov/schedule/2026/home.htm"
+  },
+  {
+   "date": "2026-10-19",
+   "category": "asst",
+   "title": "Strive SATS (15% preferred) offering: 7.0M sh @ $90 (8-K)",
+   "status": "done",
+   "source": "https://www.sec.gov/Archives/edgar/data/1920406/000162828026066222/asst-20261019.htm"
+  },
+  {
+   "date": "2026-10-28",
+   "category": "fomc",
+   "title": "FOMC decision 2:00 PM ET (Oct 27-28)",
+   "status": "scheduled",
+   "source": "https://www.federalreserve.gov/monetarypolicy/fomccalendars.htm"
+  },
+  {
+   "date": "2026-10-28",
+   "category": "preferred",
+   "title": "Strategy special meeting 10:00 AM ET: vote on daily preferred dividends (STRC etc.)",
+   "status": "scheduled",
+   "source": "https://www.sec.gov/Archives/edgar/data/1050446/000119312526413159/d503578ddef14a.htm"
+  },
+  {
+   "date": "2026-10-29",
+   "category": "earnings",
+   "title": "MSTR Q3 2026 results after close, webinar 5:00 PM ET",
+   "status": "scheduled",
+   "source": "research notes (Strategy announcement); confirm at https://www.strategy.com/press"
+  },
+  {
+   "date": "2026-10-31",
+   "category": "preferred",
+   "title": "STRC record date for Nov 15 dividend (void if daily dividends approved)",
+   "status": "scheduled",
+   "source": "https://www.stocktitan.net/sec-filings/MSTR/8-k-strategy-inc-reports-material-event-adcac7c6c20f.html"
+  },
+  {
+   "date": "2026-11-01",
+   "category": "preferred",
+   "title": "STRC daily dividends start (conditional on vote): record every day, $1.00 total for Nov, 12%",
+   "status": "scheduled",
+   "source": "https://www.strategy.com/press/strategy-declares-conditional-daily-dividends-on-strc-for-november-2026_10-16-2026"
+  },
+  {
+   "date": "2026-11-03",
+   "category": "election",
+   "title": "US midterm elections",
+   "status": "scheduled",
+   "source": "Election Day (fixed by law)"
+  },
+  {
+   "date": "2026-11-06",
+   "category": "macro",
+   "title": "Jobs report (October)",
+   "status": "scheduled",
+   "source": "https://www.bls.gov/schedule/2026/11_sched_list.htm"
+  },
+  {
+   "date": "2026-11-09",
+   "category": "preferred",
+   "title": "First SATS dividend (Strive)",
+   "status": "scheduled",
+   "source": "research notes (Strive SATS offering docs)"
+  },
+  {
+   "date": "2026-11-10",
+   "category": "macro",
+   "title": "CPI (October data) 8:30 AM ET",
+   "status": "scheduled",
+   "source": "https://www.bls.gov/schedule/news_release/cpi.htm"
+  },
+  {
+   "date": "2026-11-10",
+   "category": "earnings",
+   "title": "ASST Q3 2026 results (ESTIMATED by MarketBeat, not confirmed by Strive)",
+   "status": "estimated",
+   "source": "https://www.marketbeat.com/stocks/NASDAQ/ASST/earnings/"
+  },
+  {
+   "date": "2026-11-15",
+   "category": "preferred",
+   "title": "STRC regular dividend payment (only if daily-dividend condition fails)",
+   "status": "scheduled",
+   "source": "https://www.stocktitan.net/sec-filings/MSTR/8-k-strategy-inc-reports-material-event-adcac7c6c20f.html"
+  },
+  {
+   "date": "2026-12-09",
+   "category": "fomc",
+   "title": "FOMC decision (Dec 8-9, SEP)",
+   "status": "scheduled",
+   "source": "https://www.federalreserve.gov/monetarypolicy/fomccalendars.htm"
+  },
+  {
+   "date": "2026-12-10",
+   "category": "macro",
+   "title": "CPI (November data)",
+   "status": "scheduled",
+   "source": "https://www.bls.gov/schedule/news_release/cpi.htm"
+  },
+  {
+   "date": "2027-01-13",
+   "category": "macro",
+   "title": "CPI (December data)",
+   "status": "scheduled",
+   "source": "https://www.bls.gov/schedule/news_release/cpi.htm"
+  },
+  {
+   "date": "2027-01-18",
+   "category": "congress",
+   "title": "GENIUS Act (stablecoins) + OCC final rule take effect",
+   "status": "scheduled",
+   "source": "https://www.occ.gov/news-issuances/bulletins/2026/bulletin-2026-50.html"
+  },
+  {
+   "date": "2027-01-27",
+   "category": "fomc",
+   "title": "FOMC decision (Jan 26-27, 2027, tentative)",
+   "status": "scheduled",
+   "source": "https://www.federalreserve.gov/monetarypolicy/fomccalendars.htm"
+  },
+  {
+   "date": null,
+   "category": "preferred",
+   "title": "SATA November dividends: 19 business-day record dates, $0.0571/sh each ($1.0849 total), paid next business day",
+   "status": "scheduled",
+   "source": "https://bittery.io/posts/how-daily-preferred-dividends-work"
+  },
+  {
+   "date": null,
+   "category": "congress",
+   "title": "CLARITY Act (H.R.3633) Senate floor vote - pending, no date scheduled",
+   "status": "TBD",
+   "source": "https://www.congress.gov/bill/119th-congress/house-bill/3633/all-info"
+  },
+  {
+   "date": null,
+   "category": "congress",
+   "title": "BITCOIN Act / Strategic Bitcoin Reserve (S.954) - in Senate Banking since 2025-03-11, no markup scheduled",
+   "status": "TBD",
+   "source": "https://www.congress.gov/bill/119th-congress/senate-bill/954"
+  }
+ ]
+}

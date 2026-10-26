@@ -1,0 +1,545 @@
+{
+  "generated_utc": "2026-10-26T20:00:55+00:00",
+  "as_of": "2026-10-26",
+  "disclaimer": "Rules-based indicator, not financial advice.",
+  "headline": "SELL/TRIM ASST (preferred off peg & falling); WATCH MSTR (preferred lost peg); DIP-BUY zone: BTC -30% off 1y high; hardest hit = MSTR",
+  "per_asset": {
+    "MSTR": {
+      "peg_state": "WATCH",
+      "action": "WATCH",
+      "mnav": 0.9323,
+      "mnav_pct_1y": 0.44,
+      "overheated": false,
+      "drawdown_1y_high": -0.527
+    },
+    "ASST": {
+      "peg_state": "SELL",
+      "action": "SELL",
+      "mnav": 0.9958,
+      "mnav_pct_1y": 0.484,
+      "overheated": false,
+      "drawdown_1y_high": -0.198
+    }
+  },
+  "both_overheated": false,
+  "rotation": "NEUTRAL",
+  "dip": {
+    "active": true,
+    "target": "MSTR",
+    "btc_drawdown": -0.2999
+  },
+  "peg": {
+    "STRC": {
+      "price": 99.17,
+      "state": "WATCH",
+      "distance_from_par": -0.83
+    },
+    "SATA": {
+      "price": 98.36,
+      "state": "SELL",
+      "distance_from_par": -1.64
+    }
+  },
+  "values": {
+    "MSTR": 139.84,
+    "ASST": 26.305,
+    "FBTC": 69.46,
+    "btc": 79892.0312,
+    "mstr_mnav": 0.9323,
+    "asst_mnav": 0.9958,
+    "mnav_avg": 0.9641,
+    "mnav_spread": 0.0635,
+    "spread_z": -0.149,
+    "ratio": 0.18811,
+    "dd_MSTR": -0.527,
+    "dd_ASST": -0.198,
+    "dd_FBTC": -0.3073,
+    "dd_BTC": -0.2999,
+    "mstr_nav_ps": 150.0,
+    "asst_nav_ps": 26.42
+  },
+  "valuation_snapshot": {
+    "MSTR": {
+      "basic_equity_mnav": 0.8712,
+      "diluted_equity_mnav": 0.9323,
+      "ev_mnav": 1.0923,
+      "enterprise_value_m": 74047,
+      "btc_nav_m": 67790
+    },
+    "ASST": {
+      "basic_equity_mnav": 0.975,
+      "diluted_equity_mnav": 0.9958,
+      "ev_mnav": 1.4257,
+      "enterprise_value_m": 4898,
+      "btc_nav_m": 3435
+    }
+  },
+  "latest_big_move": {
+    "date": "2026-10-26",
+    "asset": "ASST",
+    "change": -0.092,
+    "close": 26.305,
+    "prev_close": 28.97,
+    "threshold": 0.07,
+    "btc_change_same_day": -0.0016
+  },
+  "big_moves_last_30d": [
+    {
+      "date": "2026-10-26",
+      "asset": "ASST",
+      "change": -0.092,
+      "close": 26.305,
+      "prev_close": 28.97,
+      "threshold": 0.07,
+      "btc_change_same_day": -0.0016
+    },
+    {
+      "date": "2026-10-21",
+      "asset": "MSTR",
+      "change": 0.0754,
+      "close": 153.48,
+      "prev_close": 142.72,
+      "threshold": 0.07,
+      "btc_change_same_day": 0.0129
+    },
+    {
+      "date": "2026-10-21",
+      "asset": "ASST",
+      "change": 0.1364,
+      "close": 30.75,
+      "prev_close": 27.06,
+      "threshold": 0.07,
+      "btc_change_same_day": 0.0129
+    },
+    {
+      "date": "2026-10-16",
+      "asset": "MSTR",
+      "change": -0.0956,
+      "close": 136.83,
+      "prev_close": 151.29,
+      "threshold": 0.07,
+      "btc_change_same_day": -0.0078
+    },
+    {
+      "date": "2026-10-14",
+      "asset": "ASST",
+      "change": -0.1055,
+      "close": 24.68,
+      "prev_close": 27.59,
+      "threshold": 0.07,
+      "btc_change_same_day": -0.0184
+    }
+  ],
+  "upcoming_events_7d": [
+    {
+      "date": "2026-10-28",
+      "category": "fomc",
+      "title": "FOMC decision 2:00 PM ET (Oct 27-28)",
+      "status": "scheduled",
+      "source": "https://www.federalreserve.gov/monetarypolicy/fomccalendars.htm"
+    },
+    {
+      "date": "2026-10-28",
+      "category": "preferred",
+      "title": "Strategy special meeting 10:00 AM ET: vote on daily preferred dividends (STRC etc.)",
+      "status": "scheduled",
+      "source": "https://www.sec.gov/Archives/edgar/data/1050446/000119312526413159/d503578ddef14a.htm"
+    },
+    {
+      "date": "2026-10-29",
+      "category": "earnings",
+      "title": "MSTR Q3 2026 results after close, webinar 5:00 PM ET",
+      "status": "scheduled",
+      "source": "research notes (Strategy announcement); confirm at https://www.strategy.com/press"
+    },
+    {
+      "date": "2026-10-31",
+      "category": "preferred",
+      "title": "STRC record date for Nov 15 dividend (void if daily dividends approved)",
+      "status": "scheduled",
+      "source": "https://www.stocktitan.net/sec-filings/MSTR/8-k-strategy-inc-reports-material-event-adcac7c6c20f.html"
+    },
+    {
+      "date": "2026-11-01",
+      "category": "preferred",
+      "title": "STRC daily dividends start (conditional on vote): record every day, $1.00 total for Nov, 12%",
+      "status": "scheduled",
+      "source": "https://www.strategy.com/press/strategy-declares-conditional-daily-dividends-on-strc-for-november-2026_10-16-2026"
+    }
+  ],
+  "prediction_markets": [
+    {
+      "source": "polymarket",
+      "label": "BTC price targets hit in 2026",
+      "url": "https://polymarket.com/event/what-price-will-bitcoin-hit-before-2027",
+      "top": [
+        {
+          "outcome": "\u2191 90,000",
+          "yes": 0.415
+        },
+        {
+          "outcome": "\u2191 100,000",
+          "yes": 0.175
+        },
+        {
+          "outcome": "\u2193 55,000",
+          "yes": 0.115
+        },
+        {
+          "outcome": "\u2193 50,000",
+          "yes": 0.075
+        }
+      ]
+    },
+    {
+      "source": "polymarket",
+      "label": "Fed decision - Oct 28",
+      "url": "https://polymarket.com/event/fed-decision-in-october-20260617190323537",
+      "top": [
+        {
+          "outcome": "No change",
+          "yes": 0.924
+        },
+        {
+          "outcome": "25 bps increase",
+          "yes": 0.075
+        },
+        {
+          "outcome": "50+ bps increase",
+          "yes": 0.0035
+        },
+        {
+          "outcome": "25 bps decrease",
+          "yes": 0.0005
+        }
+      ]
+    },
+    {
+      "source": "polymarket",
+      "label": "Fed decision - Dec 9",
+      "url": "https://polymarket.com/event/fed-decision-in-december-20260729232808632",
+      "top": [
+        {
+          "outcome": "25 bps increase",
+          "yes": 0.735
+        },
+        {
+          "outcome": "No change",
+          "yes": 0.215
+        },
+        {
+          "outcome": "50+ bps increase",
+          "yes": 0.027
+        },
+        {
+          "outcome": "25 bps decrease",
+          "yes": 0.0065
+        }
+      ]
+    },
+    {
+      "source": "polymarket",
+      "label": "Fed cuts in 2026",
+      "url": "https://polymarket.com/event/how-many-fed-rate-cuts-in-2026",
+      "top": [
+        {
+          "outcome": "0 (0 bps)",
+          "yes": 0.9595
+        },
+        {
+          "outcome": "1 (25 bps)",
+          "yes": 0.013
+        },
+        {
+          "outcome": "2 (50 bps)",
+          "yes": 0.0025
+        },
+        {
+          "outcome": "3 (75 bps)",
+          "yes": 0.0025
+        }
+      ]
+    },
+    {
+      "source": "polymarket",
+      "label": "CLARITY Act signed in 2026",
+      "url": "https://polymarket.com/event/clarity-act-signed-into-law-in-2026",
+      "top": [
+        {
+          "outcome": "Clarity Act (H.R.3633) signed into law in 2026?",
+          "yes": 0.0425
+        }
+      ]
+    },
+    {
+      "source": "polymarket",
+      "label": "Market-structure law in 2026",
+      "url": "https://polymarket.com/event/crypto-market-structure-legislation-becomes-law-in-2026-20260727223933088",
+      "top": [
+        {
+          "outcome": "Crypto Market Structure legislation becomes law in 2026?",
+          "yes": 0.0885
+        }
+      ]
+    },
+    {
+      "source": "polymarket",
+      "label": "House control (midterms)",
+      "url": "https://polymarket.com/event/which-party-will-win-the-house-in-2026",
+      "top": [
+        {
+          "outcome": "Democratic Party",
+          "yes": 0.915
+        },
+        {
+          "outcome": "Republican Party",
+          "yes": 0.085
+        }
+      ]
+    },
+    {
+      "source": "polymarket",
+      "label": "Senate control (midterms)",
+      "url": "https://polymarket.com/event/which-party-will-win-the-senate-in-2026",
+      "top": [
+        {
+          "outcome": "Democratic Party",
+          "yes": 0.645
+        },
+        {
+          "outcome": "Republican Party",
+          "yes": 0.355
+        }
+      ]
+    },
+    {
+      "source": "polymarket",
+      "label": "MSTR BTC holdings by Dec 31",
+      "url": "https://polymarket.com/event/will-microstrategy-announce-holding-800k-btc-by-december-31-2026",
+      "top": [
+        {
+          "outcome": "1M+",
+          "yes": 0.03
+        }
+      ]
+    },
+    {
+      "source": "polymarket",
+      "label": "MSTR delisted from MSCI",
+      "url": "https://polymarket.com/event/will-microstrategy-be-delisted-from-the-msci-index-by-march-31",
+      "top": [
+        {
+          "outcome": "December 31",
+          "yes": 0.895
+        }
+      ]
+    },
+    {
+      "source": "polymarket",
+      "label": "MSTR margin called in 2026",
+      "url": "https://polymarket.com/event/will-microstrategy-be-margin-called-in-2026",
+      "top": [
+        {
+          "outcome": "Will MicroStrategy be margin called in 2026?",
+          "yes": 0.0365
+        }
+      ]
+    },
+    {
+      "source": "kalshi",
+      "label": "How high will BTC get in 2026",
+      "url": "https://kalshi.com/markets/kxbtcmaxy",
+      "top": [
+        {
+          "outcome": "Above $99,999.99",
+          "yes": 0.19
+        },
+        {
+          "outcome": "Above $109,999.99",
+          "yes": 0.09
+        },
+        {
+          "outcome": "Above $119,999.99",
+          "yes": 0.05
+        },
+        {
+          "outcome": "Above $129,999.99",
+          "yes": 0.03
+        }
+      ]
+    },
+    {
+      "source": "kalshi",
+      "label": "How low will BTC get in 2026",
+      "url": "https://kalshi.com/markets/kxbtcminy",
+      "top": [
+        {
+          "outcome": "Below $55,000.00",
+          "yes": 0.11
+        },
+        {
+          "outcome": "Below $50,000.00",
+          "yes": 0.08
+        },
+        {
+          "outcome": "Below $45,000.00",
+          "yes": 0.06
+        },
+        {
+          "outcome": "Below $40,000.00",
+          "yes": 0.04
+        }
+      ]
+    },
+    {
+      "source": "kalshi",
+      "label": "Fed decision - Oct 2026",
+      "url": "https://kalshi.com/markets/kxfeddecision",
+      "top": [
+        {
+          "outcome": "Fed maintains rate",
+          "yes": 0.92
+        },
+        {
+          "outcome": "Hike 25bps",
+          "yes": 0.09
+        },
+        {
+          "outcome": "Cut 25bps",
+          "yes": 0.01
+        },
+        {
+          "outcome": "Hike >25bps",
+          "yes": 0.01
+        }
+      ]
+    },
+    {
+      "source": "kalshi",
+      "label": "Fed decision - Dec 2026",
+      "url": "https://kalshi.com/markets/kxfeddecision",
+      "top": [
+        {
+          "outcome": "Hike 25bps",
+          "yes": 0.71
+        },
+        {
+          "outcome": "Fed maintains rate",
+          "yes": 0.24
+        },
+        {
+          "outcome": "Hike >25bps",
+          "yes": 0.05
+        },
+        {
+          "outcome": "Cut 25bps",
+          "yes": 0.02
+        }
+      ]
+    },
+    {
+      "source": "kalshi",
+      "label": "Will the CLARITY Act become law (by date)",
+      "url": "https://kalshi.com/markets/kxcryptostructure",
+      "top": [
+        {
+          "outcome": "Before Oct 1, 2027",
+          "yes": 0.22
+        },
+        {
+          "outcome": "Before Jan 1, 2028",
+          "yes": 0.22
+        },
+        {
+          "outcome": "Before Jul 1, 2027",
+          "yes": 0.21
+        },
+        {
+          "outcome": "Before Apr 1, 2027",
+          "yes": 0.11
+        }
+      ]
+    },
+    {
+      "source": "kalshi",
+      "label": "House control (midterms)",
+      "url": "https://kalshi.com/markets/controlh",
+      "top": [
+        {
+          "outcome": "Democratic Party",
+          "yes": 0.911
+        },
+        {
+          "outcome": "Republican Party",
+          "yes": 0.096
+        }
+      ]
+    },
+    {
+      "source": "kalshi",
+      "label": "Senate control (midterms)",
+      "url": "https://kalshi.com/markets/controls",
+      "top": [
+        {
+          "outcome": "Democratic Party",
+          "yes": 0.64
+        },
+        {
+          "outcome": "Republican Party",
+          "yes": 0.37
+        }
+      ]
+    }
+  ],
+  "thresholds": {
+    "_comment": "All signal thresholds live here. Edit and push; the daily workflow (or a manual run) recomputes signals.json and the dashboard.",
+    "window_start": "2025-10-27",
+    "peg": {
+      "par": 100.0,
+      "on_threshold": 99.95,
+      "on_consecutive_days": 3,
+      "watch_below": 99.9,
+      "sell_below": 99.0,
+      "sell_consecutive_down_closes_below_peg": 3
+    },
+    "mnav": {
+      "lookback_trading_days": 252,
+      "overheated_percentile": 0.9,
+      "overheated_min_mnav": 1.25,
+      "spread_z_favor_asst": -1.0,
+      "spread_z_favor_mstr": 1.0
+    },
+    "dip": {
+      "btc_drawdown_trigger": 0.25,
+      "rolling_high_days": 365
+    },
+    "big_moves": {
+      "_comment": "absolute daily close-to-close % move that counts as a Big Move",
+      "MSTR": 0.07,
+      "ASST": 0.07,
+      "BTC": 0.04,
+      "FBTC": 0.04
+    },
+    "events": {
+      "upcoming_window_days": 7
+    },
+    "ev_snapshot": {
+      "_comment": "Inputs for the CURRENT enterprise-value mNAV (snapshot only). EV mNAV = (price x basic shares + debt + preferred notional - cash) / (BTC held x BTC price). ASST inputs are auto-read from Strive's latest weekly 8-K table (cash, STRC held, SATA & SATS counts at $100 stated amount); MSTR inputs below must be updated by hand from strategy.com.",
+      "MSTR": {
+        "as_of": "2026-10-26",
+        "source": "https://www.strategy.com/ (dashboard snapshot 10/26/2026 11:51 AM ET: mkt cap $60,501M at $143.25, debt $6,714M, pref $13,347M, USD Reserve $4,833M, cash $242M)",
+        "basic_shares": 422345000,
+        "debt_m": 6714,
+        "preferred_notional_m": 13347,
+        "cash_m": 5075
+      },
+      "ASST": {
+        "preferred_stated_value": 100.0,
+        "debt_m": 0,
+        "debt_note": "Strive's weekly table lists no debt line; debt assumed 0 (verify in 10-Q)."
+      }
+    }
+  },
+  "changed_since_prev_close": true,
+  "prev_headline": "SELL/TRIM ASST (preferred off peg & falling); WATCH MSTR (preferred lost peg); DIP-BUY zone: BTC -29% off 1y high; hardest hit = MSTR"
+}

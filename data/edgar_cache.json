@@ -1,0 +1,1952 @@
+{
+"0001193125-26-431146": {
+"filed": "2026-10-26",
+"url": "https://www.sec.gov/Archives/edgar/data/1050446/000119312526431146/mstr-20261026.htm",
+"v": 2,
+"parsed": {
+"holdings": [
+{
+"date": "2026-10-25",
+"btc": 848517.0
+}
+],
+"strc_repurchase": [
+{
+"start": "2026-10-19",
+"end": "2026-10-25",
+"shares": 2068459.0,
+"usd_m": 204.9
+}
+]
+}
+},
+"0001193125-26-424688": {
+"filed": "2026-10-19",
+"url": "https://www.sec.gov/Archives/edgar/data/1050446/000119312526424688/mstr-20261019.htm",
+"v": 2,
+"parsed": {
+"holdings": [
+{
+"date": "2026-10-18",
+"btc": 848517.0
+}
+],
+"strc_atm": [
+{
+"start": "2026-10-12",
+"end": "2026-10-18",
+"shares": 0.0,
+"notional_m": 0.0,
+"net_m": 0.0
+}
+],
+"strc_repurchase": [
+{
+"start": "2026-10-12",
+"end": "2026-10-18",
+"shares": 1938780.0,
+"usd_m": 193.1
+}
+]
+}
+},
+"0001193125-26-423400": {
+"filed": "2026-10-16",
+"url": "https://www.sec.gov/Archives/edgar/data/1050446/000119312526423400/mstr-20261015.htm",
+"v": 2,
+"parsed": {}
+},
+"0001193125-26-419726": {
+"filed": "2026-10-13",
+"url": "https://www.sec.gov/Archives/edgar/data/1050446/000119312526419726/mstr-20261012.htm",
+"v": 2,
+"parsed": {}
+},
+"0001193125-26-413164": {
+"filed": "2026-10-05",
+"url": "https://www.sec.gov/Archives/edgar/data/1050446/000119312526413164/mstr-20261005.htm",
+"v": 2,
+"parsed": {
+"strc_atm": [
+{
+"start": "2026-09-28",
+"end": "2026-09-30",
+"shares": 0.0,
+"notional_m": 0.0,
+"net_m": 0.0
+},
+{
+"start": "2026-10-01",
+"end": "2026-10-04",
+"shares": 0.0,
+"notional_m": 0.0,
+"net_m": 0.0
+}
+],
+"strc_repurchase": [
+{
+"start": "2026-09-28",
+"end": "2026-09-30",
+"shares": 1033168.0,
+"usd_m": 102.6
+}
+]
+}
+},
+"0001193125-26-409863": {
+"filed": "2026-10-01",
+"url": "https://www.sec.gov/Archives/edgar/data/1050446/000119312526409863/mstr-20260930.htm",
+"v": 2,
+"parsed": {}
+},
+"0001193125-26-403417": {
+"filed": "2026-09-28",
+"url": "https://www.sec.gov/Archives/edgar/data/1050446/000119312526403417/mstr-20260914.htm",
+"v": 2,
+"parsed": {
+"holdings": [
+{
+"date": "2026-09-27",
+"btc": 847666.0
+}
+],
+"strc_atm": [
+{
+"start": "2026-09-21",
+"end": "2026-09-27",
+"shares": 0.0,
+"notional_m": 0.0,
+"net_m": 0.0
+}
+],
+"strc_repurchase": [
+{
+"start": "2026-09-21",
+"end": "2026-09-27",
+"shares": 1534530.0,
+"usd_m": 151.7
+}
+]
+}
+},
+"0001193125-26-401636": {
+"filed": "2026-09-25",
+"url": "https://www.sec.gov/Archives/edgar/data/1050446/000119312526401636/mstr-20260924.htm",
+"v": 2,
+"parsed": {}
+},
+"0001193125-26-396093": {
+"filed": "2026-09-21",
+"url": "https://www.sec.gov/Archives/edgar/data/1050446/000119312526396093/mstr-20260914.htm",
+"v": 2,
+"parsed": {
+"holdings": [
+{
+"date": "2026-09-20",
+"btc": 846000.0
+}
+],
+"strc_repurchase": [
+{
+"start": "2026-09-14",
+"end": "2026-09-20",
+"shares": 1771238.0,
+"usd_m": 174.0
+}
+]
+}
+},
+"0001193125-26-389858": {
+"filed": "2026-09-14",
+"url": "https://www.sec.gov/Archives/edgar/data/1050446/000119312526389858/mstr-20260914.htm",
+"v": 2,
+"parsed": {
+"holdings": [
+{
+"date": "2026-09-13",
+"btc": 845050.0
+}
+],
+"strc_repurchase": [
+{
+"start": "2026-09-08",
+"end": "2026-09-13",
+"shares": 1420467.0,
+"usd_m": 139.3
+}
+]
+}
+},
+"0001193125-26-384402": {
+"filed": "2026-09-08",
+"url": "https://www.sec.gov/Archives/edgar/data/1050446/000119312526384402/mstr-20260831.htm",
+"v": 2,
+"parsed": {
+"holdings": [
+{
+"date": "2026-09-07",
+"btc": 845050.0
+}
+],
+"strc_repurchase": [
+{
+"start": "2026-08-31",
+"end": "2026-09-07",
+"shares": 1810885.0,
+"usd_m": 176.3
+}
+]
+}
+},
+"0001193125-26-377583": {
+"filed": "2026-09-01",
+"url": "https://www.sec.gov/Archives/edgar/data/1050446/000119312526377583/mstr-20260831.htm",
+"v": 2,
+"parsed": {}
+},
+"0001193125-26-375463": {
+"filed": "2026-08-31",
+"url": "https://www.sec.gov/Archives/edgar/data/1050446/000119312526375463/mstr-20260831.htm",
+"v": 2,
+"parsed": {
+"holdings": [
+{
+"date": "2026-08-30",
+"btc": 845050.0
+}
+],
+"strc_atm": [
+{
+"start": "2026-08-24",
+"end": "2026-08-30",
+"shares": 0.0,
+"notional_m": 0.0,
+"net_m": 0.0
+}
+],
+"strc_repurchase": [
+{
+"start": "2026-08-24",
+"end": "2026-08-30",
+"shares": 1557177.0,
+"usd_m": 151.8
+}
+]
+}
+},
+"0001193125-26-361845": {
+"filed": "2026-08-24",
+"url": "https://www.sec.gov/Archives/edgar/data/1050446/000119312526361845/mstr-20260824.htm",
+"v": 2,
+"parsed": {
+"strc_atm": [
+{
+"start": "2026-08-17",
+"end": "2026-08-23",
+"shares": 0.0,
+"notional_m": 0.0,
+"net_m": 0.0
+}
+],
+"strc_repurchase": [
+{
+"start": "2026-08-17",
+"end": "2026-08-23",
+"shares": 1431212.0,
+"usd_m": 136.4
+}
+]
+}
+},
+"0001193125-26-353240": {
+"filed": "2026-08-17",
+"url": "https://www.sec.gov/Archives/edgar/data/1050446/000119312526353240/mstr-20260817.htm",
+"v": 2,
+"parsed": {
+"strc_atm": [
+{
+"start": "2026-08-10",
+"end": "2026-08-16",
+"shares": 0.0,
+"notional_m": 0.0,
+"net_m": 0.0
+}
+],
+"strc_repurchase": [
+{
+"start": "2026-08-10",
+"end": "2026-08-16",
+"shares": 1388720.0,
+"usd_m": 132.2
+}
+]
+}
+},
+"0001193125-26-341297": {
+"filed": "2026-08-10",
+"url": "https://www.sec.gov/Archives/edgar/data/1050446/000119312526341297/mstr-20260810.htm",
+"v": 2,
+"parsed": {
+"strc_atm": [
+{
+"start": "2026-08-03",
+"end": "2026-08-09",
+"shares": 0.0,
+"notional_m": 0.0,
+"net_m": 0.0
+}
+],
+"strc_repurchase": [
+{
+"start": "2026-08-03",
+"end": "2026-08-09",
+"shares": 1152020.0,
+"usd_m": 108.6
+}
+]
+}
+},
+"0001193125-26-329565": {
+"filed": "2026-08-03",
+"url": "https://www.sec.gov/Archives/edgar/data/1050446/000119312526329565/mstr-20260803.htm",
+"v": 2,
+"parsed": {
+"strc_atm": [
+{
+"start": "2026-07-27",
+"end": "2026-08-02",
+"shares": 0.0,
+"notional_m": 0.0,
+"net_m": 0.0
+}
+],
+"strc_repurchase": [
+{
+"start": "2026-07-27",
+"end": "2026-08-02",
+"shares": 912143.0,
+"usd_m": 81.2
+}
+]
+}
+},
+"0001193125-26-316917": {
+"filed": "2026-07-27",
+"url": "https://www.sec.gov/Archives/edgar/data/1050446/000119312526316917/mstr-20260727.htm",
+"v": 2,
+"parsed": {
+"strc_atm": [
+{
+"start": "2026-07-20",
+"end": "2026-07-26",
+"shares": 0.0,
+"notional_m": 0.0,
+"net_m": 0.0
+}
+],
+"strc_repurchase": [
+{
+"start": "2026-07-20",
+"end": "2026-07-26",
+"shares": 288930.0,
+"usd_m": 25.0
+}
+]
+}
+},
+"0001193125-26-308369": {
+"filed": "2026-07-20",
+"url": "https://www.sec.gov/Archives/edgar/data/1050446/000119312526308369/mstr-20260720.htm",
+"v": 2,
+"parsed": {
+"strc_atm": [
+{
+"start": "2026-07-13",
+"end": "2026-07-19",
+"shares": 0.0,
+"notional_m": 0.0,
+"net_m": 0.0
+}
+]
+}
+},
+"0001193125-26-301483": {
+"filed": "2026-07-13",
+"url": "https://www.sec.gov/Archives/edgar/data/1050446/000119312526301483/mstr-20260713.htm",
+"v": 2,
+"parsed": {
+"strc_atm": [
+{
+"start": "2026-07-06",
+"end": "2026-07-12",
+"shares": 0.0,
+"notional_m": 0.0,
+"net_m": 0.0
+}
+]
+}
+},
+"0001193125-26-295586": {
+"filed": "2026-07-06",
+"url": "https://www.sec.gov/Archives/edgar/data/1050446/000119312526295586/mstr-20260706.htm",
+"v": 2,
+"parsed": {}
+},
+"0001193125-26-286871": {
+"filed": "2026-06-29",
+"url": "https://www.sec.gov/Archives/edgar/data/1050446/000119312526286871/mstr-20260629.htm",
+"v": 2,
+"parsed": {
+"strc_atm": [
+{
+"start": "2026-06-22",
+"end": "2026-06-28",
+"shares": 0.0,
+"notional_m": 0.0,
+"net_m": 0.0
+}
+]
+}
+},
+"0001193125-26-276717": {
+"filed": "2026-06-22",
+"url": "https://www.sec.gov/Archives/edgar/data/1050446/000119312526276717/mstr-20260504.htm",
+"v": 2,
+"parsed": {
+"strc_atm": [
+{
+"start": "2026-06-15",
+"end": "2026-06-21",
+"shares": 0.0,
+"notional_m": 0.0,
+"net_m": 0.0
+}
+]
+}
+},
+"0001193125-26-270366": {
+"filed": "2026-06-15",
+"url": "https://www.sec.gov/Archives/edgar/data/1050446/000119312526270366/d144149d8k.htm",
+"v": 2,
+"parsed": {}
+},
+"0001193125-26-270311": {
+"filed": "2026-06-15",
+"url": "https://www.sec.gov/Archives/edgar/data/1050446/000119312526270311/mstr-20260504.htm",
+"v": 2,
+"parsed": {
+"strc_atm": [
+{
+"start": "2026-06-08",
+"end": "2026-06-14",
+"shares": 0.0,
+"notional_m": 0.0,
+"net_m": 0.0
+}
+]
+}
+},
+"0001193125-26-261038": {
+"filed": "2026-06-08",
+"url": "https://www.sec.gov/Archives/edgar/data/1050446/000119312526261038/d130937d8k.htm",
+"v": 2,
+"parsed": {}
+},
+"0001193125-26-260709": {
+"filed": "2026-06-08",
+"url": "https://www.sec.gov/Archives/edgar/data/1050446/000119312526260709/mstr-20260504.htm",
+"v": 2,
+"parsed": {
+"holdings": [
+{
+"date": "2026-06-07",
+"btc": 845256.0
+}
+],
+"strc_atm": [
+{
+"start": "2026-06-01",
+"end": "2026-06-07",
+"shares": 0.0,
+"notional_m": 0.0,
+"net_m": 0.0
+}
+]
+}
+},
+"0001193125-26-249768": {
+"filed": "2026-06-01",
+"url": "https://www.sec.gov/Archives/edgar/data/1050446/000119312526249768/mstr-20260530.htm",
+"v": 2,
+"parsed": {
+"strc_atm": [
+{
+"start": "2026-05-26",
+"end": "2026-05-31",
+"shares": 0.0,
+"notional_m": 0.0,
+"net_m": 0.0
+}
+]
+}
+},
+"0001193125-26-237907": {
+"filed": "2026-05-26",
+"url": "https://www.sec.gov/Archives/edgar/data/1050446/000119312526237907/mstr-20260526.htm",
+"v": 2,
+"parsed": {
+"holdings": [
+{
+"date": "2026-05-25",
+"btc": 843738.0
+}
+]
+}
+},
+"0001193125-26-227918": {
+"filed": "2026-05-18",
+"url": "https://www.sec.gov/Archives/edgar/data/1050446/000119312526227918/mstr-20260504.htm",
+"v": 2,
+"parsed": {
+"holdings": [
+{
+"date": "2026-05-17",
+"btc": 843738.0
+}
+],
+"strc_atm": [
+{
+"start": "2026-05-11",
+"end": "2026-05-17",
+"shares": 19519801.0,
+"notional_m": 1952.0,
+"net_m": 1949.0
+}
+]
+}
+},
+"0001193125-26-225361": {
+"filed": "2026-05-15",
+"url": "https://www.sec.gov/Archives/edgar/data/1050446/000119312526225361/mstr-20260504.htm",
+"v": 2,
+"parsed": {}
+},
+"0001193125-26-215754": {
+"filed": "2026-05-11",
+"url": "https://www.sec.gov/Archives/edgar/data/1050446/000119312526215754/mstr-20260504.htm",
+"v": 2,
+"parsed": {
+"holdings": [
+{
+"date": "2026-05-10",
+"btc": 818869.0
+}
+],
+"strc_atm": [
+{
+"start": "2026-05-04",
+"end": "2026-05-10",
+"shares": 1412.0,
+"notional_m": 0.1,
+"net_m": 0.1
+}
+]
+}
+},
+"0001193125-26-202611": {
+"filed": "2026-05-04",
+"url": "https://www.sec.gov/Archives/edgar/data/1050446/000119312526202611/mstr-20260504.htm",
+"v": 2,
+"parsed": {
+"strc_atm": [
+{
+"start": "2026-04-27",
+"end": "2026-05-03",
+"shares": 0.0,
+"notional_m": 0.0,
+"net_m": 0.0
+}
+]
+}
+},
+"0001193125-26-199155": {
+"filed": "2026-05-01",
+"url": "https://www.sec.gov/Archives/edgar/data/1050446/000119312526199155/mstr-20250902.htm",
+"v": 2,
+"parsed": {}
+},
+"0001193125-26-178994": {
+"filed": "2026-04-27",
+"url": "https://www.sec.gov/Archives/edgar/data/1050446/000119312526178994/mstr-20260223.htm",
+"v": 2,
+"parsed": {
+"holdings": [
+{
+"date": "2026-04-26",
+"btc": 818334.0
+}
+],
+"strc_atm": [
+{
+"start": "2026-04-20",
+"end": "2026-04-26",
+"shares": 0.0,
+"notional_m": 0.0,
+"net_m": 0.0
+}
+]
+}
+},
+"0001193125-26-162756": {
+"filed": "2026-04-20",
+"url": "https://www.sec.gov/Archives/edgar/data/1050446/000119312526162756/mstr-20260223.htm",
+"v": 2,
+"parsed": {
+"holdings": [
+{
+"date": "2026-04-19",
+"btc": 815061.0
+}
+],
+"strc_atm": [
+{
+"start": "2026-04-13",
+"end": "2026-04-19",
+"shares": 21795389.0,
+"notional_m": 2179.5,
+"net_m": 2176.3
+}
+]
+}
+},
+"0001193125-26-152015": {
+"filed": "2026-04-13",
+"url": "https://www.sec.gov/Archives/edgar/data/1050446/000119312526152015/mstr-20260223.htm",
+"v": 2,
+"parsed": {
+"holdings": [
+{
+"date": "2026-04-12",
+"btc": 780897.0
+}
+],
+"strc_atm": [
+{
+"start": "2026-04-06",
+"end": "2026-04-12",
+"shares": 10028363.0,
+"notional_m": 1002.8,
+"net_m": 1001.3
+}
+]
+}
+},
+"0001193125-26-142925": {
+"filed": "2026-04-06",
+"url": "https://www.sec.gov/Archives/edgar/data/1050446/000119312526142925/mstr-20260406.htm",
+"v": 2,
+"parsed": {
+"holdings": [
+{
+"date": "2026-04-05",
+"btc": 766970.0
+}
+],
+"strc_atm": [
+{
+"start": "2026-03-30",
+"end": "2026-03-31",
+"shares": 2275972.0,
+"notional_m": 227.6,
+"net_m": 227.3
+},
+{
+"start": "2026-04-01",
+"end": "2026-04-05",
+"shares": 1027255.0,
+"notional_m": 102.7,
+"net_m": 102.6
+}
+]
+}
+},
+"0001193125-26-135765": {
+"filed": "2026-04-01",
+"url": "https://www.sec.gov/Archives/edgar/data/1050446/000119312526135765/mstr-20250902.htm",
+"v": 2,
+"parsed": {}
+},
+"0001193125-26-130446": {
+"filed": "2026-03-30",
+"url": "https://www.sec.gov/Archives/edgar/data/1050446/000119312526130446/mstr-20260223.htm",
+"v": 2,
+"parsed": {
+"holdings": [
+{
+"date": "2026-03-29",
+"btc": 762099.0
+}
+]
+}
+},
+"0001193125-26-118810": {
+"filed": "2026-03-23",
+"url": "https://www.sec.gov/Archives/edgar/data/1050446/000119312526118810/d93392d8k.htm",
+"v": 2,
+"parsed": {}
+},
+"0001193125-26-118584": {
+"filed": "2026-03-23",
+"url": "https://www.sec.gov/Archives/edgar/data/1050446/000119312526118584/mstr-20260223.htm",
+"v": 2,
+"parsed": {
+"holdings": [
+{
+"date": "2026-03-22",
+"btc": 762099.0
+}
+],
+"strc_atm": [
+{
+"start": "2026-03-16",
+"end": "2026-03-22",
+"shares": 0.0,
+"notional_m": 0.0,
+"net_m": 0.0
+}
+]
+}
+},
+"0001193125-26-107263": {
+"filed": "2026-03-16",
+"url": "https://www.sec.gov/Archives/edgar/data/1050446/000119312526107263/mstr-20260223.htm",
+"v": 2,
+"parsed": {
+"holdings": [
+{
+"date": "2026-03-15",
+"btc": 761068.0
+}
+],
+"strc_atm": [
+{
+"start": "2026-03-09",
+"end": "2026-03-15",
+"shares": 11818467.0,
+"notional_m": 1181.8,
+"net_m": 1180.4
+}
+]
+}
+},
+"0001193125-26-097598": {
+"filed": "2026-03-09",
+"url": "https://www.sec.gov/Archives/edgar/data/1050446/000119312526097598/d122015d8k.htm",
+"v": 2,
+"parsed": {
+"strc_atm": [
+{
+"start": "2026-03-02",
+"end": "2026-03-08",
+"shares": 3776205.0,
+"notional_m": 377.6,
+"net_m": 377.1
+}
+]
+}
+},
+"0001193125-26-084264": {
+"filed": "2026-03-02",
+"url": "https://www.sec.gov/Archives/edgar/data/1050446/000119312526084264/mstr-20260228.htm",
+"v": 2,
+"parsed": {
+"holdings": [
+{
+"date": "2026-03-01",
+"btc": 720737.0
+}
+],
+"strc_atm": [
+{
+"start": "2026-02-23",
+"end": "2026-03-01",
+"shares": 71590.0,
+"notional_m": 7.2,
+"net_m": 7.1
+}
+]
+}
+},
+"0001193125-26-062489": {
+"filed": "2026-02-23",
+"url": "https://www.sec.gov/Archives/edgar/data/1050446/000119312526062489/mstr-20260223.htm",
+"v": 2,
+"parsed": {
+"holdings": [
+{
+"date": "2026-02-22",
+"btc": 717722.0
+}
+],
+"strc_atm": [
+{
+"start": "2026-02-17",
+"end": "2026-02-22",
+"shares": 0.0,
+"notional_m": 0.0,
+"net_m": 0.0
+}
+]
+}
+},
+"0001193125-26-053105": {
+"filed": "2026-02-17",
+"url": "https://www.sec.gov/Archives/edgar/data/1050446/000119312526053105/mstr-20260105.htm",
+"v": 2,
+"parsed": {
+"holdings": [
+{
+"date": "2026-02-16",
+"btc": 717131.0
+}
+],
+"strc_atm": [
+{
+"start": "2026-02-09",
+"end": "2026-02-16",
+"shares": 785354.0,
+"notional_m": 78.5,
+"net_m": 78.4
+}
+]
+}
+},
+"0001193125-26-041944": {
+"filed": "2026-02-09",
+"url": "https://www.sec.gov/Archives/edgar/data/1050446/000119312526041944/mstr-20260105.htm",
+"v": 2,
+"parsed": {
+"holdings": [
+{
+"date": "2026-02-08",
+"btc": 714644.0
+}
+],
+"strc_atm": [
+{
+"start": "2026-02-02",
+"end": "2026-02-08",
+"shares": 0.0,
+"notional_m": 0.0,
+"net_m": 0.0
+}
+]
+}
+},
+"0001050446-26-000012": {
+"filed": "2026-02-05",
+"url": "https://www.sec.gov/Archives/edgar/data/1050446/000105044626000012/mstr-20260205.htm",
+"v": 2,
+"parsed": {}
+},
+"0001193125-26-033573": {
+"filed": "2026-02-02",
+"url": "https://www.sec.gov/Archives/edgar/data/1050446/000119312526033573/mstr-20260202.htm",
+"v": 2,
+"parsed": {}
+},
+"0001193125-26-032731": {
+"filed": "2026-02-02",
+"url": "https://www.sec.gov/Archives/edgar/data/1050446/000119312526032731/mstr-20260131.htm",
+"v": 2,
+"parsed": {
+"holdings": [
+{
+"date": "2026-02-01",
+"btc": 713502.0
+}
+],
+"strc_atm": [
+{
+"start": "2026-01-26",
+"end": "2026-02-01",
+"shares": 0.0,
+"notional_m": 0.0,
+"net_m": 0.0
+}
+]
+}
+},
+"0001193125-26-021726": {
+"filed": "2026-01-26",
+"url": "https://www.sec.gov/Archives/edgar/data/1050446/000119312526021726/mstr-20260105.htm",
+"v": 2,
+"parsed": {
+"holdings": [
+{
+"date": "2026-01-25",
+"btc": 712647.0
+}
+],
+"strc_atm": [
+{
+"start": "2026-01-20",
+"end": "2026-01-25",
+"shares": 70201.0,
+"notional_m": 7.0,
+"net_m": 7.0
+}
+]
+}
+},
+"0001193125-26-016002": {
+"filed": "2026-01-20",
+"url": "https://www.sec.gov/Archives/edgar/data/1050446/000119312526016002/mstr-20260105.htm",
+"v": 2,
+"parsed": {
+"holdings": [
+{
+"date": "2026-01-19",
+"btc": 709715.0
+}
+],
+"strc_atm": [
+{
+"start": "2026-01-12",
+"end": "2026-01-19",
+"shares": 2945371.0,
+"notional_m": 294.5,
+"net_m": 294.3
+}
+]
+}
+},
+"0001193125-26-009811": {
+"filed": "2026-01-12",
+"url": "https://www.sec.gov/Archives/edgar/data/1050446/000119312526009811/mstr-20260105.htm",
+"v": 2,
+"parsed": {
+"holdings": [
+{
+"date": "2026-01-11",
+"btc": 687410.0
+}
+],
+"strc_atm": [
+{
+"start": "2026-01-05",
+"end": "2026-01-11",
+"shares": 1192262.0,
+"notional_m": 119.2,
+"net_m": 119.1
+}
+]
+}
+},
+"0001193125-26-001550": {
+"filed": "2026-01-05",
+"url": "https://www.sec.gov/Archives/edgar/data/1050446/000119312526001550/mstr-20260105.htm",
+"v": 2,
+"parsed": {
+"holdings": [
+{
+"date": "2025-12-31",
+"btc": 672500.0
+},
+{
+"date": "2026-01-04",
+"btc": 673783.0
+}
+],
+"strc_atm": [
+{
+"start": "2025-12-29",
+"end": "2025-12-31",
+"shares": 0.0,
+"notional_m": 0.0,
+"net_m": 0.0
+},
+{
+"start": "2026-01-01",
+"end": "2026-01-04",
+"shares": 0.0,
+"notional_m": 0.0,
+"net_m": 0.0
+}
+]
+}
+},
+"0001193125-26-000264": {
+"filed": "2026-01-02",
+"url": "https://www.sec.gov/Archives/edgar/data/1050446/000119312526000264/mstr-20251117.htm",
+"v": 2,
+"parsed": {}
+},
+"0001193125-25-332296": {
+"filed": "2025-12-29",
+"url": "https://www.sec.gov/Archives/edgar/data/1050446/000119312525332296/mstr-20251117.htm",
+"v": 2,
+"parsed": {
+"holdings": [
+{
+"date": "2025-12-28",
+"btc": 672497.0
+}
+],
+"strc_atm": [
+{
+"start": "2025-12-22",
+"end": "2025-12-28",
+"shares": 0.0,
+"notional_m": 0.0,
+"net_m": 0.0
+}
+]
+}
+},
+"0001193125-25-327598": {
+"filed": "2025-12-22",
+"url": "https://www.sec.gov/Archives/edgar/data/1050446/000119312525327598/mstr-20251117.htm",
+"v": 2,
+"parsed": {
+"strc_atm": [
+{
+"start": "2025-12-15",
+"end": "2025-12-21",
+"shares": 0.0,
+"notional_m": 0.0,
+"net_m": 0.0
+}
+]
+}
+},
+"0001193125-25-318468": {
+"filed": "2025-12-15",
+"url": "https://www.sec.gov/Archives/edgar/data/1050446/000119312525318468/mstr-20251117.htm",
+"v": 2,
+"parsed": {
+"holdings": [
+{
+"date": "2025-12-14",
+"btc": 671268.0
+}
+],
+"strc_atm": [
+{
+"start": "2025-12-08",
+"end": "2025-12-14",
+"shares": 0.0,
+"notional_m": 0.0,
+"net_m": 0.0
+}
+]
+}
+},
+"0001193125-25-310607": {
+"filed": "2025-12-08",
+"url": "https://www.sec.gov/Archives/edgar/data/1050446/000119312525310607/mstr-20251117.htm",
+"v": 2,
+"parsed": {
+"holdings": [
+{
+"date": "2025-12-07",
+"btc": 660624.0
+}
+],
+"strc_atm": [
+{
+"start": "2025-12-01",
+"end": "2025-12-07",
+"shares": 0.0,
+"notional_m": 0.0,
+"net_m": 0.0
+}
+]
+}
+},
+"0001193125-25-303157": {
+"filed": "2025-12-01",
+"url": "https://www.sec.gov/Archives/edgar/data/1050446/000119312525303157/d69948d8k.htm",
+"v": 2,
+"parsed": {
+"holdings": [
+{
+"date": "2025-11-30",
+"btc": 650000.0
+}
+]
+}
+},
+"0001193125-25-283991": {
+"filed": "2025-11-17",
+"url": "https://www.sec.gov/Archives/edgar/data/1050446/000119312525283991/mstr-20251117.htm",
+"v": 2,
+"parsed": {
+"holdings": [
+{
+"date": "2025-11-16",
+"btc": 649870.0
+}
+],
+"strc_atm": [
+{
+"start": "2025-11-10",
+"end": "2025-11-16",
+"shares": 1313641.0,
+"notional_m": 131.4,
+"net_m": 131.2
+}
+]
+}
+},
+"0001193125-25-273310": {
+"filed": "2025-11-10",
+"url": "https://www.sec.gov/Archives/edgar/data/1050446/000119312525273310/mstr-20250902.htm",
+"v": 2,
+"parsed": {
+"holdings": [
+{
+"date": "2025-11-09",
+"btc": 641692.0
+}
+],
+"strc_atm": [
+{
+"start": "2025-11-03",
+"end": "2025-11-09",
+"shares": 262311.0,
+"notional_m": 26.2,
+"net_m": 26.2
+}
+]
+}
+},
+"0001193125-25-271105": {
+"filed": "2025-11-07",
+"url": "https://www.sec.gov/Archives/edgar/data/1050446/000119312525271105/d78313d8k.htm",
+"v": 2,
+"parsed": {}
+},
+"0001193125-25-263914": {
+"filed": "2025-11-04",
+"url": "https://www.sec.gov/Archives/edgar/data/1050446/000119312525263914/d70243d8k.htm",
+"v": 2,
+"parsed": {}
+},
+"0001193125-25-262819": {
+"filed": "2025-11-03",
+"url": "https://www.sec.gov/Archives/edgar/data/1050446/000119312525262819/d79833d8k.htm",
+"v": 2,
+"parsed": {}
+},
+"0001193125-25-261714": {
+"filed": "2025-11-03",
+"url": "https://www.sec.gov/Archives/edgar/data/1050446/000119312525261714/mstr-20250902.htm",
+"v": 2,
+"parsed": {
+"holdings": [
+{
+"date": "2025-11-02",
+"btc": 641205.0
+}
+]
+}
+},
+"0001193125-25-258690": {
+"filed": "2025-10-30",
+"url": "https://www.sec.gov/Archives/edgar/data/1050446/000119312525258690/mstr-20251030.htm",
+"v": 2,
+"parsed": {}
+},
+"0001193125-25-250751": {
+"filed": "2025-10-27",
+"url": "https://www.sec.gov/Archives/edgar/data/1050446/000119312525250751/mstr-20250902.htm",
+"v": 2,
+"parsed": {
+"holdings": [
+{
+"date": "2025-10-26",
+"btc": 640808.0
+}
+]
+}
+},
+"0001193125-25-243049": {
+"filed": "2025-10-20",
+"url": "https://www.sec.gov/Archives/edgar/data/1050446/000119312525243049/mstr-20250902.htm",
+"v": 2,
+"parsed": {
+"holdings": [
+{
+"date": "2025-10-19",
+"btc": 640418.0
+}
+]
+}
+},
+"0001193125-25-238132": {
+"filed": "2025-10-14",
+"url": "https://www.sec.gov/Archives/edgar/data/1050446/000119312525238132/mstr-20250902.htm",
+"v": 2,
+"parsed": {}
+},
+"0001193125-25-230977": {
+"filed": "2025-10-06",
+"url": "https://www.sec.gov/Archives/edgar/data/1050446/000119312525230977/d49048d8k.htm",
+"v": 2,
+"parsed": {}
+},
+"0001193125-25-225904": {
+"filed": "2025-10-01",
+"url": "https://www.sec.gov/Archives/edgar/data/1050446/000119312525225904/d807448d8k.htm",
+"v": 2,
+"parsed": {}
+},
+"0001628280-26-067141": {
+"filed": "2026-10-26",
+"url": "https://www.sec.gov/Archives/edgar/data/1920406/000162828026067141/asst-20261026.htm",
+"v": 2,
+"parsed": {
+"events": [
+{
+"date": "2026-10-16",
+"btc": 36818.0,
+"shares_basic": 124064126.0,
+"shares": 126790020.0,
+"shares_basis": "assumed_fully_diluted",
+"sata": 14030176.0,
+"sats": 0.0,
+"cash_k": 317500.0,
+"strc_fv_k": 49349.0
+},
+{
+"date": "2026-10-23",
+"btc": 43000.0,
+"shares_basic": 127328346.0,
+"shares": 130044690.0,
+"shares_basis": "assumed_fully_diluted",
+"sata": 14030176.0,
+"sats": 7000000.0,
+"cash_k": 504400.0,
+"strc_fv_k": 50177.0
+}
+]
+}
+},
+"0000950103-26-016138": {
+"filed": "2026-10-26",
+"url": "https://www.sec.gov/Archives/edgar/data/1920406/000095010326016138/dp255514_8k.htm",
+"v": 2,
+"parsed": {}
+},
+"0001628280-26-066608": {
+"filed": "2026-10-21",
+"url": "https://www.sec.gov/Archives/edgar/data/1920406/000162828026066608/asst-20261021.htm",
+"v": 2,
+"parsed": {}
+},
+"0000950103-26-015849": {
+"filed": "2026-10-20",
+"url": "https://www.sec.gov/Archives/edgar/data/1920406/000095010326015849/dp255260_8k.htm",
+"v": 2,
+"parsed": {}
+},
+"0001628280-26-066222": {
+"filed": "2026-10-19",
+"url": "https://www.sec.gov/Archives/edgar/data/1920406/000162828026066222/asst-20261019.htm",
+"v": 2,
+"parsed": {
+"events": [
+{
+"date": "2026-10-09",
+"btc": 32773.0,
+"shares_basic": 110387204.0,
+"shares": 113116098.0,
+"shares_basis": "assumed_fully_diluted",
+"sata": 14030176.0,
+"cash_k": 310300.0,
+"strc_fv_k": 50328.0
+},
+{
+"date": "2026-10-16",
+"btc": 36818.0,
+"shares_basic": 124064126.0,
+"shares": 126790020.0,
+"shares_basis": "assumed_fully_diluted",
+"sata": 14030176.0,
+"cash_k": 317500.0,
+"strc_fv_k": 49349.0
+}
+]
+}
+},
+"0000950103-26-015690": {
+"filed": "2026-10-16",
+"url": "https://www.sec.gov/Archives/edgar/data/1920406/000095010326015690/dp255095_8k.htm",
+"v": 2,
+"parsed": {}
+},
+"0001628280-26-065816": {
+"filed": "2026-10-14",
+"url": "https://www.sec.gov/Archives/edgar/data/1920406/000162828026065816/asst-20261014.htm",
+"v": 2,
+"parsed": {}
+},
+"0001628280-26-065737": {
+"filed": "2026-10-13",
+"url": "https://www.sec.gov/Archives/edgar/data/1920406/000162828026065737/asst-20261013.htm",
+"v": 2,
+"parsed": {}
+},
+"0001628280-26-065595": {
+"filed": "2026-10-13",
+"url": "https://www.sec.gov/Archives/edgar/data/1920406/000162828026065595/asst-20261013.htm",
+"v": 2,
+"parsed": {
+"events": [
+{
+"date": "2026-10-02",
+"btc": 29462.0,
+"shares_basic": 100938986.0,
+"shares": 103714772.0,
+"shares_basis": "assumed_fully_diluted",
+"sata": 13498082.0,
+"cash_k": 284700.0,
+"strc_fv_k": 50202.0
+},
+{
+"date": "2026-10-09",
+"btc": 32773.0,
+"shares_basic": 110387204.0,
+"shares": 113116098.0,
+"shares_basis": "assumed_fully_diluted",
+"sata": 14030176.0,
+"cash_k": 310300.0,
+"strc_fv_k": 50328.0
+}
+]
+}
+},
+"0001628280-26-065594": {
+"filed": "2026-10-13",
+"url": "https://www.sec.gov/Archives/edgar/data/1920406/000162828026065594/asst-20261012.htm",
+"v": 2,
+"parsed": {}
+},
+"0001628280-26-064753": {
+"filed": "2026-10-05",
+"url": "https://www.sec.gov/Archives/edgar/data/1920406/000162828026064753/asst-20261005.htm",
+"v": 2,
+"parsed": {
+"events": [
+{
+"date": "2026-09-25",
+"btc": 27462.0,
+"shares_basic": 97651721.0,
+"shares": 100776795.0,
+"shares_basis": "assumed_fully_diluted",
+"sata": 12193180.0,
+"cash_k": 248800.0,
+"strc_fv_k": 49763.0
+},
+{
+"date": "2026-10-02",
+"btc": 29462.0,
+"shares_basic": 100938986.0,
+"shares": 103714772.0,
+"shares_basis": "assumed_fully_diluted",
+"sata": 13498082.0,
+"cash_k": 284700.0,
+"strc_fv_k": 50202.0
+}
+]
+}
+},
+"0001628280-26-063653": {
+"filed": "2026-09-28",
+"url": "https://www.sec.gov/Archives/edgar/data/1920406/000162828026063653/asst-20260928.htm",
+"v": 2,
+"parsed": {
+"events": [
+{
+"date": "2026-09-18",
+"btc": 26355.0,
+"shares_basic": 97002649.0,
+"shares": 100144713.0,
+"shares_basis": "assumed_fully_diluted",
+"sata": 11184160.0,
+"cash_k": 229600.0,
+"strc_fv_k": 49748.0
+},
+{
+"date": "2026-09-25",
+"btc": 27462.0,
+"shares_basic": 97651721.0,
+"shares": 100776795.0,
+"shares_basis": "assumed_fully_diluted",
+"sata": 12193180.0,
+"cash_k": 248800.0,
+"strc_fv_k": 49763.0
+}
+]
+}
+},
+"0001628280-26-062806": {
+"filed": "2026-09-21",
+"url": "https://www.sec.gov/Archives/edgar/data/1920406/000162828026062806/asst-20260921.htm",
+"v": 2,
+"parsed": {
+"events": [
+{
+"date": "2026-09-11",
+"btc": 25000.0,
+"shares_basic": 94968764.0,
+"shares": 98139091.0,
+"shares_basis": "assumed_fully_diluted",
+"sata": 10397966.0,
+"cash_k": 204200.0,
+"strc_fv_k": 49813.0
+},
+{
+"date": "2026-09-18",
+"btc": 26355.0,
+"shares_basic": 97002649.0,
+"shares": 100144713.0,
+"shares_basis": "assumed_fully_diluted",
+"sata": 11184160.0,
+"cash_k": 229600.0,
+"strc_fv_k": 49748.0
+}
+]
+}
+},
+"0001628280-26-061949": {
+"filed": "2026-09-15",
+"url": "https://www.sec.gov/Archives/edgar/data/1920406/000162828026061949/asst-20260914.htm",
+"v": 2,
+"parsed": {}
+},
+"0001628280-26-061682": {
+"filed": "2026-09-14",
+"url": "https://www.sec.gov/Archives/edgar/data/1920406/000162828026061682/asst-20260914.htm",
+"v": 2,
+"parsed": {
+"events": [
+{
+"date": "2026-09-04",
+"btc": 24531.0,
+"shares_basic": 94934558.0,
+"shares": 98148551.0,
+"shares_basis": "assumed_fully_diluted",
+"sata": 9995425.0,
+"cash_k": 202600.0,
+"strc_fv_k": 49364.0
+},
+{
+"date": "2026-09-11",
+"btc": 25000.0,
+"shares_basic": 94968764.0,
+"shares": 98139091.0,
+"shares_basis": "assumed_fully_diluted",
+"sata": 10397966.0,
+"cash_k": 204200.0,
+"strc_fv_k": 49813.0
+}
+]
+}
+},
+"0001628280-26-060809": {
+"filed": "2026-09-08",
+"url": "https://www.sec.gov/Archives/edgar/data/1920406/000162828026060809/asst-20260908.htm",
+"v": 2,
+"parsed": {
+"events": [
+{
+"date": "2026-08-28",
+"btc": 23156.0,
+"shares_basic": 93262570.0,
+"shares": 96523351.0,
+"shares_basis": "assumed_fully_diluted",
+"sata": 9073914.0,
+"cash_k": 183500.0,
+"strc_fv_k": 49152.0
+},
+{
+"date": "2026-09-04",
+"btc": 24531.0,
+"shares_basic": 94934558.0,
+"shares": 98148551.0,
+"shares_basis": "assumed_fully_diluted",
+"sata": 9995425.0,
+"cash_k": 202600.0,
+"strc_fv_k": 49364.0
+}
+]
+}
+},
+"0001628280-26-059468": {
+"filed": "2026-08-31",
+"url": "https://www.sec.gov/Archives/edgar/data/1920406/000162828026059468/asst-20260831.htm",
+"v": 2,
+"parsed": {
+"events": [
+{
+"date": "2026-08-21",
+"btc": 21356.0,
+"shares_basic": 89683423.0,
+"shares": 92949226.0,
+"shares_basis": "assumed_fully_diluted",
+"sata": 8270815.0,
+"cash_k": 171900.0,
+"strc_fv_k": 48571.0
+},
+{
+"date": "2026-08-28",
+"btc": 23156.0,
+"shares_basic": 93262570.0,
+"shares": 96523351.0,
+"shares_basis": "assumed_fully_diluted",
+"sata": 9073914.0,
+"cash_k": 183500.0,
+"strc_fv_k": 49152.0
+}
+]
+}
+},
+"0001628280-26-058518": {
+"filed": "2026-08-24",
+"url": "https://www.sec.gov/Archives/edgar/data/1920406/000162828026058518/asst-20260824.htm",
+"v": 2,
+"parsed": {
+"events": [
+{
+"date": "2026-08-14",
+"btc": 20246.0,
+"shares_basic": 86037123.0,
+"shares": 89302926.0,
+"shares_basis": "assumed_fully_diluted",
+"sata": 7829502.0,
+"cash_k": 154800.0,
+"strc_fv_k": 47864.0
+},
+{
+"date": "2026-08-21",
+"btc": 21356.0,
+"shares_basic": 89683423.0,
+"shares": 92949226.0,
+"shares_basis": "assumed_fully_diluted",
+"sata": 8270815.0,
+"cash_k": 171900.0,
+"strc_fv_k": 48571.0
+}
+]
+}
+},
+"0001628280-26-057224": {
+"filed": "2026-08-17",
+"url": "https://www.sec.gov/Archives/edgar/data/1920406/000162828026057224/asst-20260817.htm",
+"v": 2,
+"parsed": {
+"events": [
+{
+"date": "2026-08-07",
+"btc": 20167.0,
+"shares_basic": 85439973.0,
+"shares": 88705776.0,
+"shares_basis": "assumed_fully_diluted",
+"sata": 7829502.0,
+"cash_k": 154900.0,
+"strc_fv_k": 47980.0
+},
+{
+"date": "2026-08-14",
+"btc": 20246.0,
+"shares_basic": 86037123.0,
+"shares": 89302926.0,
+"shares_basis": "assumed_fully_diluted",
+"sata": 7829502.0,
+"cash_k": 154800.0,
+"strc_fv_k": 47864.0
+}
+]
+}
+},
+"0001628280-26-056908": {
+"filed": "2026-08-14",
+"url": "https://www.sec.gov/Archives/edgar/data/1920406/000162828026056908/asst-20260813.htm",
+"v": 2,
+"parsed": {}
+},
+"0001628280-26-054983": {
+"filed": "2026-08-10",
+"url": "https://www.sec.gov/Archives/edgar/data/1920406/000162828026054983/asst-20260810.htm",
+"v": 2,
+"parsed": {
+"events": [
+{
+"date": "2026-07-31",
+"btc": 20020.0,
+"shares_basic": 84209973.0,
+"shares": 86804205.0,
+"shares_basis": "assumed_fully_diluted",
+"sata": 7829502.0,
+"cash_k": 151300.0,
+"strc_fv_k": 45177.0
+},
+{
+"date": "2026-08-07",
+"btc": 20167.0,
+"shares_basic": 85439973.0,
+"shares": 88705776.0,
+"shares_basis": "assumed_fully_diluted",
+"sata": 7829502.0,
+"cash_k": 154900.0,
+"strc_fv_k": 47980.0
+}
+]
+}
+},
+"0001628280-26-051539": {
+"filed": "2026-08-03",
+"url": "https://www.sec.gov/Archives/edgar/data/1920406/000162828026051539/asst-20260803.htm",
+"v": 2,
+"parsed": {
+"events": [
+{
+"date": "2026-07-24",
+"btc": 20000.0,
+"shares_basic": 84099973.0,
+"shares": 86694972.0,
+"shares_basis": "assumed_fully_diluted",
+"sata": 7829502.0,
+"cash_k": 154000.0,
+"strc_fv_k": 43879.0
+},
+{
+"date": "2026-07-31",
+"btc": 20020.0,
+"shares_basic": 84209973.0,
+"shares": 86804205.0,
+"shares_basis": "assumed_fully_diluted",
+"sata": 7829502.0,
+"cash_k": 151300.0,
+"strc_fv_k": 45177.0
+}
+]
+}
+},
+"0001628280-26-049666": {
+"filed": "2026-07-27",
+"url": "https://www.sec.gov/Archives/edgar/data/1920406/000162828026049666/asst-20260727.htm",
+"v": 2,
+"parsed": {
+"events": [
+{
+"date": "2026-07-17",
+"btc": 19921.0,
+"shares_basic": 83669973.0,
+"shares": 86264972.0,
+"shares_basis": "assumed_fully_diluted",
+"sata": 7829502.0,
+"cash_k": 157400.0,
+"strc_fv_k": 43071.0
+},
+{
+"date": "2026-07-24",
+"btc": 20000.0,
+"shares_basic": 84099973.0,
+"shares": 86694972.0,
+"shares_basis": "assumed_fully_diluted",
+"sata": 7829502.0,
+"cash_k": 154000.0,
+"strc_fv_k": 43879.0
+}
+]
+}
+},
+"0001628280-26-048764": {
+"filed": "2026-07-20",
+"url": "https://www.sec.gov/Archives/edgar/data/1920406/000162828026048764/asst-20260720.htm",
+"v": 2,
+"parsed": {
+"events": [
+{
+"date": "2026-07-10",
+"btc": 19900.0,
+"shares_basic": 83229511.0,
+"shares": 83229511.0,
+"shares_basis": "effective_common",
+"sata": 7829502.0,
+"cash_k": 154100.0,
+"strc_fv_k": 44177.0
+},
+{
+"date": "2026-07-17",
+"btc": 19921.0,
+"shares_basic": 83669973.0,
+"shares": 83669973.0,
+"shares_basis": "effective_common",
+"sata": 7829502.0,
+"cash_k": 157400.0,
+"strc_fv_k": 43071.0
+}
+]
+}
+},
+"0001628280-26-048231": {
+"filed": "2026-07-15",
+"url": "https://www.sec.gov/Archives/edgar/data/1920406/000162828026048231/asst-20260714.htm",
+"v": 2,
+"parsed": {}
+},
+"0001628280-26-047938": {
+"filed": "2026-07-13",
+"url": "https://www.sec.gov/Archives/edgar/data/1920406/000162828026047938/asst-20260713.htm",
+"v": 2,
+"parsed": {
+"events": [
+{
+"date": "2026-07-02",
+"btc": 19882.0,
+"shares_basic": 82725831.0,
+"shares": 82725831.0,
+"shares_basis": "effective_common",
+"sata": 7829502.0,
+"cash_k": 153400.0,
+"strc_fv_k": 44379.0
+},
+{
+"date": "2026-07-10",
+"btc": 19900.0,
+"shares_basic": 83229511.0,
+"shares": 83229511.0,
+"shares_basis": "effective_common",
+"sata": 7829502.0,
+"cash_k": 154100.0,
+"strc_fv_k": 44177.0
+}
+]
+}
+},
+"0001628280-26-047102": {
+"filed": "2026-07-06",
+"url": "https://www.sec.gov/Archives/edgar/data/1920406/000162828026047102/asst-20260706.htm",
+"v": 2,
+"parsed": {
+"events": [
+{
+"date": "2026-06-26",
+"btc": 19864.0,
+"shares_basic": 81644827.0,
+"shares": 81644827.0,
+"shares_basis": "effective_common",
+"sata": 7829502.0,
+"cash_k": 141700.0,
+"strc_fv_k": 37658.0
+},
+{
+"date": "2026-07-02",
+"btc": 19882.0,
+"shares_basic": 82725831.0,
+"shares": 82725831.0,
+"shares_basis": "effective_common",
+"sata": 7829502.0,
+"cash_k": 153400.0,
+"strc_fv_k": 44379.0
+}
+]
+}
+},
+"0001628280-26-045883": {
+"filed": "2026-06-29",
+"url": "https://www.sec.gov/Archives/edgar/data/1920406/000162828026045883/asst-20260629.htm",
+"v": 2,
+"parsed": {
+"events": [
+{
+"date": "2026-06-18",
+"btc": 19864.0,
+"shares_basic": 81567885.0,
+"shares": 81567885.0,
+"shares_basis": "effective_common",
+"sata": 7829502.0,
+"cash_k": 144500.0,
+"strc_fv_k": 44738.0
+},
+{
+"date": "2026-06-26",
+"btc": 19864.0,
+"shares_basic": 81644827.0,
+"shares": 81644827.0,
+"shares_basis": "effective_common",
+"sata": 7829502.0,
+"cash_k": 141700.0,
+"strc_fv_k": 37658.0
+}
+]
+}
+},
+"0001628280-26-044484": {
+"filed": "2026-06-22",
+"url": "https://www.sec.gov/Archives/edgar/data/1920406/000162828026044484/asst-20260622.htm",
+"v": 2,
+"parsed": {
+"events": [
+{
+"date": "2026-06-12",
+"btc": 19105.0,
+"shares_basic": 79674063.0,
+"shares": 79674063.0,
+"shares_basis": "effective_common",
+"sata": 7513907.0,
+"cash_k": 141400.0,
+"strc_fv_k": 47874.0
+},
+{
+"date": "2026-06-18",
+"btc": 19864.0,
+"shares_basic": 81567885.0,
+"shares": 81567885.0,
+"shares_basis": "effective_common",
+"sata": 7829502.0,
+"cash_k": 144500.0,
+"strc_fv_k": 44738.0
+}
+]
+}
+},
+"0001628280-26-043032": {
+"filed": "2026-06-15",
+"url": "https://www.sec.gov/Archives/edgar/data/1920406/000162828026043032/asst-20260615.htm",
+"v": 2,
+"parsed": {
+"events": [
+{
+"date": "2026-06-05",
+"btc": 19032.0,
+"shares_basic": 79190663.0,
+"shares": 79190663.0,
+"shares_basis": "effective_common",
+"sata": 7513907.0,
+"cash_k": 139200.0,
+"strc_fv_k": 47200.0
+},
+{
+"date": "2026-06-12",
+"btc": 19105.0,
+"shares_basic": 79674063.0,
+"shares": 79674063.0,
+"shares_basis": "effective_common",
+"sata": 7513907.0,
+"cash_k": 141400.0,
+"strc_fv_k": 47874.0
+}
+]
+}
+},
+"0001628280-26-043013": {
+"filed": "2026-06-15",
+"url": "https://www.sec.gov/Archives/edgar/data/1920406/000162828026043013/asst-20260615.htm",
+"v": 2,
+"parsed": {}
+},
+"0001628280-26-041386": {
+"filed": "2026-06-08",
+"url": "https://www.sec.gov/Archives/edgar/data/1920406/000162828026041386/asst-20260608.htm",
+"v": 2,
+"parsed": {
+"events": [
+{
+"date": "2026-06-01",
+"btc": 19000.0,
+"shares_basic": 78869163.0,
+"shares": 78869163.0,
+"shares_basis": "effective_common",
+"sata": 7513907.0,
+"cash_k": 137300.0,
+"strc_fv_k": 49500.0
+},
+{
+"date": "2026-06-05",
+"btc": 19032.0,
+"shares_basic": 79190663.0,
+"shares": 79190663.0,
+"shares_basis": "effective_common",
+"sata": 7513907.0,
+"cash_k": 139200.0,
+"strc_fv_k": 47200.0
+}
+]
+}
+},
+"0001628280-26-041348": {
+"filed": "2026-06-08",
+"url": "https://www.sec.gov/Archives/edgar/data/1920406/000162828026041348/asst-20260605.htm",
+"v": 2,
+"parsed": {}
+},
+"0001628280-26-039677": {
+"filed": "2026-06-02",
+"url": "https://www.sec.gov/Archives/edgar/data/1920406/000162828026039677/asst-20260602.htm",
+"v": 2,
+"parsed": {
+"events": [
+{
+"date": "2026-05-22",
+"btc": 16500.0,
+"shares_basic": 75769163.0,
+"shares": 75769163.0,
+"shares_basis": "effective_common",
+"sata": 5759719.0,
+"cash_k": 93300.0,
+"strc_fv_k": 50100.0
+},
+{
+"date": "2026-06-01",
+"btc": 19000.0,
+"shares_basic": 78869163.0,
+"shares": 78869163.0,
+"shares_basis": "effective_common",
+"sata": 7513907.0,
+"cash_k": 137300.0,
+"strc_fv_k": 49500.0
+}
+]
+}
+},
+"0001628280-26-039283": {
+"filed": "2026-06-01",
+"url": "https://www.sec.gov/Archives/edgar/data/1920406/000162828026039283/asst-20260601.htm",
+"v": 2,
+"parsed": {}
+},
+"0001628280-26-037925": {
+"filed": "2026-05-26",
+"url": "https://www.sec.gov/Archives/edgar/data/1920406/000162828026037925/asst-20260526.htm",
+"v": 2,
+"parsed": {
+"events": [
+{
+"date": "2026-05-18",
+"btc": 15391.0,
+"shares_basic": 73537163.0,
+"shares": 73537163.0,
+"shares_basis": "effective_common",
+"sata": 5244421.0,
+"cash_k": 87300.0,
+"strc_fv_k": 49800.0
+},
+{
+"date": "2026-05-22",
+"btc": 16500.0,
+"shares_basic": 75769163.0,
+"shares": 75769163.0,
+"shares_basis": "effective_common",
+"sata": 5759719.0,
+"cash_k": 93300.0,
+"strc_fv_k": 50100.0
+}
+]
+}
+}
+}
