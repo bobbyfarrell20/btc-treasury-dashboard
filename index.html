@@ -39,7 +39,7 @@ details summary{cursor:pointer;color:var(--b)}
 <div class="scroll"><table id="evtable"></table></div>
 <div class="note">Source of truth: <a href="data/events.json">data/events.json</a> (edit to add/update). Dates not yet confirmed are marked <span class="tbd">TBD</span>/estimated, never guessed.</div></section>
 
-<section class="card"><h2>1 · Normalized performance (window start = 100)</h2><div id="c_norm" class="chart"></div></section>
+<section class="card"><h2>1 · Normalized performance (% change from first visible date; re-bases when you zoom or slide)</h2><div id="c_norm" class="chart"></div></section>
 <section class="card"><h2>2 · Raw prices</h2><div id="c_raw" class="chart"></div></section>
 <section class="card"><h2>3 · mNAV: MSTR vs ASST (fully-diluted equity basis)</h2><div id="c_mnav" class="chart"></div>
 <div class="note">mNAV = share price × share count ÷ (BTC held × BTC close). Dashed: 1.0x and the overheated floor (config). Current enterprise-value (EV) mNAV is shown in the signal panel (snapshot only).</div></section>
@@ -87,6 +87,14 @@ function evMarks(){
 function plot(id,traces,layout){layout=Object.assign(layout,{});const m=evMarks();
   layout.shapes=(layout.shapes||[]).concat(m.shapes);layout.annotations=(layout.annotations||[]).concat(m.annotations);
   Plotly.newPlot(id,traces,layout,{responsive:true,displaylogo:false});if(!TS.includes(id))TS.push(id)}
+let NORM=[];
+// Re-base the normalized chart so each series' first visible point = 0%. Only y data and y range change, so no relayout loop.
+function rebaseNorm(){const el=document.getElementById('c_norm');if(!el||!el._fullLayout)return;
+  const xr=el._fullLayout.xaxis.range.map(v=>String(v)), r0=xr[0], r1=xr[1];let lo=Infinity,hi=-Infinity;
+  const ys=NORM.map(t=>{let i=t.x.findIndex(d=>d>=r0);if(i<0)i=t.x.length-1;const b=t.v[i];
+    return t.v.map((v,j)=>{const y=v/b-1;if(j>=i&&t.x[j]<=r1){lo=Math.min(lo,y);hi=Math.max(hi,y)}return y})});
+  Plotly.restyle(el,{y:ys},NORM.map((_,i)=>i));
+  if(isFinite(lo)){const pad=Math.max((hi-lo)*0.06,0.01);Plotly.relayout(el,{'yaxis.range':[lo-pad,hi+pad],'yaxis.autorange':false})}}
 let syncing=false;
 function linkCharts(){TS.forEach(id=>{const el=document.getElementById(id);el.on('plotly_relayout',ev=>{if(syncing)return;let r=null;
   if(ev['xaxis.range[0]'])r=[ev['xaxis.range[0]'],ev['xaxis.range[1]']];else if(ev['xaxis.range'])r=ev['xaxis.range'];else if(ev['xaxis.autorange'])r=null;else return;
@@ -137,7 +145,10 @@ function renderEvents(){const today=new Date().toISOString().slice(0,10),h=new D
 function renderCharts(){
   const R=D.rows.filter(r=>r.date>=D.config.window_start);
   const norm=k=>{const f=R.find(r=>r[k]!=null);return{x:R.map(r=>r.date),y:R.map(r=>r[k]!=null?r[k]/f[k]*100:null)}};
-  plot('c_norm',[['MSTR','MSTR'],['ASST','ASST'],['btc','BTC']].map(([k,n])=>Object.assign(norm(k),{name:n,line:{color:C[n]}})),baseLayout('Index (start=100)',{yaxis:{type:'log',title:'Index (log)',gridcolor:'#21262d'}}));
+  NORM=[['MSTR','MSTR'],['ASST','ASST'],['btc','BTC']].map(([k,n])=>{const R=D.rows.filter(r=>r.date>=D.config.window_start&&r[k]!=null);return{name:n,x:R.map(r=>r.date),v:R.map(r=>r[k])}});
+  plot('c_norm',NORM.map(t=>({name:t.name,x:t.x,y:t.v.map(v=>v/t.v[0]-1),line:{color:C[t.name]},hovertemplate:'%{x}: %{y:.1%}<extra>'+t.name+'</extra>'})),
+    baseLayout('Change since first visible date',{yaxis:{tickformat:'.0%',title:'Change since first visible date',gridcolor:'#21262d',zeroline:true,zerolinecolor:'#8b949e'}}));
+  rebaseNorm();document.getElementById('c_norm').on('plotly_relayout',ev=>{if(Object.keys(ev).some(k=>k.startsWith('xaxis')))rebaseNorm()});
   plot('c_raw',[Object.assign(series('MSTR'),{name:'MSTR $',line:{color:C.MSTR}}),Object.assign(series('ASST'),{name:'ASST $ (split-adj)',line:{color:C.ASST}}),Object.assign(series('btc'),{name:'BTC $ (right)',yaxis:'y2',line:{color:C.BTC}})],
     baseLayout('USD (log)',{yaxis:{type:'log',title:'MSTR / ASST (log)',gridcolor:'#21262d'},yaxis2:{overlaying:'y',side:'right',title:'BTC',showgrid:false}}));
   const oh=D.config.mnav.overheated_min_mnav;
