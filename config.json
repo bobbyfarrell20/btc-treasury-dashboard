@@ -22,7 +22,7 @@
   ],
   "_assets_comment": "Companies tracked. The page, recommendation, analytics and backtest loop over this list. Adding a third company also needs a holdings/share-count + capital adapter in scripts/update_data.py and scripts/capital.py (BTC held, shares, debt, preferred, cash). The rotation spread uses the first two.",
   "recommendation": {
-    "_comment": "Single call per day. Peg confirmation (state ON: close >= peg.on_threshold for peg.on_consecutive_days) is the trigger; parent all-in mNAV overheated (mnav.overheated_min_mnav AND overheated_percentile, on overheat_basis) is a filter; if both pegs are confirmed and neither overheated, rotation z (spread_z on overheat_basis) picks one (z<0 -> second asset, else first). Otherwise STAY_BTC.",
+    "_comment": "Single call per day. Peg confirmation (state ON: close >= peg.on_threshold for peg.on_consecutive_days) is the trigger; parent all-in mNAV overheated (mnav.overheated_min_mnav AND overheated_percentile, on overheat_basis) is a filter; if both pegs are confirmed and neither overheated, an unusual rotation z (<= spread_z_favor_asst or >= spread_z_favor_mstr) picks the cheaper one (z<0 -> second asset, else first); a normal z (or none) gives BUY_BOTH (50/50, lean = z<0 -> second asset, else first). Otherwise STAY_BTC (displayed as WAIT).",
     "overheat_basis": "ev"
   },
   "peg": {
@@ -40,7 +40,7 @@
     "spread_z_favor_asst": -1.0,
     "spread_z_favor_mstr": 1.0,
     "both_overheated_action": "SELL_TO_BTC",
-    "_both_overheated_comment": "when MSTR and ASST are both overheated, sell both and hold BTC (overrides flywheel-driven parent actions)",
+    "_both_overheated_comment": "when MSTR and ASST are both overheated, the legacy per-asset action is sell / trim both and no buy right now (overrides flywheel-driven parent actions); the main call shows WAIT",
     "signal_basis": "ev",
     "_signal_basis_comment": "Which mNAV drives overheated / rotation / dip / zones: 'ev' (all-in: equity at basic shares + debt + preferred notional - cash, over BTC NAV), 'basic' (market-standard: price x basic shares / BTC NAV) or 'diluted' (price x assumed-diluted shares / BTC NAV).",
     "ev_share_basis": "basic",

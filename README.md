@@ -12,12 +12,12 @@ A free, static dashboard (GitHub Pages + GitHub Actions) for rotating between **
 Top to bottom:
 - **Sticky top bar**: BTC price, the single recommendation, STRC and SATA status, a one-line summary, a data-freshness dot (green = latest close, yellow = 1 session behind, red = older), and a light/dark toggle (dark is the default; your choice is saved in the browser).
 - **Flywheel status**: one big card per preferred (STRC → MSTR, SATA → ASST). Green **FLYWHEEL ON** means the peg is confirmed; yellow **NEAR PAR** means at or near $100 but not yet confirmed; red **OFF PEG** means it isn't. Each card shows what that implies, the streak, the distance to the $99.95 threshold, the parent's BTC yield, and the last 30 days of issuance.
-- **Recommendation**: exactly one of **BUY MSTR**, **BUY ASST** or **STAY IN BTC**, with the reason, any "also valid" alternative, and when it last changed (rules below).
+- **Recommendation**: exactly one of **BUY MSTR**, **BUY ASST** or **WAIT** (no buy right now; data code `STAY_BTC`), with the reason, any "also valid" alternative, and when it last changed (rules below).
 - **KPI strip**: prices and day %, both mNAVs, peg states, rotation z, and 10-day changes.
 - **Secondary signals** (collapsible): the older per-asset actions, the dip rule and rotation.
 - **Valuation**: two mNAVs per stock, each with its own 1y percentile, zone gauge (CHEAP / FAIR / RICH / OVERVALUED) and a plain-words read, plus source links for holdings, shares, debt, preferred and cash.
-  - **mNAV (market standard)** = price × basic shares ÷ (BTC held × BTC price).
-  - **mNAV all-in (EV)** = (price × basic shares + debt at notional + preferred notional − cash/USD reserve) ÷ BTC NAV.
+  - **mNAV (stock only)** = price × basic shares ÷ (BTC held × BTC price).
+  - **mNAV incl. debt & preferreds** = (price × basic shares + debt at notional + preferred notional − cash/USD reserve) ÷ BTC NAV.
   - The zone-history chart defaults to EV and has a toggle. Diluted equity mNAV appears only in a tooltip and as a hidden legend line.
 - **BTC yield**: change in BTC per diluted share over 30d / prior 30d / 90d / YTD / 1y. The BTC-per-share chart is shaded where each preferred's peg was confirmed ON.
 - **Peg → performance**: every past confirmed-peg stretch, comparing the parent's price, BTC and BTC/share during the stretch and 7 and 30 days later. The sample is small.
@@ -45,18 +45,20 @@ Edit these files to change what the dashboard tracks:
 - `data/capital_events.json`: filing-sourced debt issuances/repurchases, preferred IPO sizes, and ASST debt/SATA/SATS anchors, each with a source link. Entries marked `approx` are approximations.
 - `data/asst_seed.json`: hand-curated ASST holdings and shares for the period before Strive's weekly 8-K tables.
 
+**mNAV readings shown on the page:** *Stock only* = stock market value ÷ bitcoin held (`basic` in the data). *Incl. debt & preferreds* = adds debt and preferreds, minus cash (`ev` in the data; the signal basis). The diluted-equity mNAV is reference-only, inside the collapsed card details.
+
 ## Recommendation rules
 1. **Trigger**: a parent is a candidate only when its preferred's peg is confirmed ON (closes ≥ $99.95 for 3 straight days).
-2. **Filter**: drop a candidate whose all-in (EV) mNAV is overheated (≥ 1.25x and ≥ 90th percentile of the trailing 252 days). Peg ON but overheated means "wait / reduce size", so the call stays STAY IN BTC.
-3. **Tiebreak**: if both survive, the mNAV spread z-score picks one (z < 0 → ASST, else MSTR). The other is listed as also valid.
-4. Otherwise **STAY IN BTC**.
+2. **Filter**: drop a candidate whose mNAV incl. debt & preferreds is overheated (≥ 1.25x and ≥ 90th percentile of the trailing 252 days). Peg ON but overheated means "wait / reduce size", so the call stays WAIT (no buy right now).
+3. **Both survive**: if the ASST−MSTR mNAV gap z-score is unusual (≤ −1 → BUY ASST, ≥ +1 → BUY MSTR, the other listed as also valid), buy only the cheaper one. With a normal gap (or no z yet) the call is **BUY BOTH** (`BUY_BOTH`, 50/50); `lean` / `recommendation_lean` names the slightly cheaper one (z < 0 → ASST, else MSTR). The backtest holds BUY BOTH as 50% MSTR + 50% ASST.
+4. Otherwise **WAIT**: no buy right now (`STAY_BTC` in signals.json; `recommendation_label` = "WAIT").
 
 ### Buy-condition flags (display only; they don't change the call)
 Thresholds are in `config.json` → `buy_flags`; values are published in `signals.json` → `buy_flags.per_asset`.
-- **Flywheel + Cheap** (`flywheel_cheap`): the preferred is ON and the parent's all-in (EV) mNAV zone is CHEAP, or "low-FAIR" (FAIR and below the 1y median, percentile < `low_fair_max_percentile` = 0.5).
-- **Very low all-in mNAV** (`very_low_mnav`, secondary buy cue): all-in mNAV ≤ `very_low_max_mnav` (1.0x) or ≤ `very_low_max_percentile` (20th percentile of 1y). It's shown even when the preferred is only NEAR PAR.
+- **Flywheel + Cheap** (`flywheel_cheap`): the preferred is ON and the parent's mNAV incl. debt & preferreds zone is CHEAP, or "low-FAIR" (FAIR and below the 1y median, percentile < `low_fair_max_percentile` = 0.5).
+- **Very low mNAV (incl. debt & preferreds)** (`very_low_mnav`, secondary buy cue): mNAV incl. debt & preferreds ≤ `very_low_max_mnav` (1.0x) or ≤ `very_low_max_percentile` (20th percentile of 1y). It's shown even when the preferred is only NEAR PAR.
 
-Page layout: decision banner → three chips (STRC peg, SATA peg, all-in mNAV zone) → last 5 recommendation flips → preferred cards → mNAV + BTC-yield summary → charts. Rules, valuation details, peg-performance, backtest and capital tables sit further down or are collapsed.
+Page layout: decision banner → three chips (STRC peg, SATA peg, mNAV incl. debt & preferreds zone) → last 5 recommendation flips → preferred cards → mNAV + BTC-yield summary → charts. Rules, valuation details, peg-performance, backtest and capital tables sit further down or are collapsed.
 
 ## Signal rules (defaults)
 | Rule | Default |
@@ -65,7 +67,7 @@ Page layout: decision banner → three chips (STRC peg, SATA peg, all-in mNAV zo
 | WATCH | close < $99.90 |
 | SELL / trim parent | close < $99.00, or 3+ straight down closes below $99.90 |
 | Overheated | mNAV ≥ 1.25x and ≥ 90th percentile of the trailing 252 trading days |
-| Both overheated | SELL_TO_BTC: sell MSTR + ASST, hold BTC (overrides the peg actions) |
+| Both overheated | SELL_TO_BTC: sell / trim MSTR + ASST, no buy right now (overrides the peg actions) |
 | Rotation | z-score of (ASST mNAV − MSTR mNAV) over 252 days: ≤ −1 favor ASST, ≥ +1 favor MSTR |
 | Valuation zones | CHEAP < 1.0x · FAIR up to the 1y median · RICH above median · OVERVALUED ≥ 1.25x or ≥ 90th pct |
 | Dip | BTC down ≥ 15% over the last 10 trading days → buy whichever of MSTR/ASST had the larger mNAV drop over that window (tie → larger price drop). No reliance on prior highs. |

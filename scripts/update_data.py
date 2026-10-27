@@ -353,7 +353,7 @@ def main():
                           "price_chg_dip_window": r.get(asset.lower() + "_chg"), "mnav_chg_dip_window": r.get(asset.lower() + "_mnav_chg")}
         out.update(per=per, both_overheated=both_oh, rotation=rot, dip=dip, dip_target=hardest if dip else None, cheapened_most=hardest)
         # headline
-        if both_oh: head = "BOTH OVERHEATED -> SELL_TO_BTC: sell MSTR + ASST, hold BTC"
+        if both_oh: head = "BOTH OVERHEATED -> SELL_TO_BTC: trim / sell MSTR + ASST; no buy right now"
         else:
             buys = [a for a in ("MSTR", "ASST") if per[a]["action"] == "BUY"]
             sells = [a for a in ("MSTR", "ASST") if per[a]["action"] == "SELL"]
@@ -372,7 +372,7 @@ def main():
 
     for r in rows: r["sig"] = day_signal(r)
 
-    # ---- single recommendation (BUY_MSTR / BUY_ASST / STAY_BTC) per day
+    # ---- single recommendation (BUY_MSTR / BUY_ASST / BUY_BOTH / STAY_BTC) per day
     import analytics
     ASSETS = CFG.get("assets") or [{"ticker": "MSTR", "key": "mstr", "preferred": "STRC"}, {"ticker": "ASST", "key": "asst", "preferred": "SATA"}]
     for r in rows:
@@ -467,8 +467,8 @@ def main():
     def asset_val(A, a, bs):
         v = last.get(a + "_mnav_" + bs)
         return {"mnav": v, "mnav_pct_1y": last.get(a + "_mnav_" + bs + "_pct"), "zone": last.get(a + "_zone_" + bs)}
-    BASIS_LABEL = {"basic": "mNAV (market standard): price x basic shares / BTC NAV",
-                   "ev": "mNAV all-in (EV): (price x basic shares + debt + preferred notional - cash) / BTC NAV",
+    BASIS_LABEL = {"basic": "mNAV stock only: stock market value / bitcoin held (price x basic shares / BTC NAV)",
+                   "ev": "mNAV incl. debt & preferreds: adds debt and preferreds, minus cash ((price x basic shares + debt + preferred notional - cash) / BTC NAV)",
                    "diluted": "diluted equity mNAV: price x assumed-diluted shares / BTC NAV"}
 
     # ---- prediction markets
@@ -546,7 +546,8 @@ def main():
     (DATA / "dashboard.json").write_text(json.dumps(dash, separators=(",", ":")))
 
     lrec = last["rec"]
-    sig = {"recommendation": lrec["action"], "recommendation_reason": lrec["reason"], "also_valid": lrec.get("also_valid"),
+    sig = {"recommendation": lrec["action"], "recommendation_label": AN.REC_LABEL.get(lrec["action"], lrec["action"]), "recommendation_subline": AN.rec_subline(lrec), "recommendation_lean": lrec.get("lean"),
+           "recommendation_reason": lrec["reason"], "also_valid": lrec.get("also_valid"),
            "recommendation_notes": lrec.get("notes", []),
            "signal_hash": last["rec_hash"], "last_changed": lc, "last_recommendation_change": lrc,
            "_hash_note": "signal_hash changes when the recommendation, also_valid, any preferred peg state or any overheated flag changes; last_changed is the most recent trading day it changed.",

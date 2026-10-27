@@ -1,6 +1,9 @@
 {
   "recommendation": "STAY_BTC",
-  "recommendation_reason": "No flywheel ON (STRC slowing \u2192 flywheel off for MSTR; SATA stalled \u2192 flywheel off for ASST): stay in BTC",
+  "recommendation_label": "WAIT",
+  "recommendation_subline": "No buy right now",
+  "recommendation_lean": null,
+  "recommendation_reason": "No flywheel ON (STRC slowing \u2192 flywheel off for MSTR; SATA stalled \u2192 flywheel off for ASST): wait (no buy right now)",
   "also_valid": null,
   "recommendation_notes": [],
   "signal_hash": "a2be7024860b",
@@ -18,13 +21,14 @@
     "new": "STAY_BTC"
   },
   "_hash_note": "signal_hash changes when the recommendation, also_valid, any preferred peg state or any overheated flag changes; last_changed is the most recent trading day it changed.",
-  "generated_utc": "2026-10-27T03:05:47+00:00",
+  "generated_utc": "2026-10-27T03:21:09+00:00",
   "as_of": "2026-10-26",
   "disclaimer": "Rules-based indicator, not financial advice.",
   "recommendation_detail": {
     "action": "STAY_BTC",
-    "reason": "No flywheel ON (STRC slowing \u2192 flywheel off for MSTR; SATA stalled \u2192 flywheel off for ASST): stay in BTC",
+    "reason": "No flywheel ON (STRC slowing \u2192 flywheel off for MSTR; SATA stalled \u2192 flywheel off for ASST): wait (no buy right now)",
     "also_valid": null,
+    "lean": null,
     "notes": [],
     "rotation_z": 0.548,
     "per_asset": {
@@ -196,7 +200,7 @@
     }
   },
   "signal_basis": "ev",
-  "signal_basis_label": "mNAV all-in (EV): (price x basic shares + debt + preferred notional - cash) / BTC NAV",
+  "signal_basis_label": "mNAV incl. debt & preferreds: adds debt and preferreds, minus cash ((price x basic shares + debt + preferred notional - cash) / BTC NAV)",
   "values": {
     "MSTR": 139.82,
     "ASST": 26.32,
@@ -416,13 +420,6 @@
       "title": "STRC daily dividends start (conditional on vote): record every day, $1.00 total for Nov, 12%",
       "status": "scheduled",
       "source": "https://www.strategy.com/press/strategy-declares-conditional-daily-dividends-on-strc-for-november-2026_10-16-2026"
-    },
-    {
-      "date": "2026-11-03",
-      "category": "election",
-      "title": "US midterm elections",
-      "status": "scheduled",
-      "source": "Election Day (fixed by law)"
     }
   ],
   "odds_jumps": [
@@ -538,7 +535,7 @@
       "top": [
         {
           "outcome": "\u2191 90,000",
-          "yes": 0.425
+          "yes": 0.395
         },
         {
           "outcome": "\u2191 100,000",
@@ -761,11 +758,11 @@
       "top": [
         {
           "outcome": "Fed maintains rate",
-          "yes": 0.93
+          "yes": 0.92
         },
         {
           "outcome": "Hike 25bps",
-          "yes": 0.07
+          "yes": 0.08
         },
         {
           "outcome": "Cut 25bps",
@@ -788,7 +785,7 @@
         },
         {
           "outcome": "Fed maintains rate",
-          "yes": 0.23
+          "yes": 0.24
         },
         {
           "outcome": "Hike >25bps",
@@ -819,7 +816,7 @@
         },
         {
           "outcome": "Before Apr 1, 2027",
-          "yes": 0.09
+          "yes": 0.07
         }
       ]
     },
@@ -830,11 +827,11 @@
       "top": [
         {
           "outcome": "Democratic Party",
-          "yes": 0.903
+          "yes": 0.904
         },
         {
           "outcome": "Republican Party",
-          "yes": 0.097
+          "yes": 0.098
         }
       ]
     },
@@ -878,7 +875,7 @@
     ],
     "_assets_comment": "Companies tracked. The page, recommendation, analytics and backtest loop over this list. Adding a third company also needs a holdings/share-count + capital adapter in scripts/update_data.py and scripts/capital.py (BTC held, shares, debt, preferred, cash). The rotation spread uses the first two.",
     "recommendation": {
-      "_comment": "Single call per day. Peg confirmation (state ON: close >= peg.on_threshold for peg.on_consecutive_days) is the trigger; parent all-in mNAV overheated (mnav.overheated_min_mnav AND overheated_percentile, on overheat_basis) is a filter; if both pegs are confirmed and neither overheated, rotation z (spread_z on overheat_basis) picks one (z<0 -> second asset, else first). Otherwise STAY_BTC.",
+      "_comment": "Single call per day. Peg confirmation (state ON: close >= peg.on_threshold for peg.on_consecutive_days) is the trigger; parent all-in mNAV overheated (mnav.overheated_min_mnav AND overheated_percentile, on overheat_basis) is a filter; if both pegs are confirmed and neither overheated, an unusual rotation z (<= spread_z_favor_asst or >= spread_z_favor_mstr) picks the cheaper one (z<0 -> second asset, else first); a normal z (or none) gives BUY_BOTH (50/50, lean = z<0 -> second asset, else first). Otherwise STAY_BTC (displayed as WAIT).",
       "overheat_basis": "ev"
     },
     "peg": {
@@ -896,7 +893,7 @@
       "spread_z_favor_asst": -1.0,
       "spread_z_favor_mstr": 1.0,
       "both_overheated_action": "SELL_TO_BTC",
-      "_both_overheated_comment": "when MSTR and ASST are both overheated, sell both and hold BTC (overrides flywheel-driven parent actions)",
+      "_both_overheated_comment": "when MSTR and ASST are both overheated, the legacy per-asset action is sell / trim both and no buy right now (overrides flywheel-driven parent actions); the main call shows WAIT",
       "signal_basis": "ev",
       "_signal_basis_comment": "Which mNAV drives overheated / rotation / dip / zones: 'ev' (all-in: equity at basic shares + debt + preferred notional - cash, over BTC NAV), 'basic' (market-standard: price x basic shares / BTC NAV) or 'diluted' (price x assumed-diluted shares / BTC NAV).",
       "ev_share_basis": "basic",
