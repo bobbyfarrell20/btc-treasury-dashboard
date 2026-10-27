@@ -18,7 +18,7 @@
     "new": "STAY_BTC"
   },
   "_hash_note": "signal_hash changes when the recommendation, also_valid, any preferred peg state or any overheated flag changes; last_changed is the most recent trading day it changed.",
-  "generated_utc": "2026-10-27T00:24:29+00:00",
+  "generated_utc": "2026-10-27T00:50:53+00:00",
   "as_of": "2026-10-23",
   "disclaimer": "Rules-based indicator, not financial advice.",
   "recommendation_detail": {
@@ -76,6 +76,40 @@
       "threshold": 99.95,
       "distance_to_threshold": -1.93,
       "distance_to_par": -1.98
+    }
+  },
+  "buy_flags": {
+    "basis": "ev",
+    "low_fair_max_percentile": 0.5,
+    "very_low_max_mnav": 1.0,
+    "very_low_max_percentile": 0.2,
+    "per_asset": {
+      "MSTR": {
+        "preferred": "STRC",
+        "peg_state": "WATCH",
+        "mnav": 1.1249,
+        "mnav_pct_1y": 0.448,
+        "zone": "FAIR",
+        "low_fair": true,
+        "cheap_or_low_fair": true,
+        "flywheel_cheap": false,
+        "very_low_mnav": false,
+        "very_low_reason": null,
+        "very_low_with_peg_near_or_on": false
+      },
+      "ASST": {
+        "preferred": "SATA",
+        "peg_state": "SELL",
+        "mnav": 1.5023,
+        "mnav_pct_1y": 0.786,
+        "zone": "OVERVALUED",
+        "low_fair": false,
+        "cheap_or_low_fair": false,
+        "flywheel_cheap": false,
+        "very_low_mnav": false,
+        "very_low_reason": null,
+        "very_low_with_peg_near_or_on": false
+      }
     }
   },
   "btc_yield": {
@@ -389,7 +423,7 @@
       "odds": [
         {
           "outcome": "No change",
-          "yes": 0.9295
+          "yes": 0.9345
         }
       ]
     },
@@ -458,7 +492,7 @@
       "top": [
         {
           "outcome": "No change",
-          "yes": 0.9295
+          "yes": 0.9345
         },
         {
           "outcome": "25 bps increase",
@@ -635,7 +669,7 @@
       "top": [
         {
           "outcome": "Below $55,000.00",
-          "yes": 0.11
+          "yes": 0.1
         },
         {
           "outcome": "Below $50,000.00",
@@ -681,11 +715,11 @@
       "top": [
         {
           "outcome": "Hike 25bps",
-          "yes": 0.75
+          "yes": 0.72
         },
         {
           "outcome": "Fed maintains rate",
-          "yes": 0.24
+          "yes": 0.23
         },
         {
           "outcome": "Hike >25bps",
@@ -727,11 +761,11 @@
       "top": [
         {
           "outcome": "Democratic Party",
-          "yes": 0.907
+          "yes": 0.905
         },
         {
           "outcome": "Republican Party",
-          "yes": 0.095
+          "yes": 0.093
         }
       ]
     },
@@ -742,7 +776,7 @@
       "top": [
         {
           "outcome": "Democratic Party",
-          "yes": 0.64
+          "yes": 0.65
         },
         {
           "outcome": "Republican Party",
@@ -875,6 +909,13 @@
           "top": 1
         }
       ]
+    },
+    "buy_flags": {
+      "_comment": "Display flags (do not change the recommendation). flywheel_cheap: preferred peg ON (confirmed) AND parent all-in mNAV zone CHEAP, or FAIR with 1y percentile < low_fair_max_percentile ('low-FAIR'). very_low_mnav (secondary buy signal): all-in mNAV <= very_low_max_mnav OR 1y percentile <= very_low_max_percentile, shown even when the preferred is only NEAR PAR.",
+      "basis": "ev",
+      "low_fair_max_percentile": 0.5,
+      "very_low_max_mnav": 1.0,
+      "very_low_max_percentile": 0.2
     }
   },
   "changed_since_prev_close": true,
