@@ -18,7 +18,7 @@
     "new": "STAY_BTC"
   },
   "_hash_note": "signal_hash changes when the recommendation, also_valid, any preferred peg state or any overheated flag changes; last_changed is the most recent trading day it changed.",
-  "generated_utc": "2026-10-27T02:03:44+00:00",
+  "generated_utc": "2026-10-27T02:07:59+00:00",
   "as_of": "2026-10-26",
   "disclaimer": "Rules-based indicator, not financial advice.",
   "recommendation_detail": {
@@ -400,6 +400,13 @@
       "title": "STRC daily dividends start (conditional on vote): record every day, $1.00 total for Nov, 12%",
       "status": "scheduled",
       "source": "https://www.strategy.com/press/strategy-declares-conditional-daily-dividends-on-strc-for-november-2026_10-16-2026"
+    },
+    {
+      "date": "2026-11-03",
+      "category": "election",
+      "title": "US midterm elections",
+      "status": "scheduled",
+      "source": "Election Day (fixed by law)"
     }
   ],
   "odds_jumps": [
@@ -722,11 +729,11 @@
           "yes": 0.09
         },
         {
-          "outcome": "Below $45,000.00",
-          "yes": 0.06
+          "outcome": "Below $40,000.00",
+          "yes": 0.05
         },
         {
-          "outcome": "Below $40,000.00",
+          "outcome": "Below $45,000.00",
           "yes": 0.05
         }
       ]
@@ -765,7 +772,7 @@
         },
         {
           "outcome": "Fed maintains rate",
-          "yes": 0.22
+          "yes": 0.23
         },
         {
           "outcome": "Hike >25bps",
@@ -811,7 +818,7 @@
         },
         {
           "outcome": "Republican Party",
-          "yes": 0.097
+          "yes": 0.096
         }
       ]
     },
