@@ -527,6 +527,7 @@ def main():
         "peg_stretches": [s_ for A in ASSETS for s_ in analytics.peg_stretches(rows, A["preferred"], A["key"], A["ticker"])],
         "atm": analytics.atm_summary(fuel, prices, pc_, cap["ASST"].get("sats_shares", []), rows[-1]["date"]),
         "buy_flags": analytics.buy_flags(rows[-1], ASSETS, CFG),
+        "signal_events": analytics.signal_events(rows, ASSETS, rb),
         "signal_flips": flips, "last_changed": lc, "last_recommendation_change": lrc, "sources": sources}
     for k in ("cash_idle",):  # keep only stats + curve for the variant
         ana["backtest"][k].pop("dates", None); ana["backtest"][k].pop("positions", None); ana["backtest"][k].pop("periods", None)
@@ -597,6 +598,11 @@ def main():
     with open(DATA / "rows.csv", "w", newline="") as fh:
         w = csv.writer(fh); w.writerow(cols + ["recommendation", "headline_legacy"])
         for r in out_rows: w.writerow([r.get(c, "") for c in cols] + [r["rec"]["action"], r["sig"]["headline"]])
+    # past BUY/SELL events per asset (display-only replay of the daily recommendation)
+    with open(DATA / "signal_events.csv", "w", newline="") as fh:
+        w = csv.writer(fh); w.writerow(["date", "asset", "signal", "all_in_mnav_ev", "held_since", "from", "to", "reason", "full_reason"])
+        for e in ana["signal_events"]["events"]:
+            w.writerow([e["date"], e["asset"], e["signal"], e["mnav_ev"], e["held_since"] or "", e["from"] or "", e["to"], e["reason"], e["full_reason"]])
     log("latest", json.dumps(sig, indent=1)[:3000])
 
 if __name__ == "__main__":

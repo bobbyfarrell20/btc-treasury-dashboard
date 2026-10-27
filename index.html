@@ -21,7 +21,10 @@ h1{margin:0;font-size:20px}h2{font-size:16px;margin:0 0 8px}
 .kv{display:flex;justify-content:space-between;border-bottom:1px dashed var(--line);padding:3px 0}.kv span:first-child{color:var(--mut)}
 table{border-collapse:collapse;width:100%;font-size:13px}th,td{border-bottom:1px solid var(--line);padding:5px 6px;text-align:left;vertical-align:top}th{color:var(--mut);font-weight:600;position:sticky;top:0;background:var(--panel)}
 .scroll{max-height:420px;overflow:auto}.pos{color:#3fb950}.neg{color:#f85149}.tbd{color:var(--y);font-weight:700}
-.chart{height:440px}.chart.sm{height:300px}.note{color:var(--mut);font-size:12px}a{color:var(--b)}
+.chart{height:440px}.chart.sm{height:300px}#c_sig{height:620px}
+.siglg{display:flex;flex-wrap:wrap;gap:6px 14px;align-items:center;font-size:12.5px;margin:2px 0 6px}.siglg b{font-weight:700}.siglg .sw{display:inline-block;width:14px;height:10px;border-radius:2px;vertical-align:middle;margin-right:4px}
+.sigcap{font-size:13px;margin:6px 0 2px}.sigcount{display:flex;flex-wrap:wrap;gap:8px;margin:4px 0 8px}.sigcount span{border:1px solid var(--line);border-radius:8px;padding:3px 9px;font-size:12.5px}
+.sg-BUY{color:#3fb950;font-weight:700}.sg-SELL{color:#f85149;font-weight:700}.sg-WAIT{color:#d29922;font-weight:700}.note{color:var(--mut);font-size:12px}a{color:var(--b)}
 .disc{border-left:4px solid var(--y);padding:8px 12px;background:rgba(210,153,34,.10);border-radius:6px;margin-bottom:16px;font-size:13px}
 .controls label{margin-right:12px;font-size:12px;color:var(--mut)}
 .pmrow{display:flex;align-items:center;gap:8px;font-size:12px;margin:2px 0}.pmbar{height:10px;background:var(--b);border-radius:3px}
@@ -42,7 +45,7 @@ details summary{cursor:pointer;color:var(--b)}
 .hl-red{background:rgba(248,81,73,.16);color:#ffb4ae;border:1px solid rgba(248,81,73,.5)}.hl-green{background:rgba(46,160,67,.16);color:#9be9a8;border:1px solid rgba(46,160,67,.5)}
 .hl-amber{background:rgba(210,153,34,.16);color:#fde68a;border:1px solid rgba(210,153,34,.5)}.hl-blue{background:rgba(88,166,255,.14);color:#b6d7ff;border:1px solid rgba(88,166,255,.45)}
 .hero .sub{max-width:1500px;margin:8px auto 0}
-@media (max-width:640px){.hero{padding:16px 14px 12px}.hero h1{font-size:21px}.logo{width:42px;height:42px;font-size:26px;line-height:42px}.tk{min-width:0;flex:1 1 30%;padding:6px 8px}.tk .p{font-size:14px}.tk .c{display:block;margin:0}main{padding:12px}.chart{height:360px}}
+@media (max-width:640px){.hero{padding:16px 14px 12px}.hero h1{font-size:21px}.logo{width:42px;height:42px;font-size:26px;line-height:42px}.tk{min-width:0;flex:1 1 30%;padding:6px 8px}.tk .p{font-size:14px}.tk .c{display:block;margin:0}main{padding:12px}.chart{height:360px}#c_sig{height:560px}}
 .verdict{font-size:17px;font-weight:700;padding:12px 14px;border-radius:8px;background:linear-gradient(90deg,rgba(163,113,247,.16),rgba(240,136,62,.10));border:1px solid var(--line);margin-bottom:12px}
 .vz{font-weight:800}.z-CHEAP{background:#14532d;color:#86efac}.z-FAIR{background:#1e3a5f;color:#93c5fd}.z-RICH{background:#713f12;color:#fde68a}.z-OVERVALUED{background:#7f1d1d;color:#fecaca}
 .vbig{font-size:30px;font-weight:800}.gauge{position:relative;height:16px;border-radius:8px;overflow:hidden;display:flex;margin:22px 0 4px}
@@ -168,14 +171,22 @@ details.card{margin-bottom:10px;padding:11px 14px}
 <div class="disc" style="margin:10px 0 0"><b>Rules-based indicator, not financial advice.</b> Signals are produced mechanically from public data and the thresholds in <a href="config.json">config.json</a>. Data can be late, wrong or missing. Do your own research.</div></div></details>
 </section>
 
-<div class="card controls" id="chartctl"><span class="note">Charts:</span> <span id="assettoggles"></span> <label class="chip"><input type="checkbox" id="linkx" checked> link time axes</label></div>
+<section class="card" id="sigs"><div class="cardhead"><h2>Signals over time <span class="note" style="font-weight:400">MSTR &amp; ASST buy / sell calls from the rules, all-in (EV) mNAV</span></h2><span class="csvb" data-c="c_sig"></span></div>
+<div class="siglg" id="siglegend"></div>
+<div id="c_sig" class="chart"></div>
+<div class="sigcap" id="sigcap"></div>
+<details class="sec" id="sigtable"><summary>Every past signal: date, asset, BUY / SELL, reason (table + CSV)</summary>
+<div style="margin:8px 0;display:flex;flex-wrap:wrap;gap:8px"><a class="btn" href="data/signal_events.csv" download style="text-decoration:none">⬇ signal_events.csv</a><a class="btn" href="data/rows.csv" download style="text-decoration:none">⬇ daily call for every day (rows.csv, column recommendation)</a></div>
+<div class="tscroll scroll"><table id="sigevt"></table></div>
+<div class="note" id="sigtnote" style="margin-top:6px"></div></details></section>
+
+<details class="card controls" id="chartctl"><summary>Chart options: show / hide assets, link time axes</summary><div style="margin-top:6px"><span id="assettoggles"></span> <label class="chip"><input type="checkbox" id="linkx" checked> link time axes</label></div></details>
 
 <section class="card"><div class="cardhead"><h2>mNAV over time: MSTR vs ASST
  <span class="seg" id="mbasis"><button data-b="ev">all-in (EV)</button><button data-b="basic">market standard</button><button data-b="both">both</button></span></h2><span class="csvb" data-c="c_mnav"></span></div><div id="c_mnav" class="chart"></div>
-<details class="sec"><summary>Notes</summary><div class="note">Solid = all-in (EV) mNAV: (price × basic shares + debt + preferred notional − cash) ÷ BTC NAV. Default view emphasizes all-in (EV); the faint dotted line is market-standard mNAV (context; full weight in "market standard" / "both"): price × basic shares ÷ BTC NAV. Diluted equity mNAV (price × assumed-diluted shares ÷ BTC NAV) is hidden; click it in the legend to show it. Dashed lines: 1.0x and the overheated floor (config). Step jumps happen where filings change debt, preferreds or cash (see Method).</div></details></section>
-<section class="card"><div class="cardhead"><h2>ASST vs MSTR spread vs its usual level (<span id="spb"></span>)
- <span class="seg" id="spmode"><button data-b="ratio">ratio ASST÷MSTR</button><button data-b="diff">gap ASST−MSTR</button></span></h2><span class="csvb" data-c="c_spread"></span></div><div id="c_spread" class="chart"></div>
-<div class="note" id="spnote"></div></section>
+<details class="sec"><summary>Notes</summary><div class="note">Solid = all-in (EV) mNAV: (price × basic shares + debt + preferred notional − cash) ÷ BTC NAV. Default view shows only all-in (EV); market-standard mNAV is hidden there (click it in the legend, or pick "market standard" / "both"): price × basic shares ÷ BTC NAV. Diluted equity mNAV (price × assumed-diluted shares ÷ BTC NAV) is hidden; click it in the legend to show it. Dashed lines: 1.0x and the overheated floor (config). Step jumps happen where filings change debt, preferreds or cash (see Method).</div></details></section>
+<section class="card"><div class="cardhead"><h2>ASST vs MSTR spread vs its usual level (<span id="spb"></span>)</h2><span class="csvb" data-c="c_spread"></span></div><div id="c_spread" class="chart"></div>
+<details class="sec"><summary>Options &amp; notes: gap view, ±1σ band</summary><div style="margin:6px 0"><span class="note">View:</span><span class="seg" id="spmode"><button data-b="ratio">ratio ASST÷MSTR</button><button data-b="diff">gap ASST−MSTR</button></span></div><div class="note" id="spnote"></div></details></section>
 
 <section class="card" id="yield"><div class="cardhead"><h2>BTC per share &amp; BTC yield <i class="q" tabindex="0" data-tip="BTC yield = % change in (BTC held ÷ diluted shares) over the window. Positive = each share is backed by more bitcoin than before. Shaded periods = the company's flywheel was ON (its preferred confirmed ≥ $99.95).">?</i></h2><span class="csvb" data-c="c_bps"></span></div>
 <div class="sumgrid" id="mnavsum" style="margin-bottom:10px"></div>
@@ -212,7 +223,7 @@ details.card{margin-bottom:10px;padding:11px 14px}
 <details class="card" id="events"><summary>Key dates and chart annotations</summary>
 <div class="evctl"><input type="search" id="evq" placeholder="Search events…" aria-label="Search events"><select id="evcat" aria-label="Category"><option value="">All categories</option></select>
 <label class="chip"><input type="checkbox" id="showPast"> include past</label></div>
-<div class="evctl"><span class="note">Chart annotations:</span><label class="chip"><input type="checkbox" id="showEv" checked> show</label><span id="evcats"></span></div>
+<div class="evctl"><span class="note">Chart annotations:</span><label class="chip"><input type="checkbox" id="showEv"> show</label><span id="evcats"></span></div>
 <div class="tscroll scroll"><table id="evtable"></table></div>
 <div class="note">Source of truth: <a href="data/events.json">data/events.json</a> (edit to add/update). Dates not yet confirmed are marked <span class="tbd">TBD</span>/estimated, never guessed.</div></details>
 <details class="card" id="pegperf"><summary>Peg → performance: what happened after past confirmed pegs</summary>
@@ -288,10 +299,10 @@ function baseLayout(title,extra={}){const t=TH();
   const start=D.config.window_start; const end=new Date(Date.now()+40*864e5).toISOString().slice(0,10);
   const L={paper_bgcolor:t.panel,plot_bgcolor:t.bg,font:{color:t.fg,size:12},margin:{l:60,r:60,t:30,b:30},
    legend:{orientation:'h',y:1.12},hovermode:'x unified',hoverlabel:{bgcolor:t.panel,bordercolor:t.line,font:{color:t.fg}},
-   xaxis:{type:'date',range:[start,end],gridcolor:t.grid,rangeslider:{visible:true,thickness:0.07,bgcolor:t.bg},
+   xaxis:{type:'date',range:[start,end],gridcolor:t.grid,gridwidth:0.5,rangeslider:{visible:true,thickness:0.07,bgcolor:t.bg},
      rangeselector:{bgcolor:t.btn,activecolor:t.line,font:{color:t.fg},buttons:[{count:1,label:'1M',step:'month',stepmode:'backward'},{count:3,label:'3M',step:'month',stepmode:'backward'},{count:6,label:'6M',step:'month',stepmode:'backward'},{step:'year',stepmode:'todate',label:'YTD'},{count:1,label:'1Y',step:'year',stepmode:'backward'},{step:'all',label:'All'}]}},
-   yaxis:{gridcolor:t.grid,title:title},yaxis9:{overlaying:'y',range:[0,1],visible:false,fixedrange:true}};
-  for(const [k,v] of Object.entries(extra)){if(k.startsWith('yaxis')&&typeof v==='object')L[k]=Object.assign({gridcolor:t.grid},L[k]||{},v);else L[k]=v}
+   yaxis:{gridcolor:t.grid,gridwidth:0.5,title:title},yaxis9:{overlaying:'y',range:[0,1],visible:false,fixedrange:true}};
+  for(const [k,v] of Object.entries(extra)){if(k.startsWith('yaxis')&&typeof v==='object')L[k]=Object.assign({gridcolor:t.grid,gridwidth:0.5},L[k]||{},v);else L[k]=v}
   return L}
 function evList(){const start=D.config.window_start;return document.getElementById('showEv').checked?E.events.filter(e=>e.date&&e.date>=start&&EVC.has(e.category)):[]}
 function evMarks(){const shapes=[];evList().forEach(e=>{const c=CATC[e.category]||'#8b949e';
@@ -393,15 +404,15 @@ function plotSpread(){const bs=MB==='basic'?'basic':'ev',sx='_'+bs,mode=SPM,R=D.
   const k=mode==='ratio'?{v:'mnav_ratio',m:'ratio_mean',s:'ratio_sd'}:{v:'mnav_spread',m:'spread_mean',s:'spread_sd'},RR=R.filter(r=>r[k.m+sx]!=null&&r[k.s+sx]!=null);
   const x=RR.map(r=>r.date),m=RR.map(r=>r[k.m+sx]),sd=RR.map(r=>r[k.s+sx]),lab=mode==='ratio'?'ASST ÷ MSTR mNAV ratio':'ASST − MSTR mNAV gap';
   $('spb').textContent=BL(bs);
-  const tr=[{name:'+1σ',x,y:m.map((v,i)=>v+sd[i]),line:{width:0,color:'rgba(163,113,247,0)'},showlegend:false,hoverinfo:'skip'},
-    {name:'±1σ band (trailing 1y)',x,y:m.map((v,i)=>v-sd[i]),fill:'tonexty',fillcolor:'rgba(163,113,247,0.16)',line:{width:0,color:'rgba(163,113,247,0)'},hoverinfo:'skip'},
+  const tr=[{name:'+1σ',x,y:m.map((v,i)=>v+sd[i]),legendgroup:'band',visible:'legendonly',line:{width:0,color:'rgba(163,113,247,0)'},showlegend:false,hoverinfo:'skip'},
+    {name:'±1σ band (trailing 1y)',legendgroup:'band',visible:'legendonly',x,y:m.map((v,i)=>v-sd[i]),fill:'tonexty',fillcolor:'rgba(163,113,247,0.16)',line:{width:0,color:'rgba(163,113,247,0)'},hoverinfo:'skip'},
     {name:'1y average (rolling)',x,y:m,line:{color:C.AVG,width:1.6,dash:'dash'},hovertemplate:'%{y:.3f}'+(mode==='ratio'?'x':'')},
     Object.assign({x:R.map(r=>r.date),y:R.map(r=>r[k.v+sx])},{name:lab,line:{color:'#f7931a',width:2.6},customdata:R.map(r=>[r['spread_z'+sx],r['mnav_ratio'+sx]]),
       hovertemplate:'%{y:.3f}'+(mode==='ratio'?'x':'')+' · gap z %{customdata[0]:.2f}'})];
   const sh=mode==='diff'?[hline(0,'#8b949e','dot')]:[hline(1,'#8b949e','dot')];
   plot('c_spread',tr,keepRange('c_spread',baseLayout(lab,{shapes:sh})));
   const mc=D.config.mnav;
-  $('spnote').innerHTML=`Orange = today's ${lab} (${BL(bs)}; follows the basis toggle above). Dashed = its trailing ${mc.lookback_trading_days}-trading-day average; purple band = average ± 1 standard deviation. ${mode==='diff'?`Outside the band on the gap view is exactly where the verdict flips: below → <b>ASST cheap vs usual</b> (z ≤ ${mc.spread_z_favor_asst}), above → <b>MSTR cheap vs usual</b> (z ≥ +${mc.spread_z_favor_mstr}).`:'The verdict uses the gap (ASST − MSTR); the ratio view is the same idea scaled by MSTR\'s mNAV, so its band edges are close but not identical.'} ASST usually trades at a higher mNAV than MSTR, so "normal" is a positive gap / ratio above 1.`;
+  $('spnote').innerHTML=`Orange = today's ${lab} (${BL(bs)}; follows the basis toggle above). Dashed = its trailing ${mc.lookback_trading_days}-trading-day average. The purple ±1σ band (average ± 1 standard deviation) is hidden by default: click "±1σ band" in the legend to show it. ${mode==='diff'?`Outside the band on the gap view is exactly where the verdict flips: below → <b>ASST cheap vs usual</b> (z ≤ ${mc.spread_z_favor_asst}), above → <b>MSTR cheap vs usual</b> (z ≥ +${mc.spread_z_favor_mstr}).`:'The verdict uses the gap (ASST − MSTR); the ratio view is the same idea scaled by MSTR\'s mNAV, so its band edges are close but not identical.'} ASST usually trades at a higher mNAV than MSTR, so "normal" is a positive gap / ratio above 1.`;
   linkCharts()}
 let SPM='ratio';
 function renderTop(){const F=freshness(),fw=A.flywheel,t=lastTwo('btc');
@@ -635,7 +646,7 @@ function renderCharts(){const R=D.rows.filter(r=>r.date>=D.config.window_start);
   NORM=[...ASSETS.map(a=>[a.ticker,a.ticker]),['btc','BTC']].map(([k,n])=>{const RR=R.filter(r=>r[k]!=null);return{name:n,x:RR.map(r=>r.date),v:RR.map(r=>r[k])}});
   plot('c_norm',NORM.map(t=>({name:t.name,meta:t.name,x:t.x,y:t.v.map(v=>v/t.v[0]-1),line:{color:C[t.name],width:t.name==='BTC'?2.6:2},hovertemplate:'%{y:.1%}'})),
     keepRange('c_norm',baseLayout('Change since first visible date',{yaxis:{tickformat:'.0%',zeroline:true,zerolinecolor:'#8b949e'}})));
-  rebaseNorm();plotZone();plotMnav();plotSpread();plotBps();
+  rebaseNorm();plotZone();plotMnav();plotSpread();plotBps();safe('signals chart',plotSignals);
   $('spbasis').textContent=BL(S.signal_basis)+' basis, which drives the rotation tiebreak';
   plot('c_ratio',[Object.assign(series('ratio'),{name:'ASST/MSTR price ratio',line:{color:'#79c0ff'}}),
     Object.assign(series('mnav_spread'),{name:'mNAV spread ASST−MSTR (right)',yaxis:'y2',line:{color:'#d2a8ff'}}),
@@ -663,10 +674,69 @@ function renderCharts(){const R=D.rows.filter(r=>r.date>=D.config.window_start);
 function plotMnav(){const oh=D.config.mnav.overheated_min_mnav,tr=[];
   ASSETS.forEach(aa=>{const a=aa.ticker,k=aa.key;
     if(MB!=='basic')tr.push(Object.assign(series(k+'_mnav_ev'),{name:a+' all-in (EV)',meta:a,line:{color:C[a],width:2.2},hovertemplate:'%{y:.3f}x'}));
-    tr.push(Object.assign(series(k+'_mnav_basic'),{name:a+' market standard'+(MB==='ev'?' (faint)':''),meta:a,opacity:MB==='ev'?0.4:1,line:{color:C[a],dash:MB==='basic'?'solid':'dot',width:MB==='ev'?1:MB==='both'?1.6:2.2},hovertemplate:'%{y:.3f}x'}));
+    tr.push(Object.assign(series(k+'_mnav_basic'),{name:a+' market standard',meta:a,visible:MB==='ev'?'legendonly':true,opacity:1,line:{color:C[a],dash:MB==='basic'?'solid':'dot',width:MB==='ev'?1:MB==='both'?1.6:2.2},hovertemplate:'%{y:.3f}x'}));
     tr.push(Object.assign(series(k+'_mnav_diluted'),{name:a+' diluted equity',meta:a,visible:'legendonly',line:{color:C[a],dash:'dashdot',width:1},hovertemplate:'%{y:.3f}x'}))});
   plot('c_mnav',tr,keepRange('c_mnav',baseLayout('mNAV (x)',{shapes:[hline(1,'#8b949e'),hline(oh,SEM.zone.OVERVALUED[0])]})));linkCharts()}
 function redrawTime(){renderCharts();plotBt()}
+// ---------- Signals over time (display-only replay of the daily recommendation; STRC/SATA never get signals)
+const SGC={BUY:'#3fb950',SELL:'#f85149',WAIT:'#d29922'};
+function hexA(h,a){const n=parseInt(h.slice(1),16);return `rgba(${n>>16&255},${n>>8&255},${n&255},${a})`}
+const fD=d=>new Date(d+'T12:00:00').toLocaleDateString('en-US',{month:'short',day:'numeric',year:'numeric'});
+function sigData(){const ws=D.config.window_start,R=D.rows.filter(r=>r.date>=ws&&r.rec),SE=A.signal_events||{events:[]};
+  const runs=[];R.forEach(r=>{const a=r.rec.action,l=runs[runs.length-1];if(l&&l.a===a)l.x1=r.date;else runs.push({a,x0:r.date,x1:r.date})});
+  runs.forEach((u,i)=>{u.end=runs[i+1]?runs[i+1].x0:u.x1});
+  return{R,runs,ev:(SE.events||[]).filter(e=>e.date>=ws),SE}}
+function plotSignals(){if(!$('c_sig'))return;const{R,runs,ev}=sigData(),t=TH(),mob=innerWidth<640,tick=ASSETS.map(a=>a.ticker);
+  const RC={STAY_BTC:C.BTC};tick.forEach(a=>RC['BUY_'+a]=C[a]);
+  const dom={[tick[0]]:[0.50,0.85],[tick[1]]:[0.0,0.40]},yk={[tick[0]]:'y',[tick[1]]:'y2'},rib=[0.90,0.97];
+  const shapes=[],tr=[],ann=[];
+  runs.forEach(u=>{shapes.push({type:'rect',xref:'x',yref:'paper',x0:u.x0,x1:u.end,y0:rib[0],y1:rib[1],fillcolor:hexA(RC[u.a]||'#8b949e',u.a==='STAY_BTC'?0.45:0.95),line:{width:0}});
+    const tk=u.a.startsWith('BUY_')?u.a.slice(4):null;if(tk&&dom[tk])shapes.push({type:'rect',xref:'x',yref:'paper',x0:u.x0,x1:u.end,y0:dom[tk][0],y1:dom[tk][1],fillcolor:hexA(C[tk],0.17),line:{width:0},layer:'below'})});
+  ann.push({xref:'paper',yref:'paper',x:1,y:rib[1]+0.005,xanchor:'right',yanchor:'bottom',showarrow:false,text:'<b>Active call each day</b>',font:{size:11,color:t.mut}});
+  tick.forEach((a,i)=>{const aa=ASSETS[i],RR=R.filter(r=>r[aa.key+'_mnav_ev']!=null),ys=RR.map(r=>r[aa.key+'_mnav_ev']);
+    tr.push({name:a+' all-in (EV) mNAV',x:RR.map(r=>r.date),y:ys,yaxis:yk[a],mode:'lines',line:{color:C[a],width:2.2},
+      customdata:RR.map(r=>RECL[r.rec.action]||r.rec.action),hovertemplate:`%{x|%b %d, %Y}<br>${a} all-in mNAV %{y:.2f}x<br>Call: %{customdata}<extra></extra>`});
+    const lo=Math.min(...ys),hi=Math.max(...ys),pad=(hi-lo)*0.16||0.1;
+    dom[a].r=[lo-pad,hi+pad];
+    const mk=(sig,sym,col,pos)=>{const E=ev.filter(e=>e.asset===a&&e.signal===sig);if(!E.length)return;
+      const big=sig!=='OVERHEAT_WAIT',lab=sig==='OVERHEAT_WAIT'?'overheated: wait':sig;
+      tr.push({name:lab,legendgroup:sig,x:E.map(e=>e.date),y:E.map(e=>{const r=R.find(r=>r.date===e.date);return e.mnav_ev??(r&&r[aa.key+'_mnav_ev'])}),yaxis:yk[a],
+        mode:big&&!mob?'markers+text':'markers',text:E.map(()=>sig),textposition:pos,textfont:{color:col,size:12,family:'system-ui'},cliponaxis:false,
+        marker:{symbol:sym,size:big?(mob?15:18):(mob?9:11),color:col,line:{color:t.panel,width:1.5}},
+        customdata:E.map(e=>[sig==='OVERHEAT_WAIT'?'OVERHEATED: WAIT':sig+' '+a,esc(e.reason)+(e.held_since?`<br>held since ${fD(e.held_since)}`:'')]),
+        hovertemplate:'<b>%{customdata[0]}</b> · %{x|%b %d, %Y}<br>%{customdata[1]}<br>all-in mNAV %{y:.2f}x<extra></extra>'})};
+    mk('BUY','triangle-up',SGC.BUY,'top center');mk('SELL','triangle-down',SGC.SELL,'bottom center');mk('OVERHEAT_WAIT','diamond',SGC.WAIT,'top center');
+    const nb=ev.filter(e=>e.asset===a&&e.signal==='BUY').length;
+    ann.push({xref:'paper',yref:'paper',x:0,y:dom[a][1],xanchor:'left',yanchor:'bottom',showarrow:false,text:`<b style="color:${C[a]}">${a}</b> · all-in (EV) mNAV · ${nb} BUY signal${nb===1?'':'s'}`,font:{size:12,color:t.fg}});
+    if(!nb)ann.push({xref:'paper',yref:'paper',x:0.5,y:(dom[a][0]+dom[a][1])/2,showarrow:false,text:`No BUY signal for ${a} in this period: the rules stayed in BTC`,font:{size:13,color:t.mut},bgcolor:hexA('#000000',0.25)})});
+  // ribbon hover
+  tr.push({name:'call',x:R.map(r=>r.date),y:R.map(()=>0.5),yaxis:'y3',mode:'markers',marker:{size:8,opacity:0},customdata:R.map(r=>[RECL[r.rec.action]||r.rec.action,esc(r.rec.reason)]),
+    hovertemplate:'%{x|%b %d, %Y} · <b>%{customdata[0]}</b><br>%{customdata[1]}<extra></extra>'});
+  const L=baseLayout('',{});
+  Object.assign(L,{hovermode:'closest',showlegend:false,margin:{l:mob?44:58,r:mob?10:24,t:mob?44:40,b:20},shapes,annotations:ann,
+    yaxis:{domain:dom[tick[0]],range:dom[tick[0]].r,gridcolor:t.grid,gridwidth:0.5,title:mob?'':{text:tick[0]+' mNAV (x)',font:{size:11}},ticksuffix:'x',zeroline:false},
+    yaxis2:{domain:dom[tick[1]],range:dom[tick[1]].r,gridcolor:t.grid,gridwidth:0.5,title:mob?'':{text:tick[1]+' mNAV (x)',font:{size:11}},ticksuffix:'x',zeroline:false},
+    yaxis3:{domain:rib,range:[0,1],visible:false,fixedrange:true}});
+  delete L.yaxis9;
+  if(mob){L.xaxis.rangeselector.buttons=L.xaxis.rangeselector.buttons.filter(b=>['3M','6M','1Y','All'].includes(b.label));L.xaxis.rangeselector.font={size:11,color:t.fg}}
+  keepRange('c_sig',L);
+  CSV['c_sig']=tr.filter(x=>x.name!=='call');
+  Plotly.newPlot('c_sig',tr,L,{responsive:true,displaylogo:false});if(!TS.includes('c_sig'))TS.push('c_sig');
+  $('siglegend').innerHTML=`<span><b class="sg-BUY">▲ BUY</b> call started</span><span><b class="sg-SELL">▼ SELL</b> call ended / exit to BTC</span><span><b class="sg-WAIT">◆</b> flywheel on but overheated: wait</span>
+    <span class="note">Ribbon:</span>${tick.map(a=>`<span><i class="sw" style="background:${C[a]}"></i>${RECL['BUY_'+a]}</span>`).join('')}<span><i class="sw" style="background:${hexA(C.BTC,0.45)}"></i>Stay in BTC</span>
+    <span class="note">Shaded = that asset was the active call</span>`;
+  linkCharts()}
+function renderSignalsCap(){const{R,runs,ev,SE}=sigData(),tick=ASSETS.map(a=>a.ticker),cur=runs[runs.length-1];
+  const n=(a,s)=>ev.filter(e=>e.asset===a&&e.signal===s).length,nb=tick.reduce((k,a)=>k+n(a,'BUY'),0);
+  const days=(a)=>R.filter(r=>r.rec.action==='BUY_'+a).length,btcd=R.filter(r=>r.rec.action==='STAY_BTC').length;
+  const last=(a,s)=>{const e=ev.filter(e=>e.asset===a&&e.signal===s).pop();return e?fD(e.date):'none'};
+  $('sigcap').innerHTML=`<div class="sigcount">${tick.map(a=>`<span><b style="color:${C[a]}">${a}</b>: <b class="sg-BUY">${n(a,'BUY')} BUY</b> · <b class="sg-SELL">${n(a,'SELL')} SELL</b>${n(a,'OVERHEAT_WAIT')?` · <b class="sg-WAIT">${n(a,'OVERHEAT_WAIT')} wait</b>`:''} · ${days(a)} days held · last buy ${last(a,'BUY')}</span>`).join('')}<span><b style="color:${C.BTC}">BTC</b>: ${btcd} of ${R.length} days</span></div>`+
+   (nb?'':`<div><b>No BUY signal fired since ${fD(R[0].date)}.</b> The rules stayed in BTC the whole time (yellow ribbon); this is a valid result, not missing data.</div>`)+
+   `<div class="note">Now: <b>${RECL[cur.a]||cur.a}</b> since ${fD(cur.x0)} (${R.filter(r=>r.date>=cur.x0).length} trading days). Signals are today's rules replayed day by day on each close (after the fact, not live trades). A call made on a close would be acted on at the next close (see Backtest). Preferreds (STRC / SATA) only switch a parent's flywheel on or off; they never get buy/sell signals.</div>`;
+  const E=[...ev].reverse(),ddiff=(a,b)=>Math.round((new Date(b)-new Date(a))/864e5);
+  $('sigevt').innerHTML='<tr><th>Date</th><th>Asset</th><th>Signal</th><th>All-in mNAV</th><th>Reason</th></tr>'+E.map(e=>`<tr><td style="white-space:nowrap">${e.date}</td><td><b style="color:${C[e.asset]}">${e.asset}</b></td><td class="sg-${e.signal==='OVERHEAT_WAIT'?'WAIT':e.signal}" style="white-space:nowrap">${e.signal==='BUY'?'▲ BUY':e.signal==='SELL'?'▼ SELL':'◆ wait'}</td><td>${fmt(e.mnav_ev,2)}x</td><td>${esc(e.reason)}${e.held_since?` <span class="note">(held ${ddiff(e.held_since,e.date)} days from ${e.held_since})</span>`:''}</td></tr>`).join('');
+  $('sigtnote').innerHTML=`${ev.length} events from ${fD(R[0].date)} to ${fD(R[R.length-1].date)}. BUY = the daily call changed into that asset; SELL = it changed out of it (back to BTC). ◆ wait = the parent's flywheel was ON but its all-in mNAV was overheated, so the rules said wait / reduce size instead of buying. Generated by <code>analytics.signal_events</code> from the same daily recommendation as the backtest; it does not change any rule.`}
+
 function plotBt(){if($('c_bt')&&$('c_bt')._fullLayout)renderBacktest()}
 // ---------- tables
 function renderBig(){const B=D.big_moves||[],t=D.config.big_moves;
@@ -727,7 +797,7 @@ function safe(n,f){try{f()}catch(e){console.warn(n,e);const el=document.getEleme
 (async()=>{try{[D,S,E]=await Promise.all([J('data/dashboard.json'),J('signals.json'),J('data/events.json')]);try{M=await J('data/markets.json')}catch(e){M=null}
  A=D.analytics;ASSETS=A.assets;ASSETS.forEach(a=>{if(a.color)C[a.ticker]=a.color});
  initTheme();
- for(const [n,f] of [['relative value',renderRV],['top',renderTop],['recommendation',renderRec],['chips',renderChips],['flywheel',renderFlywheel],['summary',renderSummary],['kpis',renderKpis],['signals',renderSignal],['valuation',renderValuation],['yield',renderYield],['atm',renderAtm],['events',()=>{initEvents();renderEvents()}],['toggles',initToggles],['charts',()=>{renderCharts();segInit('mbasis',MB,b=>{MB=b;plotMnav();plotSpread()});segInit('spmode',SPM,b=>{SPM=b;plotSpread()})}],['peg performance',renderPegPerf],['backtest',renderBacktest],['signal log',renderSigLog],['big moves',renderBig],['odds',renderPM],['method',renderMethod],['csv',initCsv]])safe(n,f);
+ for(const [n,f] of [['relative value',renderRV],['top',renderTop],['recommendation',renderRec],['chips',renderChips],['flywheel',renderFlywheel],['summary',renderSummary],['kpis',renderKpis],['signals',renderSignal],['valuation',renderValuation],['yield',renderYield],['atm',renderAtm],['events',()=>{initEvents();renderEvents()}],['toggles',initToggles],['charts',()=>{renderCharts();segInit('mbasis',MB,b=>{MB=b;plotMnav();plotSpread()});segInit('spmode',SPM,b=>{SPM=b;plotSpread()})}],['peg performance',renderPegPerf],['backtest',renderBacktest],['signal log',renderSigLog],['signal events',renderSignalsCap],['big moves',renderBig],['odds',renderPM],['method',renderMethod],['csv',initCsv]])safe(n,f);
  linkCharts();
  document.querySelectorAll('details').forEach(d=>d.addEventListener('toggle',()=>{if(d.open)d.querySelectorAll('.js-plotly-plot').forEach(el=>{try{Plotly.Plots.resize(el)}catch(e){}})}));
 }catch(e){console.error(e);$('gen').textContent='Failed to load data: '+e}})();

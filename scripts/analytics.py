@@ -375,3 +375,55 @@ def buy_flags(last, assets, cfg):
                             "very_low_mnav": vlow, "very_low_reason": "; ".join(why) or None,
                             "very_low_with_peg_near_or_on": vlow and st in ("ON", "NEAR")}
     return {"basis": bs, "low_fair_max_percentile": lf, "very_low_max_mnav": vm, "very_low_max_percentile": vp, "per_asset": out}
+
+
+# ---------------------------------------------------------------- signal events (display only)
+def signal_events(rows, assets, basis="ev"):
+    """Replay of the EXISTING daily recommendation (rows[].rec, computed by recommendation()) as discrete
+    per-asset events. BUY = the call changed INTO BUY_<T>; SELL = it changed OUT of BUY_<T> (exit / rotate
+    back to BTC). OVERHEAT_WAIT = first day of a stretch where the rules produced the 'Flywheel ON but
+    parent overheated: wait / reduce size' note while not holding that asset. Display only: does not change
+    any rule, the recommendation or the hash. STRC/SATA never get events (flywheel indicators only)."""
+    key = {A["ticker"]: A["key"] for A in assets}; pref = {A["ticker"]: A["preferred"] for A in assets}
+    R = [r for r in rows if r.get("rec")]
+    ev, prev, since, prev_note = [], None, {}, set()
+    def mn(r, t):
+        v = r.get(f"{key[t]}_mnav_{basis}"); return round(v, 4) if v is not None else None
+    for r in R:
+        act, rec = r["rec"]["action"], r["rec"]
+        held_prev = prev[4:] if prev and prev.startswith("BUY_") else None
+        held_now = act[4:] if act.startswith("BUY_") else None
+        if prev is not None and held_prev and held_prev != held_now:
+            x = rec["per_asset"].get(held_prev, {})
+            why = (f"{held_prev} all-in mNAV overheated ({mn(r, held_prev):.2f}x) → exit to "
+                   + ("BTC" if not held_now else held_now)) if x.get("overheated") and mn(r, held_prev) is not None else \
+                  (f"{pref[held_prev]} {FLY_SHORT.get(x.get('peg_state'), 'no data')} → flywheel off for {held_prev}; exit to "
+                   + ("BTC" if not held_now else held_now)) if not x.get("peg_confirmed") else \
+                  (f"Rotation tiebreak moved to {held_now}" if held_now else "Exit to BTC")
+            ev.append({"date": r["date"], "asset": held_prev, "signal": "SELL", "from": prev, "to": act,
+                       "held_since": since.get(held_prev), "mnav_ev": mn(r, held_prev), "reason": why, "full_reason": rec["reason"]})
+        if held_now and held_now != held_prev:
+            since[held_now] = r["date"]
+            ev.append({"date": r["date"], "asset": held_now, "signal": "BUY", "from": prev, "to": act, "held_since": None,
+                       "mnav_ev": mn(r, held_now),
+                       "reason": f"{pref[held_now]} Flywheel ON → flywheel on for {held_now}; all-in mNAV {mn(r, held_now):.2f}x not overheated"
+                                 + (f" (rotation tiebreak; {rec['also_valid']} also valid)" if rec.get("also_valid") else ""),
+                       "full_reason": rec["reason"]})
+        notes = set()
+        for t, x in rec["per_asset"].items():
+            if x.get("peg_confirmed") and x.get("overheated") and held_now != t:
+                notes.add(t)
+                if t not in prev_note and not any(e["date"] == r["date"] and e["asset"] == t for e in ev):
+                    ev.append({"date": r["date"], "asset": t, "signal": "OVERHEAT_WAIT", "from": prev, "to": act, "held_since": None,
+                               "mnav_ev": mn(r, t), "reason": f"{pref[t]} Flywheel ON but {t} all-in mNAV overheated ({mn(r, t):.2f}x): wait / reduce size",
+                               "full_reason": rec["reason"]})
+        prev_note, prev = notes, act
+    counts = {t: {s: sum(1 for e in ev if e["asset"] == t and e["signal"] == s) for s in ("BUY", "SELL", "OVERHEAT_WAIT")} for t in key}
+    return {"start": R[0]["date"] if R else None, "end": R[-1]["date"] if R else None, "basis": basis,
+            "events": ev, "counts": counts,
+            "current": {"action": R[-1]["rec"]["action"], "since": _run_start(R)} if R else None}
+
+def _run_start(R):
+    i = len(R) - 1
+    while i > 0 and R[i - 1]["rec"]["action"] == R[-1]["rec"]["action"]: i -= 1
+    return R[i]["date"]
