@@ -18,7 +18,7 @@
     "new": "STAY_BTC"
   },
   "_hash_note": "signal_hash changes when the recommendation, also_valid, any preferred peg state or any overheated flag changes; last_changed is the most recent trading day it changed.",
-  "generated_utc": "2026-10-27T00:50:53+00:00",
+  "generated_utc": "2026-10-27T01:29:11+00:00",
   "as_of": "2026-10-23",
   "disclaimer": "Rules-based indicator, not financial advice.",
   "recommendation_detail": {
@@ -423,7 +423,7 @@
       "odds": [
         {
           "outcome": "No change",
-          "yes": 0.9345
+          "yes": 0.937
         }
       ]
     },
@@ -445,7 +445,7 @@
       "odds": [
         {
           "outcome": "Democratic Party",
-          "yes": 0.915
+          "yes": 0.92
         }
       ]
     },
@@ -492,7 +492,7 @@
       "top": [
         {
           "outcome": "No change",
-          "yes": 0.9345
+          "yes": 0.937
         },
         {
           "outcome": "25 bps increase",
@@ -523,7 +523,7 @@
         },
         {
           "outcome": "50+ bps increase",
-          "yes": 0.027
+          "yes": 0.0265
         },
         {
           "outcome": "50+ bps decrease",
@@ -583,7 +583,7 @@
       "top": [
         {
           "outcome": "Democratic Party",
-          "yes": 0.915
+          "yes": 0.92
         },
         {
           "outcome": "Republican Party",
@@ -669,7 +669,7 @@
       "top": [
         {
           "outcome": "Below $55,000.00",
-          "yes": 0.1
+          "yes": 0.12
         },
         {
           "outcome": "Below $50,000.00",
@@ -715,11 +715,11 @@
       "top": [
         {
           "outcome": "Hike 25bps",
-          "yes": 0.72
+          "yes": 0.75
         },
         {
           "outcome": "Fed maintains rate",
-          "yes": 0.23
+          "yes": 0.22
         },
         {
           "outcome": "Hike >25bps",
@@ -765,7 +765,7 @@
         },
         {
           "outcome": "Republican Party",
-          "yes": 0.093
+          "yes": 0.097
         }
       ]
     },
