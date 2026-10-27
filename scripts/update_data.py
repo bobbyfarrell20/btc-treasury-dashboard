@@ -350,6 +350,17 @@ def main():
 
     for r in rows: r["sig"] = day_signal(r)
 
+    # ---- single recommendation (BUY_MSTR / BUY_ASST / STAY_BTC) per day
+    import analytics
+    ASSETS = CFG.get("assets") or [{"ticker": "MSTR", "key": "mstr", "preferred": "STRC"}, {"ticker": "ASST", "key": "asst", "preferred": "SATA"}]
+    for r in rows:
+        r["rec"] = analytics.recommendation(r, ASSETS, CFG)
+        r["rec_hash"] = analytics.rec_hash(r["rec"])
+        for A in ASSETS:
+            a = A["key"]
+            if r.get(a + "_btc") and r.get(a + "_shares"): r[a + "_bps"] = round(r[a + "_btc"] / r[a + "_shares"] * 1e3, 6)
+            if r.get(a + "_btc") and r.get(a + "_basic_shares"): r[a + "_bps_basic"] = round(r[a + "_btc"] / r[a + "_basic_shares"] * 1e3, 6)
+
     # ---- valuation zones (who's cheap vs expensive)
     vc = CFG.get("valuation", {"cheap_below_mnav": 1.0, "fair_max_percentile": 0.5})
     def zone(v, p):
@@ -442,16 +453,64 @@ def main():
     except Exception as e:
         log("odds jumps failed", e)
 
+    # ---- analytics
+    start = CFG["window_start"]
+    rb = CFG.get("recommendation", {}).get("overheat_basis", "ev")
+    dil_from = {"ASST": min([e["date"] for e in a_ev if e.get("shares_basis") == "assumed_fully_diluted"] or [None])}
+    pc_ = CFG["peg"]
+    flips = analytics.signal_flips(rows, ASSETS, start, rb)
+    lc = None
+    for p_, r_ in zip(rows, rows[1:]):
+        if p_["rec_hash"] != r_["rec_hash"]: lc = {"date": r_["date"], "old": p_["rec"]["action"], "new": r_["rec"]["action"],
+                                                    "old_hash": p_["rec_hash"], "new_hash": r_["rec_hash"]}
+    lrc = None
+    for p_, r_ in zip(rows, rows[1:]):
+        if p_["rec"]["action"] != r_["rec"]["action"]: lrc = {"date": r_["date"], "old": p_["rec"]["action"], "new": r_["rec"]["action"]}
+    if lc:
+        po = next(r_ for r_ in rows if r_["rec_hash"] == lc["old_hash"])
+        pn = next(r_ for r_ in rows if r_["rec_hash"] == lc["new_hash"])
+        lc["what"] = ", ".join(f"{x['preferred']} {po['rec']['per_asset'][t]['peg_state']}->{x['peg_state']}" for t, x in pn["rec"]["per_asset"].items()
+                               if po["rec"]["per_asset"][t]["peg_state"] != x["peg_state"]) or "recommendation/overheat change"
+    sources = {
+        "MSTR": {"holdings": max(([h["date"], doc["url"]] for doc in mdocs for h in doc["parsed"].get("holdings", [])), default=None),
+                 **{k: (lambda e: [e[0], e[2], e[3]])(cap["MSTR"][k][-1]) for k in ("basic_shares", "debt_m", "pref_usd_shares", "cash_m") if cap["MSTR"].get(k)},
+                 "kpi_api": "https://api.strategy.com/btc/mstrKpiData"},
+        "ASST": {"holdings": [a_ev[-1]["date"], a_ev[-1].get("src")] if a_ev else None,
+                 **{k: (lambda e: [e[0], e[2], e[3]])(cap["ASST"][k][-1]) for k in ("basic_shares", "debt_m", "sata_shares", "sats_shares", "cash_m") if cap["ASST"].get(k)}}}
+    ana = {
+        "assets": ASSETS,
+        "flywheel": {A["preferred"]: analytics.flywheel(rows, A["preferred"], A["ticker"], pc_) for A in ASSETS},
+        "btc_yield": analytics.btc_yield(rows, ASSETS, dil_from),
+        "btc_yield_diluted_from": dil_from,
+        "backtest": {"btc_idle": analytics.backtest(rows, ASSETS, start, "BTC"), "cash_idle": analytics.backtest(rows, ASSETS, start, "CASH")},
+        "peg_stretches": [s_ for A in ASSETS for s_ in analytics.peg_stretches(rows, A["preferred"], A["key"], A["ticker"])],
+        "atm": analytics.atm_summary(fuel, prices, pc_, cap["ASST"].get("sats_shares", []), rows[-1]["date"]),
+        "signal_flips": flips, "last_changed": lc, "last_recommendation_change": lrc, "sources": sources}
+    for k in ("cash_idle",):  # keep only stats + curve for the variant
+        ana["backtest"][k].pop("dates", None); ana["backtest"][k].pop("positions", None); ana["backtest"][k].pop("periods", None)
+        ana["backtest"][k]["curves"] = {"rules": ana["backtest"][k]["curves"]["rules"]}
+    gen0 = dt.datetime.now(dt.timezone.utc).isoformat(timespec="seconds")
+    slog = analytics.update_signal_log(DATA / "signal_log.json", rows[-1]["rec"], rows[-1]["date"], gen0, rows, ASSETS, rb)
+    ana["signal_log"] = slog["entries"]
+
     out_rows = [r for r in rows if r["date"] >= (dt.date.fromisoformat(start) - dt.timedelta(days=200)).isoformat()]
     gen = dt.datetime.now(dt.timezone.utc).isoformat(timespec="seconds")
     dash = {"generated_utc": gen, "config": CFG, "rows": out_rows, "fuel": fuel,
             "asst_events": a_ev, "mstr_holdings_edgar": edgar_h,
             "latest_btc_spot": {"date": max(btc), "price": btc[max(btc)]}, "big_moves": big, "signal_basis": BASIS, "basis_labels": BASIS_LABEL,
             "capital_residuals": cap["MSTR"]["residuals"], "strategy_kpi_latest": cap["MSTR"].get("strategy_kpi_latest"),
-            "sats": prices.get("SATS", {})}
+            "sats": prices.get("SATS", {}), "analytics": ana}
     (DATA / "dashboard.json").write_text(json.dumps(dash, separators=(",", ":")))
 
-    sig = {"generated_utc": gen, "as_of": last["date"], "disclaimer": "Rules-based indicator, not financial advice.",
+    lrec = last["rec"]
+    sig = {"recommendation": lrec["action"], "recommendation_reason": lrec["reason"], "also_valid": lrec.get("also_valid"),
+           "recommendation_notes": lrec.get("notes", []),
+           "signal_hash": last["rec_hash"], "last_changed": lc, "last_recommendation_change": lrc,
+           "_hash_note": "signal_hash changes when the recommendation, also_valid, any preferred peg state or any overheated flag changes; last_changed is the most recent trading day it changed.",
+           "generated_utc": gen, "as_of": last["date"], "disclaimer": "Rules-based indicator, not financial advice.",
+           "recommendation_detail": lrec,
+           "flywheel": ana["flywheel"],
+           "btc_yield": {t: {k: (v.get("value") if isinstance(v, dict) else v) for k, v in y.items()} for t, y in ana["btc_yield"].items()},
            "headline": last["sig"]["headline"], "per_asset": last["sig"]["per"],
            "both_overheated": last["sig"]["both_overheated"], "rotation": last["sig"]["rotation"],
            "dip": {"active": last["sig"]["dip"], "target": last["sig"]["dip_target"], "lookback_trading_days": dc["lookback_days"],
@@ -487,6 +546,13 @@ def main():
     sig["changed_since_prev_close"] = bool(prev and (prev["headline"] != last["sig"]["headline"]))
     sig["prev_headline"] = prev["headline"] if prev else None
     (ROOT / "signals.json").write_text(json.dumps(sig, indent=2))
+    # flat CSV of the daily table (for spreadsheets)
+    import csv
+    cols = sorted({k for r in out_rows for k, v in r.items() if not isinstance(v, (dict, list))})
+    cols = ["date"] + [c for c in cols if c != "date"]
+    with open(DATA / "rows.csv", "w", newline="") as fh:
+        w = csv.writer(fh); w.writerow(cols + ["recommendation", "headline_legacy"])
+        for r in out_rows: w.writerow([r.get(c, "") for c in cols] + [r["rec"]["action"], r["sig"]["headline"]])
     log("latest", json.dumps(sig, indent=1)[:3000])
 
 if __name__ == "__main__":

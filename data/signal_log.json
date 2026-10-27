@@ -1,0 +1,20 @@
+{
+ "_comment": "Appended by the daily job when the recommendation changes. 'after' moves are recomputed each run.",
+ "entries": [
+  {
+   "detected_utc": "2026-10-27T00:11:21+00:00",
+   "as_of": "2026-10-23",
+   "old": null,
+   "new": "STAY_BTC",
+   "old_hash": null,
+   "new_hash": "a2be7024860b",
+   "reason": "No preferred peg confirmed (STRC WATCH, SATA SELL): stay in BTC",
+   "initial": true,
+   "after": {
+    "1d": null,
+    "7d": null,
+    "30d": null
+   }
+  }
+ ]
+}

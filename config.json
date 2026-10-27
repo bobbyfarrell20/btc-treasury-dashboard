@@ -1,6 +1,30 @@
 {
   "_comment": "All signal thresholds live here. Edit and push; the daily workflow (or a manual run) recomputes signals.json and the dashboard.",
   "window_start": "2025-10-27",
+  "assets": [
+    {
+      "ticker": "MSTR",
+      "key": "mstr",
+      "name": "Strategy",
+      "preferred": "STRC",
+      "color": "#f0883e"
+    },
+    {
+      "ticker": "ASST",
+      "key": "asst",
+      "name": "Strive",
+      "preferred": "SATA",
+      "extra_preferreds": [
+        "SATS"
+      ],
+      "color": "#a371f7"
+    }
+  ],
+  "_assets_comment": "Companies tracked. The page, recommendation, analytics and backtest loop over this list. Adding a third company also needs a holdings/share-count + capital adapter in scripts/update_data.py and scripts/capital.py (BTC held, shares, debt, preferred, cash). The rotation spread uses the first two.",
+  "recommendation": {
+    "_comment": "Single call per day. Peg confirmation (state ON: close >= peg.on_threshold for peg.on_consecutive_days) is the trigger; parent all-in mNAV overheated (mnav.overheated_min_mnav AND overheated_percentile, on overheat_basis) is a filter; if both pegs are confirmed and neither overheated, rotation z (spread_z on overheat_basis) picks one (z<0 -> second asset, else first). Otherwise STAY_BTC.",
+    "overheat_basis": "ev"
+  },
   "peg": {
     "par": 100.0,
     "on_threshold": 99.95,
@@ -165,8 +189,8 @@
         "id": "what-price-will-bitcoin-hit-before-2027",
         "short": "BTC in 2026",
         "outcomes": [
-          "↑ 100,000",
-          "↓ 55,000"
+          "\u2191 100,000",
+          "\u2193 55,000"
         ]
       },
       {
