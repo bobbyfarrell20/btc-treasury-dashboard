@@ -18,7 +18,7 @@
     "new": "STAY_BTC"
   },
   "_hash_note": "signal_hash changes when the recommendation, also_valid, any preferred peg state or any overheated flag changes; last_changed is the most recent trading day it changed.",
-  "generated_utc": "2026-10-27T02:51:30+00:00",
+  "generated_utc": "2026-10-27T03:05:47+00:00",
   "as_of": "2026-10-26",
   "disclaimer": "Rules-based indicator, not financial advice.",
   "recommendation_detail": {
@@ -492,7 +492,7 @@
       "odds": [
         {
           "outcome": "No change",
-          "yes": 0.9395
+          "yes": 0.9365
         }
       ]
     },
@@ -561,11 +561,11 @@
       "top": [
         {
           "outcome": "No change",
-          "yes": 0.9395
+          "yes": 0.9365
         },
         {
           "outcome": "25 bps increase",
-          "yes": 0.06
+          "yes": 0.065
         },
         {
           "outcome": "50+ bps increase",
@@ -630,7 +630,7 @@
       "top": [
         {
           "outcome": "Clarity Act (H.R.3633) signed into law in 2026?",
-          "yes": 0.0375
+          "yes": 0.037
         }
       ]
     },
@@ -715,7 +715,7 @@
       "top": [
         {
           "outcome": "Above $99,999.99",
-          "yes": 0.2
+          "yes": 0.19
         },
         {
           "outcome": "Above $109,999.99",
@@ -765,7 +765,7 @@
         },
         {
           "outcome": "Hike 25bps",
-          "yes": 0.08
+          "yes": 0.07
         },
         {
           "outcome": "Cut 25bps",
