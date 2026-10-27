@@ -40,7 +40,7 @@
     "spread_z_favor_asst": -1.0,
     "spread_z_favor_mstr": 1.0,
     "both_overheated_action": "SELL_TO_BTC",
-    "_both_overheated_comment": "when MSTR and ASST are both overheated, sell both and hold BTC (overrides peg actions)",
+    "_both_overheated_comment": "when MSTR and ASST are both overheated, sell both and hold BTC (overrides flywheel-driven parent actions)",
     "signal_basis": "ev",
     "_signal_basis_comment": "Which mNAV drives overheated / rotation / dip / zones: 'ev' (all-in: equity at basic shares + debt + preferred notional - cash, over BTC NAV), 'basic' (market-standard: price x basic shares / BTC NAV) or 'diluted' (price x assumed-diluted shares / BTC NAV).",
     "ev_share_basis": "basic",
@@ -222,7 +222,7 @@
     ]
   },
   "buy_flags": {
-    "_comment": "Display flags (do not change the recommendation). flywheel_cheap: preferred peg ON (confirmed) AND parent all-in mNAV zone CHEAP, or FAIR with 1y percentile < low_fair_max_percentile ('low-FAIR'). very_low_mnav (secondary buy signal): all-in mNAV <= very_low_max_mnav OR 1y percentile <= very_low_max_percentile, shown even when the preferred is only NEAR PAR.",
+    "_comment": "Display flags (do not change the recommendation). flywheel_cheap: the parent's flywheel ON (its preferred, an indicator not a trade, confirmed >= peg.on_threshold) AND parent all-in mNAV zone CHEAP, or FAIR with 1y percentile < low_fair_max_percentile ('low-FAIR'). very_low_mnav (secondary cue for the parent): all-in mNAV <= very_low_max_mnav OR 1y percentile <= very_low_max_percentile, shown even when the parent's flywheel is only slowing near par.",
     "basis": "ev",
     "low_fair_max_percentile": 0.5,
     "very_low_max_mnav": 1.0,

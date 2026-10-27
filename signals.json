@@ -1,6 +1,6 @@
 {
   "recommendation": "STAY_BTC",
-  "recommendation_reason": "No preferred peg confirmed (STRC WATCH, SATA SELL): stay in BTC",
+  "recommendation_reason": "No flywheel ON (STRC slowing \u2192 flywheel off for MSTR; SATA stalled \u2192 flywheel off for ASST): stay in BTC",
   "also_valid": null,
   "recommendation_notes": [],
   "signal_hash": "a2be7024860b",
@@ -10,7 +10,7 @@
     "new": "STAY_BTC",
     "old_hash": "aadda5de10f2",
     "new_hash": "a2be7024860b",
-    "what": "STRC SELL->WATCH"
+    "what": "STRC Flywheel stalled \u2192 Flywheel slowing (flywheel for MSTR)"
   },
   "last_recommendation_change": {
     "date": "2026-10-07",
@@ -18,12 +18,12 @@
     "new": "STAY_BTC"
   },
   "_hash_note": "signal_hash changes when the recommendation, also_valid, any preferred peg state or any overheated flag changes; last_changed is the most recent trading day it changed.",
-  "generated_utc": "2026-10-27T02:07:59+00:00",
+  "generated_utc": "2026-10-27T02:22:22+00:00",
   "as_of": "2026-10-26",
   "disclaimer": "Rules-based indicator, not financial advice.",
   "recommendation_detail": {
     "action": "STAY_BTC",
-    "reason": "No preferred peg confirmed (STRC WATCH, SATA SELL): stay in BTC",
+    "reason": "No flywheel ON (STRC slowing \u2192 flywheel off for MSTR; SATA stalled \u2192 flywheel off for ASST): stay in BTC",
     "also_valid": null,
     "notes": [],
     "rotation_z": 0.548,
@@ -33,6 +33,8 @@
         "peg_state": "WATCH",
         "peg_confirmed": false,
         "overheated": false,
+        "flywheel_state": "Flywheel slowing",
+        "flywheel_effect": "STRC slowing \u2192 flywheel off for MSTR",
         "mnav_ev": 1.0906,
         "mnav_ev_pct": 0.373,
         "has_data": true
@@ -42,6 +44,8 @@
         "peg_state": "SELL",
         "peg_confirmed": false,
         "overheated": false,
+        "flywheel_state": "Flywheel stalled",
+        "flywheel_effect": "SATA stalled \u2192 flywheel off for ASST",
         "mnav_ev": 1.4242,
         "mnav_ev_pct": 0.635,
         "has_data": true
@@ -56,6 +60,8 @@
       "close": 99.17,
       "peg_state": "WATCH",
       "status": "OFF_PEG",
+      "flywheel_state": "Flywheel slowing",
+      "flywheel_effect": "STRC slowing \u2192 flywheel off for MSTR",
       "streak_days_at_or_above_threshold": 0,
       "days_below_threshold": 113,
       "required_days": 3,
@@ -70,6 +76,8 @@
       "close": 98.36,
       "peg_state": "SELL",
       "status": "OFF_PEG",
+      "flywheel_state": "Flywheel stalled",
+      "flywheel_effect": "SATA stalled \u2192 flywheel off for ASST",
       "streak_days_at_or_above_threshold": 0,
       "days_below_threshold": 14,
       "required_days": 3,
@@ -87,6 +95,7 @@
       "MSTR": {
         "preferred": "STRC",
         "peg_state": "WATCH",
+        "flywheel_state": "Flywheel slowing",
         "mnav": 1.0906,
         "mnav_pct_1y": 0.373,
         "zone": "FAIR",
@@ -100,6 +109,7 @@
       "ASST": {
         "preferred": "SATA",
         "peg_state": "SELL",
+        "flywheel_state": "Flywheel stalled",
         "mnav": 1.4242,
         "mnav_pct_1y": 0.635,
         "zone": "OVERVALUED",
@@ -132,10 +142,12 @@
       "btc_per_1000_diluted_shares": 0.33066
     }
   },
-  "headline": "SELL/TRIM ASST (preferred off peg & falling); WATCH MSTR (preferred lost peg)",
+  "headline": "SELL/TRIM ASST (SATA stalled \u2192 flywheel off for ASST); WATCH MSTR (STRC slowing \u2192 flywheel off for MSTR)",
   "per_asset": {
     "MSTR": {
       "peg_state": "WATCH",
+      "preferred": "STRC",
+      "preferred_flywheel_state": "Flywheel slowing",
       "action": "WATCH",
       "mnav": 1.0906,
       "mnav_pct_1y": 0.373,
@@ -145,6 +157,8 @@
     },
     "ASST": {
       "peg_state": "SELL",
+      "preferred": "SATA",
+      "preferred_flywheel_state": "Flywheel stalled",
       "action": "SELL",
       "mnav": 1.4242,
       "mnav_pct_1y": 0.635,
@@ -171,11 +185,13 @@
     "STRC": {
       "price": 99.17,
       "state": "WATCH",
+      "flywheel_state": "Flywheel slowing",
       "distance_from_par": -0.83
     },
     "SATA": {
       "price": 98.36,
       "state": "SELL",
+      "flywheel_state": "Flywheel stalled",
       "distance_from_par": -1.64
     }
   },
@@ -400,13 +416,6 @@
       "title": "STRC daily dividends start (conditional on vote): record every day, $1.00 total for Nov, 12%",
       "status": "scheduled",
       "source": "https://www.strategy.com/press/strategy-declares-conditional-daily-dividends-on-strc-for-november-2026_10-16-2026"
-    },
-    {
-      "date": "2026-11-03",
-      "category": "election",
-      "title": "US midterm elections",
-      "status": "scheduled",
-      "source": "Election Day (fixed by law)"
     }
   ],
   "odds_jumps": [
@@ -476,7 +485,7 @@
       "odds": [
         {
           "outcome": "No change",
-          "yes": 0.937
+          "yes": 0.9395
         }
       ]
     },
@@ -498,7 +507,7 @@
       "odds": [
         {
           "outcome": "Democratic Party",
-          "yes": 0.92
+          "yes": 0.915
         }
       ]
     },
@@ -545,11 +554,11 @@
       "top": [
         {
           "outcome": "No change",
-          "yes": 0.937
+          "yes": 0.9395
         },
         {
           "outcome": "25 bps increase",
-          "yes": 0.065
+          "yes": 0.06
         },
         {
           "outcome": "50+ bps increase",
@@ -636,7 +645,7 @@
       "top": [
         {
           "outcome": "Democratic Party",
-          "yes": 0.92
+          "yes": 0.915
         },
         {
           "outcome": "Republican Party",
@@ -749,7 +758,7 @@
         },
         {
           "outcome": "Hike 25bps",
-          "yes": 0.08
+          "yes": 0.07
         },
         {
           "outcome": "Cut 25bps",
@@ -768,7 +777,7 @@
       "top": [
         {
           "outcome": "Hike 25bps",
-          "yes": 0.72
+          "yes": 0.75
         },
         {
           "outcome": "Fed maintains rate",
@@ -776,7 +785,7 @@
         },
         {
           "outcome": "Hike >25bps",
-          "yes": 0.05
+          "yes": 0.03
         },
         {
           "outcome": "Cut 25bps",
@@ -818,7 +827,7 @@
         },
         {
           "outcome": "Republican Party",
-          "yes": 0.096
+          "yes": 0.097
         }
       ]
     },
@@ -829,7 +838,7 @@
       "top": [
         {
           "outcome": "Democratic Party",
-          "yes": 0.65
+          "yes": 0.64
         },
         {
           "outcome": "Republican Party",
@@ -972,5 +981,5 @@
     }
   },
   "changed_since_prev_close": false,
-  "prev_headline": "SELL/TRIM ASST (preferred off peg & falling); WATCH MSTR (preferred lost peg)"
+  "prev_headline": "SELL/TRIM ASST (SATA stalled \u2192 flywheel off for ASST); WATCH MSTR (STRC slowing \u2192 flywheel off for MSTR)"
 }

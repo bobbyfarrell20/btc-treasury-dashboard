@@ -8,7 +8,7 @@
    "new": "STAY_BTC",
    "old_hash": null,
    "new_hash": "a2be7024860b",
-   "reason": "No preferred peg confirmed (STRC WATCH, SATA SELL): stay in BTC",
+   "reason": "No flywheel ON (STRC slowing \u2192 flywheel off for MSTR; SATA stalled \u2192 flywheel off for ASST): stay in BTC",
    "initial": true,
    "after": {
     "1d": {

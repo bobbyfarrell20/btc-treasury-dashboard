@@ -15,6 +15,9 @@ Sources
 import json, re, html, time, math, os, sys, datetime as dt
 from pathlib import Path
 import requests
+sys.path.insert(0, str(Path(__file__).resolve().parent))
+import analytics as AN
+PREF_OF = {"MSTR": "STRC", "ASST": "SATA"}
 
 ROOT = Path(__file__).resolve().parent.parent
 DATA = ROOT / "data"
@@ -345,7 +348,7 @@ def main():
             ps = r.get("peg_" + pref)
             act = {"ON": "BUY", "NEAR": "HOLD", "WATCH": "WATCH", "SELL": "SELL", None: "NO_DATA"}[ps]
             if both_oh: act = CFG["mnav"].get("both_overheated_action", "SELL_TO_BTC")
-            per[asset] = {"peg_state": ps, "action": act, "mnav": r.get(asset.lower() + "_mnav"),
+            per[asset] = {"peg_state": ps, "preferred": pref, "preferred_flywheel_state": AN.fly_label(ps), "action": act, "mnav": r.get(asset.lower() + "_mnav"),
                           "mnav_pct_1y": r.get(asset.lower() + "_mnav_pct"), "overheated": oh[asset.lower()],
                           "price_chg_dip_window": r.get(asset.lower() + "_chg"), "mnav_chg_dip_window": r.get(asset.lower() + "_mnav_chg")}
         out.update(per=per, both_overheated=both_oh, rotation=rot, dip=dip, dip_target=hardest if dip else None, cheapened_most=hardest)
@@ -356,11 +359,11 @@ def main():
             sells = [a for a in ("MSTR", "ASST") if per[a]["action"] == "SELL"]
             parts = []
             if buys:
-                if len(buys) == 2 and rot != "NEUTRAL": parts.append("BUY " + ("ASST" if rot == "FAVOR_ASST" else "MSTR") + " (both pegs on; mNAV rotation tilts it)")
-                else: parts.append("BUY " + " + ".join(buys) + " (peg on)")
-            if sells: parts.append("SELL/TRIM " + " + ".join(sells) + " (preferred off peg & falling)")
+                if len(buys) == 2 and rot != "NEUTRAL": parts.append("BUY " + ("ASST" if rot == "FAVOR_ASST" else "MSTR") + " (both flywheels ON; mNAV rotation tilts it)")
+                else: parts.append("; ".join(f"BUY {a} ({PREF_OF[a]} ON \u2192 flywheel on for {a})" for a in buys))
+            if sells: parts.append("; ".join(f"SELL/TRIM {a} ({PREF_OF[a]} stalled \u2192 flywheel off for {a})" for a in sells))
             watch = [a for a in ("MSTR", "ASST") if per[a]["action"] == "WATCH"]
-            if watch: parts.append("WATCH " + " + ".join(watch) + " (preferred lost peg)")
+            if watch: parts.append("; ".join(f"WATCH {a} ({PREF_OF[a]} slowing \u2192 flywheel off for {a})" for a in watch))
             if dip: parts.append(f"DIP-BUY: BTC {r['btc_chg']*100:.0f}% in {dc['lookback_days']} trading days; buy {hardest} (mNAV fell most)")
             if not parts: parts.append("No strong signal - hold cash / stay patient")
             head = "; ".join(parts)
@@ -507,7 +510,7 @@ def main():
     if lc:
         po = next(r_ for r_ in rows if r_["rec_hash"] == lc["old_hash"])
         pn = next(r_ for r_ in rows if r_["rec_hash"] == lc["new_hash"])
-        lc["what"] = ", ".join(f"{x['preferred']} {po['rec']['per_asset'][t]['peg_state']}->{x['peg_state']}" for t, x in pn["rec"]["per_asset"].items()
+        lc["what"] = ", ".join(f"{x['preferred']} {AN.fly_label(po['rec']['per_asset'][t]['peg_state'])} \u2192 {AN.fly_label(x['peg_state'])} (flywheel for {t})" for t, x in pn["rec"]["per_asset"].items()
                                if po["rec"]["per_asset"][t]["peg_state"] != x["peg_state"]) or "recommendation/overheat change"
     sources = {
         "MSTR": {"holdings": max(([h["date"], doc["url"]] for doc in mdocs for h in doc["parsed"].get("holdings", [])), default=None),
@@ -557,7 +560,7 @@ def main():
                    "trigger_btc_drop": dc["btc_drop_pct"], "btc_change": last.get("btc_chg"), "cheapened_most": last["sig"]["cheapened_most"],
                    "mstr_price_change": last.get("mstr_chg"), "asst_price_change": last.get("asst_chg"),
                    "mstr_mnav_change": last.get("mstr_mnav_chg"), "asst_mnav_change": last.get("asst_mnav_chg")},
-           "peg": {p: {"price": last.get(p), "state": last.get("peg_" + p),
+           "peg": {p: {"price": last.get(p), "state": last.get("peg_" + p), "flywheel_state": AN.fly_label(last.get("peg_" + p)),
                        "distance_from_par": round(last[p] - pc["par"], 3) if last.get(p) else None} for p in ("STRC", "SATA")},
            "signal_basis": BASIS, "signal_basis_label": BASIS_LABEL[BASIS],
            "values": {k: last.get(k) for k in ("MSTR", "ASST", "btc", "mstr_mnav", "asst_mnav", "mnav_avg", "mnav_spread",

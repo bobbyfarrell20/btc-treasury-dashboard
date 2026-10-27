@@ -1,3 +1,4 @@
+import re
 """Derived analytics for the Flywheel Rotation Tracker (no new data sources; everything is computed
 from the daily rows built in update_data.py).
 
@@ -28,6 +29,33 @@ def _at_or_after(rows, d, key=None):
 
 def _plus(d, n): return (D(d) + dt.timedelta(days=n)).isoformat()
 
+# ---------------------------------------------------------------- flywheel labels
+# STRC / SATA are flywheel indicators for their parents (MSTR / ASST), never trades.
+# peg_state keeps the machine codes (ON / NEAR / WATCH / SELL); these are the human labels.
+FLY_LABEL = {"ON": "Flywheel ON", "NEAR": "Flywheel slowing", "WATCH": "Flywheel slowing", "SELL": "Flywheel stalled", None: "No data"}
+FLY_SHORT = {"ON": "ON", "NEAR": "slowing", "WATCH": "slowing", "SELL": "stalled", None: "no data"}
+
+def fly_label(st): return FLY_LABEL.get(st, "No data")
+
+def fly_effect(pref, st, parent):
+    return f"{pref} {FLY_SHORT.get(st, 'no data')} \u2192 flywheel {'on' if st == 'ON' else 'off'} for {parent}"
+
+def relabel_reason(txt):
+    """Rewrite older log reasons that used peg-state codes into flywheel language."""
+    if not txt: return txt
+    par = {"STRC": "MSTR", "SATA": "ASST"}
+    m = re.match(r"No preferred peg confirmed \((.*)\): stay in BTC$", txt)
+    if m:
+        bits = []
+        for part in m.group(1).split(", "):
+            pr, _, st = part.partition(" ")
+            bits.append(fly_effect(pr, None if st == "n/a" else st, par.get(pr, "parent")))
+        return "No flywheel ON (" + "; ".join(bits) + "): stay in BTC"
+    m = re.match(r"(STRC|SATA) peg confirmed and (MSTR|ASST) (.*)$", txt)
+    if m: return f"{m.group(1)} Flywheel ON \u2192 flywheel on for {m.group(2)}; {m.group(2)} {m.group(3)}"
+    txt = txt.replace("Both pegs confirmed", "Both flywheels ON").replace("Peg on but parent overheated", "Flywheel ON but parent overheated")
+    return re.sub(r"(STRC|SATA) peg is on but", r"\1 Flywheel ON but", txt)
+
 # ---------------------------------------------------------------- recommendation
 def recommendation(r, assets, cfg):
     """Peg confirmation (state ON) is the trigger; all-in (EV) mNAV overheated is a filter;
@@ -41,16 +69,17 @@ def recommendation(r, assets, cfg):
         oh = bool(v is not None and pc is not None and v >= mc["overheated_min_mnav"] and pc >= mc["overheated_percentile"])
         st = r.get("peg_" + p)
         info[A["ticker"]] = {"preferred": p, "peg_state": st, "peg_confirmed": st == "ON", "overheated": oh,
+                             "flywheel_state": fly_label(st), "flywheel_effect": fly_effect(p, st, A["ticker"]),
                              "mnav_" + ob: v, "mnav_" + ob + "_pct": pc, "has_data": v is not None}
         if st == "ON" and not oh and v is not None: cands.append(A["ticker"])
     z = r.get("spread_z_" + ob, r.get("spread_z"))
     notes, other = [], None
     for t, x in info.items():
         if x["peg_confirmed"] and x["overheated"]:
-            notes.append(f"{x['preferred']} peg is on but {t} all-in mNAV is overheated: wait / reduce size")
+            notes.append(f"{x['preferred']} Flywheel ON but {t} all-in mNAV is overheated: wait / reduce size")
     if len(cands) == 1:
         act, t = "BUY_" + cands[0], cands[0]
-        reason = f"{info[t]['preferred']} peg confirmed and {t} all-in mNAV {info[t]['mnav_'+ob]:.2f}x is not overheated"
+        reason = f"{info[t]['preferred']} Flywheel ON \u2192 flywheel on for {t}; {t} all-in mNAV {info[t]['mnav_'+ob]:.2f}x is not overheated"
     elif len(cands) >= 2:
         # spread = second - first (ASST - MSTR); z < 0 -> second relatively cheaper
         t0, t1 = assets[0]["ticker"], assets[1]["ticker"]
@@ -58,18 +87,17 @@ def recommendation(r, assets, cfg):
         other = t0 if pick == t1 else t1
         act = "BUY_" + pick
         strength = "strong" if z is not None and (z <= mc["spread_z_favor_asst"] or z >= mc["spread_z_favor_mstr"]) else "weak"
-        reason = (f"Both pegs confirmed and neither overheated; rotation z {z:+.2f} ({strength} tilt) favors {pick}. "
-                  f"{other} is also valid" if z is not None else f"Both pegs confirmed; no rotation z yet, defaulting to {pick}. {other} is also valid")
+        reason = (f"Both flywheels ON and neither parent overheated; rotation z {z:+.2f} ({strength} tilt) favors {pick}. "
+                  f"{other} is also valid" if z is not None else f"Both flywheels ON; no rotation z yet, defaulting to {pick}. {other} is also valid")
     else:
         act = "STAY_BTC"
         on = [t for t, x in info.items() if x["peg_confirmed"]]
         if on and all(info[t]["overheated"] for t in on):
-            reason = "Peg on but parent overheated (all-in mNAV): wait / reduce size, stay in BTC"
+            reason = "Flywheel ON but parent overheated (all-in mNAV): wait / reduce size, stay in BTC"
         elif all(x["overheated"] for x in info.values()):
             reason = "Both parents overheated on all-in mNAV: stay in BTC"
         else:
-            near = [f"{x['preferred']} {x['peg_state'] or 'n/a'}" for x in info.values()]
-            reason = "No preferred peg confirmed (" + ", ".join(near) + "): stay in BTC"
+            reason = "No flywheel ON (" + "; ".join(x["flywheel_effect"] for x in info.values()) + "): stay in BTC"
     return {"action": act, "reason": reason, "also_valid": other, "notes": notes, "rotation_z": z, "per_asset": info}
 
 def rec_hash(rec):
@@ -95,6 +123,7 @@ def flywheel(rows, pref, parent, pc, extra_prices=None):
     st = last.get("peg_" + pref)
     status = "FLYWHEEL_ON" if st == "ON" else ("NEAR_PAR" if st == "NEAR" else "OFF_PEG")
     return {"preferred": pref, "parent": parent, "date": last["date"], "close": last[pref], "peg_state": st, "status": status,
+            "flywheel_state": fly_label(st), "flywheel_effect": fly_effect(pref, st, parent),
             "streak_days_at_or_above_threshold": streak, "days_below_threshold": below,
             "required_days": pc["on_consecutive_days"], "threshold": pc["on_threshold"],
             "distance_to_threshold": round(last[pref] - pc["on_threshold"], 3), "distance_to_par": round(last[pref] - pc["par"], 3)}
@@ -320,13 +349,14 @@ def update_signal_log(path, rec, as_of, gen_utc, rows, assets, basis="ev"):
     if not E or E[-1]["new_hash"] != h:
         E.append({"detected_utc": gen_utc, "as_of": as_of, "old": E[-1]["new"] if E else None, "new": rec["action"],
                   "old_hash": E[-1]["new_hash"] if E else None, "new_hash": h, "reason": rec["reason"], "initial": not E})
+    for e in E: e["reason"] = relabel_reason(e.get("reason"))
     for e in E: e["after"] = _moves(rows, e["as_of"], assets, basis)
     path.write_text(json.dumps(log, indent=1))
     return log
 
 
 def buy_flags(last, assets, cfg):
-    """Per-asset display flags: Flywheel + Cheap, and very-low all-in mNAV (secondary buy signal)."""
+    """Per-asset display flags: Flywheel + Cheap, and very-low all-in mNAV (secondary cue for the parent)."""
     bf = cfg.get("buy_flags", {}); bs = bf.get("basis", "ev")
     lf = bf.get("low_fair_max_percentile", 0.5); vm = bf.get("very_low_max_mnav", 1.0); vp = bf.get("very_low_max_percentile", 0.2)
     out = {}
@@ -339,7 +369,7 @@ def buy_flags(last, assets, cfg):
         why = []
         if m is not None and m <= vm: why.append(f"all-in mNAV {m:.2f}x <= {vm}x")
         if p is not None and p <= vp: why.append(f"1y percentile {p:.0%} <= {vp:.0%}")
-        out[A["ticker"]] = {"preferred": A["preferred"], "peg_state": st, "mnav": m, "mnav_pct_1y": p, "zone": z,
+        out[A["ticker"]] = {"preferred": A["preferred"], "peg_state": st, "flywheel_state": fly_label(st), "mnav": m, "mnav_pct_1y": p, "zone": z,
                             "low_fair": low_fair, "cheap_or_low_fair": cheapish,
                             "flywheel_cheap": st == "ON" and cheapish,
                             "very_low_mnav": vlow, "very_low_reason": "; ".join(why) or None,
