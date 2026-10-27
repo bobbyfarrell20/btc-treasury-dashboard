@@ -9,30 +9,47 @@ A free, static dashboard (GitHub Pages + GitHub Actions) for rotating between **
 **Rules-based indicator, not financial advice.**
 
 ## What's on it
-- **Header**: live BTC/MSTR/ASST mini-tickers with the day's % change, plus the current signal as a colored pill.
-- **Current signal panel**: per-asset action, driven primarily by the preferred's peg (STRC → MSTR, SATA → ASST). Also covers mNAV rotation, the "both overheated → SELL_TO_BTC" rule, the short-window BTC dip rule, and the market-standard and all-in (EV) mNAVs.
-- **Valuation (who's cheap vs expensive)**: two mNAVs per stock, each with its own 1y percentile, zone gauge (CHEAP / FAIR / RICH / OVERVALUED) and plain-words read:
-  - **mNAV (market standard)** = price × basic shares ÷ (BTC held × BTC price). This is the number most sites quote.
-  - **mNAV all-in (EV)** = (price × basic shares + debt at notional + preferred notional − cash/USD reserve) ÷ BTC NAV. It counts every claim on the bitcoin. Same formula for both stocks; it matches Strategy's own EV definition.
-  - Diluted equity mNAV (price × assumed-diluted shares) is shown only in a tooltip and as a hidden legend line.
-  - There is also a relative verdict on each basis and a zone-history chart with a basis toggle.
-- **Key dates** (`data/events.json`): earnings, preferred record/dividend dates, FOMC, CPI, midterms, crypto bills in Congress.
-- **Interactive charts** (Plotly, time sliders, linked axes, event markers):
-  1. normalized performance, re-based to 0% at the first visible date whenever you zoom or slide
-  2. mNAV (MSTR vs ASST): all-in EV solid, market standard dotted, with a toggle
-  3. ASST/MSTR ratio, mNAV spread and average (on the signal basis)
-  4. price vs BTC NAV/share
-  5. STRC/SATA vs $100 par with ON/NEAR/WATCH/SELL bands, plus flywheel fuel (STRC ATM, buybacks, SATA outstanding)
-- **Big moves log**: daily moves ≥ ±7% for MSTR/ASST and ≥ ±4% for BTC.
-- **Odds jumps**: only prediction markets (Polymarket, Kalshi) whose odds moved ≥ 10 pts in a day or ≥ 15 pts in 7 days, with a likely-news headline. If none, it shows a one-line summary of current key odds.
-- **`signals.json`**: machine-readable current signal, valuation, dip state, odds jumps and key odds.
+Top to bottom:
+- **Sticky top bar**: BTC price, the single recommendation, STRC and SATA status, a one-line summary, a data-freshness dot (green = latest close, yellow = 1 session behind, red = older), and a light/dark toggle (dark is the default; your choice is saved in the browser).
+- **Flywheel status**: one big card per preferred (STRC → MSTR, SATA → ASST). Green **FLYWHEEL ON** means the peg is confirmed; yellow **NEAR PAR** means at or near $100 but not yet confirmed; red **OFF PEG** means it isn't. Each card shows what that implies, the streak, the distance to the $99.95 threshold, the parent's BTC yield, and the last 30 days of issuance.
+- **Recommendation**: exactly one of **BUY MSTR**, **BUY ASST** or **STAY IN BTC**, with the reason, any "also valid" alternative, and when it last changed (rules below).
+- **KPI strip**: prices and day %, both mNAVs, peg states, rotation z, and 10-day changes.
+- **Secondary signals** (collapsible): the older per-asset actions, the dip rule and rotation.
+- **Valuation**: two mNAVs per stock, each with its own 1y percentile, zone gauge (CHEAP / FAIR / RICH / OVERVALUED) and a plain-words read, plus source links for holdings, shares, debt, preferred and cash.
+  - **mNAV (market standard)** = price × basic shares ÷ (BTC held × BTC price).
+  - **mNAV all-in (EV)** = (price × basic shares + debt at notional + preferred notional − cash/USD reserve) ÷ BTC NAV.
+  - The zone-history chart defaults to EV and has a toggle. Diluted equity mNAV appears only in a tooltip and as a hidden legend line.
+- **BTC yield**: change in BTC per diluted share over 30d / prior 30d / 90d / YTD / 1y. The BTC-per-share chart is shaded where each preferred's peg was confirmed ON.
+- **Peg → performance**: every past confirmed-peg stretch, comparing the parent's price, BTC and BTC/share during the stretch and 7 and 30 days later. The sample is small.
+- **Backtest** of the recommendation against buy-and-hold BTC, MSTR and ASST: total return, max drawdown, switches and hit rate. The call made at close t executes at close t+1, 100% in one asset, no leverage, fees ignored. There is an idle-in-cash variant too. It covers about 1 year, mostly falling, with in-sample parameters. Not predictive.
+- **ATM / issuance summary**: STRC ATM proceeds and buybacks, SATA shares added (× $100 stated) and SATS, weekly and over 30d/90d/YTD/1y, plus the % of days each preferred closed at or near par.
+- **Key dates** (`data/events.json`) with search, a category filter, and per-category toggles for chart annotations.
+- **Charts** (Plotly, time sliders, linked axes, event markers whose hover shows the event name, a hover line with both mNAVs, peg states and the recommendation):
+  1. Normalized performance, re-based to the first visible date.
+  2. mNAV, defaulting to EV.
+  3. ASST/MSTR ratio and mNAV spread.
+  4. Price vs BTC NAV/share.
+  5. STRC and SATA vs par with peg bands.
+  6. Flywheel fuel: STRC ATM, buybacks, SATA issuance bars, the SATS IPO and SATA outstanding.
+
+  Show or hide each company or BTC; the choice is saved. Every chart has a **CSV** button, and there is a full-data `data/rows.csv`.
+- **Signal-change log**: every recommendation flip (reconstructed from history, plus live entries appended by the daily job to `data/signal_log.json`) with the 1d/7d/30d moves that followed.
+- **Big moves**, **Odds jumps** (Polymarket/Kalshi moves ≥ 10 pts/day or ≥ 15 pts/7d with a likely-news headline), and **Method**.
+- **`signals.json`**: machine-readable. Includes `recommendation`, `recommendation_reason`, `also_valid`, `signal_hash` (changes whenever the action, a peg state or an overheated flag changes), `last_changed`, `last_recommendation_change`, `flywheel` and `btc_yield`, alongside the older fields (per-asset signals, valuation, dip, odds).
+- **`data/dashboard.json` → `analytics`**: full flywheel, BTC yield, backtest, peg stretches, ATM summary and signal flips.
 
 ## Configure
 Edit these files to change what the dashboard tracks:
-- `config.json`: all thresholds (peg, mNAV, valuation zones, dip, big moves, odds jumps), `mnav.signal_basis` (`"ev"` default, or `"basic"`/`"diluted"`) which picks the mNAV that drives overheated/rotation/dip/zone rules, `mnav.ev_share_basis`, preferred stated values (`capital`) and the prediction markets tracked.
+- `config.json`: `assets` (the companies tracked, each with its preferred and chart color; adding a new company also needs its own filing adapters in `scripts/`), all thresholds (peg, mNAV, valuation zones, dip, big moves, odds jumps), `mnav.signal_basis` (`"ev"` default, or `"basic"`/`"diluted"`) which picks the mNAV that drives overheated/rotation/dip/zone rules, `mnav.ev_share_basis`, preferred stated values (`capital`) and the prediction markets tracked.
 - `data/events.json`: add or update dates. Use `"date": null, "status": "TBD"` when a date is unknown.
 - `data/capital_events.json`: filing-sourced debt issuances/repurchases, preferred IPO sizes, and ASST debt/SATA/SATS anchors, each with a source link. Entries marked `approx` are approximations.
 - `data/asst_seed.json`: hand-curated ASST holdings and shares for the period before Strive's weekly 8-K tables.
+
+## Recommendation rules
+1. **Trigger**: a parent is a candidate only when its preferred's peg is confirmed ON (closes ≥ $99.95 for 3 straight days).
+2. **Filter**: drop a candidate whose all-in (EV) mNAV is overheated (≥ 1.25x and ≥ 90th percentile of the trailing 252 days). Peg ON but overheated means "wait / reduce size", so the call stays STAY IN BTC.
+3. **Tiebreak**: if both survive, the mNAV spread z-score picks one (z < 0 → ASST, else MSTR). The other is listed as also valid.
+4. Otherwise **STAY IN BTC**.
 
 ## Signal rules (defaults)
 | Rule | Default |

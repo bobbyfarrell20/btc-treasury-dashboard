@@ -1,26 +1,28 @@
 <!doctype html>
-<html lang="en"><head>
+<html lang="en" data-theme="dark"><head><script>try{if(localStorage.getItem("theme")==="light")document.documentElement.dataset.theme="light"}catch(e){}</script>
 <meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
 <title>Flywheel Rotation Tracker: MSTR vs ASST, powered by STRC &amp; SATA, with BTC as home base</title>
 <meta name="description" content="MSTR vs ASST rotation tracker: mNAV, STRC/SATA peg signals, BTC as home base. Rules-based indicator, not financial advice.">
 <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22%3E%3Ccircle cx=%2250%22 cy=%2250%22 r=%2250%22 fill=%22%23f7931a%22/%3E%3Ctext x=%2250%22 y=%2270%22 font-size=%2260%22 text-anchor=%22middle%22 fill=%22white%22 font-family=%22Arial%22 font-weight=%22bold%22%3E%E2%82%BF%3C/text%3E%3C/svg%3E">
 <script src="https://cdn.plot.ly/plotly-2.35.2.min.js"></script>
 <style>
-:root{--bg:#0d1117;--panel:#161b22;--line:#30363d;--fg:#e6edf3;--mut:#8b949e;--g:#2ea043;--y:#d29922;--r:#f85149;--b:#58a6ff;--o:#f0883e}
+
+:root{--bg:#0d1117;--panel:#161b22;--panel2:#1f2937;--line:#30363d;--grid:#21262d;--fg:#e6edf3;--mut:#8b949e;--g:#2ea043;--y:#d29922;--r:#f85149;--b:#58a6ff;--o:#f0883e;--btn:#21262d;--rowhi:#1f2a1f}
+[data-theme=light]{--bg:#f3f5f8;--panel:#ffffff;--panel2:#eef2f7;--line:#d0d7de;--grid:#e6eaef;--fg:#1f2328;--mut:#57606a;--b:#0969da;--btn:#f0f3f6;--rowhi:#e6f4ea}
 *{box-sizing:border-box}body{margin:0;background:var(--bg);color:var(--fg);font:14px/1.45 -apple-system,Segoe UI,Roboto,Helvetica,Arial,sans-serif}
 h1{margin:0;font-size:20px}h2{font-size:16px;margin:0 0 8px}
 .sub{color:var(--mut);font-size:12px}main{padding:16px 22px;max-width:1500px;margin:auto}
 .card{background:var(--panel);border:1px solid var(--line);border-radius:10px;padding:14px;margin-bottom:16px}
 .grid{display:grid;gap:12px}.g4{grid-template-columns:repeat(auto-fit,minmax(230px,1fr))}.g2{grid-template-columns:repeat(auto-fit,minmax(min(480px,100%),1fr))}
-.headline{font-size:18px;font-weight:600;padding:12px;border-radius:8px;background:#1f2937;margin-bottom:12px}
+.headline{font-size:18px;font-weight:600;padding:12px;border-radius:8px;background:var(--panel2);margin-bottom:12px}
 .pill{display:inline-block;padding:2px 8px;border-radius:999px;font-weight:700;font-size:12px}
 .ON,.BUY{background:#14532d;color:#86efac}.NEAR,.HOLD,.NEUTRAL{background:#1e3a5f;color:#93c5fd}.WATCH{background:#713f12;color:#fde68a}.SELL,.SELL_TO_BTC{background:#7f1d1d;color:#fecaca}
 .FAVOR_ASST,.FAVOR_MSTR{background:#4c1d95;color:#ddd6fe}
-.kv{display:flex;justify-content:space-between;border-bottom:1px dashed #263040;padding:3px 0}.kv span:first-child{color:var(--mut)}
+.kv{display:flex;justify-content:space-between;border-bottom:1px dashed var(--line);padding:3px 0}.kv span:first-child{color:var(--mut)}
 table{border-collapse:collapse;width:100%;font-size:13px}th,td{border-bottom:1px solid var(--line);padding:5px 6px;text-align:left;vertical-align:top}th{color:var(--mut);font-weight:600;position:sticky;top:0;background:var(--panel)}
 .scroll{max-height:420px;overflow:auto}.pos{color:#3fb950}.neg{color:#f85149}.tbd{color:var(--y);font-weight:700}
 .chart{height:440px}.chart.sm{height:300px}.note{color:var(--mut);font-size:12px}a{color:var(--b)}
-.disc{border-left:4px solid var(--y);padding:8px 12px;background:#221a0a;border-radius:6px;margin-bottom:16px;font-size:13px}
+.disc{border-left:4px solid var(--y);padding:8px 12px;background:rgba(210,153,34,.10);border-radius:6px;margin-bottom:16px;font-size:13px}
 .controls label{margin-right:12px;font-size:12px;color:var(--mut)}
 .pmrow{display:flex;align-items:center;gap:8px;font-size:12px;margin:2px 0}.pmbar{height:10px;background:var(--b);border-radius:3px}
 .pmname{width:190px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
@@ -41,158 +43,326 @@ details summary{cursor:pointer;color:var(--b)}
 .hl-amber{background:rgba(210,153,34,.16);color:#fde68a;border:1px solid rgba(210,153,34,.5)}.hl-blue{background:rgba(88,166,255,.14);color:#b6d7ff;border:1px solid rgba(88,166,255,.45)}
 .hero .sub{max-width:1500px;margin:8px auto 0}
 @media (max-width:640px){.hero{padding:16px 14px 12px}.hero h1{font-size:21px}.logo{width:42px;height:42px;font-size:26px;line-height:42px}.tk{min-width:0;flex:1 1 30%;padding:6px 8px}.tk .p{font-size:14px}.tk .c{display:block;margin:0}main{padding:12px}.chart{height:360px}}
-.verdict{font-size:17px;font-weight:700;padding:12px 14px;border-radius:8px;background:linear-gradient(90deg,rgba(163,113,247,.16),rgba(240,136,62,.10));border:1px solid #3b2f55;margin-bottom:12px}
+.verdict{font-size:17px;font-weight:700;padding:12px 14px;border-radius:8px;background:linear-gradient(90deg,rgba(163,113,247,.16),rgba(240,136,62,.10));border:1px solid var(--line);margin-bottom:12px}
 .vz{font-weight:800}.z-CHEAP{background:#14532d;color:#86efac}.z-FAIR{background:#1e3a5f;color:#93c5fd}.z-RICH{background:#713f12;color:#fde68a}.z-OVERVALUED{background:#7f1d1d;color:#fecaca}
 .vbig{font-size:30px;font-weight:800}.gauge{position:relative;height:16px;border-radius:8px;overflow:hidden;display:flex;margin:22px 0 4px}
-.gauge div{height:100%}.gmark{position:absolute;top:-6px;width:3px;height:28px;background:#fff;box-shadow:0 0 6px #fff;border-radius:2px}
+.gauge div{height:100%}.gmark{position:absolute;top:-6px;width:3px;height:28px;background:var(--fg);box-shadow:0 0 6px var(--fg);border-radius:2px}
 .gwrap{position:relative}.glab{position:absolute;top:-20px;transform:translateX(-50%);font-size:11px;font-weight:700;white-space:nowrap}
 .gticks{position:relative;height:16px;margin-bottom:10px;font-size:10.5px;color:var(--mut)}.gticks span{position:absolute;transform:translateX(-50%)}
-.seg{display:inline-flex;gap:0;margin-left:8px;vertical-align:middle;flex-wrap:wrap}.seg button{background:#21262d;color:#c9d1d9;border:1px solid #30363d;padding:3px 9px;font-size:12px;cursor:pointer}
-.seg button:first-child{border-radius:6px 0 0 6px}.seg button:last-child{border-radius:0 6px 6px 0}.seg button.on{background:#388bfd33;color:#fff;border-color:#388bfd}
-.vbasis{border-top:1px solid #30363d;margin-top:12px;padding-top:8px}.vbasis h3{font-size:13.5px;margin:0 0 4px;display:flex;gap:8px;align-items:center;flex-wrap:wrap}
+.seg{display:inline-flex;gap:0;margin-left:8px;vertical-align:middle;flex-wrap:wrap}.seg button{background:var(--btn);color:var(--fg);border:1px solid var(--line);padding:5px 10px;font-size:12px;cursor:pointer;min-height:30px}
+.seg button:first-child{border-radius:6px 0 0 6px}.seg button:last-child{border-radius:0 6px 6px 0}.seg button.on{background:#388bfd33;color:var(--fg);border-color:#388bfd;font-weight:700}
+.vbasis{border-top:1px solid var(--line);margin-top:12px;padding-top:8px}.vbasis h3{font-size:13.5px;margin:0 0 4px;display:flex;gap:8px;align-items:center;flex-wrap:wrap}
 .sigtag{font-size:10.5px;color:#f7c948;border:1px solid #f7c94866;border-radius:4px;padding:0 5px}.tip{border-bottom:1px dotted #8b949e;cursor:help}
 .vplain{font-size:13px;margin:6px 0 2px}
+[data-theme=light] .hero{background:linear-gradient(135deg,#fff6e8 0%,#ffffff 60%,#fff3df 100%);border-bottom-color:#f3d7a8}
+[data-theme=light] .hero h1{background:none;color:#1f2328}[data-theme=light] .tag{color:#8a6a2f}
+.hero{padding:14px 22px 12px}.hero h1{font-size:23px}
+.topbar{position:sticky;top:0;z-index:60;background:var(--panel);border-bottom:1px solid var(--line);box-shadow:0 2px 10px rgba(0,0,0,.25);padding:6px 14px;display:flex;flex-wrap:wrap;gap:5px 10px;align-items:center;font-size:12.5px}
+.topbar .tb-b{font-weight:700;white-space:nowrap}.tb-sum{flex:1 1 260px;min-width:0;color:var(--mut);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.tb-r{margin-left:auto;display:flex;gap:8px;align-items:center}
+.btn{background:var(--btn);color:var(--fg);border:1px solid var(--line);border-radius:6px;padding:5px 10px;font-size:12px;cursor:pointer;min-height:30px}.btn:hover{border-color:var(--b)}
+.dot{display:inline-block;width:10px;height:10px;border-radius:50%;vertical-align:middle;margin-right:4px}
+.fwgrid{display:grid;gap:14px;grid-template-columns:repeat(auto-fit,minmax(min(420px,100%),1fr))}
+.fw{border-radius:12px;padding:14px 16px;border:2px solid var(--line);background:var(--panel)}
+.fw .t{font-size:13px;color:var(--mut);font-weight:700;letter-spacing:.4px}.fw .st{font-size:28px;font-weight:800;line-height:1.15;margin:2px 0 4px}
+.fw .imp{font-size:14.5px;font-weight:600;margin:4px 0 8px}.fw .row{display:flex;flex-wrap:wrap;gap:6px 18px;font-size:13px}
+.fw .row b{font-size:15px}.badge{display:inline-block;margin-top:8px;padding:4px 10px;border-radius:999px;font-weight:800;font-size:12.5px}
+.rec{border-radius:12px;padding:16px 18px;margin-bottom:16px;border:2px solid var(--line)}
+.rec .big{font-size:34px;font-weight:900;letter-spacing:.5px;line-height:1.1}.rec .why{font-size:15px;margin-top:6px;font-weight:600}
+.kpis{display:grid;gap:10px;grid-template-columns:repeat(auto-fit,minmax(160px,1fr));margin-bottom:16px}
+.kpi{background:var(--panel);border:1px solid var(--line);border-radius:10px;padding:9px 11px;min-width:0}
+.kpi .k{font-size:11px;color:var(--mut);font-weight:700;letter-spacing:.5px}.kpi .v{font-size:18px;font-weight:800}.kpi .d{font-size:12px}
+.q{display:inline-flex;align-items:center;justify-content:center;width:16px;height:16px;border-radius:50%;border:1px solid var(--mut);color:var(--mut);font-size:10.5px;font-weight:700;cursor:help;position:relative;vertical-align:middle;margin-left:4px;font-style:normal}
+.q:hover::after,.q:focus::after{content:attr(data-tip);position:absolute;z-index:80;top:20px;left:50%;transform:translateX(-50%);width:max-content;max-width:min(300px,80vw);white-space:normal;background:var(--panel2);color:var(--fg);border:1px solid var(--line);border-radius:8px;padding:8px 10px;font-size:12px;font-weight:400;line-height:1.4;box-shadow:0 4px 14px rgba(0,0,0,.35);text-align:left}
+details.card>summary,details.sec>summary{font-weight:700;font-size:15px;color:var(--fg);list-style:none}
+details.card>summary::before,details.sec>summary::before{content:"▸ ";color:var(--b)}details[open].card>summary::before,details[open].sec>summary::before{content:"▾ "}
+details.sec{margin-top:8px}details.sec>summary{font-size:13px;font-weight:600;color:var(--b)}
+.tscroll{overflow-x:auto;-webkit-overflow-scrolling:touch;max-width:100%}.tscroll table{min-width:560px}
+.cardhead{display:flex;flex-wrap:wrap;gap:6px 10px;align-items:center;justify-content:space-between;margin-bottom:6px}.cardhead h2{margin:0}
+.caveat{border-left:4px solid var(--r);background:rgba(248,81,73,.09);padding:8px 12px;border-radius:6px;font-size:13px;margin:8px 0}
+.evctl{display:flex;flex-wrap:wrap;gap:6px 12px;align-items:center;margin:6px 0}.evctl input[type=search],.evctl select{background:var(--btn);color:var(--fg);border:1px solid var(--line);border-radius:6px;padding:5px 8px;min-height:30px;font-size:13px}
+.chip{display:inline-flex;align-items:center;gap:4px;font-size:12px;color:var(--mut);margin-right:2px}.chip input{width:16px;height:16px}
+.num{text-align:right;white-space:nowrap}
+@media (max-width:640px){.topbar{padding:5px 8px;font-size:11.5px;gap:4px 8px}.tb-sum{flex-basis:100%;order:9}.rec .big{font-size:27px}.fw .st{font-size:23px}.kpis{grid-template-columns:repeat(2,minmax(0,1fr))}.card{padding:11px}.hero h1{font-size:19px}}
 </style></head><body>
+<div class="topbar" id="topbar"><span class="tb-b" id="tb_btc">BTC …</span><span id="tb_rec" class="pill">…</span><span id="tb_strc"></span><span id="tb_sata"></span><span class="tb-sum" id="tb_sum"></span>
+ <span class="tb-r"><span id="tb_fresh" title="data freshness"></span><button class="btn" id="themebtn" title="Toggle light/dark theme">☀︎ / ☾</button></span></div>
 <header class="hero"><div class="hero-in">
  <div class="brand"><div class="logo" aria-hidden="true">₿</div><div><h1>Flywheel Rotation Tracker</h1><div class="tag">MSTR vs ASST, powered by STRC &amp; SATA, with BTC as home base</div></div></div>
  <div class="tickers" id="tickers"></div></div>
- <div class="hero-sig"><span class="note" style="color:#c9b28a">Signal now:</span><span class="hlpill hl-blue" id="hlpill">loading…</span></div>
  <div class="sub" id="gen">loading…</div></header>
 <main>
+<section class="card" id="flywheel"><div class="cardhead"><h2>Flywheel status <i class="q" tabindex="0" data-tip="The preferred stock (STRC for Strategy, SATA for Strive) trading at or near $100 par lets the company sell more of it through its ATM and buy bitcoin without selling common stock. That is the 'flywheel'. ON = closed at or above the threshold for the required number of straight trading days.">?</i></h2><span class="note" id="fwnote"></span></div>
+<div class="fwgrid" id="fwcards"></div></section>
+
+<section class="rec" id="recbanner"><div class="note">Recommendation (rules-based indicator, not financial advice)</div><div class="big" id="rec_big">…</div><div class="why" id="rec_why"></div><div class="note" id="rec_more"></div>
+<details class="sec"><summary>How the recommendation is decided</summary><div class="note" id="rec_rules"></div></details></section>
+
 <div class="disc"><b>Rules-based indicator, not financial advice.</b> Signals are produced mechanically from public data and the thresholds in <a href="config.json">config.json</a>. Data can be late, wrong or missing. Do your own research.</div>
 
-<section class="card" id="signal"><h2>Current signal</h2><div class="headline" id="headline">…</div>
+<div class="kpis" id="kpis"></div>
+
+<details class="card" id="signal"><summary>Signal details: per-asset peg actions, mNAVs, 10-day changes, rotation z, dip rule</summary>
+<div class="headline" id="headline" style="margin-top:10px">…</div>
 <div class="grid g4" id="sigcards"></div>
-<div class="note" id="signote"></div></section>
+<details class="sec"><summary>Rules behind these detail cards</summary><div class="note" id="signote"></div></details></details>
 
-<section class="card" id="valuation"><h2>Valuation: who's cheap vs expensive</h2>
+<section class="card" id="valuation"><div class="cardhead"><h2>Valuation: who's cheap vs expensive</h2></div>
+<details class="sec" style="margin:0 0 10px"><summary>How to read this: two mNAV definitions</summary><div class="note" id="basisnote"></div></details>
 <div class="verdict" id="verdict">…</div>
-<div class="note" id="basisnote" style="margin:-4px 0 10px"></div>
 <div class="grid g2" id="valcards"></div>
-<h2 style="margin-top:14px">Valuation zone history (mNAV percentile vs trailing 1y; dots colored by zone)
- <span class="seg" id="zbasis"><button data-b="basic">market standard</button><button data-b="ev">all-in (EV)</button></span></h2>
+<div class="cardhead" style="margin-top:14px"><h2>Valuation zone history (mNAV percentile vs trailing 1y)
+ <span class="seg" id="zbasis"><button data-b="ev">all-in (EV)</button><button data-b="basic">market standard</button></span></h2><span class="csvb" data-c="c_zone"></span></div>
 <div id="c_zone" class="chart"></div>
-<div class="note" id="valnote"></div></section>
+<details class="sec"><summary>Notes</summary><div class="note" id="valnote"></div></details></section>
 
-<section class="card"><h2>Key dates (next 7 days highlighted)</h2>
-<div class="controls"><label><input type="checkbox" id="showEv" checked> show event markers on charts</label>
-<label><input type="checkbox" id="showPast" > include past events in table</label></div>
-<div class="scroll"><table id="evtable"></table></div>
+<section class="card" id="yield"><div class="cardhead"><h2>BTC yield: bitcoin per diluted share <i class="q" tabindex="0" data-tip="BTC yield = % change in (BTC held ÷ diluted shares) over the window. Positive = each share is backed by more bitcoin than before. Shaded periods = the company's preferred peg was ON (confirmed).">?</i></h2><span class="csvb" data-c="c_bps"></span></div>
+<div class="tscroll"><table id="yieldtable"></table></div><div class="note" id="yieldnote"></div>
+<div id="c_bps" class="chart"></div></section>
+
+<section class="card" id="pegperf"><div class="cardhead"><h2>Peg → performance: what happened after past confirmed pegs</h2><span class="csvb" data-c="c_pegperf"></span></div>
+<div class="caveat" id="pegcaveat"></div>
+<div class="tscroll"><table id="pegtable"></table></div>
+<div id="c_pegperf" class="chart sm"></div></section>
+
+<section class="card" id="backtest"><div class="cardhead"><h2>Backtest of the recommendation rules</h2><span class="csvb" data-c="c_bt"></span></div>
+<div class="caveat" id="btcaveat"></div>
+<div class="tscroll"><table id="bttable"></table></div>
+<div id="c_bt" class="chart"></div>
+<details class="sec"><summary>Every holding period</summary><div class="tscroll scroll"><table id="btperiods"></table></div></details>
+<div class="note" id="btnote"></div></section>
+
+<section class="card" id="atm"><div class="cardhead"><h2>Capital raising: STRC / SATA / SATS issuance and days at par</h2></div>
+<div class="grid g2"><div><h2 style="font-size:14px">STRC (Strategy ATM, weekly 8-Ks)</h2><div class="tscroll"><table id="atm_strc"></table></div><details class="sec"><summary>Recent weeks</summary><div class="tscroll"><table id="atm_strcw"></table></div></details></div>
+<div><h2 style="font-size:14px">SATA / SATS (Strive)</h2><div class="tscroll"><table id="atm_sata"></table></div><details class="sec"><summary>Recent SATA share-count changes</summary><div class="tscroll"><table id="atm_sataw"></table></div></details></div></div>
+<h2 style="font-size:14px;margin-top:12px">Share of trading days at / near par</h2><div class="tscroll"><table id="atm_peg"></table></div>
+<details class="sec"><summary>Notes</summary><div class="note" id="atmnote"></div></details></section>
+
+<section class="card" id="events"><div class="cardhead"><h2>Key dates (next 7 days highlighted)</h2></div>
+<div class="evctl"><input type="search" id="evq" placeholder="Search events…" aria-label="Search events"><select id="evcat" aria-label="Category"><option value="">All categories</option></select>
+<label class="chip"><input type="checkbox" id="showPast"> include past</label></div>
+<div class="evctl"><span class="note">Chart annotations:</span><label class="chip"><input type="checkbox" id="showEv" checked> show</label><span id="evcats"></span></div>
+<div class="tscroll scroll"><table id="evtable"></table></div>
 <div class="note">Source of truth: <a href="data/events.json">data/events.json</a> (edit to add/update). Dates not yet confirmed are marked <span class="tbd">TBD</span>/estimated, never guessed.</div></section>
 
-<section class="card"><h2>1 · Normalized performance (% change from first visible date; re-bases when you zoom or slide)</h2><div id="c_norm" class="chart"></div></section>
-<section class="card"><h2>2 · mNAV: MSTR vs ASST, market standard vs all-in (EV)
- <span class="seg" id="mbasis"><button data-b="both">both</button><button data-b="basic">market standard</button><button data-b="ev">all-in (EV)</button></span></h2><div id="c_mnav" class="chart"></div>
-<div class="note">Solid = all-in (EV) mNAV: (price × basic shares + debt + preferred notional − cash) ÷ BTC NAV. Dotted = market-standard mNAV: price × basic shares ÷ BTC NAV. Diluted equity mNAV (price × assumed-diluted shares ÷ BTC NAV) is hidden; click it in the legend to show it. Dashed lines: 1.0x and the overheated floor (config). Step jumps happen where filings change debt, preferreds or cash (see Method).</div></section>
-<section class="card"><h2>3 · ASST/MSTR price ratio, mNAV spread &amp; average mNAV (<span id="spbasis"></span>)</h2><div id="c_ratio" class="chart"></div></section>
-<section class="card"><h2>4 · Price vs BTC NAV per share (price ÷ mNAV)</h2><div id="c_navps" class="chart"></div>
+<div class="card controls" id="chartctl"><span class="note">Charts:</span> <span id="assettoggles"></span> <label class="chip"><input type="checkbox" id="linkx" checked> link time axes</label> <a class="btn" href="data/rows.csv" download style="text-decoration:none">⬇ full data CSV</a></div>
+
+<section class="card"><div class="cardhead"><h2>1 · Normalized performance (% change from first visible date; re-bases on zoom)</h2><span class="csvb" data-c="c_norm"></span></div><div id="c_norm" class="chart"></div>
+<div class="note">BTC is the pure-bitcoin baseline: a stock line above it means holding that stock beat just holding BTC over the visible window.</div></section>
+<section class="card"><div class="cardhead"><h2>2 · mNAV: MSTR vs ASST
+ <span class="seg" id="mbasis"><button data-b="ev">all-in (EV)</button><button data-b="basic">market standard</button><button data-b="both">both</button></span></h2><span class="csvb" data-c="c_mnav"></span></div><div id="c_mnav" class="chart"></div>
+<details class="sec"><summary>Notes</summary><div class="note">Solid = all-in (EV) mNAV: (price × basic shares + debt + preferred notional − cash) ÷ BTC NAV. Dotted (in "both") = market-standard mNAV: price × basic shares ÷ BTC NAV. Diluted equity mNAV (price × assumed-diluted shares ÷ BTC NAV) is hidden; click it in the legend to show it. Dashed lines: 1.0x and the overheated floor (config). Step jumps happen where filings change debt, preferreds or cash (see Method).</div></details></section>
+<section class="card"><div class="cardhead"><h2>3 · ASST/MSTR price ratio, mNAV spread &amp; average mNAV (<span id="spbasis"></span>)</h2><span class="csvb" data-c="c_ratio"></span></div><div id="c_ratio" class="chart"></div></section>
+<section class="card"><div class="cardhead"><h2>4 · Price vs BTC NAV per share (price ÷ mNAV)</h2><span class="csvb" data-c="c_navps"></span></div><div id="c_navps" class="chart"></div>
 <div class="note">BTC NAV per share = BTC held × BTC price ÷ shares. Price above the NAV line = premium (mNAV &gt; 1); below = discount.</div></section>
-<section class="card"><h2>5 · Flywheel fuel: STRC &amp; SATA vs $100 par (peg state bands)</h2>
+<section class="card"><div class="cardhead"><h2>5 · Flywheel fuel: STRC &amp; SATA vs $100 par (peg state bands)</h2><span class="csvb" data-c="c_strc,c_sata,c_fuel"></span></div>
 <div class="note" id="pegnote"></div>
 <div id="c_strc" class="chart sm"></div><div id="c_sata" class="chart sm"></div>
 <div id="c_fuel" class="chart sm"></div>
-<div class="note">Bands: <span class="pill ON">ON</span> close ≥ on-threshold for N straight days → BUY parent common · <span class="pill NEAR">NEAR</span> near par, not yet confirmed → HOLD · <span class="pill WATCH">WATCH</span> close below watch level · <span class="pill SELL">SELL</span> close below sell level or N straight down closes below peg. STRC → MSTR, SATA → ASST. Fuel chart: Strategy STRC ATM net proceeds and STRC repurchases from weekly 8-Ks (from Oct 2025), and SATA shares outstanding from Strive filings.</div></section>
+<details class="sec"><summary>How to read the peg bands</summary><div class="note" id="pegrules"></div></details></section>
 
-<section class="card"><h2>Big moves log</h2><div class="note" id="bmnote"></div>
-<div class="scroll"><table id="bmtable"></table></div></section>
+<section class="card" id="siglog"><div class="cardhead"><h2>Signal-change log</h2><a class="btn" href="data/signal_log.json" style="text-decoration:none">signal_log.json</a></div>
+<div class="note" id="siglognote"></div><div class="tscroll scroll"><table id="siglogtable"></table></div></section>
+
+<details class="card"><summary>Big moves log</summary><div class="note" id="bmnote" style="margin-top:8px"></div>
+<div class="tscroll scroll"><table id="bmtable"></table></div></details>
 
 <section class="card" id="odds"><h2>Odds jumps (prediction markets)</h2>
-<div id="ojbody">…</div><div class="note" id="ojnote"></div></section>
+<div id="ojbody">…</div><details class="sec"><summary>Notes</summary><div class="note" id="ojnote"></div></details></section>
 
-<section class="card" id="method"><h2>Method, sources &amp; caveats</h2><div id="methodbody"></div></section>
+<details class="card" id="method"><summary>Method, sources &amp; caveats</summary><div id="methodbody"></div></details>
 </main>
 <script>
-const C={MSTR:'#f0883e',ASST:'#a371f7',BTC:'#f7c948',STRC:'#58a6ff',SATA:'#ff7b72',AVG:'#8b949e'};
-const BAND={ON:'rgba(46,160,67,0.28)',NEAR:'rgba(88,166,255,0.12)',WATCH:'rgba(210,153,34,0.28)',SELL:'rgba(248,81,73,0.30)'};
+// ---------- palette: one source of truth for semantic colors (CSS classes are generated from it)
+const SEM={
+  zone:{CHEAP:['#2ea043','#86efac'],FAIR:['#388bfd','#b6d7ff'],RICH:['#d29922','#fde68a'],OVERVALUED:['#f85149','#fecaca']},
+  peg:{ON:['#2ea043','#86efac'],NEAR:['#d4a72c','#fde68a'],WATCH:['#db6d28','#ffd2b0'],SELL:['#f85149','#fecaca'],NO_DATA:['#6e7681','#d0d7de']},
+  act:{BUY:['#2ea043','#86efac'],HOLD:['#d4a72c','#fde68a'],WATCH:['#db6d28','#ffd2b0'],SELL:['#f85149','#fecaca'],SELL_TO_BTC:['#db61a2','#ffd6ec'],NO_DATA:['#6e7681','#d0d7de'],
+       NEUTRAL:['#6e7681','#d0d7de'],FAVOR_ASST:['#8957e5','#e2d4ff'],FAVOR_MSTR:['#8957e5','#e2d4ff']},
+  rec:{BUY_MSTR:['#2ea043','#86efac'],BUY_ASST:['#2ea043','#86efac'],STAY_BTC:['#f7931a','#ffd59a']},
+  fw:{FLYWHEEL_ON:['#2ea043','#86efac'],NEAR_PAR:['#d4a72c','#fde68a'],OFF_PEG:['#f85149','#fecaca']}};
+(function(){let css='';const add=(sel,[c,t])=>{css+=`${sel}{background:${c}33;color:${t};border:1px solid ${c}99}[data-theme=light] ${sel}{color:${c};background:${c}1f}`};
+  for(const [k,v] of Object.entries(SEM.zone))add(`.z-${k}`,v);
+  for(const [k,v] of Object.entries(SEM.act))add(`.pill.${k}`,v);
+  for(const [k,v] of Object.entries(SEM.peg))add(`.pill.${k}, .pill.p-${k}`,v);
+  for(const [k,v] of Object.entries(SEM.rec)){add(`.pill.r-${k}`,v);css+=`.rec.r-${k}{border-color:${v[0]};background:linear-gradient(90deg,${v[0]}2e,${v[0]}0d)}.rec.r-${k} .big{color:${v[1]}}[data-theme=light] .rec.r-${k} .big{color:${v[0]}}`}
+  for(const [k,v] of Object.entries(SEM.fw)){css+=`.fw.f-${k}{border-color:${v[0]};background:linear-gradient(135deg,${v[0]}2b,${v[0]}08)}.fw.f-${k} .st{color:${v[1]}}[data-theme=light] .fw.f-${k} .st{color:${v[0]}}`;add(`.badge.f-${k}`,v)}
+  const st=document.createElement('style');st.textContent=css;document.head.appendChild(st)})();
+const ZC=Object.fromEntries(Object.entries(SEM.zone).map(([k,v])=>[k,v[0]]));
+const BAND=Object.fromEntries(['ON','NEAR','WATCH','SELL'].map(k=>[k,SEM.peg[k][0]+(k==='NEAR'?'26':'40')]));
+let C={MSTR:'#f0883e',ASST:'#a371f7',BTC:'#f7c948',STRC:'#58a6ff',SATA:'#ff7b72',SATS:'#56d4dd',AVG:'#8b949e'};
 const CATC={earnings:'#f0883e',fomc:'#58a6ff',macro:'#8b949e',election:'#ff7b72',congress:'#a371f7',preferred:'#3fb950',asst:'#d2a8ff',mstr:'#ffa657',market:'#f7c948',index:'#79c0ff'};
 const fmt=(v,d=2)=>v==null||isNaN(v)?'—':Number(v).toLocaleString(undefined,{minimumFractionDigits:d,maximumFractionDigits:d});
-const pct=(v,d=1)=>v==null?'—':(v*100).toFixed(d)+'%';
+const pct=(v,d=1)=>v==null||isNaN(v)?'—':(v*100).toFixed(d)+'%';
+const spct=(v,d=1)=>v==null||isNaN(v)?'—':(v>=0?'+':'')+(v*100).toFixed(d)+'%';
 const cls=v=>v==null?'':(v>=0?'pos':'neg');
+const cp=(v,d=1)=>`<span class="${cls(v)}">${spct(v,d)}</span>`;
+const esc=t=>String(t??'').replace(/[&<>"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
+const Q=t=>`<i class="q" tabindex="0" data-tip="${esc(t)}">?</i>`;
+const $=id=>document.getElementById(id);
 async function J(u){const r=await fetch(u+'?t='+Date.now());if(!r.ok)throw new Error(u);return r.json()}
-let D,S,E,M,TS=[];
-function baseLayout(title,extra={}){
+let D,S,E,M,A,ASSETS,TS=[],CSV={};
+const HIDE=new Set(JSON.parse(localStorage.getItem('hideAssets')||'[]'));
+let EVC=new Set(JSON.parse(localStorage.getItem('evcats')||'null')||Object.keys(CATC));
+const RECL={BUY_MSTR:'BUY MSTR',BUY_ASST:'BUY ASST',STAY_BTC:'STAY IN BTC'};
+const FWL={FLYWHEEL_ON:'FLYWHEEL ON',NEAR_PAR:'NEAR PAR',OFF_PEG:'OFF PEG'};
+function TH(){const g=getComputedStyle(document.documentElement),v=n=>g.getPropertyValue(n).trim();return{bg:v('--bg'),panel:v('--panel'),fg:v('--fg'),grid:v('--grid'),mut:v('--mut'),line:v('--line'),btn:v('--btn')}}
+function baseLayout(title,extra={}){const t=TH();
   const start=D.config.window_start; const end=new Date(Date.now()+40*864e5).toISOString().slice(0,10);
-  return Object.assign({paper_bgcolor:'#161b22',plot_bgcolor:'#0d1117',font:{color:'#e6edf3',size:12},margin:{l:60,r:60,t:30,b:30},
-   legend:{orientation:'h',y:1.12},hovermode:'x unified',
-   xaxis:{type:'date',range:[start,end],gridcolor:'#21262d',rangeslider:{visible:true,thickness:0.07,bgcolor:'#0d1117'},
-     rangeselector:{bgcolor:'#21262d',activecolor:'#30363d',buttons:[{count:1,label:'1M',step:'month',stepmode:'backward'},{count:3,label:'3M',step:'month',stepmode:'backward'},{count:6,label:'6M',step:'month',stepmode:'backward'},{step:'year',stepmode:'todate',label:'YTD'},{count:1,label:'1Y',step:'year',stepmode:'backward'},{step:'all',label:'All'}]}},
-   yaxis:{gridcolor:'#21262d',title:title}},extra)}
-function evMarks(){
-  if(!document.getElementById('showEv').checked) return {shapes:[],annotations:[]};
-  const start=D.config.window_start, shapes=[], ann=[];
-  E.events.filter(e=>e.date&&e.date>=start).forEach(e=>{const c=CATC[e.category]||'#8b949e';
-    shapes.push({type:'line',xref:'x',yref:'paper',x0:e.date,x1:e.date,y0:0,y1:1,line:{color:c,width:1,dash:'dot'},layer:'below'});
-    ann.push({x:e.date,xref:'x',y:1.0,yref:'paper',text:'◆',showarrow:false,font:{color:c,size:10},hovertext:e.date+' · '+e.title+(e.status!=='done'?' ['+e.status+']':''),yanchor:'bottom'})});
-  return {shapes,annotations:ann}}
-function plot(id,traces,layout){layout=Object.assign(layout,{});const m=evMarks();
-  layout.shapes=(layout.shapes||[]).concat(m.shapes);layout.annotations=(layout.annotations||[]).concat(m.annotations);
-  Plotly.newPlot(id,traces,layout,{responsive:true,displaylogo:false});if(!TS.includes(id))TS.push(id)}
+  const L={paper_bgcolor:t.panel,plot_bgcolor:t.bg,font:{color:t.fg,size:12},margin:{l:60,r:60,t:30,b:30},
+   legend:{orientation:'h',y:1.12},hovermode:'x unified',hoverlabel:{bgcolor:t.panel,bordercolor:t.line,font:{color:t.fg}},
+   xaxis:{type:'date',range:[start,end],gridcolor:t.grid,rangeslider:{visible:true,thickness:0.07,bgcolor:t.bg},
+     rangeselector:{bgcolor:t.btn,activecolor:t.line,font:{color:t.fg},buttons:[{count:1,label:'1M',step:'month',stepmode:'backward'},{count:3,label:'3M',step:'month',stepmode:'backward'},{count:6,label:'6M',step:'month',stepmode:'backward'},{step:'year',stepmode:'todate',label:'YTD'},{count:1,label:'1Y',step:'year',stepmode:'backward'},{step:'all',label:'All'}]}},
+   yaxis:{gridcolor:t.grid,title:title},yaxis9:{overlaying:'y',range:[0,1],visible:false,fixedrange:true}};
+  for(const [k,v] of Object.entries(extra)){if(k.startsWith('yaxis')&&typeof v==='object')L[k]=Object.assign({gridcolor:t.grid},L[k]||{},v);else L[k]=v}
+  return L}
+function evList(){const start=D.config.window_start;return document.getElementById('showEv').checked?E.events.filter(e=>e.date&&e.date>=start&&EVC.has(e.category)):[]}
+function evMarks(){const shapes=[];evList().forEach(e=>{const c=CATC[e.category]||'#8b949e';
+    shapes.push({type:'line',xref:'x',yref:'paper',x0:e.date,x1:e.date,y0:0,y1:1,line:{color:c,width:1,dash:'dot'},layer:'below'})});return shapes}
+// hover helper traces: event names on the date (◆ at top) + an invisible 'info' trace (both mNAVs, peg states, recommendation)
+function evTrace(){const ev=evList(),by={};ev.forEach(e=>{(by[e.date]=by[e.date]||[]).push(e)});const ds=Object.keys(by).sort();
+  return{name:'events',x:ds,y:ds.map(()=>0.985),yaxis:'y9',mode:'markers',marker:{symbol:'diamond',size:8,color:ds.map(d=>CATC[by[d][0].category]||'#8b949e')},
+   text:ds.map(d=>by[d].map(e=>'◆ '+esc(e.title)+(e.status!=='done'?' ['+e.status+']':'')).join('<br>')),hovertemplate:'%{text}<extra></extra>',showlegend:false,_h:1}}
+function infoTrace(){const R=D.rows.filter(r=>r.date>=D.config.window_start);
+  return{name:'info',x:R.map(r=>r.date),y:R.map(()=>0.02),yaxis:'y9',mode:'markers',marker:{size:2,opacity:0},showlegend:false,_h:1,
+   text:R.map(r=>ASSETS.map(a=>`${a.ticker} mNAV ${fmt(r[a.key+'_mnav_basic'],2)}x std / ${fmt(r[a.key+'_mnav_ev'],2)}x EV`).join(' · ')+'<br>'+ASSETS.map(a=>`${a.preferred} ${fmt(r[a.preferred],2)} ${r['peg_'+a.preferred]||'—'}`).join(' · ')+' · '+(RECL[r.rec&&r.rec.action]||'')),
+   hovertemplate:'%{text}<extra></extra>'}}
+function plot(id,traces,layout,o={}){const time=o.time!==false;
+  traces.forEach(t=>{if(t.meta&&HIDE.has(t.meta))t.visible=false});
+  CSV[id]=traces.filter(t=>!t._h&&t.x);
+  if(time){layout.shapes=(layout.shapes||[]).concat(evMarks());if(o.hover!==false)traces=traces.concat([infoTrace(),evTrace()])}
+  traces.forEach(t=>delete t._h);
+  Plotly.newPlot(id,traces,layout,{responsive:true,displaylogo:false});if(time&&!TS.includes(id))TS.push(id)}
+function csvOf(ids){const tr=ids.flatMap(id=>(CSV[id]||[]).map(t=>({n:(ids.length>1?id.replace('c_','')+': ':'')+t.name,x:t.x,y:t.y})));
+  const xs=[...new Set(tr.flatMap(t=>t.x.map(String)))].sort();const m=tr.map(t=>{const o={};t.x.forEach((x,i)=>o[String(x)]=t.y[i]);return o});
+  const q=s=>/[",\n]/.test(s)?'"'+String(s).replace(/"/g,'""')+'"':s;
+  return [['x'].concat(tr.map(t=>q(t.n))).join(',')].concat(xs.map(x=>[q(x)].concat(m.map(o=>o[x]??'')).join(','))).join('\n')}
+function dl(name,text){const a=document.createElement('a');a.href=URL.createObjectURL(new Blob([text],{type:'text/csv'}));a.download=name;document.body.appendChild(a);a.click();setTimeout(()=>{URL.revokeObjectURL(a.href);a.remove()},500)}
+function initCsv(){document.querySelectorAll('.csvb').forEach(el=>{const ids=el.dataset.c.split(',');el.innerHTML='<button class="btn" type="button">⬇ CSV</button>';
+  el.querySelector('button').onclick=()=>dl(ids[0].replace('c_','')+'.csv',csvOf(ids))})}
 let NORM=[];
-// Re-base the normalized chart so each series' first visible point = 0%. Only y data and y range change, so no relayout loop.
-function rebaseNorm(){const el=document.getElementById('c_norm');if(!el||!el._fullLayout)return;
+function rebaseNorm(){const el=$('c_norm');if(!el||!el._fullLayout)return;
   const xr=el._fullLayout.xaxis.range.map(v=>String(v)), r0=xr[0], r1=xr[1];let lo=Infinity,hi=-Infinity;
   const ys=NORM.map(t=>{let i=t.x.findIndex(d=>d>=r0);if(i<0)i=t.x.length-1;const b=t.v[i];
-    return t.v.map((v,j)=>{const y=v/b-1;if(j>=i&&t.x[j]<=r1){lo=Math.min(lo,y);hi=Math.max(hi,y)}return y})});
+    return t.v.map((v,j)=>{const y=v/b-1;if(j>=i&&t.x[j]<=r1&&!HIDE.has(t.name)){lo=Math.min(lo,y);hi=Math.max(hi,y)}return y})});
   Plotly.restyle(el,{y:ys},NORM.map((_,i)=>i));
   if(isFinite(lo)){const pad=Math.max((hi-lo)*0.06,0.01);Plotly.relayout(el,{'yaxis.range':[lo-pad,hi+pad],'yaxis.autorange':false})}}
 let syncing=false;
-function linkCharts(){TS.forEach(id=>{const el=document.getElementById(id);if(!el.on)return;if(el.removeAllListeners)el.removeAllListeners('plotly_relayout');
+function linkCharts(){TS.forEach(id=>{const el=$(id);if(!el||!el.on)return;if(el.removeAllListeners)el.removeAllListeners('plotly_relayout');
   if(id==='c_norm')el.on('plotly_relayout',ev=>{if(Object.keys(ev).some(k=>k.startsWith('xaxis')))rebaseNorm()});
   el.on('plotly_relayout',ev=>{if(syncing)return;let r=null;
   if(ev['xaxis.range[0]'])r=[ev['xaxis.range[0]'],ev['xaxis.range[1]']];else if(ev['xaxis.range'])r=ev['xaxis.range'];else if(ev['xaxis.autorange'])r=null;else return;
-  if(!document.getElementById('linkx')?.checked)return;syncing=true;
-  Promise.all(TS.filter(o=>o!==id).map(o=>Plotly.relayout(o,r?{'xaxis.range':r}:{'xaxis.autorange':true}))).then(()=>syncing=false)})})}
+  if(!$('linkx')?.checked)return;syncing=true;
+  Promise.all(TS.filter(o=>o!==id&&$(o)&&$(o)._fullLayout).map(o=>Plotly.relayout(o,r?{'xaxis.range':r}:{'xaxis.autorange':true}))).then(()=>syncing=false,()=>syncing=false)})})}
 function series(key,filt=r=>true){const R=D.rows.filter(r=>r.date>=D.config.window_start&&filt(r));return{x:R.map(r=>r.date),y:R.map(r=>r[key])}}
-function bands(pref){const R=D.rows.filter(r=>r.date>=D.config.window_start), sh=[];let cur=null,s0=null,prev=null;
-  R.forEach(r=>{const st=r['peg_'+pref];if(st!==cur){if(cur&&BAND[cur])sh.push({type:'rect',xref:'x',yref:'paper',x0:s0,x1:r.date,y0:0,y1:1,fillcolor:BAND[cur],line:{width:0},layer:'below'});cur=st;s0=r.date}prev=r.date});
-  if(cur&&BAND[cur])sh.push({type:'rect',xref:'x',yref:'paper',x0:s0,x1:prev,y0:0,y1:1,fillcolor:BAND[cur],line:{width:0},layer:'below'});return sh}
+function runs(pred){const R=D.rows.filter(r=>r.date>=D.config.window_start),out=[];let s=null,p=null;
+  R.forEach(r=>{const v=pred(r);if(v&&!s)s=r.date;if(!v&&s){out.push([s,r.date]);s=null}p=r.date});if(s)out.push([s,p]);return out}
+function bands(pref){const sh=[];for(const st of Object.keys(BAND))runs(r=>r['peg_'+pref]===st).forEach(([a,b])=>sh.push({type:'rect',xref:'x',yref:'paper',x0:a,x1:b,y0:0,y1:1,fillcolor:BAND[st],line:{width:0},layer:'below'}));return sh}
 function hline(y,c,dash='dash'){return{type:'line',xref:'paper',x0:0,x1:1,yref:'y',y0:y,y1:y,line:{color:c,width:1,dash}}}
-
+function lastTwo(k){const R=D.rows.filter(r=>r[k]!=null);const a=R[R.length-1],b=R[R.length-2];return a?{v:a[k],d:a.date,ch:b?a[k]/b[k]-1:null}:null}
+function chgN(k,n=10){const R=D.rows.filter(r=>r[k]!=null);if(R.length<=n)return null;return R[R.length-1][k]/R[R.length-1-n][k]-1}
+function diffN(k,n=10){const R=D.rows.filter(r=>r[k]!=null);if(R.length<=n)return null;return R[R.length-1][k]-R[R.length-1-n][k]}
+const BL=b=>({basic:'market standard',ev:'all-in (EV)',diluted:'diluted equity'}[b]||b);
+// ---------- freshness: expected last US trading close (ET, weekdays after 16:30; exchange holidays not modeled)
+function freshness(){const now=new Date(new Date().toLocaleString('en-US',{timeZone:'America/New_York'}));
+  const d=new Date(now),wk=x=>x.getDay()>=1&&x.getDay()<=5;
+  if(!(wk(d)&&d.getHours()*60+d.getMinutes()>=16*60+30)){do{d.setDate(d.getDate()-1)}while(!wk(d))}
+  const iso=x=>x.getFullYear()+'-'+String(x.getMonth()+1).padStart(2,'0')+'-'+String(x.getDate()).padStart(2,'0'),exp=iso(d);
+  let lag=0;const c=new Date(S.as_of+'T12:00:00');while(iso(c)<exp){c.setDate(c.getDate()+1);if(wk(c))lag++}
+  const ageH=(Date.now()-Date.parse(D.generated_utc))/36e5;
+  const lv=lag===0?'g':lag===1?'y':'r',col={g:'#2ea043',y:'#d4a72c',r:'#f85149'}[lv];
+  const txt={g:'fresh',y:'stale (1 session behind)',r:'very stale'}[lv];
+  return{lv,col,txt,lag,exp,ageH}}
+function renderTop(){const F=freshness(),fw=A.flywheel,t=lastTwo('btc');
+  $('tb_btc').innerHTML=`BTC $${fmt(t.v,0)} <span class="${cls(t.ch)}">${spct(t.ch,1)}</span>`;
+  const r=$('tb_rec');r.className='pill r-'+S.recommendation;r.textContent=RECL[S.recommendation]||S.recommendation;
+  for(const a of ASSETS){const f=fw[a.preferred],el=$('tb_'+a.preferred.toLowerCase());if(!el)continue;el.innerHTML=`<span class="pill p-${f.peg_state}" title="${a.preferred} $${fmt(f.close)}">${a.preferred} ${FWL[f.status]||f.peg_state}</span>`}
+  $('tb_sum').textContent=ASSETS.map(a=>{const f=fw[a.preferred];if(f.missing)return a.preferred+' no data';
+    if(f.status==='FLYWHEEL_ON')return `${a.preferred} ${f.streak_days_at_or_above_threshold} days on peg → ${a.ticker} flywheel active`;
+    if(f.status==='NEAR_PAR')return `${a.preferred} near par (${f.streak_days_at_or_above_threshold}/${f.required_days} days) → ${a.ticker} not confirmed yet`;
+    return `${a.ticker} preferred ${a.preferred} off peg ($${fmt(f.close)})`}).join('; ')+'.';
+  $('tb_fresh').innerHTML=`<span class="dot" style="background:${F.col}"></span><span class="note">${S.as_of}</span>`;
+  $('tb_fresh').title=`Data ${F.txt}: last bar ${S.as_of}, expected ${F.exp}. Generated ${D.generated_utc} UTC (${F.ageH.toFixed(1)} h ago).`;
+  const tk=[['BTC','btc',0],...ASSETS.map(a=>[a.ticker,a.ticker,2])].map(([n,k,dp])=>{const t=lastTwo(k);if(!t)return'';
+    return `<div class="tk" title="last close ${t.d}"><div class="s">${n}</div><span class="p">$${fmt(t.v,dp)}</span><span class="c ${cls(t.ch)}">${t.ch==null?'':(t.ch>=0?'▲ +':'▼ ')+pct(t.ch,2).replace('-','')}</span></div>`}).join('');
+  $('tickers').innerHTML=tk;
+  const gen=new Date(D.generated_utc).toLocaleString('en-US',{timeZone:'America/New_York',dateStyle:'medium',timeStyle:'short'});
+  $('gen').innerHTML=`<span class="dot" style="background:${F.col}"></span><b style="color:${F.col}">Data ${F.txt}</b> · last bar <b>${S.as_of}</b> (expected ${F.exp}) · generated ${gen} ET (${F.ageH.toFixed(1)} h ago) ${Q('Green = the latest US trading close is in. Yellow = one session behind (e.g. Yahoo has not finalized today\'s bar yet). Red = two or more sessions behind. Exchange holidays are not modeled, so the day after a holiday can show yellow.')} · window from ${D.config.window_start}`}
+function implication(a,f){const p=a.preferred,t=a.ticker;
+  if(f.status==='FLYWHEEL_ON')return `${p} at/near $100 → ${t} buy signal / BTC-per-share acceleration likely`;
+  if(f.status==='NEAR_PAR')return `${p} near par ($${fmt(f.close)}) but not confirmed (${f.streak_days_at_or_above_threshold}/${f.required_days} days ≥ $${f.threshold}) → ${t} signal pending`;
+  return `${p} below $${f.threshold} → no ${t} flywheel signal`}
+function renderFlywheel(){const fw=A.flywheel,Y=A.btc_yield,atm=A.atm;
+  $('fwcards').innerHTML=ASSETS.map(a=>{const f=fw[a.preferred],y=Y[a.ticker]||{};if(!f||f.missing)return `<div class="fw f-OFF_PEG"><div class="t">${a.preferred} → ${a.ticker}</div><div class="st">NO DATA</div><div class="note">Missing ${a.preferred} prices.</div></div>`;
+    const streak=f.streak_days_at_or_above_threshold>0?`<b>${f.streak_days_at_or_above_threshold}</b> day${f.streak_days_at_or_above_threshold>1?'s':''} ≥ $${f.threshold} (need ${f.required_days})`:`<b>0</b> days ≥ $${f.threshold} · ${f.days_below_threshold} straight closes below`;
+    const fuel=a.preferred==='STRC'?(()=>{const x=atm.STRC.totals['30d'];return `STRC ATM last 30d: net $${fmt(x.atm_net_proceeds_m,0)}M sold, $${fmt(x.repurchased_m,0)}M repurchased`})()
+      :a.preferred==='SATA'?(()=>{const x=atm.SATA.totals['30d'];return x.shares_added==null?'':`SATA shares added last 30d: ${fmt(x.shares_added/1e6,2)}M ($${fmt(x.stated_value_m,0)}M at $100 stated)`})():'';
+    const yv=k=>y[k]&&y[k].value!=null?cp(y[k].value,1):'—';
+    const acc=y.accelerating,on=f.status==='FLYWHEEL_ON';
+    const badge=on&&acc?`<span class="badge f-FLYWHEEL_ON">FLYWHEEL ON → BTC/share accelerating</span>`:acc?`<span class="badge" style="border:1px solid var(--line)">BTC/share accelerating (peg not confirmed)</span>`:'';
+    return `<div class="fw f-${f.status}"><div class="t">${a.preferred} → ${a.ticker} (${esc(a.name||'')})</div><div class="st">${FWL[f.status]}</div>
+     <div class="imp">${implication(a,f)}</div>
+     <div class="row"><span>Close <b>$${fmt(f.close)}</b> <span class="note">${f.date}</span></span><span>vs $${f.threshold}: <b class="${cls(f.distance_to_threshold)}">${f.distance_to_threshold>=0?'+':''}${fmt(f.distance_to_threshold)}</b></span><span>${streak}</span><span>Peg state <span class="pill p-${f.peg_state}">${f.peg_state}</span></span></div>
+     <div class="row" style="margin-top:6px"><span>${a.ticker} BTC yield ${Q('Change in BTC held per diluted share. 30d = last 30 calendar days; prior 30d = the 30 days before that. Accelerating = last 30d positive and higher than the prior 30d.')}: 30d <b>${yv('30d')}</b></span><span>prior 30d ${yv('prev_30d')}</span><span>90d ${yv('90d')}</span><span>YTD ${yv('ytd')}</span></div>
+     <div class="note" style="margin-top:4px">${fuel}</div>${badge}</div>`}).join('');
+  $('fwnote').textContent=`ON = close ≥ $${D.config.peg.on_threshold} for ${D.config.peg.on_consecutive_days} straight trading days`}
+function renderRec(){const R=S.recommendation_detail||{},rc=S.recommendation;
+  $('recbanner').className='rec r-'+rc;$('rec_big').textContent=RECL[rc]||rc;
+  $('rec_why').textContent=S.recommendation_reason;
+  const lrc=S.last_recommendation_change,lc=S.last_changed;
+  $('rec_more').innerHTML=[S.also_valid?`<b>${S.also_valid} is also valid</b> (both pegs confirmed).`:'',...(S.recommendation_notes||[]).map(n=>'⚠️ '+esc(n)),
+    lrc?`Recommendation unchanged since ${lrc.date} (was ${RECL[lrc.old]||lrc.old}).`:'',lc?`Last state change ${lc.date}: ${esc(lc.what||'')}.`:'',
+    `signal_hash <code>${S.signal_hash}</code> · as of ${S.as_of}`].filter(Boolean).join(' ');
+  const mc=D.config.mnav,pc=D.config.peg,ob=(D.config.recommendation||{}).overheat_basis||'ev';
+  $('rec_rules').innerHTML=`1. <b>Trigger: peg confirmed.</b> A preferred is confirmed when it closes ≥ $${pc.on_threshold} for ${pc.on_consecutive_days} straight trading days (STRC → MSTR, SATA → ASST).<br>
+   2. <b>Filter: overheated.</b> Skip a parent whose ${BL(ob)} mNAV is ≥ ${mc.overheated_min_mnav}x AND ≥ the ${mc.overheated_percentile*100}th percentile of its last ${mc.lookback_trading_days} trading days (peg on but overheated → "wait / reduce size").<br>
+   3. <b>Tie-break: rotation.</b> Only if both pegs are confirmed and neither is overheated: spread z (ASST − MSTR, ${BL(ob)}) &lt; 0 → BUY ASST, otherwise BUY MSTR; the other is shown as also valid.<br>
+   4. <b>Otherwise STAY IN BTC.</b> The dip rule, legacy per-asset actions and zone verdicts are shown as context only and don't change the call.<br>
+   Rules-based indicator, not financial advice. Machine-readable: <a href="signals.json">signals.json</a> (<code>recommendation</code>, <code>signal_hash</code>, <code>last_changed</code>).`}
+function renderKpis(){const v=S.values,cells=[],V=S.valuation||{};
+  const k=(lab,val,sub,tip)=>cells.push(`<div class="kpi"><div class="k">${lab}${tip?Q(tip):''}</div><div class="v">${val}</div><div class="d">${sub}</div></div>`);
+  const b=lastTwo('btc');k('BTC',`$${fmt(b.v,0)}`,`day ${cp(b.ch,2)} · 10d ${cp(S.dip.btc_change)}`);
+  for(const a of ASSETS){const t=lastTwo(a.ticker),x=V[a.ticker]||{},B=x.market_standard||{},Ev=x.all_in_ev||{};
+    k(a.ticker,`$${fmt(t.v)}`,`day ${cp(t.ch,2)} · 10d ${cp(chgN(a.ticker))}`);
+    k(a.ticker+' mNAV',`${fmt(B.mnav,2)}x <span class="note">/</span> ${fmt(Ev.mnav,2)}x`,`std <span class="pill vz z-${B.zone}">${B.zone||'—'}</span> · EV <span class="pill vz z-${Ev.zone}">${Ev.zone||'—'}</span><br>10d: std ${cp(chgN(a.key+'_mnav_basic'))} · EV ${cp(chgN(a.key+'_mnav_ev'))}`,'Market standard (price × basic shares ÷ BTC NAV) / all-in EV ((equity + debt + preferred − cash) ÷ BTC NAV). Zone pills use each basis\' own 1y history.')}
+  for(const a of ASSETS){const f=A.flywheel[a.preferred];if(!f||f.missing)continue;
+    k(a.preferred,`$${fmt(f.close)} <span class="pill p-${f.peg_state}">${f.peg_state}</span>`,`${f.distance_to_par>=0?'+':''}${fmt(f.distance_to_par)} vs par · 10d ${cp(chgN(a.preferred),2)}`)}
+  k('Rotation',`<span class="pill ${S.rotation}">${S.rotation}</span>`,`spread z ${fmt(v.spread_z,2)} · 10d Δz ${diffN('spread_z')==null?'—':(diffN('spread_z')>=0?'+':'')+fmt(diffN('spread_z'),2)}`,'ASST − MSTR mNAV spread vs its own 1y history (signal basis). Used only to choose between two confirmed pegs.');
+  $('kpis').innerHTML=cells.join('')}
 function renderSignal(){
-  document.getElementById('headline').textContent=S.headline;
+  $('headline').textContent='Legacy per-asset headline: '+S.headline;
   const v=S.values, p=S.peg, cards=[];
-  for(const a of ['MSTR','ASST']){const pa=S.per_asset[a], pref=a==='MSTR'?'STRC':'SATA', vs=null;
+  for(const a of ['MSTR','ASST']){const pa=S.per_asset[a], pref=a==='MSTR'?'STRC':'SATA';
     cards.push(`<div class="card" style="margin:0"><h2>${a} <span class="pill ${pa.action}">${pa.action}</span></h2>
     <div class="kv"><span>Price</span><span>$${fmt(v[a])}</span></div>
     <div class="kv"><span>${pref} (peg driver)</span><span>$${fmt(p[pref].price)} (${p[pref].distance_from_par>=0?'+':''}${fmt(p[pref].distance_from_par)}) <span class="pill ${p[pref].state}">${p[pref].state}</span></span></div>
     <div class="kv"><span>mNAV market standard / all-in (EV)</span><span>${fmt(v[a.toLowerCase()+'_mnav_basic'],3)}x / ${fmt(v[a.toLowerCase()+'_mnav_ev'],3)}x</span></div>
     <div class="kv"><span>Signal mNAV (${BL(S.signal_basis)}) 1y pct</span><span>${pct(pa.mnav_pct_1y,0)}</span></div>
-    <div class="kv"><span>Overheated?</span><span>${pa.overheated?'YES':'no'}</span></div>
+    <div class="kv"><span>Overheated?</span><span>${pa.overheated?'<span class="pill SELL">YES</span>':'no'}</span></div>
     <div class="kv"><span>BTC NAV / share</span><span>$${fmt(v[a.toLowerCase()+'_nav_ps'])}</span></div>
-    <div class="kv"><span>Last ${S.dip.lookback_trading_days}d: price / mNAV</span><span><span class="${cls(pa.price_chg_dip_window)}">${pct(pa.price_chg_dip_window)}</span> / <span class="${cls(pa.mnav_chg_dip_window)}">${pct(pa.mnav_chg_dip_window)}</span></span></div></div>`)}
+    <div class="kv"><span>Last ${S.dip.lookback_trading_days}d: price / mNAV</span><span>${cp(pa.price_chg_dip_window)} / ${cp(pa.mnav_chg_dip_window)}</span></div></div>`)}
   cards.push(`<div class="card" style="margin:0"><h2>Rotation <span class="pill ${S.rotation}">${S.rotation}</span></h2>
     <div class="kv"><span>ASST/MSTR price ratio</span><span>${fmt(v.ratio,4)}</span></div>
     <div class="kv"><span>mNAV spread ASST−MSTR (${BL(S.signal_basis)})</span><span>${fmt(v.mnav_spread,3)}</span></div>
     <div class="kv"><span>Spread z-score (1y)</span><span>${fmt(v.spread_z,2)}</span></div>
     <div class="kv"><span>Average mNAV</span><span>${fmt(v.mnav_avg,3)}x</span></div>
-    <div class="kv"><span>Both overheated → SELL_TO_BTC?</span><span>${S.both_overheated?'<span class="pill SELL">YES</span>':'no'}</span></div></div>`);
+    <div class="kv"><span>Both overheated?</span><span>${S.both_overheated?'<span class="pill SELL_TO_BTC">YES → BTC</span>':'no'}</span></div></div>`);
   cards.push(`<div class="card" style="margin:0"><h2>Dip / BTC <span class="pill ${S.dip.active?'BUY':'NEUTRAL'}">${S.dip.active?'DIP ZONE':'NO DIP'}</span></h2>
     <div class="kv"><span>BTC</span><span>$${fmt(v.btc,0)}</span></div>
-    <div class="kv"><span>BTC change, last ${S.dip.lookback_trading_days} trading days</span><span class="${cls(S.dip.btc_change)}">${pct(S.dip.btc_change)}</span></div>
+    <div class="kv"><span>BTC change, last ${S.dip.lookback_trading_days} trading days</span>${cp(S.dip.btc_change)}</div>
     <div class="kv"><span>Dip trigger</span><span>≤ −${pct(S.dip.trigger_btc_drop,0)}</span></div>
     <div class="kv"><span>Got cheaper most (mNAV, ${S.dip.lookback_trading_days}d)</span><span>${S.dip.cheapened_most||'—'}</span></div>
-    <div class="kv"><span>Dip-buy target</span><span>${S.dip.target||'— (no dip)'}</span></div>
+    <div class="kv"><span>Dip-buy target (context only)</span><span>${S.dip.target||'— (no dip)'}</span></div>
     <div class="kv"><span>Latest big move</span><span>${S.latest_big_move?S.latest_big_move.date+' '+S.latest_big_move.asset+' '+pct(S.latest_big_move.change):'—'}</span></div>
     <div class="kv"><span>Events next 7d</span><span>${(S.upcoming_events_7d||[]).length}</span></div></div>`);
-  document.getElementById('sigcards').innerHTML=cards.join('');
+  $('sigcards').innerHTML=cards.join('');
   const t=S.thresholds;
-  document.getElementById('signote').innerHTML=`As of ${S.as_of} (latest bar may be intraday if refreshed during market hours). Rules: peg ON = close ≥ $${t.peg.on_threshold} for ${t.peg.on_consecutive_days} days → BUY parent; WATCH = close &lt; $${t.peg.watch_below}; SELL = close &lt; $${t.peg.sell_below} or ${t.peg.sell_consecutive_down_closes_below_peg}+ straight down closes below peg. All mNAV rules use the <b>${BL(S.signal_basis)}</b> mNAV (config <code>mnav.signal_basis</code>). Overheated = mNAV ≥ ${t.mnav.overheated_min_mnav}x AND ≥ ${t.mnav.overheated_percentile*100}th pct of ${t.mnav.lookback_trading_days}-day history; both overheated → SELL_TO_BTC: sell both, hold BTC (overrides). Rotation: spread z ≤ ${t.mnav.spread_z_favor_asst} → favor ASST (cheap vs MSTR), ≥ ${t.mnav.spread_z_favor_mstr} → favor MSTR. Dip: BTC down ≥ ${t.dip.btc_drop_pct*100}% over the last ${t.dip.lookback_days} trading days → buy whichever of MSTR/ASST had the larger mNAV drop over that window (got cheaper vs its own bitcoin; tie → larger price drop). Machine-readable: <a href="signals.json">signals.json</a>.`;
-  document.getElementById('pegnote').innerHTML=`Now: STRC $${fmt(p.STRC.price)} <span class="pill ${p.STRC.state}">${p.STRC.state}</span> · SATA $${fmt(p.SATA.price)} <span class="pill ${p.SATA.state}">${p.SATA.state}</span>`;
-}
-
-const ZC={CHEAP:'#3fb950',FAIR:'#58a6ff',RICH:'#d29922',OVERVALUED:'#f85149'};
-function lastTwo(k){const R=D.rows.filter(r=>r[k]!=null);const a=R[R.length-1],b=R[R.length-2];return a?{v:a[k],d:a.date,ch:b?a[k]/b[k]-1:null}:null}
-function renderHero(){
-  const tk=[['BTC','btc',0],['MSTR','MSTR',2],['ASST','ASST',2]].map(([n,k,dp])=>{const t=lastTwo(k);if(!t)return'';
-    return `<div class="tk" title="last close ${t.d}"><div class="s">${n}</div><span class="p">$${fmt(t.v,dp)}</span><span class="c ${cls(t.ch)}">${t.ch==null?'':(t.ch>=0?'▲ +':'▼ ')+pct(t.ch,2).replace('-','')}</span></div>`}).join('');
-  document.getElementById('tickers').innerHTML=tk;
-  const h=S.headline||'',first=h.split(';')[0];
-  const c=/OVERHEATED|SELL/.test(first)?'hl-red':/^BUY/.test(first)?'hl-green':/WATCH/.test(first)?'hl-amber':'hl-blue';
-  const el=document.getElementById('hlpill');el.className='hlpill '+c;el.textContent=h}
-function trailing(k,n){const R=D.rows.filter(r=>r[k]!=null);return R.slice(-n).map(r=>r[k]).sort((a,b)=>a-b)}
+  $('signote').innerHTML=`As of ${S.as_of}. Per-asset legacy actions: peg ON = close ≥ $${t.peg.on_threshold} for ${t.peg.on_consecutive_days} days → BUY parent; NEAR → HOLD; WATCH = close &lt; $${t.peg.watch_below}; SELL = close &lt; $${t.peg.sell_below} or ${t.peg.sell_consecutive_down_closes_below_peg}+ straight down closes below peg. mNAV rules use the <b>${BL(S.signal_basis)}</b> mNAV. Overheated = mNAV ≥ ${t.mnav.overheated_min_mnav}x AND ≥ ${t.mnav.overheated_percentile*100}th pct of ${t.mnav.lookback_trading_days}-day history; both overheated → SELL_TO_BTC. Rotation: spread z ≤ ${t.mnav.spread_z_favor_asst} → favor ASST, ≥ ${t.mnav.spread_z_favor_mstr} → favor MSTR. Dip: BTC down ≥ ${t.dip.btc_drop_pct*100}% over the last ${t.dip.lookback_days} trading days → whichever of MSTR/ASST had the larger mNAV drop. These feed the single recommendation above only through the peg and overheated flags.`;
+  $('pegnote').innerHTML='Now: '+ASSETS.map(a=>`${a.preferred} $${fmt(p[a.preferred].price)} <span class="pill p-${p[a.preferred].state}">${p[a.preferred].state}</span>`).join(' · ');
+  $('pegrules').innerHTML=`Bands: <span class="pill ON">ON</span> close ≥ $${t.peg.on_threshold} for ${t.peg.on_consecutive_days} straight days (confirmed; the recommendation trigger) · <span class="pill NEAR">NEAR</span> at/above the threshold but not yet confirmed, or between $${t.peg.watch_below} and $${t.peg.on_threshold} · <span class="pill WATCH">WATCH</span> close &lt; $${t.peg.watch_below} · <span class="pill SELL">SELL</span> close &lt; $${t.peg.sell_below} or ${t.peg.sell_consecutive_down_closes_below_peg} straight down closes below peg. STRC → MSTR, SATA → ASST. Fuel chart: STRC ATM net proceeds and repurchases from Strategy weekly 8-Ks (from Nov 2025); SATA issuance = change in shares outstanding × $100 stated amount (not cash proceeds); SATS IPO at $100 stated.`}
 const q=(a,p)=>a.length?a[Math.min(a.length-1,Math.floor(p*(a.length-1)))]:null;
-const BL=b=>({basic:'market standard',ev:'all-in (EV)',diluted:'diluted equity'}[b]||b);
-let ZB=null,MB='both';
+function trailing(k,n){const R=D.rows.filter(r=>r[k]!=null);return R.slice(-n).map(r=>r[k]).sort((a,b)=>a-b)}
+let ZB=null,MB='ev';
 function gauge(a,bs,x){const mc=D.config.mnav,vc=D.config.valuation||{cheap_below_mnav:1,fair_max_percentile:0.5};
   const k=a.toLowerCase()+'_mnav_'+bs,arr=trailing(k,mc.lookback_trading_days),v=x.mnav;if(!arr.length||v==null)return '<div class="note">— not available</div>';
   const med=q(arr,vc.fair_max_percentile),p90=q(arr,mc.overheated_percentile),ovr=Math.min(mc.overheated_min_mnav,p90);
@@ -209,114 +379,203 @@ function plain(a,bs,x){const v=x.mnav,z=x.zone;if(v==null)return 'Not available.
   const pr=Math.abs(prem)<0.005?'about equal to':prem<0?`${pct(-prem,0)} less than`:`${pct(prem,0)} more than`;
   const zt={CHEAP:'cheap: below its bitcoin',FAIR:'fair: at or below its usual (1y median) level',RICH:'rich: above its usual level',OVERVALUED:'overvalued: at the top of its 1y range or above the overheated floor'}[z]||'';
   return `The market values ${what} at <b>${pr}</b> the bitcoin it holds. It is higher than ${pct(x.mnav_pct_1y,0)} of the last year's readings. Zone: <b>${zt}</b>.`}
+function srcl(a,k,label){const s=(A.sources[a]||{})[k];if(!s||!s[1])return '';return ` <a href="${s[1]}" target="_blank" rel="noopener" title="${label} source, as of ${s[0]}${s[2]?' (approximate)':''}">[${label} ${s[0]}]</a>`}
 function renderValuation(){
   const V=S.valuation||{},mc=D.config.mnav,sb=S.signal_basis||'ev';
   const RV=V.relative_verdict||{};
-  document.getElementById('verdict').innerHTML=`<div>All-in (EV)${sb==='ev'?' <span class="sigtag">drives signals</span>':''}: ${RV.ev||'—'}</div><div style="font-size:14px;font-weight:600;margin-top:4px;color:#c9d1d9">Market standard${sb==='basic'?' <span class="sigtag">drives signals</span>':''}: ${RV.basic||'—'}</div>`;
-  document.getElementById('basisnote').innerHTML=`<b>Market standard mNAV</b> = price × basic shares ÷ BTC NAV (the number most sites quote). <b>All-in (EV) mNAV</b> = (price × basic shares + debt + preferred notional − cash/USD reserve) ÷ BTC NAV, so it counts every claim ahead of or alongside common. Overheated, rotation, dip and zone rules use <b>${BL(sb)}</b>.`;
-  document.getElementById('valcards').innerHTML=['MSTR','ASST'].map(a=>{const x=V[a]||{},B=x.market_standard||{},E=x.all_in_ev||{};
-    const blk=(bs,o,title)=>`<div class="vbasis"><h3>${title} ${bs===sb?'<span class="sigtag">signal basis</span>':''}<span class="pill vz z-${o.zone}">${o.zone||'—'}</span></h3>
+  $('verdict').innerHTML=`<div>All-in (EV)${sb==='ev'?' <span class="sigtag">drives signals</span>':''}: ${RV.ev||'—'}</div><div style="font-size:14px;font-weight:600;margin-top:4px;color:var(--mut)">Market standard${sb==='basic'?' <span class="sigtag">drives signals</span>':''}: ${RV.basic||'—'}</div>`;
+  $('basisnote').innerHTML=`<b>Market standard mNAV</b> = price × basic shares ÷ BTC NAV (the number most sites quote). <b>All-in (EV) mNAV</b> = (price × basic shares + debt + preferred notional − cash/USD reserve) ÷ BTC NAV, so it counts every claim ahead of or alongside common. 1.0x = the market values it at exactly its bitcoin. Overheated filter, rotation, dip and zone rules use <b>${BL(sb)}</b>. Zones: CHEAP below ${(D.config.valuation||{}).cheap_below_mnav||1}x; FAIR up to the 1y median; RICH above it; OVERVALUED at the overheated floor or top decile.`;
+  $('valcards').innerHTML=ASSETS.map(aa=>{const a=aa.ticker,x=V[a]||{},B=x.market_standard||{},Ev=x.all_in_ev||{};
+    const blk=(bs,o,title,tip)=>`<div class="vbasis"><h3>${title}${Q(tip)} ${bs===sb?'<span class="sigtag">signal basis</span>':''}<span class="pill vz z-${o.zone}">${o.zone||'—'}</span></h3>
       <div style="display:flex;gap:22px;flex-wrap:wrap;align-items:flex-end"><div><div class="vbig">${fmt(o.mnav,3)}x</div></div><div><div class="note">1y percentile</div><div class="vbig" style="font-size:22px">${pct(o.mnav_pct_1y,0)}</div></div></div>
       ${gauge(a,bs,o)}<div class="vplain">${plain(a,bs,o)}</div></div>`;
-    const dl=`Diluted equity mNAV (price × assumed-diluted shares ÷ BTC NAV): ${fmt(x.diluted_equity_mnav,3)}x. Shown for reference only; it counts convertible notes as shares, so it isn't used in either gauge.`;
-    return `<div class="card" style="margin:0;border-color:${ZC[x.zone]||'#30363d'}55"><h2>${a} <span class="pill vz z-${x.zone}">${x.zone||'—'}</span> <span class="note" style="font-weight:400">on ${BL(sb)}</span></h2>
-     <div class="note">Price $${fmt(x.price)} · BTC held ${fmt(x.btc_held,0)} · BTC NAV $${fmt(x.btc_nav_m,0)}M ($${fmt(x.btc_nav_per_basic_share)}/basic share) · <span class="tip" title="${dl}">diluted mNAV ${fmt(x.diluted_equity_mnav,2)}x ⓘ</span></div>
-     <div class="note">EV $${fmt(x.enterprise_value_m,0)}M = equity $${fmt(x.price*x.basic_shares/1e6,0)}M (${fmt(x.basic_shares/1e6,1)}M basic sh) + debt $${fmt(x.debt_m,0)}M + preferred $${fmt(x.preferred_notional_m,0)}M − cash $${fmt(x.cash_m,0)}M</div>
-     ${blk('basic',B,'mNAV (market standard)')}${blk('ev',E,'mNAV all-in (EV)')}</div>`}).join('');
-  document.getElementById('valnote').innerHTML=`Percentile = where today's value ranks within its own trailing ${mc.lookback_trading_days} trading days, for each basis separately. Zone thresholds come from <a href="config.json">config.json</a> (<code>valuation</code> + <code>mnav</code>) and are the same for both bases. The relative verdicts use the ASST−MSTR spread z-score on each basis (≤ ${mc.spread_z_favor_asst}: ASST cheaper; ≥ +${mc.spread_z_favor_mstr}: MSTR cheaper).`;
-  ZB=ZB||sb;segInit('zbasis',ZB,b=>{ZB=b;TS=TS.filter(t=>t!=='c_zone');plotZone();linkCharts()})}
-function segInit(id,cur,fn){const el=document.getElementById(id);el.querySelectorAll('button').forEach(b=>{b.classList.toggle('on',b.dataset.b===cur);
+    const dlx=`Diluted equity mNAV (price × assumed-diluted shares ÷ BTC NAV): ${fmt(x.diluted_equity_mnav,3)}x. Shown for reference only; it counts convertible notes as shares, so it isn't used in either gauge.`;
+    return `<div class="card" style="margin:0;border-color:${ZC[x.zone]||'var(--line)'}55"><h2>${a} <span class="pill vz z-${x.zone}">${x.zone||'—'}</span> <span class="note" style="font-weight:400">on ${BL(sb)}</span></h2>
+     <div class="note">Price $${fmt(x.price)} · BTC held ${fmt(x.btc_held,0)}${srcl(a,'holdings','holdings')} · BTC NAV $${fmt(x.btc_nav_m,0)}M ($${fmt(x.btc_nav_per_basic_share)}/basic share) · diluted mNAV ${fmt(x.diluted_equity_mnav,2)}x${Q(dlx)}</div>
+     <div class="note">EV $${fmt(x.enterprise_value_m,0)}M = equity $${fmt(x.price*x.basic_shares/1e6,0)}M (${fmt(x.basic_shares/1e6,1)}M basic sh${srcl(a,'basic_shares','shares')}) + debt $${fmt(x.debt_m,0)}M${srcl(a,'debt_m','debt')} + preferred $${fmt(x.preferred_notional_m,0)}M${srcl(a,a==='MSTR'?'pref_usd_shares':'sata_shares','preferred')} − cash $${fmt(x.cash_m,0)}M${srcl(a,'cash_m','cash')}</div>
+     ${blk('basic',B,'mNAV (market standard)','Price × basic shares ÷ (BTC held × BTC price). The number most sites quote.')}${blk('ev',Ev,'mNAV all-in (EV)','(Market cap + debt + preferred notional − cash) ÷ BTC NAV. Counts every claim, so companies with lots of debt/preferred look more expensive here.')}</div>`}).join('');
+  $('valnote').innerHTML=`Percentile = where today's value ranks within its own trailing ${mc.lookback_trading_days} trading days, for each basis separately. Zone thresholds come from <a href="config.json">config.json</a> (<code>valuation</code> + <code>mnav</code>) and are the same for both bases. The relative verdicts use the ASST−MSTR spread z-score on each basis (≤ ${mc.spread_z_favor_asst}: ASST cheaper; ≥ +${mc.spread_z_favor_mstr}: MSTR cheaper). Source links point at the latest filing or API used for each input.`;
+  ZB=ZB||sb;segInit('zbasis',ZB,b=>{ZB=b;plotZone();linkCharts()})}
+function segInit(id,cur,fn){const el=$(id);el.querySelectorAll('button').forEach(b=>{b.classList.toggle('on',b.dataset.b===cur);
   b.onclick=()=>{el.querySelectorAll('button').forEach(o=>o.classList.toggle('on',o===b));fn(b.dataset.b)}})}
+function keepRange(id,L){const el=$(id);if(el&&el._fullLayout&&el._fullLayout.xaxis)L.xaxis.range=el._fullLayout.xaxis.range.slice();return L}
 function plotZone(){const R=D.rows.filter(r=>r.date>=D.config.window_start),mc=D.config.mnav,vc=D.config.valuation||{fair_max_percentile:0.5},bs=ZB||S.signal_basis||'ev';
-  const tr=['MSTR','ASST'].map(a=>{const k=a.toLowerCase(),rr=R.filter(r=>r[k+'_mnav_'+bs+'_pct']!=null);
-    return{name:a+' percentile ('+BL(bs)+')',x:rr.map(r=>r.date),y:rr.map(r=>r[k+'_mnav_'+bs+'_pct']),mode:'lines+markers',line:{color:C[a],width:2},
+  const tr=ASSETS.map(aa=>{const a=aa.ticker,k=aa.key,rr=R.filter(r=>r[k+'_mnav_'+bs+'_pct']!=null);
+    return{name:a+' percentile ('+BL(bs)+')',meta:a,x:rr.map(r=>r.date),y:rr.map(r=>r[k+'_mnav_'+bs+'_pct']),mode:'lines+markers',line:{color:C[a],width:2},
       marker:{size:5,color:rr.map(r=>ZC[r[k+'_zone_'+bs]]||'#888'),line:{width:0}},customdata:rr.map(r=>[r[k+'_zone_'+bs],r[k+'_mnav_'+bs]]),
       hovertemplate:a+': %{y:.0%} pct · %{customdata[1]:.3f}x · %{customdata[0]}<extra></extra>'}});
-  plot('c_zone',tr,baseLayout('1y mNAV percentile',{yaxis:{range:[-0.03,1.03],tickformat:'.0%',title:'1y percentile · '+BL(bs),gridcolor:'#21262d'},
+  plot('c_zone',tr,keepRange('c_zone',baseLayout('1y mNAV percentile',{yaxis:{range:[-0.03,1.03],tickformat:'.0%',title:'1y percentile · '+BL(bs)},
     shapes:[{type:'rect',xref:'paper',yref:'y',x0:0,x1:1,y0:mc.overheated_percentile,y1:1.03,fillcolor:'rgba(248,81,73,0.10)',line:{width:0},layer:'below'},
             {type:'rect',xref:'paper',yref:'y',x0:0,x1:1,y0:vc.fair_max_percentile,y1:mc.overheated_percentile,fillcolor:'rgba(210,153,34,0.07)',line:{width:0},layer:'below'},
-            hline(vc.fair_max_percentile,'#8b949e'),hline(mc.overheated_percentile,'#f85149')]}))}
+            hline(vc.fair_max_percentile,'#8b949e'),hline(mc.overheated_percentile,'#f85149')]})))}
+// ---------- BTC yield
+function renderYield(){const Y=A.btc_yield,W=[['30d','30d'],['prev_30d','prior 30d'],['90d','90d'],['ytd','YTD'],['1y','1y']];
+  $('yieldtable').innerHTML='<tr><th>Company</th>'+W.map(w=>`<th class="num">${w[1]}</th>`).join('')+'<th>Trend</th><th class="num">BTC per 1,000 diluted sh</th></tr>'+ASSETS.map(a=>{const y=Y[a.ticker]||{};
+    return `<tr><td style="color:${C[a.ticker]}"><b>${a.ticker}</b></td>`+W.map(([k])=>{const c=y[k]||{};return `<td class="num" title="${c.from?c.from+' → '+c.to+' · '+c.basis+' shares':esc(c.missing||'')}">${c.value==null?'<span class="note">missing</span>':cp(c.value,1)}${c.basis==='basic'?'<sup>b</sup>':''}</td>`}).join('')
+      +`<td>${y.accelerating?'<span class="pill BUY">accelerating</span>':'<span class="pill NEUTRAL">not accelerating</span>'}${A.flywheel[a.preferred]&&A.flywheel[a.preferred].status==='FLYWHEEL_ON'&&y.accelerating?' <span class="badge f-FLYWHEEL_ON" style="margin:0">FLYWHEEL ON → BTC/share accelerating</span>':''}</td><td class="num">${fmt(y.btc_per_1000_diluted_shares,4)}</td></tr>`}).join('');
+  const df=A.btc_yield_diluted_from||{};
+  $('yieldnote').innerHTML=`BTC yield = % change in BTC held ÷ diluted shares (calendar-day windows ending ${S.as_of}). MSTR diluted shares = Strategy's assumed diluted shares outstanding (btcexposure.com CSV). ASST: "assumed fully diluted shares" only exist from ${df.ASST||'—'}; windows starting before that use effective common (basic) shares on both ends, marked <sup>b</sup>. Hover a cell for the exact dates. "Accelerating" = last 30d positive and above the prior 30d. Falling MSTR yield means diluted shares grew faster than BTC holdings in that window.`}
+function plotBps(){const tr=[];ASSETS.forEach((a,i)=>{const s=series(a.key+'_bps');tr.push(Object.assign(s,{name:a.ticker+' BTC per 1,000 diluted sh'+(i?' (right)':''),meta:a.ticker,yaxis:i?'y2':'y',line:{color:C[a.ticker],width:2.2,shape:'hv'},hovertemplate:'%{y:.4f}'}))});
+  const sh=[];ASSETS.forEach(a=>runs(r=>r['peg_'+a.preferred]==='ON').forEach(([x0,x1])=>{if(!HIDE.has(a.ticker))sh.push({type:'rect',xref:'x',yref:'paper',x0,x1,y0:0,y1:1,fillcolor:C[a.ticker]+'2e',line:{width:0},layer:'below'})}));
+  plot('c_bps',tr,keepRange('c_bps',baseLayout(ASSETS[0].ticker+' BTC / 1,000 sh',{yaxis2:{overlaying:'y',side:'right',title:(ASSETS[1]||{}).ticker+' BTC / 1,000 sh',showgrid:false},shapes:sh})))}
+// ---------- peg -> performance
+function renderPegPerf(){const P=A.peg_stretches||[],n=P.length;
+  $('pegcaveat').innerHTML=`<b>Small sample:</b> ${n} confirmed-peg stretches in ~1 year (${P.filter(p=>p.preferred==='STRC').length} STRC, ${P.filter(p=>p.preferred==='SATA').length} SATA), mostly in a falling BTC market. Overlapping windows, no statistics. This describes the past; it is not a forecast.`;
+  const ex=(o,k='parent')=>o&&o[k]!=null&&o.btc!=null?o[k]-o.btc:null;
+  $('pegtable').innerHTML='<tr><th>Preferred → parent</th><th>Confirmed</th><th class="num">Days ON</th><th class="num">During: parent</th><th class="num">BTC</th><th class="num">BTC/share</th><th class="num">+7d parent</th><th class="num">+7d BTC</th><th class="num">+30d parent</th><th class="num">+30d BTC</th><th class="num">+30d BTC/sh</th><th class="num">+30d parent − BTC</th></tr>'+
+    P.map(p=>`<tr><td>${p.preferred} → <b style="color:${C[p.parent]}">${p.parent}</b></td><td>${p.confirmed}${p.ongoing?' (ongoing)':''}</td><td class="num">${p.days_on}</td><td class="num">${cp(p.during.parent)}</td><td class="num">${cp(p.during.btc)}</td><td class="num">${cp(p.during.btc_per_share)}</td>
+     <td class="num">${p.after_7d?cp(p.after_7d.parent):'<span class="note">pending</span>'}</td><td class="num">${p.after_7d?cp(p.after_7d.btc):''}</td><td class="num">${p.after_30d?cp(p.after_30d.parent):'<span class="note">pending</span>'}</td><td class="num">${p.after_30d?cp(p.after_30d.btc):''}</td><td class="num">${p.after_30d?cp(p.after_30d.btc_per_share):''}</td><td class="num"><b>${p.after_30d?cp(ex(p.after_30d)):''}</b></td></tr>`).join('')+
+    ['STRC','SATA'].map(pf=>{const X=P.filter(p=>p.preferred===pf&&p.after_30d),m=f=>X.length?X.reduce((s,p)=>s+f(p),0)/X.length:null,w=X.filter(p=>ex(p.after_30d)>0).length;
+      return X.length?`<tr style="font-weight:700"><td>${pf} average (${X.length})</td><td></td><td></td><td class="num">${cp(m(p=>p.during.parent))}</td><td class="num">${cp(m(p=>p.during.btc))}</td><td class="num">${cp(m(p=>p.during.btc_per_share||0))}</td><td class="num">${cp(m(p=>p.after_7d?p.after_7d.parent:0))}</td><td class="num">${cp(m(p=>p.after_7d?p.after_7d.btc:0))}</td><td class="num">${cp(m(p=>p.after_30d.parent))}</td><td class="num">${cp(m(p=>p.after_30d.btc))}</td><td class="num">${cp(m(p=>p.after_30d.btc_per_share||0))}</td><td class="num">${cp(m(p=>ex(p.after_30d)))} · beat BTC ${w}/${X.length}</td></tr>`:''}).join('');
+  const t=TH(),X=P.filter(p=>p.after_30d);
+  plot('c_pegperf',[{type:'bar',name:'+30d parent',x:X.map(p=>p.preferred+' '+p.confirmed),y:X.map(p=>p.after_30d.parent),marker:{color:X.map(p=>C[p.parent])}},
+     {type:'bar',name:'+30d BTC',x:X.map(p=>p.preferred+' '+p.confirmed),y:X.map(p=>p.after_30d.btc),marker:{color:C.BTC}}],
+    {paper_bgcolor:t.panel,plot_bgcolor:t.bg,font:{color:t.fg,size:12},margin:{l:55,r:20,t:30,b:70},barmode:'group',legend:{orientation:'h',y:1.15},
+     yaxis:{tickformat:'.0%',gridcolor:t.grid,title:'30 days after confirmation'},xaxis:{type:'category'}},{time:false})}
+// ---------- backtest
+function renderBacktest(){const B=A.backtest.btc_idle,Bc=A.backtest.cash_idle,s=B.stats,sc=Bc.stats;
+  $('btcaveat').innerHTML=`<b>Read this first:</b> only ~1 year of history (${B.start} → ${B.end}, ${B.trading_days} trading days), most of it a falling BTC market. The thresholds were chosen after seeing this data, so this is in-sample and flatters the rules. A handful of trades (${s.rules.stock_periods} stock holding periods) decides the result. Fees, taxes, slippage and spreads are ignored. Not predictive, not financial advice.`;
+  const row=(n,x,extra='')=>`<tr><td>${n}</td><td class="num"><b>${cp(x.total_return)}</b></td><td class="num">${cp(x.max_drawdown)}</td>${extra}</tr>`;
+  const ti=o=>Object.entries(o.time_in).filter(([k,v])=>v>=0.005).map(([k,v])=>`${k} ${pct(v,0)}`).join(' · ');
+  $('bttable').innerHTML=`<tr><th>Strategy</th><th class="num">Total return</th><th class="num">Max drawdown</th><th class="num">Switches</th><th class="num">Hit rate vs BTC ${Q('Share of stock holding periods (BUY MSTR / BUY ASST stretches) where the stock beat simply holding BTC over the same days.')}</th><th>Time in each position</th></tr>`+
+    row('Rules, idle in BTC (STAY IN BTC = hold BTC)',s.rules,`<td class="num">${s.rules.switches}</td><td class="num">${s.rules.hit_rate_vs_btc==null?'—':pct(s.rules.hit_rate_vs_btc,0)} (${Math.round(s.rules.hit_rate_vs_btc*s.rules.stock_periods)}/${s.rules.stock_periods})</td><td class="note">${ti(s.rules)}</td>`)+
+    row('Rules, idle in cash (0% return)',sc.rules,`<td class="num">${sc.rules.switches}</td><td class="num">${sc.rules.hit_rate_vs_btc==null?'—':pct(sc.rules.hit_rate_vs_btc,0)}</td><td class="note">${ti(sc.rules)}</td>`)+
+    ['BTC',...ASSETS.map(a=>a.ticker)].map(k=>row('Buy &amp; hold '+k,s['buy_hold_'+k],'<td></td><td></td><td></td>')).join('');
+  const x=B.dates,tr=[{name:'Rules (idle BTC)',x,y:B.curves.rules,line:{color:'#2ea043',width:2.6}},{name:'Rules (idle cash)',x,y:Bc.curves.rules,line:{color:'#2ea043',width:1.6,dash:'dot'}},
+    {name:'Buy & hold BTC (baseline)',meta:'BTC',x,y:B.curves.BTC,line:{color:C.BTC,width:2}},...ASSETS.map(a=>({name:'Buy & hold '+a.ticker,meta:a.ticker,x,y:B.curves[a.ticker],line:{color:C[a.ticker],width:1.4}}))];
+  const sh=[];let cur=null,s0=null;B.positions.forEach((p,i)=>{if(p!==cur){if(cur&&cur!=='BTC')sh.push({type:'rect',xref:'x',yref:'paper',x0:s0,x1:x[i],y0:0,y1:1,fillcolor:C[cur]+'26',line:{width:0},layer:'below'});cur=p;s0=x[Math.max(0,i-1)]}});
+  if(cur&&cur!=='BTC')sh.push({type:'rect',xref:'x',yref:'paper',x0:s0,x1:x[x.length-1],y0:0,y1:1,fillcolor:C[cur]+'26',line:{width:0},layer:'below'});
+  tr.forEach(t=>t.hovertemplate='%{y:.3f}');
+  plot('c_bt',tr,keepRange('c_bt',baseLayout('Growth of $1',{shapes:sh.concat([hline(1,'#8b949e')])})),{hover:false});
+  $('btperiods').innerHTML='<tr><th>Held</th><th>From (close)</th><th>To (close)</th><th class="num">Days</th><th class="num">Return</th><th class="num">BTC same days</th><th>Beat BTC?</th></tr>'+B.periods.map(p=>`<tr><td style="color:${C[p.position]||'inherit'}"><b>${p.position}</b></td><td>${p.from}</td><td>${p.to}</td><td class="num">${p.days}</td><td class="num">${cp(p.return)}</td><td class="num">${cp(p.btc_return)}</td><td>${p.beat_btc==null?'':p.beat_btc?'✅':'❌'}</td></tr>`).join('');
+  $('btnote').innerHTML=`Mapping: recommendation BUY MSTR → 100% MSTR; BUY ASST → 100% ASST; STAY IN BTC → 100% BTC (or 100% cash in the cash variant). The call made after the close on day t is executed at the close of day t+1 (no look-ahead), no leverage, no shorting, fees ignored. Shading = days in a stock (orange MSTR, purple ASST). BTC uses Yahoo BTC-USD daily closes on stock trading days.`}
+// ---------- ATM summary
+function renderAtm(){const T=A.atm,st=T.STRC,sa=T.SATA,W=[['30d','30d'],['90d','90d'],['ytd','YTD'],['1y','1y']];
+  $('atm_strc').innerHTML='<tr><th></th>'+W.map(w=>`<th class="num">${w[1]}</th>`).join('')+'</tr>'+
+    [['ATM net proceeds','atm_net_proceeds_m'],['Repurchased','repurchased_m'],['Net issuance','net_issuance_m']].map(([n,k])=>`<tr><td>${n}</td>${W.map(([w])=>{const x=st.totals[w];return `<td class="num">$${fmt(x[k],0)}M${x.partial?'<sup>*</sup>':''}</td>`}).join('')}</tr>`).join('')+
+    `<tr><td>Shares sold</td>${W.map(([w])=>`<td class="num">${fmt(st.totals[w].atm_shares/1e6,2)}M</td>`).join('')}</tr>`;
+  $('atm_strcw').innerHTML='<tr><th>Week</th><th class="num">Shares</th><th class="num">Net $M</th><th class="num">Repurchased $M</th></tr>'+st.recent_weeks.map(w=>`<tr><td>${w.start} → ${w.end}</td><td class="num">${fmt(w.shares,0)}</td><td class="num">${fmt(w.net_m,1)}</td><td class="num">${fmt(w.repurchased_m,1)}</td></tr>`).join('');
+  $('atm_sata').innerHTML='<tr><th></th>'+W.map(w=>`<th class="num">${w[1]}</th>`).join('')+'</tr>'+
+    `<tr><td>SATA shares added</td>${W.map(([w])=>{const x=sa.totals[w];return `<td class="num">${x.shares_added==null?'<span class="note">missing</span>':fmt(x.shares_added/1e6,2)+'M'}</td>`}).join('')}</tr>`+
+    `<tr><td>… at $100 stated</td>${W.map(([w])=>{const x=sa.totals[w];return `<td class="num">${x.stated_value_m==null?'—':'$'+fmt(x.stated_value_m,0)+'M'}</td>`}).join('')}</tr>`+
+    `<tr><td>SATA outstanding</td><td class="num" colspan="4">${sa.latest?fmt(sa.latest.shares/1e6,2)+'M as of '+sa.latest.date:'—'}</td></tr>`+
+    `<tr><td>SATS outstanding</td><td class="num" colspan="4">${T.SATS.latest_shares?fmt(T.SATS.latest_shares/1e6,2)+'M ($'+fmt(T.SATS.stated_value_m,0)+'M at $100 stated)'+(T.SATS.points.length?' · <a href="'+T.SATS.points[T.SATS.points.length-1][2]+'" target="_blank" rel="noopener">source</a>':''):'—'}</td></tr>`;
+  $('atm_sataw').innerHTML='<tr><th>As of</th><th class="num">Shares added</th><th class="num">$M at $100</th></tr>'+sa.recent_changes.map(c=>`<tr><td>${c.prev_date} → ${c.date}</td><td class="num">${fmt(c.shares_added,0)}</td><td class="num">${fmt(c.stated_value_m,1)}</td></tr>`).join('');
+  const P=T.peg_days,PW=[['30d','30d'],['90d','90d'],['1y','1y']];
+  $('atm_peg').innerHTML='<tr><th>Preferred</th>'+PW.map(w=>`<th class="num">${w[1]}: ≥ $100</th><th class="num">≥ $${D.config.peg.watch_below}</th><th class="num">≥ $${D.config.peg.sell_below}</th>`).join('')+'</tr>'+
+    ['STRC','SATA','SATS'].map(p=>{const x=P[p];if(!x||x.missing)return `<tr><td>${p}</td><td colspan="9" class="note">missing</td></tr>`;
+      return `<tr><td>${p}</td>`+PW.map(([w])=>{const y=x[w];const f=v=>`${pct(v,0)}${y.partial?'<sup>*</sup>':''}`;return `<td class="num">${f(y.at_or_above_par)}</td><td class="num">${f(y.near_par)}</td><td class="num">${f(y.within_1_dollar)}</td>`}).join('')+'</tr>'}).join('');
+  $('atmnote').innerHTML=T.notes.map(esc).join('<br>')+`<br><sup>*</sup> Window starts before data coverage (STRC ATM parsed from ${st.coverage_from}; price history start per series: ${Object.entries(P).map(([k,v])=>k+' '+(v.listed_data_from||'—')).join(', ')}), so the total covers less than the full window.`}
+// ---------- events
 function renderEvents(){const today=new Date().toISOString().slice(0,10),h=new Date(Date.now()+7*864e5).toISOString().slice(0,10);
-  const past=document.getElementById('showPast').checked;
-  const ev=E.events.filter(e=>past||!e.date||e.date>=today).sort((a,b)=>(a.date||'9999').localeCompare(b.date||'9999'));
-  document.getElementById('evtable').innerHTML='<tr><th>Date</th><th>Category</th><th>Event</th><th>Status</th><th>Source</th></tr>'+ev.map(e=>{
-    const soon=e.date&&e.date>=today&&e.date<=h;const src=/^https?:/.test(e.source)?`<a href="${e.source}" target="_blank" rel="noopener">link</a>`:e.source;
-    return `<tr style="${soon?'background:#1f2a1f':''}"><td>${e.date||'<span class="tbd">TBD</span>'}${soon?' ⏰':''}</td><td><span style="color:${CATC[e.category]||'#ccc'}">●</span> ${e.category}</td><td>${e.title}</td><td>${e.status==='TBD'?'<span class="tbd">TBD</span>':e.status}</td><td>${src}</td></tr>`}).join('')}
-function renderCharts(){
-  const R=D.rows.filter(r=>r.date>=D.config.window_start);
-    NORM=[['MSTR','MSTR'],['ASST','ASST'],['btc','BTC']].map(([k,n])=>{const R=D.rows.filter(r=>r.date>=D.config.window_start&&r[k]!=null);return{name:n,x:R.map(r=>r.date),v:R.map(r=>r[k])}});
-  plot('c_norm',NORM.map(t=>({name:t.name,x:t.x,y:t.v.map(v=>v/t.v[0]-1),line:{color:C[t.name]},hovertemplate:'%{x}: %{y:.1%}<extra>'+t.name+'</extra>'})),
-    baseLayout('Change since first visible date',{yaxis:{tickformat:'.0%',title:'Change since first visible date',gridcolor:'#21262d',zeroline:true,zerolinecolor:'#8b949e'}}));
-  rebaseNorm();
-  plotZone();
-  const oh=D.config.mnav.overheated_min_mnav;
-  plotMnav();segInit('mbasis',MB,b=>{MB=b;plotMnav()});
-  document.getElementById('spbasis').textContent=BL(S.signal_basis)+' basis, which drives the rotation rule';
+  const past=$('showPast').checked,qq=$('evq').value.trim().toLowerCase(),cat=$('evcat').value;
+  const ev=E.events.filter(e=>(past||!e.date||e.date>=today)&&(!cat||e.category===cat)&&(!qq||(e.title+' '+e.category+' '+(e.date||'')).toLowerCase().includes(qq))).sort((a,b)=>(a.date||'9999').localeCompare(b.date||'9999'));
+  $('evtable').innerHTML='<tr><th>Date</th><th>Category</th><th>Event</th><th>Status</th><th>Source</th></tr>'+(ev.length?ev.map(e=>{
+    const soon=e.date&&e.date>=today&&e.date<=h;const src=/^https?:/.test(e.source)?`<a href="${esc(e.source)}" target="_blank" rel="noopener">link</a>`:esc(e.source);
+    return `<tr class="${soon?'hi':''}"><td>${e.date||'<span class="tbd">TBD</span>'}${soon?' ⏰':''}</td><td><span style="color:${CATC[e.category]||'#8b949e'}">●</span> ${esc(e.category)}</td><td>${esc(e.title)}</td><td>${e.status==='TBD'?'<span class="tbd">TBD</span>':esc(e.status)}</td><td>${src}</td></tr>`}).join(''):'<tr><td colspan="5" class="note">No events match.</td></tr>')}
+function initEvents(){const cats=[...new Set(E.events.map(e=>e.category))].sort();
+  $('evcat').innerHTML='<option value="">All categories</option>'+cats.map(c=>`<option>${esc(c)}</option>`).join('');
+  $('evcats').innerHTML=cats.map(c=>`<label class="chip"><input type="checkbox" data-cat="${esc(c)}" ${EVC.has(c)?'checked':''}><span style="color:${CATC[c]||'#8b949e'}">●</span> ${esc(c)}</label>`).join('');
+  $('evcats').querySelectorAll('input').forEach(i=>i.onchange=()=>{i.checked?EVC.add(i.dataset.cat):EVC.delete(i.dataset.cat);localStorage.setItem('evcats',JSON.stringify([...EVC]));redrawTime()});
+  $('evq').oninput=renderEvents;$('evcat').onchange=renderEvents;$('showPast').onchange=renderEvents;$('showEv').onchange=redrawTime}
+// ---------- time-series charts
+function renderCharts(){const R=D.rows.filter(r=>r.date>=D.config.window_start);
+  NORM=[...ASSETS.map(a=>[a.ticker,a.ticker]),['btc','BTC']].map(([k,n])=>{const RR=R.filter(r=>r[k]!=null);return{name:n,x:RR.map(r=>r.date),v:RR.map(r=>r[k])}});
+  plot('c_norm',NORM.map(t=>({name:t.name,meta:t.name,x:t.x,y:t.v.map(v=>v/t.v[0]-1),line:{color:C[t.name],width:t.name==='BTC'?2.6:2},hovertemplate:'%{y:.1%}'})),
+    keepRange('c_norm',baseLayout('Change since first visible date',{yaxis:{tickformat:'.0%',zeroline:true,zerolinecolor:'#8b949e'}})));
+  rebaseNorm();plotZone();plotMnav();plotBps();
+  $('spbasis').textContent=BL(S.signal_basis)+' basis, which drives the rotation tiebreak';
   plot('c_ratio',[Object.assign(series('ratio'),{name:'ASST/MSTR price ratio',line:{color:'#79c0ff'}}),
     Object.assign(series('mnav_spread'),{name:'mNAV spread ASST−MSTR (right)',yaxis:'y2',line:{color:'#d2a8ff'}}),
     Object.assign(series('mnav_avg'),{name:'Average mNAV (right)',yaxis:'y2',line:{color:C.AVG,dash:'dot'}}),
     Object.assign(series('spread_z'),{name:'Spread z (right)',yaxis:'y2',visible:'legendonly',line:{color:'#ffa657',dash:'dash'}})],
-    baseLayout('Price ratio',{yaxis2:{overlaying:'y',side:'right',title:'mNAV spread / avg',showgrid:false,zeroline:true,zerolinecolor:'#444'}}));
-  plot('c_navps',[Object.assign(series('MSTR'),{name:'MSTR price',line:{color:C.MSTR}}),Object.assign(series('mstr_nav_ps'),{name:'MSTR BTC NAV/sh',line:{color:C.MSTR,dash:'dot'}}),
-    Object.assign(series('ASST'),{name:'ASST price (right)',yaxis:'y2',line:{color:C.ASST}}),Object.assign(series('asst_nav_ps'),{name:'ASST BTC NAV/sh (right)',yaxis:'y2',line:{color:C.ASST,dash:'dot'}})],
-    baseLayout('MSTR $',{yaxis2:{overlaying:'y',side:'right',title:'ASST $',showgrid:false}}));
+    keepRange('c_ratio',baseLayout('Price ratio',{yaxis2:{overlaying:'y',side:'right',title:'mNAV spread / avg',showgrid:false,zeroline:true,zerolinecolor:'#8b949e'}})));
+  const nv=[];ASSETS.forEach((a,i)=>{const y2=i?{yaxis:'y2'}:{},sfx=i?' (right)':'';
+    nv.push(Object.assign(series(a.ticker),{name:a.ticker+' price'+sfx,meta:a.ticker,line:{color:C[a.ticker]}},y2),Object.assign(series(a.key+'_nav_ps'),{name:a.ticker+' BTC NAV/sh'+sfx,meta:a.ticker,line:{color:C[a.ticker],dash:'dot'}},y2))});
+  plot('c_navps',nv,keepRange('c_navps',baseLayout(ASSETS[0].ticker+' $',{yaxis2:{overlaying:'y',side:'right',title:(ASSETS[1]||{}).ticker+' $',showgrid:false}})));
   const pc=D.config.peg;
-  for(const [pref,id] of [['STRC','c_strc'],['SATA','c_sata']]){
-    plot(id,[Object.assign(series(pref),{name:pref+' close',line:{color:C[pref]},customdata:R.map(r=>r['peg_'+pref]),hovertemplate:'$%{y:.2f} · %{customdata}'})],
-      baseLayout(pref+' $',{margin:{l:60,r:60,t:30,b:20},yaxis:{title:pref+' $ (bands = peg state)',gridcolor:'#21262d'},
-      shapes:bands(pref).concat([hline(pc.par,'#e6edf3','solid'),hline(pc.on_threshold,'#3fb950'),hline(pc.watch_below,'#d29922'),hline(pc.sell_below,'#f85149')])}))}
+  ASSETS.forEach(a=>{const pref=a.preferred,id='c_'+pref.toLowerCase();if(!$(id))return;const RR=R.filter(r=>r[pref]!=null);
+    plot(id,[{name:pref+' close',meta:a.ticker,x:RR.map(r=>r.date),y:RR.map(r=>r[pref]),line:{color:C[pref]},customdata:RR.map(r=>r['peg_'+pref]||'—'),hovertemplate:'$%{y:.2f} · %{customdata}'}],
+      keepRange(id,baseLayout(pref+' $',{margin:{l:60,r:20,t:30,b:20},yaxis:{title:pref+' $ (bands = peg state)'},
+      shapes:bands(pref).concat([hline(pc.par,TH().fg,'solid'),hline(pc.on_threshold,SEM.peg.ON[0]),hline(pc.watch_below,SEM.peg.NEAR[0]),hline(pc.sell_below,SEM.peg.SELL[0])])})))});
   const F=D.fuel;
-  plot('c_fuel',[{type:'bar',name:'STRC ATM net proceeds $M (week)',x:F.strc_atm.map(a=>a.end),y:F.strc_atm.map(a=>a.net_m),marker:{color:'#3fb950'}},
-    {type:'bar',name:'STRC repurchased $M (week, negative)',x:F.strc_repurchase.map(a=>a.end),y:F.strc_repurchase.map(a=>-a.usd_m),marker:{color:'#f85149'}},
-    {type:'scatter',mode:'lines+markers',line:{shape:'hv',color:C.SATA},name:'SATA shares outstanding (M, right)',x:F.sata_outstanding.map(a=>a.date),y:F.sata_outstanding.map(a=>a.shares/1e6),yaxis:'y2'}],
-    baseLayout('$M',{barmode:'relative',yaxis2:{overlaying:'y',side:'right',title:'SATA shares (M)',showgrid:false}}));
-  linkCharts();
-}
+  const so=F.sata_outstanding,sbar=so.slice(1).map((p,i)=>({x:p.date,y:(p.shares-so[i].shares)*100/1e6}));
+  const sats=A.atm.SATS.points.filter(p=>p[1]>0);
+  plot('c_fuel',[{type:'bar',name:'STRC ATM net proceeds $M (week)',meta:'MSTR',x:F.strc_atm.map(a=>a.end),y:F.strc_atm.map(a=>a.net_m),marker:{color:SEM.peg.ON[0]}},
+    {type:'bar',name:'STRC repurchased $M (negative)',meta:'MSTR',x:F.strc_repurchase.map(a=>a.end),y:F.strc_repurchase.map(a=>-a.usd_m),marker:{color:SEM.peg.SELL[0]}},
+    {type:'bar',name:'SATA shares added × $100 ($M)',meta:'ASST',x:sbar.map(p=>p.x),y:sbar.map(p=>p.y),marker:{color:C.SATA}},
+    {type:'bar',name:'SATS IPO × $100 ($M)',meta:'ASST',x:sats.map(p=>p[0]),y:sats.map(p=>p[1]*100/1e6),marker:{color:C.SATS}},
+    {type:'scatter',mode:'lines+markers',line:{shape:'hv',color:C.SATA,dash:'dot'},name:'SATA shares outstanding (M, right)',meta:'ASST',x:so.map(a=>a.date),y:so.map(a=>a.shares/1e6),yaxis:'y2'}],
+    keepRange('c_fuel',baseLayout('$M',{barmode:'relative',yaxis2:{overlaying:'y',side:'right',title:'SATA shares (M)',showgrid:false}})));
+  linkCharts()}
 function plotMnav(){const oh=D.config.mnav.overheated_min_mnav,tr=[];
-  for(const a of ['MSTR','ASST']){const k=a.toLowerCase();
-    if(MB!=='basic')tr.push(Object.assign(series(k+'_mnav_ev'),{name:a+' all-in (EV)',line:{color:C[a],width:2.2}}));
-    if(MB!=='ev')tr.push(Object.assign(series(k+'_mnav_basic'),{name:a+' market standard',line:{color:C[a],dash:MB==='both'?'dot':'solid',width:MB==='both'?1.6:2.2}}));
-    tr.push(Object.assign(series(k+'_mnav_diluted'),{name:a+' diluted equity',visible:'legendonly',line:{color:C[a],dash:'dashdot',width:1}}))}
-  const el=document.getElementById('c_mnav'),xr=el&&el._fullLayout?el._fullLayout.xaxis.range:null;
-  const L=baseLayout('mNAV (x)',{shapes:[hline(1,'#8b949e'),hline(oh,'#f85149')]});if(xr)L.xaxis.range=xr;
-  plot('c_mnav',tr,L);linkCharts()}
+  ASSETS.forEach(aa=>{const a=aa.ticker,k=aa.key;
+    if(MB!=='basic')tr.push(Object.assign(series(k+'_mnav_ev'),{name:a+' all-in (EV)',meta:a,line:{color:C[a],width:2.2},hovertemplate:'%{y:.3f}x'}));
+    if(MB!=='ev')tr.push(Object.assign(series(k+'_mnav_basic'),{name:a+' market standard',meta:a,line:{color:C[a],dash:MB==='both'?'dot':'solid',width:MB==='both'?1.6:2.2},hovertemplate:'%{y:.3f}x'}));
+    tr.push(Object.assign(series(k+'_mnav_diluted'),{name:a+' diluted equity',meta:a,visible:'legendonly',line:{color:C[a],dash:'dashdot',width:1},hovertemplate:'%{y:.3f}x'}))});
+  plot('c_mnav',tr,keepRange('c_mnav',baseLayout('mNAV (x)',{shapes:[hline(1,'#8b949e'),hline(oh,SEM.zone.OVERVALUED[0])]})));linkCharts()}
+function redrawTime(){renderCharts();plotBt()}
+function plotBt(){if($('c_bt')&&$('c_bt')._fullLayout)renderBacktest()}
+// ---------- tables
 function renderBig(){const B=D.big_moves||[],t=D.config.big_moves;
-  document.getElementById('bmnote').innerHTML=`Daily close-to-close moves since ${D.config.window_start}: |MSTR| or |ASST| ≥ ${pct(t.MSTR,0)}, |BTC| ≥ ${pct(t.BTC,0)} (configurable in config.json → big_moves). ${B.length} moves. BTC trades 7 days/week (Yahoo BTC-USD UTC daily close); equities on trading days.`;
-  document.getElementById('bmtable').innerHTML='<tr><th>Date</th><th>Asset</th><th>Move</th><th>Close</th><th>Prev close</th><th>BTC same day</th><th>Event that day</th></tr>'+B.map(m=>{
-    const ev=E.events.filter(e=>e.date===m.date).map(e=>e.title).join('; ');
-    return `<tr><td>${m.date}</td><td style="color:${C[m.asset]}">${m.asset}</td><td class="${cls(m.change)}"><b>${(m.change>0?'+':'')+pct(m.change)}</b></td><td>${fmt(m.close)}</td><td>${fmt(m.prev_close)}</td><td class="${cls(m.btc_change_same_day)}">${pct(m.btc_change_same_day)}</td><td class="note">${ev}</td></tr>`}).join('')}
+  $('bmnote').innerHTML=`Daily close-to-close moves since ${D.config.window_start}: |MSTR| or |ASST| ≥ ${pct(t.MSTR,0)}, |BTC| ≥ ${pct(t.BTC,0)} (config.json → big_moves). ${B.length} moves. BTC trades 7 days/week (Yahoo BTC-USD UTC daily close); equities on trading days.`;
+  $('bmtable').innerHTML='<tr><th>Date</th><th>Asset</th><th>Move</th><th>Close</th><th>Prev close</th><th>BTC same day</th><th>Event that day</th></tr>'+B.map(m=>{
+    const ev=E.events.filter(e=>e.date===m.date).map(e=>esc(e.title)).join('; ');
+    return `<tr><td>${m.date}</td><td style="color:${C[m.asset]}">${m.asset}</td><td><b>${cp(m.change)}</b></td><td>${fmt(m.close)}</td><td>${fmt(m.prev_close)}</td><td>${cp(m.btc_change_same_day)}</td><td class="note">${ev}</td></tr>`}).join('')}
 function renderPM(){const O=S.odds_jumps||[],K=S.key_odds||[],r=(S.thresholds||{}).odds_jumps||{};
-  const esc=t=>String(t||'').replace(/[&<>"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
-  const keyline=K.length?'<div class="note" style="margin-top:6px">Now: '+K.map(k=>k.missing?`${k.short}: —`:`<a href="${k.url}" target="_blank" rel="noopener">${k.short}</a> `+k.odds.map(o=>`${esc(o.outcome)} <b>${pct(o.yes,0)}</b>`).join(', ')).join(' · ')+'</div>':'';
+  const keyline=K.length?'<div class="note" style="margin-top:6px">Now: '+K.map(k=>k.missing?`${esc(k.short)}: —`:`<a href="${k.url}" target="_blank" rel="noopener">${esc(k.short)}</a> `+k.odds.map(o=>`${esc(o.outcome)} <b>${pct(o.yes,0)}</b>`).join(', ')).join(' · ')+'</div>':'';
   let h;
   if(!O.length) h=`<div style="font-size:15px">😌 No big odds moves in the last ${r.window_days||7} days.</div>`+keyline;
-  else h=`<div class="scroll"><table><tr><th>Date</th><th>Market</th><th>Move</th><th>Change</th><th>Likely news</th></tr>`+O.map(j=>`<tr><td>${j.date}<div class="note">${j.window==='24h'?'1 day':'7 days'} · ${j.source}</div></td>
+  else h=`<div class="tscroll"><table><tr><th>Date</th><th>Market</th><th>Move</th><th>Change</th><th>Likely news</th></tr>`+O.map(j=>`<tr><td>${j.date}<div class="note">${j.window==='24h'?'1 day':'7 days'} · ${esc(j.source)}</div></td>
      <td><a href="${j.url}" target="_blank" rel="noopener">${esc(j.market)}</a><div class="note">${esc(j.outcome)}</div></td>
      <td>${pct(j.from,0)} → ${pct(j.to,0)}</td><td class="${j.change_pts>=0?'pos':'neg'}" style="font-weight:700">${j.change_pts>=0?'▲ +':'▼ '}${Math.abs(j.change_pts).toFixed(1)} pts</td>
      <td>${j.news?`<a href="${j.news.url}" target="_blank" rel="noopener">${esc(j.news.headline)}</a>`:''}</td></tr>`).join('')+'</table></div>'+keyline;
-  document.getElementById('ojbody').innerHTML=h;
-  document.getElementById('ojnote').innerHTML=`Flags a tracked market when its Yes probability moves ≥ ${r.jump_24h_pts} pts in a day or ≥ ${r.jump_7d_pts} pts over 7 days (last ${r.window_days} days; thresholds in config.json → odds_jumps). Polymarket (gamma-api + clob prices-history) and Kalshi (trade-api v2), refreshed with the data job. "Likely news" = top Google News result for that topic around that date, matched automatically, so it may not be the cause. Full odds stay in <a href="data/markets.json">markets.json</a> and <a href="signals.json">signals.json</a>.`}
-function renderMethod(){const K=D.strategy_kpi_latest||{},R=D.capital_residuals||{},sb=BL(S.signal_basis);
+  $('ojbody').innerHTML=h;
+  $('ojnote').innerHTML=`Flags a tracked market when its Yes probability moves ≥ ${r.jump_24h_pts} pts in a day or ≥ ${r.jump_7d_pts} pts over 7 days (last ${r.window_days} days; config.json → odds_jumps). Polymarket and Kalshi, refreshed with the data job. "Likely news" = top Google News result for that topic around that date, matched automatically, so it may not be the cause.`}
+function renderSigLog(){const F=A.signal_flips||[],L=A.signal_log||[];const mv=(o,k)=>o?cp(o[k]):'<span class="note">pending</span>';
+  const all=F.map(f=>Object.assign({kind:'reconstructed'},f)).concat(L.map(l=>({kind:l.initial?'live (first entry)':'live',date:l.as_of,old:l.old,new:l.new,reason:l.reason,after:l.after,detected:l.detected_utc}))).sort((a,b)=>b.date.localeCompare(a.date));
+  $('siglognote').innerHTML=`Every change of the single recommendation. <b>Reconstructed</b> rows replay today's rules over history (${F.length} flips). <b>Live</b> rows are appended by the daily job to <code>data/signal_log.json</code> whenever <code>signal_hash</code> changes. Columns show how BTC and each stock moved 1, 7 and 30 trading days after the flip; "pending" = not enough days yet. Last hash change: ${A.last_changed?esc(A.last_changed.date+' ('+(A.last_changed.what||'')+')'):'—'}.`;
+  $('siglogtable').innerHTML='<tr><th>Date</th><th>Change</th><th>Type</th>'+['1d','7d','30d'].map(w=>`<th class="num">BTC ${w}</th>`+ASSETS.map(a=>`<th class="num">${a.ticker} ${w}</th>`).join('')).join('')+'<th>Reason</th></tr>'+
+    all.map(f=>`<tr><td>${f.date}</td><td>${f.old?`<span class="pill r-${f.old}">${RECL[f.old]||f.old}</span> → `:''}<span class="pill r-${f.new}">${RECL[f.new]||f.new}</span></td><td class="note">${f.kind}</td>`+
+      ['1d','7d','30d'].map(w=>{const o=f.after&&f.after[w];return `<td class="num">${mv(o,'BTC')}</td>`+ASSETS.map(a=>`<td class="num">${mv(o,a.ticker)}</td>`).join('')}).join('')+`<td class="note">${esc(f.reason)}</td></tr>`).join('')}
+function renderMethod(){const K=D.strategy_kpi_latest||{},R=D.capital_residuals||{},sb=BL(S.signal_basis),pc=D.config.peg,mc=D.config.mnav;
  const res=(k,u)=>(R[k]||[]).map(r=>`${r.date}: ${r.residual>=0?'+':''}${fmt(r.residual/u,u===1?0:2)}${u===1e6?'M':''}`).join(', ');
- document.getElementById('methodbody').innerHTML=`
- <p><b>Prices:</b> Yahoo Finance chart API (daily closes; split-adjusted: MSTR 10-for-1 on 2024-08-08, ASST 1-for-20 reverse split on 2026-02-06). Tickers MSTR, ASST, BTC-USD, STRC, SATA${(D.sats&&Object.keys(D.sats).length)?', SATS':''}, EURUSD=X (for STRE).</p>
+ $('methodbody').innerHTML=`
+ <p><b>The recommendation</b> (rules-based indicator, not financial advice) is computed after each close. It returns exactly one of BUY MSTR, BUY ASST or STAY IN BTC:
+ <br>1. <b>Trigger:</b> a parent becomes a candidate only when its preferred's peg is <b>confirmed ON</b>: ${pc.on_consecutive_days} consecutive closes ≥ $${pc.on_threshold} (STRC → MSTR, SATA → ASST).
+ <br>2. <b>Filter:</b> a candidate is dropped if its all-in (EV) mNAV is <b>overheated</b> (≥ ${mc.overheated_min_mnav}x <i>and</i> ≥ ${mc.overheated_percentile*100}th percentile of its trailing ${mc.lookback_trading_days} days). Peg ON but overheated means "wait / reduce size", and the call stays STAY IN BTC.
+ <br>3. <b>Tiebreak:</b> only if both survive, the ASST−MSTR mNAV spread z-score picks the relatively cheaper one (z &lt; 0 → ASST, else MSTR), and the other is listed as "also valid".
+ <br>4. Otherwise: <b>STAY IN BTC</b>.
+ <br>Peg states per close: ON (confirmed), NEAR (≥ $${pc.watch_below} but not confirmed), WATCH (&lt; $${pc.watch_below}), SELL (&lt; $${pc.sell_below} or ${pc.sell_consecutive_down_closes_below_peg} straight down closes below $${pc.watch_below}). Flywheel cards map ON → FLYWHEEL ON, NEAR → NEAR PAR, WATCH/SELL → OFF PEG.
+ <br><code>signals.json</code> carries <code>recommendation</code>, <code>recommendation_reason</code>, <code>signal_hash</code> (changes whenever the action, also-valid, any peg state or overheated flag changes) and <code>last_changed</code>. The older per-asset signals (dip rule, rotation, odds) are kept in the expandable "Secondary signals" card.</p>
+ <p><b>Prices:</b> Yahoo Finance chart API (daily closes; split-adjusted: MSTR 10-for-1 on 2024-08-08, ASST 1-for-20 reverse split on 2026-02-06). Tickers ${ASSETS.map(a=>a.ticker).join(', ')}, BTC-USD, STRC, SATA${(D.sats&&Object.keys(D.sats).length)?', SATS':''}, EURUSD=X (for STRE). Companies come from <code>config.json → assets</code>; adding one also needs its own filing adapters in <code>scripts/</code>.</p>
  <p><b>Three mNAVs, one formula for both stocks</b> (BTC NAV = BTC held × BTC-USD close; every input is a daily step function that changes on each disclosed "as of" date):
  <br>• <b>mNAV (market standard)</b> = price × basic shares ÷ BTC NAV.
- <br>• <b>mNAV all-in (EV)</b> = (price × basic shares + debt at notional + preferred notional, all series − cash/USD reserve) ÷ BTC NAV. Basic shares are used for the equity leg, Strategy's own definition, so convertible notes aren't counted twice (config <code>mnav.ev_share_basis</code>). Today this matches Strategy's own EV (api.strategy.com${K.ev_m?': EV $'+fmt(K.ev_m,0)+'M':''}).
- <br>• <b>Diluted equity mNAV</b> (reference only, shown in tooltips and in the mNAV chart legend) = price × assumed-diluted shares ÷ BTC NAV. MSTR: Strategy ADSO from the <a href="https://www.btcexposure.com/data/mstr-mnav-history.csv">btcexposure.com CSV</a>. ASST: "Assumed Fully Diluted Shares" from mid-Jul 2026, otherwise effective common.
- <br>Signals (overheated, rotation, dip, zones) use <b>${sb}</b> (config <code>mnav.signal_basis</code>).</p>
- <p><b>MSTR capital timeline</b> (<a href="data/capital_timeline.json">capital_timeline.json</a>, built by <code>scripts/capital.py</code>):
- <br>• <b>Basic shares</b> (class A + B): anchored to every 10-Q/10-K cover count and to today's count from Strategy's KPI API. Between anchors, the weekly 8-K ATM sales minus buybacks are added. Some weeks' tables weren't machine-readable, so each anchor absorbs a residual (shares): ${res('basic_shares',1e6)||'—'}.
- <br>• <b>Debt</b> at notional: XBRL LongTermDebt at each quarter-end (carrying value, within ~0.5% of notional), plus dated issuances from 8-Ks (2028 notes Sep 2024, 2029 notes Nov 2024, 2030 notes Feb 2025), the May 2026 repurchase of $1.5B of 2029 notes (8-K), and today's API figure. Redemptions and conversions not dated in an 8-K (e.g. 2027 notes in Q1 2025, 6.125% notes in Sep 2024) show up as a step at the next quarter-end.
- <br>• <b>Preferreds</b> (STRK, STRF, STRD, STRC at $100; STRE at €100 × EURUSD): IPO sizes from 8-Ks, plus weekly ATM sales and STRC buybacks. Anchored to XBRL temporary-equity share totals at quarter-ends and to today's per-series counts from the API. Residuals (USD series, shares): ${res('pref_usd_shares',1e6)||'—'}.
- <br>• <b>Cash</b>: XBRL cash at quarter-ends until Dec 2025. From 2025-12-01, the USD Reserve (+ USD cash when disclosed) from weekly 8-Ks. A Q1 2026 quarter-end XBRL cash point fills the Jan to May 2026 gap with no weekly reserve figure. Until Aug 30 2026 the 8-Ks give the reserve without separate USD cash, so cash there may be slightly understated.</p>
- <p><b>ASST capital timeline:</b> basic shares = Effective Common Shares (Class A + B incl. pre-funded warrants) from weekly 8-Ks and the seed. Preferred = (SATA + SATS) × $100 stated amount. SATA counts come from filings. The IPO count (Nov 10 2025) is back-filled from the 12/31 count, and the Jan 27 2026 follow-on and notes exchange is approximated (1.32M + ~0.93M). SATS is 7.0M from the 2026-10-23 weekly table (IPO settled 10/20). Cash = cash + STRC held (fair value) from the weekly tables from May 2026, and XBRL quarter-ends before that. Debt: Semler's ~$100M convertible notes + $20M Coinbase loan, assumed at the 2026-01-16 merger. $90M was exchanged into SATA and the loan was repaid by 2026-01-27, and the ~$10M left was repaid in Q2 2026 (exact date unknown, stepped at 6/30). All of these are documented with links in <a href="data/capital_events.json">capital_events.json</a>.</p>
- <p><b>Flywheel fuel:</b> STRC ATM sales and STRC repurchases parsed from Strategy weekly 8-Ks (EDGAR), covering Oct 2025 onward only. SATA shares outstanding from Strive filings.</p>
- <p><b>Not available / approximations:</b> EV history is rebuilt from filings, not taken from a published series. Between filings it is a step function, so it lags real issuance by up to a week, or a quarter for undated debt changes. ASST EV starts 2025-09-30 (first BTC disclosure). STRC ATM before Oct 2025 is not in the fuel chart. The SATS price history is short (listed Oct 2026). The ASST Jan 16 to Feb 11, 2026 share count is estimated. Yahoo's latest bar can be intraday.</p>
- <p><b>Refresh:</b> GitHub Actions runs <code>scripts/update_data.py</code> every weekday after the US close (and on demand) and redeploys this page. Code and data: <a href="https://github.com/bobbyfarrell20/btc-treasury-dashboard">GitHub repo</a>.</p>`}
+ <br>• <b>mNAV all-in (EV)</b> = (price × basic shares + debt at notional + preferred notional, all series − cash/USD reserve) ÷ BTC NAV. Basic shares for the equity leg (Strategy's own definition), so convertible notes aren't counted twice. Today this matches Strategy's own EV (api.strategy.com${K.ev_m?': EV $'+fmt(K.ev_m,0)+'M':''}).
+ <br>• <b>Diluted equity mNAV</b> (reference only) = price × assumed-diluted shares ÷ BTC NAV. MSTR: Strategy ADSO from the <a href="https://www.btcexposure.com/data/mstr-mnav-history.csv">btcexposure.com CSV</a>. ASST: "Assumed Fully Diluted Shares" from mid-Jul 2026, otherwise effective common.
+ <br>Overheated filter, rotation, dip and zones use <b>${sb}</b>.</p>
+ <p><b>BTC yield</b> = change in BTC per diluted share over calendar windows (same diluted share series as above). <b>Backtest</b>: the recommendation at close t is held from close t+1, 100% in one asset, no fees. <b>Peg stretches</b>: runs of confirmed ON days, measured from the confirmation close.</p>
+ <p><b>MSTR capital timeline</b> (<a href="data/capital_timeline.json">capital_timeline.json</a>):
+ <br>• <b>Basic shares</b>: anchored to every 10-Q/10-K cover count and today's KPI API count. Between anchors, weekly 8-K ATM sales minus buybacks. Residuals absorbed at anchors (shares): ${res('basic_shares',1e6)||'—'}.
+ <br>• <b>Debt</b> at notional: XBRL LongTermDebt at quarter-ends plus dated 8-K issuances/repurchases and today's API figure. Undated redemptions/conversions step at the next quarter-end.
+ <br>• <b>Preferreds</b> (STRK, STRF, STRD, STRC at $100; STRE at €100 × EURUSD): IPO sizes, weekly ATM sales and STRC buybacks, anchored to XBRL and API counts. Residuals (USD series, shares): ${res('pref_usd_shares',1e6)||'—'}.
+ <br>• <b>Cash</b>: XBRL cash at quarter-ends until Dec 2025, then the USD Reserve from weekly 8-Ks (may slightly understate cash until Aug 30 2026).</p>
+ <p><b>ASST capital timeline:</b> basic shares = Effective Common Shares from weekly 8-Ks. Preferred = (SATA + SATS) × $100 stated amount. Cash = cash + STRC held from weekly tables from May 2026, XBRL before that. Debt: Semler's notes + Coinbase loan assumed at the 2026-01-16 merger, exchanged/repaid by Q2 2026. Documented in <a href="data/capital_events.json">capital_events.json</a>.</p>
+ <p><b>Not available / approximations:</b> EV history is rebuilt from filings (step function; lags issuance by up to a week, or a quarter for undated debt changes). ASST EV starts 2025-09-30. STRC ATM before Nov 2025 is not parsed. SATA issuance is shares × $100 stated value, not cash raised. SATS history is short. Freshness assumes weekday closes (US holidays not modeled). Yahoo's latest bar can be intraday or missing for a few hours after the close.</p>
+ <p><b>Data files:</b> <a href="signals.json">signals.json</a> · <a href="data/dashboard.json">dashboard.json</a> · <a href="data/rows.csv">rows.csv</a> · <a href="data/signal_log.json">signal_log.json</a> · <a href="config.json">config.json</a>. <b>Refresh:</b> GitHub Actions runs <code>scripts/update_data.py</code> every weekday after the US close (and on demand) and redeploys. <a href="https://github.com/bobbyfarrell20/btc-treasury-dashboard">GitHub repo</a>.</p>`}
+// ---------- toggles, theme, loader
+function initToggles(){const L=[...ASSETS.map(a=>a.ticker),'BTC'];
+  $('assettoggles').innerHTML=L.map(t=>`<label class="chip"><input type="checkbox" data-a="${t}" ${HIDE.has(t)?'':'checked'}><span style="color:${C[t]}">●</span> ${t}</label>`).join('');
+  $('assettoggles').querySelectorAll('input').forEach(i=>i.onchange=()=>{i.checked?HIDE.delete(i.dataset.a):HIDE.add(i.dataset.a);localStorage.setItem('hideAssets',JSON.stringify([...HIDE]));redrawAll()})}
+function redrawAll(){renderCharts();renderBacktest();renderPegPerf()}
+function initTheme(){const b=$('themebtn'),set=t=>{document.documentElement.dataset.theme=t;b.textContent=t==='light'?'☾ Dark':'☀︎ Light';b.setAttribute('aria-label','Switch to '+(t==='light'?'dark':'light')+' theme')};
+  set(localStorage.getItem('theme')==='light'?'light':'dark');
+  b.onclick=()=>{const t=document.documentElement.dataset.theme==='light'?'dark':'light';localStorage.setItem('theme',t);set(t);redrawAll()}}
+function safe(n,f){try{f()}catch(e){console.warn(n,e);const el=document.getElementById('gen');if(el)el.insertAdjacentHTML('beforeend',` <span class="neg">· ${n} failed to render</span>`)}}
 (async()=>{try{[D,S,E]=await Promise.all([J('data/dashboard.json'),J('signals.json'),J('data/events.json')]);try{M=await J('data/markets.json')}catch(e){M=null}
- document.getElementById('gen').innerHTML=`Data generated ${D.generated_utc} UTC · last bar ${S.as_of} · window from ${D.config.window_start} · <label style="color:#8b949e"><input type="checkbox" id="linkx" checked> link time axes across charts</label>`;
- renderHero();renderSignal();renderValuation();renderEvents();renderCharts();renderBig();renderPM();renderMethod();
- document.getElementById('showEv').onchange=()=>{TS=[];renderCharts()};document.getElementById('showPast').onchange=renderEvents;
-}catch(e){document.getElementById('gen').textContent='Failed to load data: '+e}})();
+ A=D.analytics;ASSETS=A.assets;ASSETS.forEach(a=>{if(a.color)C[a.ticker]=a.color});
+ initTheme();
+ for(const [n,f] of [['top',renderTop],['flywheel',renderFlywheel],['recommendation',renderRec],['kpis',renderKpis],['signals',renderSignal],['valuation',renderValuation],['yield',renderYield],['atm',renderAtm],['events',()=>{initEvents();renderEvents()}],['toggles',initToggles],['charts',()=>{renderCharts();segInit('mbasis',MB,b=>{MB=b;plotMnav()})}],['peg performance',renderPegPerf],['backtest',renderBacktest],['signal log',renderSigLog],['big moves',renderBig],['odds',renderPM],['method',renderMethod],['csv',initCsv]])safe(n,f);
+ linkCharts();
+}catch(e){console.error(e);$('gen').textContent='Failed to load data: '+e}})();
 </script></body></html>
