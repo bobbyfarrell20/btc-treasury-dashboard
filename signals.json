@@ -18,7 +18,7 @@
     "new": "STAY_BTC"
   },
   "_hash_note": "signal_hash changes when the recommendation, also_valid, any preferred peg state or any overheated flag changes; last_changed is the most recent trading day it changed.",
-  "generated_utc": "2026-10-27T02:37:06+00:00",
+  "generated_utc": "2026-10-27T02:40:47+00:00",
   "as_of": "2026-10-26",
   "disclaimer": "Rules-based indicator, not financial advice.",
   "recommendation_detail": {
@@ -416,6 +416,13 @@
       "title": "STRC daily dividends start (conditional on vote): record every day, $1.00 total for Nov, 12%",
       "status": "scheduled",
       "source": "https://www.strategy.com/press/strategy-declares-conditional-daily-dividends-on-strc-for-november-2026_10-16-2026"
+    },
+    {
+      "date": "2026-11-03",
+      "category": "election",
+      "title": "US midterm elections",
+      "status": "scheduled",
+      "source": "Election Day (fixed by law)"
     }
   ],
   "odds_jumps": [
@@ -623,7 +630,7 @@
       "top": [
         {
           "outcome": "Clarity Act (H.R.3633) signed into law in 2026?",
-          "yes": 0.0395
+          "yes": 0.0385
         }
       ]
     },
@@ -634,7 +641,7 @@
       "top": [
         {
           "outcome": "Crypto Market Structure legislation becomes law in 2026?",
-          "yes": 0.0885
+          "yes": 0.0905
         }
       ]
     },
@@ -838,7 +845,7 @@
       "top": [
         {
           "outcome": "Democratic Party",
-          "yes": 0.65
+          "yes": 0.64
         },
         {
           "outcome": "Republican Party",
