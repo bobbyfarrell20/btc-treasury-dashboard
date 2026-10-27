@@ -18,7 +18,7 @@
     "new": "STAY_BTC"
   },
   "_hash_note": "signal_hash changes when the recommendation, also_valid, any preferred peg state or any overheated flag changes; last_changed is the most recent trading day it changed.",
-  "generated_utc": "2026-10-27T02:22:22+00:00",
+  "generated_utc": "2026-10-27T02:25:48+00:00",
   "as_of": "2026-10-26",
   "disclaimer": "Rules-based indicator, not financial advice.",
   "recommendation_detail": {
@@ -416,6 +416,13 @@
       "title": "STRC daily dividends start (conditional on vote): record every day, $1.00 total for Nov, 12%",
       "status": "scheduled",
       "source": "https://www.strategy.com/press/strategy-declares-conditional-daily-dividends-on-strc-for-november-2026_10-16-2026"
+    },
+    {
+      "date": "2026-11-03",
+      "category": "election",
+      "title": "US midterm elections",
+      "status": "scheduled",
+      "source": "Election Day (fixed by law)"
     }
   ],
   "odds_jumps": [
@@ -823,7 +830,7 @@
       "top": [
         {
           "outcome": "Democratic Party",
-          "yes": 0.905
+          "yes": 0.904
         },
         {
           "outcome": "Republican Party",
@@ -838,7 +845,7 @@
       "top": [
         {
           "outcome": "Democratic Party",
-          "yes": 0.64
+          "yes": 0.65
         },
         {
           "outcome": "Republican Party",
@@ -889,7 +896,7 @@
       "spread_z_favor_asst": -1.0,
       "spread_z_favor_mstr": 1.0,
       "both_overheated_action": "SELL_TO_BTC",
-      "_both_overheated_comment": "when MSTR and ASST are both overheated, sell both and hold BTC (overrides peg actions)",
+      "_both_overheated_comment": "when MSTR and ASST are both overheated, sell both and hold BTC (overrides flywheel-driven parent actions)",
       "signal_basis": "ev",
       "_signal_basis_comment": "Which mNAV drives overheated / rotation / dip / zones: 'ev' (all-in: equity at basic shares + debt + preferred notional - cash, over BTC NAV), 'basic' (market-standard: price x basic shares / BTC NAV) or 'diluted' (price x assumed-diluted shares / BTC NAV).",
       "ev_share_basis": "basic",
@@ -973,7 +980,7 @@
       ]
     },
     "buy_flags": {
-      "_comment": "Display flags (do not change the recommendation). flywheel_cheap: preferred peg ON (confirmed) AND parent all-in mNAV zone CHEAP, or FAIR with 1y percentile < low_fair_max_percentile ('low-FAIR'). very_low_mnav (secondary buy signal): all-in mNAV <= very_low_max_mnav OR 1y percentile <= very_low_max_percentile, shown even when the preferred is only NEAR PAR.",
+      "_comment": "Display flags (do not change the recommendation). flywheel_cheap: the parent's flywheel ON (its preferred, an indicator not a trade, confirmed >= peg.on_threshold) AND parent all-in mNAV zone CHEAP, or FAIR with 1y percentile < low_fair_max_percentile ('low-FAIR'). very_low_mnav (secondary cue for the parent): all-in mNAV <= very_low_max_mnav OR 1y percentile <= very_low_max_percentile, shown even when the parent's flywheel is only slowing near par.",
       "basis": "ev",
       "low_fair_max_percentile": 0.5,
       "very_low_max_mnav": 1.0,
