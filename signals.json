@@ -18,7 +18,7 @@
     "new": "STAY_BTC"
   },
   "_hash_note": "signal_hash changes when the recommendation, also_valid, any preferred peg state or any overheated flag changes; last_changed is the most recent trading day it changed.",
-  "generated_utc": "2026-10-27T02:40:47+00:00",
+  "generated_utc": "2026-10-27T02:51:30+00:00",
   "as_of": "2026-10-26",
   "disclaimer": "Rules-based indicator, not financial advice.",
   "recommendation_detail": {
@@ -492,7 +492,7 @@
       "odds": [
         {
           "outcome": "No change",
-          "yes": 0.9355
+          "yes": 0.9395
         }
       ]
     },
@@ -561,7 +561,7 @@
       "top": [
         {
           "outcome": "No change",
-          "yes": 0.9355
+          "yes": 0.9395
         },
         {
           "outcome": "25 bps increase",
@@ -630,7 +630,7 @@
       "top": [
         {
           "outcome": "Clarity Act (H.R.3633) signed into law in 2026?",
-          "yes": 0.0385
+          "yes": 0.0375
         }
       ]
     },
@@ -641,7 +641,7 @@
       "top": [
         {
           "outcome": "Crypto Market Structure legislation becomes law in 2026?",
-          "yes": 0.0905
+          "yes": 0.0885
         }
       ]
     },
@@ -830,11 +830,11 @@
       "top": [
         {
           "outcome": "Democratic Party",
-          "yes": 0.906
+          "yes": 0.903
         },
         {
           "outcome": "Republican Party",
-          "yes": 0.096
+          "yes": 0.097
         }
       ]
     },
@@ -845,7 +845,7 @@
       "top": [
         {
           "outcome": "Democratic Party",
-          "yes": 0.64
+          "yes": 0.65
         },
         {
           "outcome": "Republican Party",
