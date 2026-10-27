@@ -11,7 +11,14 @@
    "reason": "No preferred peg confirmed (STRC WATCH, SATA SELL): stay in BTC",
    "initial": true,
    "after": {
-    "1d": null,
+    "1d": {
+     "to": "2026-10-26",
+     "BTC": -0.0131,
+     "MSTR": -0.0424,
+     "MSTR_mnav_ev": -0.0305,
+     "ASST": -0.0915,
+     "ASST_mnav_ev": -0.052
+    },
     "7d": null,
     "30d": null
    }

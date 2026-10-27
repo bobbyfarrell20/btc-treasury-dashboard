@@ -56,9 +56,14 @@ def fetch_prices():
                 log("optional ticker unavailable", t); out[t] = {}; continue
             raise RuntimeError(f"Yahoo fetch failed for {t}")
         tz = dt.timezone(dt.timedelta(seconds=res["meta"].get("gmtoffset", 0)))
-        closes = res["indicators"]["quote"][0]["close"]
+        q = res["indicators"]["quote"][0]
+        closes, opens = q["close"], q.get("open") or []
         ser = {}
-        for ts, c in zip(res["timestamp"], closes):
+        for i, (ts, c) in enumerate(zip(res["timestamp"], closes)):
+            if c is None and t == "BTC-USD" and i + 1 < len(opens) and opens[i + 1] is not None:
+                # Yahoo occasionally publishes a null daily BTC bar; a 24/7 UTC day's close == next day's open
+                c = opens[i + 1]
+                log("BTC-USD null close patched from next open", dt.datetime.fromtimestamp(ts, dt.timezone.utc).date(), c)
             if c is None: continue
             d = dt.datetime.fromtimestamp(ts, tz).date().isoformat()
             ser[d] = round(float(c), 4)
@@ -290,6 +295,20 @@ def main():
                 r["mnav_avg" + sfx] = round((a_ + m_) / 2, 4)
                 m, s = mean_std([w.get("mnav_spread" + sfx) for w in win[:-1]] + [r["mnav_spread" + sfx]])
                 if s: r["spread_z" + sfx] = round((r["mnav_spread" + sfx] - m) / s, 3)
+                # display-only relative-value stats (same trailing window as spread_z; the rule still uses spread_z)
+                if m is not None:
+                    r["spread_mean" + sfx], r["spread_sd" + sfx] = round(m, 4), round(s, 4)
+                r["spread_pct" + sfx] = round(pct_rank([w.get("mnav_spread" + sfx) for w in win], r["mnav_spread" + sfx]), 3)
+                if m_ > 0:
+                    r["mnav_ratio" + sfx] = round(a_ / m_, 4)
+                    rw = [w["asst_mnav" + sfx] / w["mstr_mnav" + sfx] for w in win[:-1]
+                          if w.get("asst_mnav" + sfx) and w.get("mstr_mnav" + sfx)] + [r["mnav_ratio" + sfx]]
+                    rm, rs = mean_std(rw)
+                    if rm is not None:
+                        r["ratio_mean" + sfx], r["ratio_sd" + sfx] = round(rm, 4), round(rs, 4)
+                        srt = sorted(rw); r["ratio_median" + sfx] = round(srt[len(srt) // 2] if len(srt) % 2 else (srt[len(srt) // 2 - 1] + srt[len(srt) // 2]) / 2, 4)
+                        if rs: r["ratio_z" + sfx] = round((r["mnav_ratio" + sfx] - rm) / rs, 3)
+                    r["ratio_pct" + sfx] = round(pct_rank(rw, r["mnav_ratio" + sfx]), 3)
         if r["MSTR"] and r["ASST"]: r["ratio"] = round(r["ASST"] / r["MSTR"], 5)
         # short-window changes for the dip rule (trading days, no reliance on prior highs)
         n = dc["lookback_days"]
@@ -386,6 +405,25 @@ def main():
         zt = f"{z:+.2f}" if z is not None else "n/a"
         return (f"Neither is clearly cheaper vs its usual gap (spread z {zt}, within ±1); "
                 f"{lower} has the lower mNAV today ({min(m, s):.2f}x vs {max(m, s):.2f}x)")
+
+    def rel_value(r, bs):
+        """Display/alert summary of the ASST-vs-MSTR relationship. Verdict uses the existing rotation rule
+        (spread_z on the ASST-MSTR mNAV difference vs config thresholds); ratio stats are context."""
+        sfx = "_" + bs
+        z = r.get("spread_z" + sfx)
+        if r.get("mstr_mnav" + sfx) is None or r.get("asst_mnav" + sfx) is None: return None
+        if z is not None and z <= mc["spread_z_favor_asst"]: code, txt = "ASST_CHEAP", "ASST cheap vs usual spread"
+        elif z is not None and z >= mc["spread_z_favor_mstr"]: code, txt = "MSTR_CHEAP", "MSTR cheap vs usual spread"
+        else: code, txt = "NORMAL", "Spread normal"
+        return {"basis": bs, "lookback_trading_days": mc["lookback_trading_days"],
+                "mstr_mnav": r.get("mstr_mnav" + sfx), "asst_mnav": r.get("asst_mnav" + sfx),
+                "ratio_now": r.get("mnav_ratio" + sfx), "ratio_mean_1y": r.get("ratio_mean" + sfx), "ratio_median_1y": r.get("ratio_median" + sfx),
+                "ratio_sd_1y": r.get("ratio_sd" + sfx), "ratio_z": r.get("ratio_z" + sfx), "ratio_pct_1y": r.get("ratio_pct" + sfx),
+                "diff_now": r.get("mnav_spread" + sfx), "diff_mean_1y": r.get("spread_mean" + sfx), "diff_sd_1y": r.get("spread_sd" + sfx),
+                "diff_z": z, "diff_pct_1y": r.get("spread_pct" + sfx),
+                "verdict": code, "verdict_text": txt, "cheaper_vs_usual": {"ASST_CHEAP": "ASST", "MSTR_CHEAP": "MSTR"}.get(code),
+                "rule": f"verdict from spread_z (ASST-MSTR mNAV difference vs trailing {mc['lookback_trading_days']}d mean/sd): "
+                        f"<= {mc['spread_z_favor_asst']} ASST cheap, >= {mc['spread_z_favor_mstr']} MSTR cheap; ratio stats are context only"}
 
     # ---- flywheel fuel series
     strc_atm = {}
@@ -534,7 +572,8 @@ def main():
                                  "btc_nav_per_basic_share": round(last[a + "_btc"] * last["btc"] / last[a + "_basic_shares"], 2) if last.get(a + "_basic_shares") else None}
                              for A, a in (("MSTR", "mstr"), ("ASST", "asst"))},
                          "spread_z": {"basic": last.get("spread_z_basic"), "ev": last.get("spread_z_ev")},
-                         "relative_verdict": {"basic": verdict(last, "basic"), "ev": verdict(last, "ev")}},
+                         "relative_verdict": {"basic": verdict(last, "basic"), "ev": verdict(last, "ev")},
+                         "relative_value": {bs: rel_value(last, bs) for bs in ("ev", "basic")}},
            "latest_big_move": big[0] if big else None,
            "big_moves_last_30d": [m for m in big if m["date"] >= (today - dt.timedelta(days=30)).isoformat()],
            "upcoming_events_7d": upcoming,

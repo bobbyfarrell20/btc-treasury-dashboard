@@ -118,66 +118,100 @@ details.sec{margin-top:8px}details.sec>summary{font-size:13px;font-weight:600;co
 @media (max-width:640px){.topbar{padding:4px 6px;gap:4px;font-size:11px;flex-wrap:nowrap}.topbar .pill{font-size:10px;padding:2px 5px;white-space:nowrap}.tb-r{gap:4px}.btn.ib{padding:2px 6px;min-height:24px}.hero .tag{display:none}.hero .logo{width:24px;height:24px;font-size:14px;line-height:24px}
  .hist .hh{flex-wrap:nowrap;overflow-x:auto;-webkit-overflow-scrolling:touch;padding-bottom:2px}.skey{display:none}.fw .imp{font-size:12.5px}.tb-ch,.tb-asof{display:none}.hero{padding:6px 12px 4px}.hero .tickers{display:none}.hero h1{font-size:15px}.hero .tag{font-size:11px}
  .rec{padding:10px 10px}.rec .big{font-size:34px}.chip3{font-size:12px;padding:3px 10px;border-radius:12px}.legend{font-size:11.5px}.fw .st{font-size:19px}.sum .bigv{font-size:16px}}
+/* v4 relative-value-first layout */
+.rvwrap{margin:4px 0 10px}
+.rvgrid{display:grid;gap:10px;grid-template-columns:minmax(0,1fr) minmax(0,1.5fr) minmax(0,1fr);align-items:stretch}
+.rvside,.rvmid{background:var(--panel);border:1px solid var(--line);border-radius:12px;padding:12px 14px;min-width:0}
+.rvside{text-align:center;border-top:4px solid var(--line)}.rvside .tk2{font-weight:800;font-size:15px;letter-spacing:.5px}
+.rvside .mv{font-size:34px;font-weight:900;line-height:1.1;margin:2px 0}.rvside .lab{font-size:11px;color:var(--mut);font-weight:700;letter-spacing:.4px}
+.rvside.cheapv{border-color:#2ea043;box-shadow:0 0 0 1px #2ea04388;background:linear-gradient(0deg,rgba(46,160,67,.08),rgba(46,160,67,.08)),var(--panel)}
+.rvmid{text-align:center;border-color:rgba(247,147,26,.45);background:radial-gradient(500px 160px at 50% 0%,rgba(247,147,26,.12),transparent 70%),var(--panel)}
+.rvmid .lab{font-size:11.5px;color:var(--mut);font-weight:700;letter-spacing:.4px}
+.rvmid .ratio{font-size:36px;font-weight:900;line-height:1.1}.rvmid .vs{font-size:14px;color:var(--mut)}.rvmid .vs b{color:var(--fg)}
+.rvmid .gap{font-size:13px;margin-top:2px}.rvplain{font-size:14px;font-weight:600;margin:6px 0 2px}
+.vpill{display:inline-block;margin-top:8px;padding:5px 14px;border-radius:999px;font-weight:800;font-size:15px}
+.v-NORMAL{background:#388bfd26;color:#b6d7ff;border:1px solid #388bfd88}.v-MSTR_CHEAP,.v-ASST_CHEAP{background:#2ea04333;color:#86efac;border:1px solid #2ea043}
+[data-theme=light] .v-NORMAL{color:#0969da}[data-theme=light] .v-MSTR_CHEAP,[data-theme=light] .v-ASST_CHEAP{color:#1a7f37}
+.tb-rv{font-size:11px;padding:2px 7px}
+.rec{display:flex;flex-wrap:wrap;align-items:center;justify-content:center;gap:2px 14px;padding:8px 14px}.rec .lbl{flex-basis:100%}.rec .big{font-size:28px}.recshort{font-size:14px;font-weight:600}
+.grp{font-size:13px;color:var(--mut);text-transform:uppercase;letter-spacing:.8px;margin:18px 0 8px}
+details.card{margin-bottom:10px;padding:11px 14px}
+@media (max-width:900px){.rvgrid{grid-template-columns:minmax(0,1fr) minmax(0,1fr)}.rvmid{grid-column:1/-1;order:-1}}
+@media (max-width:640px){.rvside .mv{font-size:27px}.rvmid .ratio{font-size:30px}.rec .big{font-size:24px}.recshort{font-size:12.5px}.vpill{font-size:13.5px}.topbar{flex-wrap:wrap;row-gap:3px}.tb-r{margin-left:auto}}
 </style></head><body>
-<div class="topbar" id="topbar"><span class="tb-b" id="tb_btc">BTC …</span><span id="tb_rec" class="pill">…</span><span id="tb_strc"></span><span id="tb_sata"></span>
+<div class="topbar" id="topbar"><span class="tb-b" id="tb_btc">BTC …</span><span id="tb_rec" class="pill">…</span><span id="tb_rv"></span><span id="tb_strc"></span><span id="tb_sata"></span>
  <span class="tb-r"><span id="tb_fresh" title="data freshness"></span><button class="btn ib" id="themebtn" title="Toggle light/dark theme">☾</button></span></div>
 <header class="hero"><div class="hero-in">
  <div class="brand"><div class="logo" aria-hidden="true">₿</div><div><h1>Flywheel Rotation Tracker</h1><div class="tag">MSTR vs ASST, powered by STRC &amp; SATA, with BTC as home base</div></div></div>
  <div class="tickers" id="tickers"></div></div></header>
 <main>
+<section id="rv" class="rvwrap">
+ <div class="rvgrid">
+  <div class="rvside" id="rv_MSTR"></div>
+  <div class="rvmid" id="rv_mid">loading…</div>
+  <div class="rvside" id="rv_ASST"></div>
+ </div>
+</section>
 <section id="decision">
-<div class="rec" id="recbanner"><div class="lbl">Today's call · rules-based indicator, not financial advice</div><div class="big" id="rec_big">…</div></div>
+<div class="rec" id="recbanner"><div class="lbl">Today's call · rules-based indicator, not financial advice</div><div class="big" id="rec_big">…</div><div class="recshort" id="rec_short"></div></div>
 <div class="chips3" id="chips"></div>
-<div class="legend" id="legend"></div>
 <div class="hist" id="rechist"></div>
 <div class="gen" id="gen">loading…</div>
-</section>
-<section id="flywheel"><div class="fwgrid" id="fwcards"></div></section>
-<section id="summary"><div class="sumgrid" id="mnavsum"></div></section>
-<details class="card" id="howrec"><summary>How the recommendation is decided</summary>
-<div class="why" id="rec_why" style="margin-top:8px"></div><div class="note" id="rec_more"></div>
+<details class="sec" id="howrec"><summary>Why this call? Full reason and rules</summary>
+<div class="card" style="margin:6px 0 0"><div class="why" id="rec_why"></div><div class="note" id="rec_more"></div>
+<div class="legend" id="legend" style="text-align:left;margin-top:6px"></div>
 <div class="note" id="rec_rules" style="margin-top:8px"></div>
-<div class="disc" style="margin:10px 0 0"><b>Rules-based indicator, not financial advice.</b> Signals are produced mechanically from public data and the thresholds in <a href="config.json">config.json</a>. Data can be late, wrong or missing. Do your own research.</div></details>
+<div class="disc" style="margin:10px 0 0"><b>Rules-based indicator, not financial advice.</b> Signals are produced mechanically from public data and the thresholds in <a href="config.json">config.json</a>. Data can be late, wrong or missing. Do your own research.</div></div></details>
+</section>
 
-<div class="card controls" id="chartctl"><span class="note">Charts:</span> <span id="assettoggles"></span> <label class="chip"><input type="checkbox" id="linkx" checked> link time axes</label> <a class="btn" href="data/rows.csv" download style="text-decoration:none">⬇ full data CSV</a></div>
+<div class="card controls" id="chartctl"><span class="note">Charts:</span> <span id="assettoggles"></span> <label class="chip"><input type="checkbox" id="linkx" checked> link time axes</label></div>
 
-<section class="card"><div class="cardhead"><h2>1 · Normalized performance (% change from first visible date; re-bases on zoom)</h2><span class="csvb" data-c="c_norm"></span></div><div id="c_norm" class="chart"></div>
-<div class="note">BTC is the pure-bitcoin baseline: a stock line above it means holding that stock beat just holding BTC over the visible window.</div></section>
-<section class="card"><div class="cardhead"><h2>2 · mNAV: MSTR vs ASST
- <span class="seg" id="mbasis"><button data-b="ev">all-in (EV) emphasized</button><button data-b="basic">market standard</button><button data-b="both">both</button></span></h2><span class="csvb" data-c="c_mnav"></span></div><div id="c_mnav" class="chart"></div>
+<section class="card"><div class="cardhead"><h2>mNAV over time: MSTR vs ASST
+ <span class="seg" id="mbasis"><button data-b="ev">all-in (EV)</button><button data-b="basic">market standard</button><button data-b="both">both</button></span></h2><span class="csvb" data-c="c_mnav"></span></div><div id="c_mnav" class="chart"></div>
 <details class="sec"><summary>Notes</summary><div class="note">Solid = all-in (EV) mNAV: (price × basic shares + debt + preferred notional − cash) ÷ BTC NAV. Default view emphasizes all-in (EV); the faint dotted line is market-standard mNAV (context; full weight in "market standard" / "both"): price × basic shares ÷ BTC NAV. Diluted equity mNAV (price × assumed-diluted shares ÷ BTC NAV) is hidden; click it in the legend to show it. Dashed lines: 1.0x and the overheated floor (config). Step jumps happen where filings change debt, preferreds or cash (see Method).</div></details></section>
-<section class="card"><div class="cardhead"><h2>3 · ASST/MSTR price ratio, mNAV spread &amp; average mNAV (<span id="spbasis"></span>)</h2><span class="csvb" data-c="c_ratio"></span></div><div id="c_ratio" class="chart"></div></section>
-<section class="card"><div class="cardhead"><h2>4 · Price vs BTC NAV per share (price ÷ mNAV)</h2><span class="csvb" data-c="c_navps"></span></div><div id="c_navps" class="chart"></div>
-<div class="note">BTC NAV per share = BTC held × BTC price ÷ shares. Price above the NAV line = premium (mNAV &gt; 1); below = discount.</div></section>
-<section class="card"><div class="cardhead"><h2>5 · Flywheel fuel: STRC &amp; SATA vs $100 par (peg state bands)</h2><span class="csvb" data-c="c_strc,c_sata,c_fuel"></span></div>
-<div class="note" id="pegnote"></div>
+<section class="card"><div class="cardhead"><h2>ASST vs MSTR spread vs its usual level (<span id="spb"></span>)
+ <span class="seg" id="spmode"><button data-b="ratio">ratio ASST÷MSTR</button><button data-b="diff">gap ASST−MSTR</button></span></h2><span class="csvb" data-c="c_spread"></span></div><div id="c_spread" class="chart"></div>
+<div class="note" id="spnote"></div></section>
+
+<section class="card" id="yield"><div class="cardhead"><h2>BTC per share &amp; BTC yield <i class="q" tabindex="0" data-tip="BTC yield = % change in (BTC held ÷ diluted shares) over the window. Positive = each share is backed by more bitcoin than before. Shaded periods = the company's preferred peg was ON (confirmed).">?</i></h2><span class="csvb" data-c="c_bps"></span></div>
+<div class="sumgrid" id="mnavsum" style="margin-bottom:10px"></div>
+<div class="tscroll"><table id="yieldtable"></table></div>
+<details class="sec"><summary>BTC per 1,000 diluted shares chart &amp; notes</summary><div class="note" id="yieldnote"></div><div id="c_bps" class="chart"></div></details></section>
+
+<h2 class="grp">Details</h2>
+<details class="card" id="pegsec"><summary>Peg detail: STRC &amp; SATA flywheel, peg-state charts, issuance fuel</summary>
+<div class="fwgrid" id="fwcards" style="margin:10px 0"></div>
+<div class="cardhead"><span class="note" id="pegnote"></span><span class="csvb" data-c="c_strc,c_sata,c_fuel"></span></div>
 <div id="c_strc" class="chart sm"></div><div id="c_sata" class="chart sm"></div>
 <div id="c_fuel" class="chart sm"></div>
-<details class="sec"><summary>How to read the peg bands</summary><div class="note" id="pegrules"></div></details></section>
-<section class="card" id="valuation"><div class="cardhead"><h2>Valuation: who's cheap vs expensive</h2></div>
-<details class="sec" style="margin:0 0 10px"><summary>How to read this: two mNAV definitions</summary><div class="note" id="basisnote"></div></details>
+<details class="sec"><summary>How to read the peg bands</summary><div class="note" id="pegrules"></div></details></details>
+<details class="card" id="valuation"><summary>Valuation detail: zones, gauges, EV build-up, zone history</summary>
+<details class="sec" style="margin:8px 0 10px"><summary>How to read this: two mNAV definitions</summary><div class="note" id="basisnote"></div></details>
 <div class="verdict" id="verdict">…</div>
 <div class="grid g2" id="valcards"></div>
 <div class="cardhead" style="margin-top:14px"><h2>Valuation zone history (mNAV percentile vs trailing 1y)
  <span class="seg" id="zbasis"><button data-b="ev">all-in (EV)</button><button data-b="basic">market standard</button></span></h2><span class="csvb" data-c="c_zone"></span></div>
 <div id="c_zone" class="chart"></div>
-<details class="sec"><summary>Notes</summary><div class="note" id="valnote"></div></details></section>
-<section class="card" id="yield"><div class="cardhead"><h2>BTC yield: bitcoin per diluted share <i class="q" tabindex="0" data-tip="BTC yield = % change in (BTC held ÷ diluted shares) over the window. Positive = each share is backed by more bitcoin than before. Shaded periods = the company's preferred peg was ON (confirmed).">?</i></h2><span class="csvb" data-c="c_bps"></span></div>
-<div class="tscroll"><table id="yieldtable"></table></div><div class="note" id="yieldnote"></div>
-<div id="c_bps" class="chart"></div></section>
+<details class="sec"><summary>Notes</summary><div class="note" id="valnote"></div></details></details>
+<details class="card" id="morecharts"><summary>More charts: normalized performance, price ratio &amp; average mNAV, price vs NAV/share</summary>
+<div class="cardhead" style="margin-top:8px"><h2>Normalized performance (% change from first visible date; re-bases on zoom)</h2><span class="csvb" data-c="c_norm"></span></div><div id="c_norm" class="chart"></div>
+<div class="note">BTC is the pure-bitcoin baseline: a stock line above it means holding that stock beat just holding BTC over the visible window.</div>
+<div class="cardhead" style="margin-top:12px"><h2>ASST/MSTR price ratio, mNAV spread &amp; average mNAV (<span id="spbasis"></span>)</h2><span class="csvb" data-c="c_ratio"></span></div><div id="c_ratio" class="chart"></div>
+<div class="cardhead" style="margin-top:12px"><h2>Price vs BTC NAV per share (price ÷ mNAV)</h2><span class="csvb" data-c="c_navps"></span></div><div id="c_navps" class="chart"></div>
+<div class="note">BTC NAV per share = BTC held × BTC price ÷ shares. Price above the NAV line = premium (mNAV &gt; 1); below = discount.</div></details>
 <details class="card" id="kpibox"><summary>Key numbers: prices, both mNAVs, peg states, rotation, 10-day changes</summary><div class="kpis" id="kpis" style="margin:10px 0 0"></div></details>
 <details class="card" id="signal"><summary>Signal details: per-asset peg actions, mNAVs, 10-day changes, rotation z, dip rule</summary>
 <div class="headline" id="headline" style="margin-top:10px">…</div>
 <div class="grid g4" id="sigcards"></div>
 <details class="sec"><summary>Rules behind these detail cards</summary><div class="note" id="signote"></div></details></details>
-<section class="card" id="siglog"><div class="cardhead"><h2>Signal-change log</h2><a class="btn" href="data/signal_log.json" style="text-decoration:none">signal_log.json</a></div>
-<div class="note" id="siglognote"></div><div class="tscroll scroll"><table id="siglogtable"></table></div></section>
-<section class="card" id="events"><div class="cardhead"><h2>Key dates (next 7 days highlighted)</h2></div>
+<details class="card" id="siglog"><summary>Signal-change log</summary><div class="cardhead" style="margin-top:8px"><span></span><a class="btn" href="data/signal_log.json" style="text-decoration:none">signal_log.json</a></div>
+<div class="note" id="siglognote"></div><div class="tscroll scroll"><table id="siglogtable"></table></div></details>
+<details class="card" id="events"><summary>Key dates and chart annotations</summary>
 <div class="evctl"><input type="search" id="evq" placeholder="Search events…" aria-label="Search events"><select id="evcat" aria-label="Category"><option value="">All categories</option></select>
 <label class="chip"><input type="checkbox" id="showPast"> include past</label></div>
 <div class="evctl"><span class="note">Chart annotations:</span><label class="chip"><input type="checkbox" id="showEv" checked> show</label><span id="evcats"></span></div>
 <div class="tscroll scroll"><table id="evtable"></table></div>
-<div class="note">Source of truth: <a href="data/events.json">data/events.json</a> (edit to add/update). Dates not yet confirmed are marked <span class="tbd">TBD</span>/estimated, never guessed.</div></section>
+<div class="note">Source of truth: <a href="data/events.json">data/events.json</a> (edit to add/update). Dates not yet confirmed are marked <span class="tbd">TBD</span>/estimated, never guessed.</div></details>
 <details class="card" id="pegperf"><summary>Peg → performance: what happened after past confirmed pegs</summary>
 <div class="cardhead" style="margin-top:8px"><span></span><span class="csvb" data-c="c_pegperf"></span></div>
 <div class="caveat" id="pegcaveat"></div>
@@ -200,11 +234,12 @@ details.sec{margin-top:8px}details.sec>summary{font-size:13px;font-weight:600;co
 </details>
 <details class="card"><summary>Big moves log</summary><div class="note" id="bmnote" style="margin-top:8px"></div>
 <div class="tscroll scroll"><table id="bmtable"></table></div></details>
-
-<section class="card" id="odds"><h2>Odds jumps (prediction markets)</h2>
-<div id="ojbody">…</div><details class="sec"><summary>Notes</summary><div class="note" id="ojnote"></div></details></section>
-
+<details class="card" id="odds"><summary>Odds jumps (prediction markets) <span class="note" id="ojsum" style="font-weight:400"></span></summary>
+<div id="ojbody" style="margin-top:8px">…</div><details class="sec"><summary>Notes</summary><div class="note" id="ojnote"></div></details></details>
 <details class="card" id="method"><summary>Method, sources &amp; caveats</summary><div id="methodbody"></div></details>
+<details class="card" id="rawdata"><summary>Raw data &amp; CSV downloads</summary><div style="margin-top:8px;display:flex;flex-wrap:wrap;gap:8px">
+<a class="btn" href="data/rows.csv" download style="text-decoration:none">⬇ full daily data (rows.csv)</a><a class="btn" href="signals.json" style="text-decoration:none">signals.json</a><a class="btn" href="data/dashboard.json" style="text-decoration:none">dashboard.json</a><a class="btn" href="data/signal_log.json" style="text-decoration:none">signal_log.json</a><a class="btn" href="data/events.json" style="text-decoration:none">events.json</a><a class="btn" href="config.json" style="text-decoration:none">config.json</a></div>
+<div class="note" style="margin-top:6px">Every chart also has its own ⬇ CSV button. rows.csv now includes the relative-value columns (<code>mnav_ratio_ev/basic</code>, <code>ratio_mean_*</code>, <code>ratio_sd_*</code>, <code>ratio_z_*</code>, <code>ratio_pct_*</code>, <code>spread_mean_*</code>, <code>spread_sd_*</code>, <code>spread_pct_*</code>); signals.json has <code>valuation.relative_value</code>.</div></details>
 </main>
 <script>
 // ---------- palette: one source of truth for semantic colors (CSS classes are generated from it)
@@ -317,9 +352,54 @@ function BFLAGS(){if(S.buy_flags&&S.buy_flags.per_asset)return S.buy_flags;
 function accB(y,on){const acc=y&&y.accelerating;if(acc==null)return '<span class="badge acc na">BTC/share trend: n/a</span>';
   return acc?`<span class="badge acc up">▲ BTC/share accelerating${on?' · flywheel on':''}</span>`:'<span class="badge acc">BTC/share not accelerating</span>'}
 function zoneTxt(x){if(!x||!x.zone)return 'n/a';return x.zone==='FAIR'&&x.low_fair?'low-FAIR':x.zone}
+// ---------- relative value (ASST vs MSTR mNAV): prefer signals.json valuation.relative_value, fall back to the last row
+const RVL={NORMAL:'Spread normal',MSTR_CHEAP:'MSTR cheap vs usual spread',ASST_CHEAP:'ASST cheap vs usual spread'};
+function RVD(bs){const v=((S.valuation||{}).relative_value||{})[bs];if(v)return v;
+  const r=D.rows[D.rows.length-1],mc=D.config.mnav,sx='_'+bs,z=r['spread_z'+sx];
+  const code=z!=null&&z<=mc.spread_z_favor_asst?'ASST_CHEAP':z!=null&&z>=mc.spread_z_favor_mstr?'MSTR_CHEAP':'NORMAL';
+  return{basis:bs,mstr_mnav:r['mstr_mnav'+sx],asst_mnav:r['asst_mnav'+sx],ratio_now:r['mnav_ratio'+sx],ratio_mean_1y:r['ratio_mean'+sx],ratio_median_1y:r['ratio_median'+sx],ratio_pct_1y:r['ratio_pct'+sx],ratio_z:r['ratio_z'+sx],
+    diff_now:r['mnav_spread'+sx],diff_mean_1y:r['spread_mean'+sx],diff_pct_1y:r['spread_pct'+sx],diff_z:z,verdict:code,verdict_text:RVL[code],cheaper_vs_usual:{ASST_CHEAP:'ASST',MSTR_CHEAP:'MSTR'}[code]||null}}
+const ord=n=>n+(n%100>=11&&n%100<=13?'th':['th','st','nd','rd'][n%10]||'th');
+const sx2=(v,d=2)=>v==null?'—':(v>=0?'+':'−')+Math.abs(v).toFixed(d);
+function rvPlain(x){const p=x.diff_pct_1y;if(p==null)return '';
+  if(x.diff_now!=null&&x.diff_now<0)return `ASST trades below MSTR's mNAV; the gap is lower than ${Math.round((1-p)*100)}% of the past year`;
+  return p>=0.5?`ASST's premium over MSTR is wider than ${Math.round(p*100)}% of the past year`:`ASST's premium over MSTR is narrower than ${Math.round((1-p)*100)}% of the past year`}
+function rvShort(x){return x.verdict==='MSTR_CHEAP'?'MSTR cheaper vs usual':x.verdict==='ASST_CHEAP'?'ASST cheaper vs usual':'spread normal'}
+function renderRV(){const x=RVD('ev'),b=RVD('basic'),V=S.valuation||{},bf=BFLAGS(),fw=A.flywheel,mc=D.config.mnav;
+  const side=a=>{const t=a.ticker,v=V[t]||{},ev=v.all_in_ev||{},st=v.market_standard||{},f=bf.per_asset[t]||{},w=fw[a.preferred]||{};
+    const fc=f.flywheel_cheap?'<div><span class="badge fc">✓ Flywheel + Cheap</span></div>':'';
+    const vl=f.very_low_mnav?`<div class="vlow">● Very low all-in mNAV → secondary buy cue${w.status==='NEAR_PAR'?`, ${a.preferred} near par`:''}</div>`:'';
+    return `<div class="tk2" style="color:${C[t]}">${t}</div><div class="lab">ALL-IN (EV) mNAV</div><div class="mv">${fmt(ev.mnav,2)}x</div>
+     <div><span class="pill vz z-${ev.zone}">${zoneTxt({zone:ev.zone,low_fair:f.low_fair})}</span> <span class="note">${ev.mnav_pct_1y==null?'':ord(Math.round(ev.mnav_pct_1y*100))+' pct of its 1y'}</span></div>
+     <div class="note" style="margin-top:3px">standard mNAV ${fmt(st.mnav,2)}x</div>${fc}${vl}`};
+  for(const a of ASSETS){const el=$('rv_'+a.ticker);if(!el)continue;el.innerHTML=side(a);el.style.borderTopColor=C[a.ticker];el.classList.toggle('cheapv',x.cheaper_vs_usual===a.ticker)}
+  const zt=`Verdict rule (config.json → mnav): z-score of the ASST−MSTR all-in mNAV gap vs its trailing ${mc.lookback_trading_days} trading days. z ≤ ${mc.spread_z_favor_asst} → ASST cheap vs usual (buy-signal context for ASST); z ≥ +${mc.spread_z_favor_mstr} → MSTR cheap vs usual; otherwise normal. Ratio stats are the same window, shown for context. The call itself still needs a confirmed peg.`;
+  $('rv_mid').innerHTML=`<div class="lab">ASST ÷ MSTR ALL-IN mNAV RATIO</div>
+   <div class="ratio">${fmt(x.ratio_now,2)}x</div>
+   <div class="vs">now vs <b>${fmt(x.ratio_mean_1y,2)}x</b> 1y average <span class="note">(median ${fmt(x.ratio_median_1y,2)}x)</span></div>
+   <div class="gap">Gap ASST − MSTR: <b>${sx2(x.diff_now)}x</b> now vs ${sx2(x.diff_mean_1y)}x avg</div>
+   <div class="vpill v-${x.verdict}">${esc(x.verdict_text||RVL[x.verdict])}</div>
+   <div class="rvplain">${rvPlain(x)}</div>
+   <div class="note">signal z ${sx2(x.diff_z)} (cheap at ≤ ${mc.spread_z_favor_asst} / ≥ +${mc.spread_z_favor_mstr})${Q(zt)} · ratio ${ord(Math.round((x.ratio_pct_1y||0)*100))} pct · standard mNAV: ratio ${fmt(b.ratio_now,2)}x vs ${fmt(b.ratio_mean_1y,2)}x, ${esc((b.verdict_text||'').toLowerCase())}</div>`}
+function plotSpread(){const bs=MB==='basic'?'basic':'ev',sx='_'+bs,mode=SPM,R=D.rows.filter(r=>r.date>=D.config.window_start&&r[(mode==='ratio'?'mnav_ratio':'mnav_spread')+sx]!=null);
+  const k=mode==='ratio'?{v:'mnav_ratio',m:'ratio_mean',s:'ratio_sd'}:{v:'mnav_spread',m:'spread_mean',s:'spread_sd'},RR=R.filter(r=>r[k.m+sx]!=null&&r[k.s+sx]!=null);
+  const x=RR.map(r=>r.date),m=RR.map(r=>r[k.m+sx]),sd=RR.map(r=>r[k.s+sx]),lab=mode==='ratio'?'ASST ÷ MSTR mNAV ratio':'ASST − MSTR mNAV gap';
+  $('spb').textContent=BL(bs);
+  const tr=[{name:'+1σ',x,y:m.map((v,i)=>v+sd[i]),line:{width:0,color:'rgba(163,113,247,0)'},showlegend:false,hoverinfo:'skip'},
+    {name:'±1σ band (trailing 1y)',x,y:m.map((v,i)=>v-sd[i]),fill:'tonexty',fillcolor:'rgba(163,113,247,0.16)',line:{width:0,color:'rgba(163,113,247,0)'},hoverinfo:'skip'},
+    {name:'1y average (rolling)',x,y:m,line:{color:C.AVG,width:1.6,dash:'dash'},hovertemplate:'%{y:.3f}'+(mode==='ratio'?'x':'')},
+    Object.assign({x:R.map(r=>r.date),y:R.map(r=>r[k.v+sx])},{name:lab,line:{color:'#f7931a',width:2.6},customdata:R.map(r=>[r['spread_z'+sx],r['mnav_ratio'+sx]]),
+      hovertemplate:'%{y:.3f}'+(mode==='ratio'?'x':'')+' · gap z %{customdata[0]:.2f}'})];
+  const sh=mode==='diff'?[hline(0,'#8b949e','dot')]:[hline(1,'#8b949e','dot')];
+  plot('c_spread',tr,keepRange('c_spread',baseLayout(lab,{shapes:sh})));
+  const mc=D.config.mnav;
+  $('spnote').innerHTML=`Orange = today's ${lab} (${BL(bs)}; follows the basis toggle above). Dashed = its trailing ${mc.lookback_trading_days}-trading-day average; purple band = average ± 1 standard deviation. ${mode==='diff'?`Outside the band on the gap view is exactly where the verdict flips: below → <b>ASST cheap vs usual</b> (z ≤ ${mc.spread_z_favor_asst}), above → <b>MSTR cheap vs usual</b> (z ≥ +${mc.spread_z_favor_mstr}).`:'The verdict uses the gap (ASST − MSTR); the ratio view is the same idea scaled by MSTR\'s mNAV, so its band edges are close but not identical.'} ASST usually trades at a higher mNAV than MSTR, so "normal" is a positive gap / ratio above 1.`;
+  linkCharts()}
+let SPM='ratio';
 function renderTop(){const F=freshness(),fw=A.flywheel,t=lastTwo('btc');
   $('tb_btc').innerHTML=`BTC $${fmt(t.v,0)} <span class="tb-ch ${cls(t.ch)}">${spct(t.ch,1)}</span>`;
   const r=$('tb_rec');r.className='pill r-'+S.recommendation;r.textContent=RECL[S.recommendation]||S.recommendation;
+  {const x=RVD('ev'),el=$('tb_rv');if(el)el.innerHTML=`<span class="pill tb-rv v-${x.verdict}" title="${esc(x.verdict_text)} · ASST/MSTR EV mNAV ratio ${fmt(x.ratio_now,2)}x vs ${fmt(x.ratio_mean_1y,2)}x 1y avg · gap z ${sx2(x.diff_z)}">${x.verdict==='NORMAL'?'Spread normal':x.cheaper_vs_usual+' cheap'}</span>`}
   for(const a of ASSETS){const f=fw[a.preferred],el=$('tb_'+a.preferred.toLowerCase());if(!el)continue;el.innerHTML=`<span class="pill p-${f.peg_state}" title="${a.preferred} $${fmt(f.close)} · ${FWL[f.status]||f.peg_state}">${a.preferred} ${f.peg_state}</span>`}
   $('tb_fresh').innerHTML=`<span class="dot" style="background:${F.col}"></span><span class="note tb-asof">${S.as_of}</span>`;
   $('tb_fresh').title=`Data ${F.txt}: last bar ${S.as_of}, expected ${F.exp}. Generated ${D.generated_utc} UTC (${F.ageH.toFixed(1)} h ago).`;
@@ -337,7 +417,7 @@ function renderChips(){const fw=A.flywheel,bf=BFLAGS().per_asset,V=S.valuation||
     return `<span class="chip3 c-${f.status}" title="${a.preferred} close ${f.date}; peg state ${f.peg_state}"><b>${a.preferred}</b> $${fmt(f.close)} · ${FWL[f.status]} <span class="pill p-${f.peg_state}">${f.peg_state}</span></span>`};
   const names=rc==='BUY_MSTR'?['MSTR']:rc==='BUY_ASST'?['ASST']:ASSETS.map(a=>a.ticker);
   const mz=names.map(t=>{const x=(V[t]||{}).all_in_ev||{},b=bf[t]||{};return `${t} <b>${fmt(x.mnav,2)}x</b> <span class="pill vz z-${x.zone}">${zoneTxt({zone:x.zone,low_fair:b.low_fair})}</span>`}).join(' · ');
-  $('chips').innerHTML=ASSETS.map(pc).join('')+`<span class="chip3" title="All-in (EV) mNAV and its 1y zone">All-in mNAV: ${mz}</span>`;
+  $('chips').innerHTML=ASSETS.map(pc).join('');
   const c=BFLAGS();
   $('legend').innerHTML=`Legend: <b>preferred on peg + CHEAP/low-FAIR all-in mNAV = strongest buy</b> ${Q(`"On peg" = preferred closed ≥ $${D.config.peg.on_threshold} for ${D.config.peg.on_consecutive_days} straight days. low-FAIR = FAIR zone and below the 1y median (percentile < ${c.low_fair_max_percentile*100}th). Very low all-in mNAV (≤ ${c.very_low_max_mnav}x or ≤ ${c.very_low_max_percentile*100}th percentile) is a secondary buy cue even when the preferred is only near par. These are display flags; the call itself follows the rules under "How the recommendation is decided".`)}`}
 function renderHist(){const R=D.rows.filter(r=>r.date>=D.config.window_start&&r.rec),F=(A.signal_flips||[]).map(f=>({date:f.date,old:f.old,new:f.new,src:'reconstructed'}));
@@ -358,14 +438,17 @@ function renderSummary(){const V=S.valuation||{},Y=A.btc_yield,bf=BFLAGS(),fw=A.
     const yv=k=>y[k]&&y[k].value!=null?cp(y[k].value,1):'—';
     const vl=b.very_low_mnav?`<div class="vlow">● Very low all-in mNAV (≤ ${bf.very_low_max_mnav}x or ≤ ${bf.very_low_max_percentile*100}th pct) → secondary buy signal${f.status==='NEAR_PAR'?`, ${a.preferred} near par`:''}</div>`:'';
     const fc=b.flywheel_cheap?`<span class="badge fc">✓ Flywheel + Cheap</span>`:'';
-    return `<div class="sum${b.very_low_mnav?' vl':''}${b.flywheel_cheap?' fcb':''}"><div class="t">${a.ticker} <span class="note">${esc(a.name||'')}</span></div>
-     <div class="row"><span>All-in mNAV ${Q('All-in (EV) mNAV = (price × basic shares + debt + preferred notional − cash) ÷ BTC NAV. Zone uses its own trailing 1y history.')} <b class="bigv">${fmt(ev.mnav,2)}x</b> <span class="pill vz z-${ev.zone}">${zoneTxt({zone:ev.zone,low_fair:b.low_fair})}</span> <span class="note">${ev.mnav_pct_1y==null?'':Math.round(ev.mnav_pct_1y*100)+'th pct 1y'}</span></span>
-     <span class="note">std ${fmt(st.mnav,2)}x</span></div>
+    return `<div class="sum"><div class="t">${a.ticker} <span class="note">${esc(a.name||'')}</span></div>
      <div class="row"><span>BTC yield ${Q('Change in BTC held per diluted share. Accelerating = last 30d positive and higher than the prior 30d.')} 30d <b>${yv('30d')}</b></span><span>prior 30d ${yv('prev_30d')}</span><span>90d ${yv('90d')}</span></div>
-     <div>${accB(y,f.status==='FLYWHEEL_ON')} ${fc}</div>${vl}</div>`}).join('')}
+     <div>${accB(y,f.status==='FLYWHEEL_ON')}</div></div>`}).join('')}
 function renderRec(){const R=S.recommendation_detail||{},rc=S.recommendation;
   $('recbanner').className='rec r-'+rc;$('rec_big').textContent=RECL[rc]||rc;
   $('rec_why').textContent='Today: '+S.recommendation_reason;
+  {const x=RVD('ev'),fw=A.flywheel,pa=S.per_asset||{},parts=[rvShort(x)];
+   for(const a of ASSETS){const f=fw[a.preferred]||{};parts.push(a.preferred+' '+({FLYWHEEL_ON:'on peg',NEAR_PAR:'near par',OFF_PEG:'off peg'}[f.status]||'no data'))}
+   for(const a of ASSETS)if((pa[a.ticker]||{}).overheated)parts.push(a.ticker+' overheated');
+   if(S.also_valid)parts.push(S.also_valid+' also valid');
+   $('rec_short').textContent=parts.join(' · ')}
   const lrc=S.last_recommendation_change,lc=S.last_changed;
   $('rec_more').innerHTML=[S.also_valid?`<b>${S.also_valid} is also valid</b> (both pegs confirmed).`:'',...(S.recommendation_notes||[]).map(n=>'⚠️ '+esc(n)),
     lrc?`Recommendation unchanged since ${lrc.date} (was ${RECL[lrc.old]||lrc.old}).`:'',lc?`Last state change ${lc.date}: ${esc(lc.what||'')}.`:'',
@@ -541,7 +624,7 @@ function renderCharts(){const R=D.rows.filter(r=>r.date>=D.config.window_start);
   NORM=[...ASSETS.map(a=>[a.ticker,a.ticker]),['btc','BTC']].map(([k,n])=>{const RR=R.filter(r=>r[k]!=null);return{name:n,x:RR.map(r=>r.date),v:RR.map(r=>r[k])}});
   plot('c_norm',NORM.map(t=>({name:t.name,meta:t.name,x:t.x,y:t.v.map(v=>v/t.v[0]-1),line:{color:C[t.name],width:t.name==='BTC'?2.6:2},hovertemplate:'%{y:.1%}'})),
     keepRange('c_norm',baseLayout('Change since first visible date',{yaxis:{tickformat:'.0%',zeroline:true,zerolinecolor:'#8b949e'}})));
-  rebaseNorm();plotZone();plotMnav();plotBps();
+  rebaseNorm();plotZone();plotMnav();plotSpread();plotBps();
   $('spbasis').textContent=BL(S.signal_basis)+' basis, which drives the rotation tiebreak';
   plot('c_ratio',[Object.assign(series('ratio'),{name:'ASST/MSTR price ratio',line:{color:'#79c0ff'}}),
     Object.assign(series('mnav_spread'),{name:'mNAV spread ASST−MSTR (right)',yaxis:'y2',line:{color:'#d2a8ff'}}),
@@ -588,7 +671,7 @@ function renderPM(){const O=S.odds_jumps||[],K=S.key_odds||[],r=(S.thresholds||{
      <td><a href="${j.url}" target="_blank" rel="noopener">${esc(j.market)}</a><div class="note">${esc(j.outcome)}</div></td>
      <td>${pct(j.from,0)} → ${pct(j.to,0)}</td><td class="${j.change_pts>=0?'pos':'neg'}" style="font-weight:700">${j.change_pts>=0?'▲ +':'▼ '}${Math.abs(j.change_pts).toFixed(1)} pts</td>
      <td>${j.news?`<a href="${j.news.url}" target="_blank" rel="noopener">${esc(j.news.headline)}</a>`:''}</td></tr>`).join('')+'</table></div>'+keyline;
-  $('ojbody').innerHTML=h;
+  $('ojbody').innerHTML=h;if($('ojsum'))$('ojsum').textContent=O.length?`· ${O.length} jump${O.length>1?'s':''} in the last ${r.window_days||7} days`:'· none in the last '+(r.window_days||7)+' days';
   $('ojnote').innerHTML=`Flags a tracked market when its Yes probability moves ≥ ${r.jump_24h_pts} pts in a day or ≥ ${r.jump_7d_pts} pts over 7 days (last ${r.window_days} days; config.json → odds_jumps). Polymarket and Kalshi, refreshed with the data job. "Likely news" = top Google News result for that topic around that date, matched automatically, so it may not be the cause.`}
 function renderSigLog(){const F=A.signal_flips||[],L=A.signal_log||[];const mv=(o,k)=>o?cp(o[k]):'<span class="note">pending</span>';
   const all=F.map(f=>Object.assign({kind:'reconstructed'},f)).concat(L.map(l=>({kind:l.initial?'live (first entry)':'live',date:l.as_of,old:l.old,new:l.new,reason:l.reason,after:l.after,detected:l.detected_utc}))).sort((a,b)=>b.date.localeCompare(a.date));
@@ -633,7 +716,7 @@ function safe(n,f){try{f()}catch(e){console.warn(n,e);const el=document.getEleme
 (async()=>{try{[D,S,E]=await Promise.all([J('data/dashboard.json'),J('signals.json'),J('data/events.json')]);try{M=await J('data/markets.json')}catch(e){M=null}
  A=D.analytics;ASSETS=A.assets;ASSETS.forEach(a=>{if(a.color)C[a.ticker]=a.color});
  initTheme();
- for(const [n,f] of [['top',renderTop],['recommendation',renderRec],['chips',renderChips],['history',renderHist],['flywheel',renderFlywheel],['summary',renderSummary],['kpis',renderKpis],['signals',renderSignal],['valuation',renderValuation],['yield',renderYield],['atm',renderAtm],['events',()=>{initEvents();renderEvents()}],['toggles',initToggles],['charts',()=>{renderCharts();segInit('mbasis',MB,b=>{MB=b;plotMnav()})}],['peg performance',renderPegPerf],['backtest',renderBacktest],['signal log',renderSigLog],['big moves',renderBig],['odds',renderPM],['method',renderMethod],['csv',initCsv]])safe(n,f);
+ for(const [n,f] of [['relative value',renderRV],['top',renderTop],['recommendation',renderRec],['chips',renderChips],['history',renderHist],['flywheel',renderFlywheel],['summary',renderSummary],['kpis',renderKpis],['signals',renderSignal],['valuation',renderValuation],['yield',renderYield],['atm',renderAtm],['events',()=>{initEvents();renderEvents()}],['toggles',initToggles],['charts',()=>{renderCharts();segInit('mbasis',MB,b=>{MB=b;plotMnav();plotSpread()});segInit('spmode',SPM,b=>{SPM=b;plotSpread()})}],['peg performance',renderPegPerf],['backtest',renderBacktest],['signal log',renderSigLog],['big moves',renderBig],['odds',renderPM],['method',renderMethod],['csv',initCsv]])safe(n,f);
  linkCharts();
  document.querySelectorAll('details').forEach(d=>d.addEventListener('toggle',()=>{if(d.open)d.querySelectorAll('.js-plotly-plot').forEach(el=>{try{Plotly.Plots.resize(el)}catch(e){}})}));
 }catch(e){console.error(e);$('gen').textContent='Failed to load data: '+e}})();
