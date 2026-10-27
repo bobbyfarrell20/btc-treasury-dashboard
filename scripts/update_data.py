@@ -485,6 +485,7 @@ def main():
         "backtest": {"btc_idle": analytics.backtest(rows, ASSETS, start, "BTC"), "cash_idle": analytics.backtest(rows, ASSETS, start, "CASH")},
         "peg_stretches": [s_ for A in ASSETS for s_ in analytics.peg_stretches(rows, A["preferred"], A["key"], A["ticker"])],
         "atm": analytics.atm_summary(fuel, prices, pc_, cap["ASST"].get("sats_shares", []), rows[-1]["date"]),
+        "buy_flags": analytics.buy_flags(rows[-1], ASSETS, CFG),
         "signal_flips": flips, "last_changed": lc, "last_recommendation_change": lrc, "sources": sources}
     for k in ("cash_idle",):  # keep only stats + curve for the variant
         ana["backtest"][k].pop("dates", None); ana["backtest"][k].pop("positions", None); ana["backtest"][k].pop("periods", None)
@@ -510,6 +511,7 @@ def main():
            "generated_utc": gen, "as_of": last["date"], "disclaimer": "Rules-based indicator, not financial advice.",
            "recommendation_detail": lrec,
            "flywheel": ana["flywheel"],
+           "buy_flags": ana["buy_flags"],
            "btc_yield": {t: {k: (v.get("value") if isinstance(v, dict) else v) for k, v in y.items()} for t, y in ana["btc_yield"].items()},
            "headline": last["sig"]["headline"], "per_asset": last["sig"]["per"],
            "both_overheated": last["sig"]["both_overheated"], "rotation": last["sig"]["rotation"],

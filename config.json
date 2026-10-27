@@ -189,8 +189,8 @@
         "id": "what-price-will-bitcoin-hit-before-2027",
         "short": "BTC in 2026",
         "outcomes": [
-          "\u2191 100,000",
-          "\u2193 55,000"
+          "↑ 100,000",
+          "↓ 55,000"
         ]
       },
       {
@@ -220,5 +220,12 @@
         "top": 1
       }
     ]
+  },
+  "buy_flags": {
+    "_comment": "Display flags (do not change the recommendation). flywheel_cheap: preferred peg ON (confirmed) AND parent all-in mNAV zone CHEAP, or FAIR with 1y percentile < low_fair_max_percentile ('low-FAIR'). very_low_mnav (secondary buy signal): all-in mNAV <= very_low_max_mnav OR 1y percentile <= very_low_max_percentile, shown even when the preferred is only NEAR PAR.",
+    "basis": "ev",
+    "low_fair_max_percentile": 0.5,
+    "very_low_max_mnav": 1.0,
+    "very_low_max_percentile": 0.2
   }
 }

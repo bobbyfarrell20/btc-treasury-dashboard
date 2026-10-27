@@ -84,74 +84,68 @@ details.sec{margin-top:8px}details.sec>summary{font-size:13px;font-weight:600;co
 .chip{display:inline-flex;align-items:center;gap:4px;font-size:12px;color:var(--mut);margin-right:2px}.chip input{width:16px;height:16px}
 .num{text-align:right;white-space:nowrap}
 @media (max-width:640px){.topbar{padding:5px 8px;font-size:11.5px;gap:4px 8px}.tb-sum{flex-basis:100%;order:9}.rec .big{font-size:27px}.fw .st{font-size:23px}.kpis{grid-template-columns:repeat(2,minmax(0,1fr))}.card{padding:11px}.hero h1{font-size:19px}}
+/* v3 decision-first layout */
+.topbar{padding:4px 12px;gap:4px 8px;font-size:12px;min-height:34px}.topbar .pill{font-size:11px;padding:2px 7px}
+.btn.ib{min-height:26px;padding:2px 8px;font-size:14px;line-height:1}
+.hero{padding:8px 22px 6px}.hero h1{font-size:18px}.hero .logo{width:30px;height:30px;font-size:18px;line-height:30px}.hero .tag{font-size:12px}.hero .tk .p{font-size:15px}
+#decision{margin-bottom:12px}
+.rec{padding:12px 18px;margin-bottom:8px;text-align:center}.rec .lbl{font-size:11.5px;opacity:.8;font-weight:600;letter-spacing:.3px}
+.rec .big{font-size:44px;letter-spacing:1px}
+.chips3{display:flex;flex-wrap:wrap;gap:6px 8px;justify-content:center;margin:0 0 6px}
+.chip3{display:inline-flex;flex-wrap:wrap;align-items:center;gap:4px;background:var(--panel);border:1px solid var(--line);border-left-width:4px;border-radius:999px;padding:4px 12px;font-size:13px;max-width:100%}
+.chip3 .pill{font-size:10.5px;padding:1px 6px;margin:0}
+.chip3.c-FLYWHEEL_ON{border-color:#2ea043}.chip3.c-NEAR_PAR{border-color:#d4a72c}.chip3.c-OFF_PEG{border-color:#f85149}
+.legend{text-align:center;font-size:12.5px;color:var(--mut);margin:2px 0 6px}
+.hist{background:var(--panel);border:1px solid var(--line);border-radius:10px;padding:6px 10px;margin:4px 0}
+.hist .hh{display:flex;flex-wrap:wrap;gap:4px 12px;align-items:center;font-size:12px}.flip,.hist .hh>.note{white-space:nowrap}.flip .pill{font-size:10.5px;padding:1px 6px;margin:0 2px}
+.strip{display:flex;height:8px;border-radius:4px;overflow:hidden;margin-top:5px}.strip .sg{display:block;min-width:1px}
+.strip .r-STAY_BTC,.sw.r-STAY_BTC{background:#f7931a}.strip .r-BUY_MSTR,.sw.r-BUY_MSTR{background:#2ea043}.strip .r-BUY_ASST,.sw.r-BUY_ASST{background:#86efac}.sw{display:inline-block;width:9px;height:9px;border-radius:2px;margin:0 2px 0 6px;vertical-align:middle}.skey{font-size:11px;color:var(--mut);margin-left:auto;white-space:nowrap}
+.gen{font-size:11px;color:var(--mut);text-align:right;margin-top:3px}.gen .dot{width:8px;height:8px}.gen .q{width:13px;height:13px;font-size:9px}
+#flywheel,#summary{margin-bottom:12px}
+.fwgrid{gap:10px}.fw{padding:9px 13px}.fw .st{font-size:21px;margin:0 0 2px}.fw .imp{font-size:13.5px;margin:2px 0 4px}.fw .row{font-size:12.5px}.fw .t .pill{font-size:10.5px}
+.sumgrid{display:grid;gap:10px;grid-template-columns:repeat(auto-fit,minmax(min(420px,100%),1fr))}
+.sum{background:var(--panel);border:1px solid var(--line);border-radius:12px;padding:9px 13px;font-size:12.5px}
+.sum .t{font-weight:800;font-size:14px}.sum .row{display:flex;flex-wrap:wrap;gap:4px 14px;align-items:center;margin:3px 0}.sum .bigv{font-size:18px}
+.sum.vl{border:2px solid #2ea043;background:linear-gradient(0deg,rgba(46,160,67,.08),rgba(46,160,67,.08)),var(--panel)}
+.sum.fcb{box-shadow:0 0 0 2px rgba(46,160,67,.5)}
+.vlow{color:#3fb950;font-weight:700;margin-top:4px}[data-theme=light] .vlow{color:#1a7f37}
+.badge{margin-top:4px;font-size:11.5px;padding:2px 9px}
+.badge.acc{border:1px solid var(--line);background:transparent;color:var(--mut)}.badge.acc.up{border-color:#2ea043;background:rgba(46,160,67,.15);color:#3fb950}
+[data-theme=light] .badge.acc.up{color:#1a7f37}
+.badge.fc{background:#2ea043;color:#fff;border:1px solid #2ea043}
+#yieldtable .badge{margin:0}
+#howrec{margin-bottom:14px}
+@media (max-width:640px){.topbar{padding:4px 6px;gap:4px;font-size:11px;flex-wrap:nowrap}.topbar .pill{font-size:10px;padding:2px 5px;white-space:nowrap}.tb-r{gap:4px}.btn.ib{padding:2px 6px;min-height:24px}.hero .tag{display:none}.hero .logo{width:24px;height:24px;font-size:14px;line-height:24px}
+ .hist .hh{flex-wrap:nowrap;overflow-x:auto;-webkit-overflow-scrolling:touch;padding-bottom:2px}.skey{display:none}.fw .imp{font-size:12.5px}.tb-ch,.tb-asof{display:none}.hero{padding:6px 12px 4px}.hero .tickers{display:none}.hero h1{font-size:15px}.hero .tag{font-size:11px}
+ .rec{padding:10px 10px}.rec .big{font-size:34px}.chip3{font-size:12px;padding:3px 10px;border-radius:12px}.legend{font-size:11.5px}.fw .st{font-size:19px}.sum .bigv{font-size:16px}}
 </style></head><body>
-<div class="topbar" id="topbar"><span class="tb-b" id="tb_btc">BTC …</span><span id="tb_rec" class="pill">…</span><span id="tb_strc"></span><span id="tb_sata"></span><span class="tb-sum" id="tb_sum"></span>
- <span class="tb-r"><span id="tb_fresh" title="data freshness"></span><button class="btn" id="themebtn" title="Toggle light/dark theme">☀︎ / ☾</button></span></div>
+<div class="topbar" id="topbar"><span class="tb-b" id="tb_btc">BTC …</span><span id="tb_rec" class="pill">…</span><span id="tb_strc"></span><span id="tb_sata"></span>
+ <span class="tb-r"><span id="tb_fresh" title="data freshness"></span><button class="btn ib" id="themebtn" title="Toggle light/dark theme">☾</button></span></div>
 <header class="hero"><div class="hero-in">
  <div class="brand"><div class="logo" aria-hidden="true">₿</div><div><h1>Flywheel Rotation Tracker</h1><div class="tag">MSTR vs ASST, powered by STRC &amp; SATA, with BTC as home base</div></div></div>
- <div class="tickers" id="tickers"></div></div>
- <div class="sub" id="gen">loading…</div></header>
+ <div class="tickers" id="tickers"></div></div></header>
 <main>
-<section class="card" id="flywheel"><div class="cardhead"><h2>Flywheel status <i class="q" tabindex="0" data-tip="The preferred stock (STRC for Strategy, SATA for Strive) trading at or near $100 par lets the company sell more of it through its ATM and buy bitcoin without selling common stock. That is the 'flywheel'. ON = closed at or above the threshold for the required number of straight trading days.">?</i></h2><span class="note" id="fwnote"></span></div>
-<div class="fwgrid" id="fwcards"></div></section>
-
-<section class="rec" id="recbanner"><div class="note">Recommendation (rules-based indicator, not financial advice)</div><div class="big" id="rec_big">…</div><div class="why" id="rec_why"></div><div class="note" id="rec_more"></div>
-<details class="sec"><summary>How the recommendation is decided</summary><div class="note" id="rec_rules"></div></details></section>
-
-<div class="disc"><b>Rules-based indicator, not financial advice.</b> Signals are produced mechanically from public data and the thresholds in <a href="config.json">config.json</a>. Data can be late, wrong or missing. Do your own research.</div>
-
-<div class="kpis" id="kpis"></div>
-
-<details class="card" id="signal"><summary>Signal details: per-asset peg actions, mNAVs, 10-day changes, rotation z, dip rule</summary>
-<div class="headline" id="headline" style="margin-top:10px">…</div>
-<div class="grid g4" id="sigcards"></div>
-<details class="sec"><summary>Rules behind these detail cards</summary><div class="note" id="signote"></div></details></details>
-
-<section class="card" id="valuation"><div class="cardhead"><h2>Valuation: who's cheap vs expensive</h2></div>
-<details class="sec" style="margin:0 0 10px"><summary>How to read this: two mNAV definitions</summary><div class="note" id="basisnote"></div></details>
-<div class="verdict" id="verdict">…</div>
-<div class="grid g2" id="valcards"></div>
-<div class="cardhead" style="margin-top:14px"><h2>Valuation zone history (mNAV percentile vs trailing 1y)
- <span class="seg" id="zbasis"><button data-b="ev">all-in (EV)</button><button data-b="basic">market standard</button></span></h2><span class="csvb" data-c="c_zone"></span></div>
-<div id="c_zone" class="chart"></div>
-<details class="sec"><summary>Notes</summary><div class="note" id="valnote"></div></details></section>
-
-<section class="card" id="yield"><div class="cardhead"><h2>BTC yield: bitcoin per diluted share <i class="q" tabindex="0" data-tip="BTC yield = % change in (BTC held ÷ diluted shares) over the window. Positive = each share is backed by more bitcoin than before. Shaded periods = the company's preferred peg was ON (confirmed).">?</i></h2><span class="csvb" data-c="c_bps"></span></div>
-<div class="tscroll"><table id="yieldtable"></table></div><div class="note" id="yieldnote"></div>
-<div id="c_bps" class="chart"></div></section>
-
-<section class="card" id="pegperf"><div class="cardhead"><h2>Peg → performance: what happened after past confirmed pegs</h2><span class="csvb" data-c="c_pegperf"></span></div>
-<div class="caveat" id="pegcaveat"></div>
-<div class="tscroll"><table id="pegtable"></table></div>
-<div id="c_pegperf" class="chart sm"></div></section>
-
-<section class="card" id="backtest"><div class="cardhead"><h2>Backtest of the recommendation rules</h2><span class="csvb" data-c="c_bt"></span></div>
-<div class="caveat" id="btcaveat"></div>
-<div class="tscroll"><table id="bttable"></table></div>
-<div id="c_bt" class="chart"></div>
-<details class="sec"><summary>Every holding period</summary><div class="tscroll scroll"><table id="btperiods"></table></div></details>
-<div class="note" id="btnote"></div></section>
-
-<section class="card" id="atm"><div class="cardhead"><h2>Capital raising: STRC / SATA / SATS issuance and days at par</h2></div>
-<div class="grid g2"><div><h2 style="font-size:14px">STRC (Strategy ATM, weekly 8-Ks)</h2><div class="tscroll"><table id="atm_strc"></table></div><details class="sec"><summary>Recent weeks</summary><div class="tscroll"><table id="atm_strcw"></table></div></details></div>
-<div><h2 style="font-size:14px">SATA / SATS (Strive)</h2><div class="tscroll"><table id="atm_sata"></table></div><details class="sec"><summary>Recent SATA share-count changes</summary><div class="tscroll"><table id="atm_sataw"></table></div></details></div></div>
-<h2 style="font-size:14px;margin-top:12px">Share of trading days at / near par</h2><div class="tscroll"><table id="atm_peg"></table></div>
-<details class="sec"><summary>Notes</summary><div class="note" id="atmnote"></div></details></section>
-
-<section class="card" id="events"><div class="cardhead"><h2>Key dates (next 7 days highlighted)</h2></div>
-<div class="evctl"><input type="search" id="evq" placeholder="Search events…" aria-label="Search events"><select id="evcat" aria-label="Category"><option value="">All categories</option></select>
-<label class="chip"><input type="checkbox" id="showPast"> include past</label></div>
-<div class="evctl"><span class="note">Chart annotations:</span><label class="chip"><input type="checkbox" id="showEv" checked> show</label><span id="evcats"></span></div>
-<div class="tscroll scroll"><table id="evtable"></table></div>
-<div class="note">Source of truth: <a href="data/events.json">data/events.json</a> (edit to add/update). Dates not yet confirmed are marked <span class="tbd">TBD</span>/estimated, never guessed.</div></section>
+<section id="decision">
+<div class="rec" id="recbanner"><div class="lbl">Today's call · rules-based indicator, not financial advice</div><div class="big" id="rec_big">…</div></div>
+<div class="chips3" id="chips"></div>
+<div class="legend" id="legend"></div>
+<div class="hist" id="rechist"></div>
+<div class="gen" id="gen">loading…</div>
+</section>
+<section id="flywheel"><div class="fwgrid" id="fwcards"></div></section>
+<section id="summary"><div class="sumgrid" id="mnavsum"></div></section>
+<details class="card" id="howrec"><summary>How the recommendation is decided</summary>
+<div class="why" id="rec_why" style="margin-top:8px"></div><div class="note" id="rec_more"></div>
+<div class="note" id="rec_rules" style="margin-top:8px"></div>
+<div class="disc" style="margin:10px 0 0"><b>Rules-based indicator, not financial advice.</b> Signals are produced mechanically from public data and the thresholds in <a href="config.json">config.json</a>. Data can be late, wrong or missing. Do your own research.</div></details>
 
 <div class="card controls" id="chartctl"><span class="note">Charts:</span> <span id="assettoggles"></span> <label class="chip"><input type="checkbox" id="linkx" checked> link time axes</label> <a class="btn" href="data/rows.csv" download style="text-decoration:none">⬇ full data CSV</a></div>
 
 <section class="card"><div class="cardhead"><h2>1 · Normalized performance (% change from first visible date; re-bases on zoom)</h2><span class="csvb" data-c="c_norm"></span></div><div id="c_norm" class="chart"></div>
 <div class="note">BTC is the pure-bitcoin baseline: a stock line above it means holding that stock beat just holding BTC over the visible window.</div></section>
 <section class="card"><div class="cardhead"><h2>2 · mNAV: MSTR vs ASST
- <span class="seg" id="mbasis"><button data-b="ev">all-in (EV)</button><button data-b="basic">market standard</button><button data-b="both">both</button></span></h2><span class="csvb" data-c="c_mnav"></span></div><div id="c_mnav" class="chart"></div>
-<details class="sec"><summary>Notes</summary><div class="note">Solid = all-in (EV) mNAV: (price × basic shares + debt + preferred notional − cash) ÷ BTC NAV. Dotted (in "both") = market-standard mNAV: price × basic shares ÷ BTC NAV. Diluted equity mNAV (price × assumed-diluted shares ÷ BTC NAV) is hidden; click it in the legend to show it. Dashed lines: 1.0x and the overheated floor (config). Step jumps happen where filings change debt, preferreds or cash (see Method).</div></details></section>
+ <span class="seg" id="mbasis"><button data-b="ev">all-in (EV) emphasized</button><button data-b="basic">market standard</button><button data-b="both">both</button></span></h2><span class="csvb" data-c="c_mnav"></span></div><div id="c_mnav" class="chart"></div>
+<details class="sec"><summary>Notes</summary><div class="note">Solid = all-in (EV) mNAV: (price × basic shares + debt + preferred notional − cash) ÷ BTC NAV. Default view emphasizes all-in (EV); the faint dotted line is market-standard mNAV (context; full weight in "market standard" / "both"): price × basic shares ÷ BTC NAV. Diluted equity mNAV (price × assumed-diluted shares ÷ BTC NAV) is hidden; click it in the legend to show it. Dashed lines: 1.0x and the overheated floor (config). Step jumps happen where filings change debt, preferreds or cash (see Method).</div></details></section>
 <section class="card"><div class="cardhead"><h2>3 · ASST/MSTR price ratio, mNAV spread &amp; average mNAV (<span id="spbasis"></span>)</h2><span class="csvb" data-c="c_ratio"></span></div><div id="c_ratio" class="chart"></div></section>
 <section class="card"><div class="cardhead"><h2>4 · Price vs BTC NAV per share (price ÷ mNAV)</h2><span class="csvb" data-c="c_navps"></span></div><div id="c_navps" class="chart"></div>
 <div class="note">BTC NAV per share = BTC held × BTC price ÷ shares. Price above the NAV line = premium (mNAV &gt; 1); below = discount.</div></section>
@@ -160,10 +154,50 @@ details.sec{margin-top:8px}details.sec>summary{font-size:13px;font-weight:600;co
 <div id="c_strc" class="chart sm"></div><div id="c_sata" class="chart sm"></div>
 <div id="c_fuel" class="chart sm"></div>
 <details class="sec"><summary>How to read the peg bands</summary><div class="note" id="pegrules"></div></details></section>
-
+<section class="card" id="valuation"><div class="cardhead"><h2>Valuation: who's cheap vs expensive</h2></div>
+<details class="sec" style="margin:0 0 10px"><summary>How to read this: two mNAV definitions</summary><div class="note" id="basisnote"></div></details>
+<div class="verdict" id="verdict">…</div>
+<div class="grid g2" id="valcards"></div>
+<div class="cardhead" style="margin-top:14px"><h2>Valuation zone history (mNAV percentile vs trailing 1y)
+ <span class="seg" id="zbasis"><button data-b="ev">all-in (EV)</button><button data-b="basic">market standard</button></span></h2><span class="csvb" data-c="c_zone"></span></div>
+<div id="c_zone" class="chart"></div>
+<details class="sec"><summary>Notes</summary><div class="note" id="valnote"></div></details></section>
+<section class="card" id="yield"><div class="cardhead"><h2>BTC yield: bitcoin per diluted share <i class="q" tabindex="0" data-tip="BTC yield = % change in (BTC held ÷ diluted shares) over the window. Positive = each share is backed by more bitcoin than before. Shaded periods = the company's preferred peg was ON (confirmed).">?</i></h2><span class="csvb" data-c="c_bps"></span></div>
+<div class="tscroll"><table id="yieldtable"></table></div><div class="note" id="yieldnote"></div>
+<div id="c_bps" class="chart"></div></section>
+<details class="card" id="kpibox"><summary>Key numbers: prices, both mNAVs, peg states, rotation, 10-day changes</summary><div class="kpis" id="kpis" style="margin:10px 0 0"></div></details>
+<details class="card" id="signal"><summary>Signal details: per-asset peg actions, mNAVs, 10-day changes, rotation z, dip rule</summary>
+<div class="headline" id="headline" style="margin-top:10px">…</div>
+<div class="grid g4" id="sigcards"></div>
+<details class="sec"><summary>Rules behind these detail cards</summary><div class="note" id="signote"></div></details></details>
 <section class="card" id="siglog"><div class="cardhead"><h2>Signal-change log</h2><a class="btn" href="data/signal_log.json" style="text-decoration:none">signal_log.json</a></div>
 <div class="note" id="siglognote"></div><div class="tscroll scroll"><table id="siglogtable"></table></div></section>
-
+<section class="card" id="events"><div class="cardhead"><h2>Key dates (next 7 days highlighted)</h2></div>
+<div class="evctl"><input type="search" id="evq" placeholder="Search events…" aria-label="Search events"><select id="evcat" aria-label="Category"><option value="">All categories</option></select>
+<label class="chip"><input type="checkbox" id="showPast"> include past</label></div>
+<div class="evctl"><span class="note">Chart annotations:</span><label class="chip"><input type="checkbox" id="showEv" checked> show</label><span id="evcats"></span></div>
+<div class="tscroll scroll"><table id="evtable"></table></div>
+<div class="note">Source of truth: <a href="data/events.json">data/events.json</a> (edit to add/update). Dates not yet confirmed are marked <span class="tbd">TBD</span>/estimated, never guessed.</div></section>
+<details class="card" id="pegperf"><summary>Peg → performance: what happened after past confirmed pegs</summary>
+<div class="cardhead" style="margin-top:8px"><span></span><span class="csvb" data-c="c_pegperf"></span></div>
+<div class="caveat" id="pegcaveat"></div>
+<div class="tscroll"><table id="pegtable"></table></div>
+<div id="c_pegperf" class="chart sm"></div>
+</details>
+<details class="card" id="backtest"><summary>Backtest of the recommendation rules</summary>
+<div class="cardhead" style="margin-top:8px"><span></span><span class="csvb" data-c="c_bt"></span></div>
+<div class="caveat" id="btcaveat"></div>
+<div class="tscroll"><table id="bttable"></table></div>
+<div id="c_bt" class="chart"></div>
+<details class="sec"><summary>Every holding period</summary><div class="tscroll scroll"><table id="btperiods"></table></div></details>
+<div class="note" id="btnote"></div>
+</details>
+<details class="card" id="atm"><summary>Capital raising: STRC / SATA / SATS issuance and share of days at par</summary>
+<div class="grid g2"><div><h2 style="font-size:14px">STRC (Strategy ATM, weekly 8-Ks)</h2><div class="tscroll"><table id="atm_strc"></table></div><details class="sec"><summary>Recent weeks</summary><div class="tscroll"><table id="atm_strcw"></table></div></details></div>
+<div><h2 style="font-size:14px">SATA / SATS (Strive)</h2><div class="tscroll"><table id="atm_sata"></table></div><details class="sec"><summary>Recent SATA share-count changes</summary><div class="tscroll"><table id="atm_sataw"></table></div></details></div></div>
+<h2 style="font-size:14px;margin-top:12px">Share of trading days at / near par</h2><div class="tscroll"><table id="atm_peg"></table></div>
+<details class="sec"><summary>Notes</summary><div class="note" id="atmnote"></div></details>
+</details>
 <details class="card"><summary>Big moves log</summary><div class="note" id="bmnote" style="margin-top:8px"></div>
 <div class="tscroll scroll"><table id="bmtable"></table></div></details>
 
@@ -273,52 +307,76 @@ function freshness(){const now=new Date(new Date().toLocaleString('en-US',{timeZ
   const lv=lag===0?'g':lag===1?'y':'r',col={g:'#2ea043',y:'#d4a72c',r:'#f85149'}[lv];
   const txt={g:'fresh',y:'stale (1 session behind)',r:'very stale'}[lv];
   return{lv,col,txt,lag,exp,ageH}}
+// buy flags: prefer signals.json (backend), fall back to the same rule computed here from the last row
+function BFLAGS(){if(S.buy_flags&&S.buy_flags.per_asset)return S.buy_flags;
+  const c=D.config.buy_flags||{basis:'ev',low_fair_max_percentile:0.5,very_low_max_mnav:1,very_low_max_percentile:0.2},r=D.rows[D.rows.length-1],bs=c.basis||'ev',o={};
+  for(const a of ASSETS){const m=r[a.key+'_mnav_'+bs],p=r[a.key+'_mnav_'+bs+'_pct'],z=r[a.key+'_zone_'+bs],st=r['peg_'+a.preferred];
+    const lf=z==='FAIR'&&p!=null&&p<c.low_fair_max_percentile,ch=z==='CHEAP'||lf,vl=m!=null&&(m<=c.very_low_max_mnav||(p!=null&&p<=c.very_low_max_percentile));
+    o[a.ticker]={preferred:a.preferred,peg_state:st,mnav:m,mnav_pct_1y:p,zone:z,low_fair:lf,cheap_or_low_fair:ch,flywheel_cheap:st==='ON'&&ch,very_low_mnav:vl}}
+  return Object.assign({},c,{per_asset:o})}
+function accB(y,on){const acc=y&&y.accelerating;if(acc==null)return '<span class="badge acc na">BTC/share trend: n/a</span>';
+  return acc?`<span class="badge acc up">▲ BTC/share accelerating${on?' · flywheel on':''}</span>`:'<span class="badge acc">BTC/share not accelerating</span>'}
+function zoneTxt(x){if(!x||!x.zone)return 'n/a';return x.zone==='FAIR'&&x.low_fair?'low-FAIR':x.zone}
 function renderTop(){const F=freshness(),fw=A.flywheel,t=lastTwo('btc');
-  $('tb_btc').innerHTML=`BTC $${fmt(t.v,0)} <span class="${cls(t.ch)}">${spct(t.ch,1)}</span>`;
+  $('tb_btc').innerHTML=`BTC $${fmt(t.v,0)} <span class="tb-ch ${cls(t.ch)}">${spct(t.ch,1)}</span>`;
   const r=$('tb_rec');r.className='pill r-'+S.recommendation;r.textContent=RECL[S.recommendation]||S.recommendation;
-  for(const a of ASSETS){const f=fw[a.preferred],el=$('tb_'+a.preferred.toLowerCase());if(!el)continue;el.innerHTML=`<span class="pill p-${f.peg_state}" title="${a.preferred} $${fmt(f.close)}">${a.preferred} ${FWL[f.status]||f.peg_state}</span>`}
-  $('tb_sum').textContent=ASSETS.map(a=>{const f=fw[a.preferred];if(f.missing)return a.preferred+' no data';
-    if(f.status==='FLYWHEEL_ON')return `${a.preferred} ${f.streak_days_at_or_above_threshold} days on peg → ${a.ticker} flywheel active`;
-    if(f.status==='NEAR_PAR')return `${a.preferred} near par (${f.streak_days_at_or_above_threshold}/${f.required_days} days) → ${a.ticker} not confirmed yet`;
-    return `${a.ticker} preferred ${a.preferred} off peg ($${fmt(f.close)})`}).join('; ')+'.';
-  $('tb_fresh').innerHTML=`<span class="dot" style="background:${F.col}"></span><span class="note">${S.as_of}</span>`;
+  for(const a of ASSETS){const f=fw[a.preferred],el=$('tb_'+a.preferred.toLowerCase());if(!el)continue;el.innerHTML=`<span class="pill p-${f.peg_state}" title="${a.preferred} $${fmt(f.close)} · ${FWL[f.status]||f.peg_state}">${a.preferred} ${f.peg_state}</span>`}
+  $('tb_fresh').innerHTML=`<span class="dot" style="background:${F.col}"></span><span class="note tb-asof">${S.as_of}</span>`;
   $('tb_fresh').title=`Data ${F.txt}: last bar ${S.as_of}, expected ${F.exp}. Generated ${D.generated_utc} UTC (${F.ageH.toFixed(1)} h ago).`;
   const tk=[['BTC','btc',0],...ASSETS.map(a=>[a.ticker,a.ticker,2])].map(([n,k,dp])=>{const t=lastTwo(k);if(!t)return'';
     return `<div class="tk" title="last close ${t.d}"><div class="s">${n}</div><span class="p">$${fmt(t.v,dp)}</span><span class="c ${cls(t.ch)}">${t.ch==null?'':(t.ch>=0?'▲ +':'▼ ')+pct(t.ch,2).replace('-','')}</span></div>`}).join('');
   $('tickers').innerHTML=tk;
   const gen=new Date(D.generated_utc).toLocaleString('en-US',{timeZone:'America/New_York',dateStyle:'medium',timeStyle:'short'});
-  $('gen').innerHTML=`<span class="dot" style="background:${F.col}"></span><b style="color:${F.col}">Data ${F.txt}</b> · last bar <b>${S.as_of}</b> (expected ${F.exp}) · generated ${gen} ET (${F.ageH.toFixed(1)} h ago) ${Q('Green = the latest US trading close is in. Yellow = one session behind (e.g. Yahoo has not finalized today\'s bar yet). Red = two or more sessions behind. Exchange holidays are not modeled, so the day after a holiday can show yellow.')} · window from ${D.config.window_start}`}
+  $('gen').innerHTML=`<span class="dot" style="background:${F.col}"></span><b style="color:${F.col}">Data ${F.txt}</b> · last bar ${S.as_of} (expected ${F.exp}) · generated ${gen} ET ${Q('Green = the latest US trading close is in. Yellow = one session behind (e.g. Yahoo has not finalized today\'s bar yet). Red = two or more sessions behind. Exchange holidays are not modeled, so the day after a holiday can show yellow.')}`}
 function implication(a,f){const p=a.preferred,t=a.ticker;
   if(f.status==='FLYWHEEL_ON')return `${p} at/near $100 → ${t} buy signal / BTC-per-share acceleration likely`;
-  if(f.status==='NEAR_PAR')return `${p} near par ($${fmt(f.close)}) but not confirmed (${f.streak_days_at_or_above_threshold}/${f.required_days} days ≥ $${f.threshold}) → ${t} signal pending`;
+  if(f.status==='NEAR_PAR')return `${p} near par but not confirmed (${f.streak_days_at_or_above_threshold}/${f.required_days} days ≥ $${f.threshold}) → ${t} signal pending`;
   return `${p} below $${f.threshold} → no ${t} flywheel signal`}
-function renderFlywheel(){const fw=A.flywheel,Y=A.btc_yield,atm=A.atm;
-  $('fwcards').innerHTML=ASSETS.map(a=>{const f=fw[a.preferred],y=Y[a.ticker]||{};if(!f||f.missing)return `<div class="fw f-OFF_PEG"><div class="t">${a.preferred} → ${a.ticker}</div><div class="st">NO DATA</div><div class="note">Missing ${a.preferred} prices.</div></div>`;
-    const streak=f.streak_days_at_or_above_threshold>0?`<b>${f.streak_days_at_or_above_threshold}</b> day${f.streak_days_at_or_above_threshold>1?'s':''} ≥ $${f.threshold} (need ${f.required_days})`:`<b>0</b> days ≥ $${f.threshold} · ${f.days_below_threshold} straight closes below`;
-    const fuel=a.preferred==='STRC'?(()=>{const x=atm.STRC.totals['30d'];return `STRC ATM last 30d: net $${fmt(x.atm_net_proceeds_m,0)}M sold, $${fmt(x.repurchased_m,0)}M repurchased`})()
-      :a.preferred==='SATA'?(()=>{const x=atm.SATA.totals['30d'];return x.shares_added==null?'':`SATA shares added last 30d: ${fmt(x.shares_added/1e6,2)}M ($${fmt(x.stated_value_m,0)}M at $100 stated)`})():'';
-    const yv=k=>y[k]&&y[k].value!=null?cp(y[k].value,1):'—';
-    const acc=y.accelerating,on=f.status==='FLYWHEEL_ON';
-    const badge=on&&acc?`<span class="badge f-FLYWHEEL_ON">FLYWHEEL ON → BTC/share accelerating</span>`:acc?`<span class="badge" style="border:1px solid var(--line)">BTC/share accelerating (peg not confirmed)</span>`:'';
-    return `<div class="fw f-${f.status}"><div class="t">${a.preferred} → ${a.ticker} (${esc(a.name||'')})</div><div class="st">${FWL[f.status]}</div>
+function renderChips(){const fw=A.flywheel,bf=BFLAGS().per_asset,V=S.valuation||{},rc=S.recommendation;
+  const pc=a=>{const f=fw[a.preferred];if(!f||f.missing)return `<span class="chip3"><b>${a.preferred}</b> no data</span>`;
+    return `<span class="chip3 c-${f.status}" title="${a.preferred} close ${f.date}; peg state ${f.peg_state}"><b>${a.preferred}</b> $${fmt(f.close)} · ${FWL[f.status]} <span class="pill p-${f.peg_state}">${f.peg_state}</span></span>`};
+  const names=rc==='BUY_MSTR'?['MSTR']:rc==='BUY_ASST'?['ASST']:ASSETS.map(a=>a.ticker);
+  const mz=names.map(t=>{const x=(V[t]||{}).all_in_ev||{},b=bf[t]||{};return `${t} <b>${fmt(x.mnav,2)}x</b> <span class="pill vz z-${x.zone}">${zoneTxt({zone:x.zone,low_fair:b.low_fair})}</span>`}).join(' · ');
+  $('chips').innerHTML=ASSETS.map(pc).join('')+`<span class="chip3" title="All-in (EV) mNAV and its 1y zone">All-in mNAV: ${mz}</span>`;
+  const c=BFLAGS();
+  $('legend').innerHTML=`Legend: <b>preferred on peg + CHEAP/low-FAIR all-in mNAV = strongest buy</b> ${Q(`"On peg" = preferred closed ≥ $${D.config.peg.on_threshold} for ${D.config.peg.on_consecutive_days} straight days. low-FAIR = FAIR zone and below the 1y median (percentile < ${c.low_fair_max_percentile*100}th). Very low all-in mNAV (≤ ${c.very_low_max_mnav}x or ≤ ${c.very_low_max_percentile*100}th percentile) is a secondary buy cue even when the preferred is only near par. These are display flags; the call itself follows the rules under "How the recommendation is decided".`)}`}
+function renderHist(){const R=D.rows.filter(r=>r.date>=D.config.window_start&&r.rec),F=(A.signal_flips||[]).map(f=>({date:f.date,old:f.old,new:f.new,src:'reconstructed'}));
+  for(const e of A.signal_log||[])if(!e.initial&&e.old&&e.old!==e.new&&!F.some(f=>f.date===e.as_of))F.push({date:e.as_of,old:e.old,new:e.new,src:'live'});
+  F.sort((a,b)=>a.date<b.date?-1:1);const last=F.slice(-5).reverse();
+  const n=R.length,rs=[];R.forEach(r=>{const v=r.rec.action,l=rs[rs.length-1];if(l&&l.v===v){l.n++;l.b=r.date}else rs.push({v,n:1,a:r.date,b:r.date})});
+  const strip=n?`<div class="strip" title="Recommendation each trading day, ${R[0].date} → ${R[n-1].date}">${rs.map(s=>`<i class="sg r-${s.v}" style="flex:${s.n}" title="${RECL[s.v]||s.v}: ${s.a} → ${s.b}"></i>`).join('')}</div>`:'';
+  $('rechist').innerHTML=`<div class="hh"><span class="note">Last ${last.length} flips${Q('Reconstructed from the daily history with the same rules, plus live changes recorded in data/signal_log.json. Strip = the call on each trading day since '+D.config.window_start+'.')}</span>${last.length?last.map(f=>`<span class="flip"><span class="note">${f.date}</span> <span class="pill r-${f.old}">${RECL[f.old]||f.old}</span>→<span class="pill r-${f.new}">${RECL[f.new]||f.new}</span></span>`).join(''):'<span class="note">no flips in the window</span>'}</div>${strip}<div class="hh" style="margin-top:3px"><span class="note" style="font-size:11px">${n?R[0].date:''}</span><span class="skey"><i class="sw r-STAY_BTC"></i>BTC<i class="sw r-BUY_MSTR"></i>MSTR<i class="sw r-BUY_ASST"></i>ASST</span><span class="note" style="font-size:11px;margin-left:auto">${n?R[n-1].date:''}</span></div>`}
+function renderFlywheel(){const fw=A.flywheel,bf=BFLAGS().per_asset;
+  $('fwcards').innerHTML=ASSETS.map(a=>{const f=fw[a.preferred],b=bf[a.ticker]||{};if(!f||f.missing)return `<div class="fw f-OFF_PEG"><div class="t">${a.preferred} → ${a.ticker}</div><div class="st">NO DATA</div><div class="note">Missing ${a.preferred} prices.</div></div>`;
+    const streak=f.streak_days_at_or_above_threshold>0?`<b>${f.streak_days_at_or_above_threshold}</b>/${f.required_days} days ≥ $${f.threshold}`:`0/${f.required_days} days ≥ $${f.threshold} · ${f.days_below_threshold} closes below`;
+    const fc=b.flywheel_cheap?`<span class="badge fc">✓ Flywheel + Cheap</span>`:'';
+    return `<div class="fw f-${f.status}"><div class="t">${a.preferred} → ${a.ticker} <span class="pill p-${f.peg_state}">${f.peg_state}</span></div><div class="st">${FWL[f.status]}</div>
      <div class="imp">${implication(a,f)}</div>
-     <div class="row"><span>Close <b>$${fmt(f.close)}</b> <span class="note">${f.date}</span></span><span>vs $${f.threshold}: <b class="${cls(f.distance_to_threshold)}">${f.distance_to_threshold>=0?'+':''}${fmt(f.distance_to_threshold)}</b></span><span>${streak}</span><span>Peg state <span class="pill p-${f.peg_state}">${f.peg_state}</span></span></div>
-     <div class="row" style="margin-top:6px"><span>${a.ticker} BTC yield ${Q('Change in BTC held per diluted share. 30d = last 30 calendar days; prior 30d = the 30 days before that. Accelerating = last 30d positive and higher than the prior 30d.')}: 30d <b>${yv('30d')}</b></span><span>prior 30d ${yv('prev_30d')}</span><span>90d ${yv('90d')}</span><span>YTD ${yv('ytd')}</span></div>
-     <div class="note" style="margin-top:4px">${fuel}</div>${badge}</div>`}).join('');
-  $('fwnote').textContent=`ON = close ≥ $${D.config.peg.on_threshold} for ${D.config.peg.on_consecutive_days} straight trading days`}
+     <div class="row"><span>Close <b>$${fmt(f.close)}</b> <span class="note">${f.date}</span></span><span>vs $${f.threshold}: <b class="${cls(f.distance_to_threshold)}">${f.distance_to_threshold>=0?'+':''}${fmt(f.distance_to_threshold)}</b></span><span>${streak}</span></div>${fc}</div>`}).join('')}
+function renderSummary(){const V=S.valuation||{},Y=A.btc_yield,bf=BFLAGS(),fw=A.flywheel;
+  $('mnavsum').innerHTML=ASSETS.map(a=>{const x=V[a.ticker]||{},ev=x.all_in_ev||{},st=x.market_standard||{},b=bf.per_asset[a.ticker]||{},y=Y[a.ticker]||{},f=fw[a.preferred]||{};
+    const yv=k=>y[k]&&y[k].value!=null?cp(y[k].value,1):'—';
+    const vl=b.very_low_mnav?`<div class="vlow">● Very low all-in mNAV (≤ ${bf.very_low_max_mnav}x or ≤ ${bf.very_low_max_percentile*100}th pct) → secondary buy signal${f.status==='NEAR_PAR'?`, ${a.preferred} near par`:''}</div>`:'';
+    const fc=b.flywheel_cheap?`<span class="badge fc">✓ Flywheel + Cheap</span>`:'';
+    return `<div class="sum${b.very_low_mnav?' vl':''}${b.flywheel_cheap?' fcb':''}"><div class="t">${a.ticker} <span class="note">${esc(a.name||'')}</span></div>
+     <div class="row"><span>All-in mNAV ${Q('All-in (EV) mNAV = (price × basic shares + debt + preferred notional − cash) ÷ BTC NAV. Zone uses its own trailing 1y history.')} <b class="bigv">${fmt(ev.mnav,2)}x</b> <span class="pill vz z-${ev.zone}">${zoneTxt({zone:ev.zone,low_fair:b.low_fair})}</span> <span class="note">${ev.mnav_pct_1y==null?'':Math.round(ev.mnav_pct_1y*100)+'th pct 1y'}</span></span>
+     <span class="note">std ${fmt(st.mnav,2)}x</span></div>
+     <div class="row"><span>BTC yield ${Q('Change in BTC held per diluted share. Accelerating = last 30d positive and higher than the prior 30d.')} 30d <b>${yv('30d')}</b></span><span>prior 30d ${yv('prev_30d')}</span><span>90d ${yv('90d')}</span></div>
+     <div>${accB(y,f.status==='FLYWHEEL_ON')} ${fc}</div>${vl}</div>`}).join('')}
 function renderRec(){const R=S.recommendation_detail||{},rc=S.recommendation;
   $('recbanner').className='rec r-'+rc;$('rec_big').textContent=RECL[rc]||rc;
-  $('rec_why').textContent=S.recommendation_reason;
+  $('rec_why').textContent='Today: '+S.recommendation_reason;
   const lrc=S.last_recommendation_change,lc=S.last_changed;
   $('rec_more').innerHTML=[S.also_valid?`<b>${S.also_valid} is also valid</b> (both pegs confirmed).`:'',...(S.recommendation_notes||[]).map(n=>'⚠️ '+esc(n)),
     lrc?`Recommendation unchanged since ${lrc.date} (was ${RECL[lrc.old]||lrc.old}).`:'',lc?`Last state change ${lc.date}: ${esc(lc.what||'')}.`:'',
     `signal_hash <code>${S.signal_hash}</code> · as of ${S.as_of}`].filter(Boolean).join(' ');
-  const mc=D.config.mnav,pc=D.config.peg,ob=(D.config.recommendation||{}).overheat_basis||'ev';
+  const mc=D.config.mnav,pc=D.config.peg,ob=(D.config.recommendation||{}).overheat_basis||'ev',bf=BFLAGS();
   $('rec_rules').innerHTML=`1. <b>Trigger: peg confirmed.</b> A preferred is confirmed when it closes ≥ $${pc.on_threshold} for ${pc.on_consecutive_days} straight trading days (STRC → MSTR, SATA → ASST).<br>
    2. <b>Filter: overheated.</b> Skip a parent whose ${BL(ob)} mNAV is ≥ ${mc.overheated_min_mnav}x AND ≥ the ${mc.overheated_percentile*100}th percentile of its last ${mc.lookback_trading_days} trading days (peg on but overheated → "wait / reduce size").<br>
    3. <b>Tie-break: rotation.</b> Only if both pegs are confirmed and neither is overheated: spread z (ASST − MSTR, ${BL(ob)}) &lt; 0 → BUY ASST, otherwise BUY MSTR; the other is shown as also valid.<br>
    4. <b>Otherwise STAY IN BTC.</b> The dip rule, legacy per-asset actions and zone verdicts are shown as context only and don't change the call.<br>
-   Rules-based indicator, not financial advice. Machine-readable: <a href="signals.json">signals.json</a> (<code>recommendation</code>, <code>signal_hash</code>, <code>last_changed</code>).`}
+   <b>Display flags</b> (don't change the call): <span class="badge fc">✓ Flywheel + Cheap</span> = preferred ON and parent all-in mNAV CHEAP or low-FAIR (FAIR and &lt; ${bf.low_fair_max_percentile*100}th pct of 1y). <b>Very low all-in mNAV</b> = ≤ ${bf.very_low_max_mnav}x or ≤ ${bf.very_low_max_percentile*100}th pct (secondary buy cue, even if the preferred is only near par). Thresholds: <code>buy_flags</code> in config.json.<br>
+   Rules-based indicator, not financial advice. Machine-readable: <a href="signals.json">signals.json</a> (<code>recommendation</code>, <code>buy_flags</code>, <code>signal_hash</code>, <code>last_changed</code>).`}
 function renderKpis(){const v=S.values,cells=[],V=S.valuation||{};
   const k=(lab,val,sub,tip)=>cells.push(`<div class="kpi"><div class="k">${lab}${tip?Q(tip):''}</div><div class="v">${val}</div><div class="d">${sub}</div></div>`);
   const b=lastTwo('btc');k('BTC',`$${fmt(b.v,0)}`,`day ${cp(b.ch,2)} · 10d ${cp(S.dip.btc_change)}`);
@@ -412,7 +470,7 @@ function plotZone(){const R=D.rows.filter(r=>r.date>=D.config.window_start),mc=D
 function renderYield(){const Y=A.btc_yield,W=[['30d','30d'],['prev_30d','prior 30d'],['90d','90d'],['ytd','YTD'],['1y','1y']];
   $('yieldtable').innerHTML='<tr><th>Company</th>'+W.map(w=>`<th class="num">${w[1]}</th>`).join('')+'<th>Trend</th><th class="num">BTC per 1,000 diluted sh</th></tr>'+ASSETS.map(a=>{const y=Y[a.ticker]||{};
     return `<tr><td style="color:${C[a.ticker]}"><b>${a.ticker}</b></td>`+W.map(([k])=>{const c=y[k]||{};return `<td class="num" title="${c.from?c.from+' → '+c.to+' · '+c.basis+' shares':esc(c.missing||'')}">${c.value==null?'<span class="note">missing</span>':cp(c.value,1)}${c.basis==='basic'?'<sup>b</sup>':''}</td>`}).join('')
-      +`<td>${y.accelerating?'<span class="pill BUY">accelerating</span>':'<span class="pill NEUTRAL">not accelerating</span>'}${A.flywheel[a.preferred]&&A.flywheel[a.preferred].status==='FLYWHEEL_ON'&&y.accelerating?' <span class="badge f-FLYWHEEL_ON" style="margin:0">FLYWHEEL ON → BTC/share accelerating</span>':''}</td><td class="num">${fmt(y.btc_per_1000_diluted_shares,4)}</td></tr>`}).join('');
+      +`<td>${accB(y,A.flywheel[a.preferred]&&A.flywheel[a.preferred].status==='FLYWHEEL_ON')}</td><td class="num">${fmt(y.btc_per_1000_diluted_shares,4)}</td></tr>`}).join('');
   const df=A.btc_yield_diluted_from||{};
   $('yieldnote').innerHTML=`BTC yield = % change in BTC held ÷ diluted shares (calendar-day windows ending ${S.as_of}). MSTR diluted shares = Strategy's assumed diluted shares outstanding (btcexposure.com CSV). ASST: "assumed fully diluted shares" only exist from ${df.ASST||'—'}; windows starting before that use effective common (basic) shares on both ends, marked <sup>b</sup>. Hover a cell for the exact dates. "Accelerating" = last 30d positive and above the prior 30d. Falling MSTR yield means diluted shares grew faster than BTC holdings in that window.`}
 function plotBps(){const tr=[];ASSETS.forEach((a,i)=>{const s=series(a.key+'_bps');tr.push(Object.assign(s,{name:a.ticker+' BTC per 1,000 diluted sh'+(i?' (right)':''),meta:a.ticker,yaxis:i?'y2':'y',line:{color:C[a.ticker],width:2.2,shape:'hv'},hovertemplate:'%{y:.4f}'}))});
@@ -511,7 +569,7 @@ function renderCharts(){const R=D.rows.filter(r=>r.date>=D.config.window_start);
 function plotMnav(){const oh=D.config.mnav.overheated_min_mnav,tr=[];
   ASSETS.forEach(aa=>{const a=aa.ticker,k=aa.key;
     if(MB!=='basic')tr.push(Object.assign(series(k+'_mnav_ev'),{name:a+' all-in (EV)',meta:a,line:{color:C[a],width:2.2},hovertemplate:'%{y:.3f}x'}));
-    if(MB!=='ev')tr.push(Object.assign(series(k+'_mnav_basic'),{name:a+' market standard',meta:a,line:{color:C[a],dash:MB==='both'?'dot':'solid',width:MB==='both'?1.6:2.2},hovertemplate:'%{y:.3f}x'}));
+    tr.push(Object.assign(series(k+'_mnav_basic'),{name:a+' market standard'+(MB==='ev'?' (faint)':''),meta:a,opacity:MB==='ev'?0.4:1,line:{color:C[a],dash:MB==='basic'?'solid':'dot',width:MB==='ev'?1:MB==='both'?1.6:2.2},hovertemplate:'%{y:.3f}x'}));
     tr.push(Object.assign(series(k+'_mnav_diluted'),{name:a+' diluted equity',meta:a,visible:'legendonly',line:{color:C[a],dash:'dashdot',width:1},hovertemplate:'%{y:.3f}x'}))});
   plot('c_mnav',tr,keepRange('c_mnav',baseLayout('mNAV (x)',{shapes:[hline(1,'#8b949e'),hline(oh,SEM.zone.OVERVALUED[0])]})));linkCharts()}
 function redrawTime(){renderCharts();plotBt()}
@@ -568,14 +626,15 @@ function initToggles(){const L=[...ASSETS.map(a=>a.ticker),'BTC'];
   $('assettoggles').innerHTML=L.map(t=>`<label class="chip"><input type="checkbox" data-a="${t}" ${HIDE.has(t)?'':'checked'}><span style="color:${C[t]}">●</span> ${t}</label>`).join('');
   $('assettoggles').querySelectorAll('input').forEach(i=>i.onchange=()=>{i.checked?HIDE.delete(i.dataset.a):HIDE.add(i.dataset.a);localStorage.setItem('hideAssets',JSON.stringify([...HIDE]));redrawAll()})}
 function redrawAll(){renderCharts();renderBacktest();renderPegPerf()}
-function initTheme(){const b=$('themebtn'),set=t=>{document.documentElement.dataset.theme=t;b.textContent=t==='light'?'☾ Dark':'☀︎ Light';b.setAttribute('aria-label','Switch to '+(t==='light'?'dark':'light')+' theme')};
+function initTheme(){const b=$('themebtn'),set=t=>{document.documentElement.dataset.theme=t;b.textContent=t==='light'?'☾':'☀︎';b.title='Switch to '+(t==='light'?'dark':'light')+' theme';b.setAttribute('aria-label','Switch to '+(t==='light'?'dark':'light')+' theme')};
   set(localStorage.getItem('theme')==='light'?'light':'dark');
   b.onclick=()=>{const t=document.documentElement.dataset.theme==='light'?'dark':'light';localStorage.setItem('theme',t);set(t);redrawAll()}}
 function safe(n,f){try{f()}catch(e){console.warn(n,e);const el=document.getElementById('gen');if(el)el.insertAdjacentHTML('beforeend',` <span class="neg">· ${n} failed to render</span>`)}}
 (async()=>{try{[D,S,E]=await Promise.all([J('data/dashboard.json'),J('signals.json'),J('data/events.json')]);try{M=await J('data/markets.json')}catch(e){M=null}
  A=D.analytics;ASSETS=A.assets;ASSETS.forEach(a=>{if(a.color)C[a.ticker]=a.color});
  initTheme();
- for(const [n,f] of [['top',renderTop],['flywheel',renderFlywheel],['recommendation',renderRec],['kpis',renderKpis],['signals',renderSignal],['valuation',renderValuation],['yield',renderYield],['atm',renderAtm],['events',()=>{initEvents();renderEvents()}],['toggles',initToggles],['charts',()=>{renderCharts();segInit('mbasis',MB,b=>{MB=b;plotMnav()})}],['peg performance',renderPegPerf],['backtest',renderBacktest],['signal log',renderSigLog],['big moves',renderBig],['odds',renderPM],['method',renderMethod],['csv',initCsv]])safe(n,f);
+ for(const [n,f] of [['top',renderTop],['recommendation',renderRec],['chips',renderChips],['history',renderHist],['flywheel',renderFlywheel],['summary',renderSummary],['kpis',renderKpis],['signals',renderSignal],['valuation',renderValuation],['yield',renderYield],['atm',renderAtm],['events',()=>{initEvents();renderEvents()}],['toggles',initToggles],['charts',()=>{renderCharts();segInit('mbasis',MB,b=>{MB=b;plotMnav()})}],['peg performance',renderPegPerf],['backtest',renderBacktest],['signal log',renderSigLog],['big moves',renderBig],['odds',renderPM],['method',renderMethod],['csv',initCsv]])safe(n,f);
  linkCharts();
+ document.querySelectorAll('details').forEach(d=>d.addEventListener('toggle',()=>{if(d.open)d.querySelectorAll('.js-plotly-plot').forEach(el=>{try{Plotly.Plots.resize(el)}catch(e){}})}));
 }catch(e){console.error(e);$('gen').textContent='Failed to load data: '+e}})();
 </script></body></html>

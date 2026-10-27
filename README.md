@@ -51,6 +51,13 @@ Edit these files to change what the dashboard tracks:
 3. **Tiebreak**: if both survive, the mNAV spread z-score picks one (z < 0 → ASST, else MSTR). The other is listed as also valid.
 4. Otherwise **STAY IN BTC**.
 
+### Buy-condition flags (display only; they don't change the call)
+Thresholds are in `config.json` → `buy_flags`; values are published in `signals.json` → `buy_flags.per_asset`.
+- **Flywheel + Cheap** (`flywheel_cheap`): the preferred is ON and the parent's all-in (EV) mNAV zone is CHEAP, or "low-FAIR" (FAIR and below the 1y median, percentile < `low_fair_max_percentile` = 0.5).
+- **Very low all-in mNAV** (`very_low_mnav`, secondary buy cue): all-in mNAV ≤ `very_low_max_mnav` (1.0x) or ≤ `very_low_max_percentile` (20th percentile of 1y). It's shown even when the preferred is only NEAR PAR.
+
+Page layout: decision banner → three chips (STRC peg, SATA peg, all-in mNAV zone) → last 5 recommendation flips → preferred cards → mNAV + BTC-yield summary → charts. Rules, valuation details, peg-performance, backtest and capital tables sit further down or are collapsed.
+
 ## Signal rules (defaults)
 | Rule | Default |
 |---|---|

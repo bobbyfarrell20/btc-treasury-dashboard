@@ -323,3 +323,25 @@ def update_signal_log(path, rec, as_of, gen_utc, rows, assets, basis="ev"):
     for e in E: e["after"] = _moves(rows, e["as_of"], assets, basis)
     path.write_text(json.dumps(log, indent=1))
     return log
+
+
+def buy_flags(last, assets, cfg):
+    """Per-asset display flags: Flywheel + Cheap, and very-low all-in mNAV (secondary buy signal)."""
+    bf = cfg.get("buy_flags", {}); bs = bf.get("basis", "ev")
+    lf = bf.get("low_fair_max_percentile", 0.5); vm = bf.get("very_low_max_mnav", 1.0); vp = bf.get("very_low_max_percentile", 0.2)
+    out = {}
+    for A in assets:
+        k = A["key"]; m = last.get(f"{k}_mnav_{bs}"); p = last.get(f"{k}_mnav_{bs}_pct"); z = last.get(f"{k}_zone_{bs}")
+        st = last.get("peg_" + A["preferred"])
+        low_fair = z == "FAIR" and p is not None and p < lf
+        cheapish = z == "CHEAP" or low_fair
+        vlow = m is not None and (m <= vm or (p is not None and p <= vp))
+        why = []
+        if m is not None and m <= vm: why.append(f"all-in mNAV {m:.2f}x <= {vm}x")
+        if p is not None and p <= vp: why.append(f"1y percentile {p:.0%} <= {vp:.0%}")
+        out[A["ticker"]] = {"preferred": A["preferred"], "peg_state": st, "mnav": m, "mnav_pct_1y": p, "zone": z,
+                            "low_fair": low_fair, "cheap_or_low_fair": cheapish,
+                            "flywheel_cheap": st == "ON" and cheapish,
+                            "very_low_mnav": vlow, "very_low_reason": "; ".join(why) or None,
+                            "very_low_with_peg_near_or_on": vlow and st in ("ON", "NEAR")}
+    return {"basis": bs, "low_fair_max_percentile": lf, "very_low_max_mnav": vm, "very_low_max_percentile": vp, "per_asset": out}
