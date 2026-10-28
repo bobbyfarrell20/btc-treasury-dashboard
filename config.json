@@ -22,13 +22,18 @@
   ],
   "_assets_comment": "Companies tracked. The page, recommendation, analytics and backtest loop over this list. Adding a third company also needs a holdings/share-count + capital adapter in scripts/update_data.py and scripts/capital.py (BTC held, shares, debt, preferred, cash). The rotation spread uses the first two.",
   "recommendation": {
-    "_comment": "Single call per day. Flywheel on (RUNNING_HOT / ON / WARMING_UP: the preferred traded >= peg.on_trade_threshold and has not since spent > peg.off_minutes_below market minutes below it) is the trigger; parent all-in mNAV overheated (mnav.overheated_min_mnav AND overheated_percentile, on overheat_basis) is a filter; if both pegs are confirmed and neither overheated, an unusual rotation z (<= spread_z_favor_asst or >= spread_z_favor_mstr) picks the cheaper one (z<0 -> second asset, else first); a normal z (or none) gives BUY_BOTH (50/50, lean = z<0 -> second asset, else first). Otherwise STAY_BTC (displayed as WAIT).",
+    "_comment": "Single call per day. Flywheel ON for the call = code RUNNING_HOT or ON (the preferred CLOSED >= peg.on_close_threshold and has not since spent > peg.off_minutes_below market minutes below peg.on_trade_threshold; WARMING_UP is off). MSTR is also not on while buyback_support is flagged. Parent all-in mNAV overheated (per-stock floor AND overheated_percentile, on overheat_basis) is a filter; if both flywheels are on and neither overheated, an unusual rotation z picks the cheaper one, a normal z gives BUY_BOTH. Otherwise STAY_BTC (displayed as WAIT).",
     "overheat_basis": "ev"
   },
   "peg": {
-    "_comment": "Flywheel rule (2026-10-28). ON as soon as the preferred TRADES >= on_trade_threshold (intraday bar high; no close or streak needed). Once ON it stays ON until it trades below on_trade_threshold for MORE THAN off_minutes_below consecutive regular-session minutes (overnight/weekend gaps don't count). Labels: RUNNING_HOT (on, price >= running_hot.price_min AND heavy volume) > ON ('FLYWHEEL ON', on and price >= full_on_threshold) > WARMING_UP (on, below full_on_threshold) > COOLING_OFF (off, price >= stalled_below) > STALLED (off, below stalled_below). Older history with daily bars only: ON if day high >= on_trade_threshold; OFF if close < on_trade_threshold AND low < on_trade_threshold (sustained break assumed). See scripts/flywheel.py.",
+    "_comment": "Flywheel rule (review applied 2026-10-28). Turns ON only on a completed daily CLOSE >= on_close_threshold for that preferred (STRC $100.00, SATA $99.80); an intraday touch never turns it on, and before the 4 PM ET close the call uses the last completed close. Once ON it stays ON until it trades below on_trade_threshold for MORE THAN off_minutes_below consecutive regular-session minutes (overnight/weekend gaps don't count). Labels: RUNNING_HOT (on, price >= running_hot.price_min AND heavy volume) > ON ('FLYWHEEL ON') > WARMING_UP (OFF for the call / watch only: traded >= on_trade_threshold without a qualifying close; STRC closes $99.80-$99.99 too) > COOLING_OFF (off, price >= stalled_below) > STALLED (off, below stalled_below). Older history with daily bars only: ON at a qualifying close; OFF at a close < on_trade_threshold; a day whose high touched on_trade_threshold but closed below the close threshold is WARMING_UP (off). full_on_threshold is now display-only (share of closes at/above it). See scripts/flywheel.py.",
     "par": 100.0,
     "on_trade_threshold": 99.8,
+    "on_close_threshold": {
+      "_comment": "Daily CLOSE needed to turn the flywheel ON, per preferred (review change 1).",
+      "STRC": 100.0,
+      "SATA": 99.8
+    },
     "full_on_threshold": 99.95,
     "off_minutes_below": 30,
     "stalled_below": 99.0,
@@ -44,7 +49,7 @@
     "lookback_trading_days": 252,
     "overheated_percentile": 0.9,
     "overheated_min_mnav": 1.25,
-    "_overheated_comment": "Overheated floor is per stock per date: base = valuation cheap line (that date) + overheated_gap_above_cheap (1.25x on 2026-10-28, 1.55x at the halving, flat after; 1.25x for history before 2026-10-28), + overheated_bonus_on while its flywheel is on (WARMING_UP / ON), + overheated_bonus_running_hot while RUNNING_HOT. Overheated = mNAV >= floor AND >= overheated_percentile of the lookback. overheated_min_mnav is the legacy fixed floor, kept only as a fallback.",
+    "_overheated_comment": "Overheated floor is per stock per date: base = that stock's cheap CAP (valuation.cheap_cap; MSTR held flat at 1.10x until its own 1y median mNAV > 1.30x, ASST on the rising schedule) + overheated_gap_above_cheap, + overheated_bonus_on while its flywheel is ON (code ON), + overheated_bonus_running_hot while RUNNING_HOT (not WARMING_UP). Overheated = mNAV >= floor AND >= overheated_percentile of the lookback. overheated_min_mnav is the legacy fixed floor, kept only as a fallback.",
     "overheated_gap_above_cheap": 0.15,
     "overheated_bonus_on": 0.15,
     "overheated_bonus_running_hot": 0.3,
@@ -58,7 +63,7 @@
     "_ev_share_basis_comment": "Share count used for the equity leg of EV. 'basic' (Strategy's own EV definition) avoids double-counting convertible notes, which are already in debt. 'diluted' is an option."
   },
   "valuation": {
-    "_comment": "Zones for the 'who's cheap vs expensive' module, applied to each mNAV basis separately, in this order: CHEAP: mNAV < the cheap line for that date (cheap_below_mnav_schedule; checked FIRST, so it wins even above the overvalued floor). OVERVALUED: mNAV >= mnav.overheated_min_mnav OR 1y percentile >= mnav.overheated_percentile. FAIR: otherwise, with percentile <= fair_max_percentile (median). RICH: between the median and OVERVALUED.",
+    "_comment": "Zones (review change 4), applied to each mNAV basis separately using each stock's own trailing mnav.lookback_trading_days (252) percentile on that basis: OVERVALUED: mNAV >= the stock's overheated floor OR percentile >= mnav.overheated_percentile (90th). CHEAP: percentile <= cheap_max_percentile (25th) AND mNAV <= the stock's cheap cap. FAIR: percentile <= rich_above_percentile (75th) (incl. bottom-quartile days above the cap). RICH: above the 75th percentile, below OVERVALUED.",
     "fair_max_percentile": 0.5,
     "cheap_below_mnav_schedule": {
       "_comment": "Bull-cycle cheap line: start at start_date, rising linearly to end at end_date (next BTC halving estimate; update when known), flat at end afterwards. Dates before start_date use the flat start value (1.10x).",
@@ -66,6 +71,19 @@
       "start": 1.1,
       "end_date": "2028-04-15",
       "end": 1.4
+    },
+    "cheap_max_percentile": 0.25,
+    "rich_above_percentile": 0.75,
+    "cheap_cap": {
+      "_comment": "The bull-cycle line (cheap_below_mnav_schedule) is a CAP: never CHEAP above it. Per stock: 'schedule' follows it; 'hold_until_median' stays flat at hold_value until the stock's own trailing-1y median mNAV (signal basis) is above median_above, then follows the schedule.",
+      "MSTR": {
+        "mode": "hold_until_median",
+        "hold_value": 1.1,
+        "median_above": 1.3
+      },
+      "ASST": {
+        "mode": "schedule"
+      }
     }
   },
   "dip": {
@@ -239,10 +257,23 @@
     ]
   },
   "buy_flags": {
-    "_comment": "Display flags (do not change the recommendation). flywheel_cheap: the parent's flywheel ON (its preferred, an indicator not a trade, confirmed >= peg.on_threshold) AND parent all-in mNAV zone CHEAP, or FAIR with 1y percentile < low_fair_max_percentile ('low-FAIR'). very_low_mnav (secondary cue for the parent): all-in mNAV <= very_low_max_mnav OR 1y percentile <= very_low_max_percentile, shown even when the parent's flywheel is only cooling off near par.",
+    "_comment": "Display flags (do not change the recommendation). flywheel_cheap: the parent's flywheel ON (its preferred, an indicator not a trade, code ON or RUNNING_HOT, not held by buybacks) AND parent all-in mNAV zone CHEAP, or FAIR with 1y percentile < low_fair_max_percentile ('low-FAIR'). very_low_mnav (secondary cue for the parent): all-in mNAV <= very_low_max_mnav OR 1y percentile <= very_low_max_percentile, shown even when the parent's flywheel is only cooling off near par.",
     "basis": "ev",
     "low_fair_max_percentile": 0.5,
     "very_low_max_mnav": 1.0,
     "very_low_max_percentile": 0.2
+  },
+  "buyback_support": {
+    "_comment": "Par held up by buybacks (review change 3). From the latest Strategy weekly 8-K table: if the latest reported week shows STRC buybacks > 0 and STRC ATM sales = 0 the flag turns on; it stays on until a later 8-K shows STRC sales again. While on, MSTR's flywheel does NOT count as on for the call (STRC may still show ON). If the 8-K parse fails, the last known value is kept (data/strc_buyback_state.json) with its date.",
+    "enabled": true,
+    "preferred": "STRC",
+    "parent": "MSTR",
+    "min_buyback_m": 0.0
+  },
+  "sats_context": {
+    "_comment": "SATS context chip near SATA (review change 5). Display only, never a trigger.",
+    "stated_value": 100.0,
+    "issue_price": 90.0,
+    "ipo_date": "2026-10-15"
   }
 }

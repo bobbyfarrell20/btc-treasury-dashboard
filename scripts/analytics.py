@@ -38,10 +38,13 @@ FLY_SHORT = {"ON": "on", "NEAR": "cooling off", "WATCH": "cooling off", "SELL": 
 CODE_LABEL = {"RUNNING_HOT": "Running hot", "ON": "Flywheel ON", "WARMING_UP": "Warming up", "COOLING_OFF": "Cooling off", "STALLED": "Stalled"}
 CODE_SHORT = {"RUNNING_HOT": "running hot", "ON": "ON", "WARMING_UP": "warming up", "COOLING_OFF": "cooling off", "STALLED": "stalled"}
 
-def fly_label(st, code=None): return CODE_LABEL.get(code) or FLY_LABEL.get(st, "No data")
+HELD = " \u00b7 held by buybacks"
+ON_CODES = ("RUNNING_HOT", "ON")   # on for the call (WARMING_UP is watch only)
 
-def fly_effect(pref, st, parent, code=None):
-    short = CODE_SHORT.get(code) or FLY_SHORT.get(st, "no data")
+def fly_label(st, code=None, held=False): return (CODE_LABEL.get(code) or FLY_LABEL.get(st, "No data")) + (HELD if held else "")
+
+def fly_effect(pref, st, parent, code=None, held=False):
+    short = (CODE_SHORT.get(code) or FLY_SHORT.get(st, "no data")) + (HELD if held else "")
     return f"{pref} {short} \u2192 flywheel {'on' if st == 'ON' else 'off'} for {parent}"
 
 def relabel_reason(txt):
@@ -75,10 +78,10 @@ def recommendation(r, assets, cfg):
         v, pc = r.get(f"{a}_mnav_{ob}"), r.get(f"{a}_mnav_{ob}_pct")
         fl = r.get(f"{a}_oh_floor", mc["overheated_min_mnav"])
         oh = bool(v is not None and pc is not None and v >= fl and pc >= mc["overheated_percentile"])
-        st = r.get("peg_" + p); code = r.get("fly_" + p)
+        st = r.get("peg_" + p); code = r.get("fly_" + p); held = bool(r.get("held_" + p))
         info[A["ticker"]] = {"preferred": p, "peg_state": st, "peg_confirmed": st == "ON", "overheated": oh, "overheated_floor": fl,
-                             "flywheel_code": code,
-                             "flywheel_state": fly_label(st, code), "flywheel_effect": fly_effect(p, st, A["ticker"], code),
+                             "flywheel_code": code, "buyback_held": held,
+                             "flywheel_state": fly_label(st, code, held), "flywheel_effect": fly_effect(p, st, A["ticker"], code, held),
                              "mnav_" + ob: v, "mnav_" + ob + "_pct": pc, "has_data": v is not None}
         if st == "ON" and not oh and v is not None: cands.append(A["ticker"])
     z = r.get("spread_z_" + ob, r.get("spread_z"))
@@ -145,22 +148,24 @@ def flywheel(rows, pref, parent, pc, detail=None):
     """Flywheel card for one preferred, from the engine output (scripts/flywheel.py)."""
     R = [r for r in rows if r.get(pref) is not None]
     if not R: return {"preferred": pref, "parent": parent, "missing": True}
-    last = R[-1]; st = last.get("peg_" + pref); code = last.get("fly_" + pref)
+    last = R[-1]; st = last.get("peg_" + pref); code = last.get("fly_" + pref); held = bool(last.get("held_" + pref))
     x = (detail or {}).get(last["date"]) or {}
     T, FULL, HOT = pc["on_trade_threshold"], pc["full_on_threshold"], pc.get("running_hot", {}).get("price_min", 100.0)
+    oc = pc.get("on_close_threshold"); TC = oc.get(pref, T) if isinstance(oc, dict) else (oc or T)
     px = x.get("price", last[pref])
-    on = code in ("RUNNING_HOT", "ON", "WARMING_UP")
+    on = code in ON_CODES
     # days in the current state run (trading days, same on/off side)
     run = 0
     for r in reversed(R):
-        if (r.get("fly_" + pref) in ("RUNNING_HOT", "ON", "WARMING_UP")) == on: run += 1
+        if (r.get("fly_" + pref) in ON_CODES) == on: run += 1
         else: break
     hot_days_1y = sum(1 for r in R if r["date"] > _plus(last["date"], -365) and r.get("fly_" + pref) == "RUNNING_HOT")
-    target = FULL if code == "WARMING_UP" else (HOT if code == "ON" else (None if code == "RUNNING_HOT" else T))
-    status = "FLYWHEEL_ON" if on else ("NEAR_PAR" if code == "COOLING_OFF" else "OFF_PEG")
+    target = HOT if code == "ON" else (None if code == "RUNNING_HOT" else TC)   # off: the close needed to turn on
+    status = "FLYWHEEL_ON" if on else ("WARMING_UP" if code == "WARMING_UP" else ("NEAR_PAR" if code == "COOLING_OFF" else "OFF_PEG"))
     return {"preferred": pref, "parent": parent, "date": last["date"], "close": last[pref], "price": px, "peg_state": st, "status": status,
-            "flywheel_code": code, "flywheel_on": on,
-            "flywheel_state": fly_label(st, code), "flywheel_effect": fly_effect(pref, st, parent, code),
+            "flywheel_code": code, "flywheel_on": on, "flywheel_on_for_call": st == "ON", "buyback_held": held,
+            "on_close_threshold": TC, "session_complete": x.get("session_complete"), "touched_trigger_today": x.get("touched_trigger"),
+            "flywheel_state": fly_label(st, code, held), "flywheel_effect": fly_effect(pref, st, parent, code, held),
             "on_since": x.get("on_since"), "off_since": x.get("off_since"),
             "last_below_trigger": x.get("last_below_trigger") if on else None,
             "minutes_below_trigger_now": x.get("minutes_below_now") if on else None,
@@ -412,12 +417,12 @@ def buy_flags(last, assets, cfg):
         k = A["key"]; m = last.get(f"{k}_mnav_{bs}"); p = last.get(f"{k}_mnav_{bs}_pct"); z = last.get(f"{k}_zone_{bs}")
         st = last.get("peg_" + A["preferred"]); code = last.get("fly_" + A["preferred"])
         low_fair = z == "FAIR" and p is not None and p < lf
-        cheapish = z == "CHEAP" or low_fair
+        cheapish = z == "CHEAP"   # review 2026-10-28: badge uses the percentile CHEAP zone only (low-FAIR kept as info)
         vlow = m is not None and (m <= vm or (p is not None and p <= vp))
         why = []
         if m is not None and m <= vm: why.append(f"mNAV incl. debt & preferreds {m:.2f}x <= {vm}x")
         if p is not None and p <= vp: why.append(f"1y percentile {p:.0%} <= {vp:.0%}")
-        out[A["ticker"]] = {"preferred": A["preferred"], "peg_state": st, "flywheel_code": code, "flywheel_state": fly_label(st, code), "mnav": m, "mnav_pct_1y": p, "zone": z,
+        out[A["ticker"]] = {"preferred": A["preferred"], "peg_state": st, "flywheel_code": code, "flywheel_state": fly_label(st, code, last.get("held_" + A["preferred"])), "mnav": m, "mnav_pct_1y": p, "zone": z,
                             "low_fair": low_fair, "cheap_or_low_fair": cheapish,
                             "flywheel_cheap": st == "ON" and cheapish,
                             "very_low_mnav": vlow, "very_low_reason": "; ".join(why) or None,

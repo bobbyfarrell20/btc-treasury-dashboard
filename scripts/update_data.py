@@ -173,6 +173,12 @@ def pct_rank(window, x):
     if not w: return None
     return sum(1 for v in w if v <= x) / len(w)
 
+def quant(w, q):
+    w = sorted(v for v in w if v is not None)
+    if not w: return None
+    i = q * (len(w) - 1); lo = int(i); hi = min(lo + 1, len(w) - 1)
+    return round(w[lo] + (w[hi] - w[lo]) * (i - lo), 4)
+
 def mean_std(w):
     w = [v for v in w if v is not None]
     if len(w) < 20: return None, None
@@ -188,6 +194,52 @@ def cheap_line(d, vc):
     if d >= sc["end_date"]: return sc["end"]
     D0, D1, DD = dt.date.fromisoformat(sc["start_date"]), dt.date.fromisoformat(sc["end_date"]), dt.date.fromisoformat(d)
     return round(sc["start"] + (sc["end"] - sc["start"]) * (DD - D0).days / (D1 - D0).days, 4)
+
+def buyback_flag_series(mdocs, bc, state_f):
+    """'Par held up by buybacks' (config.buyback_support). Weeks come from Strategy's weekly 8-Ks (STRC ATM table +
+    STRC repurchase table). A week with a repurchase but no STRC ATM row counts as 0 sales (Strategy omits the ATM table
+    when nothing was sold). Sticky: on when a week shows buybacks > min and 0 sales; off when a later week shows sales.
+    Returns (changes [(effective_date, flag, week)], latest dict). On a parse failure the last known state is kept."""
+    prev = json.loads(state_f.read_text()) if state_f.exists() else None
+    try:
+        wk = {}
+        for doc in sorted(mdocs, key=lambda x: x["filed"]):
+            for a in doc["parsed"].get("strc_atm", []):
+                w = wk.setdefault(a["end"], {"start": a["start"], "end": a["end"], "filed": doc["filed"], "url": doc["url"]})
+                w["sales_m"] = a.get("notional_m") or 0.0; w["sales_shares"] = a.get("shares") or 0.0
+            for a in doc["parsed"].get("strc_repurchase", []):
+                w = wk.setdefault(a["end"], {"start": a["start"], "end": a["end"], "filed": doc["filed"], "url": doc["url"]})
+                w["buyback_m"] = a.get("usd_m") or 0.0; w["buyback_shares"] = a.get("shares") or 0.0
+        if not wk: raise ValueError("no STRC weekly rows parsed from 8-Ks")
+        flag, ch = False, []
+        for e in sorted(wk):
+            w = wk[e]; w.setdefault("buyback_m", 0.0)
+            if "sales_m" not in w: w["sales_m"], w["sales_inferred"] = 0.0, True
+            if w["buyback_m"] > bc.get("min_buyback_m", 0.0) and w["sales_m"] == 0: nf = True
+            elif w["sales_m"] > 0: nf = False
+            else: nf = flag
+            if nf != flag or not ch: ch.append((w["filed"], nf, w))
+            flag = nf
+        lw = wk[max(wk)]
+        latest = {"flag": flag, "week_start": lw["start"], "week_end": lw["end"], "filed": lw["filed"], "source": lw["url"],
+                  "buyback_m": lw["buyback_m"], "sales_m": lw["sales_m"], "sales_inferred": bool(lw.get("sales_inferred")),
+                  "since": ch[-1][0], "stale": False}
+        if prev and prev.get("week_end", "") > latest["week_end"]:
+            raise ValueError(f"parsed week {latest['week_end']} older than last known {prev['week_end']}")
+        state_f.write_text(json.dumps(latest, indent=1))
+        return ch, latest
+    except Exception as e:
+        log("buyback flag parse failed; keeping last known", e)
+        if not prev: return [], {"flag": False, "stale": True, "error": str(e)}
+        prev = dict(prev, stale=True, error=str(e), note=f"8-K parse failed; last known value from the week ending {prev.get('week_end')} (8-K filed {prev.get('filed')})")
+        return [(prev.get("since") or prev.get("filed"), prev["flag"], prev)], prev
+
+def cheap_cap(d, vc, asset, med):
+    """Per-stock CHEAP cap (valuation.cheap_cap): the bull-cycle line, or held flat until the stock's 1y median clears a level."""
+    pol = (vc.get("cheap_cap") or {}).get(asset) or {"mode": "schedule"}
+    if pol.get("mode") == "hold_until_median" and (med is None or med <= pol.get("median_above", 1.3)):
+        return pol.get("hold_value", 1.1), "held"
+    return cheap_line(d, vc), "schedule"
 
 def main():
     cache_f = DATA / "edgar_cache.json"
@@ -288,7 +340,9 @@ def main():
             sfx = "_" + bs if bs else ""
             for k in ("mstr_mnav" + sfx, "asst_mnav" + sfx):
                 if r.get(k) is not None:
-                    r[k + "_pct"] = round(pct_rank([w.get(k) for w in win], r[k]), 3)
+                    wv = [w.get(k) for w in win]
+                    r[k + "_pct"] = round(pct_rank(wv, r[k]), 3)
+                    for q in (25, 50, 75, 90): r[k + f"_q{q}"] = quant(wv, q / 100)
             m_, a_ = r.get("mstr_mnav" + sfx), r.get("asst_mnav" + sfx)
             if m_ and a_:
                 r["mnav_spread" + sfx] = round(a_ - m_, 4)
@@ -329,22 +383,38 @@ def main():
     for pref in ("STRC", "SATA"):
         bars = FW.fetch_bars(yj, pref)
         log(pref, "intraday days", len(bars), "1m days", sum(1 for B in bars.values() if B[0][1] == 1))
-        fd = FW.compute(dates, OHLCV.get(pref, {}), bars, pc)
+        fd = FW.compute(dates, OHLCV.get(pref, {}), bars, pc, pref=pref)
         FLYDETAIL[pref] = fd
         for r in rows:
             x = fd.get(r["date"])
             r["fly_" + pref] = x["code"] if x else None
             r["peg_" + pref] = FW.LEGACY[x["code"]] if x else None
             if x and x.get("vol_mult") is not None: r["volx_" + pref] = x["vol_mult"]
+    # ---- par held up by buybacks (STRC): MSTR's flywheel is not on for the call while flagged
+    bc = CFG.get("buyback_support", {})
+    BB_CH, BB = buyback_flag_series(mdocs, bc, DATA / "strc_buyback_state.json") if bc.get("enabled") else ([], {"flag": False})
+    bpref = bc.get("preferred", "STRC")
+    for r in rows:
+        f = False
+        for eff, fl, _w in BB_CH:
+            if eff and eff <= r["date"]: f = fl
+        r["bb_" + bpref] = f
+        if f and r.get("fly_" + bpref) in FW.ON_CODES:
+            r["held_" + bpref] = True
+            r["peg_" + bpref] = "WATCH"   # off for the call
     # ---- per-stock overheated floor: cheap line + gap, + flywheel bonus (on / running hot)
     vc0 = CFG.get("valuation", {})
     for r in rows:
-        base = round(cheap_line(r["date"], vc0) + mc.get("overheated_gap_above_cheap", 0.15), 4)
-        r["oh_floor_base"] = base
+        r["cheap_line"] = cheap_line(r["date"], vc0)
+        r["oh_floor_base"] = round(r["cheap_line"] + mc.get("overheated_gap_above_cheap", 0.15), 4)
         for A in (CFG.get("assets") or []):
+            k = A["key"]
+            r[k + "_cheap_cap"], r[k + "_cap_mode"] = cheap_cap(r["date"], vc0, A["ticker"], r.get(k + "_mnav_q50"))
+            base = round(r[k + "_cheap_cap"] + mc.get("overheated_gap_above_cheap", 0.15), 4)
+            r[k + "_oh_floor_base"] = base
             code = r.get("fly_" + A["preferred"])
-            bonus = mc.get("overheated_bonus_running_hot", 0.30) if code == "RUNNING_HOT" else (mc.get("overheated_bonus_on", 0.15) if code in ("ON", "WARMING_UP") else 0.0)
-            r[A["key"] + "_oh_floor"] = round(base + bonus, 4)
+            bonus = mc.get("overheated_bonus_running_hot", 0.30) if code == "RUNNING_HOT" else (mc.get("overheated_bonus_on", 0.15) if code == "ON" else 0.0)
+            r[k + "_oh_floor"] = round(base + bonus, 4)
 
     # ---- signals per day
     def day_signal(r):
@@ -369,7 +439,7 @@ def main():
             ps = r.get("peg_" + pref)
             act = {"ON": "BUY", "NEAR": "HOLD", "WATCH": "WATCH", "SELL": "SELL", None: "NO_DATA"}[ps]
             if both_oh: act = CFG["mnav"].get("both_overheated_action", "SELL_TO_BTC")
-            per[asset] = {"peg_state": ps, "preferred": pref, "preferred_flywheel_state": AN.fly_label(ps, r.get("fly_" + pref)), "flywheel_code": r.get("fly_" + pref), "overheated_floor": r.get(asset.lower() + "_oh_floor"), "action": act, "mnav": r.get(asset.lower() + "_mnav"),
+            per[asset] = {"peg_state": ps, "preferred": pref, "preferred_flywheel_state": AN.fly_label(ps, r.get("fly_" + pref), r.get("held_" + pref)), "buyback_held": bool(r.get("held_" + pref)), "flywheel_code": r.get("fly_" + pref), "overheated_floor": r.get(asset.lower() + "_oh_floor"), "action": act, "mnav": r.get(asset.lower() + "_mnav"),
                           "mnav_pct_1y": r.get(asset.lower() + "_mnav_pct"), "overheated": oh[asset.lower()],
                           "price_chg_dip_window": r.get(asset.lower() + "_chg"), "mnav_chg_dip_window": r.get(asset.lower() + "_mnav_chg")}
         out.update(per=per, both_overheated=both_oh, rotation=rot, dip=dip, dip_target=hardest if dip else None, cheapened_most=hardest)
@@ -405,19 +475,21 @@ def main():
             if r.get(a + "_btc") and r.get(a + "_basic_shares"): r[a + "_bps_basic"] = round(r[a + "_btc"] / r[a + "_basic_shares"] * 1e3, 6)
 
     # ---- valuation zones (who's cheap vs expensive)
-    vc = CFG.get("valuation", {"cheap_below_mnav": 1.0, "fair_max_percentile": 0.5})
-    def zone(v, p, cl, fl):
+    vc = CFG.get("valuation", {})
+    QC, QR = vc.get("cheap_max_percentile", 0.25), vc.get("rich_above_percentile", 0.75)
+    def zone(v, p, cap, fl):
+        """Own trailing-1y percentile zones; the cap blocks CHEAP above it; OVERVALUED = floor or top decile."""
         if v is None: return None
-        if v < cl: return "CHEAP"   # checked first: below the (rising) cheap line is CHEAP even above the overvalued floor
         if v >= fl or (p is not None and p >= mc["overheated_percentile"]): return "OVERVALUED"
-        if p is None or p <= vc["fair_max_percentile"]: return "FAIR"
+        if p is not None and p <= QC and v <= cap: return "CHEAP"
+        if p is None or p <= QR: return "FAIR"
         return "RICH"
     for r in rows:
-        r["cheap_line"] = cl = cheap_line(r["date"], vc)
         for a in ("mstr", "asst"):
-            r[a + "_zone"] = zone(r.get(a + "_mnav"), r.get(a + "_mnav_pct"), cl, r.get(a + "_oh_floor", mc["overheated_min_mnav"]))
+            capv = r.get(a + "_cheap_cap", r["cheap_line"])
+            r[a + "_zone"] = zone(r.get(a + "_mnav"), r.get(a + "_mnav_pct"), capv, r.get(a + "_oh_floor", mc["overheated_min_mnav"]))
             for bs in ("basic", "ev"):
-                r[a + "_zone_" + bs] = zone(r.get(a + "_mnav_" + bs), r.get(a + "_mnav_" + bs + "_pct"), cl, r.get(a + "_oh_floor", mc["overheated_min_mnav"]))
+                r[a + "_zone_" + bs] = zone(r.get(a + "_mnav_" + bs), r.get(a + "_mnav_" + bs + "_pct"), capv, r.get(a + "_oh_floor", mc["overheated_min_mnav"]))
     def verdict(r, bs=""):
         sfx = "_" + bs if bs else ""
         z, m, s = r.get("spread_z" + sfx), r.get("mstr_mnav" + sfx), r.get("asst_mnav" + sfx)
@@ -488,7 +560,10 @@ def main():
     last = rows[-1]
     def asset_val(A, a, bs):
         v = last.get(a + "_mnav_" + bs)
-        return {"mnav": v, "mnav_pct_1y": last.get(a + "_mnav_" + bs + "_pct"), "zone": last.get(a + "_zone_" + bs)}
+        k = a + "_mnav_" + bs
+        return {"mnav": v, "mnav_pct_1y": last.get(k + "_pct"), "zone": last.get(a + "_zone_" + bs),
+                "cutoffs": {"p25": last.get(k + "_q25"), "median": last.get(k + "_q50"), "p75": last.get(k + "_q75"), "p90": last.get(k + "_q90"),
+                            "cheap_cap": last.get(a + "_cheap_cap"), "cap_mode": last.get(a + "_cap_mode"), "overheated_floor": last.get(a + "_oh_floor")}}
     BASIS_LABEL = {"basic": "mNAV stock only: stock market value / bitcoin held (price x basic shares / BTC NAV)",
                    "ev": "mNAV incl. debt & preferreds: adds debt and preferreds, minus cash ((price x basic shares + debt + preferred notional - cash) / BTC NAV)",
                    "diluted": "diluted equity mNAV: price x assumed-diluted shares / BTC NAV"}
@@ -532,7 +607,7 @@ def main():
     if lc:
         po = next(r_ for r_ in rows if r_["rec_hash"] == lc["old_hash"])
         pn = next(r_ for r_ in rows if r_["rec_hash"] == lc["new_hash"])
-        lc["what"] = ", ".join(f"{x['preferred']} {AN.fly_label(po['rec']['per_asset'][t]['peg_state'], po['rec']['per_asset'][t].get('flywheel_code'))} \u2192 {AN.fly_label(x['peg_state'], x.get('flywheel_code'))} (flywheel for {t})" for t, x in pn["rec"]["per_asset"].items()
+        lc["what"] = ", ".join(f"{x['preferred']} {AN.fly_label(po['rec']['per_asset'][t]['peg_state'], po['rec']['per_asset'][t].get('flywheel_code'), po['rec']['per_asset'][t].get('buyback_held'))} \u2192 {AN.fly_label(x['peg_state'], x.get('flywheel_code'), x.get('buyback_held'))} (flywheel for {t})" for t, x in pn["rec"]["per_asset"].items()
                                if po["rec"]["per_asset"][t]["peg_state"] != x["peg_state"]) or "recommendation/overheat change"
     sources = {
         "MSTR": {"holdings": max(([h["date"], doc["url"]] for doc in mdocs for h in doc["parsed"].get("holdings", [])), default=None),
@@ -567,12 +642,29 @@ def main():
             "sats": prices.get("SATS", {}), "analytics": ana}
     (DATA / "dashboard.json").write_text(json.dumps(dash, separators=(",", ":")))
 
+    # ---- SATS context (display only, never a trigger)
+    sc = CFG.get("sats_context", {})
+    sser = sorted(prices.get("SATS", {}).items())
+    spts = [x for x in cap["ASST"].get("sats_shares", []) if x and x[1]]
+    sata_ch = [{"date": b_[0], "prev_date": a_[0], "shares_added": b_[1] - a_[1], "stated_value_m": round((b_[1] - a_[1]) * sc.get("stated_value", 100) / 1e6, 1),
+                "source": b_[2] if len(b_) > 2 else None} for a_, b_ in zip(spts, spts[1:]) if b_[1] > a_[1]]
+    SATS_CTX = None
+    if sser:
+        sd, spx = sser[-1]
+        SATS_CTX = {"date": sd, "price": spx, "stated_value": sc.get("stated_value", 100.0), "issue_price": sc.get("issue_price", 90.0),
+                    "vs_stated": round(spx - sc.get("stated_value", 100.0), 3), "vs_issue": round(spx - sc.get("issue_price", 90.0), 3),
+                    "shares_outstanding": spts[-1][1] if spts else None, "shares_date": spts[-1][0] if spts else None,
+                    "shares_source": (spts[-1][2] if spts and len(spts[-1]) > 2 else None),
+                    "latest_atm": sata_ch[-1] if sata_ch else None,
+                    "atm_note": None if sata_ch else "no SATS ATM sales reported yet (ATM opened 2026-10-26; Strive's weekly 8-K is the source)",
+                    "note": "Context only, not a trigger."}
+
     lrec = last["rec"]
     sig = {"recommendation": lrec["action"], "recommendation_label": AN.REC_LABEL.get(lrec["action"], lrec["action"]), "recommendation_subline": AN.rec_subline(lrec), "recommendation_lean": lrec.get("lean"),
            "recommendation_reason": lrec["reason"], "also_valid": lrec.get("also_valid"),
            "recommendation_notes": lrec.get("notes", []),
            "signal_hash": last["rec_hash"], "last_changed": lc, "last_recommendation_change": lrc,
-           "_hash_note": "signal_hash changes when the recommendation, also_valid, any preferred peg state (on/off, cooling off/stalled; RUNNING_HOT/ON/WARMING_UP all hash as on) or any overheated flag changes; last_changed is the most recent trading day it changed.",
+           "_hash_note": "signal_hash changes when the recommendation, also_valid, any preferred peg state (on for the call = RUNNING_HOT/ON, hashed alike; WARMING_UP and COOLING_OFF hash as WATCH, STALLED as SELL; ON held by buybacks hashes as WATCH) or any overheated flag changes; last_changed is the most recent trading day it changed.",
            "generated_utc": gen, "as_of": last["date"], "disclaimer": "Rules-based indicator, not financial advice.",
            "recommendation_detail": lrec,
            "flywheel": ana["flywheel"],
@@ -586,7 +678,9 @@ def main():
                    "trigger_btc_drop": dc["btc_drop_pct"], "btc_change": last.get("btc_chg"), "cheapened_most": last["sig"]["cheapened_most"],
                    "mstr_price_change": last.get("mstr_chg"), "asst_price_change": last.get("asst_chg"),
                    "mstr_mnav_change": last.get("mstr_mnav_chg"), "asst_mnav_change": last.get("asst_mnav_chg")},
-           "peg": {p: {"price": last.get(p), "state": last.get("peg_" + p), "flywheel_state": AN.fly_label(last.get("peg_" + p), last.get("fly_" + p)),
+           "strc_buyback_support": BB.get("flag"), "buyback_support": BB,
+           "sats_context": SATS_CTX,
+           "peg": {p: {"price": last.get(p), "state": last.get("peg_" + p), "flywheel_state": AN.fly_label(last.get("peg_" + p), last.get("fly_" + p), last.get("held_" + p)),
                        "flywheel_code": last.get("fly_" + p),
                        "distance_from_par": round(last[p] - pc["par"], 3) if last.get(p) else None} for p in ("STRC", "SATA")},
            "signal_basis": BASIS, "signal_basis_label": BASIS_LABEL[BASIS],
