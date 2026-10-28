@@ -1,0 +1,12 @@
+{
+ "flag": true,
+ "week_start": "2026-10-19",
+ "week_end": "2026-10-25",
+ "filed": "2026-10-26",
+ "source": "https://www.sec.gov/Archives/edgar/data/1050446/000119312526431146/mstr-20261026.htm",
+ "buyback_m": 204.9,
+ "sales_m": 0.0,
+ "sales_inferred": true,
+ "since": "2026-07-27",
+ "stale": false
+}

@@ -37,6 +37,21 @@
     "7d": null,
     "30d": null
    }
+  },
+  {
+   "detected_utc": "2026-10-28T16:24:12+00:00",
+   "as_of": "2026-10-28",
+   "old": "BUY_MSTR",
+   "new": "STAY_BTC",
+   "old_hash": "38236c9bd469",
+   "new_hash": "a2be7024860b",
+   "reason": "No flywheel ON (STRC warming up \u2192 flywheel off for MSTR; SATA stalled \u2192 flywheel off for ASST): wait (no buy right now)",
+   "initial": false,
+   "after": {
+    "1d": null,
+    "7d": null,
+    "30d": null
+   }
   }
  ]
 }
