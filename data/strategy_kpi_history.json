@@ -74,21 +74,21 @@
   "date": "2026-10-27"
  },
  {
-  "fetched_utc": "2026-10-28T15:34:44+00:00",
-  "timestamp_utc": "2026-10-28T15:34:00",
-  "market_cap_m": 59109.0,
-  "ev_m": 74095.0,
+  "fetched_utc": "2026-10-28T15:36:03+00:00",
+  "timestamp_utc": "2026-10-28T15:35:00",
+  "market_cap_m": 59033.0,
+  "ev_m": 74020.0,
   "debt_m": 6714.0,
   "pref_m": 13347.0,
-  "price": 139.95,
+  "price": 139.77,
   "per_ticker": {
    "MSTR": {
-    "shares": 422357985,
-    "price": 139.95
+    "shares": 422352116,
+    "price": 139.772
    },
    "STRK": {
-    "shares": 14021463,
-    "price": 70.82
+    "shares": 14015526,
+    "price": 70.85
    },
    "STRF": {
     "shares": 12843137,
@@ -99,8 +99,8 @@
     "price": 71.19
    },
    "STRC": {
-    "shares": 83917934,
-    "price": 99.8118
+    "shares": 83911040,
+    "price": 99.82
    },
    "STRE": {
     "shares": 7746270,
