@@ -102,7 +102,7 @@ details.sec{margin-top:8px}details.sec>summary{font-size:13px;font-weight:600;co
 .hist .hh{display:flex;flex-wrap:wrap;gap:4px 12px;align-items:center;font-size:12px}.flip,.hist .hh>.note{white-space:nowrap}.flip .pill{font-size:10.5px;padding:1px 6px;margin:0 2px}
 .strip{display:flex;height:8px;border-radius:4px;overflow:hidden;margin-top:5px}.strip .sg{display:block;min-width:1px}
 .strip .r-STAY_BTC,.sw.r-STAY_BTC{background:#d29922}.strip .r-BUY_MSTR,.sw.r-BUY_MSTR{background:#2ea043}.strip .r-BUY_ASST,.sw.r-BUY_ASST{background:#86efac}.strip .r-BUY_BOTH,.sw.r-BUY_BOTH{background:#1a7f37}.sw{display:inline-block;width:9px;height:9px;border-radius:2px;margin:0 2px 0 6px;vertical-align:middle}.skey{font-size:11px;color:var(--mut);margin-left:auto;white-space:nowrap}
-.gen{font-size:11px;color:var(--mut);text-align:right;margin-top:3px}.gen .dot{width:8px;height:8px}.gen .q{width:13px;height:13px;font-size:9px}
+.gen{font-size:11px;color:var(--mut);text-align:right;margin-top:3px}.refw{white-space:nowrap;display:inline-flex;align-items:center;gap:5px;margin-left:4px}.btn.refb{min-height:24px;padding:1px 8px;font-size:11px;line-height:1.2}.refb[disabled]{opacity:.7;cursor:progress}.refb .ri{display:inline-block}.refb.spin .ri{animation:rspin .8s linear infinite}@keyframes rspin{to{transform:rotate(360deg)}}.refmsg:empty{display:none}.refmsg{color:var(--fg)}@media (max-width:640px){.btn.refb{min-height:30px;padding:2px 10px;font-size:12px}.refw{margin-top:3px}}.gen .dot{width:8px;height:8px}.gen .q{width:13px;height:13px;font-size:9px}
 #flywheel,#summary{margin-bottom:12px}
 .fwgrid{gap:10px}.fw{padding:9px 13px}.fw .st{font-size:21px;margin:0 0 2px}.fw .imp{font-size:13.5px;margin:2px 0 4px}.fw .row{font-size:12.5px}.fw .t .pill{font-size:10.5px}
 .sumgrid{display:grid;gap:10px;grid-template-columns:repeat(auto-fit,minmax(min(420px,100%),1fr))}
@@ -160,7 +160,7 @@ details.card{margin-bottom:10px;padding:11px 14px}
 <section id="decision">
 <div class="rec" id="recbanner"><div class="lbl">Today's call · rules-based indicator, not financial advice</div><div class="big" id="rec_big">…</div><div class="recsub" id="rec_sub"></div><div class="recshort" id="rec_short"></div></div>
 <div class="chips3" id="chips"></div>
-<div class="gen" id="gen">loading…</div>
+<div class="gen"><span id="gen">loading…</span> <span class="refw"><button type="button" class="btn refb" id="refbtn" title="Check for newer data now (re-downloads the data files; no page reload)" aria-label="Refresh data"><span class="ri">↻</span> <span class="rl">Refresh</span></button><span class="refmsg" id="refmsg" aria-live="polite"></span> · <a href="https://github.com/bobbyfarrell20/btc-treasury-dashboard/actions/workflows/update.yml" target="_blank" rel="noopener" title="Opens GitHub Actions: press &quot;Run workflow&quot; to pull fresh prices and rebuild. A full refresh takes a few minutes; then tap Refresh here.">Run fresh update ↗</a></span></div>
 <details class="sec" id="howrec"><summary>Why this call? Full reason and rules</summary>
 <div class="card" style="margin:6px 0 0"><div class="why" id="rec_why"></div><div class="note" id="rec_more"></div>
 <div class="legend" id="legend" style="text-align:left;margin-top:6px"></div>
@@ -344,6 +344,10 @@ function chgN(k,n=10){const R=D.rows.filter(r=>r[k]!=null);if(R.length<=n)return
 function diffN(k,n=10){const R=D.rows.filter(r=>r[k]!=null);if(R.length<=n)return null;return R[R.length-1][k]-R[R.length-1-n][k]}
 const BL=b=>({basic:'stock only',ev:'incl. debt & preferreds',diluted:'diluted equity'}[b]||b);
 const MDEF={basic:'Stock only: stock market value ÷ bitcoin held.',ev:'Incl. debt & preferreds: adds debt and preferreds, minus cash.'};
+// ---------- update time: generated_utc (ISO UTC, written by scripts/update_data.py) shown in ET via Intl
+const ETF=new Intl.DateTimeFormat('en-US',{timeZone:'America/New_York',month:'short',day:'numeric',hour:'numeric',minute:'2-digit'});
+const genET=()=>ETF.format(new Date(D.generated_utc))+' ET';
+const closeD=d=>new Intl.DateTimeFormat('en-US',{timeZone:'UTC',month:'short',day:'numeric'}).format(new Date(d+'T12:00:00Z'));
 // ---------- freshness: expected last US trading close (ET, weekdays after 16:30; exchange holidays not modeled)
 function freshness(){const now=new Date(new Date().toLocaleString('en-US',{timeZone:'America/New_York'}));
   const d=new Date(now),wk=x=>x.getDay()>=1&&x.getDay()<=5;
@@ -480,13 +484,13 @@ function renderTop(){const F=freshness(),fw=A.flywheel,t=lastTwo('btc');
   const r=$('tb_rec');r.className='pill r-'+S.recommendation;r.textContent=(S.recommendation_label||RECL[S.recommendation]||S.recommendation)+(S.recommendation==='STAY_BTC'?' · no buy':S.recommendation==='BUY_BOTH'&&S.recommendation_lean?' · '+S.recommendation_lean+' leans cheaper':'');
   {const x=RVD('ev'),el=$('tb_rv');if(el)el.innerHTML=`<span class="pill tb-rv v-${x.verdict}" title="${esc(x.verdict_text)} · ASST/MSTR mNAV (incl. debt & preferreds) ratio ${fmt(x.ratio_now,2)}x vs ${fmt(x.ratio_mean_1y,2)}x 1y avg · gap z ${sx2(x.diff_z)}">${x.verdict==='NORMAL'?'Spread normal':x.cheaper_vs_usual+' cheap'}</span>`}
   for(const a of ASSETS){const f=fw[a.preferred],el=$('tb_'+a.preferred.toLowerCase());if(!el)continue;el.innerHTML=flyPill(f.peg_state,`${a.preferred} ${flyS(f.peg_state)}`,`${a.preferred} $${fmt(f.close)} · ${flyL(f.peg_state)} · ${fstreak(f)} · flywheel indicator for ${a.ticker}, not a trade`)}
-  $('tb_fresh').innerHTML=`<span class="dot" style="background:${F.col}"></span><span class="note tb-asof">${S.as_of}</span>`;
+  $('tb_fresh').innerHTML=`<span class="dot" style="background:${F.col}"></span><span class="note tb-asof">${closeD(S.as_of)} close · upd ${genET()}</span>`;
   $('tb_fresh').title=`Data ${F.txt}: last bar ${S.as_of}, expected ${F.exp}. Generated ${D.generated_utc} UTC (${F.ageH.toFixed(1)} h ago).`;
   const tk=[['BTC','btc',0],...ASSETS.map(a=>[a.ticker,a.ticker,2])].map(([n,k,dp])=>{const t=lastTwo(k);if(!t)return'';
     return `<div class="tk" title="last close ${t.d}"><div class="s">${n}</div><span class="p">$${fmt(t.v,dp)}</span><span class="c ${cls(t.ch)}">${t.ch==null?'':(t.ch>=0?'▲ +':'▼ ')+pct(t.ch,2).replace('-','')}</span></div>`}).join('');
   $('tickers').innerHTML=tk;
-  const gen=new Date(D.generated_utc).toLocaleString('en-US',{timeZone:'America/New_York',dateStyle:'medium',timeStyle:'short'});
-  $('gen').innerHTML=`<span class="dot" style="background:${F.col}"></span><b style="color:${F.col}">Data ${F.txt}</b> · last bar ${S.as_of} (expected ${F.exp}) · generated ${gen} ET ${Q('Green = the latest US trading close is in. Yellow = one session behind (e.g. Yahoo has not finalized today\'s bar yet). Red = two or more sessions behind. Exchange holidays are not modeled, so the day after a holiday can show yellow.')}`}
+  const lvl={g:'Fresh',y:'1 session behind',r:'Stale'}[F.lv];
+  $('gen').innerHTML=`<span class="dot" style="background:${F.col}"></span><b style="color:${F.col}">${lvl}</b> · Data as of ${closeD(S.as_of)} close · updated ${genET()} ${Q('Updated = when the data job last ran (shown in ET). Data as of = the last US market close included. Dot: green = the latest US trading close is in (expected '+F.exp+'). Yellow = one session behind (e.g. Yahoo has not finalized today\'s bar yet). Red = two or more sessions behind. Exchange holidays are not modeled, so the day after a holiday can show yellow.')}`}
 function implication(a,f){const p=a.preferred,t=a.ticker,st=f.peg_state;
   if(st==='ON')return `${p} Flywheel ON (${fstreak(f)}) → flywheel on for ${t}: BTC-per-share acceleration likely, ${t} qualifies for the call`;
   if(st==='NEAR')return `${p} slowing near par (${fstreak(f)}) → flywheel off for ${t} until ${f.required_days} straight closes ≥ $${f.threshold}`;
@@ -797,8 +801,22 @@ function safe(n,f){try{f()}catch(e){console.warn(n,e);const el=document.getEleme
 (async()=>{try{[D,S,E]=await Promise.all([J('data/dashboard.json'),J('signals.json'),J('data/events.json')]);try{M=await J('data/markets.json')}catch(e){M=null}
  A=D.analytics;ASSETS=A.assets;ASSETS.forEach(a=>{if(a.color)C[a.ticker]=a.color});
  initTheme();
- for(const [n,f] of [['relative value',renderRV],['top',renderTop],['recommendation',renderRec],['chips',renderChips],['flywheel',renderFlywheel],['summary',renderSummary],['kpis',renderKpis],['signals',renderSignal],['valuation',renderValuation],['yield',renderYield],['atm',renderAtm],['events',()=>{initEvents();renderEvents()}],['toggles',initToggles],['charts',()=>{renderCharts();segInit('gbasis',GB,b=>{GB=b;plotSpread()});segInit('spmode',SPM,b=>{SPM=b;plotSpread()})}],['peg performance',renderPegPerf],['backtest',renderBacktest],['signal log',renderSigLog],['big moves',renderBig],['odds',renderPM],['method',renderMethod],['csv',initCsv]])safe(n,f);
- linkCharts();
+ renderAll();
+ initRefresh();
  document.querySelectorAll('details').forEach(d=>d.addEventListener('toggle',()=>{if(d.open)d.querySelectorAll('.js-plotly-plot').forEach(el=>{try{Plotly.Plots.resize(el)}catch(e){}})}));
 }catch(e){console.error(e);$('gen').textContent='Failed to load data: '+e}})();
+function renderAll(){
+ for(const [n,f] of [['relative value',renderRV],['top',renderTop],['recommendation',renderRec],['chips',renderChips],['flywheel',renderFlywheel],['summary',renderSummary],['kpis',renderKpis],['signals',renderSignal],['valuation',renderValuation],['yield',renderYield],['atm',renderAtm],['events',()=>{initEvents();renderEvents()}],['toggles',initToggles],['charts',()=>{renderCharts();segInit('gbasis',GB,b=>{GB=b;plotSpread()});segInit('spmode',SPM,b=>{SPM=b;plotSpread()})}],['peg performance',renderPegPerf],['backtest',renderBacktest],['signal log',renderSigLog],['big moves',renderBig],['odds',renderPM],['method',renderMethod],['csv',initCsv]])safe(n,f);
+ linkCharts()}
+// Refresh button: re-fetch the static data files (cache-busted) and re-render in place. No tokens/secrets here;
+// a brand-new data run is started from GitHub Actions via the "Run fresh update" link.
+function initRefresh(){const b=$('refbtn'),m=$('refmsg');let tm;
+ const say=(t,ms)=>{clearTimeout(tm);m.textContent=t;if(ms)tm=setTimeout(()=>m.textContent='',ms)};
+ b.onclick=async()=>{if(b.disabled)return;b.disabled=true;b.classList.add('spin');say('Checking…');const t0=Date.now(),key=D.generated_utc+'|'+S.generated_utc;
+  try{const [d,s,e]=await Promise.all([J('data/dashboard.json'),J('signals.json'),J('data/events.json')]);let mk=null;try{mk=await J('data/markets.json')}catch(x){}
+   await new Promise(r=>setTimeout(r,Math.max(0,500-(Date.now()-t0))));
+   if(d.generated_utc+'|'+s.generated_utc===key){safe('top',renderTop);say('Already up to date',4000)}
+   else{D=d;S=s;E=e;M=mk;A=D.analytics;ASSETS=A.assets;ASSETS.forEach(a=>{if(a.color)C[a.ticker]=a.color});renderAll();say('Updated ✓',4000)}
+  }catch(err){console.warn('refresh',err);say('Reloading…');const u=new URL(location.href);u.searchParams.set('t',Date.now());location.replace(u.href);return}
+  finally{b.disabled=false;b.classList.remove('spin')}}}
 </script></body></html>
