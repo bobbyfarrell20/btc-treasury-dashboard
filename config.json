@@ -22,21 +22,32 @@
   ],
   "_assets_comment": "Companies tracked. The page, recommendation, analytics and backtest loop over this list. Adding a third company also needs a holdings/share-count + capital adapter in scripts/update_data.py and scripts/capital.py (BTC held, shares, debt, preferred, cash). The rotation spread uses the first two.",
   "recommendation": {
-    "_comment": "Single call per day. Peg confirmation (state ON: close >= peg.on_threshold for peg.on_consecutive_days) is the trigger; parent all-in mNAV overheated (mnav.overheated_min_mnav AND overheated_percentile, on overheat_basis) is a filter; if both pegs are confirmed and neither overheated, an unusual rotation z (<= spread_z_favor_asst or >= spread_z_favor_mstr) picks the cheaper one (z<0 -> second asset, else first); a normal z (or none) gives BUY_BOTH (50/50, lean = z<0 -> second asset, else first). Otherwise STAY_BTC (displayed as WAIT).",
+    "_comment": "Single call per day. Flywheel on (RUNNING_HOT / ON / WARMING_UP: the preferred traded >= peg.on_trade_threshold and has not since spent > peg.off_minutes_below market minutes below it) is the trigger; parent all-in mNAV overheated (mnav.overheated_min_mnav AND overheated_percentile, on overheat_basis) is a filter; if both pegs are confirmed and neither overheated, an unusual rotation z (<= spread_z_favor_asst or >= spread_z_favor_mstr) picks the cheaper one (z<0 -> second asset, else first); a normal z (or none) gives BUY_BOTH (50/50, lean = z<0 -> second asset, else first). Otherwise STAY_BTC (displayed as WAIT).",
     "overheat_basis": "ev"
   },
   "peg": {
+    "_comment": "Flywheel rule (2026-10-28). ON as soon as the preferred TRADES >= on_trade_threshold (intraday bar high; no close or streak needed). Once ON it stays ON until it trades below on_trade_threshold for MORE THAN off_minutes_below consecutive regular-session minutes (overnight/weekend gaps don't count). Labels: RUNNING_HOT (on, price >= running_hot.price_min AND heavy volume) > ON ('FLYWHEEL ON', on and price >= full_on_threshold) > WARMING_UP (on, below full_on_threshold) > COOLING_OFF (off, price >= stalled_below) > STALLED (off, below stalled_below). Older history with daily bars only: ON if day high >= on_trade_threshold; OFF if close < on_trade_threshold AND low < on_trade_threshold (sustained break assumed). See scripts/flywheel.py.",
     "par": 100.0,
-    "on_threshold": 99.95,
-    "on_consecutive_days": 3,
-    "watch_below": 99.9,
-    "sell_below": 99.0,
-    "sell_consecutive_down_closes_below_peg": 3
+    "on_trade_threshold": 99.8,
+    "full_on_threshold": 99.95,
+    "off_minutes_below": 30,
+    "stalled_below": 99.0,
+    "running_hot": {
+      "_comment": "Heavy volume at/above par: on AND latest price >= price_min AND volume >= vol_mult_min x the prior vol_avg_days trading-day average (today: pace = volume so far / fraction of the session elapsed) AND, when intraday bars exist, >= min_share_at_or_above of the day's volume traded at >= price_min.",
+      "price_min": 100.0,
+      "vol_mult_min": 1.5,
+      "vol_avg_days": 20,
+      "min_share_at_or_above": 0.5
+    }
   },
   "mnav": {
     "lookback_trading_days": 252,
     "overheated_percentile": 0.9,
     "overheated_min_mnav": 1.25,
+    "_overheated_comment": "Overheated floor is per stock per date: base = valuation cheap line (that date) + overheated_gap_above_cheap (1.25x on 2026-10-28, 1.55x at the halving, flat after; 1.25x for history before 2026-10-28), + overheated_bonus_on while its flywheel is on (WARMING_UP / ON), + overheated_bonus_running_hot while RUNNING_HOT. Overheated = mNAV >= floor AND >= overheated_percentile of the lookback. overheated_min_mnav is the legacy fixed floor, kept only as a fallback.",
+    "overheated_gap_above_cheap": 0.15,
+    "overheated_bonus_on": 0.15,
+    "overheated_bonus_running_hot": 0.3,
     "spread_z_favor_asst": -1.0,
     "spread_z_favor_mstr": 1.0,
     "both_overheated_action": "SELL_TO_BTC",
@@ -47,9 +58,15 @@
     "_ev_share_basis_comment": "Share count used for the equity leg of EV. 'basic' (Strategy's own EV definition) avoids double-counting convertible notes, which are already in debt. 'diluted' is an option."
   },
   "valuation": {
-    "_comment": "Zones for the 'who's cheap vs expensive' module, applied to each mNAV basis separately. CHEAP: mNAV < cheap_below_mnav. OVERVALUED: mNAV >= mnav.overheated_min_mnav OR 1y percentile >= mnav.overheated_percentile. FAIR: otherwise, with percentile <= fair_max_percentile (median). RICH: between the median and OVERVALUED.",
-    "cheap_below_mnav": 1.0,
-    "fair_max_percentile": 0.5
+    "_comment": "Zones for the 'who's cheap vs expensive' module, applied to each mNAV basis separately, in this order: CHEAP: mNAV < the cheap line for that date (cheap_below_mnav_schedule; checked FIRST, so it wins even above the overvalued floor). OVERVALUED: mNAV >= mnav.overheated_min_mnav OR 1y percentile >= mnav.overheated_percentile. FAIR: otherwise, with percentile <= fair_max_percentile (median). RICH: between the median and OVERVALUED.",
+    "fair_max_percentile": 0.5,
+    "cheap_below_mnav_schedule": {
+      "_comment": "Bull-cycle cheap line: start at start_date, rising linearly to end at end_date (next BTC halving estimate; update when known), flat at end afterwards. Dates before start_date use the flat start value (1.10x).",
+      "start_date": "2026-10-28",
+      "start": 1.1,
+      "end_date": "2028-04-15",
+      "end": 1.4
+    }
   },
   "dip": {
     "_comment": "Dip = BTC down >= btc_drop_pct over the last lookback_days trading days. Target = whichever of MSTR/ASST had the larger % drop in mNAV (mnav.signal_basis) over the same window (got cheaper vs its own bitcoin); tie (within tie_tolerance) broken by the larger price drop.",

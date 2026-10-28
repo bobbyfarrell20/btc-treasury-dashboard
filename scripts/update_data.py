@@ -17,6 +17,7 @@ from pathlib import Path
 import requests
 sys.path.insert(0, str(Path(__file__).resolve().parent))
 import analytics as AN
+import flywheel as FW
 PREF_OF = {"MSTR": "STRC", "ASST": "SATA"}
 
 ROOT = Path(__file__).resolve().parent.parent
@@ -43,6 +44,8 @@ def pdate(s):
     return dt.date(int(m.group(3)), MONTHS[m.group(1)], int(m.group(2))).isoformat()
 
 # ---------------- prices ----------------
+OHLCV = {}  # STRC / SATA / SATS daily OHLCV (flywheel engine)
+
 def fetch_prices():
     out = {}
     for t in TICKERS:
@@ -62,6 +65,13 @@ def fetch_prices():
         q = res["indicators"]["quote"][0]
         closes, opens = q["close"], q.get("open") or []
         ser = {}
+        if t in ("STRC", "SATA", "SATS"):
+            od = OHLCV.setdefault(t, {})
+            for i, ts in enumerate(res["timestamp"]):
+                if closes[i] is None: continue
+                od[dt.datetime.fromtimestamp(ts, tz).date().isoformat()] = {
+                    "o": (q.get("open") or [None] * len(closes))[i], "h": (q.get("high") or [None] * len(closes))[i],
+                    "l": (q.get("low") or [None] * len(closes))[i], "c": round(float(closes[i]), 4), "v": (q.get("volume") or [None] * len(closes))[i]}
         for i, (ts, c) in enumerate(zip(res["timestamp"], closes)):
             if c is None and t == "BTC-USD" and i + 1 < len(opens) and opens[i + 1] is not None:
                 # Yahoo occasionally publishes a null daily BTC bar; a 24/7 UTC day's close == next day's open
@@ -169,28 +179,15 @@ def mean_std(w):
     m = sum(w) / len(w); s = math.sqrt(sum((v - m) ** 2 for v in w) / len(w))
     return m, s
 
-def peg_states(dates, px, pc):
-    """Per-day peg state for a $100-par preferred. Returns list of state strings."""
-    states, above_run, below_down_run = [], 0, 0
-    prev = None
-    for d in dates:
-        c = px.get(d)
-        if c is None: states.append(None); continue
-        above_run = above_run + 1 if c >= pc["on_threshold"] else 0
-        if c < pc["watch_below"]:
-            below_down_run = below_down_run + 1 if (prev is not None and c < prev) else 0
-        else:
-            below_down_run = 0
-        if c < pc["sell_below"] or below_down_run >= pc["sell_consecutive_down_closes_below_peg"]:
-            s = "SELL"
-        elif c < pc["watch_below"]:
-            s = "WATCH"
-        elif above_run >= pc["on_consecutive_days"]:
-            s = "ON"
-        else:
-            s = "NEAR"
-        states.append(s); prev = c
-    return states
+def cheap_line(d, vc):
+    """Bull-cycle CHEAP line for date d (ISO). Linear from start (start_date) to end (end_date), flat after.
+    Dates before start_date use the flat start value (1.10x): the line was introduced 2026-10-28 and is not back-cast."""
+    sc = vc.get("cheap_below_mnav_schedule")
+    if not sc: return vc.get("cheap_below_mnav", 1.0)
+    if d <= sc["start_date"]: return sc["start"]
+    if d >= sc["end_date"]: return sc["end"]
+    D0, D1, DD = dt.date.fromisoformat(sc["start_date"]), dt.date.fromisoformat(sc["end_date"]), dt.date.fromisoformat(d)
+    return round(sc["start"] + (sc["end"] - sc["start"]) * (DD - D0).days / (D1 - D0).days, 4)
 
 def main():
     cache_f = DATA / "edgar_cache.json"
@@ -321,9 +318,33 @@ def main():
                 if r.get(key) and b.get(key): r[out] = round(r[key] / b[key] - 1, 4)
 
     dates = [r["date"] for r in rows]
+    FLYDETAIL = {}
+    def yj(url):
+        for attempt in range(4):
+            try:
+                r_ = requests.get(url.replace("query1", "query2") if attempt % 2 else url, headers=UA_WEB, timeout=30); r_.raise_for_status(); return r_.json()
+            except Exception as e:
+                log("yahoo intraday retry", url, e); time.sleep(2 + attempt * 2)
+        raise RuntimeError("intraday fetch failed " + url)
     for pref in ("STRC", "SATA"):
-        st = peg_states(dates, prices[pref], pc)
-        for r, s in zip(rows, st): r["peg_" + pref] = s
+        bars = FW.fetch_bars(yj, pref)
+        log(pref, "intraday days", len(bars), "1m days", sum(1 for B in bars.values() if B[0][1] == 1))
+        fd = FW.compute(dates, OHLCV.get(pref, {}), bars, pc)
+        FLYDETAIL[pref] = fd
+        for r in rows:
+            x = fd.get(r["date"])
+            r["fly_" + pref] = x["code"] if x else None
+            r["peg_" + pref] = FW.LEGACY[x["code"]] if x else None
+            if x and x.get("vol_mult") is not None: r["volx_" + pref] = x["vol_mult"]
+    # ---- per-stock overheated floor: cheap line + gap, + flywheel bonus (on / running hot)
+    vc0 = CFG.get("valuation", {})
+    for r in rows:
+        base = round(cheap_line(r["date"], vc0) + mc.get("overheated_gap_above_cheap", 0.15), 4)
+        r["oh_floor_base"] = base
+        for A in (CFG.get("assets") or []):
+            code = r.get("fly_" + A["preferred"])
+            bonus = mc.get("overheated_bonus_running_hot", 0.30) if code == "RUNNING_HOT" else (mc.get("overheated_bonus_on", 0.15) if code in ("ON", "WARMING_UP") else 0.0)
+            r[A["key"] + "_oh_floor"] = round(base + bonus, 4)
 
     # ---- signals per day
     def day_signal(r):
@@ -331,7 +352,7 @@ def main():
         oh = {}
         for a in ("mstr", "asst"):
             v, p = r.get(a + "_mnav"), r.get(a + "_mnav_pct")
-            oh[a] = bool(v is not None and p is not None and p >= mc["overheated_percentile"] and v >= mc["overheated_min_mnav"])
+            oh[a] = bool(v is not None and p is not None and p >= mc["overheated_percentile"] and v >= r.get(a + "_oh_floor", mc["overheated_min_mnav"]))
         both_oh = oh["mstr"] and oh["asst"]
         z = r.get("spread_z")
         rot = "NEUTRAL"
@@ -348,7 +369,7 @@ def main():
             ps = r.get("peg_" + pref)
             act = {"ON": "BUY", "NEAR": "HOLD", "WATCH": "WATCH", "SELL": "SELL", None: "NO_DATA"}[ps]
             if both_oh: act = CFG["mnav"].get("both_overheated_action", "SELL_TO_BTC")
-            per[asset] = {"peg_state": ps, "preferred": pref, "preferred_flywheel_state": AN.fly_label(ps), "action": act, "mnav": r.get(asset.lower() + "_mnav"),
+            per[asset] = {"peg_state": ps, "preferred": pref, "preferred_flywheel_state": AN.fly_label(ps, r.get("fly_" + pref)), "flywheel_code": r.get("fly_" + pref), "overheated_floor": r.get(asset.lower() + "_oh_floor"), "action": act, "mnav": r.get(asset.lower() + "_mnav"),
                           "mnav_pct_1y": r.get(asset.lower() + "_mnav_pct"), "overheated": oh[asset.lower()],
                           "price_chg_dip_window": r.get(asset.lower() + "_chg"), "mnav_chg_dip_window": r.get(asset.lower() + "_mnav_chg")}
         out.update(per=per, both_overheated=both_oh, rotation=rot, dip=dip, dip_target=hardest if dip else None, cheapened_most=hardest)
@@ -363,7 +384,7 @@ def main():
                 else: parts.append("; ".join(f"BUY {a} ({PREF_OF[a]} ON \u2192 flywheel on for {a})" for a in buys))
             if sells: parts.append("; ".join(f"SELL/TRIM {a} ({PREF_OF[a]} stalled \u2192 flywheel off for {a})" for a in sells))
             watch = [a for a in ("MSTR", "ASST") if per[a]["action"] == "WATCH"]
-            if watch: parts.append("; ".join(f"WATCH {a} ({PREF_OF[a]} slowing \u2192 flywheel off for {a})" for a in watch))
+            if watch: parts.append("; ".join(f"WATCH {a} ({PREF_OF[a]} cooling off \u2192 flywheel off for {a})" for a in watch))
             if dip: parts.append(f"DIP-BUY: BTC {r['btc_chg']*100:.0f}% in {dc['lookback_days']} trading days; buy {hardest} (mNAV fell most)")
             if not parts: parts.append("No strong signal - hold cash / stay patient")
             head = "; ".join(parts)
@@ -385,17 +406,18 @@ def main():
 
     # ---- valuation zones (who's cheap vs expensive)
     vc = CFG.get("valuation", {"cheap_below_mnav": 1.0, "fair_max_percentile": 0.5})
-    def zone(v, p):
+    def zone(v, p, cl, fl):
         if v is None: return None
-        if v >= mc["overheated_min_mnav"] or (p is not None and p >= mc["overheated_percentile"]): return "OVERVALUED"
-        if v < vc["cheap_below_mnav"]: return "CHEAP"
+        if v < cl: return "CHEAP"   # checked first: below the (rising) cheap line is CHEAP even above the overvalued floor
+        if v >= fl or (p is not None and p >= mc["overheated_percentile"]): return "OVERVALUED"
         if p is None or p <= vc["fair_max_percentile"]: return "FAIR"
         return "RICH"
     for r in rows:
+        r["cheap_line"] = cl = cheap_line(r["date"], vc)
         for a in ("mstr", "asst"):
-            r[a + "_zone"] = zone(r.get(a + "_mnav"), r.get(a + "_mnav_pct"))
+            r[a + "_zone"] = zone(r.get(a + "_mnav"), r.get(a + "_mnav_pct"), cl, r.get(a + "_oh_floor", mc["overheated_min_mnav"]))
             for bs in ("basic", "ev"):
-                r[a + "_zone_" + bs] = zone(r.get(a + "_mnav_" + bs), r.get(a + "_mnav_" + bs + "_pct"))
+                r[a + "_zone_" + bs] = zone(r.get(a + "_mnav_" + bs), r.get(a + "_mnav_" + bs + "_pct"), cl, r.get(a + "_oh_floor", mc["overheated_min_mnav"]))
     def verdict(r, bs=""):
         sfx = "_" + bs if bs else ""
         z, m, s = r.get("spread_z" + sfx), r.get("mstr_mnav" + sfx), r.get("asst_mnav" + sfx)
@@ -520,7 +542,7 @@ def main():
                  **{k: (lambda e: [e[0], e[2], e[3]])(cap["ASST"][k][-1]) for k in ("basic_shares", "debt_m", "sata_shares", "sats_shares", "cash_m") if cap["ASST"].get(k)}}}
     ana = {
         "assets": ASSETS,
-        "flywheel": {A["preferred"]: analytics.flywheel(rows, A["preferred"], A["ticker"], pc_) for A in ASSETS},
+        "flywheel": {A["preferred"]: analytics.flywheel(rows, A["preferred"], A["ticker"], pc_, FLYDETAIL.get(A["preferred"])) for A in ASSETS},
         "btc_yield": analytics.btc_yield(rows, ASSETS, dil_from),
         "btc_yield_diluted_from": dil_from,
         "backtest": {"btc_idle": analytics.backtest(rows, ASSETS, start, "BTC"), "cash_idle": analytics.backtest(rows, ASSETS, start, "CASH")},
@@ -550,10 +572,12 @@ def main():
            "recommendation_reason": lrec["reason"], "also_valid": lrec.get("also_valid"),
            "recommendation_notes": lrec.get("notes", []),
            "signal_hash": last["rec_hash"], "last_changed": lc, "last_recommendation_change": lrc,
-           "_hash_note": "signal_hash changes when the recommendation, also_valid, any preferred peg state or any overheated flag changes; last_changed is the most recent trading day it changed.",
+           "_hash_note": "signal_hash changes when the recommendation, also_valid, any preferred peg state (on/off, cooling off/stalled; RUNNING_HOT/ON/WARMING_UP all hash as on) or any overheated flag changes; last_changed is the most recent trading day it changed.",
            "generated_utc": gen, "as_of": last["date"], "disclaimer": "Rules-based indicator, not financial advice.",
            "recommendation_detail": lrec,
            "flywheel": ana["flywheel"],
+           "flywheel_state": {p: ana["flywheel"][p].get("flywheel_code") for p in ana["flywheel"]},
+           "cheap_line": {"today": last.get("cheap_line"), "schedule": CFG["valuation"].get("cheap_below_mnav_schedule")},
            "buy_flags": ana["buy_flags"],
            "btc_yield": {t: {k: (v.get("value") if isinstance(v, dict) else v) for k, v in y.items()} for t, y in ana["btc_yield"].items()},
            "headline": last["sig"]["headline"], "per_asset": last["sig"]["per"],
@@ -562,7 +586,8 @@ def main():
                    "trigger_btc_drop": dc["btc_drop_pct"], "btc_change": last.get("btc_chg"), "cheapened_most": last["sig"]["cheapened_most"],
                    "mstr_price_change": last.get("mstr_chg"), "asst_price_change": last.get("asst_chg"),
                    "mstr_mnav_change": last.get("mstr_mnav_chg"), "asst_mnav_change": last.get("asst_mnav_chg")},
-           "peg": {p: {"price": last.get(p), "state": last.get("peg_" + p), "flywheel_state": AN.fly_label(last.get("peg_" + p)),
+           "peg": {p: {"price": last.get(p), "state": last.get("peg_" + p), "flywheel_state": AN.fly_label(last.get("peg_" + p), last.get("fly_" + p)),
+                       "flywheel_code": last.get("fly_" + p),
                        "distance_from_par": round(last[p] - pc["par"], 3) if last.get(p) else None} for p in ("STRC", "SATA")},
            "signal_basis": BASIS, "signal_basis_label": BASIS_LABEL[BASIS],
            "values": {k: last.get(k) for k in ("MSTR", "ASST", "btc", "mstr_mnav", "asst_mnav", "mnav_avg", "mnav_spread",

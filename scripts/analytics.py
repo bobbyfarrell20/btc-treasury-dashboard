@@ -32,13 +32,17 @@ def _plus(d, n): return (D(d) + dt.timedelta(days=n)).isoformat()
 # ---------------------------------------------------------------- flywheel labels
 # STRC / SATA are flywheel indicators for their parents (MSTR / ASST), never trades.
 # peg_state keeps the machine codes (ON / NEAR / WATCH / SELL); these are the human labels.
-FLY_LABEL = {"ON": "Flywheel ON", "NEAR": "Flywheel slowing", "WATCH": "Flywheel slowing", "SELL": "Flywheel stalled", None: "No data"}
-FLY_SHORT = {"ON": "ON", "NEAR": "slowing", "WATCH": "slowing", "SELL": "stalled", None: "no data"}
+FLY_LABEL = {"ON": "Flywheel ON", "NEAR": "Cooling off", "WATCH": "Cooling off", "SELL": "Stalled", None: "No data"}
+FLY_SHORT = {"ON": "on", "NEAR": "cooling off", "WATCH": "cooling off", "SELL": "stalled", None: "no data"}
+# 5-level flywheel code (scripts/flywheel.py) -> labels; peg_state stays the legacy 3-level code (ON / WATCH / SELL)
+CODE_LABEL = {"RUNNING_HOT": "Running hot", "ON": "Flywheel ON", "WARMING_UP": "Warming up", "COOLING_OFF": "Cooling off", "STALLED": "Stalled"}
+CODE_SHORT = {"RUNNING_HOT": "running hot", "ON": "ON", "WARMING_UP": "warming up", "COOLING_OFF": "cooling off", "STALLED": "stalled"}
 
-def fly_label(st): return FLY_LABEL.get(st, "No data")
+def fly_label(st, code=None): return CODE_LABEL.get(code) or FLY_LABEL.get(st, "No data")
 
-def fly_effect(pref, st, parent):
-    return f"{pref} {FLY_SHORT.get(st, 'no data')} \u2192 flywheel {'on' if st == 'ON' else 'off'} for {parent}"
+def fly_effect(pref, st, parent, code=None):
+    short = CODE_SHORT.get(code) or FLY_SHORT.get(st, "no data")
+    return f"{pref} {short} \u2192 flywheel {'on' if st == 'ON' else 'off'} for {parent}"
 
 def relabel_reason(txt):
     """Rewrite older log reasons that used peg-state codes into flywheel language."""
@@ -68,10 +72,12 @@ def recommendation(r, assets, cfg):
     for A in assets:
         a, p = A["key"], A["preferred"]
         v, pc = r.get(f"{a}_mnav_{ob}"), r.get(f"{a}_mnav_{ob}_pct")
-        oh = bool(v is not None and pc is not None and v >= mc["overheated_min_mnav"] and pc >= mc["overheated_percentile"])
-        st = r.get("peg_" + p)
-        info[A["ticker"]] = {"preferred": p, "peg_state": st, "peg_confirmed": st == "ON", "overheated": oh,
-                             "flywheel_state": fly_label(st), "flywheel_effect": fly_effect(p, st, A["ticker"]),
+        fl = r.get(f"{a}_oh_floor", mc["overheated_min_mnav"])
+        oh = bool(v is not None and pc is not None and v >= fl and pc >= mc["overheated_percentile"])
+        st = r.get("peg_" + p); code = r.get("fly_" + p)
+        info[A["ticker"]] = {"preferred": p, "peg_state": st, "peg_confirmed": st == "ON", "overheated": oh, "overheated_floor": fl,
+                             "flywheel_code": code,
+                             "flywheel_state": fly_label(st, code), "flywheel_effect": fly_effect(p, st, A["ticker"], code),
                              "mnav_" + ob: v, "mnav_" + ob + "_pct": pc, "has_data": v is not None}
         if st == "ON" and not oh and v is not None: cands.append(A["ticker"])
     z = r.get("spread_z_" + ob, r.get("spread_z"))
@@ -134,24 +140,35 @@ def rec_hash_action(rec):
     return hashlib.sha1(rec["action"].encode()).hexdigest()[:12]
 
 # ---------------------------------------------------------------- flywheel cards
-def flywheel(rows, pref, parent, pc, extra_prices=None):
+def flywheel(rows, pref, parent, pc, detail=None):
+    """Flywheel card for one preferred, from the engine output (scripts/flywheel.py)."""
     R = [r for r in rows if r.get(pref) is not None]
     if not R: return {"preferred": pref, "parent": parent, "missing": True}
-    last = R[-1]; streak = 0
+    last = R[-1]; st = last.get("peg_" + pref); code = last.get("fly_" + pref)
+    x = (detail or {}).get(last["date"]) or {}
+    T, FULL, HOT = pc["on_trade_threshold"], pc["full_on_threshold"], pc.get("running_hot", {}).get("price_min", 100.0)
+    px = x.get("price", last[pref])
+    on = code in ("RUNNING_HOT", "ON", "WARMING_UP")
+    # days in the current state run (trading days, same on/off side)
+    run = 0
     for r in reversed(R):
-        if r[pref] >= pc["on_threshold"]: streak += 1
+        if (r.get("fly_" + pref) in ("RUNNING_HOT", "ON", "WARMING_UP")) == on: run += 1
         else: break
-    below = 0
-    for r in reversed(R):
-        if r[pref] < pc["on_threshold"]: below += 1
-        else: break
-    st = last.get("peg_" + pref)
-    status = "FLYWHEEL_ON" if st == "ON" else ("NEAR_PAR" if st == "NEAR" else "OFF_PEG")
-    return {"preferred": pref, "parent": parent, "date": last["date"], "close": last[pref], "peg_state": st, "status": status,
-            "flywheel_state": fly_label(st), "flywheel_effect": fly_effect(pref, st, parent),
-            "streak_days_at_or_above_threshold": streak, "days_below_threshold": below,
-            "required_days": pc["on_consecutive_days"], "threshold": pc["on_threshold"],
-            "distance_to_threshold": round(last[pref] - pc["on_threshold"], 3), "distance_to_par": round(last[pref] - pc["par"], 3)}
+    hot_days_1y = sum(1 for r in R if r["date"] > _plus(last["date"], -365) and r.get("fly_" + pref) == "RUNNING_HOT")
+    target = FULL if code == "WARMING_UP" else (HOT if code == "ON" else (None if code == "RUNNING_HOT" else T))
+    status = "FLYWHEEL_ON" if on else ("NEAR_PAR" if code == "COOLING_OFF" else "OFF_PEG")
+    return {"preferred": pref, "parent": parent, "date": last["date"], "close": last[pref], "price": px, "peg_state": st, "status": status,
+            "flywheel_code": code, "flywheel_on": on,
+            "flywheel_state": fly_label(st, code), "flywheel_effect": fly_effect(pref, st, parent, code),
+            "on_since": x.get("on_since"), "off_since": x.get("off_since"),
+            "last_below_trigger": x.get("last_below_trigger") if on else None,
+            "minutes_below_trigger_now": x.get("minutes_below_now") if on else None,
+            "method": x.get("method"), "vol_mult": x.get("vol_mult"), "vol_partial_session": x.get("vol_partial_session"),
+            "share_vol_at_or_above_100": x.get("share_vol_at_or_above_100"),
+            "days_in_state": run, "running_hot_days_1y": hot_days_1y,
+            "on_trade_threshold": T, "full_on_threshold": FULL, "off_minutes_below": pc["off_minutes_below"], "stalled_below": pc["stalled_below"],
+            "threshold": target, "distance_to_threshold": round(px - target, 3) if target is not None else None,
+            "distance_to_trigger": round(px - T, 3), "distance_to_par": round(px - pc["par"], 3)}
 
 # ---------------------------------------------------------------- BTC yield
 WINDOWS = (("30d", 30), ("90d", 90), ("ytd", None), ("1y", 365))
@@ -337,15 +354,15 @@ def atm_summary(fuel, prices, pc, sats_points, today):
             n = len(sel)
             res[name] = {"days": n, "partial": ser[0][0] > s0,
                          "at_or_above_par": round(sum(c >= pc["par"] for c in sel) / n, 3) if n else None,
-                         "near_par": round(sum(c >= pc["watch_below"] for c in sel) / n, 3) if n else None,
-                         "at_or_above_on_threshold": round(sum(c >= pc["on_threshold"] for c in sel) / n, 3) if n else None,
-                         "within_1_dollar": round(sum(c >= pc["sell_below"] for c in sel) / n, 3) if n else None}
+                         "at_or_above_full_on": round(sum(c >= pc["full_on_threshold"] for c in sel) / n, 3) if n else None,
+                         "at_or_above_on_trigger": round(sum(c >= pc["on_trade_threshold"] for c in sel) / n, 3) if n else None,
+                         "within_1_dollar": round(sum(c >= pc["stalled_below"] for c in sel) / n, 3) if n else None}
         peg[p] = res
     return {"STRC": strc, "SATA": sata, "SATS": sats, "peg_days": peg,
             "notes": ["STRC: weekly ATM sales and repurchases parsed from Strategy weekly 8-Ks (coverage from the first parsed week). Net proceeds as reported.",
                       "SATA: Strive's weekly tables give shares outstanding, not ATM proceeds, so issuance is shown as the change in shares x $100 stated amount. It is not cash raised (SATA traded below $100 at times), and some steps are exchanges (e.g. Jan 2026 notes exchange).",
                       "SATS: IPO settled 2026-10-20; count from Strive's 2026-10-26 weekly 8-K; shown at the $100 stated amount.",
-                      "Near par = close >= peg.watch_below; on threshold = close >= peg.on_threshold; windows are calendar days, share of trading-day closes."]}
+                      "Share of trading-day CLOSES at or above $100, $99.95 (peg.full_on_threshold), $99.80 (peg.on_trade_threshold) and $99 (peg.stalled_below); windows are calendar days."]}
 
 # ---------------------------------------------------------------- signal flips + log
 def _moves(rows, d, assets, basis):
@@ -390,18 +407,18 @@ def buy_flags(last, assets, cfg):
     out = {}
     for A in assets:
         k = A["key"]; m = last.get(f"{k}_mnav_{bs}"); p = last.get(f"{k}_mnav_{bs}_pct"); z = last.get(f"{k}_zone_{bs}")
-        st = last.get("peg_" + A["preferred"])
+        st = last.get("peg_" + A["preferred"]); code = last.get("fly_" + A["preferred"])
         low_fair = z == "FAIR" and p is not None and p < lf
         cheapish = z == "CHEAP" or low_fair
         vlow = m is not None and (m <= vm or (p is not None and p <= vp))
         why = []
         if m is not None and m <= vm: why.append(f"mNAV incl. debt & preferreds {m:.2f}x <= {vm}x")
         if p is not None and p <= vp: why.append(f"1y percentile {p:.0%} <= {vp:.0%}")
-        out[A["ticker"]] = {"preferred": A["preferred"], "peg_state": st, "flywheel_state": fly_label(st), "mnav": m, "mnav_pct_1y": p, "zone": z,
+        out[A["ticker"]] = {"preferred": A["preferred"], "peg_state": st, "flywheel_code": code, "flywheel_state": fly_label(st, code), "mnav": m, "mnav_pct_1y": p, "zone": z,
                             "low_fair": low_fair, "cheap_or_low_fair": cheapish,
                             "flywheel_cheap": st == "ON" and cheapish,
                             "very_low_mnav": vlow, "very_low_reason": "; ".join(why) or None,
-                            "very_low_with_peg_near_or_on": vlow and st in ("ON", "NEAR")}
+                            "very_low_with_peg_near_or_on": vlow and st in ("ON", "NEAR", "WATCH")}
     return {"basis": bs, "low_fair_max_percentile": lf, "very_low_max_mnav": vm, "very_low_max_percentile": vp, "per_asset": out}
 
 

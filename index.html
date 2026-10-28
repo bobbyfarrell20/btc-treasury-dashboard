@@ -94,7 +94,7 @@ details.sec{margin-top:8px}details.sec>summary{font-size:13px;font-weight:600;co
 .chips3{display:flex;flex-wrap:wrap;gap:6px 8px;justify-content:center;margin:0 0 6px}
 .chip3{display:inline-flex;flex-wrap:wrap;align-items:center;gap:4px;background:var(--panel);border:1px solid var(--line);border-left-width:4px;border-radius:999px;padding:4px 12px;font-size:13px;max-width:100%}
 .chip3 .pill{font-size:10.5px;padding:1px 6px;margin:0}
-.chip3.c-ON{border-color:#2ea043}.chip3.c-SLOWING{border-color:#d4a72c}.chip3.c-STALLED{border-color:#f85149}.chip3.c-NO_DATA{border-color:#6e7681}
+.chip3.c-RUNNING_HOT{border-color:#ff4d1a;box-shadow:0 0 8px #ff4d1a88}.chip3.c-ON{border-color:#2ea043}.chip3.c-WARMING_UP{border-color:#20b2a0}.chip3.c-COOLING_OFF,.chip3.c-SLOWING{border-color:#a8873a}.chip3.c-STALLED{border-color:#f85149}.chip3.c-NO_DATA{border-color:#6e7681}.pill.fl-RUNNING_HOT{box-shadow:0 0 7px #ff4d1acc;font-weight:700}.fw.f-RUNNING_HOT{box-shadow:0 0 14px #ff4d1a66}.cl-note{font-size:11px;color:var(--mut);font-weight:400}
 .vpair{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:0 18px}.vpair .vbasis{min-width:0}.prem{font-size:15px;font-weight:700;margin:2px 0}.vflags{display:flex;flex-wrap:wrap;gap:6px 10px;align-items:center;margin:6px 0 2px}.vflags .badge{margin-top:0}.vfly{font-size:12.5px;color:var(--mut)}
 #valtop .card h2{margin-bottom:4px}@media (max-width:760px){.vpair{grid-template-columns:minmax(0,1fr)}}
 .legend{text-align:center;font-size:12.5px;color:var(--mut);margin:2px 0 6px}
@@ -185,7 +185,7 @@ details.card{margin-bottom:10px;padding:11px 14px}
 <details class="sec"><summary>BTC per 1,000 diluted shares chart &amp; notes</summary><div class="note" id="yieldnote"></div><div id="c_bps" class="chart"></div></details></section>
 
 <h2 class="grp">Details</h2>
-<details class="card" id="pegsec"><summary>Flywheel detail: STRC &amp; SATA vs $99.95, flywheel-state charts, issuance fuel</summary>
+<details class="card" id="pegsec"><summary>Flywheel detail: STRC &amp; SATA vs $99.80 / $99.95, flywheel-state charts, issuance fuel</summary>
 <div class="fwgrid" id="fwcards" style="margin:10px 0"></div>
 <div class="cardhead"><span class="note" id="pegnote"></span><span class="csvb" data-c="c_strc,c_sata,c_fuel"></span></div>
 <div id="c_strc" class="chart sm"></div><div id="c_sata" class="chart sm"></div>
@@ -254,7 +254,7 @@ const SEM={
   act:{BUY:['#2ea043','#86efac'],HOLD:['#d4a72c','#fde68a'],WATCH:['#db6d28','#ffd2b0'],SELL:['#f85149','#fecaca'],SELL_TO_BTC:['#db61a2','#ffd6ec'],NO_DATA:['#6e7681','#d0d7de'],
        NEUTRAL:['#6e7681','#d0d7de'],FAVOR_ASST:['#8957e5','#e2d4ff'],FAVOR_MSTR:['#8957e5','#e2d4ff']},
   rec:{BUY_MSTR:['#2ea043','#86efac'],BUY_ASST:['#2ea043','#86efac'],BUY_BOTH:['#1a7f37','#7ee2a8'],STAY_BTC:['#d29922','#fde68a']},
-  fw:{ON:['#2ea043','#86efac'],SLOWING:['#d4a72c','#fde68a'],STALLED:['#f85149','#fecaca'],NO_DATA:['#6e7681','#d0d7de']}};
+  fw:{RUNNING_HOT:['#ff4d1a','#ffb08a'],ON:['#2ea043','#86efac'],WARMING_UP:['#20b2a0','#9ff0e2'],COOLING_OFF:['#a8873a','#e3cd94'],SLOWING:['#a8873a','#e3cd94'],STALLED:['#f85149','#fecaca'],NO_DATA:['#6e7681','#d0d7de']}};
 (function(){let css='';const add=(sel,[c,t])=>{css+=`${sel}{background:${c}33;color:${t};border:1px solid ${c}99}[data-theme=light] ${sel}{color:${c};background:${c}1f}`};
   for(const [k,v] of Object.entries(SEM.zone))add(`.z-${k}`,v);
   for(const [k,v] of Object.entries(SEM.act))add(`.pill.${k}`,v);
@@ -263,7 +263,7 @@ const SEM={
   for(const [k,v] of Object.entries(SEM.fw)){add(`.pill.fl-${k}`,v);css+=`.fw.f-${k}{border-color:${v[0]};background:linear-gradient(135deg,${v[0]}2b,${v[0]}08)}.fw.f-${k} .st{color:${v[1]}}[data-theme=light] .fw.f-${k} .st{color:${v[0]}}`;add(`.badge.f-${k}`,v)}
   const st=document.createElement('style');st.textContent=css;document.head.appendChild(st)})();
 const ZC=Object.fromEntries(Object.entries(SEM.zone).map(([k,v])=>[k,v[0]]));
-const BAND=Object.fromEntries(['ON','NEAR','WATCH','SELL'].map(k=>[k,SEM.peg[k][0]+(k==='NEAR'?'26':'40')]));
+const BAND=Object.fromEntries(['RUNNING_HOT','ON','WARMING_UP','COOLING_OFF','STALLED'].map(k=>[k,SEM.fw[k][0]+(k==='COOLING_OFF'?'26':k==='WARMING_UP'?'30':'40')]));
 let C={MSTR:'#f0883e',ASST:'#a371f7',BTC:'#f7c948',STRC:'#58a6ff',SATA:'#ff7b72',SATS:'#56d4dd',AVG:'#8b949e'};
 const CATC={earnings:'#f0883e',fomc:'#58a6ff',macro:'#8b949e',election:'#ff7b72',congress:'#a371f7',preferred:'#3fb950',asst:'#d2a8ff',mstr:'#ffa657',market:'#f7c948',index:'#79c0ff'};
 const fmt=(v,d=2)=>v==null||isNaN(v)?'—':Number(v).toLocaleString(undefined,{minimumFractionDigits:d,maximumFractionDigits:d});
@@ -281,11 +281,20 @@ let EVC=new Set(JSON.parse(localStorage.getItem('evcats')||'null')||Object.keys(
 const RECL={BUY_MSTR:'BUY MSTR',BUY_ASST:'BUY ASST',BUY_BOTH:'BUY BOTH',STAY_BTC:'WAIT'};
 const RECSUB=()=>S.recommendation_subline!=null?S.recommendation_subline:S.recommendation==='BUY_BOTH'?(S.recommendation_lean?S.recommendation_lean+' leans cheaper':'50/50'):S.recommendation==='STAY_BTC'?(Object.values(S.per_asset||{}).length&&Object.values(S.per_asset||{}).every(x=>x.overheated)?'Both overheated: no buy right now':'No buy right now'):'';
 // STRC / SATA are flywheel indicators for MSTR / ASST, never trades. peg_state codes stay machine-only.
-const FLY={ON:'Flywheel ON',NEAR:'Flywheel slowing',WATCH:'Flywheel slowing',SELL:'Flywheel stalled'},FLYS={ON:'ON',NEAR:'slowing',WATCH:'slowing',SELL:'stalled'},FK={ON:'ON',NEAR:'SLOWING',WATCH:'SLOWING',SELL:'STALLED'};
-const flyL=st=>FLY[st]||'No data',flyS=st=>FLYS[st]||'no data',flyK=st=>FK[st]||'NO_DATA';
+const FNORM={NEAR:'COOLING_OFF',WATCH:'COOLING_OFF',SELL:'STALLED',SLOWING:'COOLING_OFF'},fn=st=>FNORM[st]||st;
+const FLY={RUNNING_HOT:'Running hot',ON:'Flywheel ON',WARMING_UP:'Warming up',COOLING_OFF:'Cooling off',STALLED:'Stalled'},FLYS={RUNNING_HOT:'running hot',ON:'ON',WARMING_UP:'warming up',COOLING_OFF:'cooling off',STALLED:'stalled'};
+const flyL=st=>FLY[fn(st)]||'No data',flyS=st=>FLYS[fn(st)]||'no data',flyK=st=>FLY[fn(st)]?fn(st):'NO_DATA',flyOn=st=>['RUNNING_HOT','ON','WARMING_UP'].includes(fn(st)),fcode=f=>f&&(f.flywheel_code||f.peg_state);
 const flyPill=(st,txt,title)=>`<span class="pill fl-${flyK(st)}"${title?` title="${esc(title)}"`:''}>${txt||flyL(st)}</span>`;
-const flyEff=(pref,st,t)=>`${pref} ${flyS(st)} → flywheel ${st==='ON'?'on':'off'} for ${t}`;
-const fstreak=f=>`${f.streak_days_at_or_above_threshold}/${f.required_days} days ≥ $${f.threshold}`;
+const flyEff=(pref,st,t)=>`${pref} ${flyS(st)} → flywheel ${flyOn(st)?'on':'off'} for ${t}`;
+const tET=s=>{if(!s)return '—';if(s.length<=10)return new Date(s+'T12:00:00Z').toLocaleDateString('en-US',{month:'short',day:'numeric',timeZone:'UTC'});return new Date(s).toLocaleString('en-US',{timeZone:'America/New_York',month:'short',day:'numeric',hour:'numeric',minute:'2-digit'})+' ET'};
+// one-line flywheel detail: since when, distance to the next level ($99.80 when off, $99.95 when warming up), volume multiple
+const fstreak=f=>{const st=fn(fcode(f)),on=flyOn(st),x=[on?`on since ${tET(f.on_since)}`:(f.off_since?`off since ${tET(f.off_since)}`:'off')];
+  if((st==='WARMING_UP'||!on)&&f.distance_to_threshold!=null&&f.distance_to_threshold<0)x.push(`$${fmt(-f.distance_to_threshold)} to $${fmt(f.threshold)}`);
+  if(f.vol_mult!=null)x.push(`${fmt(f.vol_mult,1)}× avg vol${f.vol_partial_session?' (pace)':''}`);return x.join(' · ')};
+// today's cheap line and per-stock overheated floor (from the last row; config.json valuation / mnav)
+const LR=()=>D.rows[D.rows.length-1],CL=()=>LR().cheap_line??(D.config.valuation||{}).cheap_below_mnav??1.1;
+const OHF=a=>{const r=LR(),k=a.toLowerCase();return r[k+'_oh_floor']??r.oh_floor_base??D.config.mnav.overheated_min_mnav};
+const OHT=a=>{const A_=ASSETS.find(x=>x.ticker===a),st=fn(LR()['fly_'+(A_||{}).preferred]);return st==='RUNNING_HOT'?' (running hot)':flyOn(st)?' (flywheel on)':''};
 function TH(){const g=getComputedStyle(document.documentElement),v=n=>g.getPropertyValue(n).trim();return{bg:v('--bg'),panel:v('--panel'),fg:v('--fg'),grid:v('--grid'),mut:v('--mut'),line:v('--line'),btn:v('--btn')}}
 function baseLayout(title,extra={}){const t=TH();
   const start=D.config.window_start; const end=new Date(Date.now()+40*864e5).toISOString().slice(0,10);
@@ -337,7 +346,7 @@ function linkCharts(){TS.forEach(id=>{const el=$(id);if(!el||!el.on)return;if(el
 function series(key,filt=r=>true){const R=D.rows.filter(r=>r.date>=D.config.window_start&&filt(r));return{x:R.map(r=>r.date),y:R.map(r=>r[key])}}
 function runs(pred){const R=D.rows.filter(r=>r.date>=D.config.window_start),out=[];let s=null,p=null;
   R.forEach(r=>{const v=pred(r);if(v&&!s)s=r.date;if(!v&&s){out.push([s,r.date]);s=null}p=r.date});if(s)out.push([s,p]);return out}
-function bands(pref){const sh=[];for(const st of Object.keys(BAND))runs(r=>r['peg_'+pref]===st).forEach(([a,b])=>sh.push({type:'rect',xref:'x',yref:'paper',x0:a,x1:b,y0:0,y1:1,fillcolor:BAND[st],line:{width:0},layer:'below'}));return sh}
+function bands(pref){const sh=[];for(const st of Object.keys(BAND))runs(r=>(r['fly_'+pref]||fn(r['peg_'+pref]))===st).forEach(([a,b])=>sh.push({type:'rect',xref:'x',yref:'paper',x0:a,x1:b,y0:0,y1:1,fillcolor:BAND[st],line:{width:0},layer:'below'}));return sh}
 function hline(y,c,dash='dash'){return{type:'line',xref:'paper',x0:0,x1:1,yref:'y',y0:y,y1:y,line:{color:c,width:1,dash}}}
 function lastTwo(k){const R=D.rows.filter(r=>r[k]!=null);const a=R[R.length-1],b=R[R.length-2];return a?{v:a[k],d:a.date,ch:b?a[k]/b[k]-1:null}:null}
 function chgN(k,n=10){const R=D.rows.filter(r=>r[k]!=null);if(R.length<=n)return null;return R[R.length-1][k]/R[R.length-1-n][k]-1}
@@ -434,19 +443,27 @@ function plotSpread(){const bs=GB,sx='_'+bs,mode=SPM,mc=D.config.mnav,kh=mc.spre
     {xref:'x',yref:'y',x:x[n],y:y[n],text:`<b>Today ${f(y[n])}</b> (avg ${f(m[n])})`,showarrow:true,arrowhead:0,arrowcolor:'#f7931a',ax:mob?-70:-90,ay:y[n]>m[n]?-34:34,
      font:{size:fs,color:t.fg},bgcolor:ab,bordercolor:'#f7931a',borderpad:3}];
   // ---- bottom panel: MSTR & ASST mNAV lines with the valuation zones the premium cards use
-  const vc=D.config.valuation||{cheap_below_mnav:1,fair_max_percentile:0.5},ch=vc.cheap_below_mnav,ov=mc.overheated_min_mnav,V=S.valuation||{},bf=BFLAGS();
+  const vc=D.config.valuation||{fair_max_percentile:0.5},ch=CL(),ov=LR().oh_floor_base??(ch+(mc.overheated_gap_above_cheap??0.15)),V=S.valuation||{},bf=BFLAGS();
   const zl=z=>({CHEAP:'cheap',FAIR:'fair',RICH:'rich',OVERVALUED:'overvalued'}[z]||'n/a');
   const MR=D.rows.filter(r=>r.date>=x[0]&&r.date<=x[n]);let b0=Infinity,b1=-Infinity;
   ASSETS.forEach(aa=>{const k=aa.key;MR.forEach(r=>{const v=r[k+'_mnav'+sx];if(v!=null&&!HIDE.has(aa.ticker)){b0=Math.min(b0,v);b1=Math.max(b1,v)}})});
-  const B0=Math.min(ch-0.08,b0-0.06),B1=Math.max(ov+0.1,b1+0.08);
-  const zsh=[{type:'rect',xref:'paper',yref:'y2',x0:0,x1:1,y0:B0,y1:ch,fillcolor:'rgba(46,160,67,0.16)',line:{width:0},layer:'below'},
-    {type:'rect',xref:'paper',yref:'y2',x0:0,x1:1,y0:ch,y1:ov,fillcolor:'rgba(56,139,253,0.09)',line:{width:0},layer:'below'},
-    {type:'rect',xref:'paper',yref:'y2',x0:0,x1:1,y0:ov,y1:B1,fillcolor:'rgba(248,81,73,0.12)',line:{width:0},layer:'below'},
-    {type:'line',xref:'paper',yref:'y2',x0:0,x1:1,y0:ch,y1:ch,line:{color:'rgba(46,160,67,0.6)',width:1,dash:'dot'}},
-    {type:'line',xref:'paper',yref:'y2',x0:0,x1:1,y0:ov,y1:ov,line:{color:'rgba(248,81,73,0.6)',width:1,dash:'dot'}}];
+  // cheap line and base overheated floor change over time (rising cheap line), so the band edges are sloped paths, not flat lines
+  const CLS=(d)=>{const c=vc.cheap_below_mnav_schedule;if(!c)return ch;if(d<=c.start_date)return c.start;if(d>=c.end_date)return c.end;const t0=Date.parse(c.start_date),t1=Date.parse(c.end_date);return c.start+(c.end-c.start)*(Date.parse(d)-t0)/(t1-t0)};
+  // project the schedule ~40 days ahead so the rising edge is visible right of today
+  const FUT=MR.length?[10,20,30,40].map(k=>{const d=new Date(Date.parse(MR[MR.length-1].date)+k*864e5).toISOString().slice(0,10),c=CLS(d);return{date:d,cheap_line:c,oh_floor_base:c+(mc.overheated_gap_above_cheap??0.15)}}):[];
+  const ZP=MR.filter((r,i)=>i%3===0||i===MR.length-1).filter(r=>r.cheap_line!=null).concat(FUT),cl0=Math.min(...ZP.map(r=>r.cheap_line).concat([ch]));
+  const B0=Math.min(cl0-0.08,b0-0.06),B1=Math.max(Math.max(...ZP.map(r=>r.oh_floor_base??ov).concat([ov]))+0.1,b1+0.08);
+  const PT=(k,dflt)=>ZP.map(r=>`${r.date},${r[k]??dflt}`),RV_=a=>a.slice().reverse();
+  const pth=(pts)=>'M'+pts.join('L'),poly=(upper,lower)=>pth(upper.concat(RV_(lower)))+'Z';
+  const xs0=ZP.length?ZP[0].date:x[0],xs1=ZP.length?ZP[ZP.length-1].date:x[n],flat=v=>[`${xs0},${v}`,`${xs1},${v}`];
+  const zsh=ZP.length<2?[]:[{type:'path',xref:'x',yref:'y2',path:poly(PT('cheap_line',ch),ZP.map(r=>`${r.date},${B0}`)),fillcolor:'rgba(46,160,67,0.16)',line:{width:0},layer:'below'},
+    {type:'path',xref:'x',yref:'y2',path:poly(PT('oh_floor_base',ov),PT('cheap_line',ch)),fillcolor:'rgba(56,139,253,0.09)',line:{width:0},layer:'below'},
+    {type:'path',xref:'x',yref:'y2',path:poly(ZP.map(r=>`${r.date},${B1}`),PT('oh_floor_base',ov)),fillcolor:'rgba(248,81,73,0.12)',line:{width:0},layer:'below'},
+    {type:'path',xref:'x',yref:'y2',path:pth(PT('cheap_line',ch)),line:{color:'rgba(46,160,67,0.7)',width:1,dash:'dot'}},
+    {type:'path',xref:'x',yref:'y2',path:pth(PT('oh_floor_base',ov)),line:{color:'rgba(248,81,73,0.6)',width:1,dash:'dot'}}];
   const fs2=mob?9.5:11;
-  ann.push({xref:'paper',yref:'y2',x:0.01,y:B1,xanchor:'left',yanchor:'top',showarrow:false,text:`Overvalued ≥ ${fmt(ov,2)}x`,font:{size:fs2,color:'#f85149'},bgcolor:ab,opacity:0.85},
-    {xref:'paper',yref:'y2',x:0.01,y:B0,xanchor:'left',yanchor:'bottom',showarrow:false,text:`Cheap < ${fmt(ch,2)}x`,font:{size:fs2,color:'#3fb950'},bgcolor:ab,opacity:0.85},
+  ann.push({xref:'paper',yref:'y2',x:0.01,y:B1,xanchor:'left',yanchor:'top',showarrow:false,text:`Overvalued ≥ ${fmt(ov,2)}x base floor`,font:{size:fs2,color:'#f85149'},bgcolor:ab,opacity:0.85},
+    {xref:'paper',yref:'y2',x:0.01,y:B0,xanchor:'left',yanchor:'bottom',showarrow:false,text:`Cheap < ${fmt(ch,2)}x (rising line)`,font:{size:fs2,color:'#3fb950'},bgcolor:ab,opacity:0.85},
     {xref:'paper',yref:'y2',x:mob?0.01:0.5,y:(ch+ov)/2,xanchor:mob?'left':'center',showarrow:false,text:mob?'Fair / rich':'Fair / rich: split at each stock\'s own 1y median (see hover)',font:{size:fs2,color:'#79a6e8'},bgcolor:ab,opacity:0.8});
   ASSETS.forEach((aa,ai)=>{const a=aa.ticker,k=aa.key,P=MR.filter(r=>r[k+'_mnav'+sx]!=null);if(!P.length)return;
     tr.push({name:`${a} ${bl} mNAV`,meta:a,x:P.map(r=>r.date),y:P.map(r=>r[k+'_mnav'+sx]),yaxis:'y2',mode:'lines',line:{color:C[a],width:2.2},
@@ -476,7 +493,7 @@ function plotSpread(){const bs=GB,sx='_'+bs,mode=SPM,mc=D.config.mnav,kh=mc.spre
   Object.assign(L.xaxis.rangeslider,{thickness:0.04,bgcolor:t.bg,bordercolor:t.line,borderwidth:1});
   if(mob){L.xaxis.rangeselector.buttons=L.xaxis.rangeselector.buttons.filter(b=>['3M','6M','1Y','All'].includes(b.label));L.xaxis.rangeselector.font={size:11,color:t.fg}}
   plot('c_spread',tr,L,{hover:false});
-  $('mnnote').innerHTML=`<b>Bottom panel</b>: MSTR and ASST ${BL(bs)} mNAV (same toggle as the gap). Shaded zones use the premium cards' rules (config.json → valuation / mnav): <b>cheap</b> &lt; ${fmt(ch,2)}x; <b>overvalued</b> ≥ ${fmt(ov,2)}x or ≥ the ${mc.overheated_percentile*100}th percentile of that stock's own trailing ${mc.lookback_trading_days} days; in between, <b>fair</b> at or below the stock's own 1y median and <b>rich</b> above it. Because the fair/rich split (and the 90th-percentile part of overvalued) differ per stock and move over time, only the fixed ${fmt(ch,2)}x and ${fmt(ov,2)}x levels are drawn as bands; each day's exact zone and percentile is in the hover, and today's labels match the cards. Stock-only and diluted-equity mNAV are in the CSV and the cards; step jumps happen where filings change debt, preferreds or cash (see Method).`;
+  $('mnnote').innerHTML=`<b>Bottom panel</b>: MSTR and ASST ${BL(bs)} mNAV (same toggle as the gap). Shaded zones use the premium cards' rules (config.json → valuation / mnav): <b>cheap</b> below the cheap line (today ${fmt(ch,2)}x; it rises linearly to ${fmt((vc.cheap_below_mnav_schedule||{}).end,2)}x by ${(vc.cheap_below_mnav_schedule||{}).end_date}, so the green band's top edge slopes; flat ${fmt((vc.cheap_below_mnav_schedule||{}).start,2)}x before ${(vc.cheap_below_mnav_schedule||{}).start_date}); <b>overvalued</b> at or above the stock's overheated floor (cheap line + ${fmt(mc.overheated_gap_above_cheap,2)}, today ${fmt(ov,2)}x; + ${fmt(mc.overheated_bonus_on,2)} while its flywheel is on, + ${fmt(mc.overheated_bonus_running_hot,2)} while running hot) or ≥ the ${mc.overheated_percentile*100}th percentile of its trailing ${mc.lookback_trading_days} days, never below the cheap line; in between, <b>fair</b> at or below the stock's own 1y median and <b>rich</b> above it. The red band starts at the base floor (flywheel off); the flywheel bonus, the fair/rich split and the 90th-percentile part differ per stock and day, so each day's exact zone is in the hover and today's labels match the cards. Stock-only and diluted-equity mNAV are in the CSV and the cards; step jumps happen where filings change debt, preferreds or cash (see Method).`;
   $('gapsub').textContent=`ASST's ${bs==='ev'?'incl. debt & preferreds':'stock-only'} mNAV minus MSTR's${mode==='ratio'?' (shown as a ratio)':''}: the dashed line is its 1-year average, and the shaded edges are ±1σ from that average, the same bands the rotation rule uses; below, each stock's own mNAV.`;
   renderGapSum();
   $('spnote').innerHTML=`Orange = ${lab} (${BL(bs)}). Dashed = its trailing ${mc.lookback_trading_days}-trading-day (1-year) average. Green zone = above average + ${kh}σ (gap z ≥ +${kh}: MSTR cheap vs ASST); teal zone = below average ${kl}σ (gap z ≤ ${kl}: ASST cheap vs MSTR); in between = normal. These are the rotation thresholds in config.json → mnav, so the chart and the rule agree. ${mode==='ratio'?'The ratio view draws ±1σ bands of the ratio; the rule itself uses the gap, so ratio band edges are close but not identical.':'The ratio view (ASST ÷ MSTR) is available above.'} ASST usually trades at a higher mNAV than MSTR, so a positive gap is normal. A wide gap is not a buy signal by itself; the call still needs that parent's Flywheel ON.`;
@@ -486,7 +503,7 @@ function renderTop(){const F=freshness(),fw=A.flywheel,t=lastTwo('btc');
   $('tb_btc').innerHTML=`BTC $${fmt(t.v,0)} <span class="tb-ch ${cls(t.ch)}">${spct(t.ch,1)}</span>`;
   const r=$('tb_rec');r.className='pill r-'+S.recommendation;r.textContent=(S.recommendation_label||RECL[S.recommendation]||S.recommendation)+(S.recommendation==='STAY_BTC'?' · no buy':S.recommendation==='BUY_BOTH'&&S.recommendation_lean?' · '+S.recommendation_lean+' leans cheaper':'');
   {const x=RVD('ev'),el=$('tb_rv');if(el)el.innerHTML=`<span class="pill tb-rv v-${x.verdict}" title="${esc(x.verdict_text)} · ASST/MSTR mNAV (incl. debt & preferreds) ratio ${fmt(x.ratio_now,2)}x vs ${fmt(x.ratio_mean_1y,2)}x 1y avg · gap z ${sx2(x.diff_z)}">${x.verdict==='NORMAL'?'Spread normal':x.cheaper_vs_usual+' cheap'}</span>`}
-  for(const a of ASSETS){const f=fw[a.preferred],el=$('tb_'+a.preferred.toLowerCase());if(!el)continue;el.innerHTML=flyPill(f.peg_state,`${a.preferred} ${flyS(f.peg_state)}`,`${a.preferred} $${fmt(f.close)} · ${flyL(f.peg_state)} · ${fstreak(f)} · flywheel indicator for ${a.ticker}, not a trade`)}
+  for(const a of ASSETS){const f=fw[a.preferred],el=$('tb_'+a.preferred.toLowerCase());if(!el)continue;el.innerHTML=flyPill(fcode(f),`${a.preferred} ${flyS(fcode(f))}`,`${a.preferred} $${fmt(f.price??f.close)} · ${flyL(fcode(f))} · ${fstreak(f)} · flywheel indicator for ${a.ticker}, not a trade`)}
   $('tb_fresh').innerHTML=`<span class="dot" style="background:${F.col}"></span><span class="note tb-asof">${asOfL()} · upd ${genET()}</span>`;
   $('tb_fresh').title=`Data ${F.txt}: last bar ${S.as_of}, expected ${F.exp}. Generated ${D.generated_utc} UTC (${F.ageH.toFixed(1)} h ago).`;
   const tk=[['BTC','btc',0],...ASSETS.map(a=>[a.ticker,a.ticker,2])].map(([n,k,dp])=>{const t=lastTwo(k);if(!t)return'';
@@ -494,27 +511,28 @@ function renderTop(){const F=freshness(),fw=A.flywheel,t=lastTwo('btc');
   $('tickers').innerHTML=tk;
   const lvl={g:'Fresh',y:'1 session behind',r:'Stale'}[F.lv];
   $('gen').innerHTML=`<span class="dot" style="background:${F.col}"></span><b style="color:${F.col}">${lvl}</b> · Data as of ${asOfL()} · updated ${genET()} ${Q('Updated = when the data job last ran (shown in ET). Data as of = the last US market close included (\'intraday\' if the job ran before that day\'s 4 PM ET close). Dot: green = the latest US trading close is in (expected '+F.exp+'). Yellow = one session behind (e.g. Yahoo has not finalized today\'s bar yet). Red = two or more sessions behind. Exchange holidays are not modeled, so the day after a holiday can show yellow.')}`}
-function implication(a,f){const p=a.preferred,t=a.ticker,st=f.peg_state;
-  if(st==='ON')return `${p} Flywheel ON (${fstreak(f)}) → flywheel on for ${t}: BTC-per-share acceleration likely, ${t} qualifies for the call`;
-  if(st==='NEAR')return `${p} slowing near par (${fstreak(f)}) → flywheel off for ${t} until ${f.required_days} straight closes ≥ $${f.threshold}`;
-  if(st==='WATCH')return `${p} slowing below $${D.config.peg.watch_below} → flywheel off for ${t}`;
-  return `${p} stalled → flywheel off for ${t}`}
+function implication(a,f){const p=a.preferred,t=a.ticker,st=fn(fcode(f)),pc=D.config.peg,rh=pc.running_hot||{};
+  if(st==='RUNNING_HOT')return `${p} running hot (≥ $${rh.price_min} on ${fmt(f.vol_mult,1)}× avg volume) → flywheel on for ${t}: heavy issuance likely, ${t} qualifies for the call`;
+  if(st==='ON')return `${p} Flywheel ON (≥ $${pc.full_on_threshold}) → flywheel on for ${t}: BTC-per-share acceleration likely, ${t} qualifies for the call`;
+  if(st==='WARMING_UP')return `${p} warming up: traded ≥ $${fmt(pc.on_trade_threshold)}, now under $${pc.full_on_threshold} → flywheel on for ${t}, ${t} qualifies. Turns off after ${pc.off_minutes_below}+ market minutes below $${fmt(pc.on_trade_threshold)}`;
+  if(st==='COOLING_OFF')return `${p} cooling off (off, still ≥ $${pc.stalled_below}) → flywheel off for ${t} until a trade at ≥ $${fmt(pc.on_trade_threshold)}`;
+  return `${p} stalled (below $${pc.stalled_below}) → flywheel off for ${t} until a trade at ≥ $${fmt(pc.on_trade_threshold)}`}
 function renderChips(){const fw=A.flywheel,bf=BFLAGS().per_asset,V=S.valuation||{},rc=S.recommendation;
   const pc=a=>{const f=fw[a.preferred];if(!f||f.missing)return `<span class="chip3"><b>${a.preferred}</b> no data</span>`;
-    return `<span class="chip3 c-${flyK(f.peg_state)}" title="${a.preferred} close ${f.date}. Flywheel indicator for ${a.ticker}, not a trade: ${esc(flyEff(a.preferred,f.peg_state,a.ticker))}"><b>${a.preferred}</b> $${fmt(f.close)} ${flyPill(f.peg_state)} ${fstreak(f)} · <span class="${cls(f.distance_to_threshold)}">${f.distance_to_threshold>=0?'+':'−'}$${fmt(Math.abs(f.distance_to_threshold))}</span> vs $${f.threshold}</span>`};
+    return `<span class="chip3 c-${flyK(fcode(f))}" title="${a.preferred} last $${fmt(f.price??f.close)} (${f.date}${f.method&&f.method!=='daily'?', intraday':''}). Flywheel indicator for ${a.ticker}, not a trade: ${esc(flyEff(a.preferred,fcode(f),a.ticker))}"><b>${a.preferred}</b> $${fmt(f.price??f.close)} ${flyPill(fcode(f))} ${fstreak(f)}</span>`};
   const names=rc==='BUY_MSTR'?['MSTR']:rc==='BUY_ASST'?['ASST']:ASSETS.map(a=>a.ticker);
   const mz=names.map(t=>{const x=(V[t]||{}).all_in_ev||{},b=bf[t]||{};return `${t} <b>${fmt(x.mnav,2)}x</b> <span class="pill vz z-${x.zone}">${zoneTxt({zone:x.zone,low_fair:b.low_fair})}</span>`}).join(' · ');
   $('chips').innerHTML=ASSETS.map(pc).join('');
   const c=BFLAGS();
-  $('legend').innerHTML=`Legend: <b>Flywheel ON + CHEAP/low-FAIR parent mNAV incl. debt & preferreds = strongest setup for that parent</b> ${Q(`"Flywheel ON" = the parent's preferred (STRC for MSTR, SATA for ASST) closed ≥ $${D.config.peg.on_threshold} for ${D.config.peg.on_consecutive_days} straight days. The preferreds are flywheel indicators, not trades. low-FAIR = FAIR zone and below the 1y median (percentile < ${c.low_fair_max_percentile*100}th). Very low mNAV (incl. debt & preferreds) (≤ ${c.very_low_max_mnav}x or ≤ ${c.very_low_max_percentile*100}th percentile) is a secondary cue for the parent even when its flywheel is only slowing near par. These are display flags; the call itself follows the rules under "How the recommendation is decided".`)}`}
+  $('legend').innerHTML=`Legend: <b>Flywheel ON + CHEAP/low-FAIR parent mNAV incl. debt & preferreds = strongest setup for that parent</b> ${Q(`"Flywheel ON" = the parent's preferred (STRC for MSTR, SATA for ASST) traded at ≥ $${fmt(D.config.peg.on_trade_threshold)} (any intraday trade) and hasn't since spent more than ${D.config.peg.off_minutes_below} straight market minutes below it; Running hot / Flywheel ON / Warming up all count as on. The preferreds are flywheel indicators, not trades. low-FAIR = FAIR zone and below the 1y median (percentile < ${c.low_fair_max_percentile*100}th). Very low mNAV (incl. debt & preferreds) (≤ ${c.very_low_max_mnav}x or ≤ ${c.very_low_max_percentile*100}th percentile) is a secondary cue for the parent even when its flywheel is only cooling off. These are display flags; the call itself follows the rules under "How the recommendation is decided".`)}`}
 
 function renderFlywheel(){const fw=A.flywheel,bf=BFLAGS().per_asset;
   $('fwcards').innerHTML=ASSETS.map(a=>{const f=fw[a.preferred],b=bf[a.ticker]||{};if(!f||f.missing)return `<div class="fw f-NO_DATA"><div class="t">${a.preferred} → ${a.ticker}</div><div class="st">NO DATA</div><div class="note">Missing ${a.preferred} prices.</div></div>`;
-    const streak=f.streak_days_at_or_above_threshold>0?`<b>${f.streak_days_at_or_above_threshold}</b>/${f.required_days} days ≥ $${f.threshold}`:`0/${f.required_days} days ≥ $${f.threshold} · ${f.days_below_threshold} closes below`;
-    const fc=b.flywheel_cheap?`<span class="badge fc">✓ Flywheel + Cheap</span>`:'';
-    return `<div class="fw f-${flyK(f.peg_state)}"><div class="t">${a.preferred} → ${a.ticker} flywheel <span class="note" style="font-weight:400">indicator, not a trade</span></div><div class="st">${flyL(f.peg_state)}</div>
+    const fcb=b.flywheel_cheap?`<span class="badge fc">✓ Flywheel + Cheap</span>`:'',pc=D.config.peg,st=fn(fcode(f));
+    const lb=flyOn(st)&&f.last_below_trigger?`<span class="note">last below $${fmt(pc.on_trade_threshold)}: ${tET(f.last_below_trigger)}</span>`:'';
+    return `<div class="fw f-${flyK(st)}"><div class="t">${a.preferred} → ${a.ticker} flywheel <span class="note" style="font-weight:400">indicator, not a trade</span></div><div class="st">${flyL(st)}</div>
      <div class="imp">${implication(a,f)}</div>
-     <div class="row"><span>Close <b>$${fmt(f.close)}</b> <span class="note">${f.date}</span></span><span>vs $${f.threshold}: <b class="${cls(f.distance_to_threshold)}">${f.distance_to_threshold>=0?'+':''}${fmt(f.distance_to_threshold)}</b></span><span>${streak}</span></div>${fc}</div>`}).join('')}
+     <div class="row"><span>Last <b>$${fmt(f.price??f.close)}</b> <span class="note">${f.date}${f.method&&f.method!=='daily'?' intraday':''}</span></span><span>${fstreak(f)}</span>${lb}</div>${fcb}</div>`}).join('')}
 function renderSummary(){const V=S.valuation||{},Y=A.btc_yield,bf=BFLAGS(),fw=A.flywheel;
   $('mnavsum').innerHTML=ASSETS.map(a=>{const x=V[a.ticker]||{},ev=x.all_in_ev||{},st=x.market_standard||{},b=bf.per_asset[a.ticker]||{},y=Y[a.ticker]||{},f=fw[a.preferred]||{};
     const yv=k=>y[k]&&y[k].value!=null?cp(y[k].value,1):'—';
@@ -525,7 +543,7 @@ function renderRec(){const R=S.recommendation_detail||{},rc=S.recommendation;
   $('recbanner').className='rec r-'+rc;$('rec_big').textContent=S.recommendation_label||RECL[rc]||rc;$('rec_sub').textContent=RECSUB();$('rec_sub').style.display=RECSUB()?'':'none';
   $('rec_why').textContent='Today: '+S.recommendation_reason;
   {const x=RVD('ev'),fw=A.flywheel,pa=S.per_asset||{},parts=[rvShort(x)];
-   for(const a of ASSETS){const f=fw[a.preferred]||{};parts.push(flyEff(a.preferred,f.peg_state,a.ticker))}
+   for(const a of ASSETS){const f=fw[a.preferred]||{};parts.push(flyEff(a.preferred,fcode(f),a.ticker))}
    for(const a of ASSETS)if((pa[a.ticker]||{}).overheated)parts.push(a.ticker+' overheated');
    if(S.also_valid)parts.push(S.also_valid+' also valid');
    $('rec_short').textContent=parts.join(' · ')}
@@ -534,11 +552,11 @@ function renderRec(){const R=S.recommendation_detail||{},rc=S.recommendation;
     lrc?`Recommendation unchanged since ${lrc.date} (was ${RECL[lrc.old]||lrc.old}).`:'',lc?`Last state change ${lc.date}: ${esc(lc.what||'')}.`:'',
     `signal_hash <code>${S.signal_hash}</code> · as of ${S.as_of}`].filter(Boolean).join(' ');
   const mc=D.config.mnav,pc=D.config.peg,ob=(D.config.recommendation||{}).overheat_basis||'ev',bf=BFLAGS();
-  $('rec_rules').innerHTML=`1. <b>Trigger: Flywheel ON.</b> A parent qualifies only when its preferred closes ≥ $${pc.on_threshold} for ${pc.on_consecutive_days} straight trading days (STRC → MSTR, SATA → ASST). The preferreds are flywheel indicators, never traded.<br>
-   2. <b>Filter: overheated.</b> Skip a parent whose ${BL(ob)} mNAV is ≥ ${mc.overheated_min_mnav}x AND ≥ the ${mc.overheated_percentile*100}th percentile of its last ${mc.lookback_trading_days} trading days (Flywheel ON but overheated → "wait / reduce size").<br>
+  $('rec_rules').innerHTML=`1. <b>Trigger: flywheel on.</b> A parent qualifies while its preferred's flywheel is on (STRC → MSTR, SATA → ASST): it turns on the moment the preferred <b>trades at ≥ $${fmt(pc.on_trade_threshold)}</b> (intraday high, no close or streak needed) and turns off only after it trades below $${fmt(pc.on_trade_threshold)} for <b>more than ${pc.off_minutes_below} straight regular-market minutes</b> (overnight / weekend gaps don't count). While on it shows ${flyPill('RUNNING_HOT')} (≥ $${(pc.running_hot||{}).price_min} on heavy volume: ≥ ${(pc.running_hot||{}).vol_mult_min}× the ${(pc.running_hot||{}).vol_avg_days}-day average, pace-adjusted intraday, with ≥ ${((pc.running_hot||{}).min_share_at_or_above||0.5)*100}% of the day's volume at ≥ $100), ${flyPill('ON')} (≥ $${pc.full_on_threshold}) or ${flyPill('WARMING_UP')} (below $${pc.full_on_threshold}); all three count as on. Off: ${flyPill('COOLING_OFF')} (≥ $${pc.stalled_below}) or ${flyPill('STALLED')} (&lt; $${pc.stalled_below}). Uses Yahoo 1-minute bars (last ~7 days) or 5-minute bars (~60 days); older days use a daily approximation: on if the day's high ≥ $${fmt(pc.on_trade_threshold)}, off if the close and the low are both below it. The preferreds are flywheel indicators, never traded.<br>
+   2. <b>Filter: overheated.</b> Skip a parent whose ${BL(ob)} mNAV is ≥ its <b>overheated floor</b> AND ≥ the ${mc.overheated_percentile*100}th percentile of its last ${mc.lookback_trading_days} trading days. Floor = cheap line + ${fmt(mc.overheated_gap_above_cheap,2)} (today ${fmt(CL()+mc.overheated_gap_above_cheap,2)}x), + ${fmt(mc.overheated_bonus_on,2)} while its flywheel is on, + ${fmt(mc.overheated_bonus_running_hot,2)} instead while running hot (today: ${ASSETS.map(a=>`${a.ticker} ${fmt(OHF(a.ticker),2)}x`).join(', ')}). A working flywheel earns a higher premium, so a buy isn't filtered out as easily. Flywheel on but overheated → "wait / reduce size".<br>
    3. <b>Both qualify: gap decides.</b> Only if both flywheels are ON and neither parent is overheated: if the gap z (ASST − MSTR, ${BL(ob)}) is unusual (≤ ${mc.spread_z_favor_asst} → BUY ASST, ≥ +${mc.spread_z_favor_mstr} → BUY MSTR; the other is shown as also valid); otherwise (normal gap) <b>BUY BOTH</b>, 50/50, with the slightly cheaper one shown as the lean.<br>
    4. <b>Otherwise WAIT: no buy right now.</b> (BTC or cash are your choice while waiting; the tracker doesn't tell you to hold either.) The dip rule, legacy per-asset actions and zone verdicts are shown as context only and don't change the call.<br>
-   <b>Display flags</b> (don't change the call): <span class="badge fc">✓ Flywheel + Cheap</span> = the parent's Flywheel ON and its mNAV incl. debt & preferreds CHEAP or low-FAIR (FAIR and &lt; ${bf.low_fair_max_percentile*100}th pct of 1y). <b>Very low mNAV (incl. debt & preferreds)</b> = ≤ ${bf.very_low_max_mnav}x or ≤ ${bf.very_low_max_percentile*100}th pct (secondary cue for the parent, even if its flywheel is only slowing near par). Thresholds: <code>buy_flags</code> in config.json.<br>
+   <b>Display flags</b> (don't change the call): <span class="badge fc">✓ Flywheel + Cheap</span> = the parent's Flywheel ON and its mNAV incl. debt & preferreds CHEAP or low-FAIR (FAIR and &lt; ${bf.low_fair_max_percentile*100}th pct of 1y). <b>Very low mNAV (incl. debt & preferreds)</b> = ≤ ${bf.very_low_max_mnav}x or ≤ ${bf.very_low_max_percentile*100}th pct (secondary cue for the parent, even if its flywheel is only cooling off). Thresholds: <code>buy_flags</code> in config.json.<br>
    Rules-based indicator, not financial advice. Machine-readable: <a href="signals.json">signals.json</a> (<code>recommendation</code>, <code>buy_flags</code>, <code>signal_hash</code>, <code>last_changed</code>).`}
 function renderKpis(){const v=S.values,cells=[],V=S.valuation||{};
   const k=(lab,val,sub,tip)=>cells.push(`<div class="kpi"><div class="k">${lab}${tip?Q(tip):''}</div><div class="v">${val}</div><div class="d">${sub}</div></div>`);
@@ -547,7 +565,7 @@ function renderKpis(){const v=S.values,cells=[],V=S.valuation||{};
     k(a.ticker,`$${fmt(t.v)}`,`day ${cp(t.ch,2)} · 10d ${cp(chgN(a.ticker))}`);
     k(a.ticker+' mNAV',`${fmt(B.mnav,2)}x <span class="note">/</span> ${fmt(Ev.mnav,2)}x`,`stock <span class="pill vz z-${B.zone}">${B.zone||'—'}</span> · incl. debt <span class="pill vz z-${Ev.zone}">${Ev.zone||'—'}</span><br>10d: stock ${cp(chgN(a.key+'_mnav_basic'))} · incl. debt ${cp(chgN(a.key+'_mnav_ev'))}`,'Stock only: stock market value ÷ bitcoin held. Incl. debt & preferreds: adds debt and preferreds, minus cash. Zone pills use each reading\'s own 1y history.')}
   for(const a of ASSETS){const f=A.flywheel[a.preferred];if(!f||f.missing)continue;
-    k(a.preferred+' flywheel',`$${fmt(f.close)} ${flyPill(f.peg_state)}`,`${fstreak(f)} · ${f.distance_to_threshold>=0?'+':''}${fmt(f.distance_to_threshold)} vs $${f.threshold} · 10d ${cp(chgN(a.preferred),2)}`,`Indicator for ${a.ticker}, not a trade.`)}
+    k(a.preferred+' flywheel',`$${fmt(f.price??f.close)} ${flyPill(fcode(f))}`,`${fstreak(f)} · 10d ${cp(chgN(a.preferred),2)}`,`Indicator for ${a.ticker}, not a trade.`)}
   k('Rotation',`<span class="pill ${S.rotation}">${S.rotation}</span>`,`spread z ${fmt(v.spread_z,2)} · 10d Δz ${diffN('spread_z')==null?'—':(diffN('spread_z')>=0?'+':'')+fmt(diffN('spread_z'),2)}`,'ASST − MSTR mNAV spread vs its own 1y history (signal basis). Used only to choose between two parents whose flywheels are both ON.');
   $('kpis').innerHTML=cells.join('')}
 function renderSignal(){
@@ -556,7 +574,7 @@ function renderSignal(){
   for(const a of ['MSTR','ASST']){const pa=S.per_asset[a], pref=a==='MSTR'?'STRC':'SATA';
     cards.push(`<div class="card" style="margin:0"><h2>${a} <span class="note" style="font-weight:400">legacy parent action</span> <span class="pill ${pa.action}">${pa.action==='SELL_TO_BTC'?'SELL (both overheated)':pa.action}</span></h2>
     <div class="kv"><span>Price</span><span>$${fmt(v[a])}</span></div>
-    <div class="kv"><span>${pref} (flywheel indicator)</span><span>$${fmt(p[pref].price)} (${p[pref].distance_from_par>=0?'+':''}${fmt(p[pref].distance_from_par)} vs par) ${flyPill(p[pref].state)}</span></div>
+    <div class="kv"><span>${pref} (flywheel indicator)</span><span>$${fmt(p[pref].price)} (${p[pref].distance_from_par>=0?'+':''}${fmt(p[pref].distance_from_par)} vs par) ${flyPill(p[pref].flywheel_code||p[pref].state)}</span></div>
     <div class="kv"><span>mNAV stock only / incl. debt & preferreds</span><span>${fmt(v[a.toLowerCase()+'_mnav_basic'],3)}x / ${fmt(v[a.toLowerCase()+'_mnav_ev'],3)}x</span></div>
     <div class="kv"><span>Signal mNAV (${BL(S.signal_basis)}) 1y pct</span><span>${pct(pa.mnav_pct_1y,0)}</span></div>
     <div class="kv"><span>Overheated?</span><span>${pa.overheated?'<span class="pill SELL">YES</span>':'no'}</span></div>
@@ -578,23 +596,23 @@ function renderSignal(){
     <div class="kv"><span>Events next 7d</span><span>${(S.upcoming_events_7d||[]).length}</span></div></div>`);
   $('sigcards').innerHTML=cards.join('');
   const t=S.thresholds;
-  $('signote').innerHTML=`As of ${S.as_of}. Legacy per-asset actions apply to the parent (MSTR / ASST) only, driven by its flywheel: Flywheel ON (close ≥ $${t.peg.on_threshold} for ${t.peg.on_consecutive_days} days) → BUY parent; slowing near par → HOLD parent; slowing below $${t.peg.watch_below} → WATCH parent; stalled (close &lt; $${t.peg.sell_below} or ${t.peg.sell_consecutive_down_closes_below_peg}+ straight down closes below $${t.peg.watch_below}) → SELL/TRIM parent. The preferreds themselves are never traded. mNAV rules use the <b>${BL(S.signal_basis)}</b> mNAV. Overheated = mNAV ≥ ${t.mnav.overheated_min_mnav}x AND ≥ ${t.mnav.overheated_percentile*100}th pct of ${t.mnav.lookback_trading_days}-day history; both overheated → sell / trim, no buy right now (code SELL_TO_BTC). Rotation: spread z ≤ ${t.mnav.spread_z_favor_asst} → favor ASST, ≥ ${t.mnav.spread_z_favor_mstr} → favor MSTR. Dip: BTC down ≥ ${t.dip.btc_drop_pct*100}% over the last ${t.dip.lookback_days} trading days → whichever of MSTR/ASST had the larger mNAV drop. These feed the single recommendation above only through the flywheel and overheated flags.`;
-  $('pegnote').innerHTML='Now: '+ASSETS.map(a=>`${a.preferred} $${fmt(p[a.preferred].price)} ${flyPill(p[a.preferred].state)}`).join(' · ');
-  $('pegrules').innerHTML=`Bands: ${flyPill('ON')} close ≥ $${t.peg.on_threshold} for ${t.peg.on_consecutive_days} straight days (confirmed; the recommendation trigger for the parent) · ${flyPill('NEAR')} at/above $${t.peg.on_threshold} but not yet ${t.peg.on_consecutive_days} days, or below it but not stalled (light band down to $${t.peg.watch_below}, darker below) · ${flyPill('SELL')} close &lt; $${t.peg.sell_below} or ${t.peg.sell_consecutive_down_closes_below_peg} straight down closes below $${t.peg.watch_below}. STRC feeds MSTR, SATA feeds ASST; the preferreds are indicators, never trades. signals.json keeps the original codes in <code>peg_state</code> and adds <code>flywheel_state</code> with these labels. Fuel chart: STRC ATM net proceeds and repurchases from Strategy weekly 8-Ks (from Nov 2025); SATA issuance = change in shares outstanding × $100 stated amount (not cash proceeds); SATS IPO at $100 stated.`}
+  $('signote').innerHTML=`As of ${S.as_of}. Legacy per-asset actions apply to the parent (MSTR / ASST) only, driven by its flywheel: flywheel on (running hot / ON / warming up) → BUY parent; cooling off → WATCH parent; stalled (&lt; $${t.peg.stalled_below}) → SELL/TRIM parent. The preferreds themselves are never traded. mNAV rules use the <b>${BL(S.signal_basis)}</b> mNAV. Overheated = mNAV ≥ its floor (cheap line + ${fmt(t.mnav.overheated_gap_above_cheap,2)}, + ${fmt(t.mnav.overheated_bonus_on,2)} flywheel on / + ${fmt(t.mnav.overheated_bonus_running_hot,2)} running hot) AND ≥ ${t.mnav.overheated_percentile*100}th pct of ${t.mnav.lookback_trading_days}-day history; both overheated → sell / trim, no buy right now (code SELL_TO_BTC). Rotation: spread z ≤ ${t.mnav.spread_z_favor_asst} → favor ASST, ≥ ${t.mnav.spread_z_favor_mstr} → favor MSTR. Dip: BTC down ≥ ${t.dip.btc_drop_pct*100}% over the last ${t.dip.lookback_days} trading days → whichever of MSTR/ASST had the larger mNAV drop. These feed the single recommendation above only through the flywheel and overheated flags.`;
+  $('pegnote').innerHTML='Now: '+ASSETS.map(a=>`${a.preferred} $${fmt(p[a.preferred].price)} ${flyPill(p[a.preferred].flywheel_code||p[a.preferred].state)}`).join(' · ');
+  $('pegrules').innerHTML=`Bands: ${flyPill('RUNNING_HOT')} on, ≥ $${t.peg.running_hot.price_min} on ≥ ${t.peg.running_hot.vol_mult_min}× avg volume · ${flyPill('ON')} on, ≥ $${t.peg.full_on_threshold} · ${flyPill('WARMING_UP')} on, below $${t.peg.full_on_threshold} (incl. brief dips under $${fmt(t.peg.on_trade_threshold)}) · ${flyPill('COOLING_OFF')} off, ≥ $${t.peg.stalled_below} · ${flyPill('STALLED')} off, &lt; $${t.peg.stalled_below}. On = traded ≥ $${fmt(t.peg.on_trade_threshold)}; off = more than ${t.peg.off_minutes_below} straight market minutes below it (daily approximation before intraday bars: high ≥ $${fmt(t.peg.on_trade_threshold)} → on; close and low &lt; $${fmt(t.peg.on_trade_threshold)} → off). Lines: $${t.peg.par} par, $${t.peg.full_on_threshold}, $${fmt(t.peg.on_trade_threshold)} trigger, $${t.peg.stalled_below} stall. STRC feeds MSTR, SATA feeds ASST; the preferreds are indicators, never trades. signals.json keeps the original codes in <code>peg_state</code> (ON / WATCH / SELL) and adds <code>flywheel_code</code> / top-level <code>flywheel_state</code> (RUNNING_HOT, ON, WARMING_UP, COOLING_OFF, STALLED). Fuel chart: STRC ATM net proceeds and repurchases from Strategy weekly 8-Ks (from Nov 2025); SATA issuance = change in shares outstanding × $100 stated amount (not cash proceeds); SATS IPO at $100 stated.`}
 const q=(a,p)=>a.length?a[Math.min(a.length-1,Math.floor(p*(a.length-1)))]:null;
 function trailing(k,n){const R=D.rows.filter(r=>r[k]!=null);return R.slice(-n).map(r=>r[k]).sort((a,b)=>a-b)}
 let ZB=null,MB='ev';
 function gauge(a,bs,x){const mc=D.config.mnav,vc=D.config.valuation||{cheap_below_mnav:1,fair_max_percentile:0.5};
   const k=a.toLowerCase()+'_mnav_'+bs,arr=trailing(k,mc.lookback_trading_days),v=x.mnav;if(!arr.length||v==null)return '<div class="note">— not available</div>';
-  const med=q(arr,vc.fair_max_percentile),p90=q(arr,mc.overheated_percentile),ovr=Math.min(mc.overheated_min_mnav,p90);
-  const cheap=vc.cheap_below_mnav, fairTop=Math.max(cheap,Math.min(med,ovr)), lo=Math.min(0.5,arr[0]-0.05,v-0.05), hi=Math.max(mc.overheated_min_mnav+0.35,v+0.1,arr[arr.length-1]+0.05);
+  const cheap=+CL().toFixed(2),fl=OHF(a),med=q(arr,vc.fair_max_percentile),p90=q(arr,mc.overheated_percentile),ovr=Math.max(cheap,Math.min(fl,p90));
+  const fairTop=Math.max(cheap,Math.min(med,ovr)), lo=Math.min(0.5,arr[0]-0.05,v-0.05), hi=Math.max(fl+0.35,v+0.1,arr[arr.length-1]+0.05);
   const W=t=>Math.max(0,Math.min(100,(t-lo)/(hi-lo)*100));
   const segs=[['CHEAP',lo,cheap],['FAIR',cheap,fairTop],['RICH',fairTop,ovr],['OVERVALUED',ovr,hi]].filter(z=>z[2]>z[1]);
   const ticks=[];[cheap,fairTop,ovr].sort((m,n)=>m-n).forEach(t=>{if(!ticks.length||W(t)-W(ticks[ticks.length-1])>9)ticks.push(t)});
   return `<div class="gwrap"><div class="gauge">${segs.map(z=>`<div title="${z[0]} ${z[1].toFixed(2)}–${z[2].toFixed(2)}x" style="width:${W(z[2])-W(z[1])}%;background:${ZC[z[0]]}99"></div>`).join('')}</div>
       <div class="gmark" style="left:calc(${W(v)}% - 1px);top:16px"></div><div class="glab" style="left:${W(v)}%;top:-4px">${fmt(v,2)}x now</div></div>
      <div class="gticks">${ticks.map(t=>`<span style="left:${W(t)}%">${t.toFixed(2)}x</span>`).join('')}</div>
-     `+(GN[a+'_'+bs]=`CHEAP &lt; ${cheap}x · FAIR to 1y median (${fmt(med,2)}x) · RICH above median · OVERVALUED ≥ ${mc.overheated_min_mnav}x or ≥ ${mc.overheated_percentile*100}th pct (${fmt(p90,2)}x)`,'')}
+     `+(GN[a+'_'+bs]=`CHEAP &lt; ${cheap}x · FAIR to 1y median (${fmt(med,2)}x) · RICH above median · OVERVALUED ≥ ${fmt(fl,2)}x floor${OHT(a)} or ≥ ${mc.overheated_percentile*100}th pct (${fmt(p90,2)}x), never below the cheap line`,'')+`<div class="cl-note">cheap &lt; ${fmt(cheap,2)}x · overheated ≥ ${fmt(fl,2)}x${OHT(a)}</div>`}
 const GN={};
 function pbar(p){if(p==null)return '';const v=Math.max(0,Math.min(100,p*100));return `<div class="pbar" title="1-year percentile: higher than ${Math.round(v)}% of the last year's readings"><span class="pl">1y pct</span><div class="ptrack"><div class="pdot" style="left:${v}%"></div></div><span class="pv">${ord(Math.round(v))}</span></div>`}
 function plain(a,bs,x){const v=x.mnav,z=x.zone;if(v==null)return 'Not available.';
@@ -607,7 +625,7 @@ function renderValuation(){
   const V=S.valuation||{},mc=D.config.mnav,sb=S.signal_basis||'ev';
   const RV=V.relative_verdict||{};
   $('verdict').innerHTML=`<div>Incl. debt & preferreds${sb==='ev'?' <span class="sigtag">drives signals</span>':''}: ${RV.ev||'—'}</div><div style="font-size:14px;font-weight:600;margin-top:4px;color:var(--mut)">Stock only${sb==='basic'?' <span class="sigtag">drives signals</span>':''}: ${RV.basic||'—'}</div>`;
-  $('basisnote').innerHTML=`<b>Stock-only mNAV</b> = price × basic shares ÷ BTC NAV (the number most sites quote). <b>mNAV incl. debt & preferreds</b> = (price × basic shares + debt + preferred notional − cash/USD reserve) ÷ BTC NAV, so it counts every claim ahead of or alongside common. 1.0x = the market values it at exactly its bitcoin. Overheated filter, rotation, dip and zone rules use <b>${BL(sb)}</b>. Zones: CHEAP below ${(D.config.valuation||{}).cheap_below_mnav||1}x; FAIR up to the 1y median; RICH above it; OVERVALUED at the overheated floor or top decile.`;
+  $('basisnote').innerHTML=`<b>Stock-only mNAV</b> = price × basic shares ÷ BTC NAV (the number most sites quote). <b>mNAV incl. debt & preferreds</b> = (price × basic shares + debt + preferred notional − cash/USD reserve) ÷ BTC NAV, so it counts every claim ahead of or alongside common. 1.0x = the market values it at exactly its bitcoin. Overheated filter, rotation, dip and zone rules use <b>${BL(sb)}</b>. Zones: CHEAP below the cheap line (today ${fmt(CL(),2)}x, rising linearly to ${fmt(((D.config.valuation||{}).cheap_below_mnav_schedule||{}).end,2)}x by ${((D.config.valuation||{}).cheap_below_mnav_schedule||{}).end_date}, the estimated halving; checked first); FAIR up to the 1y median; RICH above it; OVERVALUED at the stock's overheated floor (cheap line + 0.15, more while its flywheel is on) or top decile.`;
   const bf=BFLAGS(),fw=A.flywheel;
   const prem=v=>v==null?'—':Math.abs(v-1)<0.0005?'no premium':v>=1?`<span class="pos">+${pct(v-1,1)}</span> premium`:`<span class="neg">−${pct(1-v,1)}</span> discount`;
   $('valcards').innerHTML=ASSETS.map(aa=>{const a=aa.ticker,x=V[a]||{},B=x.market_standard||{},Ev=x.all_in_ev||{},b=bf.per_asset[a]||{},f=fw[aa.preferred]||{};
@@ -616,16 +634,16 @@ function renderValuation(){
       ${gauge(a,bs,o)}${pbar(o.mnav_pct_1y)}</div>`;
     const fc=b.flywheel_cheap?`<span class="badge fc">✓ Flywheel + Cheap</span>`:'';
     const vl=b.very_low_mnav?`<span class="vlow">● Very low mNAV (incl. debt & preferreds)${b.very_low_reason?' ('+esc(b.very_low_reason)+')':''} → secondary cue for ${a}</span>`:'';
-    const fl=f.missing?'':`<span class="vfly">${aa.preferred} ${flyPill(f.peg_state)} ${fstreak(f)}</span>`;
+    const fl=f.missing?'':`<span class="vfly">${aa.preferred} ${flyPill(fcode(f))} ${fstreak(f)}</span>`;
     const dlx=`Diluted equity mNAV (price × assumed-diluted shares ÷ BTC NAV): ${fmt(x.diluted_equity_mnav,3)}x. Shown for reference only; it counts convertible notes as shares, so it isn't used in either gauge.`;
-    return `<div class="card${b.very_low_mnav?' vl':''}${b.flywheel_cheap?' fcb':''}" style="margin:0;border-color:${ZC[x.zone]||'var(--line)'}55;border-top:3px solid ${C[a]}"><h2><span style="color:${C[a]}">${a}</span> <span class="pill vz z-${x.zone}">${x.zone||'—'}</span> <span class="note" style="font-weight:400">on ${BL(sb)}</span></h2>
+    return `<div class="card${b.very_low_mnav?' vl':''}${b.flywheel_cheap?' fcb':''}" style="margin:0;border-color:${ZC[x.zone]||'var(--line)'}55;border-top:3px solid ${C[a]}"><h2><span style="color:${C[a]}">${a}</span> <span class="pill vz z-${x.zone}">${x.zone||'—'}</span> <span class="note" style="font-weight:400">on ${BL(sb)}</span> <span class="cl-note">cheap &lt; ${fmt(CL(),2)}x · overheated ≥ ${fmt(OHF(a),2)}x${OHT(a)}</span></h2>
      <div class="vflags">${fc}${vl}${fl}</div>
      <div class="vpair">${blk('basic',B,'Stock only',MDEF.basic)}${blk('ev',Ev,'Incl. debt & preferreds',MDEF.ev)}</div>
      <details class="sec" style="margin-top:8px"><summary>Details: plain-language read, zone rules &amp; inputs</summary>
      <div class="note">${MDEF.basic} ${MDEF.ev}</div>
      <div class="note"><b>Stock only:</b> ${plain(a,'basic',B)} <span class="mut">Zones: ${GN[a+'_basic']||'—'}</span></div>
      <div class="note"><b>Incl. debt &amp; preferreds:</b> ${plain(a,'ev',Ev)} <span class="mut">Zones: ${GN[a+'_ev']||'—'}</span></div>
-     ${fc?'':`<div class="note">Flywheel + Cheap needs ${aa.preferred} Flywheel ON and CHEAP/low-FAIR mNAV incl. debt &amp; preferreds.</div>`}
+     ${fc?'':`<div class="note">Flywheel + Cheap needs ${aa.preferred}'s flywheel on (running hot / ON / warming up) and CHEAP/low-FAIR mNAV incl. debt &amp; preferreds.</div>`}
      <div class="note">Price $${fmt(x.price)} · BTC held ${fmt(x.btc_held,0)}${srcl(a,'holdings','holdings')} · BTC NAV $${fmt(x.btc_nav_m,0)}M ($${fmt(x.btc_nav_per_basic_share)}/basic share) · diluted mNAV ${fmt(x.diluted_equity_mnav,2)}x${Q(dlx)}</div>
      <div class="note">EV $${fmt(x.enterprise_value_m,0)}M = equity $${fmt(x.price*x.basic_shares/1e6,0)}M (${fmt(x.basic_shares/1e6,1)}M basic sh${srcl(a,'basic_shares','shares')}) + debt $${fmt(x.debt_m,0)}M${srcl(a,'debt_m','debt')} + preferred $${fmt(x.preferred_notional_m,0)}M${srcl(a,a==='MSTR'?'pref_usd_shares':'sata_shares','preferred')} − cash $${fmt(x.cash_m,0)}M${srcl(a,'cash_m','cash')}</div></details></div>`}).join('');
   $('valtopnote').innerHTML=`Premium = mNAV − 1: how much more (or less) than its bitcoin the market pays. Percentile = rank within each basis' own trailing ${mc.lookback_trading_days} trading days. <span class="badge fc" style="margin:0;font-size:11px;padding:1px 7px">✓ Flywheel + Cheap</span> = the parent's Flywheel ON and mNAV incl. debt & preferreds CHEAP or low-FAIR; <span class="vlow" style="display:inline">● Very low mNAV (incl. debt & preferreds)</span> = ≤ ${bf.very_low_max_mnav}x or ≤ ${bf.very_low_max_percentile*100}th pct. Both are display flags; the call follows the rules under "Why this call?".`;
@@ -697,9 +715,9 @@ function renderAtm(){const T=A.atm,st=T.STRC,sa=T.SATA,W=[['30d','30d'],['90d','
     `<tr><td>SATS outstanding</td><td class="num" colspan="4">${T.SATS.latest_shares?fmt(T.SATS.latest_shares/1e6,2)+'M ($'+fmt(T.SATS.stated_value_m,0)+'M at $100 stated)'+(T.SATS.points.length?' · <a href="'+T.SATS.points[T.SATS.points.length-1][2]+'" target="_blank" rel="noopener">source</a>':''):'—'}</td></tr>`;
   $('atm_sataw').innerHTML='<tr><th>As of</th><th class="num">Shares added</th><th class="num">$M at $100</th></tr>'+sa.recent_changes.map(c=>`<tr><td>${c.prev_date} → ${c.date}</td><td class="num">${fmt(c.shares_added,0)}</td><td class="num">${fmt(c.stated_value_m,1)}</td></tr>`).join('');
   const P=T.peg_days,PW=[['30d','30d'],['90d','90d'],['1y','1y']];
-  $('atm_peg').innerHTML='<tr><th>Preferred</th>'+PW.map(w=>`<th class="num">${w[1]}: ≥ $100</th><th class="num">≥ $${D.config.peg.watch_below}</th><th class="num">≥ $${D.config.peg.sell_below}</th>`).join('')+'</tr>'+
+  $('atm_peg').innerHTML='<tr><th>Preferred</th>'+PW.map(w=>`<th class="num">${w[1]}: ≥ $100</th><th class="num">≥ $${fmt(D.config.peg.on_trade_threshold)}</th><th class="num">≥ $${D.config.peg.stalled_below}</th>`).join('')+'</tr>'+
     ['STRC','SATA','SATS'].map(p=>{const x=P[p];if(!x||x.missing)return `<tr><td>${p}</td><td colspan="9" class="note">missing</td></tr>`;
-      return `<tr><td>${p}</td>`+PW.map(([w])=>{const y=x[w];const f=v=>`${pct(v,0)}${y.partial?'<sup>*</sup>':''}`;return `<td class="num">${f(y.at_or_above_par)}</td><td class="num">${f(y.near_par)}</td><td class="num">${f(y.within_1_dollar)}</td>`}).join('')+'</tr>'}).join('');
+      return `<tr><td>${p}</td>`+PW.map(([w])=>{const y=x[w];const f=v=>`${pct(v,0)}${y.partial?'<sup>*</sup>':''}`;return `<td class="num">${f(y.at_or_above_par)}</td><td class="num">${f(y.at_or_above_on_trigger)}</td><td class="num">${f(y.within_1_dollar)}</td>`}).join('')+'</tr>'}).join('');
   $('atmnote').innerHTML=T.notes.map(esc).join('<br>')+`<br><sup>*</sup> Window starts before data coverage (STRC ATM parsed from ${st.coverage_from}; price history start per series: ${Object.entries(P).map(([k,v])=>k+' '+(v.listed_data_from||'—')).join(', ')}), so the total covers less than the full window.`}
 // ---------- events
 function renderEvents(){const today=new Date().toISOString().slice(0,10),h=new Date(Date.now()+7*864e5).toISOString().slice(0,10);
@@ -730,9 +748,9 @@ function renderCharts(){const R=D.rows.filter(r=>r.date>=D.config.window_start);
   plot('c_navps',nv,keepRange('c_navps',baseLayout(ASSETS[0].ticker+' $',{yaxis2:{overlaying:'y',side:'right',title:(ASSETS[1]||{}).ticker+' $',showgrid:false}})));
   const pc=D.config.peg;
   ASSETS.forEach(a=>{const pref=a.preferred,id='c_'+pref.toLowerCase();if(!$(id))return;const RR=R.filter(r=>r[pref]!=null);
-    plot(id,[{name:pref+' close',meta:a.ticker,x:RR.map(r=>r.date),y:RR.map(r=>r[pref]),line:{color:C[pref]},customdata:RR.map(r=>flyL(r['peg_'+pref])),hovertemplate:'$%{y:.2f} · %{customdata}'}],
+    plot(id,[{name:pref+' close',meta:a.ticker,x:RR.map(r=>r.date),y:RR.map(r=>r[pref]),line:{color:C[pref]},customdata:RR.map(r=>flyL(r['fly_'+pref]||r['peg_'+pref])),hovertemplate:'$%{y:.2f} · %{customdata}'}],
       keepRange(id,baseLayout(pref+' $',{margin:{l:60,r:20,t:30,b:20},yaxis:{title:pref+' $ (bands = flywheel state)'},
-      shapes:bands(pref).concat([hline(pc.par,TH().fg,'solid'),hline(pc.on_threshold,SEM.peg.ON[0]),hline(pc.watch_below,SEM.peg.NEAR[0]),hline(pc.sell_below,SEM.peg.SELL[0])])})))});
+      shapes:bands(pref).concat([hline(pc.par,TH().fg,'solid'),hline(pc.full_on_threshold,SEM.fw.ON[0]),hline(pc.on_trade_threshold,SEM.fw.WARMING_UP[0]),hline(pc.stalled_below,SEM.fw.STALLED[0])])})))});
   const F=D.fuel;
   const so=F.sata_outstanding,sbar=so.slice(1).map((p,i)=>({x:p.date,y:(p.shares-so[i].shares)*100/1e6}));
   const sats=A.atm.SATS.points.filter(p=>p[1]>0);
@@ -771,11 +789,12 @@ function renderMethod(){const K=D.strategy_kpi_latest||{},R=D.capital_residuals|
  const res=(k,u)=>(R[k]||[]).map(r=>`${r.date}: ${r.residual>=0?'+':''}${fmt(r.residual/u,u===1?0:2)}${u===1e6?'M':''}`).join(', ');
  $('methodbody').innerHTML=`
  <p><b>The recommendation</b> (rules-based indicator, not financial advice) is computed after each close. It returns exactly one of BUY MSTR, BUY ASST, BUY BOTH or WAIT (no buy right now; data code <code>STAY_BTC</code>):
- <br>1. <b>Trigger:</b> a parent becomes a candidate only when its <b>flywheel is ON</b>, i.e. its preferred printed ${pc.on_consecutive_days} consecutive closes ≥ $${pc.on_threshold} (STRC → MSTR, SATA → ASST).
- <br>2. <b>Filter:</b> a candidate is dropped if its incl. debt & preferreds mNAV is <b>overheated</b> (≥ ${mc.overheated_min_mnav}x <i>and</i> ≥ ${mc.overheated_percentile*100}th percentile of its trailing ${mc.lookback_trading_days} days). Flywheel ON but overheated means "wait / reduce size", and the call stays WAIT (no buy right now).
+ <br>1. <b>Trigger:</b> a parent is a candidate while its <b>flywheel is on</b>: its preferred traded at ≥ $${fmt(pc.on_trade_threshold)} and has not since traded below $${fmt(pc.on_trade_threshold)} for more than ${pc.off_minutes_below} consecutive regular-market minutes (STRC → MSTR, SATA → ASST).
+ <br>2. <b>Filter:</b> a candidate is dropped if its incl. debt & preferreds mNAV is <b>overheated</b>: ≥ its floor <i>and</i> ≥ ${mc.overheated_percentile*100}th percentile of its trailing ${mc.lookback_trading_days} days. Floor = cheap line + ${fmt(mc.overheated_gap_above_cheap,2)} (1.25x on 2026-10-28 rising to 1.55x at the halving estimate; 1.25x for earlier history), + ${fmt(mc.overheated_bonus_on,2)} while the flywheel is on, + ${fmt(mc.overheated_bonus_running_hot,2)} while running hot: a working flywheel earns a higher premium, so a buy isn't filtered out as easily. Flywheel ON but overheated means "wait / reduce size", and the call stays WAIT (no buy right now).
  <br>3. <b>Both survive:</b> if the ASST−MSTR mNAV gap z-score is unusual (≤ ${mc.spread_z_favor_asst} → BUY ASST, ≥ +${mc.spread_z_favor_mstr} → BUY MSTR) only the cheaper one is bought and the other is listed as "also valid"; with a normal gap (or no z yet) the call is <b>BUY BOTH</b> (50/50) and <code>lean</code> names the slightly cheaper one (z &lt; 0 → ASST, else MSTR).
  <br>4. Otherwise: <b>WAIT</b> (no buy right now). If both parents are overheated the subline reads "Both overheated: no buy right now".
- <br>Flywheel state per close, from the preferred's price (STRC → MSTR, SATA → ASST; the preferreds are flywheel indicators, never trades): <b>Flywheel ON</b> (confirmed: ${pc.on_consecutive_days} closes ≥ $${pc.on_threshold}), <b>Flywheel slowing</b> (at/above $${pc.on_threshold} but not yet confirmed, or below it without stalling), <b>Flywheel stalled</b> (&lt; $${pc.sell_below} or ${pc.sell_consecutive_down_closes_below_peg} straight down closes below $${pc.watch_below}). <code>signals.json</code> keeps the original machine codes in <code>peg_state</code> and adds <code>flywheel_state</code>.
+ <br>Flywheel state, from the preferred's trades (STRC → MSTR, SATA → ASST; the preferreds are flywheel indicators, never trades). <b>On</b> the moment a regular-hours bar's high is ≥ $${fmt(pc.on_trade_threshold)}; <b>off</b> only after more than ${pc.off_minutes_below} consecutive regular-market minutes below $${fmt(pc.on_trade_threshold)} (gaps across the close / weekends don't count). Ladder: <b>Running hot</b> (on, last ≥ $${pc.running_hot.price_min} and volume ≥ ${pc.running_hot.vol_mult_min}× its ${pc.running_hot.vol_avg_days}-day average, today's volume pace-adjusted for the share of the session elapsed, and ≥ ${pc.running_hot.min_share_at_or_above*100}% of the day's volume traded at ≥ $100 when intraday bars exist), <b>Flywheel ON</b> (on, ≥ $${pc.full_on_threshold}), <b>Warming up</b> (on, below $${pc.full_on_threshold}), <b>Cooling off</b> (off, ≥ $${pc.stalled_below}), <b>Stalled</b> (off, &lt; $${pc.stalled_below}). Data: Yahoo 1-minute bars for the last ~7 days, 5-minute bars back ~60 days; older days use a <b>daily approximation</b> (on if the day's high ≥ $${fmt(pc.on_trade_threshold)}; off if close and low are both below $${fmt(pc.on_trade_threshold)}; running hot needs close ≥ $100 on ≥ ${pc.running_hot.vol_mult_min}× volume). <code>signals.json</code> keeps the legacy codes in <code>peg_state</code> (any on-state → ON, cooling off → WATCH, stalled → SELL) and adds <code>flywheel_code</code>, <code>on_since</code> and <code>last_below_trigger</code>.
+ <br><b>Cheap line</b>: ${fmt((D.config.valuation.cheap_below_mnav_schedule||{}).start,2)}x on ${(D.config.valuation.cheap_below_mnav_schedule||{}).start_date}, rising linearly to ${fmt((D.config.valuation.cheap_below_mnav_schedule||{}).end,2)}x on ${(D.config.valuation.cheap_below_mnav_schedule||{}).end_date} (next-halving estimate), flat after; history before the start date uses a flat ${fmt((D.config.valuation.cheap_below_mnav_schedule||{}).start,2)}x. CHEAP is checked first, so a stock below the line is never overvalued.
  <br><code>signals.json</code> carries <code>recommendation</code>, <code>recommendation_reason</code>, <code>signal_hash</code> (changes whenever the action, also-valid, any flywheel state or overheated flag changes) and <code>last_changed</code>. The older per-asset signals (dip rule, rotation, odds) are kept in the expandable "Secondary signals" card.</p>
  <p><b>Prices:</b> Yahoo Finance chart API (daily closes; split-adjusted: MSTR 10-for-1 on 2024-08-08, ASST 1-for-20 reverse split on 2026-02-06). Tickers ${ASSETS.map(a=>a.ticker).join(', ')}, BTC-USD, STRC, SATA${(D.sats&&Object.keys(D.sats).length)?', SATS':''}, EURUSD=X (for STRE). Companies come from <code>config.json → assets</code>; adding one also needs its own filing adapters in <code>scripts/</code>.</p>
  <p><b>Three mNAVs, one formula for both stocks</b> (BTC NAV = BTC held × BTC-USD close; every input is a daily step function that changes on each disclosed "as of" date):

@@ -4858,5 +4858,21 @@
 "class_a": 267713485.0,
 "class_b": 19640250.0
 }
+},
+"0001193125-26-435451": {
+"filed": "2026-10-28",
+"url": "https://www.sec.gov/Archives/edgar/data/1050446/000119312526435451/mstr-20261028.htm",
+"v": 3,
+"parsed": {}
+},
+"8k:0001193125-26-435451": {
+"v": 1,
+"filed": "2026-10-28",
+"url": "https://www.sec.gov/Archives/edgar/data/1050446/000119312526435451/mstr-20261028.htm",
+"parsed": {
+"atm": [],
+"rep": [],
+"levels": {}
+}
 }
 }
