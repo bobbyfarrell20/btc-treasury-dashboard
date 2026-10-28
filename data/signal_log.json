@@ -8,7 +8,7 @@
    "new": "STAY_BTC",
    "old_hash": null,
    "new_hash": "a2be7024860b",
-   "reason": "No flywheel ON (STRC slowing \u2192 flywheel off for MSTR; SATA stalled \u2192 flywheel off for ASST): wait (no buy right now)",
+   "reason": "No flywheel ON (STRC cooling off \u2192 flywheel off for MSTR; SATA stalled \u2192 flywheel off for ASST): wait (no buy right now)",
    "initial": true,
    "after": {
     "1d": {
@@ -30,7 +30,7 @@
    "new": "BUY_MSTR",
    "old_hash": "a2be7024860b",
    "new_hash": "38236c9bd469",
-   "reason": "STRC Flywheel ON \u2192 flywheel on for MSTR; MSTR mNAV incl. debt & preferreds 1.09x is not overheated",
+   "reason": "STRC Warming up \u2192 flywheel on for MSTR; MSTR mNAV incl. debt & preferreds 1.08x is not overheated",
    "initial": false,
    "after": {
     "1d": null,
