@@ -381,10 +381,10 @@ def main():
             parts = []
             if buys:
                 if len(buys) == 2 and rot != "NEUTRAL": parts.append("BUY " + ("ASST" if rot == "FAVOR_ASST" else "MSTR") + " (both flywheels ON; mNAV rotation tilts it)")
-                else: parts.append("; ".join(f"BUY {a} ({PREF_OF[a]} ON \u2192 flywheel on for {a})" for a in buys))
-            if sells: parts.append("; ".join(f"SELL/TRIM {a} ({PREF_OF[a]} stalled \u2192 flywheel off for {a})" for a in sells))
+                else: parts.append("; ".join(f"BUY {a} ({PREF_OF[a]} {per[a]['preferred_flywheel_state']} \u2192 flywheel on for {a})" for a in buys))
+            if sells: parts.append("; ".join(f"SELL/TRIM {a} ({PREF_OF[a]} {per[a]['preferred_flywheel_state']} \u2192 flywheel off for {a})" for a in sells))
             watch = [a for a in ("MSTR", "ASST") if per[a]["action"] == "WATCH"]
-            if watch: parts.append("; ".join(f"WATCH {a} ({PREF_OF[a]} cooling off \u2192 flywheel off for {a})" for a in watch))
+            if watch: parts.append("; ".join(f"WATCH {a} ({PREF_OF[a]} {per[a]['preferred_flywheel_state']} \u2192 flywheel off for {a})" for a in watch))
             if dip: parts.append(f"DIP-BUY: BTC {r['btc_chg']*100:.0f}% in {dc['lookback_days']} trading days; buy {hardest} (mNAV fell most)")
             if not parts: parts.append("No strong signal - hold cash / stay patient")
             head = "; ".join(parts)
@@ -532,7 +532,7 @@ def main():
     if lc:
         po = next(r_ for r_ in rows if r_["rec_hash"] == lc["old_hash"])
         pn = next(r_ for r_ in rows if r_["rec_hash"] == lc["new_hash"])
-        lc["what"] = ", ".join(f"{x['preferred']} {AN.fly_label(po['rec']['per_asset'][t]['peg_state'])} \u2192 {AN.fly_label(x['peg_state'])} (flywheel for {t})" for t, x in pn["rec"]["per_asset"].items()
+        lc["what"] = ", ".join(f"{x['preferred']} {AN.fly_label(po['rec']['per_asset'][t]['peg_state'], po['rec']['per_asset'][t].get('flywheel_code'))} \u2192 {AN.fly_label(x['peg_state'], x.get('flywheel_code'))} (flywheel for {t})" for t, x in pn["rec"]["per_asset"].items()
                                if po["rec"]["per_asset"][t]["peg_state"] != x["peg_state"]) or "recommendation/overheat change"
     sources = {
         "MSTR": {"holdings": max(([h["date"], doc["url"]] for doc in mdocs for h in doc["parsed"].get("holdings", [])), default=None),

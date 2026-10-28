@@ -60,6 +60,7 @@ def relabel_reason(txt):
     txt = txt.replace("wait / reduce size, stay in BTC", "wait (no buy right now)").replace(": stay in BTC", ": wait (no buy right now)")
     txt = txt.replace("Both pegs confirmed", "Both flywheels ON").replace("Peg on but parent overheated", "Flywheel ON but parent overheated")
     txt = txt.replace("(all-in mNAV)", "(mNAV incl. debt & preferreds)").replace("all-in mNAV", "mNAV incl. debt & preferreds")
+    txt = re.sub(r"(STRC|SATA) slowing (?=\u2192)", r"\1 cooling off ", txt).replace("Flywheel slowing", "Cooling off").replace("Flywheel stalled", "Stalled")
     return re.sub(r"(STRC|SATA) peg is on but", r"\1 Flywheel ON but", txt)
 
 # ---------------------------------------------------------------- recommendation
@@ -84,10 +85,10 @@ def recommendation(r, assets, cfg):
     notes, other, lean = [], None, None
     for t, x in info.items():
         if x["peg_confirmed"] and x["overheated"]:
-            notes.append(f"{x['preferred']} Flywheel ON but {t} mNAV incl. debt & preferreds is overheated: wait / reduce size")
+            notes.append(f"{x['preferred']} {x['flywheel_state']} but {t} mNAV incl. debt & preferreds is overheated: wait / reduce size")
     if len(cands) == 1:
         act, t = "BUY_" + cands[0], cands[0]
-        reason = f"{info[t]['preferred']} Flywheel ON \u2192 flywheel on for {t}; {t} mNAV incl. debt & preferreds {info[t]['mnav_'+ob]:.2f}x is not overheated"
+        reason = f"{info[t]['preferred']} {info[t]['flywheel_state']} \u2192 flywheel on for {t}; {t} mNAV incl. debt & preferreds {info[t]['mnav_'+ob]:.2f}x is not overheated"
     elif len(cands) >= 2:
         # spread = second - first (ASST - MSTR); z < 0 -> second relatively cheaper
         t0, t1 = assets[0]["ticker"], assets[1]["ticker"]
@@ -394,6 +395,8 @@ def update_signal_log(path, rec, as_of, gen_utc, rows, assets, basis="ev"):
     if not E or E[-1]["new_hash"] != h:
         E.append({"detected_utc": gen_utc, "as_of": as_of, "old": E[-1]["new"] if E else None, "new": rec["action"],
                   "old_hash": E[-1]["new_hash"] if E else None, "new_hash": h, "reason": rec["reason"], "initial": not E})
+    elif E[-1].get("as_of") == as_of:
+        E[-1]["reason"] = rec["reason"]  # same-day rerun: keep the newest wording / numbers
     for e in E: e["reason"] = relabel_reason(e.get("reason"))
     for e in E: e["after"] = _moves(rows, e["as_of"], assets, basis)
     path.write_text(json.dumps(log, indent=1))
@@ -443,7 +446,7 @@ def signal_events(rows, assets, basis="ev"):
             x = rec["per_asset"].get(held_prev, {})
             why = (f"{held_prev} mNAV incl. debt & preferreds overheated ({mn(r, held_prev):.2f}x) → exit to "
                    + ("BTC" if not held_now else held_now)) if x.get("overheated") and mn(r, held_prev) is not None else \
-                  (f"{pref[held_prev]} {FLY_SHORT.get(x.get('peg_state'), 'no data')} → flywheel off for {held_prev}; exit to "
+                  (f"{pref[held_prev]} {CODE_SHORT.get(x.get('flywheel_code')) or FLY_SHORT.get(x.get('peg_state'), 'no data')} → flywheel off for {held_prev}; exit to "
                    + ("BTC" if not held_now else held_now)) if not x.get("peg_confirmed") else \
                   (f"Rotation tiebreak moved to {held_now}" if held_now else "Exit to BTC")
             ev.append({"date": r["date"], "asset": held_prev, "signal": "SELL", "from": prev, "to": act,
@@ -452,7 +455,7 @@ def signal_events(rows, assets, basis="ev"):
             since[held_now] = r["date"]
             ev.append({"date": r["date"], "asset": held_now, "signal": "BUY", "from": prev, "to": act, "held_since": None,
                        "mnav_ev": mn(r, held_now),
-                       "reason": f"{pref[held_now]} Flywheel ON → flywheel on for {held_now}; mNAV incl. debt & preferreds {mn(r, held_now):.2f}x not overheated"
+                       "reason": f"{pref[held_now]} {rec['per_asset'].get(held_now, {}).get('flywheel_state') or 'Flywheel ON'} → flywheel on for {held_now}; mNAV incl. debt & preferreds {mn(r, held_now):.2f}x not overheated"
                                  + (f" (rotation tiebreak; {rec['also_valid']} also valid)" if rec.get("also_valid") else "")
                                  + (" (buy both, 50/50)" if act == "BUY_BOTH" else ""),
                        "full_reason": rec["reason"]})
@@ -462,7 +465,7 @@ def signal_events(rows, assets, basis="ev"):
                 notes.add(t)
                 if t not in prev_note and not any(e["date"] == r["date"] and e["asset"] == t for e in ev):
                     ev.append({"date": r["date"], "asset": t, "signal": "OVERHEAT_WAIT", "from": prev, "to": act, "held_since": None,
-                               "mnav_ev": mn(r, t), "reason": f"{pref[t]} Flywheel ON but {t} mNAV incl. debt & preferreds overheated ({mn(r, t):.2f}x): wait / reduce size",
+                               "mnav_ev": mn(r, t), "reason": f"{pref[t]} {x.get('flywheel_state') or 'Flywheel ON'} but {t} mNAV incl. debt & preferreds overheated ({mn(r, t):.2f}x): wait / reduce size",
                                "full_reason": rec["reason"]})
         prev_note, prev = notes, act
     counts = {t: {s: sum(1 for e in ev if e["asset"] == t and e["signal"] == s) for s in ("BUY", "SELL", "OVERHEAT_WAIT")} for t in key}
