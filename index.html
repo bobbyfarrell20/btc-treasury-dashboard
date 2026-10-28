@@ -348,6 +348,9 @@ const MDEF={basic:'Stock only: stock market value ÷ bitcoin held.',ev:'Incl. de
 const ETF=new Intl.DateTimeFormat('en-US',{timeZone:'America/New_York',month:'short',day:'numeric',hour:'numeric',minute:'2-digit'});
 const genET=()=>ETF.format(new Date(D.generated_utc))+' ET';
 const closeD=d=>new Intl.DateTimeFormat('en-US',{timeZone:'UTC',month:'short',day:'numeric'}).format(new Date(d+'T12:00:00Z'));
+// "Oct 27 close", or "Oct 28 intraday" when the job ran during that same ET day before the 4 PM close
+const asOfL=()=>{const g=new Date(D.generated_utc),p=Object.fromEntries(new Intl.DateTimeFormat('en-CA',{timeZone:'America/New_York',year:'numeric',month:'2-digit',day:'2-digit',hour:'2-digit',hourCycle:'h23'}).formatToParts(g).map(x=>[x.type,x.value]));
+  return closeD(S.as_of)+(S.as_of===`${p.year}-${p.month}-${p.day}`&&+p.hour<16?' intraday':' close')};
 // ---------- freshness: expected last US trading close (ET, weekdays after 16:30; exchange holidays not modeled)
 function freshness(){const now=new Date(new Date().toLocaleString('en-US',{timeZone:'America/New_York'}));
   const d=new Date(now),wk=x=>x.getDay()>=1&&x.getDay()<=5;
@@ -484,13 +487,13 @@ function renderTop(){const F=freshness(),fw=A.flywheel,t=lastTwo('btc');
   const r=$('tb_rec');r.className='pill r-'+S.recommendation;r.textContent=(S.recommendation_label||RECL[S.recommendation]||S.recommendation)+(S.recommendation==='STAY_BTC'?' · no buy':S.recommendation==='BUY_BOTH'&&S.recommendation_lean?' · '+S.recommendation_lean+' leans cheaper':'');
   {const x=RVD('ev'),el=$('tb_rv');if(el)el.innerHTML=`<span class="pill tb-rv v-${x.verdict}" title="${esc(x.verdict_text)} · ASST/MSTR mNAV (incl. debt & preferreds) ratio ${fmt(x.ratio_now,2)}x vs ${fmt(x.ratio_mean_1y,2)}x 1y avg · gap z ${sx2(x.diff_z)}">${x.verdict==='NORMAL'?'Spread normal':x.cheaper_vs_usual+' cheap'}</span>`}
   for(const a of ASSETS){const f=fw[a.preferred],el=$('tb_'+a.preferred.toLowerCase());if(!el)continue;el.innerHTML=flyPill(f.peg_state,`${a.preferred} ${flyS(f.peg_state)}`,`${a.preferred} $${fmt(f.close)} · ${flyL(f.peg_state)} · ${fstreak(f)} · flywheel indicator for ${a.ticker}, not a trade`)}
-  $('tb_fresh').innerHTML=`<span class="dot" style="background:${F.col}"></span><span class="note tb-asof">${closeD(S.as_of)} close · upd ${genET()}</span>`;
+  $('tb_fresh').innerHTML=`<span class="dot" style="background:${F.col}"></span><span class="note tb-asof">${asOfL()} · upd ${genET()}</span>`;
   $('tb_fresh').title=`Data ${F.txt}: last bar ${S.as_of}, expected ${F.exp}. Generated ${D.generated_utc} UTC (${F.ageH.toFixed(1)} h ago).`;
   const tk=[['BTC','btc',0],...ASSETS.map(a=>[a.ticker,a.ticker,2])].map(([n,k,dp])=>{const t=lastTwo(k);if(!t)return'';
     return `<div class="tk" title="last close ${t.d}"><div class="s">${n}</div><span class="p">$${fmt(t.v,dp)}</span><span class="c ${cls(t.ch)}">${t.ch==null?'':(t.ch>=0?'▲ +':'▼ ')+pct(t.ch,2).replace('-','')}</span></div>`}).join('');
   $('tickers').innerHTML=tk;
   const lvl={g:'Fresh',y:'1 session behind',r:'Stale'}[F.lv];
-  $('gen').innerHTML=`<span class="dot" style="background:${F.col}"></span><b style="color:${F.col}">${lvl}</b> · Data as of ${closeD(S.as_of)} close · updated ${genET()} ${Q('Updated = when the data job last ran (shown in ET). Data as of = the last US market close included. Dot: green = the latest US trading close is in (expected '+F.exp+'). Yellow = one session behind (e.g. Yahoo has not finalized today\'s bar yet). Red = two or more sessions behind. Exchange holidays are not modeled, so the day after a holiday can show yellow.')}`}
+  $('gen').innerHTML=`<span class="dot" style="background:${F.col}"></span><b style="color:${F.col}">${lvl}</b> · Data as of ${asOfL()} · updated ${genET()} ${Q('Updated = when the data job last ran (shown in ET). Data as of = the last US market close included (\'intraday\' if the job ran before that day\'s 4 PM ET close). Dot: green = the latest US trading close is in (expected '+F.exp+'). Yellow = one session behind (e.g. Yahoo has not finalized today\'s bar yet). Red = two or more sessions behind. Exchange holidays are not modeled, so the day after a holiday can show yellow.')}`}
 function implication(a,f){const p=a.preferred,t=a.ticker,st=f.peg_state;
   if(st==='ON')return `${p} Flywheel ON (${fstreak(f)}) → flywheel on for ${t}: BTC-per-share acceleration likely, ${t} qualifies for the call`;
   if(st==='NEAR')return `${p} slowing near par (${fstreak(f)}) → flywheel off for ${t} until ${f.required_days} straight closes ≥ $${f.threshold}`;
