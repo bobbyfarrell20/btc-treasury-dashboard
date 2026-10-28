@@ -21,7 +21,7 @@
     "new": "STAY_BTC"
   },
   "_hash_note": "signal_hash changes when the recommendation, also_valid, any preferred peg state or any overheated flag changes; last_changed is the most recent trading day it changed.",
-  "generated_utc": "2026-10-27T13:06:09+00:00",
+  "generated_utc": "2026-10-28T01:21:48+00:00",
   "as_of": "2026-10-26",
   "disclaimer": "Rules-based indicator, not financial advice.",
   "recommendation_detail": {
@@ -481,7 +481,7 @@
       "odds": [
         {
           "outcome": "\u2191 100,000",
-          "yes": 0.165
+          "yes": 0.185
         },
         {
           "outcome": "\u2193 55,000",
@@ -496,7 +496,7 @@
       "odds": [
         {
           "outcome": "No change",
-          "yes": 0.9415
+          "yes": 0.9605
         }
       ]
     },
@@ -507,7 +507,7 @@
       "odds": [
         {
           "outcome": "Before Jan 1, 2027",
-          "yes": 0.069
+          "yes": 0.056
         }
       ]
     },
@@ -529,7 +529,7 @@
       "odds": [
         {
           "outcome": "Democratic Party",
-          "yes": 0.655
+          "yes": 0.665
         }
       ]
     }
@@ -542,19 +542,19 @@
       "top": [
         {
           "outcome": "\u2191 90,000",
-          "yes": 0.415
+          "yes": 0.435
         },
         {
           "outcome": "\u2191 100,000",
-          "yes": 0.165
+          "yes": 0.185
         },
         {
           "outcome": "\u2193 55,000",
           "yes": 0.105
         },
         {
-          "outcome": "\u2193 50,000",
-          "yes": 0.075
+          "outcome": "\u2191 110,000",
+          "yes": 0.085
         }
       ]
     },
@@ -565,15 +565,15 @@
       "top": [
         {
           "outcome": "No change",
-          "yes": 0.9415
+          "yes": 0.9605
         },
         {
           "outcome": "25 bps increase",
-          "yes": 0.055
+          "yes": 0.0365
         },
         {
           "outcome": "50+ bps increase",
-          "yes": 0.0035
+          "yes": 0.0045
         },
         {
           "outcome": "25 bps decrease",
@@ -588,19 +588,19 @@
       "top": [
         {
           "outcome": "25 bps increase",
-          "yes": 0.755
+          "yes": 0.765
         },
         {
           "outcome": "No change",
-          "yes": 0.21
+          "yes": 0.205
         },
         {
           "outcome": "50+ bps increase",
-          "yes": 0.0265
+          "yes": 0.0225
         },
         {
-          "outcome": "50+ bps decrease",
-          "yes": 0.0075
+          "outcome": "25 bps decrease",
+          "yes": 0.0065
         }
       ]
     },
@@ -615,7 +615,7 @@
         },
         {
           "outcome": "1 (25 bps)",
-          "yes": 0.0155
+          "yes": 0.0175
         },
         {
           "outcome": "3 (75 bps)",
@@ -634,7 +634,7 @@
       "top": [
         {
           "outcome": "Clarity Act (H.R.3633) signed into law in 2026?",
-          "yes": 0.0385
+          "yes": 0.0405
         }
       ]
     },
@@ -671,11 +671,11 @@
       "top": [
         {
           "outcome": "Democratic Party",
-          "yes": 0.655
+          "yes": 0.665
         },
         {
           "outcome": "Republican Party",
-          "yes": 0.345
+          "yes": 0.335
         }
       ]
     },
@@ -686,7 +686,7 @@
       "top": [
         {
           "outcome": "1M+",
-          "yes": 0.03
+          "yes": 0.0315
         }
       ]
     },
@@ -697,7 +697,7 @@
       "top": [
         {
           "outcome": "December 31",
-          "yes": 0.89
+          "yes": 0.895
         }
       ]
     },
@@ -719,7 +719,7 @@
       "top": [
         {
           "outcome": "Above $99,999.99",
-          "yes": 0.19
+          "yes": 0.21
         },
         {
           "outcome": "Above $109,999.99",
@@ -746,11 +746,11 @@
         },
         {
           "outcome": "Below $50,000.00",
-          "yes": 0.09
+          "yes": 0.08
         },
         {
           "outcome": "Below $40,000.00",
-          "yes": 0.05
+          "yes": 0.06
         },
         {
           "outcome": "Below $45,000.00",
@@ -765,11 +765,11 @@
       "top": [
         {
           "outcome": "Fed maintains rate",
-          "yes": 0.93
+          "yes": 0.96
         },
         {
           "outcome": "Hike 25bps",
-          "yes": 0.07
+          "yes": 0.04
         },
         {
           "outcome": "Cut 25bps",
@@ -788,7 +788,7 @@
       "top": [
         {
           "outcome": "Hike 25bps",
-          "yes": 0.75
+          "yes": 0.74
         },
         {
           "outcome": "Fed maintains rate",
@@ -796,11 +796,11 @@
         },
         {
           "outcome": "Hike >25bps",
-          "yes": 0.05
+          "yes": 0.04
         },
         {
           "outcome": "Cut 25bps",
-          "yes": 0.02
+          "yes": 0.01
         }
       ]
     },
@@ -810,16 +810,16 @@
       "url": "https://kalshi.com/markets/kxcryptostructure",
       "top": [
         {
-          "outcome": "Before Jan 1, 2028",
-          "yes": 0.22
-        },
-        {
           "outcome": "Before Jul 1, 2027",
           "yes": 0.21
         },
         {
           "outcome": "Before Oct 1, 2027",
-          "yes": 0.16
+          "yes": 0.2
+        },
+        {
+          "outcome": "Before Jan 1, 2028",
+          "yes": 0.17
         },
         {
           "outcome": "Before Apr 1, 2027",
@@ -834,11 +834,11 @@
       "top": [
         {
           "outcome": "Democratic Party",
-          "yes": 0.904
+          "yes": 0.911
         },
         {
           "outcome": "Republican Party",
-          "yes": 0.096
+          "yes": 0.097
         }
       ]
     },
@@ -849,11 +849,11 @@
       "top": [
         {
           "outcome": "Democratic Party",
-          "yes": 0.65
+          "yes": 0.64
         },
         {
           "outcome": "Republican Party",
-          "yes": 0.36
+          "yes": 0.37
         }
       ]
     }
