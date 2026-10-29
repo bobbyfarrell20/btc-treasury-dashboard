@@ -224,8 +224,8 @@
         "id": "what-price-will-bitcoin-hit-before-2027",
         "short": "BTC in 2026",
         "outcomes": [
-          "↑ 100,000",
-          "↓ 55,000"
+          "\u2191 100,000",
+          "\u2193 55,000"
         ]
       },
       {
@@ -275,5 +275,7 @@
     "stated_value": 100.0,
     "issue_price": 90.0,
     "ipo_date": "2026-10-15"
-  }
+  },
+  "refresh_trigger_url": "",
+  "_refresh_trigger_comment": "Optional URL of a proxy (see workers/refresh-trigger) that starts update.yml. Empty = Refresh opens the GitHub Run workflow page and polls. Never put a token here."
 }

@@ -143,7 +143,7 @@ details.card{margin-bottom:10px;padding:11px 14px}
 .tb-upm{display:none}
 </style></head><body>
 <div class="topbar" id="topbar"><span class="tb-b" id="tb_btc">BTC …</span><span id="tb_rec" class="pill">…</span><span id="tb_rv"></span><span id="tb_strc"></span><span id="tb_sata"></span>
- <span class="tb-r"><span id="tb_fresh" title="data freshness"></span><button type="button" class="btn tbref" id="tbref" title="Refresh data now (re-downloads the data files; no page reload)" aria-label="Refresh data"><span class="ri">↻</span><span class="rl"> Refresh</span></button><span class="tbrefmsg" id="tbrefmsg" aria-live="polite"></span><button class="btn ib" id="themebtn" title="Toggle light/dark theme">☾</button></span></div>
+ <span class="tb-r"><span id="tb_fresh" title="data freshness"></span><button type="button" class="btn tbref" id="tbref" title="Start a fresh data run and update when the new data is published (a few minutes)" aria-label="Refresh data"><span class="ri">↻</span><span class="rl"> Refresh</span></button><span class="tbrefmsg" id="tbrefmsg" aria-live="polite"></span><button class="btn ib" id="themebtn" title="Toggle light/dark theme">☾</button></span></div>
 <header class="hero"><div class="hero-in">
  <div class="brand"><div class="logo" aria-hidden="true">₿</div><div><h1>Flywheel Rotation Tracker</h1><div class="tag">MSTR vs ASST, powered by STRC &amp; SATA, with BTC as home base</div></div></div>
  <div class="tickers" id="tickers"></div></div></header>
@@ -161,7 +161,7 @@ details.card{margin-bottom:10px;padding:11px 14px}
 <section id="decision">
 <div class="rec" id="recbanner"><div class="lbl">Today's call · rules-based indicator, not financial advice</div><div class="big" id="rec_big">…</div><div class="recsub" id="rec_sub"></div><div class="recshort" id="rec_short"></div></div>
 <div class="chips3" id="chips"></div>
-<div class="gen"><span id="gen">loading…</span> <span class="refw"><button type="button" class="btn refb" id="refbtn" title="Check for newer data now (re-downloads the data files; no page reload)" aria-label="Refresh data"><span class="ri">↻</span> <span class="rl">Refresh</span></button><span class="refmsg" id="refmsg" aria-live="polite"></span> · <a href="https://github.com/bobbyfarrell20/btc-treasury-dashboard/actions/workflows/update.yml" target="_blank" rel="noopener" title="Opens GitHub Actions: press &quot;Run workflow&quot; to pull fresh prices and rebuild. A full refresh takes a few minutes; then tap Refresh here.">Run fresh update ↗</a></span></div>
+<div class="gen"><span id="gen">loading…</span> <span class="refw"><button type="button" class="btn refb" id="refbtn" title="Start a fresh data run and update when the new data is published (a few minutes)" aria-label="Refresh data"><span class="ri">↻</span> <span class="rl">Refresh</span></button><span class="refmsg" id="refmsg" aria-live="polite"></span> · <a href="https://github.com/bobbyfarrell20/btc-treasury-dashboard/actions/workflows/update.yml" target="_blank" rel="noopener" title="Opens GitHub Actions: press &quot;Run workflow&quot; to pull fresh prices and rebuild. A full refresh takes a few minutes; then tap Refresh here.">Run fresh update ↗</a></span></div>
 <details class="sec" id="howrec"><summary>Why this call? Full reason and rules</summary>
 <div class="card" style="margin:6px 0 0"><div class="why" id="rec_why"></div><div class="note" id="rec_more"></div>
 <div class="legend" id="legend" style="text-align:left;margin-top:6px"></div>
@@ -848,17 +848,28 @@ function safe(n,f){try{f()}catch(e){console.warn(n,e);const el=document.getEleme
 function renderAll(){
  for(const [n,f] of [['relative value',renderRV],['top',renderTop],['recommendation',renderRec],['chips',renderChips],['flywheel',renderFlywheel],['summary',renderSummary],['kpis',renderKpis],['signals',renderSignal],['valuation',renderValuation],['yield',renderYield],['atm',renderAtm],['events',()=>{initEvents();renderEvents()}],['toggles',initToggles],['charts',()=>{renderCharts();segInit('gbasis',GB,b=>{GB=b;plotSpread()});segInit('spmode',SPM,b=>{SPM=b;plotSpread()})}],['peg performance',renderPegPerf],['backtest',renderBacktest],['signal log',renderSigLog],['big moves',renderBig],['odds',renderPM],['method',renderMethod],['csv',initCsv]])safe(n,f);
  linkCharts()}
-// Refresh button: re-fetch the static data files (cache-busted) and re-render in place. No tokens/secrets here;
-// a brand-new data run is started from GitHub Actions via the "Run fresh update" link.
+// Refresh button: starts a fresh data run, then polls the published files until a newer generated_utc appears.
+// No tokens/secrets in this page. If config.json refresh_trigger_url is set (a tiny proxy, e.g. workers/refresh-trigger,
+// that holds an actions:write token server-side) it POSTs there; otherwise it opens the GitHub "Run workflow" page.
 function initRefresh(){const bs=[$('refbtn'),$('tbref')].filter(Boolean),ms=[$('refmsg'),$('tbrefmsg')].filter(Boolean);let tm,busy=false;
- const say=(t,ms2)=>{clearTimeout(tm);ms.forEach(m=>m.textContent=t);if(ms2)tm=setTimeout(()=>ms.forEach(m=>m.textContent=''),ms2)};
+ const WF='https://github.com/bobbyfarrell20/btc-treasury-dashboard/actions/workflows/update.yml';
+ const say=(t,ms2)=>{clearTimeout(tm);ms.forEach(m=>m.innerHTML=t);if(ms2)tm=setTimeout(()=>ms.forEach(m=>m.textContent=''),ms2)};
  const set=on=>bs.forEach(b=>{b.disabled=on;b.classList.toggle('spin',on)});
- const go=async()=>{if(busy)return;busy=true;set(true);say('Checking…');const t0=Date.now(),key=D.generated_utc+'|'+S.generated_utc;
-  try{const [d,s,e]=await Promise.all([J('data/dashboard.json'),J('signals.json'),J('data/events.json')]);let mk=null;try{mk=await J('data/markets.json')}catch(x){}
-   await new Promise(r=>setTimeout(r,Math.max(0,500-(Date.now()-t0))));
-   if(d.generated_utc+'|'+s.generated_utc===key){safe('top',renderTop);say('Up to date ✓',4000)}
-   else{D=d;S=s;E=e;M=mk;A=D.analytics;ASSETS=A.assets;ASSETS.forEach(a=>{if(a.color)C[a.ticker]=a.color});renderAll();say('Updated ✓',4000)}
-  }catch(err){console.warn('refresh',err);say('Reloading…');const u=new URL(location.href);u.searchParams.set('t',Date.now());location.replace(u.href);return}
+ const pull=async()=>{const [d,s,e]=await Promise.all([J('data/dashboard.json'),J('signals.json'),J('data/events.json')]);let mk=null;try{mk=await J('data/markets.json')}catch(x){}return {d,s,e,mk}};
+ const apply=({d,s,e,mk})=>{D=d;S=s;E=e;M=mk;A=D.analytics;ASSETS=A.assets;ASSETS.forEach(a=>{if(a.color)C[a.ticker]=a.color});renderAll()};
+ const go=async()=>{if(busy)return;busy=true;set(true);say('Starting fresh update…');const key=D.generated_utc+'|'+S.generated_utc;
+  try{let url='';try{url=(await J('config.json')).refresh_trigger_url||''}catch(x){}
+   let started=false;
+   if(url){try{const r=await fetch(url,{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({source:'dashboard'})});started=r.ok}catch(x){console.warn('trigger',x)}}
+   if(!started){window.open(WF,'_blank','noopener');say(`Press <b>Run workflow</b> in the GitHub tab · waiting for new data…`)}
+   else say('Fresh update running · waiting for new data (≈3–5 min)…');
+   const t0=Date.now();
+   while(Date.now()-t0<8*60e3){await new Promise(r=>setTimeout(r,10000));
+    let x;try{x=await pull()}catch(err){continue}
+    if(x.d.generated_utc+'|'+x.s.generated_utc!==key){apply(x);say('Updated ✓',6000);return}
+    const m=Math.round((Date.now()-t0)/60e3);say((started?'Fresh update running':'Waiting for the GitHub run')+` · ${m} min…`)}
+   say(`Timed out. <a href="${WF}" target="_blank" rel="noopener">Check the run ↗</a>`,15000);
+  }catch(err){console.warn('refresh',err);say('Refresh failed',5000)}
   finally{busy=false;set(false)}};
  bs.forEach(b=>b.onclick=go)}
 </script></body></html>
