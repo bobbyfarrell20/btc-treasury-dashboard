@@ -4874,5 +4874,31 @@
 "rep": [],
 "levels": {}
 }
+},
+"0001193125-26-437776": {
+"filed": "2026-10-29",
+"url": "https://www.sec.gov/Archives/edgar/data/1050446/000119312526437776/mstr-20261028.htm",
+"v": 3,
+"parsed": {}
+},
+"8k:0001193125-26-437776": {
+"v": 1,
+"filed": "2026-10-29",
+"url": "https://www.sec.gov/Archives/edgar/data/1050446/000119312526437776/mstr-20261028.htm",
+"parsed": {
+"atm": [],
+"rep": [],
+"levels": {}
+}
+},
+"8k:0001050446-26-000047": {
+"v": 1,
+"filed": "2026-10-29",
+"url": "https://www.sec.gov/Archives/edgar/data/1050446/000105044626000047/mstr-20261026.htm",
+"parsed": {
+"atm": [],
+"rep": [],
+"levels": {}
+}
 }
 }
