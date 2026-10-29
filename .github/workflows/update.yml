@@ -1,6 +1,9 @@
 name: Refresh data & deploy dashboard
 on:
   schedule:
+    # Cron is UTC. Hours below assume EDT (UTC-4); during EST (UTC-5) every run lands 1 hour earlier in ET
+    # (e.g. 14-20 UTC = 10 AM-4 PM EDT = 9 AM-3 PM EST). 9 AM ET is covered by the Grok Bot routine.
+    - cron: "5 14-20 * * 1-5"  # weekdays hourly ~10:05 AM-4:05 PM ET (EDT) during market hours
     - cron: "15 22 * * 1-5"   # weekdays ~6:15 PM ET (EDT) / 5:15 PM ET (EST), after the US close
     - cron: "15 14 * * 0,6"   # weekends: BTC + prediction markets keep moving
   workflow_dispatch:
