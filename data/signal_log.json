@@ -33,7 +33,14 @@
    "reason": "STRC Warming up \u2192 flywheel on for MSTR; MSTR mNAV incl. debt & preferreds 1.08x is not overheated",
    "initial": false,
    "after": {
-    "1d": null,
+    "1d": {
+     "to": "2026-10-29",
+     "BTC": -0.0005,
+     "MSTR": -0.0185,
+     "MSTR_mnav_ev": -0.0235,
+     "ASST": -0.0371,
+     "ASST_mnav_ev": -0.0252
+    },
     "7d": null,
     "30d": null
    }
@@ -48,7 +55,14 @@
    "reason": "No flywheel ON (STRC warming up \u2192 flywheel off for MSTR; SATA stalled \u2192 flywheel off for ASST): wait (no buy right now)",
    "initial": false,
    "after": {
-    "1d": null,
+    "1d": {
+     "to": "2026-10-29",
+     "BTC": -0.0005,
+     "MSTR": -0.0185,
+     "MSTR_mnav_ev": -0.0235,
+     "ASST": -0.0371,
+     "ASST_mnav_ev": -0.0252
+    },
     "7d": null,
     "30d": null
    }
