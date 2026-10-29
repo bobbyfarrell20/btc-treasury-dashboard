@@ -4,50 +4,7 @@
   "jump_7d_pts": 15,
   "window_days": 7
  },
- "jumps": [
-  {
-   "date": "2026-10-23",
-   "window": "7d",
-   "source": "polymarket",
-   "group": "Fed",
-   "market": "Fed decision - Oct 28",
-   "outcome": "No change",
-   "question": "Will there be no change in Fed interest rates after the October 2026 meeting?",
-   "url": "https://polymarket.com/event/fed-decision-in-october-20260617190323537",
-   "from": 0.705,
-   "to": 0.935,
-   "change_pts": 23.0,
-   "from_date": "2026-10-16",
-   "news": {
-    "headline": "The Fed Is Raising Rates Again: Here's What It Means for Savers | Banking Advice | U.S. News - U.S. News & World Report",
-    "url": "https://news.google.com/rss/articles/CBMijgFBVV95cUxQZHZobHBQQjU1SWZtRk52M1Z6SEVfSU1xZFlaNXdtYkxEMFlaVHhDb0FfQ2VWOTYtMzFmMmVteEJraS1mU3dqMTVFVFdHSExKQmhRNEJpOGVyUTc2SXlDVGh6QndjVXBDTENnRW92eVhIcG5CZjk2RExDdWJ3TkRPWG9ZV0ZnT0JYTkYzVjdR?oc=5",
-    "published": "Thu, 22 Oct 2026 15:36:24 GMT",
-    "publisher": "U.S. News & World Report",
-    "via": "Google News RSS"
-   }
-  },
-  {
-   "date": "2026-10-21",
-   "window": "7d",
-   "source": "polymarket",
-   "group": "MSTR",
-   "market": "MSTR delisted from MSCI",
-   "outcome": "December 31",
-   "question": "Microstrategy delisted from MSCI index by December 31?",
-   "url": "https://polymarket.com/event/will-microstrategy-be-delisted-from-the-msci-index-by-march-31",
-   "from": 0.79,
-   "to": 0.94,
-   "change_pts": 15.0,
-   "from_date": "2026-10-14",
-   "news": {
-    "headline": "Strategy (MSTR) Could Be 13% Overvalued As Stablecoin Rules Lift Crypto Stocks - Yahoo Finance",
-    "url": "https://news.google.com/rss/articles/CBMinwFBVV95cUxNMVpoZXNyUlM5MGhtMG9zR0lZdkdFclVTeFM2ZXpXZlhyVGVQekRwNVlMUVZieHk3UTBCOVJ4cm9PbTZtcXFoSU9kU0pWQVZTVE81dkJ2WFA0WUI2cU5ScDBYVjhtdlJmRjZOcnVyLUVKU2tCTV9EYzFtaEhwWXN1N1FkZDBzSnI0ajFQd3lCaS04ZUlfYVpJNFdaX3RMWUk?oc=5",
-    "published": "Thu, 22 Oct 2026 02:12:00 GMT",
-    "publisher": "Yahoo Finance",
-    "via": "Google News RSS"
-   }
-  }
- ],
+ "jumps": [],
  "summary": [
   {
    "short": "BTC in 2026",
@@ -68,12 +25,7 @@
    "short": "Fed Oct 28",
    "url": "https://polymarket.com/event/fed-decision-in-october-20260617190323537",
    "source": "polymarket",
-   "odds": [
-    {
-     "outcome": "No change",
-     "yes": 0.9535
-    }
-   ]
+   "odds": []
   },
   {
    "short": "CLARITY law in 2026",
@@ -82,7 +34,7 @@
    "odds": [
     {
      "outcome": "Before Jan 1, 2027",
-     "yes": 0.054
+     "yes": 0.057
     }
    ]
   },
@@ -93,7 +45,7 @@
    "odds": [
     {
      "outcome": "Democratic Party",
-     "yes": 0.915
+     "yes": 0.925
     }
    ]
   },
@@ -104,10 +56,10 @@
    "odds": [
     {
      "outcome": "Democratic Party",
-     "yes": 0.665
+     "yes": 0.675
     }
    ]
   }
  ],
- "generated_utc": "2026-10-28T16:58:11+00:00"
+ "generated_utc": "2026-10-29T01:48:02+00:00"
 }
