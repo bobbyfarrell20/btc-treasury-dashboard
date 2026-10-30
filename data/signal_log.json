@@ -19,7 +19,14 @@
      "ASST": -0.0915,
      "ASST_mnav_ev": -0.052
     },
-    "7d": null,
+    "7d": {
+     "to": "2026-10-30",
+     "BTC": -0.0559,
+     "MSTR": -0.1253,
+     "MSTR_mnav_ev": -0.0566,
+     "ASST": -0.2232,
+     "ASST_mnav_ev": -0.1074
+    },
     "30d": null
    }
   },
@@ -63,6 +70,21 @@
      "ASST": -0.0952,
      "ASST_mnav_ev": -0.0241
     },
+    "7d": null,
+    "30d": null
+   }
+  },
+  {
+   "detected_utc": "2026-10-30T14:36:55+00:00",
+   "as_of": "2026-10-30",
+   "old": "STAY_BTC",
+   "new": "STAY_BTC",
+   "old_hash": "a2be7024860b",
+   "new_hash": "aadda5de10f2",
+   "reason": "No flywheel ON (STRC stalled \u2192 flywheel off for MSTR; SATA stalled \u2192 flywheel off for ASST): wait (no buy right now)",
+   "initial": false,
+   "after": {
+    "1d": null,
     "7d": null,
     "30d": null
    }
