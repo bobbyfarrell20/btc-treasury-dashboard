@@ -35,11 +35,11 @@
    "after": {
     "1d": {
      "to": "2026-10-29",
-     "BTC": -0.0319,
+     "BTC": -0.0428,
      "MSTR": -0.0244,
-     "MSTR_mnav_ev": 0.0033,
+     "MSTR_mnav_ev": 0.0147,
      "ASST": -0.0952,
-     "ASST_mnav_ev": -0.0352
+     "ASST_mnav_ev": -0.0243
     },
     "7d": null,
     "30d": null
@@ -57,11 +57,11 @@
    "after": {
     "1d": {
      "to": "2026-10-29",
-     "BTC": -0.0319,
+     "BTC": -0.0428,
      "MSTR": -0.0244,
-     "MSTR_mnav_ev": 0.0033,
+     "MSTR_mnav_ev": 0.0147,
      "ASST": -0.0952,
-     "ASST_mnav_ev": -0.0352
+     "ASST_mnav_ev": -0.0243
     },
     "7d": null,
     "30d": null
