@@ -19,10 +19,10 @@
    "change_pts": 10.0,
    "from_date": "2026-10-29",
    "news": {
-    "headline": "What the Fed's interest rate decision means for your bank accounts, loans, credit cards, and investments - Yahoo Finance",
-    "url": "https://news.google.com/rss/articles/CBMihAJBVV95cUxOaDlWS0VRSklaemMzd3V4dllmTlZRbTQtOVV6WlA2SjlkcTI2LTl4RU1PTk93OHpIelZWUWczX1RfS0xCRHVnN0FlWUZBOFUtc2dWdjE1OXFaekxLWjR0b243b1VWRENCeko4OVFnSXBEVFhCeUhGVFQxMFZVby1CY3dNMG1ZR3JEd0dRWGgyblV2UjIxQkwxZXNjakpHV0dBWUtoeXJlUUpJR2pkaVFlRGEtMEZqd1M2UXlwT1RfRWlxbzhYQU1WdUxXWkh0MHZNa1J6QVl2SFliSVIzVmgwSjBoZ1V1RlZjUGloa2xIWmVBeURVSHNLcFNtM21LMXY2RHNTOQ?oc=5",
-    "published": "Thu, 29 Oct 2026 09:56:25 GMT",
-    "publisher": "Yahoo Finance",
+    "headline": "Fed officials are already saying they’ll need to get back to hiking rates - CNBC",
+    "url": "https://news.google.com/rss/articles/CBMigAFBVV95cUxQQ0hqSXZpT1VZTUNGSkRVSkVaa092QjVSaGt3ZHlpM0F6RENCYlA4U3A4V285MTE0eXp3aFNKNXVjSVVjTEMwbXE1aV95NFJHOFdxMElwWTBsZ05oYjdtWVlmZkFQNzlqMzV2cldpekQxZGVqSTJ6ZXpSc205THRQYdIBhgFBVV95cUxQSU5zQlBqM3NxZWNyWnU3a3NHOEMyNUFZdnh3WW9KOWVDNUh0Q3pIRUdkYzZoZ1lONi00cUF6NmNxM3FGN0ZYYzVoamo1ZHJ1LXBkLUFBVUFBREgtVWVEWFh0NTJnOGQ2T09TUmNpX3dFYjZRS29SSjlFMlk0T25DamNmVWtndw?oc=5",
+    "published": "Fri, 30 Oct 2026 16:30:16 GMT",
+    "publisher": "CNBC",
     "via": "Google News RSS"
    }
   }
@@ -35,11 +35,11 @@
    "odds": [
     {
      "outcome": "↑ 100,000",
-     "yes": 0.125
+     "yes": 0.11
     },
     {
      "outcome": "↓ 55,000",
-     "yes": 0.095
+     "yes": 0.105
     }
    ]
   },
@@ -56,7 +56,7 @@
    "odds": [
     {
      "outcome": "Before Jan 1, 2027",
-     "yes": 0.074
+     "yes": 0.058
     }
    ]
   },
@@ -78,10 +78,10 @@
    "odds": [
     {
      "outcome": "Democratic Party",
-     "yes": 0.715
+     "yes": 0.705
     }
    ]
   }
  ],
- "generated_utc": "2026-10-30T14:36:55+00:00"
+ "generated_utc": "2026-10-30T19:14:57+00:00"
 }
