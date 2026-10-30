@@ -4,7 +4,29 @@
   "jump_7d_pts": 15,
   "window_days": 7
  },
- "jumps": [],
+ "jumps": [
+  {
+   "date": "2026-10-30",
+   "window": "24h",
+   "source": "kalshi",
+   "group": "Fed",
+   "market": "Fed decision - Dec 2026",
+   "outcome": "Fed maintains rate",
+   "question": null,
+   "url": "https://kalshi.com/markets/kxfeddecision",
+   "from": 0.19,
+   "to": 0.29,
+   "change_pts": 10.0,
+   "from_date": "2026-10-29",
+   "news": {
+    "headline": "Week Ahead for FX, Bonds: Decisions From Fed, Other Central Banks in Focus - WSJ",
+    "url": "https://news.google.com/rss/articles/CBMirAFBVV95cUxPZl9NRnpPb3laN0tSUlB6NFUwekhQWkUyNG11ck5jQmxHZUxTZl82RzJoVmlLMzlQY2JCS1BuTC1mMDlZYjdXVHFFeTgxTXJ5eGJZazZOcGdLaDg4RFhvaDNidXhySlVzRFBTUmoyeTJ4YjYtMUR2M0RYT1M2WVZSRTIxYlNQQjk2RGJmWmRTMml5MEoyV1h5bHpSQ2dFaExzZVJmU1N3djBENFhM?oc=5",
+    "published": "Fri, 30 Oct 2026 09:06:04 GMT",
+    "publisher": "WSJ",
+    "via": "Google News RSS"
+   }
+  }
+ ],
  "summary": [
   {
    "short": "BTC in 2026",
@@ -13,7 +35,7 @@
    "odds": [
     {
      "outcome": "↑ 100,000",
-     "yes": 0.115
+     "yes": 0.125
     },
     {
      "outcome": "↓ 55,000",
@@ -34,7 +56,7 @@
    "odds": [
     {
      "outcome": "Before Jan 1, 2027",
-     "yes": 0.057
+     "yes": 0.06
     }
    ]
   },
@@ -56,10 +78,10 @@
    "odds": [
     {
      "outcome": "Democratic Party",
-     "yes": 0.685
+     "yes": 0.69
     }
    ]
   }
  ],
- "generated_utc": "2026-10-30T01:58:28+00:00"
+ "generated_utc": "2026-10-30T12:45:24+00:00"
 }
