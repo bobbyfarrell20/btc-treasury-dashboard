@@ -21,7 +21,7 @@
     "new": "STAY_BTC"
   },
   "_hash_note": "signal_hash changes when the recommendation, also_valid, any preferred peg state (on for the call = RUNNING_HOT/ON, hashed alike; WARMING_UP and COOLING_OFF hash as WATCH, STALLED as SELL; ON held by buybacks hashes as WATCH) or any overheated flag changes; last_changed is the most recent trading day it changed.",
-  "generated_utc": "2026-10-31T13:10:18+00:00",
+  "generated_utc": "2026-10-31T18:32:19+00:00",
   "as_of": "2026-10-30",
   "disclaimer": "Rules-based indicator, not financial advice.",
   "recommendation_detail": {
@@ -683,7 +683,7 @@
         },
         {
           "outcome": "\u2193 50,000",
-          "yes": 0.09
+          "yes": 0.085
         }
       ]
     },
@@ -708,11 +708,11 @@
         },
         {
           "outcome": "50+ bps increase",
-          "yes": 0.0165
+          "yes": 0.017
         },
         {
           "outcome": "25 bps decrease",
-          "yes": 0.0065
+          "yes": 0.006
         }
       ]
     },
@@ -723,18 +723,18 @@
       "top": [
         {
           "outcome": "0 (0 bps)",
-          "yes": 0.9685
+          "yes": 0.97
         },
         {
           "outcome": "1 (25 bps)",
-          "yes": 0.0095
+          "yes": 0.0115
         },
         {
           "outcome": "2 (50 bps)",
           "yes": 0.0045
         },
         {
-          "outcome": "3 (75 bps)",
+          "outcome": "12+ (300+ bps)",
           "yes": 0.0015
         }
       ]
@@ -746,7 +746,7 @@
       "top": [
         {
           "outcome": "Clarity Act (H.R.3633) signed into law in 2026?",
-          "yes": 0.031
+          "yes": 0.0315
         }
       ]
     },
@@ -757,7 +757,7 @@
       "top": [
         {
           "outcome": "Crypto Market Structure legislation becomes law in 2026?",
-          "yes": 0.0915
+          "yes": 0.087
         }
       ]
     },
@@ -831,11 +831,11 @@
       "top": [
         {
           "outcome": "Above $99,999.99",
-          "yes": 0.13
+          "yes": 0.15
         },
         {
           "outcome": "Above $109,999.99",
-          "yes": 0.06
+          "yes": 0.07
         },
         {
           "outcome": "Above $129,999.99",
@@ -854,7 +854,7 @@
       "top": [
         {
           "outcome": "Below $55,000.00",
-          "yes": 0.13
+          "yes": 0.14
         },
         {
           "outcome": "Below $50,000.00",
@@ -906,11 +906,11 @@
       "top": [
         {
           "outcome": "Before Jan 1, 2028",
-          "yes": 0.29
+          "yes": 0.3
         },
         {
           "outcome": "Before Oct 1, 2027",
-          "yes": 0.21
+          "yes": 0.27
         },
         {
           "outcome": "Before Jul 1, 2027",
@@ -933,7 +933,7 @@
         },
         {
           "outcome": "Republican Party",
-          "yes": 0.062
+          "yes": 0.064
         }
       ]
     },
@@ -944,11 +944,11 @@
       "top": [
         {
           "outcome": "Democratic Party",
-          "yes": 0.7
+          "yes": 0.71
         },
         {
           "outcome": "Republican Party",
-          "yes": 0.3
+          "yes": 0.29
         }
       ]
     }
