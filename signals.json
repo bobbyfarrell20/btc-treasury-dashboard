@@ -21,7 +21,7 @@
     "new": "STAY_BTC"
   },
   "_hash_note": "signal_hash changes when the recommendation, also_valid, any preferred peg state (on for the call = RUNNING_HOT/ON, hashed alike; WARMING_UP and COOLING_OFF hash as WATCH, STALLED as SELL; ON held by buybacks hashes as WATCH) or any overheated flag changes; last_changed is the most recent trading day it changed.",
-  "generated_utc": "2026-11-01T14:07:24+00:00",
+  "generated_utc": "2026-11-01T18:54:36+00:00",
   "as_of": "2026-10-30",
   "disclaimer": "Rules-based indicator, not financial advice.",
   "recommendation_detail": {
@@ -651,7 +651,7 @@
       "odds": [
         {
           "outcome": "Democratic Party",
-          "yes": 0.725
+          "yes": 0.715
         }
       ]
     }
@@ -664,7 +664,7 @@
       "top": [
         {
           "outcome": "\u2191 90,000",
-          "yes": 0.275
+          "yes": 0.285
         },
         {
           "outcome": "\u2193 55,000",
@@ -701,11 +701,11 @@
         },
         {
           "outcome": "50+ bps increase",
-          "yes": 0.0155
+          "yes": 0.0165
         },
         {
           "outcome": "25 bps decrease",
-          "yes": 0.0065
+          "yes": 0.0055
         }
       ]
     },
@@ -716,7 +716,7 @@
       "top": [
         {
           "outcome": "0 (0 bps)",
-          "yes": 0.9695
+          "yes": 0.9705
         },
         {
           "outcome": "1 (25 bps)",
@@ -724,10 +724,10 @@
         },
         {
           "outcome": "2 (50 bps)",
-          "yes": 0.005
+          "yes": 0.009
         },
         {
-          "outcome": "6 (150 bps)",
+          "outcome": "12+ (300+ bps)",
           "yes": 0.0015
         }
       ]
@@ -750,7 +750,7 @@
       "top": [
         {
           "outcome": "Crypto Market Structure legislation becomes law in 2026?",
-          "yes": 0.0845
+          "yes": 0.085
         }
       ]
     },
@@ -776,7 +776,7 @@
       "top": [
         {
           "outcome": "Democratic Party",
-          "yes": 0.725
+          "yes": 0.715
         },
         {
           "outcome": "Republican Party",
@@ -824,19 +824,19 @@
       "top": [
         {
           "outcome": "Above $99,999.99",
-          "yes": 0.14
+          "yes": 0.15
         },
         {
           "outcome": "Above $109,999.99",
           "yes": 0.06
         },
         {
-          "outcome": "Above $129,999.99",
+          "outcome": "Above $119,999.99",
           "yes": 0.04
         },
         {
-          "outcome": "Above $119,999.99",
-          "yes": 0.03
+          "outcome": "Above $199,999.99",
+          "yes": 0.02
         }
       ]
     },
@@ -847,15 +847,15 @@
       "top": [
         {
           "outcome": "Below $55,000.00",
-          "yes": 0.14
+          "yes": 0.13
         },
         {
           "outcome": "Below $50,000.00",
-          "yes": 0.1
+          "yes": 0.09
         },
         {
           "outcome": "Below $45,000.00",
-          "yes": 0.07
+          "yes": 0.06
         },
         {
           "outcome": "Below $40,000.00",
@@ -876,7 +876,7 @@
       "top": [
         {
           "outcome": "Hike 25bps",
-          "yes": 0.7
+          "yes": 0.71
         },
         {
           "outcome": "Fed maintains rate",
@@ -884,7 +884,7 @@
         },
         {
           "outcome": "Hike >25bps",
-          "yes": 0.01
+          "yes": 0.02
         },
         {
           "outcome": "Cut 25bps",
@@ -898,11 +898,11 @@
       "url": "https://kalshi.com/markets/kxcryptostructure",
       "top": [
         {
-          "outcome": "Before Jan 1, 2028",
-          "yes": 0.28
+          "outcome": "Before Oct 1, 2027",
+          "yes": 0.26
         },
         {
-          "outcome": "Before Oct 1, 2027",
+          "outcome": "Before Jan 1, 2028",
           "yes": 0.26
         },
         {
@@ -922,7 +922,7 @@
       "top": [
         {
           "outcome": "Democratic Party",
-          "yes": 0.931
+          "yes": 0.932
         },
         {
           "outcome": "Republican Party",
@@ -937,11 +937,11 @@
       "top": [
         {
           "outcome": "Democratic Party",
-          "yes": 0.72
+          "yes": 0.7
         },
         {
           "outcome": "Republican Party",
-          "yes": 0.29
+          "yes": 0.3
         }
       ]
     }
