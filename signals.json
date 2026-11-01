@@ -21,7 +21,7 @@
     "new": "STAY_BTC"
   },
   "_hash_note": "signal_hash changes when the recommendation, also_valid, any preferred peg state (on for the call = RUNNING_HOT/ON, hashed alike; WARMING_UP and COOLING_OFF hash as WATCH, STALLED as SELL; ON held by buybacks hashes as WATCH) or any overheated flag changes; last_changed is the most recent trading day it changed.",
-  "generated_utc": "2026-10-31T18:32:19+00:00",
+  "generated_utc": "2026-11-01T14:07:24+00:00",
   "as_of": "2026-10-30",
   "disclaimer": "Rules-based indicator, not financial advice.",
   "recommendation_detail": {
@@ -556,13 +556,6 @@
   ],
   "upcoming_events_7d": [
     {
-      "date": "2026-10-31",
-      "category": "preferred",
-      "title": "STRC record date for Nov 15 dividend (void if daily dividends approved)",
-      "status": "scheduled",
-      "source": "https://www.stocktitan.net/sec-filings/MSTR/8-k-strategy-inc-reports-material-event-adcac7c6c20f.html"
-    },
-    {
       "date": "2026-11-01",
       "category": "preferred",
       "title": "STRC daily dividends start (conditional on vote): record every day, $1.00 total for Nov, 12%",
@@ -615,11 +608,11 @@
       "odds": [
         {
           "outcome": "\u2191 100,000",
-          "yes": 0.115
+          "yes": 0.105
         },
         {
           "outcome": "\u2193 55,000",
-          "yes": 0.115
+          "yes": 0.125
         }
       ]
     },
@@ -636,7 +629,7 @@
       "odds": [
         {
           "outcome": "Before Jan 1, 2027",
-          "yes": 0.058
+          "yes": 0.057
         }
       ]
     },
@@ -658,7 +651,7 @@
       "odds": [
         {
           "outcome": "Democratic Party",
-          "yes": 0.715
+          "yes": 0.725
         }
       ]
     }
@@ -675,15 +668,15 @@
         },
         {
           "outcome": "\u2193 55,000",
-          "yes": 0.115
+          "yes": 0.125
         },
         {
           "outcome": "\u2191 100,000",
-          "yes": 0.115
+          "yes": 0.105
         },
         {
           "outcome": "\u2193 50,000",
-          "yes": 0.085
+          "yes": 0.075
         }
       ]
     },
@@ -708,11 +701,11 @@
         },
         {
           "outcome": "50+ bps increase",
-          "yes": 0.017
+          "yes": 0.0155
         },
         {
           "outcome": "25 bps decrease",
-          "yes": 0.006
+          "yes": 0.0065
         }
       ]
     },
@@ -723,18 +716,18 @@
       "top": [
         {
           "outcome": "0 (0 bps)",
-          "yes": 0.97
+          "yes": 0.9695
         },
         {
           "outcome": "1 (25 bps)",
-          "yes": 0.0115
+          "yes": 0.012
         },
         {
           "outcome": "2 (50 bps)",
-          "yes": 0.0045
+          "yes": 0.005
         },
         {
-          "outcome": "12+ (300+ bps)",
+          "outcome": "6 (150 bps)",
           "yes": 0.0015
         }
       ]
@@ -757,7 +750,7 @@
       "top": [
         {
           "outcome": "Crypto Market Structure legislation becomes law in 2026?",
-          "yes": 0.087
+          "yes": 0.0845
         }
       ]
     },
@@ -783,7 +776,7 @@
       "top": [
         {
           "outcome": "Democratic Party",
-          "yes": 0.715
+          "yes": 0.725
         },
         {
           "outcome": "Republican Party",
@@ -831,11 +824,11 @@
       "top": [
         {
           "outcome": "Above $99,999.99",
-          "yes": 0.15
+          "yes": 0.14
         },
         {
           "outcome": "Above $109,999.99",
-          "yes": 0.07
+          "yes": 0.06
         },
         {
           "outcome": "Above $129,999.99",
@@ -858,7 +851,7 @@
         },
         {
           "outcome": "Below $50,000.00",
-          "yes": 0.09
+          "yes": 0.1
         },
         {
           "outcome": "Below $45,000.00",
@@ -887,11 +880,11 @@
         },
         {
           "outcome": "Fed maintains rate",
-          "yes": 0.3
+          "yes": 0.29
         },
         {
           "outcome": "Hike >25bps",
-          "yes": 0.03
+          "yes": 0.01
         },
         {
           "outcome": "Cut 25bps",
@@ -906,11 +899,11 @@
       "top": [
         {
           "outcome": "Before Jan 1, 2028",
-          "yes": 0.3
+          "yes": 0.28
         },
         {
           "outcome": "Before Oct 1, 2027",
-          "yes": 0.27
+          "yes": 0.26
         },
         {
           "outcome": "Before Jul 1, 2027",
@@ -929,11 +922,11 @@
       "top": [
         {
           "outcome": "Democratic Party",
-          "yes": 0.939
+          "yes": 0.931
         },
         {
           "outcome": "Republican Party",
-          "yes": 0.064
+          "yes": 0.069
         }
       ]
     },
@@ -944,7 +937,7 @@
       "top": [
         {
           "outcome": "Democratic Party",
-          "yes": 0.71
+          "yes": 0.72
         },
         {
           "outcome": "Republican Party",
