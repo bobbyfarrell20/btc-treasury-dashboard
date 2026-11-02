@@ -15,7 +15,7 @@
      "to": "2026-10-26",
      "BTC": -0.0132,
      "MSTR": -0.0424,
-     "MSTR_mnav_ev": -0.0213,
+     "MSTR_mnav_ev": -0.0305,
      "ASST": -0.0915,
      "ASST_mnav_ev": -0.052
     },
@@ -23,7 +23,7 @@
      "to": "2026-10-30",
      "BTC": -0.0478,
      "MSTR": -0.1062,
-     "MSTR_mnav_ev": -0.0397,
+     "MSTR_mnav_ev": -0.0486,
      "ASST": -0.2339,
      "ASST_mnav_ev": -0.1224
     },
@@ -44,7 +44,7 @@
      "to": "2026-10-29",
      "BTC": -0.043,
      "MSTR": -0.0244,
-     "MSTR_mnav_ev": 0.0244,
+     "MSTR_mnav_ev": 0.0245,
      "ASST": -0.0952,
      "ASST_mnav_ev": -0.0241
     },
@@ -66,7 +66,7 @@
      "to": "2026-10-29",
      "BTC": -0.043,
      "MSTR": -0.0244,
-     "MSTR_mnav_ev": 0.0244,
+     "MSTR_mnav_ev": 0.0245,
      "ASST": -0.0952,
      "ASST_mnav_ev": -0.0241
     },
@@ -84,7 +84,14 @@
    "reason": "No flywheel ON (STRC stalled \u2192 flywheel off for MSTR; SATA stalled \u2192 flywheel off for ASST): wait (no buy right now)",
    "initial": false,
    "after": {
-    "1d": null,
+    "1d": {
+     "to": "2026-11-02",
+     "BTC": -0.0067,
+     "MSTR": 0.0019,
+     "MSTR_mnav_ev": 0.0087,
+     "ASST": -0.0629,
+     "ASST_mnav_ev": -0.034
+    },
     "7d": null,
     "30d": null
    }
@@ -99,7 +106,14 @@
    "reason": "No flywheel ON (STRC cooling off \u2192 flywheel off for MSTR; SATA stalled \u2192 flywheel off for ASST): wait (no buy right now)",
    "initial": false,
    "after": {
-    "1d": null,
+    "1d": {
+     "to": "2026-11-02",
+     "BTC": -0.0067,
+     "MSTR": 0.0019,
+     "MSTR_mnav_ev": 0.0087,
+     "ASST": -0.0629,
+     "ASST_mnav_ev": -0.034
+    },
     "7d": null,
     "30d": null
    }

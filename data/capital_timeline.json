@@ -1,5 +1,5 @@
 {
- "generated_utc": "2026-11-02T14:11:04+00:00",
+ "generated_utc": "2026-11-02T22:43:43+00:00",
  "version": 1,
  "MSTR": {
   "basic_shares": [
@@ -472,14 +472,20 @@
     false
    ],
    [
+    "2026-10-25",
+    422354607.0,
+    "https://www.sec.gov/Archives/edgar/data/1050446/000105044626000060/mstr-20260930.htm",
+    false
+   ],
+   [
     "2026-11-01",
-    428510025.0,
+    423533159.0,
     "https://www.sec.gov/Archives/edgar/data/1050446/000119312526442707/mstr-20261102.htm",
     false
    ],
    [
     "2026-11-02",
-    423530764.0,
+    423531661.0,
     "https://api.strategy.com/btc/kpiData",
     false
    ]
@@ -548,7 +554,7 @@
    [
     "2025-12-31",
     8190.154999999999,
-    "https://www.sec.gov/Archives/edgar/data/1050446/000105044626000044/",
+    "https://www.sec.gov/Archives/edgar/data/1050446/000105044626000060/",
     false
    ],
    [
@@ -567,6 +573,12 @@
     "2026-06-30",
     6709.928,
     "https://www.sec.gov/Archives/edgar/data/1050446/000105044626000044/",
+    false
+   ],
+   [
+    "2026-09-30",
+    6715.414000000001,
+    "https://www.sec.gov/Archives/edgar/data/1050446/000105044626000060/",
     false
    ],
    [
@@ -969,7 +981,7 @@
    ],
    [
     "2026-11-02",
-    122697272.0,
+    122708458.0,
     "https://api.strategy.com/btc/kpiData",
     false
    ]
@@ -1261,10 +1273,17 @@
      "src": "https://www.sec.gov/Archives/edgar/data/1050446/000105044626000044/mstr-20260630.htm"
     },
     {
+     "date": "2026-10-25",
+     "anchor": 422354607.0,
+     "predicted_from_flows": 427331473.0,
+     "residual": -4976866.0,
+     "src": "https://www.sec.gov/Archives/edgar/data/1050446/000105044626000060/mstr-20260930.htm"
+    },
+    {
      "date": "2026-11-02",
-     "anchor": 423530764,
-     "predicted_from_flows": 428510025.0,
-     "residual": -4979261.0,
+     "anchor": 423531661,
+     "predicted_from_flows": 423533159.0,
+     "residual": -1498.0,
      "src": "https://api.strategy.com/btc/kpiData"
     }
    ],
@@ -1316,7 +1335,7 @@
      "anchor": 8190.155,
      "predicted_from_flows": 8173.903,
      "residual": 16.252,
-     "src": "https://www.sec.gov/Archives/edgar/data/1050446/000105044626000044/"
+     "src": "https://www.sec.gov/Archives/edgar/data/1050446/000105044626000060/"
     },
     {
      "date": "2026-03-31",
@@ -1340,10 +1359,17 @@
      "src": "https://www.sec.gov/Archives/edgar/data/1050446/000105044626000044/"
     },
     {
+     "date": "2026-09-30",
+     "anchor": 6715.414,
+     "predicted_from_flows": 6709.928,
+     "residual": 5.486,
+     "src": "https://www.sec.gov/Archives/edgar/data/1050446/000105044626000060/"
+    },
+    {
      "date": "2026-11-02",
      "anchor": 6714.0,
-     "predicted_from_flows": 6709.928,
-     "residual": 4.072,
+     "predicted_from_flows": 6715.414,
+     "residual": -1.414,
      "src": "https://api.strategy.com/btc/mstrKpiData"
     }
    ],
@@ -1371,9 +1397,9 @@
     },
     {
      "date": "2026-11-02",
-     "anchor": 122697272,
+     "anchor": 122708458,
      "predicted_from_flows": 122706457.0,
-     "residual": -9185.0,
+     "residual": 2001.0,
      "src": "https://api.strategy.com/btc/kpiData"
     }
    ],
@@ -1388,33 +1414,33 @@
    ]
   },
   "strategy_kpi_latest": {
-   "fetched_utc": "2026-11-02T14:11:04+00:00",
-   "timestamp_utc": "2026-10-30T20:00:00",
-   "market_cap_m": 55275.0,
-   "ev_m": 70203.0,
+   "fetched_utc": "2026-11-02T22:43:45+00:00",
+   "timestamp_utc": "2026-11-02T21:00:00",
+   "market_cap_m": 55381.0,
+   "ev_m": 70309.0,
    "debt_m": 6714.0,
    "pref_m": 13136.0,
-   "price": 130.51,
+   "price": 130.76,
    "per_ticker": {
     "MSTR": {
-     "shares": 423530764,
-     "price": 130.51
+     "shares": 423531661,
+     "price": 130.76
     },
     "STRK": {
-     "shares": 14016212,
-     "price": 67.85
+     "shares": 14019666,
+     "price": 67.12
     },
     "STRF": {
-     "shares": 12837705,
-     "price": 101.42
+     "shares": 12842415,
+     "price": 101.85
     },
     "STRD": {
-     "shares": 14021505,
-     "price": 69.75
+     "shares": 14027279,
+     "price": 69.65
     },
     "STRC": {
-     "shares": 81821850,
-     "price": 99.13
+     "shares": 81819098,
+     "price": 99.28
     },
     "STRE": {
      "shares": 7745067,
