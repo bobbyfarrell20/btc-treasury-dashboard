@@ -21,7 +21,7 @@
     "new": "STAY_BTC"
   },
   "_hash_note": "signal_hash changes when the recommendation, also_valid, any preferred peg state (on for the call = RUNNING_HOT/ON, hashed alike; WARMING_UP and COOLING_OFF hash as WATCH, STALLED as SELL; ON held by buybacks hashes as WATCH) or any overheated flag changes; last_changed is the most recent trading day it changed.",
-  "generated_utc": "2026-11-02T22:44:04+00:00",
+  "generated_utc": "2026-11-03T03:28:33+00:00",
   "as_of": "2026-11-02",
   "disclaimer": "Rules-based indicator, not financial advice.",
   "recommendation_detail": {
@@ -42,7 +42,7 @@
         "buyback_held": false,
         "flywheel_state": "Cooling off",
         "flywheel_effect": "STRC cooling off \u2192 flywheel off for MSTR",
-        "mnav_ev": 1.0796,
+        "mnav_ev": 1.0795,
         "mnav_ev_pct": 0.353,
         "has_data": true
       },
@@ -56,7 +56,7 @@
         "buyback_held": false,
         "flywheel_state": "Stalled",
         "flywheel_effect": "SATA stalled \u2192 flywheel off for ASST",
-        "mnav_ev": 1.2736,
+        "mnav_ev": 1.2735,
         "mnav_ev_pct": 0.381,
         "has_data": true
       }
@@ -161,7 +161,7 @@
         "peg_state": "WATCH",
         "flywheel_code": "COOLING_OFF",
         "flywheel_state": "Cooling off",
-        "mnav": 1.0796,
+        "mnav": 1.0795,
         "mnav_pct_1y": 0.353,
         "zone": "FAIR",
         "low_fair": true,
@@ -176,7 +176,7 @@
         "peg_state": "SELL",
         "flywheel_code": "STALLED",
         "flywheel_state": "Stalled",
-        "mnav": 1.2736,
+        "mnav": 1.2735,
         "mnav_pct_1y": 0.381,
         "zone": "OVERVALUED",
         "low_fair": false,
@@ -218,11 +218,11 @@
       "flywheel_code": "COOLING_OFF",
       "overheated_floor": 1.25,
       "action": "WATCH",
-      "mnav": 1.0796,
+      "mnav": 1.0795,
       "mnav_pct_1y": 0.353,
       "overheated": false,
       "price_chg_dip_window": -0.0387,
-      "mnav_chg_dip_window": 0.0255
+      "mnav_chg_dip_window": 0.0254
     },
     "ASST": {
       "peg_state": "SELL",
@@ -232,7 +232,7 @@
       "flywheel_code": "STALLED",
       "overheated_floor": 1.2528,
       "action": "SELL",
-      "mnav": 1.2736,
+      "mnav": 1.2735,
       "mnav_pct_1y": 0.381,
       "overheated": false,
       "price_chg_dip_window": -0.1856,
@@ -250,7 +250,7 @@
     "cheapened_most": "ASST",
     "mstr_price_change": -0.0387,
     "asst_price_change": -0.1856,
-    "mstr_mnav_change": 0.0255,
+    "mstr_mnav_change": 0.0254,
     "asst_mnav_change": -0.0872
   },
   "strc_buyback_support": true,
@@ -307,27 +307,27 @@
   "values": {
     "MSTR": 130.76,
     "ASST": 20.8,
-    "btc": 76678.25,
-    "mstr_mnav": 1.0796,
-    "asst_mnav": 1.2736,
-    "mnav_avg": 1.1766,
+    "btc": 76683.8906,
+    "mstr_mnav": 1.0795,
+    "asst_mnav": 1.2735,
+    "mnav_avg": 1.1765,
     "mnav_spread": 0.194,
     "spread_z": -0.092,
     "ratio": 0.15907,
-    "mstr_mnav_basic": 0.8504,
-    "asst_mnav_basic": 0.801,
-    "mstr_mnav_ev": 1.0796,
-    "asst_mnav_ev": 1.2736,
-    "mstr_mnav_diluted": 0.9098,
+    "mstr_mnav_basic": 0.8503,
+    "asst_mnav_basic": 0.8009,
+    "mstr_mnav_ev": 1.0795,
+    "asst_mnav_ev": 1.2735,
+    "mstr_mnav_diluted": 0.9097,
     "asst_mnav_diluted": 0.818,
-    "mstr_ev_m": 70310.7,
+    "mstr_ev_m": 70308.0,
     "asst_ev_m": 4211.4,
     "btc_chg": -0.0632,
     "mstr_chg": -0.0387,
     "asst_chg": -0.1856,
-    "mstr_mnav_chg": 0.0255,
+    "mstr_mnav_chg": 0.0254,
     "asst_mnav_chg": -0.0872,
-    "mstr_nav_ps": 143.73,
+    "mstr_nav_ps": 143.74,
     "asst_nav_ps": 25.43
   },
   "valuation": {
@@ -335,7 +335,7 @@
       "signal_basis": "ev",
       "zone": "FAIR",
       "market_standard": {
-        "mnav": 0.8504,
+        "mnav": 0.8503,
         "mnav_pct_1y": 0.46,
         "zone": "FAIR",
         "cutoffs": {
@@ -349,7 +349,7 @@
         }
       },
       "all_in_ev": {
-        "mnav": 1.0796,
+        "mnav": 1.0795,
         "mnav_pct_1y": 0.353,
         "zone": "FAIR",
         "cutoffs": {
@@ -362,22 +362,22 @@
           "overheated_floor": 1.25
         }
       },
-      "diluted_equity_mnav": 0.9098,
+      "diluted_equity_mnav": 0.9097,
       "price": 130.76,
       "btc_held": 849327.0,
       "basic_shares": 423531661.0,
       "debt_m": 6714.0,
-      "preferred_notional_m": 13137.7,
+      "preferred_notional_m": 13135.0,
       "cash_m": 4922.0,
-      "enterprise_value_m": 70310.7,
-      "btc_nav_m": 65125,
-      "btc_nav_per_basic_share": 153.77
+      "enterprise_value_m": 70308.0,
+      "btc_nav_m": 65130,
+      "btc_nav_per_basic_share": 153.78
     },
     "ASST": {
       "signal_basis": "ev",
       "zone": "OVERVALUED",
       "market_standard": {
-        "mnav": 0.801,
+        "mnav": 0.8009,
         "mnav_pct_1y": 0.25,
         "zone": "CHEAP",
         "cutoffs": {
@@ -391,7 +391,7 @@
         }
       },
       "all_in_ev": {
-        "mnav": 1.2736,
+        "mnav": 1.2735,
         "mnav_pct_1y": 0.381,
         "zone": "OVERVALUED",
         "cutoffs": {
@@ -427,8 +427,8 @@
       "ev": {
         "basis": "ev",
         "lookback_trading_days": 252,
-        "mstr_mnav": 1.0796,
-        "asst_mnav": 1.2736,
+        "mstr_mnav": 1.0795,
+        "asst_mnav": 1.2735,
         "ratio_now": 1.1797,
         "ratio_mean_1y": 1.1949,
         "ratio_median_1y": 1.215,
@@ -448,8 +448,8 @@
       "basic": {
         "basis": "basic",
         "lookback_trading_days": 252,
-        "mstr_mnav": 0.8504,
-        "asst_mnav": 0.801,
+        "mstr_mnav": 0.8503,
+        "asst_mnav": 0.8009,
         "ratio_now": 0.9419,
         "ratio_mean_1y": 1.1928,
         "ratio_median_1y": 1.2021,
@@ -581,6 +581,20 @@
       "title": "First SATS dividend (Strive)",
       "status": "scheduled",
       "source": "research notes (Strive SATS offering docs)"
+    },
+    {
+      "date": "2026-11-10",
+      "category": "macro",
+      "title": "CPI (October data) 8:30 AM ET",
+      "status": "scheduled",
+      "source": "https://www.bls.gov/schedule/news_release/cpi.htm"
+    },
+    {
+      "date": "2026-11-10",
+      "category": "earnings",
+      "title": "ASST Q3 2026 results (ESTIMATED by MarketBeat, not confirmed by Strive)",
+      "status": "estimated",
+      "source": "https://www.marketbeat.com/stocks/NASDAQ/ASST/earnings/"
     }
   ],
   "odds_jumps": [
@@ -670,7 +684,7 @@
       "top": [
         {
           "outcome": "\u2191 90,000",
-          "yes": 0.265
+          "yes": 0.255
         },
         {
           "outcome": "\u2193 55,000",
@@ -682,7 +696,7 @@
         },
         {
           "outcome": "\u2193 50,000",
-          "yes": 0.075
+          "yes": 0.085
         }
       ]
     },
@@ -722,11 +736,11 @@
       "top": [
         {
           "outcome": "0 (0 bps)",
-          "yes": 0.969
+          "yes": 0.97
         },
         {
           "outcome": "1 (25 bps)",
-          "yes": 0.008
+          "yes": 0.009
         },
         {
           "outcome": "2 (50 bps)",
@@ -745,7 +759,7 @@
       "top": [
         {
           "outcome": "Clarity Act (H.R.3633) signed into law in 2026?",
-          "yes": 0.025
+          "yes": 0.0255
         }
       ]
     },
@@ -786,7 +800,7 @@
         },
         {
           "outcome": "Republican Party",
-          "yes": 0.235
+          "yes": 0.245
         }
       ]
     },
@@ -830,18 +844,18 @@
       "top": [
         {
           "outcome": "Above $99,999.99",
-          "yes": 0.11
+          "yes": 0.12
         },
         {
           "outcome": "Above $109,999.99",
-          "yes": 0.07
+          "yes": 0.06
         },
         {
           "outcome": "Above $119,999.99",
-          "yes": 0.04
+          "yes": 0.03
         },
         {
-          "outcome": "Above $199,999.99",
+          "outcome": "Above $129,999.99",
           "yes": 0.02
         }
       ]
@@ -857,15 +871,15 @@
         },
         {
           "outcome": "Below $50,000.00",
-          "yes": 0.11
+          "yes": 0.1
         },
         {
           "outcome": "Below $45,000.00",
-          "yes": 0.08
+          "yes": 0.07
         },
         {
           "outcome": "Below $40,000.00",
-          "yes": 0.05
+          "yes": 0.04
         }
       ]
     },
@@ -913,7 +927,7 @@
         },
         {
           "outcome": "Before Oct 1, 2027",
-          "yes": 0.2
+          "yes": 0.22
         },
         {
           "outcome": "Before Apr 1, 2027",
@@ -928,11 +942,11 @@
       "top": [
         {
           "outcome": "Democratic Party",
-          "yes": 0.939
+          "yes": 0.936
         },
         {
           "outcome": "Republican Party",
-          "yes": 0.061
+          "yes": 0.066
         }
       ]
     },
@@ -943,7 +957,7 @@
       "top": [
         {
           "outcome": "Democratic Party",
-          "yes": 0.74
+          "yes": 0.76
         },
         {
           "outcome": "Republican Party",
