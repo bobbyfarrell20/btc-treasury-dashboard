@@ -56,7 +56,7 @@
    "odds": [
     {
      "outcome": "Before Jan 1, 2027",
-     "yes": 0.062
+     "yes": 0.056
     }
    ]
   },
@@ -78,10 +78,10 @@
    "odds": [
     {
      "outcome": "Democratic Party",
-     "yes": 0.765
+     "yes": 0.775
     }
    ]
   }
  ],
- "generated_utc": "2026-11-03T03:28:33+00:00"
+ "generated_utc": "2026-11-03T14:51:26+00:00"
 }
