@@ -6,48 +6,6 @@
  },
  "jumps": [
   {
-   "date": "2026-11-04",
-   "window": "7d",
-   "source": "polymarket",
-   "group": "Midterms",
-   "market": "Senate control (midterms)",
-   "outcome": "Republican Party",
-   "question": "Will the Republican Party control the Senate after the 2026 Midterm elections?",
-   "url": "https://polymarket.com/event/which-party-will-win-the-senate-in-2026",
-   "from": 0.325,
-   "to": 0.0085,
-   "change_pts": -31.6,
-   "from_date": "2026-10-28",
-   "news": {
-    "headline": "2026 midterm election results: All U.S. Senate, House and governor races - WBAL-TV",
-    "url": "https://news.google.com/rss/articles/CBMiiwFBVV95cUxPVGY3VUpXaEhudXcxT19pM3JYcklIZGNfZUJIbU9UX2lielo1TXVMSWx3T0lWN1NwQlZsemV3VmlEblFvQjBRMlRBWmdtR1gybll5ZzJYWFAwWktIUEtrcUNmVzhTY0FBdEdOa0dsS1I2bmNUVTBqemVDVEVUaUV0NEw5X3VYM1ptVE9n?oc=5",
-    "published": "Tue, 03 Nov 2026 23:58:00 GMT",
-    "publisher": "WBAL-TV",
-    "via": "Google News RSS"
-   }
-  },
-  {
-   "date": "2026-11-04",
-   "window": "24h",
-   "source": "polymarket",
-   "group": "Midterms",
-   "market": "Senate control (midterms)",
-   "outcome": "Republican Party",
-   "question": "Will the Republican Party control the Senate after the 2026 Midterm elections?",
-   "url": "https://polymarket.com/event/which-party-will-win-the-senate-in-2026",
-   "from": 0.245,
-   "to": 0.0085,
-   "change_pts": -23.6,
-   "from_date": "2026-11-03",
-   "news": {
-    "headline": "2026 midterm election results: All U.S. Senate, House and governor races - WBAL-TV",
-    "url": "https://news.google.com/rss/articles/CBMiiwFBVV95cUxPVGY3VUpXaEhudXcxT19pM3JYcklIZGNfZUJIbU9UX2lielo1TXVMSWx3T0lWN1NwQlZsemV3VmlEblFvQjBRMlRBWmdtR1gybll5ZzJYWFAwWktIUEtrcUNmVzhTY0FBdEdOa0dsS1I2bmNUVTBqemVDVEVUaUV0NEw5X3VYM1ptVE9n?oc=5",
-    "published": "Tue, 03 Nov 2026 23:58:00 GMT",
-    "publisher": "WBAL-TV",
-    "via": "Google News RSS"
-   }
-  },
-  {
    "date": "2026-10-30",
    "window": "24h",
    "source": "kalshi",
@@ -81,7 +39,7 @@
     },
     {
      "outcome": "↓ 55,000",
-     "yes": 0.115
+     "yes": 0.095
     }
    ]
   },
@@ -98,7 +56,7 @@
    "odds": [
     {
      "outcome": "Before Jan 1, 2027",
-     "yes": 0.066
+     "yes": 0.064
     }
    ]
   },
@@ -106,24 +64,14 @@
    "short": "House",
    "url": "https://polymarket.com/event/which-party-will-win-the-house-in-2026",
    "source": "polymarket",
-   "odds": [
-    {
-     "outcome": "Democratic Party",
-     "yes": 0.9965
-    }
-   ]
+   "odds": []
   },
   {
    "short": "Senate",
    "url": "https://polymarket.com/event/which-party-will-win-the-senate-in-2026",
    "source": "polymarket",
-   "odds": [
-    {
-     "outcome": "Democratic Party",
-     "yes": 0.992
-    }
-   ]
+   "odds": []
   }
  ],
- "generated_utc": "2026-11-04T02:20:36+00:00"
+ "generated_utc": "2026-11-04T14:52:09+00:00"
 }
