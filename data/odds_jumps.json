@@ -6,6 +6,27 @@
  },
  "jumps": [
   {
+   "date": "2026-11-05",
+   "window": "24h",
+   "source": "polymarket",
+   "group": "Fed",
+   "market": "Fed decision - Dec 9",
+   "outcome": "25 bps increase",
+   "question": "Will the Fed increase interest rates by 25 bps after the December 2026 meeting?",
+   "url": "https://polymarket.com/event/fed-decision-in-december-20260729232808632",
+   "from": 0.675,
+   "to": 0.775,
+   "change_pts": 10.0,
+   "from_date": "2026-11-05",
+   "news": {
+    "headline": "Fed’s Rate Hold Sends Bond Yields in Different Directions - WSJ",
+    "url": "https://news.google.com/rss/articles/CBMiuwFBVV95cUxPaEkwMGl6T29kQlFSbU9EanZNX3VMdG5PcG9tWXh3cUQ0U0R5ZTFuUU1QRl9PWl9nd2l4bFpwWl9OOFFTS0VfSV9UcFR0VEtsRW9ld25admRIbkFQa292VTNWVV9xb2g3ZlQwZ2ZuNlVSQkNTQzhGN0RDSl9wZ0hDWi1fcGFTRnJHUTAzeEhUY1BZeVFJU1ZyaVFPdDkzNm9sVTVmcm9pSkxRWjlTOHRpSjlPNmxUb0pPaHBN?oc=5",
+    "published": "Thu, 05 Nov 2026 11:17:11 GMT",
+    "publisher": "WSJ",
+    "via": "Google News RSS"
+   }
+  },
+  {
    "date": "2026-10-30",
    "window": "24h",
    "source": "kalshi",
@@ -35,11 +56,11 @@
    "odds": [
     {
      "outcome": "↑ 100,000",
-     "yes": 0.095
+     "yes": 0.085
     },
     {
      "outcome": "↓ 55,000",
-     "yes": 0.075
+     "yes": 0.115
     }
    ]
   },
@@ -73,5 +94,5 @@
    "odds": []
   }
  ],
- "generated_utc": "2026-11-05T15:14:23+00:00"
+ "generated_utc": "2026-11-05T17:34:04+00:00"
 }
