@@ -663,24 +663,31 @@ function renderValuation(){
   const bf=BFLAGS(),fw=A.flywheel;
   const prem=v=>v==null?'—':Math.abs(v-1)<0.0005?'no premium':v>=1?`<span class="pos">+${pct(v-1,1)}</span> premium`:`<span class="neg">−${pct(1-v,1)}</span> discount`;
   $('valcards').innerHTML=ASSETS.map(aa=>{const a=aa.ticker,x=V[a]||{},B=x.market_standard||{},Ev=x.all_in_ev||{},b=bf.per_asset[a]||{},f=fw[aa.preferred]||{};
-    const blk=(bs,o,title,tip)=>`<div class="vbasis"><h3>${title}${Q(tip)} ${bs===sb?'<span class="sigtag">signal basis</span>':''}<span class="pill vz z-${o.zone}">${bs==='ev'?zoneTxt({zone:o.zone,low_fair:b.low_fair}):(o.zone||'—')}</span></h3>
-      <div style="display:flex;gap:4px 14px;flex-wrap:wrap;align-items:baseline"><div class="vbig">${fmt(o.mnav,3)}x</div><div class="prem">${prem(o.mnav)}</div></div>
-      ${gauge(a,bs,o)}${pbar(o.mnav_pct_1y)}</div>`;
+    const blk=(bs,o,title)=>`<div class="vbasis"><h3>${title}${bs===sb?' <span class="sigtag">signal</span>':''} <span class="pill vz z-${o.zone}">${bs==='ev'?zoneTxt({zone:o.zone,low_fair:b.low_fair}):(o.zone||'—')}</span></h3>
+      <div class="vbig">${fmt(o.mnav,3)}x</div>${pbar(o.mnav_pct_1y)}</div>`;
     const fc=b.flywheel_cheap?`<span class="badge fc">✓ Flywheel + Cheap</span>`:'';
-    const vl=b.very_low_mnav?`<span class="vlow">● Very low mNAV (incl. debt & preferreds)${b.very_low_reason?' ('+esc(b.very_low_reason)+')':''} → secondary cue for ${a}</span>`:'';
+    const vl=b.very_low_mnav?`<span class="vlow">● Very low mNAV (incl. debt & preferreds)</span>`:'';
     const fl=f.missing?'':`<span class="vfly">${aa.preferred} ${flyPill(fcode(f))} ${fstreak(f)}</span>`;
     const dlx=`Diluted equity mNAV (price × assumed-diluted shares ÷ BTC NAV): ${fmt(x.diluted_equity_mnav,3)}x. Shown for reference only; it counts convertible notes as shares, so it isn't used in either gauge.`;
-    return `<div class="card${b.very_low_mnav?' vl':''}${b.flywheel_cheap?' fcb':''}" style="margin:0;border-color:${ZC[x.zone]||'var(--line)'}55;border-top:3px solid ${C[a]}"><h2><span style="color:${C[a]}">${a}</span> <span class="pill vz z-${x.zone}">${x.zone||'—'}</span> <span class="note" style="font-weight:400">on ${BL(sb)}</span> <span class="cl-note">cheap cap ${fmt(CAP(a),2)}x${CAPM(a)==='held'?' (held)':''} · overheated ≥ ${fmt(OHF(a),2)}x${OHT(a)}</span></h2>
-     <div class="vflags">${fc}${vl}${fl}</div>
-     <div class="vpair">${blk('basic',B,'Stock only',MDEF.basic)}${blk('ev',Ev,'Incl. debt & preferreds',MDEF.ev)}</div>
-     <details class="sec" style="margin-top:8px"><summary>Details: plain-language read, zone rules &amp; inputs</summary>
+    // Pre-build gauges so GN zone-rule strings exist for the Details panel.
+    const gBasic=gauge(a,'basic',B),gEv=gauge(a,'ev',Ev);
+    return `<div class="card${b.very_low_mnav?' vl':''}${b.flywheel_cheap?' fcb':''}" style="margin:0;border-color:${ZC[x.zone]||'var(--line)'}55;border-top:3px solid ${C[a]}"><h2><span style="color:${C[a]}">${a}</span></h2>
+     <div class="vflags">${fc}${vl}</div>
+     <div class="vpair">${blk('basic',B,'Stock only')}${blk('ev',Ev,'Incl. debt & preferreds')}</div>
+     <details class="sec" style="margin-top:8px"><summary>Details</summary>
+     <div class="note">Signal basis: <b>${BL(sb)}</b> · cheap cap ${fmt(CAP(a),2)}x${CAPM(a)==='held'?' (held)':''} · overheated ≥ ${fmt(OHF(a),2)}x${OHT(a)}</div>
      <div class="note">${MDEF.basic} ${MDEF.ev}</div>
-     <div class="note"><b>Stock only:</b> ${plain(a,'basic',B)} <span class="mut">Zones: ${GN[a+'_basic']||'—'}</span></div>
-     <div class="note"><b>Incl. debt &amp; preferreds:</b> ${plain(a,'ev',Ev)} <span class="mut">Zones: ${GN[a+'_ev']||'—'}</span></div>
+     <div class="note"><b>Stock only:</b> ${fmt(B.mnav,3)}x · ${prem(B.mnav)} · ${plain(a,'basic',B)}</div>
+     ${gBasic}
+     <div class="note mut">Zones: ${GN[a+'_basic']||'—'}</div>
+     <div class="note"><b>Incl. debt &amp; preferreds:</b> ${fmt(Ev.mnav,3)}x · ${prem(Ev.mnav)} · ${plain(a,'ev',Ev)}</div>
+     ${gEv}
+     <div class="note mut">Zones: ${GN[a+'_ev']||'—'}</div>
+     <div class="vflags" style="margin-top:6px">${fl||'<span class="note">Flywheel status on the STRC/SATA cards below.</span>'}${vl?`<span class="vlow">● Very low${b.very_low_reason?' ('+esc(b.very_low_reason)+')':''} → secondary cue for ${a}</span>`:''}</div>
      ${fc?'':`<div class="note">Flywheel + Cheap needs ${aa.preferred}'s flywheel on (running hot / ON after a qualifying close, not held by buybacks) and CHEAP mNAV incl. debt &amp; preferreds.</div>`}
      <div class="note">Price $${fmt(x.price)} · BTC held ${fmt(x.btc_held,0)}${srcl(a,'holdings','holdings')} · BTC NAV $${fmt(x.btc_nav_m,0)}M ($${fmt(x.btc_nav_per_basic_share)}/basic share) · diluted mNAV ${fmt(x.diluted_equity_mnav,2)}x${Q(dlx)}</div>
      <div class="note">EV $${fmt(x.enterprise_value_m,0)}M = equity $${fmt(x.price*x.basic_shares/1e6,0)}M (${fmt(x.basic_shares/1e6,1)}M basic sh${srcl(a,'basic_shares','shares')}) + debt $${fmt(x.debt_m,0)}M${srcl(a,'debt_m','debt')} + preferred $${fmt(x.preferred_notional_m,0)}M${srcl(a,a==='MSTR'?'pref_usd_shares':'sata_shares','preferred')} − cash $${fmt(x.cash_m,0)}M${srcl(a,'cash_m','cash')}</div></details></div>`}).join('');
-  $('valtopnote').innerHTML=`Premium = mNAV − 1: how much more (or less) than its bitcoin the market pays. Percentile = rank within each basis' own trailing ${mc.lookback_trading_days} trading days. <span class="badge fc" style="margin:0;font-size:11px;padding:1px 7px">✓ Flywheel + Cheap</span> = the parent's Flywheel ON and mNAV incl. debt & preferreds CHEAP; <span class="vlow" style="display:inline">● Very low mNAV (incl. debt & preferreds)</span> = ≤ ${bf.very_low_max_mnav}x or ≤ ${bf.very_low_max_percentile*100}th pct. Both are display flags; the call follows the rules under "Why this call?".`;
+  $('valtopnote').innerHTML=`At a glance: both mNAV bases, zone, and 1y percentile. <span class="badge fc" style="margin:0;font-size:11px;padding:1px 7px">✓ Flywheel + Cheap</span> = parent's Flywheel ON + mNAV incl. debt & preferreds CHEAP; <span class="vlow" style="display:inline">● Very low</span> = ≤ ${bf.very_low_max_mnav}x or ≤ ${bf.very_low_max_percentile*100}th pct. Premiums, gauges, caps, and inputs are under each card's Details.`;
   $('valnote').innerHTML=`Percentile = where today's value ranks within its own trailing ${mc.lookback_trading_days} trading days, for each basis separately. Zone cutoffs are each stock's own 25th / 75th / 90th percentiles on each basis, plus its cheap cap and overheated floor from <a href="config.json">config.json</a> (<code>valuation</code> + <code>mnav</code>). The relative verdicts use the ASST−MSTR spread z-score on each basis (≤ ${mc.spread_z_favor_asst}: ASST cheaper; ≥ +${mc.spread_z_favor_mstr}: MSTR cheaper). Source links point at the latest filing or API used for each input.`;
   ZB=ZB||sb;segInit('zbasis',ZB,b=>{ZB=b;plotZone();linkCharts()})}
 function segInit(id,cur,fn){const el=$(id);el.querySelectorAll('button').forEach(b=>{b.classList.toggle('on',b.dataset.b===cur);
