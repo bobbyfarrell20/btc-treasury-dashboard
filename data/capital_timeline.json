@@ -1,5 +1,5 @@
 {
- "generated_utc": "2026-11-05T21:15:24+00:00",
+ "generated_utc": "2026-11-05T21:18:14+00:00",
  "version": 1,
  "MSTR": {
   "basic_shares": [
@@ -1414,7 +1414,7 @@
    ]
   },
   "strategy_kpi_latest": {
-   "fetched_utc": "2026-11-05T21:15:25+00:00",
+   "fetched_utc": "2026-11-05T21:18:15+00:00",
    "timestamp_utc": "2026-11-05T20:57:00",
    "market_cap_m": 54848.0,
    "ev_m": 69775.0,
