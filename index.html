@@ -105,6 +105,16 @@ details.sec{margin-top:8px}details.sec>summary{font-size:13px;font-weight:600;co
 .gen{font-size:11.5px;color:var(--mut);text-align:left;margin-top:6px;display:flex;flex-wrap:wrap;align-items:center;gap:4px 6px}.refw{white-space:nowrap;display:inline-flex;align-items:center;gap:5px;margin-left:4px}.btn.refb{min-height:28px;padding:2px 11px;font-size:12px;font-weight:700;line-height:1.2;border-color:#f7931a;color:#f7931a;background:rgba(247,147,26,.10)}.btn.refb:hover{background:rgba(247,147,26,.2);border-color:#f7931a}[data-theme=light] .btn.refb{color:#b45f06;border-color:#d97a0a}.btn.tbref{min-height:26px;padding:1px 9px;font-size:12px;font-weight:700;border-color:#f7931a;color:#f7931a;background:rgba(247,147,26,.10);white-space:nowrap}[data-theme=light] .btn.tbref{color:#b45f06;border-color:#d97a0a}.tbref[disabled]{opacity:.7;cursor:progress}.tbref .ri{display:inline-block}.tbref.spin .ri{animation:rspin .8s linear infinite}.tbrefmsg{font-size:11px;color:var(--fg);white-space:nowrap}.tbrefmsg:empty{display:none}.bbimp{display:inline-block;position:relative;font-size:11px;font-weight:800;padding:1px 7px;border-radius:999px;cursor:help;white-space:nowrap;outline:none}.bbimp.bad{color:#f85149;border:1px solid #f8514988;background:#f8514918}.bbimp.good{color:#2ea043;border:1px solid #2ea04388;background:#2ea04318}.bbimp:hover::after,.bbimp:focus::after{content:attr(data-tip);position:absolute;z-index:80;top:22px;left:0;width:max-content;max-width:min(300px,80vw);white-space:normal;background:var(--panel2);color:var(--fg);border:1px solid var(--line);border-radius:8px;padding:8px 10px;font-size:12px;font-weight:400;line-height:1.4;box-shadow:0 4px 14px rgba(0,0,0,.35);text-align:left}@media (max-width:640px){.bbimp:hover::after,.bbimp:focus::after{position:fixed;top:auto;left:12px;right:12px;bottom:14px;max-width:none;width:auto;font-size:13px}.btn.tbref{min-height:28px;padding:1px 8px}.tbref .rl{display:none}}.refb[disabled]{opacity:.7;cursor:progress}.refb .ri{display:inline-block}.refb.spin .ri{animation:rspin .8s linear infinite}@keyframes rspin{to{transform:rotate(360deg)}}.refmsg:empty{display:none}.refmsg{color:var(--fg)}@media (max-width:640px){.btn.refb{min-height:30px;padding:2px 10px;font-size:12px}.refw{margin-top:3px}}.gen .dot{width:8px;height:8px}.gen .q{width:13px;height:13px;font-size:9px}
 #flywheel,#summary{margin-bottom:12px}
 .fwgrid{gap:10px}.fw{padding:9px 13px}.fw .st{font-size:21px;margin:0 0 2px}.fw .imp{font-size:13.5px;margin:2px 0 4px}.fw .row{font-size:12.5px}.fw .t .pill{font-size:10.5px}
+.fw .pxrow{display:flex;align-items:center;gap:12px;margin:6px 0 2px;flex-wrap:wrap}
+.fw .pxblock{min-width:0}
+.fw .px{font-size:34px;font-weight:900;line-height:1;letter-spacing:-.6px;font-variant-numeric:tabular-nums}
+.fw .vspar{font-size:13px;font-weight:700;margin-top:3px}
+.fw .vspar .near{color:#2ea043}.fw .vspar .far{color:#f85149}
+.fw .sparkwrap{flex:1 1 140px;min-width:130px;max-width:220px}
+.fw .sparkwrap svg{display:block;width:100%;height:56px;color:var(--fg)}
+.fw .sparklab{font-size:10.5px;color:var(--mut);margin-top:1px}
+.chip3 .pxbig{font-size:16px;font-weight:800;font-variant-numeric:tabular-nums}
+@media (max-width:640px){.fw .px{font-size:30px}.fw .pxrow{gap:8px}.fw .sparkwrap{flex-basis:100%;max-width:none}.chip3 .pxbig{font-size:15px}}
 .sumgrid{display:grid;gap:10px;grid-template-columns:repeat(auto-fit,minmax(min(420px,100%),1fr))}
 .sum{background:var(--panel);border:1px solid var(--line);border-radius:12px;padding:9px 13px;font-size:12.5px}
 .sum .t{font-weight:800;font-size:14px}.sum .row{display:flex;flex-wrap:wrap;gap:4px 14px;align-items:center;margin:3px 0}.sum .bigv{font-size:18px}
@@ -289,6 +299,15 @@ const flyPill=(st,txt,title,held)=>`<span class="pill fl-${flyK(st)}${held?' hel
 // close-based triggers: on only after a daily CLOSE >= the per-preferred threshold (config.json peg.on_close_threshold); warming up = watch only
 const TCL=pref=>{const o=D.config.peg.on_close_threshold;return (o&&typeof o==='object'?o[pref]:o)??D.config.peg.on_trade_threshold};
 const fheld=f=>!!(f&&f.buyback_held);
+
+// Tiny SVG sparkline for last 2 trading days of a preferred vs $100 par (no Plotly — keeps pinch-zoom off).
+function sparkSVG(series, par, color){if(!series||!series.length)return '';
+  const w=200,h=56,pad=3,ys=series.map(p=>p.c),xs=series.map(p=>p.t);
+  const yMin=Math.min(par-0.8,...ys)-0.15,yMax=Math.max(par+0.4,...ys)+0.15;
+  const x0=xs[0],x1=xs[xs.length-1]||x0+1,X=t=>pad+(t-x0)/Math.max(1,x1-x0)*(w-2*pad),Y=c=>h-pad-((c-yMin)/Math.max(0.01,yMax-yMin))*(h-2*pad);
+  const path=series.map((p,i)=>(i?'L':'M')+X(p.t).toFixed(1)+','+Y(p.c).toFixed(1)).join(' ');
+  const py=Y(par),lx=X(xs.at(-1)),ly=Y(ys.at(-1)),col=color||'currentColor';
+  return `<svg viewBox="0 0 ${w} ${h}" preserveAspectRatio="none" aria-hidden="true"><line x1="0" x2="${w}" y1="${py.toFixed(1)}" y2="${py.toFixed(1)}" stroke="#2ea043" stroke-dasharray="3 3" stroke-width="1" opacity=".85"/><path d="${path}" fill="none" stroke="${col}" stroke-width="2" stroke-linejoin="round" stroke-linecap="round"/><circle cx="${lx.toFixed(1)}" cy="${ly.toFixed(1)}" r="2.6" fill="${col}"/></svg>`}
 const flyEff=(pref,st,t,held)=>`${pref} ${flyS(st)}${held?' (held by buybacks)':''} → flywheel ${flyOn(st)&&!held?'on':'off'} for ${t}${fn(st)==='WARMING_UP'?' (watch only)':''}`;
 const tET=s=>{if(!s)return '—';if(s.length<=10)return new Date(s+'T12:00:00Z').toLocaleDateString('en-US',{month:'short',day:'numeric',timeZone:'UTC'});return new Date(s).toLocaleString('en-US',{timeZone:'America/New_York',month:'short',day:'numeric',hour:'numeric',minute:'2-digit'})+' ET'};
 // one-line flywheel detail: since when, distance to the close that turns it on (when off), volume multiple
@@ -532,7 +551,7 @@ function renderChips(){const fw=A.flywheel,bf=BFLAGS().per_asset,V=S.valuation||
     if(BB.flag)return ` <span class="bbimp bad" tabindex="0" data-tip="Strategy is spending cash to prop up ${a.preferred} instead of raising money to buy BTC. That's no accretion, and it's often funded by ${t} share sales (dilution).">▼ Bad for ${t}</span>`;
     if(!BB.sales_inferred&&(BB.sales_m||0)>0)return ` <span class="bbimp good" tabindex="0" data-tip="${a.preferred} is selling at par, so Strategy is raising money to buy BTC.">▲ Good for ${t}</span>`;return ''};
   const pc=a=>{const f=fw[a.preferred];if(!f||f.missing)return `<span class="chip3"><b>${a.preferred}</b> no data</span>`;const h=fheld(f),bbn=BB.flag&&a.preferred===(D.config.buyback_support||{}).preferred;
-    return `<span class="chip3 c-${flyK(fcode(f))}${h?' held':''}" title="${a.preferred} last $${fmt(f.price??f.close)} (${f.date}${f.method&&f.method!=='daily'?', intraday':''}). Flywheel indicator for ${a.ticker}, not a trade: ${esc(flyEff(a.preferred,fcode(f),a.ticker,h))}${bbn?esc(` · par held up by buybacks: Strategy 8-K week ${BB.week_start}–${BB.week_end} (filed ${BB.filed}) shows $${fmt(BB.buyback_m,1)}M ${a.preferred} repurchased, ${BB.sales_inferred?'no':'$'+fmt(BB.sales_m,1)+'M'} sales${BB.stale?' (stale: last parsed value)':''}`):''}"><b>${a.preferred}</b> $${fmt(f.price??f.close)} ${flyPill(fcode(f),null,null,h)} ${fstreak(f)}${bbn?` <span class="hn">par held up by buybacks</span>`:''}${bbi(a)}</span>`};
+    return `<span class="chip3 c-${flyK(fcode(f))}${h?' held':''}" title="${a.preferred} last $${fmt(f.price??f.close)} (${f.date}${f.method&&f.method!=='daily'?', intraday':''}). Flywheel indicator for ${a.ticker}, not a trade: ${esc(flyEff(a.preferred,fcode(f),a.ticker,h))}${bbn?esc(` · par held up by buybacks: Strategy 8-K week ${BB.week_start}–${BB.week_end} (filed ${BB.filed}) shows $${fmt(BB.buyback_m,1)}M ${a.preferred} repurchased, ${BB.sales_inferred?'no':'$'+fmt(BB.sales_m,1)+'M'} sales${BB.stale?' (stale: last parsed value)':''}`):''}"><b>${a.preferred}</b> <span class="pxbig">$${fmt(f.price??f.close)}</span> ${flyPill(fcode(f),null,null,h)} ${fstreak(f)}${bbn?` <span class="hn">par held up by buybacks</span>`:''}${bbi(a)}</span>`};
   const sats=()=>{const x=S.sats_context;if(!x||x.price==null)return '';const sg=v=>(v>=0?'+':'−')+'$'+fmt(Math.abs(v));
     const atm=x.latest_atm?`latest ATM +${fmt(x.latest_atm.shares_added/1e3,0)}k sh (~$${fmt(x.latest_atm.stated_value_m,1)}M stated) as of ${x.latest_atm.date}`:'no ATM sales yet';
     return `<span class="chip3 c-CTX" title="SATS (Strive) context only, not a trigger. ${esc(x.atm_note||'')} Shares outstanding ${fmt(x.shares_outstanding/1e6,1)}M as of ${x.shares_date}."><b>SATS</b> $${fmt(x.price)} <span class="note">${sg(x.vs_stated)} vs $${fmt(x.stated_value,0)} stated · ${sg(x.vs_issue)} vs $${fmt(x.issue_price,0)} issue · ${atm}</span> <span class="hn">context</span></span>`};
@@ -542,13 +561,19 @@ function renderChips(){const fw=A.flywheel,bf=BFLAGS().per_asset,V=S.valuation||
   const c=BFLAGS();
   $('legend').innerHTML=`Legend: <b>Flywheel ON + CHEAP parent mNAV incl. debt & preferreds = strongest setup for that parent</b> ${Q(`"Flywheel ON" = the parent's preferred (STRC for MSTR, SATA for ASST) closed at ≥ $${fmt(TCL('STRC'))} (STRC) / ≥ $${fmt(TCL('SATA'))} (SATA) and hasn't since spent more than ${D.config.peg.off_minutes_below} straight market minutes below $${fmt(D.config.peg.on_trade_threshold)}; Running hot / Flywheel ON count as on. Warming up (touched $${fmt(D.config.peg.on_trade_threshold)} without a qualifying close) is watch only. STRC's flywheel doesn't count for MSTR while the latest Strategy 8-K week shows STRC buybacks and no STRC sales ("held by buybacks"). SATS is context only. The preferreds are flywheel indicators, not trades. CHEAP = ≤ 25th pct of the stock's own 1y and at or below its cheap cap. Very low mNAV (incl. debt & preferreds) (≤ ${c.very_low_max_mnav}x or ≤ ${c.very_low_max_percentile*100}th percentile) is a secondary cue for the parent even when its flywheel is only cooling off. These are display flags; the call itself follows the rules under "How the recommendation is decided".`)}`}
 
-function renderFlywheel(){const fw=A.flywheel,bf=BFLAGS().per_asset;
+function renderFlywheel(){const fw=A.flywheel,bf=BFLAGS().per_asset,pc0=D.config.peg;
   $('fwcards').innerHTML=ASSETS.map(a=>{const f=fw[a.preferred],b=bf[a.ticker]||{};if(!f||f.missing)return `<div class="fw f-NO_DATA"><div class="t">${a.preferred} → ${a.ticker}</div><div class="st">NO DATA</div><div class="note">Missing ${a.preferred} prices.</div></div>`;
-    const fcb=b.flywheel_cheap?`<span class="badge fc">✓ Flywheel + Cheap</span>`:'',pc=D.config.peg,st=fn(fcode(f)),h=fheld(f);
+    const fcb=b.flywheel_cheap?`<span class="badge fc">✓ Flywheel + Cheap</span>`:'',pc=pc0,st=fn(fcode(f)),h=fheld(f);
     const lb=flyOn(st)&&f.last_below_trigger?`<span class="note">last below $${fmt(pc.on_trade_threshold)}: ${tET(f.last_below_trigger)}</span>`:'';
-    return `<div class="fw f-${flyK(st)}${h?' held':''}"><div class="t">${a.preferred} → ${a.ticker} flywheel <span class="note" style="font-weight:400">indicator, not a trade</span></div><div class="st"${h?' style="opacity:.6"':''}>${flyL(st)}${h?' <span style="font-size:15px;font-weight:600">· held by buybacks</span>':''}</div>${f.atm&&f.atm.shares_sold>0?`<div class="note">ATM ${f.atm_date||''}: ~${fmt(f.atm.shares_sold/1000,0)}K shares sold → ~${fmt(f.atm.btc_raised,0)} BTC raised${f.atm_day?' (counts as ON: issuing at par)':''} · <a href="${encodeURI(f.atm.source_url||'')}" target="_blank" rel="noopener">@STRC_live</a></div>`:`<div class="note">ATM: no recent issuance reported (@STRC_live)</div>`}
+    const px=f.price??f.close,par=f.sparkline_par??pc.par,dpar=px==null?null:px-par;
+    const dcls=dpar==null?'':(Math.abs(dpar)<=0.2?'near':(dpar<-1?'far':'near'));
+    const dtxt=dpar==null?'':(dpar>=0?`+$${fmt(dpar)}`:`−$${fmt(Math.abs(dpar))}`)+` vs $${fmt(par,0)}`;
+    const spark=sparkSVG(f.sparkline,par,C[a.preferred]||C[a.ticker]);
+    return `<div class="fw f-${flyK(st)}${h?' held':''}"><div class="t">${a.preferred} → ${a.ticker} flywheel <span class="note" style="font-weight:400">indicator, not a trade</span></div><div class="st"${h?' style="opacity:.6"':''}>${flyL(st)}${h?' <span style="font-size:15px;font-weight:600">· held by buybacks</span>':''}</div>
+     <div class="pxrow"><div class="pxblock"><div class="px">$${fmt(px)}</div><div class="vspar"><span class="${dcls}">${dtxt}</span> <span class="note">${f.date}${f.method&&f.method!=='daily'?' · intraday':''}</span></div></div>${spark?`<div class="sparkwrap" title="Last 2 trading days vs $${fmt(par,0)} par">${spark}<div class="sparklab">last 2 sessions · green = $${fmt(par,0)}</div></div>`:''}</div>
+     ${f.atm&&f.atm.shares_sold>0?`<div class="note">ATM ${f.atm_date||''}: ~${fmt(f.atm.shares_sold/1000,0)}K shares sold → ~${fmt(f.atm.btc_raised,0)} BTC raised${f.atm_day?' (counts as ON: issuing at par)':''} · <a href="${encodeURI(f.atm.source_url||'')}" target="_blank" rel="noopener">@STRC_live</a></div>`:`<div class="note">ATM: no recent issuance reported (@STRC_live)</div>`}
      <div class="imp">${implication(a,f)}</div>
-     <div class="row"><span>Last <b>$${fmt(f.price??f.close)}</b> <span class="note">${f.date}${f.method&&f.method!=='daily'?' intraday':''}</span></span><span>${fstreak(f)}</span>${lb}</div>${fcb}</div>`}).join('')}
+     <div class="row"><span>${fstreak(f)}</span>${lb}</div>${fcb}</div>`}).join('')}
 function renderSummary(){const V=S.valuation||{},Y=A.btc_yield,bf=BFLAGS(),fw=A.flywheel;
   $('mnavsum').innerHTML=ASSETS.map(a=>{const x=V[a.ticker]||{},ev=x.all_in_ev||{},st=x.market_standard||{},b=bf.per_asset[a.ticker]||{},y=Y[a.ticker]||{},f=fw[a.preferred]||{};
     const yv=k=>y[k]&&y[k].value!=null?cp(y[k].value,1):'—';
@@ -829,7 +854,7 @@ function renderMethod(){const K=D.strategy_kpi_latest||{},R=D.capital_residuals|
  <br>• <b>Cash</b>: XBRL cash at quarter-ends until Dec 2025, then the USD Reserve from weekly 8-Ks (may slightly understate cash until Aug 30 2026).</p>
  <p><b>ASST capital timeline:</b> basic shares = Effective Common Shares from weekly 8-Ks. Preferred = (SATA + SATS) × $100 stated amount. Cash = cash + STRC held from weekly tables from May 2026, XBRL before that. Debt: Semler's notes + Coinbase loan assumed at the 2026-01-16 merger, exchanged/repaid by Q2 2026. Documented in <a href="data/capital_events.json">capital_events.json</a>.</p>
  <p><b>Not available / approximations:</b> EV history is rebuilt from filings (step function; lags issuance by up to a week, or a quarter for undated debt changes). ASST EV starts 2025-09-30. STRC ATM before Nov 2025 is not parsed. SATA issuance is shares × $100 stated value, not cash raised. SATS history is short. Freshness assumes weekday closes (US holidays not modeled). Yahoo's latest bar can be intraday or missing for a few hours after the close.</p>
- <p><b>Data files:</b> <a href="signals.json">signals.json</a> · <a href="data/dashboard.json">dashboard.json</a> · <a href="data/rows.csv">rows.csv</a> · <a href="data/signal_log.json">signal_log.json</a> · <a href="config.json">config.json</a>. <b>Refresh:</b> GitHub Actions runs <code>scripts/update_data.py</code> every weekday after the US close (and on demand) and redeploys. <a href="https://github.com/bobbyfarrell20/btc-treasury-dashboard">GitHub repo</a>.</p>`}
+ <p><b>Data files:</b> <a href="signals.json">signals.json</a> · <a href="data/dashboard.json">dashboard.json</a> · <a href="data/rows.csv">rows.csv</a> · <a href="data/signal_log.json">signal_log.json</a> · <a href="config.json">config.json</a>. <b>Refresh:</b> GitHub Actions runs <code>scripts/update_data.py</code> about every 15 minutes on weekdays during US market hours, once after the close, once on weekends, and on demand; the open page quietly reloads when new data is published. <a href="https://github.com/bobbyfarrell20/btc-treasury-dashboard">GitHub repo</a>.</p>`}
 // ---------- toggles, theme, loader
 function initToggles(){const L=[...ASSETS.map(a=>a.ticker),'BTC'];
   $('assettoggles').innerHTML=L.map(t=>`<label class="chip"><input type="checkbox" data-a="${t}" ${HIDE.has(t)?'':'checked'}><span style="color:${C[t]}">●</span> ${t}</label>`).join('');
@@ -858,7 +883,16 @@ function initRefresh(){const bs=[$('refbtn'),$('tbref')].filter(Boolean),ms=[$('
  const set=on=>bs.forEach(b=>{b.disabled=on;b.classList.toggle('spin',on)});
  const pull=async()=>{const [d,s,e]=await Promise.all([J('data/dashboard.json'),J('signals.json'),J('data/events.json')]);let mk=null;try{mk=await J('data/markets.json')}catch(x){}return {d,s,e,mk}};
  const apply=({d,s,e,mk})=>{D=d;S=s;E=e;M=mk;A=D.analytics;ASSETS=A.assets;ASSETS.forEach(a=>{if(a.color)C[a.ticker]=a.color});renderAll()};
- const go=async()=>{if(busy)return;busy=true;set(true);say('Starting fresh update…');const key=D.generated_utc+'|'+S.generated_utc;
+ const keyOf=()=>D.generated_utc+'|'+S.generated_utc;
+ // Quiet auto-poll: GitHub Actions republishes every ~15 min during market hours. This only
+ // re-fetches the static JSON (no Actions trigger, no bot tokens). Pauses while the tab is
+ // hidden and while a manual Refresh is running.
+ const AUTO_MS=90e3;
+ const auto=async()=>{if(busy||document.hidden)return;const key=keyOf();
+  try{const x=await pull();if(x.d.generated_utc+'|'+x.s.generated_utc!==key){apply(x);say('Auto-updated ✓',4000)}}catch(err){console.warn('auto-refresh',err)}};
+ setInterval(auto,AUTO_MS);
+ document.addEventListener('visibilitychange',()=>{if(!document.hidden)auto()});
+ const go=async()=>{if(busy)return;busy=true;set(true);say('Starting fresh update…');const key=keyOf();
   try{let url='';try{url=(await J('config.json')).refresh_trigger_url||''}catch(x){}
    let started=false;
    if(url){try{const r=await fetch(url,{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({source:'dashboard'})});started=r.ok}catch(x){console.warn('trigger',x)}}

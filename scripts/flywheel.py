@@ -135,6 +135,27 @@ def compute(dates, daily, bars, pc, now=None, pref=None, atm=None):
         if d != today or frac >= 1: vols.append(v)
     return out
 
+
+def sparkline(bars, n_days=2, step_min=5):
+    """Compact close series for the last n_days of regular-session bars (downsampled to step_min).
+    Returns [{"t": unix_ts, "c": close}, ...] for the dashboard sparkline next to the preferred price."""
+    if not bars: return []
+    out = []
+    for d in sorted(bars.keys())[-n_days:]:
+        B = bars[d] or []
+        kept = []
+        for ts, mins, h, l, c, v in B:
+            if c is None: continue
+            t_et = dt.datetime.fromtimestamp(ts, ET)
+            if mins >= step_min or t_et.minute % step_min == 0:
+                kept.append({"t": int(ts), "c": round(float(c), 3)})
+        if B:
+            ts, mins, h, l, c, v = B[-1]
+            if c is not None and (not kept or kept[-1]["t"] != int(ts)):
+                kept.append({"t": int(ts), "c": round(float(c), 3)})
+        out.extend(kept)
+    return out
+
 def fetch_bars(get_json, ticker):
     """{date: [(ts, minutes, h, l, c, v)]}: 1m bars where available, else 5m (regular session only)."""
     res = {}

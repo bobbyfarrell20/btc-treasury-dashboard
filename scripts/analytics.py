@@ -11,6 +11,7 @@ from the daily rows built in update_data.py).
 - signal_flips() / update_signal_log(): signal-change history.
 """
 import json, hashlib, datetime as dt
+import flywheel as FW
 
 D = dt.date.fromisoformat
 
@@ -144,7 +145,7 @@ def rec_hash_action(rec):
     return hashlib.sha1(rec["action"].encode()).hexdigest()[:12]
 
 # ---------------------------------------------------------------- flywheel cards
-def flywheel(rows, pref, parent, pc, detail=None):
+def flywheel(rows, pref, parent, pc, detail=None, bars=None):
     """Flywheel card for one preferred, from the engine output (scripts/flywheel.py)."""
     R = [r for r in rows if r.get(pref) is not None]
     if not R: return {"preferred": pref, "parent": parent, "missing": True}
@@ -182,7 +183,8 @@ def flywheel(rows, pref, parent, pc, detail=None):
             "atm_day": x.get("atm_day"), "atm": atm_show, "atm_date": atm_date,
             "on_trade_threshold": T, "full_on_threshold": FULL, "off_minutes_below": pc["off_minutes_below"], "stalled_below": pc["stalled_below"],
             "threshold": target, "distance_to_threshold": round(px - target, 3) if target is not None else None,
-            "distance_to_trigger": round(px - T, 3), "distance_to_par": round(px - pc["par"], 3)}
+            "distance_to_trigger": round(px - T, 3), "distance_to_par": round(px - pc["par"], 3),
+            "sparkline": FW.sparkline(bars or {}, n_days=2), "sparkline_par": pc["par"]}
 
 # ---------------------------------------------------------------- BTC yield
 WINDOWS = (("30d", 30), ("90d", 90), ("ytd", None), ("1y", 365))
