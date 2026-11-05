@@ -62,6 +62,7 @@ details summary{cursor:pointer;color:var(--b)}
 .tb-r{margin-left:auto;display:flex;gap:8px;align-items:center}
 .btn{background:var(--btn);color:var(--fg);border:1px solid var(--line);border-radius:6px;padding:5px 10px;font-size:12px;cursor:pointer;min-height:30px}.btn:hover{border-color:var(--b)}
 .dot{display:inline-block;width:10px;height:10px;border-radius:50%;vertical-align:middle;margin-right:4px}
+.fwmore{margin-top:4px}.fwmore>summary{cursor:pointer;font-size:12px;color:var(--muted,#888)}
 .fwgrid{display:grid;gap:14px;grid-template-columns:repeat(auto-fit,minmax(min(420px,100%),1fr))}
 .fw{border-radius:12px;padding:14px 16px;border:2px solid var(--line);background:var(--panel)}
 .fw .t{font-size:13px;color:var(--mut);font-weight:700;letter-spacing:.4px}.fw .st{font-size:28px;font-weight:800;line-height:1.15;margin:2px 0 4px}
@@ -179,6 +180,7 @@ details.card{margin-bottom:10px;padding:11px 14px}
 <div class="disc" style="margin:10px 0 0"><b>Rules-based indicator, not financial advice.</b> Signals are produced mechanically from public data and the thresholds in <a href="config.json">config.json</a>. Data can be late, wrong or missing. Do your own research.</div></div></details>
 </section>
 
+<section id="fwtop" style="margin-bottom:12px"><div class="fwgrid" id="fwcards"></div></section>
 <section class="card" id="gapsec"><div class="cardhead"><h2>MSTR vs ASST mNAV gap <span class="seg" id="gbasis"><button data-b="ev" title="Adds debt and preferreds, minus cash">incl. debt &amp; preferreds</button><button data-b="basic" title="Stock market value ÷ bitcoin held">stock only</button></span></h2><span class="csvb" data-c="c_spread"></span></div>
 <div class="gapsum" id="gapsum"></div>
 <div class="note" id="gapsub" style="margin-bottom:4px"></div>
@@ -197,7 +199,6 @@ details.card{margin-bottom:10px;padding:11px 14px}
 
 <h2 class="grp">Details</h2>
 <details class="card" id="pegsec"><summary>Flywheel detail: STRC &amp; SATA vs $99.80 / $99.95, flywheel-state charts, issuance fuel</summary>
-<div class="fwgrid" id="fwcards" style="margin:10px 0"></div>
 <div class="cardhead"><span class="note" id="pegnote"></span><span class="csvb" data-c="c_strc,c_sata,c_fuel"></span></div>
 <div id="c_strc" class="chart sm"></div><div id="c_sata" class="chart sm"></div>
 <div id="c_fuel" class="chart sm"></div>
@@ -571,9 +572,9 @@ function renderFlywheel(){const fw=A.flywheel,bf=BFLAGS().per_asset,pc0=D.config
     const spark=sparkSVG(f.sparkline,par,C[a.preferred]||C[a.ticker]);
     return `<div class="fw f-${flyK(st)}${h?' held':''}"><div class="t">${a.preferred} → ${a.ticker} flywheel <span class="note" style="font-weight:400">indicator, not a trade</span></div><div class="st"${h?' style="opacity:.6"':''}>${flyL(st)}${h?' <span style="font-size:15px;font-weight:600">· held by buybacks</span>':''}</div>
      <div class="pxrow"><div class="pxblock"><div class="px">$${fmt(px)}</div><div class="vspar"><span class="${dcls}">${dtxt}</span> <span class="note">${f.date}${f.method&&f.method!=='daily'?' · intraday':''}</span></div></div>${spark?`<div class="sparkwrap" title="Last 2 trading days vs $${fmt(par,0)} par">${spark}<div class="sparklab">last 2 sessions · green = $${fmt(par,0)}</div></div>`:''}</div>
-     ${f.atm&&f.atm.shares_sold>0?`<div class="note">ATM ${f.atm_date||''}: ~${fmt(f.atm.shares_sold/1000,0)}K shares sold → ~${fmt(f.atm.btc_raised,0)} BTC raised${f.atm_day?' (counts as ON: issuing at par)':''} · <a href="${encodeURI(f.atm.source_url||'')}" target="_blank" rel="noopener">@STRC_live</a></div>`:`<div class="note">ATM: no recent issuance reported (@STRC_live)</div>`}
+     <details class="fwmore"><summary>details</summary>${f.atm&&f.atm.shares_sold>0?`<div class="note">ATM ${f.atm_date||''}: ~${fmt(f.atm.shares_sold/1000,0)}K shares sold → ~${fmt(f.atm.btc_raised,0)} BTC raised${f.atm_day?' (counts as ON: issuing at par)':''} · <a href="${encodeURI(f.atm.source_url||'')}" target="_blank" rel="noopener">@STRC_live</a></div>`:`<div class="note">ATM: no recent issuance reported (@STRC_live)</div>`}
      <div class="imp">${implication(a,f)}</div>
-     <div class="row"><span>${fstreak(f)}</span>${lb}</div>${fcb}</div>`}).join('')}
+     <div class="row"><span>${fstreak(f)}</span>${lb}</div></details>${fcb}</div>`}).join('')}
 function renderSummary(){const V=S.valuation||{},Y=A.btc_yield,bf=BFLAGS(),fw=A.flywheel;
   $('mnavsum').innerHTML=ASSETS.map(a=>{const x=V[a.ticker]||{},ev=x.all_in_ev||{},st=x.market_standard||{},b=bf.per_asset[a.ticker]||{},y=Y[a.ticker]||{},f=fw[a.preferred]||{};
     const yv=k=>y[k]&&y[k].value!=null?cp(y[k].value,1):'—';
