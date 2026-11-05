@@ -21,7 +21,7 @@
     "new": "STAY_BTC"
   },
   "_hash_note": "signal_hash changes when the recommendation, also_valid, any preferred peg state (on for the call = RUNNING_HOT/ON, hashed alike; WARMING_UP and COOLING_OFF hash as WATCH, STALLED as SELL; ON held by buybacks hashes as WATCH) or any overheated flag changes; last_changed is the most recent trading day it changed.",
-  "generated_utc": "2026-11-05T21:01:13+00:00",
+  "generated_utc": "2026-11-05T21:02:14+00:00",
   "as_of": "2026-11-05",
   "disclaimer": "Rules-based indicator, not financial advice.",
   "recommendation_detail": {
@@ -30,7 +30,7 @@
     "also_valid": null,
     "lean": null,
     "notes": [],
-    "rotation_z": -0.076,
+    "rotation_z": -0.075,
     "per_asset": {
       "MSTR": {
         "preferred": "STRC",
@@ -42,7 +42,7 @@
         "buyback_held": false,
         "flywheel_state": "Cooling off",
         "flywheel_effect": "STRC cooling off \u2192 flywheel off for MSTR",
-        "mnav_ev": 1.0802,
+        "mnav_ev": 1.0803,
         "mnav_ev_pct": 0.361,
         "has_data": true
       },
@@ -56,7 +56,7 @@
         "buyback_held": false,
         "flywheel_state": "Stalled",
         "flywheel_effect": "SATA stalled \u2192 flywheel off for ASST",
-        "mnav_ev": 1.2771,
+        "mnav_ev": 1.2775,
         "mnav_ev_pct": 0.393,
         "has_data": true
       }
@@ -85,7 +85,7 @@
       "last_below_trigger": null,
       "minutes_below_trigger_now": null,
       "method": "intraday_1m",
-      "vol_mult": 1.61,
+      "vol_mult": 1.63,
       "vol_partial_session": false,
       "share_vol_at_or_above_100": 0.0,
       "days_in_state": 1,
@@ -732,8 +732,8 @@
           "c": 99.56
         },
         {
-          "t": 1793912280,
-          "c": 99.56
+          "t": 1793912340,
+          "c": 99.6
         }
       ],
       "sparkline_par": 100.0
@@ -742,8 +742,8 @@
       "preferred": "SATA",
       "parent": "ASST",
       "date": "2026-11-05",
-      "close": 95.82,
-      "price": 95.82,
+      "close": 95.93,
+      "price": 95.93,
       "peg_state": "SELL",
       "status": "OFF_PEG",
       "flywheel_code": "STALLED",
@@ -760,7 +760,7 @@
       "last_below_trigger": null,
       "minutes_below_trigger_now": null,
       "method": "intraday_1m",
-      "vol_mult": 0.98,
+      "vol_mult": 0.99,
       "vol_partial_session": false,
       "share_vol_at_or_above_100": 0.0,
       "days_in_state": 22,
@@ -778,9 +778,9 @@
       "off_minutes_below": 30,
       "stalled_below": 99.0,
       "threshold": 99.8,
-      "distance_to_threshold": -3.98,
-      "distance_to_trigger": -3.98,
-      "distance_to_par": -4.18,
+      "distance_to_threshold": -3.87,
+      "distance_to_trigger": -3.87,
+      "distance_to_par": -4.07,
       "sparkline": [
         {
           "t": 1793802600,
@@ -1159,8 +1159,8 @@
           "c": 95.8
         },
         {
-          "t": 1793912280,
-          "c": 95.82
+          "t": 1793912340,
+          "c": 95.84
         }
       ],
       "sparkline_par": 100.0
@@ -1191,7 +1191,7 @@
         "peg_state": "WATCH",
         "flywheel_code": "COOLING_OFF",
         "flywheel_state": "Cooling off",
-        "mnav": 1.0802,
+        "mnav": 1.0803,
         "mnav_pct_1y": 0.361,
         "zone": "FAIR",
         "low_fair": true,
@@ -1206,7 +1206,7 @@
         "peg_state": "SELL",
         "flywheel_code": "STALLED",
         "flywheel_state": "Stalled",
-        "mnav": 1.2771,
+        "mnav": 1.2775,
         "mnav_pct_1y": 0.393,
         "zone": "OVERVALUED",
         "low_fair": false,
@@ -1248,11 +1248,11 @@
       "flywheel_code": "COOLING_OFF",
       "overheated_floor": 1.25,
       "action": "WATCH",
-      "mnav": 1.0802,
+      "mnav": 1.0803,
       "mnav_pct_1y": 0.361,
       "overheated": false,
-      "price_chg_dip_window": -0.1129,
-      "mnav_chg_dip_window": -0.0359
+      "price_chg_dip_window": -0.1132,
+      "mnav_chg_dip_window": -0.0358
     },
     "ASST": {
       "peg_state": "SELL",
@@ -1262,11 +1262,11 @@
       "flywheel_code": "STALLED",
       "overheated_floor": 1.2545,
       "action": "SELL",
-      "mnav": 1.2771,
+      "mnav": 1.2775,
       "mnav_pct_1y": 0.393,
       "overheated": false,
       "price_chg_dip_window": -0.2907,
-      "mnav_chg_dip_window": -0.1756
+      "mnav_chg_dip_window": -0.1753
     }
   },
   "both_overheated": false,
@@ -1276,12 +1276,12 @@
     "target": null,
     "lookback_trading_days": 10,
     "trigger_btc_drop": 0.15,
-    "btc_change": -0.0655,
+    "btc_change": -0.0658,
     "cheapened_most": "ASST",
-    "mstr_price_change": -0.1129,
+    "mstr_price_change": -0.1132,
     "asst_price_change": -0.2907,
-    "mstr_mnav_change": -0.0359,
-    "asst_mnav_change": -0.1756
+    "mstr_mnav_change": -0.0358,
+    "asst_mnav_change": -0.1753
   },
   "strc_buyback_support": false,
   "buyback_support": {
@@ -1300,11 +1300,11 @@
   },
   "sats_context": {
     "date": "2026-11-05",
-    "price": 94.1751,
+    "price": 94.61,
     "stated_value": 100.0,
     "issue_price": 90.0,
-    "vs_stated": -5.825,
-    "vs_issue": 4.175,
+    "vs_stated": -5.39,
+    "vs_issue": 4.61,
     "shares_outstanding": 7003418.0,
     "shares_date": "2026-10-30",
     "shares_source": "https://www.sec.gov/Archives/edgar/data/1920406/000162828026068660/asst-20261102.htm",
@@ -1327,47 +1327,47 @@
       "distance_from_par": -0.44
     },
     "SATA": {
-      "price": 95.82,
+      "price": 95.93,
       "state": "SELL",
       "flywheel_state": "Stalled",
       "flywheel_code": "STALLED",
-      "distance_from_par": -4.18
+      "distance_from_par": -4.07
     }
   },
   "signal_basis": "ev",
   "signal_basis_label": "mNAV incl. debt & preferreds: adds debt and preferreds, minus cash ((price x basic shares + debt + preferred notional - cash) / BTC NAV)",
   "values": {
-    "MSTR": 129.345,
+    "MSTR": 129.3,
     "ASST": 20.59,
-    "btc": 75985.1172,
-    "mstr_mnav": 1.0802,
-    "asst_mnav": 1.2771,
-    "mnav_avg": 1.1786,
-    "mnav_spread": 0.1969,
-    "spread_z": -0.076,
-    "ratio": 0.15919,
-    "mstr_mnav_basic": 0.8489,
-    "asst_mnav_basic": 0.8001,
-    "mstr_mnav_ev": 1.0802,
-    "asst_mnav_ev": 1.2771,
+    "btc": 75961.7266,
+    "mstr_mnav": 1.0803,
+    "asst_mnav": 1.2775,
+    "mnav_avg": 1.1789,
+    "mnav_spread": 0.1972,
+    "spread_z": -0.075,
+    "ratio": 0.15924,
+    "mstr_mnav_basic": 0.8488,
+    "asst_mnav_basic": 0.8003,
+    "mstr_mnav_ev": 1.0803,
+    "asst_mnav_ev": 1.2775,
     "mstr_mnav_diluted": 0.9081,
-    "asst_mnav_diluted": 0.8171,
-    "mstr_ev_m": 69713.2,
+    "asst_mnav_diluted": 0.8174,
+    "mstr_ev_m": 69694.0,
     "asst_ev_m": 4184.6,
-    "btc_chg": -0.0655,
-    "mstr_chg": -0.1129,
+    "btc_chg": -0.0658,
+    "mstr_chg": -0.1132,
     "asst_chg": -0.2907,
-    "mstr_mnav_chg": -0.0359,
-    "asst_mnav_chg": -0.1756,
-    "mstr_nav_ps": 142.43,
-    "asst_nav_ps": 25.2
+    "mstr_mnav_chg": -0.0358,
+    "asst_mnav_chg": -0.1753,
+    "mstr_nav_ps": 142.38,
+    "asst_nav_ps": 25.19
   },
   "valuation": {
     "MSTR": {
       "signal_basis": "ev",
       "zone": "FAIR",
       "market_standard": {
-        "mnav": 0.8489,
+        "mnav": 0.8488,
         "mnav_pct_1y": 0.46,
         "zone": "FAIR",
         "cutoffs": {
@@ -1381,7 +1381,7 @@
         }
       },
       "all_in_ev": {
-        "mnav": 1.0802,
+        "mnav": 1.0803,
         "mnav_pct_1y": 0.361,
         "zone": "FAIR",
         "cutoffs": {
@@ -1395,25 +1395,25 @@
         }
       },
       "diluted_equity_mnav": 0.9081,
-      "price": 129.345,
+      "price": 129.3,
       "btc_held": 849327.0,
       "basic_shares": 423536680.0,
       "debt_m": 6714.0,
-      "preferred_notional_m": 13139.8,
+      "preferred_notional_m": 13139.7,
       "cash_m": 4923.0,
-      "enterprise_value_m": 69713.2,
-      "btc_nav_m": 64536,
-      "btc_nav_per_basic_share": 152.37
+      "enterprise_value_m": 69694.0,
+      "btc_nav_m": 64516,
+      "btc_nav_per_basic_share": 152.33
     },
     "ASST": {
       "signal_basis": "ev",
       "zone": "OVERVALUED",
       "market_standard": {
-        "mnav": 0.8001,
+        "mnav": 0.8003,
         "mnav_pct_1y": 0.254,
         "zone": "FAIR",
         "cutoffs": {
-          "p25": 0.7999,
+          "p25": 0.8,
           "median": 0.9887,
           "p75": 1.1763,
           "p90": 1.3288,
@@ -1423,7 +1423,7 @@
         }
       },
       "all_in_ev": {
-        "mnav": 1.2771,
+        "mnav": 1.2775,
         "mnav_pct_1y": 0.393,
         "zone": "OVERVALUED",
         "cutoffs": {
@@ -1436,7 +1436,7 @@
           "overheated_floor": 1.2545
         }
       },
-      "diluted_equity_mnav": 0.8171,
+      "diluted_equity_mnav": 0.8174,
       "price": 20.59,
       "btc_held": 43124.0,
       "basic_shares": 127331109.0,
@@ -1444,33 +1444,33 @@
       "preferred_notional_m": 2103.4,
       "cash_m": 540.5,
       "enterprise_value_m": 4184.6,
-      "btc_nav_m": 3277,
+      "btc_nav_m": 3276,
       "btc_nav_per_basic_share": 25.73
     },
     "spread_z": {
-      "basic": -0.839,
-      "ev": -0.076
+      "basic": -0.837,
+      "ev": -0.075
     },
     "relative_verdict": {
       "basic": "Neither is clearly cheaper vs its usual gap (spread z -0.84, within \u00b11); ASST has the lower mNAV today (0.80x vs 0.85x)",
-      "ev": "Neither is clearly cheaper vs its usual gap (spread z -0.08, within \u00b11); MSTR has the lower mNAV today (1.08x vs 1.28x)"
+      "ev": "Neither is clearly cheaper vs its usual gap (spread z -0.07, within \u00b11); MSTR has the lower mNAV today (1.08x vs 1.28x)"
     },
     "relative_value": {
       "ev": {
         "basis": "ev",
         "lookback_trading_days": 252,
-        "mstr_mnav": 1.0802,
-        "asst_mnav": 1.2771,
-        "ratio_now": 1.1823,
+        "mstr_mnav": 1.0803,
+        "asst_mnav": 1.2775,
+        "ratio_now": 1.1825,
         "ratio_mean_1y": 1.1949,
         "ratio_median_1y": 1.215,
         "ratio_sd_1y": 0.1954,
-        "ratio_z": -0.064,
+        "ratio_z": -0.063,
         "ratio_pct_1y": 0.417,
-        "diff_now": 0.1969,
+        "diff_now": 0.1972,
         "diff_mean_1y": 0.2136,
         "diff_sd_1y": 0.2192,
-        "diff_z": -0.076,
+        "diff_z": -0.075,
         "diff_pct_1y": 0.405,
         "verdict": "NORMAL",
         "verdict_text": "Spread normal",
@@ -1480,18 +1480,18 @@
       "basic": {
         "basis": "basic",
         "lookback_trading_days": 252,
-        "mstr_mnav": 0.8489,
-        "asst_mnav": 0.8001,
-        "ratio_now": 0.9425,
+        "mstr_mnav": 0.8488,
+        "asst_mnav": 0.8003,
+        "ratio_now": 0.9429,
         "ratio_mean_1y": 1.1853,
         "ratio_median_1y": 1.1935,
         "ratio_sd_1y": 0.2706,
-        "ratio_z": -0.897,
+        "ratio_z": -0.896,
         "ratio_pct_1y": 0.187,
-        "diff_now": -0.0488,
+        "diff_now": -0.0485,
         "diff_mean_1y": 0.1554,
         "diff_sd_1y": 0.2435,
-        "diff_z": -0.839,
+        "diff_z": -0.837,
         "diff_pct_1y": 0.187,
         "verdict": "NORMAL",
         "verdict_text": "Spread normal",
@@ -1503,30 +1503,30 @@
   "latest_big_move": {
     "date": "2026-11-05",
     "asset": "MSTR",
-    "change": -0.0926,
-    "close": 129.345,
+    "change": -0.0929,
+    "close": 129.3,
     "prev_close": 142.54,
     "threshold": 0.07,
-    "btc_change_same_day": -0.055
+    "btc_change_same_day": -0.0553
   },
   "big_moves_last_30d": [
     {
       "date": "2026-11-05",
       "asset": "MSTR",
-      "change": -0.0926,
-      "close": 129.345,
+      "change": -0.0929,
+      "close": 129.3,
       "prev_close": 142.54,
       "threshold": 0.07,
-      "btc_change_same_day": -0.055
+      "btc_change_same_day": -0.0553
     },
     {
       "date": "2026-11-05",
       "asset": "BTC",
-      "change": -0.055,
-      "close": 75985.1172,
+      "change": -0.0553,
+      "close": 75961.7266,
       "prev_close": 80405.2891,
       "threshold": 0.04,
-      "btc_change_same_day": -0.055
+      "btc_change_same_day": -0.0553
     },
     {
       "date": "2026-11-05",
@@ -1535,7 +1535,7 @@
       "close": 20.59,
       "prev_close": 22.92,
       "threshold": 0.07,
-      "btc_change_same_day": -0.055
+      "btc_change_same_day": -0.0553
     },
     {
       "date": "2026-11-04",
