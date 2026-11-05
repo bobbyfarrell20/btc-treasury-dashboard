@@ -89,7 +89,7 @@ details.sec{margin-top:8px}details.sec>summary{font-size:13px;font-weight:600;co
 .topbar{padding:4px 12px;gap:4px 8px;font-size:12px;min-height:34px}.topbar .pill{font-size:11px;padding:2px 7px}
 .btn.ib{min-height:26px;padding:2px 8px;font-size:14px;line-height:1}
 .hero{padding:8px 22px 6px}.hero h1{font-size:18px}.hero .logo{width:30px;height:30px;font-size:18px;line-height:30px}.hero .tag{font-size:12px}.hero .tk .p{font-size:15px}
-#decision{margin-bottom:12px}
+#decision{margin-bottom:12px}#fwtop{margin:10px 0 8px}
 .rec{padding:12px 18px;margin-bottom:8px;text-align:center}.rec .lbl{font-size:11.5px;opacity:.8;font-weight:600;letter-spacing:.3px}
 .rec .big{font-size:44px;letter-spacing:1px}
 .chips3{display:flex;flex-wrap:wrap;gap:6px 8px;justify-content:center;margin:0 0 6px}
@@ -169,6 +169,7 @@ details.card{margin-bottom:10px;padding:11px 14px}
 <section class="card" id="valtop"><div class="cardhead"><h2>mNAV premium: MSTR &amp; ASST <span class="note" style="font-weight:400">stock only vs incl. debt &amp; preferreds</span> <i class="q" tabindex="0" data-tip="Stock only: stock market value ÷ bitcoin held. Incl. debt &amp; preferreds: adds debt and preferreds, minus cash.">?</i></h2></div>
 <div class="grid g2" id="valcards"></div>
 <details class="sec" style="margin-top:8px"><summary>Details: how to read these cards</summary><div class="note" id="valtopnote"></div></details></section>
+<section id="fwtop"><div class="fwgrid" id="fwcards"></div></section>
 <section id="decision">
 <div class="rec" id="recbanner"><div class="lbl">Today's call · rules-based indicator, not financial advice</div><div class="big" id="rec_big">…</div><div class="recsub" id="rec_sub"></div><div class="recshort" id="rec_short"></div></div>
 <div class="chips3" id="chips"></div>
@@ -179,8 +180,6 @@ details.card{margin-bottom:10px;padding:11px 14px}
 <div class="note" id="rec_rules" style="margin-top:8px"></div>
 <div class="disc" style="margin:10px 0 0"><b>Rules-based indicator, not financial advice.</b> Signals are produced mechanically from public data and the thresholds in <a href="config.json">config.json</a>. Data can be late, wrong or missing. Do your own research.</div></div></details>
 </section>
-
-<section id="fwtop" style="margin-bottom:12px"><div class="fwgrid" id="fwcards"></div></section>
 <section class="card" id="gapsec"><div class="cardhead"><h2>MSTR vs ASST mNAV gap <span class="seg" id="gbasis"><button data-b="ev" title="Adds debt and preferreds, minus cash">incl. debt &amp; preferreds</button><button data-b="basic" title="Stock market value ÷ bitcoin held">stock only</button></span></h2><span class="csvb" data-c="c_spread"></span></div>
 <div class="gapsum" id="gapsum"></div>
 <div class="note" id="gapsub" style="margin-bottom:4px"></div>
@@ -546,19 +545,10 @@ function implication(a,f){const p=a.preferred,t=a.ticker,st=fn(fcode(f)),pc=D.co
   if(st==='WARMING_UP')return `${p} warming up: traded ≥ $${fmt(pc.on_trade_threshold)} without a qualifying close → watch only, flywheel off for ${t}'s call until a daily close ≥ $${fmt(TC)}`;
   if(st==='COOLING_OFF')return `${p} cooling off (off, still ≥ $${pc.stalled_below}) → flywheel off for ${t} until a daily close ≥ $${fmt(TC)}`;
   return `${p} stalled (below $${pc.stalled_below}) → flywheel off for ${t} until a daily close ≥ $${fmt(TC)}`}
-function renderChips(){const fw=A.flywheel,bf=BFLAGS().per_asset,V=S.valuation||{},rc=S.recommendation;
-  const BB=S.buyback_support||{};
-  const bbi=a=>{const bc=D.config.buyback_support||{};if(a.preferred!==(bc.preferred||'STRC')||BB.flag==null)return '';const t=a.ticker;
-    if(BB.flag)return ` <span class="bbimp bad" tabindex="0" data-tip="Strategy is spending cash to prop up ${a.preferred} instead of raising money to buy BTC. That's no accretion, and it's often funded by ${t} share sales (dilution).">▼ Bad for ${t}</span>`;
-    if(!BB.sales_inferred&&(BB.sales_m||0)>0)return ` <span class="bbimp good" tabindex="0" data-tip="${a.preferred} is selling at par, so Strategy is raising money to buy BTC.">▲ Good for ${t}</span>`;return ''};
-  const pc=a=>{const f=fw[a.preferred];if(!f||f.missing)return `<span class="chip3"><b>${a.preferred}</b> no data</span>`;const h=fheld(f),bbn=BB.flag&&a.preferred===(D.config.buyback_support||{}).preferred;
-    return `<span class="chip3 c-${flyK(fcode(f))}${h?' held':''}" title="${a.preferred} last $${fmt(f.price??f.close)} (${f.date}${f.method&&f.method!=='daily'?', intraday':''}). Flywheel indicator for ${a.ticker}, not a trade: ${esc(flyEff(a.preferred,fcode(f),a.ticker,h))}${bbn?esc(` · par held up by buybacks: Strategy 8-K week ${BB.week_start}–${BB.week_end} (filed ${BB.filed}) shows $${fmt(BB.buyback_m,1)}M ${a.preferred} repurchased, ${BB.sales_inferred?'no':'$'+fmt(BB.sales_m,1)+'M'} sales${BB.stale?' (stale: last parsed value)':''}`):''}"><b>${a.preferred}</b> <span class="pxbig">$${fmt(f.price??f.close)}</span> ${flyPill(fcode(f),null,null,h)} ${fstreak(f)}${bbn?` <span class="hn">par held up by buybacks</span>`:''}${bbi(a)}</span>`};
-  const sats=()=>{const x=S.sats_context;if(!x||x.price==null)return '';const sg=v=>(v>=0?'+':'−')+'$'+fmt(Math.abs(v));
+function renderChips(){const sats=()=>{const x=S.sats_context;if(!x||x.price==null)return '';const sg=v=>(v>=0?'+':'−')+'$'+fmt(Math.abs(v));
     const atm=x.latest_atm?`latest ATM +${fmt(x.latest_atm.shares_added/1e3,0)}k sh (~$${fmt(x.latest_atm.stated_value_m,1)}M stated) as of ${x.latest_atm.date}`:'no ATM sales yet';
     return `<span class="chip3 c-CTX" title="SATS (Strive) context only, not a trigger. ${esc(x.atm_note||'')} Shares outstanding ${fmt(x.shares_outstanding/1e6,1)}M as of ${x.shares_date}."><b>SATS</b> $${fmt(x.price)} <span class="note">${sg(x.vs_stated)} vs $${fmt(x.stated_value,0)} stated · ${sg(x.vs_issue)} vs $${fmt(x.issue_price,0)} issue · ${atm}</span> <span class="hn">context</span></span>`};
-  const names=rc==='BUY_MSTR'?['MSTR']:rc==='BUY_ASST'?['ASST']:ASSETS.map(a=>a.ticker);
-  const mz=names.map(t=>{const x=(V[t]||{}).all_in_ev||{},b=bf[t]||{};return `${t} <b>${fmt(x.mnav,2)}x</b> <span class="pill vz z-${x.zone}">${zoneTxt({zone:x.zone,low_fair:b.low_fair})}</span>`}).join(' · ');
-  $('chips').innerHTML=ASSETS.map(a=>pc(a)+(a.preferred==='SATA'?sats():'')).join('');
+  $('chips').innerHTML=sats();
   const c=BFLAGS();
   $('legend').innerHTML=`Legend: <b>Flywheel ON + CHEAP parent mNAV incl. debt & preferreds = strongest setup for that parent</b> ${Q(`"Flywheel ON" = the parent's preferred (STRC for MSTR, SATA for ASST) closed at ≥ $${fmt(TCL('STRC'))} (STRC) / ≥ $${fmt(TCL('SATA'))} (SATA) and hasn't since spent more than ${D.config.peg.off_minutes_below} straight market minutes below $${fmt(D.config.peg.on_trade_threshold)}; Running hot / Flywheel ON count as on. Warming up (touched $${fmt(D.config.peg.on_trade_threshold)} without a qualifying close) is watch only. STRC's flywheel doesn't count for MSTR while the latest Strategy 8-K week shows STRC buybacks and no STRC sales ("held by buybacks"). SATS is context only. The preferreds are flywheel indicators, not trades. CHEAP = ≤ 25th pct of the stock's own 1y and at or below its cheap cap. Very low mNAV (incl. debt & preferreds) (≤ ${c.very_low_max_mnav}x or ≤ ${c.very_low_max_percentile*100}th percentile) is a secondary cue for the parent even when its flywheel is only cooling off. These are display flags; the call itself follows the rules under "How the recommendation is decided".`)}`}
 
