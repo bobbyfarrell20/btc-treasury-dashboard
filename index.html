@@ -328,7 +328,8 @@ function plot(id,traces,layout,o={}){const time=o.time!==false;
   CSV[id]=traces.filter(t=>!t._h&&t.x);
   if(time){layout.shapes=(layout.shapes||[]).concat(evMarks());if(o.hover!==false)traces=traces.concat([infoTrace(),evTrace()])}
   traces.forEach(t=>delete t._h);
-  Plotly.newPlot(id,traces,layout,{responsive:true,displaylogo:false});if(time&&!TS.includes(id))TS.push(id)}
+  const tch=matchMedia('(pointer: coarse)').matches;if(tch){layout.dragmode=false;Object.keys(layout).forEach(k=>{if(/^[xy]axis\d*$/.test(k))layout[k]={...layout[k],fixedrange:true}});['xaxis','yaxis'].forEach(k=>{if(!layout[k])layout[k]={fixedrange:true}})}
+  Plotly.newPlot(id,traces,layout,tch?{responsive:true,displaylogo:false,scrollZoom:false,doubleClick:false,displayModeBar:false}:{responsive:true,displaylogo:false});if(time&&!TS.includes(id))TS.push(id)}
 function csvOf(ids){const tr=ids.flatMap(id=>(CSV[id]||[]).map(t=>({n:(ids.length>1?id.replace('c_','')+': ':'')+t.name,x:t.x,y:t.y})));
   const xs=[...new Set(tr.flatMap(t=>t.x.map(String)))].sort();const m=tr.map(t=>{const o={};t.x.forEach((x,i)=>o[String(x)]=t.y[i]);return o});
   const q=s=>/[",\n]/.test(s)?'"'+String(s).replace(/"/g,'""')+'"':s;
