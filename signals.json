@@ -21,7 +21,7 @@
     "new": "BUY_MSTR"
   },
   "_hash_note": "signal_hash changes when the recommendation, also_valid, any preferred peg state (on for the call = RUNNING_HOT/ON, hashed alike; WARMING_UP and COOLING_OFF hash as WATCH, STALLED as SELL; ON held by buybacks hashes as WATCH) or any overheated flag changes; last_changed is the most recent trading day it changed.",
-  "generated_utc": "2026-11-05T02:21:18+00:00",
+  "generated_utc": "2026-11-05T02:21:56+00:00",
   "as_of": "2026-11-04",
   "disclaimer": "Rules-based indicator, not financial advice.",
   "recommendation_detail": {
@@ -664,7 +664,14 @@
     },
     {
       "short": "CLARITY law in 2026",
-      "missing": true
+      "url": "https://kalshi.com/markets/kxcryptostructure",
+      "source": "kalshi",
+      "odds": [
+        {
+          "outcome": "Before Jan 1, 2027",
+          "yes": 0.025
+        }
+      ]
     },
     {
       "short": "House",
@@ -870,6 +877,12 @@
     },
     {
       "source": "kalshi",
+      "label": "Fed decision - Oct 2026",
+      "url": "https://kalshi.com/markets/kxfeddecision",
+      "top": []
+    },
+    {
+      "source": "kalshi",
       "label": "Fed decision - Dec 2026",
       "url": "https://kalshi.com/markets/kxfeddecision",
       "top": [
@@ -879,7 +892,7 @@
         },
         {
           "outcome": "Fed maintains rate",
-          "yes": 0.21
+          "yes": 0.2
         },
         {
           "outcome": "Hike >25bps",
@@ -893,8 +906,37 @@
     },
     {
       "source": "kalshi",
+      "label": "Will the CLARITY Act become law (by date)",
+      "url": "https://kalshi.com/markets/kxcryptostructure",
+      "top": [
+        {
+          "outcome": "Before Jan 1, 2028",
+          "yes": 0.2
+        },
+        {
+          "outcome": "Before Oct 1, 2027",
+          "yes": 0.16
+        },
+        {
+          "outcome": "Before Jul 1, 2027",
+          "yes": 0.1
+        },
+        {
+          "outcome": "Before Apr 1, 2027",
+          "yes": 0.05
+        }
+      ]
+    },
+    {
+      "source": "kalshi",
       "label": "House control (midterms)",
       "url": "https://kalshi.com/markets/controlh",
+      "top": []
+    },
+    {
+      "source": "kalshi",
+      "label": "Senate control (midterms)",
+      "url": "https://kalshi.com/markets/controls",
       "top": []
     }
   ],
