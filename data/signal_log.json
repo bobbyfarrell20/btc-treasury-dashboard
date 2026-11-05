@@ -144,11 +144,11 @@
    "after": {
     "1d": {
      "to": "2026-11-05",
-     "BTC": -0.0553,
+     "BTC": -0.0565,
      "MSTR": -0.0929,
-     "MSTR_mnav_ev": -0.0203,
+     "MSTR_mnav_ev": -0.019,
      "ASST": -0.1017,
-     "ASST_mnav_ev": -0.0115
+     "ASST_mnav_ev": -0.0102
     },
     "7d": null,
     "30d": null
