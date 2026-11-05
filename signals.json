@@ -21,7 +21,7 @@
     "new": "BUY_MSTR"
   },
   "_hash_note": "signal_hash changes when the recommendation, also_valid, any preferred peg state (on for the call = RUNNING_HOT/ON, hashed alike; WARMING_UP and COOLING_OFF hash as WATCH, STALLED as SELL; ON held by buybacks hashes as WATCH) or any overheated flag changes; last_changed is the most recent trading day it changed.",
-  "generated_utc": "2026-11-05T02:28:25+00:00",
+  "generated_utc": "2026-11-05T03:17:43+00:00",
   "as_of": "2026-11-04",
   "disclaimer": "Rules-based indicator, not financial advice.",
   "recommendation_detail": {
@@ -652,7 +652,7 @@
         },
         {
           "outcome": "\u2193 55,000",
-          "yes": 0.085
+          "yes": 0.075
         }
       ]
     },
@@ -702,7 +702,7 @@
         },
         {
           "outcome": "\u2193 55,000",
-          "yes": 0.085
+          "yes": 0.075
         },
         {
           "outcome": "\u2193 50,000",
@@ -746,7 +746,7 @@
       "top": [
         {
           "outcome": "0 (0 bps)",
-          "yes": 0.9775
+          "yes": 0.978
         },
         {
           "outcome": "1 (25 bps)",
@@ -888,7 +888,7 @@
       "top": [
         {
           "outcome": "Hike 25bps",
-          "yes": 0.8
+          "yes": 0.81
         },
         {
           "outcome": "Fed maintains rate",
