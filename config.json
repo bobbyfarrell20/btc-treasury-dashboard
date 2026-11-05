@@ -283,6 +283,6 @@
     "issue_price": 90.0,
     "ipo_date": "2026-10-15"
   },
-  "refresh_trigger_url": "",
+  "refresh_trigger_url": "https://btc-dashboard-refresh.mergerwatch.workers.dev",
   "_refresh_trigger_comment": "Optional URL of a proxy (see workers/refresh-trigger) that starts update.yml. Empty = Refresh opens the GitHub Run workflow page and polls. Never put a token here."
 }
