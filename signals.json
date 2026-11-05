@@ -21,7 +21,7 @@
     "new": "BUY_MSTR"
   },
   "_hash_note": "signal_hash changes when the recommendation, also_valid, any preferred peg state (on for the call = RUNNING_HOT/ON, hashed alike; WARMING_UP and COOLING_OFF hash as WATCH, STALLED as SELL; ON held by buybacks hashes as WATCH) or any overheated flag changes; last_changed is the most recent trading day it changed.",
-  "generated_utc": "2026-11-05T02:21:56+00:00",
+  "generated_utc": "2026-11-05T02:28:25+00:00",
   "as_of": "2026-11-04",
   "disclaimer": "Rules-based indicator, not financial advice.",
   "recommendation_detail": {
@@ -129,7 +129,7 @@
       "last_below_trigger": null,
       "minutes_below_trigger_now": null,
       "method": "intraday_1m",
-      "vol_mult": 0.99,
+      "vol_mult": 1.0,
       "vol_partial_session": false,
       "share_vol_at_or_above_100": 0.0,
       "days_in_state": 21,
@@ -669,7 +669,7 @@
       "odds": [
         {
           "outcome": "Before Jan 1, 2027",
-          "yes": 0.025
+          "yes": 0.039
         }
       ]
     },
@@ -780,7 +780,7 @@
       "top": [
         {
           "outcome": "Crypto Market Structure legislation becomes law in 2026?",
-          "yes": 0.0835
+          "yes": 0.081
         }
       ]
     },
@@ -892,7 +892,7 @@
         },
         {
           "outcome": "Fed maintains rate",
-          "yes": 0.2
+          "yes": 0.21
         },
         {
           "outcome": "Hike >25bps",
