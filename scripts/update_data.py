@@ -64,6 +64,11 @@ def fetch_prices():
         tz = dt.timezone(dt.timedelta(seconds=res["meta"].get("gmtoffset", 0)))
         q = res["indicators"]["quote"][0]
         closes, opens = q["close"], q.get("open") or []
+        # Yahoo sometimes leaves the latest daily bar's close null after the session; fill it from meta.regularMarketPrice (same date only)
+        m_ = res["meta"]; ts_ = res.get("timestamp") or []
+        if ts_ and closes and closes[-1] is None and t != "BTC-USD" and m_.get("regularMarketPrice") and m_.get("regularMarketTime") \
+                and dt.datetime.fromtimestamp(m_["regularMarketTime"], tz).date() == dt.datetime.fromtimestamp(ts_[-1], tz).date():
+            closes = list(closes); closes[-1] = m_["regularMarketPrice"]; log(t, "null latest close patched from regularMarketPrice", closes[-1])
         ser = {}
         if t in ("STRC", "SATA", "SATS"):
             od = OHLCV.setdefault(t, {})
@@ -380,10 +385,13 @@ def main():
             except Exception as e:
                 log("yahoo intraday retry", url, e); time.sleep(2 + attempt * 2)
         raise RuntimeError("intraday fetch failed " + url)
+    try: ATMJ = json.loads((ROOT / pc.get("atm", {}).get("file", "data/atm_activity.json")).read_text())
+    except Exception as e: ATMJ = {}; log("atm activity file missing", e)
+    ATM = {p_: {d: v[p_] for d, v in ATMJ.items() if not d.startswith("_") and isinstance(v, dict) and p_ in v} for p_ in ("STRC", "SATA")}
     for pref in ("STRC", "SATA"):
         bars = FW.fetch_bars(yj, pref)
         log(pref, "intraday days", len(bars), "1m days", sum(1 for B in bars.values() if B[0][1] == 1))
-        fd = FW.compute(dates, OHLCV.get(pref, {}), bars, pc, pref=pref)
+        fd = FW.compute(dates, OHLCV.get(pref, {}), bars, pc, pref=pref, atm=ATM.get(pref))
         FLYDETAIL[pref] = fd
         for r in rows:
             x = fd.get(r["date"])
@@ -398,10 +406,13 @@ def main():
         f = False
         for eff, fl, _w in BB_CH:
             if eff and eff <= r["date"]: f = fl
+        if (ATM.get(bpref, {}).get(r["date"]) or {}).get("shares_sold", 0) > 0: f = False   # active ATM issuance = not buyback-held
         r["bb_" + bpref] = f
         if f and r.get("fly_" + bpref) in FW.ON_CODES:
             r["held_" + bpref] = True
             r["peg_" + bpref] = "WATCH"   # off for the call
+    if rows and BB.get("flag") and not rows[-1].get("bb_" + bpref):
+        BB = dict(BB, flag=False, cleared_by_atm=rows[-1]["date"], note="8-K flag overridden: active STRC ATM issuance reported (data/atm_activity.json)")
     # ---- per-stock overheated floor: cheap line + gap, + flywheel bonus (on / running hot)
     vc0 = CFG.get("valuation", {})
     for r in rows:

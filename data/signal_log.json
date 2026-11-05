@@ -50,11 +50,11 @@
     },
     "7d": {
      "to": "2026-11-04",
-     "BTC": -0.0158,
-     "MSTR": -0.0225,
-     "MSTR_mnav_ev": -0.0017,
-     "ASST": -0.1773,
-     "ASST_mnav_ev": -0.1085
+     "BTC": -0.0103,
+     "MSTR": -0.018,
+     "MSTR_mnav_ev": -0.0037,
+     "ASST": -0.1675,
+     "ASST_mnav_ev": -0.1066
     },
     "30d": null
    }
@@ -79,11 +79,11 @@
     },
     "7d": {
      "to": "2026-11-04",
-     "BTC": -0.0158,
-     "MSTR": -0.0225,
-     "MSTR_mnav_ev": -0.0017,
-     "ASST": -0.1773,
-     "ASST_mnav_ev": -0.1085
+     "BTC": -0.0103,
+     "MSTR": -0.018,
+     "MSTR_mnav_ev": -0.0037,
+     "ASST": -0.1675,
+     "ASST_mnav_ev": -0.1066
     },
     "30d": null
    }
@@ -128,6 +128,21 @@
      "ASST": -0.0629,
      "ASST_mnav_ev": -0.034
     },
+    "7d": null,
+    "30d": null
+   }
+  },
+  {
+   "detected_utc": "2026-11-05T02:19:20+00:00",
+   "as_of": "2026-11-04",
+   "old": "STAY_BTC",
+   "new": "BUY_MSTR",
+   "old_hash": "a2be7024860b",
+   "new_hash": "38236c9bd469",
+   "reason": "STRC Flywheel ON \u2192 flywheel on for MSTR; MSTR mNAV incl. debt & preferreds 1.10x is not overheated",
+   "initial": false,
+   "after": {
+    "1d": null,
     "7d": null,
     "30d": null
    }

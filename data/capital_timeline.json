@@ -1,5 +1,5 @@
 {
- "generated_utc": "2026-11-04T20:47:00+00:00",
+ "generated_utc": "2026-11-05T02:19:29+00:00",
  "version": 1,
  "MSTR": {
   "basic_shares": [
@@ -485,7 +485,7 @@
    ],
    [
     "2026-11-04",
-    423530655.0,
+    423530237.0,
     "https://api.strategy.com/btc/kpiData",
     false
    ]
@@ -981,7 +981,7 @@
    ],
    [
     "2026-11-04",
-    122700206.0,
+    122711412.0,
     "https://api.strategy.com/btc/kpiData",
     false
    ]
@@ -1281,9 +1281,9 @@
     },
     {
      "date": "2026-11-04",
-     "anchor": 423530655,
+     "anchor": 423530237,
      "predicted_from_flows": 423533159.0,
-     "residual": -2504.0,
+     "residual": -2922.0,
      "src": "https://api.strategy.com/btc/kpiData"
     }
    ],
@@ -1397,9 +1397,9 @@
     },
     {
      "date": "2026-11-04",
-     "anchor": 122700206,
+     "anchor": 122711412,
      "predicted_from_flows": 122706457.0,
-     "residual": -6251.0,
+     "residual": 4955.0,
      "src": "https://api.strategy.com/btc/kpiData"
     }
    ],
@@ -1414,33 +1414,33 @@
    ]
   },
   "strategy_kpi_latest": {
-   "fetched_utc": "2026-11-04T20:47:01+00:00",
-   "timestamp_utc": "2026-11-04T20:46:00",
-   "market_cap_m": 60099.0,
-   "ev_m": 75027.0,
+   "fetched_utc": "2026-11-05T02:15:50+00:00",
+   "timestamp_utc": "2026-11-04T21:00:00",
+   "market_cap_m": 60370.0,
+   "ev_m": 75298.0,
    "debt_m": 6714.0,
    "pref_m": 13136.0,
-   "price": 141.9,
+   "price": 142.54,
    "per_ticker": {
     "MSTR": {
-     "shares": 423530655,
-     "price": 141.9
+     "shares": 423530237,
+     "price": 142.54
     },
     "STRK": {
-     "shares": 14016772,
-     "price": 70.8437
+     "shares": 14025424,
+     "price": 70.8
     },
     "STRF": {
      "shares": 12841716,
      "price": 102.79
     },
     "STRD": {
-     "shares": 14023536,
-     "price": 71.38
+     "shares": 14017907,
+     "price": 71.48
     },
     "STRC": {
-     "shares": 81818182,
-     "price": 99.99
+     "shares": 81826365,
+     "price": 99.98
     },
     "STRE": {
      "shares": 7747834,

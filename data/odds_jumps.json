@@ -51,14 +51,7 @@
   },
   {
    "short": "CLARITY law in 2026",
-   "url": "https://kalshi.com/markets/kxcryptostructure",
-   "source": "kalshi",
-   "odds": [
-    {
-     "outcome": "Before Jan 1, 2027",
-     "yes": 0.036
-    }
-   ]
+   "missing": true
   },
   {
    "short": "House",
@@ -73,5 +66,5 @@
    "odds": []
   }
  ],
- "generated_utc": "2026-11-04T20:47:20+00:00"
+ "generated_utc": "2026-11-05T02:21:18+00:00"
 }

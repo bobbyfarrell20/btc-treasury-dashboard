@@ -43,6 +43,13 @@
       "vol_mult_min": 1.5,
       "vol_avg_days": 20,
       "min_share_at_or_above": 0.5
+    },
+    "atm": {
+      "_comment": "Bobby's rule (2026-11-04): a day where the issuer actively sold the preferred through its ATM (data/atm_activity.json, shares_sold > 0) with intraday high >= min_high and close >= min_close counts like a qualifying close: promotes to at least FLYWHEEL ON. STRC ATM sales also turn the buyback flag OFF. Price-close rule remains the fallback when no ATM data exists.",
+      "enabled": true,
+      "file": "data/atm_activity.json",
+      "min_high": 100.0,
+      "min_close": 99.8
     }
   },
   "mnav": {
@@ -224,8 +231,8 @@
         "id": "what-price-will-bitcoin-hit-before-2027",
         "short": "BTC in 2026",
         "outcomes": [
-          "\u2191 100,000",
-          "\u2193 55,000"
+          "↑ 100,000",
+          "↓ 55,000"
         ]
       },
       {

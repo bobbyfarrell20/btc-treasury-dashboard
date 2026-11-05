@@ -92,3 +92,8 @@ Page layout: decision banner → three chips (STRC peg, SATA peg, mNAV incl. deb
 `.github/workflows/update.yml` runs `python scripts/update_data.py` on weekdays after the close, on weekends for BTC and the prediction markets, and on demand via *Run workflow*. Each run commits the data and redeploys Pages.
 
 To run it locally: `pip install requests && python scripts/update_data.py`. Then serve the folder, e.g. `python -m http.server`.
+
+
+## ATM activity input (flywheel rule, 2026-11-04)
+`data/atm_activity.json` holds daily ATM issuance of STRC / SATA keyed by ET date then ticker: `{shares_sold, btc_raised, source_url}` (source: @STRC_live daily wraps on X). A day with ATM sales at/near par (high >= `peg.atm.min_high`, close >= `peg.atm.min_close` in config.json) counts as a qualifying day and promotes the flywheel to at least FLYWHEEL ON; STRC sales also turn the "held by buybacks" flag OFF. With no ATM entry the price-close rule applies as before.
+The scheduled @STRC_live checker (state on the box at /workspace/state/strc-live-last.json) should also append each day's numbers to `data/atm_activity.json` and push, so the next update.yml run picks them up.

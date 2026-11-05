@@ -172,6 +172,8 @@ def flywheel(rows, pref, parent, pc, detail=None):
             "method": x.get("method"), "vol_mult": x.get("vol_mult"), "vol_partial_session": x.get("vol_partial_session"),
             "share_vol_at_or_above_100": x.get("share_vol_at_or_above_100"),
             "days_in_state": run, "running_hot_days_1y": hot_days_1y,
+            "atm_day": x.get("atm_day"), "atm": x.get("atm") or next(((detail or {}).get(r["date"]) or {}).get("atm") for r in reversed(R[-5:]) if ((detail or {}).get(r["date"]) or {}).get("atm")) if any(((detail or {}).get(r["date"]) or {}).get("atm") for r in R[-5:]) else None,
+            "atm_date": next((r["date"] for r in reversed(R[-5:]) if ((detail or {}).get(r["date"]) or {}).get("atm")), None),
             "on_trade_threshold": T, "full_on_threshold": FULL, "off_minutes_below": pc["off_minutes_below"], "stalled_below": pc["stalled_below"],
             "threshold": target, "distance_to_threshold": round(px - target, 3) if target is not None else None,
             "distance_to_trigger": round(px - T, 3), "distance_to_par": round(px - pc["par"], 3)}

@@ -43,7 +43,7 @@ def on_close_threshold(pc, pref):
     if isinstance(v, dict): return v.get(pref, pc["on_trade_threshold"])
     return v if v is not None else pc["on_trade_threshold"]
 
-def compute(dates, daily, bars, pc, now=None, pref=None):
+def compute(dates, daily, bars, pc, now=None, pref=None, atm=None):
     """dates: row dates. daily: {date: {o,h,l,c,v}}. bars: {date: [(ts, minutes, h, l, c, v), ...]} regular session only.
     Returns {date: info}."""
     T, OFFM, STALL = pc["on_trade_threshold"], pc["off_minutes_below"], pc["stalled_below"]
@@ -91,11 +91,14 @@ def compute(dates, daily, bars, pc, now=None, pref=None):
             if x.get("l") is not None and x["l"] < T: last_below = d
             px = x["c"]
             warm_ok = True
-        if done:
-            if x["c"] >= TC:
+        ac = pc.get("atm", {}); a_ = (atm or {}).get(d) or {}
+        atm_day = bool(ac.get("enabled", True) and (a_.get("shares_sold") or 0) > 0 and x.get("h") is not None
+                       and x["h"] >= ac.get("min_high", 100.0) and x["c"] >= ac.get("min_close", T))
+        if done or atm_day:
+            if x["c"] >= TC or atm_day:
                 if not on: on, on_since, off_since = True, (_close_ts(d) if B else d), None
                 below_min, below_start = 0.0, None
-            last_close_on = x["c"]
+            if done: last_close_on = x["c"]
         # volume vs prior N-day average; pace-adjust an unfinished session
         v = x.get("v") or 0
         avg = sum(vols[-VN:]) / len(vols[-VN:]) if len(vols) >= min(5, VN) else None
@@ -117,7 +120,7 @@ def compute(dates, daily, bars, pc, now=None, pref=None):
         else:
             code = "COOLING_OFF" if px >= STALL else "STALLED"
         out[d] = {"code": code, "on": on, "price": round(px, 4), "method": method, "session_complete": done,
-                  "on_close_threshold": TC, "touched_trigger": touched,
+                  "on_close_threshold": TC, "touched_trigger": touched, "atm_day": atm_day, "atm": a_ or None,
                   "on_since": (_iso(on_since) if isinstance(on_since, (int, float)) else on_since) if on else None,
                   "off_since": (_iso(off_since) if isinstance(off_since, (int, float)) else off_since) if not on else None,
                   "last_below_trigger": (_iso(last_below) if isinstance(last_below, (int, float)) else last_below),
