@@ -150,6 +150,13 @@ def flywheel(rows, pref, parent, pc, detail=None):
     if not R: return {"preferred": pref, "parent": parent, "missing": True}
     last = R[-1]; st = last.get("peg_" + pref); code = last.get("fly_" + pref); held = bool(last.get("held_" + pref))
     x = (detail or {}).get(last["date"]) or {}
+    def _atm_at(d):
+        return ((detail or {}).get(d) or {}).get("atm")
+    sale_d = next((r["date"] for r in reversed(R) if ((_atm_at(r["date"]) or {}).get("shares_sold") or 0) > 0), None)
+    any_d = next((r["date"] for r in reversed(R) if _atm_at(r["date"])), None)
+    atm_date = sale_d or any_d
+    today_a = x.get("atm")
+    atm_show = today_a if ((today_a or {}).get("shares_sold") or 0) > 0 else (_atm_at(atm_date) if atm_date else None)
     T, FULL, HOT = pc["on_trade_threshold"], pc["full_on_threshold"], pc.get("running_hot", {}).get("price_min", 100.0)
     oc = pc.get("on_close_threshold"); TC = oc.get(pref, T) if isinstance(oc, dict) else (oc or T)
     px = x.get("price", last[pref])
@@ -172,8 +179,7 @@ def flywheel(rows, pref, parent, pc, detail=None):
             "method": x.get("method"), "vol_mult": x.get("vol_mult"), "vol_partial_session": x.get("vol_partial_session"),
             "share_vol_at_or_above_100": x.get("share_vol_at_or_above_100"),
             "days_in_state": run, "running_hot_days_1y": hot_days_1y,
-            "atm_day": x.get("atm_day"), "atm": x.get("atm") or next(((detail or {}).get(r["date"]) or {}).get("atm") for r in reversed(R[-5:]) if ((detail or {}).get(r["date"]) or {}).get("atm")) if any(((detail or {}).get(r["date"]) or {}).get("atm") for r in R[-5:]) else None,
-            "atm_date": next((r["date"] for r in reversed(R[-5:]) if ((detail or {}).get(r["date"]) or {}).get("atm")), None),
+            "atm_day": x.get("atm_day"), "atm": atm_show, "atm_date": atm_date,
             "on_trade_threshold": T, "full_on_threshold": FULL, "off_minutes_below": pc["off_minutes_below"], "stalled_below": pc["stalled_below"],
             "threshold": target, "distance_to_threshold": round(px - target, 3) if target is not None else None,
             "distance_to_trigger": round(px - T, 3), "distance_to_par": round(px - pc["par"], 3)}

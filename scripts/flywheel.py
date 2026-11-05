@@ -6,10 +6,13 @@ Ladder (codes in rows["fly_<PREF>"] / flywheel_code):
   WARMING_UP   off for the call: touched >= on_trade_threshold ($99.80) without a qualifying CLOSE (watch only)
   COOLING_OFF  off, latest price >= stalled_below ($99)
   STALLED      off, latest price <  $99
-Turning ON needs a completed daily CLOSE >= on_close_threshold[pref] (STRC $100.00, SATA $99.80). An intraday touch never
+Turning ON needs a completed daily CLOSE >= on_close_threshold[pref] (STRC $100.00, SATA $99.80). An ATM sale day
+  (data/atm_activity.json shares_sold > 0, high/close near par per peg.atm) also turns it ON. An intraday touch never
   turns it on; before today's 4 PM ET close the call is based on the last completed close (plus the intraday off rule).
-Turning OFF (unchanged): once ON it stays ON until it trades below on_trade_threshold ($99.80) for MORE THAN
-  off_minutes_below (30) consecutive regular-session minutes (overnight / weekend gaps never add minutes).
+Turning OFF (unchanged): once ON it stays ON — including ON earned on an ATM day — until it trades below
+  on_trade_threshold ($99.80) for MORE THAN off_minutes_below (30) consecutive regular-session minutes (overnight /
+  weekend gaps never add minutes). A later day with no ATM row that closes slightly under $100 does not drop it to
+  WARMING_UP; WARMING_UP is only for an off flywheel that touched the trigger without a qualifying close.
 WARMING_UP (off): the day's high >= $99.80 (STRC: also any close $99.80-$99.99) and, with intraday bars, the price has
   not since spent > off_minutes_below minutes below $99.80.
 Data: Yahoo 1m bars (~last 7 days) where available, else 5m bars (~last 60 days); a bar counts as "below" when its
@@ -94,6 +97,9 @@ def compute(dates, daily, bars, pc, now=None, pref=None, atm=None):
         ac = pc.get("atm", {}); a_ = (atm or {}).get(d) or {}
         atm_day = bool(ac.get("enabled", True) and (a_.get("shares_sold") or 0) > 0 and x.get("h") is not None
                        and x["h"] >= ac.get("min_high", 100.0) and x["c"] >= ac.get("min_close", T))
+        # ATM-earned ON is sticky via `on`: later days without an ATM row do not need a close at TC
+        # (STRC $100). Only the usual off rules turn it off (intraday: >OFFM minutes below T;
+        # daily approx: close < T). A close slightly under $100 is still ON while `on` remains True.
         if done or atm_day:
             if x["c"] >= TC or atm_day:
                 if not on: on, on_since, off_since = True, (_close_ts(d) if B else d), None

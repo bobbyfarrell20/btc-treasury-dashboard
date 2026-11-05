@@ -204,7 +204,8 @@ def buyback_flag_series(mdocs, bc, state_f):
     """'Par held up by buybacks' (config.buyback_support). Weeks come from Strategy's weekly 8-Ks (STRC ATM table +
     STRC repurchase table). A week with a repurchase but no STRC ATM row counts as 0 sales (Strategy omits the ATM table
     when nothing was sold). Sticky: on when a week shows buybacks > min and 0 sales; off when a later week shows sales.
-    Returns (changes [(effective_date, flag, week)], latest dict). On a parse failure the last known state is kept."""
+    Returns (changes [(effective_date, flag, week)], latest dict, weeks by week_end). On a parse failure the last known
+    state is kept. ATM-day overrides are applied by apply_atm_buyback_override after this runs."""
     prev = json.loads(state_f.read_text()) if state_f.exists() else None
     try:
         wk = {}
@@ -232,12 +233,35 @@ def buyback_flag_series(mdocs, bc, state_f):
         if prev and prev.get("week_end", "") > latest["week_end"]:
             raise ValueError(f"parsed week {latest['week_end']} older than last known {prev['week_end']}")
         state_f.write_text(json.dumps(latest, indent=1))
-        return ch, latest
+        return ch, latest, wk
     except Exception as e:
         log("buyback flag parse failed; keeping last known", e)
-        if not prev: return [], {"flag": False, "stale": True, "error": str(e)}
+        if not prev: return [], {"flag": False, "stale": True, "error": str(e)}, {}
         prev = dict(prev, stale=True, error=str(e), note=f"8-K parse failed; last known value from the week ending {prev.get('week_end')} (8-K filed {prev.get('filed')})")
-        return [(prev.get("since") or prev.get("filed"), prev["flag"], prev)], prev
+        weeks = {}
+        if prev.get("week_end"):
+            weeks[prev["week_end"]] = {"start": prev.get("week_start"), "end": prev["week_end"],
+                                       "filed": prev.get("filed"), "url": prev.get("source"),
+                                       "buyback_m": prev.get("buyback_m"), "sales_m": prev.get("sales_m")}
+        return [(prev.get("since") or prev.get("filed"), prev["flag"], prev)], prev, weeks
+
+def apply_atm_buyback_override(flag, row_date, atm_map, weeks):
+    """Keep the buyback flag off after a STRC ATM sale that is newer than the latest 8-K week.
+
+    Bobby's rule: active ATM issuance means the buyback flag is OFF. Any day in
+    data/atm_activity.json with shares_sold > 0 that is dated AFTER the end of the
+    latest 8-K week known as of row_date (filed by then) clears the flag. Only a
+    newer 8-K week ending after that ATM date (and already filed as of row_date)
+    restores the 8-K-derived flag: repurchases with no sales turn it back on;
+    reported sales keep it off. Returns (flag, latest_atm_date_on_or_before_row).
+    """
+    sales = [d for d, v in (atm_map or {}).items() if d <= row_date and ((v or {}).get("shares_sold") or 0) > 0]
+    atm_d = max(sales) if sales else None
+    known_ends = [e for e, w in (weeks or {}).items() if (w.get("filed") or e) <= row_date]
+    latest_end = max(known_ends) if known_ends else None
+    if atm_d and (latest_end is None or atm_d > latest_end):
+        return False, atm_d
+    return flag, atm_d
 
 def cheap_cap(d, vc, asset, med):
     """Per-stock CHEAP cap (valuation.cheap_cap): the bull-cycle line, or held flat until the stock's 1y median clears a level."""
@@ -400,19 +424,26 @@ def main():
             if x and x.get("vol_mult") is not None: r["volx_" + pref] = x["vol_mult"]
     # ---- par held up by buybacks (STRC): MSTR's flywheel is not on for the call while flagged
     bc = CFG.get("buyback_support", {})
-    BB_CH, BB = buyback_flag_series(mdocs, bc, DATA / "strc_buyback_state.json") if bc.get("enabled") else ([], {"flag": False})
+    if bc.get("enabled"):
+        BB_CH, BB, BB_WEEKS = buyback_flag_series(mdocs, bc, DATA / "strc_buyback_state.json")
+    else:
+        BB_CH, BB, BB_WEEKS = [], {"flag": False}, {}
     bpref = bc.get("preferred", "STRC")
+    last_clearing_atm = None
     for r in rows:
         f = False
         for eff, fl, _w in BB_CH:
             if eff and eff <= r["date"]: f = fl
-        if (ATM.get(bpref, {}).get(r["date"]) or {}).get("shares_sold", 0) > 0: f = False   # active ATM issuance = not buyback-held
+        f, atm_d = apply_atm_buyback_override(f, r["date"], ATM.get(bpref), BB_WEEKS)
+        if atm_d and not f:
+            last_clearing_atm = atm_d
         r["bb_" + bpref] = f
         if f and r.get("fly_" + bpref) in FW.ON_CODES:
             r["held_" + bpref] = True
             r["peg_" + bpref] = "WATCH"   # off for the call
     if rows and BB.get("flag") and not rows[-1].get("bb_" + bpref):
-        BB = dict(BB, flag=False, cleared_by_atm=rows[-1]["date"], note="8-K flag overridden: active STRC ATM issuance reported (data/atm_activity.json)")
+        BB = dict(BB, flag=False, cleared_by_atm=last_clearing_atm or rows[-1]["date"],
+                  note="8-K flag overridden: STRC ATM issuance after the latest 8-K week (data/atm_activity.json) stays active until a later 8-K week reports buybacks with no sales")
     # ---- per-stock overheated floor: cheap line + gap, + flywheel bonus (on / running hot)
     vc0 = CFG.get("valuation", {})
     for r in rows:

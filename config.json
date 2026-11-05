@@ -45,7 +45,7 @@
       "min_share_at_or_above": 0.5
     },
     "atm": {
-      "_comment": "Bobby's rule (2026-11-04): a day where the issuer actively sold the preferred through its ATM (data/atm_activity.json, shares_sold > 0) with intraday high >= min_high and close >= min_close counts like a qualifying close: promotes to at least FLYWHEEL ON. STRC ATM sales also turn the buyback flag OFF. Price-close rule remains the fallback when no ATM data exists.",
+      "_comment": "Bobby's rule (2026-11-04): a day where the issuer actively sold the preferred through its ATM (data/atm_activity.json, shares_sold > 0) with intraday high >= min_high and close >= min_close counts like a qualifying close: promotes to at least FLYWHEEL ON. That ON then persists under the usual off rules (more than off_minutes_below minutes below on_trade_threshold, or a daily-approx close below it); a later day with no ATM row that closes slightly under $100 does not drop it to WARMING_UP. STRC ATM sales also turn the buyback flag OFF and keep it off until a later 8-K week (ending after that ATM date) shows buybacks with no sales. Price-close rule remains the fallback when no ATM data exists.",
       "enabled": true,
       "file": "data/atm_activity.json",
       "min_high": 100.0,
@@ -271,7 +271,7 @@
     "very_low_max_percentile": 0.2
   },
   "buyback_support": {
-    "_comment": "Par held up by buybacks (review change 3). From the latest Strategy weekly 8-K table: if the latest reported week shows STRC buybacks > 0 and STRC ATM sales = 0 the flag turns on; it stays on until a later 8-K shows STRC sales again. While on, MSTR's flywheel does NOT count as on for the call (STRC may still show ON). If the 8-K parse fails, the last known value is kept (data/strc_buyback_state.json) with its date.",
+    "_comment": "Par held up by buybacks (review change 3). From the latest Strategy weekly 8-K table: if the latest reported week shows STRC buybacks > 0 and STRC ATM sales = 0 the flag turns on; it stays on until a later 8-K shows STRC sales again. A STRC ATM day in data/atm_activity.json (shares_sold > 0) dated after that week's end clears the flag and keeps it off until a newer 8-K week ending after the ATM date shows buybacks with no sales. While on, MSTR's flywheel does NOT count as on for the call (STRC may still show ON). If the 8-K parse fails, the last known value is kept (data/strc_buyback_state.json) with its date.",
     "enabled": true,
     "preferred": "STRC",
     "parent": "MSTR",
