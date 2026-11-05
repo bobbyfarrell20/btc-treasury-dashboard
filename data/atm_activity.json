@@ -1,7 +1,31 @@
 {
   "_comment": "Daily ATM issuance of the $100-par preferreds, keyed by ET date then ticker. Source: @STRC_live daily wraps on X. The scheduled @STRC_live checker should append each trading day here and push. A day with shares_sold > 0 at/near par (high >= peg.atm.min_high, close >= peg.atm.min_close) counts as a qualifying day for FLYWHEEL ON (that ON then persists under the usual off rules). STRC sales turn the buyback flag OFF and keep it off until a later 8-K week ending after that ATM date shows buybacks with no sales.",
   "2026-11-04": {
-    "STRC": {"shares_sold": 392000, "btc_raised": 191, "source_url": "https://x.com/STRC_live/status/2118086674903163193", "note": "touched par, closed $99.97; first STRC ATM activity since May 14"},
-    "SATA": {"shares_sold": 0, "btc_raised": 0, "source_url": "https://x.com/STRC_live/status/2118086674903163193", "note": "no ATM activity; closed $97.85"}
+    "STRC": {
+      "shares_sold": 392000,
+      "btc_raised": 191,
+      "source_url": "https://x.com/STRC_live/status/2118086674903163193",
+      "note": "touched par, closed $99.97; first STRC ATM activity since May 14"
+    },
+    "SATA": {
+      "shares_sold": 0,
+      "btc_raised": 0,
+      "source_url": "https://x.com/STRC_live/status/2118086674903163193",
+      "note": "no ATM activity; closed $97.85"
+    }
+  },
+  "2026-11-05": {
+    "STRC": {
+      "shares_sold": 0,
+      "btc_raised": 0,
+      "source_url": "https://x.com/STRC_live/status/2118449058725458145",
+      "note": "no ATM activity; slipped to $99.49 close after yesterday's breakthrough"
+    },
+    "SATA": {
+      "shares_sold": 0,
+      "btc_raised": 0,
+      "source_url": "https://x.com/STRC_live/status/2118449058725458145",
+      "note": "no ATM activity; closed $95.98"
+    }
   }
 }
