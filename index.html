@@ -97,7 +97,7 @@ details.sec{margin-top:8px}details.sec>summary{font-size:13px;font-weight:600;co
 .chip3 .pill{font-size:10.5px;padding:1px 6px;margin:0}
 .chip3.c-RUNNING_HOT{border-color:#ff4d1a;box-shadow:0 0 8px #ff4d1a88}.chip3.c-ON{border-color:#2ea043}.chip3.c-WARMING_UP{border-color:#20b2a0}.chip3.c-COOLING_OFF,.chip3.c-SLOWING{border-color:#a8873a}.chip3.c-STALLED{border-color:#f85149}.chip3.c-NO_DATA{border-color:#6e7681}.pill.fl-RUNNING_HOT{box-shadow:0 0 7px #ff4d1acc;font-weight:700}.fw.f-RUNNING_HOT{box-shadow:0 0 14px #ff4d1a66}.cl-note{font-size:11px;color:var(--mut);font-weight:400}.chip3.held,.fw.held{border-color:var(--mut)!important;box-shadow:none!important}.pill.held{opacity:.6;filter:grayscale(.7)}.chip3 .hn{color:var(--mut);font-size:11.5px;font-style:italic}.chip3.c-CTX{border-color:var(--mut);border-style:dashed}
 .vpair{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:0 18px}.vpair .vbasis{min-width:0}.prem{font-size:15px;font-weight:700;margin:2px 0}.vflags{display:flex;flex-wrap:wrap;gap:6px 10px;align-items:center;margin:6px 0 2px}.vflags .badge{margin-top:0}.vfly{font-size:12.5px;color:var(--mut)}
-#valtop .card h2{margin-bottom:4px}@media (max-width:760px){.vpair{grid-template-columns:minmax(0,1fr)}}
+#valtop .mnstock h2,#valtop .card h2{margin-bottom:4px}@media (max-width:760px){.vpair{grid-template-columns:minmax(0,1fr)}}
 .legend{text-align:center;font-size:12.5px;color:var(--mut);margin:2px 0 6px}
 .hist{background:var(--panel);border:1px solid var(--line);border-radius:10px;padding:6px 10px;margin:4px 0}
 .hist .hh{display:flex;flex-wrap:wrap;gap:4px 12px;align-items:center;font-size:12px}.flip,.hist .hh>.note{white-space:nowrap}.flip .pill{font-size:10.5px;padding:1px 6px;margin:0 2px}
@@ -131,26 +131,39 @@ details.sec{margin-top:8px}details.sec>summary{font-size:13px;font-weight:600;co
 @media (max-width:640px){.topbar{padding:4px 6px;gap:4px;font-size:11px;flex-wrap:nowrap}.topbar .pill{font-size:10px;padding:2px 5px;white-space:nowrap}.tb-r{gap:4px}.btn.ib{padding:2px 6px;min-height:24px}.hero .tag{display:none}.hero .logo{width:24px;height:24px;font-size:14px;line-height:24px}
  .hist .hh{flex-wrap:nowrap;overflow-x:auto;-webkit-overflow-scrolling:touch;padding-bottom:2px}.skey{display:none}.fw .imp{font-size:12.5px}.tb-ch,.tb-asof{display:none}.tb-upm{display:inline!important;white-space:nowrap;font-size:10.5px}.hero{padding:6px 12px 4px}.hero .tickers{display:none}.hero h1{font-size:15px}.hero .tag{font-size:11px}
  .rec{padding:10px 10px}.rec .big{font-size:34px}.chip3{font-size:12px;padding:3px 10px;border-radius:12px}.legend{font-size:11.5px}.fw .st{font-size:19px}.sum .bigv{font-size:16px}}
-/* v4 relative-value-first layout */
-.rvwrap{margin:4px 0 10px}
-.rvgrid{display:grid;gap:10px;grid-template-columns:minmax(0,1fr) minmax(0,1.5fr) minmax(0,1fr);align-items:stretch}
-.rvside,.rvmid{background:var(--panel);border:1px solid var(--line);border-radius:12px;padding:12px 14px;min-width:0}
-.rvside{text-align:center;border-top:4px solid var(--line)}.rvside .tk2{font-weight:800;font-size:15px;letter-spacing:.5px}
-.rvside .mv{font-size:34px;font-weight:900;line-height:1.1;margin:2px 0}.rvside .lab{font-size:11px;color:var(--mut);font-weight:700;letter-spacing:.4px}
-.rvside.cheapv{border-color:#2ea043;box-shadow:0 0 0 1px #2ea04388;background:linear-gradient(0deg,rgba(46,160,67,.08),rgba(46,160,67,.08)),var(--panel)}
-.rvmid{text-align:center;border-color:rgba(247,147,26,.45);background:radial-gradient(500px 160px at 50% 0%,rgba(247,147,26,.12),transparent 70%),var(--panel)}
-.rvmid .lab{font-size:11.5px;color:var(--mut);font-weight:700;letter-spacing:.4px}
-.rvmid .ratio{font-size:36px;font-weight:900;line-height:1.1}.rvmid .vs{font-size:14px;color:var(--mut)}.rvmid .vs b{color:var(--fg)}
-.rvmid .gap{font-size:13px;margin-top:2px}.rvplain{font-size:14px;font-weight:600;margin:6px 0 2px}
-.vpill{display:inline-block;margin-top:8px;padding:5px 14px;border-radius:999px;font-weight:800;font-size:15px}
+/* v6 combined mNAV module: stock cards + visual spread gauge */
+.mntrio{display:grid;gap:10px;grid-template-columns:minmax(0,1.15fr) minmax(220px,0.9fr) minmax(0,1.15fr);align-items:stretch;margin-top:4px}
+.mntrio>.mnstock{min-width:0}.mntrio>.mnstock.card{margin:0}
+.mntrio>.mnstock.cheapv{border-color:#2ea043;box-shadow:0 0 0 1px #2ea04388;background:linear-gradient(0deg,rgba(46,160,67,.07),rgba(46,160,67,.07)),var(--panel)}
+.mnspread{background:var(--panel);border:1px solid rgba(247,147,26,.45);border-radius:12px;padding:12px 14px;min-width:0;text-align:center;background-image:radial-gradient(420px 140px at 50% 0%,rgba(247,147,26,.12),transparent 70%);display:flex;flex-direction:column;justify-content:center;gap:6px}
+.mnspread .lab{font-size:11px;color:var(--mut);font-weight:700;letter-spacing:.4px;text-transform:uppercase}
+.mnspread .sg-now{font-size:22px;font-weight:900;line-height:1.1;margin-top:2px}
+.mnspread .sg-sub{font-size:12.5px;color:var(--mut)}.mnspread .sg-sub b{color:var(--fg)}
+.mnspread .sg-near{font-size:13px;font-weight:700;margin-top:2px}
+.mnspread .sg-near.edge{color:#fbbf24}.mnspread .sg-near.flip{color:#86efac}
+.vpill{display:inline-block;margin:2px auto 4px;padding:5px 14px;border-radius:999px;font-weight:800;font-size:14px}
 .v-NORMAL{background:#388bfd26;color:#b6d7ff;border:1px solid #388bfd88}.v-MSTR_CHEAP,.v-ASST_CHEAP{background:#2ea04333;color:#86efac;border:1px solid #2ea043}
 [data-theme=light] .v-NORMAL{color:#0969da}[data-theme=light] .v-MSTR_CHEAP,[data-theme=light] .v-ASST_CHEAP{color:#1a7f37}
 .tb-rv{font-size:11px;padding:2px 7px}
+/* Spread z-gauge: left = MSTR cheap (z≥+1), right = ASST cheap (z≤−1). Axis is −z so cards match sides. */
+.sg{margin:4px 0 2px}.sg-ends{display:flex;justify-content:space-between;font-size:10.5px;font-weight:700;letter-spacing:.3px;color:var(--mut);margin-bottom:4px}
+.sg-ends .L{color:#f7931a}.sg-ends .R{color:#7c3aed}
+.sg-track{position:relative;height:18px;border-radius:999px;overflow:hidden;display:flex;border:1px solid var(--line);background:var(--bg)}
+.sg-z{height:100%}.sg-z.mstr{flex:1;background:linear-gradient(90deg,#f7931a55,#f7931a22)}.sg-z.mid{flex:2;background:linear-gradient(90deg,#388bfd22,#388bfd33,#388bfd22)}.sg-z.asst{flex:1;background:linear-gradient(90deg,#7c3aed22,#7c3aed55)}
+.sg-thr,.sg-mean{position:absolute;top:0;bottom:0;width:2px;transform:translateX(-50%);pointer-events:none}
+.sg-thr{background:#fbbf24cc;box-shadow:0 0 0 1px #fbbf2444}.sg-mean{background:var(--fg);opacity:.55}
+.sg-needle{position:absolute;top:-3px;bottom:-3px;width:10px;margin-left:-5px;border-radius:999px;background:var(--fg);border:2px solid #f7931a;box-shadow:0 0 8px #f7931aaa;z-index:2;pointer-events:none}
+.sg-needle::after{content:"";position:absolute;left:50%;bottom:-7px;transform:translateX(-50%);border:5px solid transparent;border-top-color:#f7931a}
+.sg-ticks{display:flex;justify-content:space-between;font-size:10px;color:var(--mut);margin-top:3px;padding:0 2px}
+.sg-ticks span{flex:1;text-align:center}.sg-ticks span:first-child{text-align:left}.sg-ticks span:last-child{text-align:right}
+.mnspread details.sgmore{margin-top:4px}.mnspread details.sgmore>summary{cursor:pointer;font-size:12px;color:var(--mut);list-style:none;display:inline}
+.mnspread details.sgmore>summary::before{content:"▸ ";color:var(--b)}.mnspread details.sgmore[open]>summary::before{content:"▾ "}
+.mnspread details.sgmore .note{text-align:left;margin-top:6px}
 .rec{display:flex;flex-wrap:wrap;align-items:center;justify-content:center;gap:2px 14px;padding:8px 14px}.rec .lbl{flex-basis:100%}.rec .big{font-size:28px}.recshort{font-size:14px;font-weight:600;flex-basis:100%}.recsub{font-size:17px;font-weight:800;color:#fde68a}.rec.r-BUY_BOTH .recsub,.rec.r-BUY_MSTR .recsub,.rec.r-BUY_ASST .recsub{color:#7ee2a8}[data-theme=light] .recsub{color:#9a6700}[data-theme=light] .rec.r-BUY_BOTH .recsub,[data-theme=light] .rec.r-BUY_MSTR .recsub,[data-theme=light] .rec.r-BUY_ASST .recsub{color:#1a7f37}
 .grp{font-size:13px;color:var(--mut);text-transform:uppercase;letter-spacing:.8px;margin:18px 0 8px}
 details.card{margin-bottom:10px;padding:11px 14px}
-@media (max-width:900px){.rvgrid{grid-template-columns:minmax(0,1fr) minmax(0,1fr)}.rvmid{grid-column:1/-1;order:-1}}
-@media (max-width:640px){.rvside .mv{font-size:27px}.rvmid .ratio{font-size:30px}.rec .big{font-size:24px}.recsub{font-size:14px}.recshort{font-size:12.5px}.vpill{font-size:13.5px}.topbar{flex-wrap:wrap;row-gap:3px}.tb-r{margin-left:auto}}
+@media (max-width:980px){.mntrio{grid-template-columns:minmax(0,1fr) minmax(0,1fr)}.mnspread{grid-column:1/-1;order:-1}}
+@media (max-width:640px){.mntrio{grid-template-columns:minmax(0,1fr)}.mnspread .sg-now{font-size:20px}.rec .big{font-size:24px}.recsub{font-size:14px}.recshort{font-size:12.5px}.vpill{font-size:13px}.topbar{flex-wrap:wrap;row-gap:3px}.tb-r{margin-left:auto}}
 .tb-upm{display:none}
 </style></head><body>
 <div class="topbar" id="topbar"><span class="tb-b" id="tb_btc">BTC …</span><span id="tb_rec" class="pill">…</span><span id="tb_rv"></span><span id="tb_strc"></span><span id="tb_sata"></span>
@@ -159,16 +172,13 @@ details.card{margin-bottom:10px;padding:11px 14px}
  <div class="brand"><div class="logo" aria-hidden="true">₿</div><div><h1>Flywheel Rotation Tracker</h1><div class="tag">MSTR vs ASST, powered by STRC &amp; SATA, with BTC as home base</div></div></div>
  <div class="tickers" id="tickers"></div></div></header>
 <main>
-<section id="rv" class="rvwrap">
- <div class="rvgrid">
-  <div class="rvside" id="rv_MSTR"></div>
-  <div class="rvmid" id="rv_mid">loading…</div>
-  <div class="rvside" id="rv_ASST"></div>
- </div>
-</section>
-<section class="card" id="valtop"><div class="cardhead"><h2>mNAV premium: MSTR &amp; ASST <span class="note" style="font-weight:400">stock only vs incl. debt &amp; preferreds</span> <i class="q" tabindex="0" data-tip="Stock only: stock market value ÷ bitcoin held. Incl. debt &amp; preferreds: adds debt and preferreds, minus cash.">?</i></h2></div>
-<div class="grid g2" id="valcards"></div>
-<details class="sec" style="margin-top:8px"><summary>Details: how to read these cards</summary><div class="note" id="valtopnote"></div></details></section>
+<section class="card" id="valtop"><div class="cardhead"><h2>mNAV premium: MSTR &amp; ASST <span class="note" style="font-weight:400">stock only vs incl. debt &amp; preferreds · relative gap</span> <i class="q" tabindex="0" data-tip="Stock only: stock market value ÷ bitcoin held. Incl. debt &amp; preferreds: adds debt and preferreds, minus cash. Center gauge: ASST−MSTR mNAV gap z-score vs its 1y average (signal basis).">?</i></h2></div>
+<div class="mntrio" id="mntrio">
+ <div class="mnstock" id="val_MSTR">loading…</div>
+ <div class="mnspread" id="rv_mid">loading…</div>
+ <div class="mnstock" id="val_ASST">loading…</div>
+</div>
+<details class="sec" style="margin-top:8px"><summary>Details: how to read this module</summary><div class="note" id="valtopnote"></div></details></section>
 <section id="fwtop"><div class="fwgrid" id="fwcards"></div></section>
 <section id="decision">
 <div class="rec" id="recbanner"><div class="lbl">Today's call · rules-based indicator, not financial advice</div><div class="big" id="rec_big">…</div><div class="recsub" id="rec_sub"></div><div class="recshort" id="rec_short"></div></div>
@@ -420,22 +430,46 @@ function rvPlain(x){const p=x.diff_pct_1y;if(p==null)return '';
   if(x.diff_now!=null&&x.diff_now<0)return `ASST trades below MSTR's mNAV; the gap is lower than ${Math.round((1-p)*100)}% of the past year`;
   return p>=0.5?`ASST's premium over MSTR is wider than ${Math.round(p*100)}% of the past year`:`ASST's premium over MSTR is narrower than ${Math.round((1-p)*100)}% of the past year`}
 function rvShort(x){return x.verdict==='MSTR_CHEAP'?'MSTR cheaper vs usual':x.verdict==='ASST_CHEAP'?'ASST cheaper vs usual':'spread normal'}
-function renderRV(){const x=RVD('ev'),b=RVD('basic'),V=S.valuation||{},bf=BFLAGS(),fw=A.flywheel,mc=D.config.mnav;
-  const side=a=>{const t=a.ticker,v=V[t]||{},ev=v.all_in_ev||{},st=v.market_standard||{},f=bf.per_asset[t]||{},w=fw[a.preferred]||{};
-    const fc=f.flywheel_cheap?'<div><span class="badge fc">✓ Flywheel + Cheap</span></div>':'';
-    const vl=f.very_low_mnav?`<div class="vlow">● Very low mNAV (incl. debt & preferreds) → secondary cue for ${t}${w.status==='NEAR_PAR'?' (flywheel near par)':''}</div>`:'';
-    return `<div class="tk2" style="color:${C[t]}">${t}</div><div class="lab">mNAV INCL. DEBT &amp; PREFERREDS</div><div class="mv">${fmt(ev.mnav,2)}x</div>
-     <div><span class="pill vz z-${ev.zone}">${zoneTxt({zone:ev.zone,low_fair:f.low_fair})}</span> <span class="note">${ev.mnav_pct_1y==null?'':ord(Math.round(ev.mnav_pct_1y*100))+' pct of its 1y'}</span></div>
-     <div class="note" style="margin-top:3px">stock-only mNAV ${fmt(st.mnav,2)}x</div>${fc}${vl}`};
-  for(const a of ASSETS){const el=$('rv_'+a.ticker);if(!el)continue;el.innerHTML=side(a);el.style.borderTopColor=C[a.ticker];el.classList.toggle('cheapv',x.cheaper_vs_usual===a.ticker)}
-  const zt=`Verdict rule (config.json → mnav): z-score of the ASST−MSTR mNAV incl. debt & preferreds gap vs its trailing ${mc.lookback_trading_days} trading days. z ≤ ${mc.spread_z_favor_asst} → ASST cheap vs usual (context for ASST); z ≥ +${mc.spread_z_favor_mstr} → MSTR cheap vs usual; otherwise normal. Ratio stats are the same window, shown for context. The call itself still needs that parent's Flywheel ON.`;
-  $('rv_mid').innerHTML=`<div class="lab">ASST − MSTR mNAV GAP (INCL. DEBT &amp; PREFERREDS)</div>
-   <div class="ratio">${sx2(x.diff_now)}x</div>
-   <div class="vs">now vs <b>${sx2(x.diff_mean_1y)}x</b> 1y average</div>
-   <div class="gap">Unusual beyond ±1σ: wide ≥ ${sx2(x.diff_mean_1y+mc.spread_z_favor_mstr*x.diff_sd_1y)}x · narrow ≤ ${sx2(x.diff_mean_1y+mc.spread_z_favor_asst*x.diff_sd_1y)}x</div>
-   <div class="vpill v-${x.verdict}">${esc(x.verdict_text||RVL[x.verdict])}</div>
-   <div class="rvplain">${rvPlain(x)}</div>
-   <div class="note">signal z ${sx2(x.diff_z)} (cheap at ≤ ${mc.spread_z_favor_asst} / ≥ +${mc.spread_z_favor_mstr})${Q(zt)} · ratio ASST÷MSTR ${fmt(x.ratio_now,2)}x vs ${fmt(x.ratio_mean_1y,2)}x avg · stock-only mNAV: gap ${sx2(b.diff_now)}x vs ${sx2(b.diff_mean_1y)}x, ${esc((b.verdict_text||'').toLowerCase())}</div>`}
+function nearSpread(x,mc){const z=x.diff_z,sd=x.diff_sd_1y;if(z==null||sd==null||!isFinite(sd)||sd<=0)return{txt:'',cls:''};
+  const zm=mc.spread_z_favor_mstr,za=mc.spread_z_favor_asst;
+  if(z>=zm){const over=z-zm;return{txt:`Past MSTR-cheap by ${over.toFixed(2)}σ (${(over*sd).toFixed(2)}x)`,cls:'flip'}}
+  if(z<=za){const over=za-z;return{txt:`Past ASST-cheap by ${over.toFixed(2)}σ (${(over*sd).toFixed(2)}x)`,cls:'flip'}}
+  const toM=zm-z,toA=z-za;const edge=Math.min(toM,toA)<=0.35;
+  if(toM<=toA)return{txt:`${(toM*sd).toFixed(2)}x from MSTR cheap (${toM.toFixed(2)}σ)`,cls:edge?'edge':''};
+  return{txt:`${(toA*sd).toFixed(2)}x from ASST cheap (${toA.toFixed(2)}σ)`,cls:edge?'edge':''}}
+function spreadGauge(x,mc){/* visual axis: LEFT = MSTR cheap (high +z), RIGHT = ASST cheap (low −z). Needle uses −z. */
+  const z=x.diff_z,zMax=2,zm=mc.spread_z_favor_mstr,za=mc.spread_z_favor_asst;
+  const zc=z==null?0:Math.max(-zMax,Math.min(zMax,z));
+  const pct=((zMax-zc)/(2*zMax))*100; // +zMax → 0%, 0 → 50%, −zMax → 100%
+  const thrL=((zMax-zm)/(2*zMax))*100,thrR=((zMax-za)/(2*zMax))*100,meanPct=50;
+  const near=nearSpread(x,mc);
+  return `<div class="sg" title="ASST−MSTR mNAV z-score vs 1y: left MSTR cheap (z≥+${zm}), right ASST cheap (z≤${za})">
+    <div class="sg-ends"><span class="L">◀ MSTR cheap</span><span class="R">ASST cheap ▶</span></div>
+    <div class="sg-track" aria-hidden="true">
+      <div class="sg-z mstr"></div><div class="sg-z mid"></div><div class="sg-z asst"></div>
+      <div class="sg-thr" style="left:${thrL.toFixed(2)}%"></div>
+      <div class="sg-thr" style="left:${thrR.toFixed(2)}%"></div>
+      <div class="sg-mean" style="left:${meanPct}%" title="1y average (z=0)"></div>
+      <div class="sg-needle" style="left:${pct.toFixed(2)}%" title="now z ${sx2(z)}"></div>
+    </div>
+    <div class="sg-ticks"><span>+${zm}σ</span><span>1y avg</span><span>${za}σ</span></div>
+   </div>
+   <div class="sg-near${near.cls?' '+near.cls:''}">${esc(near.txt)}</div>`}
+function renderRV(){const x=RVD('ev'),b=RVD('basic'),mc=D.config.mnav,el=$('rv_mid');if(!el)return;
+  // Highlight the cheaper-vs-usual stock card in the combined module (if present).
+  for(const t of ['MSTR','ASST']){const c=$('val_'+t);if(c)c.classList.toggle('cheapv',x.cheaper_vs_usual===t)}
+  const zt=`Verdict rule (config.json → mnav): z-score of the ASST−MSTR mNAV incl. debt & preferreds gap vs its trailing ${mc.lookback_trading_days} trading days. z ≤ ${mc.spread_z_favor_asst} → ASST cheap vs usual; z ≥ +${mc.spread_z_favor_mstr} → MSTR cheap vs usual; otherwise normal. Gauge axis is flipped so the marker moves toward the cheap side's card. The call itself still needs that parent's Flywheel ON.`;
+  const hi=x.diff_mean_1y+mc.spread_z_favor_mstr*x.diff_sd_1y,lo=x.diff_mean_1y+mc.spread_z_favor_asst*x.diff_sd_1y;
+  el.innerHTML=`<div class="lab">Relative gap · ASST − MSTR</div>
+   <span class="vpill v-${x.verdict}">${esc(x.verdict_text||RVL[x.verdict])}</span>
+   <div class="sg-now">${sx2(x.diff_now)}x</div>
+   <div class="sg-sub">vs <b>${sx2(x.diff_mean_1y)}x</b> 1y avg · z <b>${sx2(x.diff_z)}</b></div>
+   ${spreadGauge(x,mc)}
+   <details class="sgmore"><summary>details</summary>
+    <div class="note">${esc(rvPlain(x))}</div>
+    <div class="note">Unusual beyond ±1σ: wide (MSTR cheap) ≥ ${sx2(hi)}x · narrow (ASST cheap) ≤ ${sx2(lo)}x${Q(zt)}</div>
+    <div class="note">ratio ASST÷MSTR ${fmt(x.ratio_now,2)}x vs ${fmt(x.ratio_mean_1y,2)}x avg · stock-only gap ${sx2(b.diff_now)}x vs ${sx2(b.diff_mean_1y)}x, ${esc((b.verdict_text||'').toLowerCase())}</div>
+   </details>`}
 function gapWord(z,mc){return z==null?'':z>=mc.spread_z_favor_mstr?'MSTR cheap vs ASST (gap unusually wide)':z<=mc.spread_z_favor_asst?'ASST cheap vs MSTR (gap unusually narrow)':z>0?'MSTR relatively cheaper than usual (normal gap)':'ASST relatively cheaper than usual (normal gap)'}
 function renderGapSum(){const x=RVD(GB),mc=D.config.mnav,hi=x.diff_mean_1y+mc.spread_z_favor_mstr*x.diff_sd_1y,lo=x.diff_mean_1y+mc.spread_z_favor_asst*x.diff_sd_1y,z=x.diff_z;
   const w=z>=mc.spread_z_favor_mstr?'<span class="zw">gap unusually wide: MSTR cheap vs ASST</span>':z<=mc.spread_z_favor_asst?'<span class="zn">gap unusually narrow: ASST cheap vs MSTR</span>':null;
@@ -662,7 +696,8 @@ function renderValuation(){
   $('basisnote').innerHTML=`<b>Stock-only mNAV</b> = price × basic shares ÷ BTC NAV (the number most sites quote). <b>mNAV incl. debt & preferreds</b> = (price × basic shares + debt + preferred notional − cash/USD reserve) ÷ BTC NAV, so it counts every claim ahead of or alongside common. 1.0x = the market values it at exactly its bitcoin. Overheated filter, rotation, dip and zone rules use <b>${BL(sb)}</b>. Zones use each stock's own trailing ${mc.lookback_trading_days}-day percentiles, separately per basis: CHEAP ≤ 25th pct <i>and</i> at or below the stock's cheap cap (never CHEAP above it; schedule ${fmt(CL(),2)}x today rising to ${fmt(((D.config.valuation||{}).cheap_below_mnav_schedule||{}).end,2)}x by ${((D.config.valuation||{}).cheap_below_mnav_schedule||{}).end_date}; MSTR's cap is held at ${fmt((((D.config.valuation||{}).cheap_cap||{}).MSTR||{}).hold_value,2)}x until its own 1y median > ${fmt((((D.config.valuation||{}).cheap_cap||{}).MSTR||{}).median_above,2)}x); FAIR 25th–75th; RICH above the 75th; OVERVALUED at the stock's overheated floor (cap + ${fmt(mc.overheated_gap_above_cheap,2)}, more while its flywheel is ON) or ≥ the 90th pct.`;
   const bf=BFLAGS(),fw=A.flywheel;
   const prem=v=>v==null?'—':Math.abs(v-1)<0.0005?'no premium':v>=1?`<span class="pos">+${pct(v-1,1)}</span> premium`:`<span class="neg">−${pct(1-v,1)}</span> discount`;
-  $('valcards').innerHTML=ASSETS.map(aa=>{const a=aa.ticker,x=V[a]||{},B=x.market_standard||{},Ev=x.all_in_ev||{},b=bf.per_asset[a]||{},f=fw[aa.preferred]||{};
+  const rv=RVD('ev');
+  ASSETS.forEach(aa=>{const a=aa.ticker,el=$('val_'+a);if(!el)return;const x=V[a]||{},B=x.market_standard||{},Ev=x.all_in_ev||{},b=bf.per_asset[a]||{},f=fw[aa.preferred]||{};
     const blk=(bs,o,title)=>`<div class="vbasis"><h3>${title}${bs===sb?' <span class="sigtag">signal</span>':''} <span class="pill vz z-${o.zone}">${bs==='ev'?zoneTxt({zone:o.zone,low_fair:b.low_fair}):(o.zone||'—')}</span></h3>
       <div class="vbig">${fmt(o.mnav,3)}x</div>${pbar(o.mnav_pct_1y)}</div>`;
     const fc=b.flywheel_cheap?`<span class="badge fc">✓ Flywheel + Cheap</span>`:'';
@@ -671,7 +706,10 @@ function renderValuation(){
     const dlx=`Diluted equity mNAV (price × assumed-diluted shares ÷ BTC NAV): ${fmt(x.diluted_equity_mnav,3)}x. Shown for reference only; it counts convertible notes as shares, so it isn't used in either gauge.`;
     // Pre-build gauges so GN zone-rule strings exist for the Details panel.
     const gBasic=gauge(a,'basic',B),gEv=gauge(a,'ev',Ev);
-    return `<div class="card${b.very_low_mnav?' vl':''}${b.flywheel_cheap?' fcb':''}" style="margin:0;border-color:${ZC[x.zone]||'var(--line)'}55;border-top:3px solid ${C[a]}"><h2><span style="color:${C[a]}">${a}</span></h2>
+    el.className=`mnstock card${b.very_low_mnav?' vl':''}${b.flywheel_cheap?' fcb':''}${rv.cheaper_vs_usual===a?' cheapv':''}`;
+    el.style.borderColor=(ZC[x.zone]||'var(--line)')+'55';
+    el.style.borderTop=`3px solid ${C[a]}`;
+    el.innerHTML=`<h2><span style="color:${C[a]}">${a}</span></h2>
      <div class="vflags">${fc}${vl}</div>
      <div class="vpair">${blk('basic',B,'Stock only')}${blk('ev',Ev,'Incl. debt & preferreds')}</div>
      <details class="sec" style="margin-top:8px"><summary>Details</summary>
@@ -686,8 +724,8 @@ function renderValuation(){
      <div class="vflags" style="margin-top:6px">${fl||'<span class="note">Flywheel status on the STRC/SATA cards below.</span>'}${vl?`<span class="vlow">● Very low${b.very_low_reason?' ('+esc(b.very_low_reason)+')':''} → secondary cue for ${a}</span>`:''}</div>
      ${fc?'':`<div class="note">Flywheel + Cheap needs ${aa.preferred}'s flywheel on (running hot / ON after a qualifying close, not held by buybacks) and CHEAP mNAV incl. debt &amp; preferreds.</div>`}
      <div class="note">Price $${fmt(x.price)} · BTC held ${fmt(x.btc_held,0)}${srcl(a,'holdings','holdings')} · BTC NAV $${fmt(x.btc_nav_m,0)}M ($${fmt(x.btc_nav_per_basic_share)}/basic share) · diluted mNAV ${fmt(x.diluted_equity_mnav,2)}x${Q(dlx)}</div>
-     <div class="note">EV $${fmt(x.enterprise_value_m,0)}M = equity $${fmt(x.price*x.basic_shares/1e6,0)}M (${fmt(x.basic_shares/1e6,1)}M basic sh${srcl(a,'basic_shares','shares')}) + debt $${fmt(x.debt_m,0)}M${srcl(a,'debt_m','debt')} + preferred $${fmt(x.preferred_notional_m,0)}M${srcl(a,a==='MSTR'?'pref_usd_shares':'sata_shares','preferred')} − cash $${fmt(x.cash_m,0)}M${srcl(a,'cash_m','cash')}</div></details></div>`}).join('');
-  $('valtopnote').innerHTML=`At a glance: both mNAV bases, zone, and 1y percentile. <span class="badge fc" style="margin:0;font-size:11px;padding:1px 7px">✓ Flywheel + Cheap</span> = parent's Flywheel ON + mNAV incl. debt & preferreds CHEAP; <span class="vlow" style="display:inline">● Very low</span> = ≤ ${bf.very_low_max_mnav}x or ≤ ${bf.very_low_max_percentile*100}th pct. Premiums, gauges, caps, and inputs are under each card's Details.`;
+     <div class="note">EV $${fmt(x.enterprise_value_m,0)}M = equity $${fmt(x.price*x.basic_shares/1e6,0)}M (${fmt(x.basic_shares/1e6,1)}M basic sh${srcl(a,'basic_shares','shares')}) + debt $${fmt(x.debt_m,0)}M${srcl(a,'debt_m','debt')} + preferred $${fmt(x.preferred_notional_m,0)}M${srcl(a,a==='MSTR'?'pref_usd_shares':'sata_shares','preferred')} − cash $${fmt(x.cash_m,0)}M${srcl(a,'cash_m','cash')}</div></details>`});
+  const vt=$('valtopnote');if(vt)vt.innerHTML=`MSTR and ASST once each, with the relative gap gauge in the middle (ASST−MSTR mNAV z vs 1y; ±1σ flips). At a glance: both mNAV bases, zone, 1y percentile, Flywheel+Cheap / very-low. <span class="badge fc" style="margin:0;font-size:11px;padding:1px 7px">✓ Flywheel + Cheap</span> = parent's Flywheel ON + mNAV incl. debt & preferreds CHEAP; <span class="vlow" style="display:inline">● Very low</span> = ≤ ${bf.very_low_max_mnav}x or ≤ ${bf.very_low_max_percentile*100}th pct. Premiums, gauges, caps, and inputs are under each card's Details.`;
   $('valnote').innerHTML=`Percentile = where today's value ranks within its own trailing ${mc.lookback_trading_days} trading days, for each basis separately. Zone cutoffs are each stock's own 25th / 75th / 90th percentiles on each basis, plus its cheap cap and overheated floor from <a href="config.json">config.json</a> (<code>valuation</code> + <code>mnav</code>). The relative verdicts use the ASST−MSTR spread z-score on each basis (≤ ${mc.spread_z_favor_asst}: ASST cheaper; ≥ +${mc.spread_z_favor_mstr}: MSTR cheaper). Source links point at the latest filing or API used for each input.`;
   ZB=ZB||sb;segInit('zbasis',ZB,b=>{ZB=b;plotZone();linkCharts()})}
 function segInit(id,cur,fn){const el=$(id);el.querySelectorAll('button').forEach(b=>{b.classList.toggle('on',b.dataset.b===cur);
