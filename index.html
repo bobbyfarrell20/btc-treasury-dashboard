@@ -97,7 +97,16 @@ details.sec{margin-top:8px}details.sec>summary{font-size:13px;font-weight:600;co
 .chip3 .pill{font-size:10.5px;padding:1px 6px;margin:0}
 .chip3.c-RUNNING_HOT{border-color:#ff4d1a;box-shadow:0 0 8px #ff4d1a88}.chip3.c-ON{border-color:#2ea043}.chip3.c-WARMING_UP{border-color:#20b2a0}.chip3.c-COOLING_OFF,.chip3.c-SLOWING{border-color:#a8873a}.chip3.c-STALLED{border-color:#f85149}.chip3.c-NO_DATA{border-color:#6e7681}.pill.fl-RUNNING_HOT{box-shadow:0 0 7px #ff4d1acc;font-weight:700}.fw.f-RUNNING_HOT{box-shadow:0 0 14px #ff4d1a66}.cl-note{font-size:11px;color:var(--mut);font-weight:400}.chip3.held,.fw.held{border-color:var(--mut)!important;box-shadow:none!important}.pill.held{opacity:.6;filter:grayscale(.7)}.chip3 .hn{color:var(--mut);font-size:11.5px;font-style:italic}.chip3.c-CTX{border-color:var(--mut);border-style:dashed}
 .vpair{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:0 18px}.vpair .vbasis{min-width:0}.prem{font-size:15px;font-weight:700;margin:2px 0}.vflags{display:flex;flex-wrap:wrap;gap:6px 10px;align-items:center;margin:6px 0 2px}.vflags .badge{margin-top:0}.vfly{font-size:12.5px;color:var(--mut)}
-#valtop .mnstock h2,#valtop .card h2{margin-bottom:4px}
+#valtop .mnstock h2,#valtop .card h2{margin:0 0 6px;padding:0;border:0;background:none}
+/* Big unmistakable ticker letters on mNAV + flywheel cards */
+.tkhead{display:flex;align-items:baseline;gap:8px 10px;flex-wrap:wrap;margin:0 0 4px}
+.tkbig{font-size:32px;font-weight:900;letter-spacing:.8px;line-height:1;text-transform:uppercase;font-synthesis:none;-webkit-font-smoothing:antialiased}
+.mnstock .tkbig{font-size:34px;text-shadow:0 0 18px color-mix(in srgb, currentColor 35%, transparent)}
+.fw .tkhead{margin:0 0 2px}.fw .tkbig{font-size:30px;color:var(--fg);letter-spacing:1px}
+.tkto{font-size:13px;font-weight:800;letter-spacing:.35px;opacity:.95}
+.tkto .arrow{opacity:.55;font-weight:700;margin-right:2px}
+.fw .tkmeta{font-size:11.5px;color:var(--mut);font-weight:600;margin:0 0 4px}
+@media (max-width:640px){.tkbig,.mnstock .tkbig{font-size:28px}.fw .tkbig{font-size:26px}}
 /* Hero = all-in (ev) mNAV; stock-only is muted secondary underneath */
 .mnprim{margin:2px 0 4px}.mnprim .lab{font-size:11px;font-weight:700;letter-spacing:.35px;color:var(--mut);text-transform:uppercase;margin-bottom:2px}
 .mnprim .row{display:flex;flex-wrap:wrap;align-items:baseline;gap:6px 10px}
@@ -596,14 +605,14 @@ function renderChips(){const sats=()=>{const x=S.sats_context;if(!x||x.price==nu
   $('legend').innerHTML=`Legend: <b>Flywheel ON + CHEAP parent mNAV incl. debt & preferreds = strongest setup for that parent</b> ${Q(`"Flywheel ON" = the parent's preferred (STRC for MSTR, SATA for ASST) closed at ≥ $${fmt(TCL('STRC'))} (STRC) / ≥ $${fmt(TCL('SATA'))} (SATA) and hasn't since spent more than ${D.config.peg.off_minutes_below} straight market minutes below $${fmt(D.config.peg.on_trade_threshold)}; Running hot / Flywheel ON count as on. Warming up (touched $${fmt(D.config.peg.on_trade_threshold)} without a qualifying close) is watch only. STRC's flywheel doesn't count for MSTR while the latest Strategy 8-K week shows STRC buybacks and no STRC sales ("held by buybacks"). SATS is context only. The preferreds are flywheel indicators, not trades. CHEAP = ≤ 25th pct of the stock's own 1y and at or below its cheap cap. Very low mNAV (incl. debt & preferreds) (≤ ${c.very_low_max_mnav}x or ≤ ${c.very_low_max_percentile*100}th percentile) is a secondary cue for the parent even when its flywheel is only cooling off. These are display flags; the call itself follows the rules under "How the recommendation is decided".`)}`}
 
 function renderFlywheel(){const fw=A.flywheel,bf=BFLAGS().per_asset,pc0=D.config.peg;
-  $('fwcards').innerHTML=ASSETS.map(a=>{const f=fw[a.preferred],b=bf[a.ticker]||{};if(!f||f.missing)return `<div class="fw f-NO_DATA"><div class="t">${a.preferred} → ${a.ticker}</div><div class="st">NO DATA</div><div class="note">Missing ${a.preferred} prices.</div></div>`;
+  $('fwcards').innerHTML=ASSETS.map(a=>{const f=fw[a.preferred],b=bf[a.ticker]||{};if(!f||f.missing)return `<div class="fw f-NO_DATA"><div class="tkhead"><span class="tkbig">${a.preferred}</span><span class="tkto" style="color:${C[a.ticker]}"><span class="arrow">→</span>${a.ticker}</span></div><div class="st">NO DATA</div><div class="note">Missing ${a.preferred} prices.</div></div>`;
     const fcb=b.flywheel_cheap?`<span class="badge fc">✓ Flywheel + Cheap</span>`:'',pc=pc0,st=fn(fcode(f)),h=fheld(f);
     const lb=flyOn(st)&&f.last_below_trigger?`<span class="note">last below $${fmt(pc.on_trade_threshold)}: ${tET(f.last_below_trigger)}</span>`:'';
     const px=f.price??f.close,par=f.sparkline_par??pc.par,dpar=px==null?null:px-par;
     const dcls=dpar==null?'':(Math.abs(dpar)<=0.2?'near':(dpar<-1?'far':'near'));
     const dtxt=dpar==null?'':(dpar>=0?`+$${fmt(dpar)}`:`−$${fmt(Math.abs(dpar))}`)+` vs $${fmt(par,0)}`;
     const spark=sparkSVG(f.sparkline,par,C[a.preferred]||C[a.ticker]);
-    return `<div class="fw f-${flyK(st)}${h?' held':''}"><div class="t">${a.preferred} → ${a.ticker} flywheel <span class="note" style="font-weight:400">indicator, not a trade</span></div><div class="st"${h?' style="opacity:.6"':''}>${flyL(st)}${h?' <span style="font-size:15px;font-weight:600">· held by buybacks</span>':''}</div>
+    return `<div class="fw f-${flyK(st)}${h?' held':''}"><div class="tkhead"><span class="tkbig">${a.preferred}</span><span class="tkto" style="color:${C[a.ticker]}"><span class="arrow">→</span>${a.ticker}</span></div><div class="tkmeta">flywheel indicator, not a trade</div><div class="st"${h?' style="opacity:.6"':''}>${flyL(st)}${h?' <span style="font-size:15px;font-weight:600">· held by buybacks</span>':''}</div>
      <div class="pxrow"><div class="pxblock"><div class="px">$${fmt(px)}</div><div class="vspar"><span class="${dcls}">${dtxt}</span> <span class="note">${f.date}${f.method&&f.method!=='daily'?' · intraday':''}</span></div></div>${spark?`<div class="sparkwrap" title="Last 2 trading days vs $${fmt(par,0)} par">${spark}<div class="sparklab">last 2 sessions · green = $${fmt(par,0)}</div></div>`:''}</div>
      <details class="fwmore"><summary>details</summary>${f.atm&&f.atm.shares_sold>0?`<div class="note">ATM ${f.atm_date||''}: ~${fmt(f.atm.shares_sold/1000,0)}K shares sold → ~${fmt(f.atm.btc_raised,0)} BTC raised${f.atm_day?' (counts as ON: issuing at par)':''} · <a href="${encodeURI(f.atm.source_url||'')}" target="_blank" rel="noopener">@STRC_live</a></div>`:`<div class="note">ATM: no recent issuance reported (@STRC_live)</div>`}
      <div class="imp">${implication(a,f)}</div>
@@ -722,7 +731,7 @@ function renderValuation(){
     el.className=`mnstock card${b.very_low_mnav?' vl':''}${b.flywheel_cheap?' fcb':''}${rv.cheaper_vs_usual===a?' cheapv':''}`;
     el.style.borderColor=(ZC[Ev.zone||x.zone]||'var(--line)')+'55';
     el.style.borderTop=`3px solid ${C[a]}`;
-    el.innerHTML=`<h2><span style="color:${C[a]}">${a}</span></h2>
+    el.innerHTML=`<h2 class="tkhead"><span class="tkbig" style="color:${C[a]}">${a}</span></h2>
      <div class="vflags">${fc}${vl}</div>
      ${prim}${sec}
      <details class="sec" style="margin-top:8px"><summary>Details</summary>
