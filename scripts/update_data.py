@@ -660,7 +660,7 @@ def main():
                  **{k: (lambda e: [e[0], e[2], e[3]])(cap["ASST"][k][-1]) for k in ("basic_shares", "debt_m", "sata_shares", "sats_shares", "cash_m") if cap["ASST"].get(k)}}}
     ana = {
         "assets": ASSETS,
-        "flywheel": {A["preferred"]: analytics.flywheel(rows, A["preferred"], A["ticker"], pc_, FLYDETAIL.get(A["preferred"]), bars=BARS.get(A["preferred"])) for A in ASSETS},
+        "flywheel": {A["preferred"]: analytics.flywheel(rows, A["preferred"], A["ticker"], pc_, FLYDETAIL.get(A["preferred"]), bars=BARS.get(A["preferred"]), atm_hist=ATM.get(A["preferred"])) for A in ASSETS},
         "btc_yield": analytics.btc_yield(rows, ASSETS, dil_from),
         "btc_yield_diluted_from": dil_from,
         "backtest": {"btc_idle": analytics.backtest(rows, ASSETS, start, "BTC"), "cash_idle": analytics.backtest(rows, ASSETS, start, "CASH")},

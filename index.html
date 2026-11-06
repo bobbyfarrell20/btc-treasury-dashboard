@@ -182,6 +182,47 @@ details.sec{margin-top:8px}details.sec>summary{font-size:13px;font-weight:600;co
 details.card{margin-bottom:10px;padding:11px 14px}
 @media (max-width:980px){.mntrio{grid-template-columns:minmax(0,1fr) minmax(0,1fr)}.mnspread{grid-column:1/-1;order:-1}}
 @media (max-width:640px){.mntrio{grid-template-columns:minmax(0,1fr)}.mnspread .sg-now{font-size:20px}.rec .big{font-size:24px}.recsub{font-size:14px}.recshort{font-size:12.5px}.vpill{font-size:13px}.topbar{flex-wrap:wrap;row-gap:3px}.tb-r{margin-left:auto}}
+
+/* Flywheel engine modules (replace large Today's Call) */
+.enggrid{display:grid;gap:12px;grid-template-columns:repeat(2,minmax(0,1fr));margin:4px 0 8px}
+.eng{position:relative;background:var(--panel);border:1px solid var(--line);border-radius:14px;padding:14px 14px 12px;overflow:hidden;min-width:0;
+  background-image:radial-gradient(500px 180px at 30% 20%,rgba(247,147,26,.08),transparent 60%),linear-gradient(180deg,rgba(255,255,255,.02),transparent)}
+.eng.on{border-color:#f7931a88;box-shadow:0 0 0 1px #f7931a44,0 0 28px #f7931a22}
+.eng.hot{border-color:#ff4d1aaa;box-shadow:0 0 0 1px #ff4d1a66,0 0 36px #ff4d1a33}
+.eng.off{filter:saturate(.85)}
+.eng.preview{outline:1px dashed #fbbf2488}
+.enghead{display:flex;align-items:baseline;justify-content:space-between;gap:8px;flex-wrap:wrap;margin-bottom:6px}
+.enghead .tkbig{font-size:26px}.enghead .tkto{font-size:12.5px}
+.engstatus{font-size:13px;font-weight:800;letter-spacing:.6px;text-transform:uppercase}
+.engstatus.off{color:var(--mut)}.engstatus.warm{color:#20b2a0}.engstatus.on{color:#86efac}.engstatus.hot{color:#ff8a5c}
+.engbody{display:grid;grid-template-columns:minmax(120px,140px) minmax(0,1fr);gap:12px 16px;align-items:center}
+.engviz{position:relative;width:100%;aspect-ratio:1;max-width:140px;margin:0 auto}
+.engviz svg{width:100%;height:100%;display:block;overflow:visible}
+.gear-main,.gear-drive{transform-origin:center;transform-box:fill-box}
+.eng.off .gear-main,.eng.off .gear-drive{animation:none}
+.eng.on .gear-main{animation:spinCW var(--spin,4s) linear infinite}
+.eng.on .gear-drive{animation:spinCCW calc(var(--spin,4s) * .62) linear infinite}
+.eng.hot .gear-main{animation-duration:var(--spin,1.4s)}
+.eng.hot .hub-glow{animation:pulseG 1.1s ease-in-out infinite}
+@keyframes spinCW{to{transform:rotate(360deg)}}
+@keyframes spinCCW{to{transform:rotate(-360deg)}}
+@keyframes pulseG{0%,100%{opacity:.55}50%{opacity:1}}
+.engbtc{font-size:34px;font-weight:900;line-height:1;letter-spacing:-.5px}
+.engbtc .u{font-size:14px;font-weight:700;color:var(--mut);margin-left:4px}
+.enggearlab{font-size:15px;font-weight:800;margin:4px 0 2px;letter-spacing:.4px}
+.engsub{font-size:12.5px;color:var(--mut);line-height:1.35}
+.engmeter{margin-top:8px}.engmeter .labs{display:flex;justify-content:space-between;font-size:9.5px;color:var(--mut);font-weight:700;letter-spacing:.3px;margin-bottom:3px}
+.engmeter .bar{display:flex;height:10px;border-radius:999px;overflow:hidden;border:1px solid var(--line);background:var(--bg)}
+.engmeter .seg{flex:1;opacity:.28}.engmeter .seg.on{opacity:1}
+.engmeter .seg.s0{background:#6e7681}.engmeter .seg.s1{background:#3fb950}.engmeter .seg.s2{background:#58a6ff}
+.engmeter .seg.s3{background:#f7931a}.engmeter .seg.s4{background:#ff4d1a}
+.engsrc{margin-top:8px;font-size:11.5px;color:var(--mut)}
+.engsrc a{color:var(--b);font-weight:700}
+.engtools{display:flex;justify-content:flex-end;margin:0 0 6px}
+.engtools .prevb{font-size:11px;padding:3px 9px;border-radius:999px;border:1px dashed var(--line);background:transparent;color:var(--mut);cursor:pointer;font-weight:700}
+.engtools .prevb.on{border-color:#fbbf24;color:#fde68a;background:#fbbf2418}
+.gen{margin:4px 0 10px;font-size:12.5px;color:var(--mut);text-align:center}
+@media (max-width:760px){.enggrid{grid-template-columns:minmax(0,1fr)}.engbody{grid-template-columns:100px minmax(0,1fr)}.engbtc{font-size:28px}.engviz{max-width:110px}}
 .tb-upm{display:none}
 </style></head><body>
 <div class="topbar" id="topbar"><span class="tb-b" id="tb_btc">BTC …</span><span id="tb_rec" class="pill">…</span><span id="tb_rv"></span><span id="tb_strc"></span><span id="tb_sata"></span>
@@ -198,15 +239,10 @@ details.card{margin-bottom:10px;padding:11px 14px}
 </div>
 <details class="sec" style="margin-top:8px"><summary>Details: how to read this module</summary><div class="note" id="valtopnote"></div></details></section>
 <section id="fwtop"><div class="fwgrid" id="fwcards"></div></section>
-<section id="decision">
-<div class="rec" id="recbanner"><div class="lbl">Today's call · rules-based indicator, not financial advice</div><div class="big" id="rec_big">…</div><div class="recsub" id="rec_sub"></div><div class="recshort" id="rec_short"></div></div>
-<div class="chips3" id="chips"></div>
+<section id="fweng">
+<div class="engtools"><button type="button" class="prevb" id="engpreview" title="Temporarily preview how the gears look when @STRC_live reports a big BTC haul. Defaults back to live data.">⚡ Test spin</button></div>
+<div class="enggrid" id="engcards">loading…</div>
 <div class="gen"><span id="gen">loading…</span> <span class="refw"><button type="button" class="btn refb" id="refbtn" title="Start a fresh data run and update when the new data is published (a few minutes)" aria-label="Refresh data"><span class="ri">↻</span> <span class="rl">Refresh</span></button><span class="refmsg" id="refmsg" aria-live="polite"></span> · <a href="https://github.com/bobbyfarrell20/btc-treasury-dashboard/actions/workflows/update.yml" target="_blank" rel="noopener" title="Opens GitHub Actions: press &quot;Run workflow&quot; to pull fresh prices and rebuild. A full refresh takes a few minutes; then tap Refresh here.">Run fresh update ↗</a></span></div>
-<details class="sec" id="howrec"><summary>Why this call? Full reason and rules</summary>
-<div class="card" style="margin:6px 0 0"><div class="why" id="rec_why"></div><div class="note" id="rec_more"></div>
-<div class="legend" id="legend" style="text-align:left;margin-top:6px"></div>
-<div class="note" id="rec_rules" style="margin-top:8px"></div>
-<div class="disc" style="margin:10px 0 0"><b>Rules-based indicator, not financial advice.</b> Signals are produced mechanically from public data and the thresholds in <a href="config.json">config.json</a>. Data can be late, wrong or missing. Do your own research.</div></div></details>
 </section>
 <section class="card" id="gapsec"><div class="cardhead"><h2>MSTR vs ASST mNAV gap <span class="seg" id="gbasis"><button data-b="ev" title="Adds debt and preferreds, minus cash">incl. debt &amp; preferreds</button><button data-b="basic" title="Stock market value ÷ bitcoin held">stock only</button></span></h2><span class="csvb" data-c="c_spread"></span></div>
 <div class="gapsum" id="gapsum"></div>
@@ -247,7 +283,14 @@ details.card{margin-bottom:10px;padding:11px 14px}
 <details class="card" id="signal"><summary>Signal details: per-asset peg actions, mNAVs, 10-day changes, rotation z, dip rule</summary>
 <div class="headline" id="headline" style="margin-top:10px">…</div>
 <div class="grid g4" id="sigcards"></div>
-<details class="sec"><summary>Rules behind these detail cards</summary><div class="note" id="signote"></div></details></details>
+<details class="sec"><summary>Rules behind these detail cards</summary><div class="note" id="signote"></div></details>
+<details class="sec" id="howrec" style="margin-top:10px"><summary>Why this call? Full reason and rules (machine recommendation still in signals.json)</summary>
+<div class="card" style="margin:6px 0 0"><div class="why" id="rec_why"></div><div class="note" id="rec_more"></div>
+<div class="legend" id="legend" style="text-align:left;margin-top:6px"></div>
+<div class="note" id="rec_rules" style="margin-top:8px"></div>
+<div class="note" id="rec_short" style="margin-top:6px"></div>
+<div class="disc" style="margin:10px 0 0"><b>Rules-based indicator, not financial advice.</b> Signals are produced mechanically from public data and the thresholds in <a href="config.json">config.json</a>. Data can be late, wrong or missing. Do your own research. Automated routines still read <code>recommendation</code> from <a href="signals.json">signals.json</a>.</div></div></details>
+</details>
 <details class="card" id="siglog"><summary>Signal-change log</summary><div class="cardhead" style="margin-top:8px"><span></span><a class="btn" href="data/signal_log.json" style="text-decoration:none">signal_log.json</a></div>
 <div class="note" id="siglognote"></div><div class="tscroll scroll"><table id="siglogtable"></table></div></details>
 <details class="card" id="events"><summary>Key dates and chart annotations</summary>
@@ -597,12 +640,7 @@ function implication(a,f){const p=a.preferred,t=a.ticker,st=fn(fcode(f)),pc=D.co
   if(st==='WARMING_UP')return `${p} warming up: traded ≥ $${fmt(pc.on_trade_threshold)} without a qualifying close → watch only, flywheel off for ${t}'s call until a daily close ≥ $${fmt(TC)}`;
   if(st==='COOLING_OFF')return `${p} cooling off (off, still ≥ $${pc.stalled_below}) → flywheel off for ${t} until a daily close ≥ $${fmt(TC)}`;
   return `${p} stalled (below $${pc.stalled_below}) → flywheel off for ${t} until a daily close ≥ $${fmt(TC)}`}
-function renderChips(){const sats=()=>{const x=S.sats_context;if(!x||x.price==null)return '';const sg=v=>(v>=0?'+':'−')+'$'+fmt(Math.abs(v));
-    const atm=x.latest_atm?`latest ATM +${fmt(x.latest_atm.shares_added/1e3,0)}k sh (~$${fmt(x.latest_atm.stated_value_m,1)}M stated) as of ${x.latest_atm.date}`:'no ATM sales yet';
-    return `<span class="chip3 c-CTX" title="SATS (Strive) context only, not a trigger. ${esc(x.atm_note||'')} Shares outstanding ${fmt(x.shares_outstanding/1e6,1)}M as of ${x.shares_date}."><b>SATS</b> $${fmt(x.price)} <span class="note">${sg(x.vs_stated)} vs $${fmt(x.stated_value,0)} stated · ${sg(x.vs_issue)} vs $${fmt(x.issue_price,0)} issue · ${atm}</span> <span class="hn">context</span></span>`};
-  $('chips').innerHTML=sats();
-  const c=BFLAGS();
-  $('legend').innerHTML=`Legend: <b>Flywheel ON + CHEAP parent mNAV incl. debt & preferreds = strongest setup for that parent</b> ${Q(`"Flywheel ON" = the parent's preferred (STRC for MSTR, SATA for ASST) closed at ≥ $${fmt(TCL('STRC'))} (STRC) / ≥ $${fmt(TCL('SATA'))} (SATA) and hasn't since spent more than ${D.config.peg.off_minutes_below} straight market minutes below $${fmt(D.config.peg.on_trade_threshold)}; Running hot / Flywheel ON count as on. Warming up (touched $${fmt(D.config.peg.on_trade_threshold)} without a qualifying close) is watch only. STRC's flywheel doesn't count for MSTR while the latest Strategy 8-K week shows STRC buybacks and no STRC sales ("held by buybacks"). SATS is context only. The preferreds are flywheel indicators, not trades. CHEAP = ≤ 25th pct of the stock's own 1y and at or below its cheap cap. Very low mNAV (incl. debt & preferreds) (≤ ${c.very_low_max_mnav}x or ≤ ${c.very_low_max_percentile*100}th percentile) is a secondary cue for the parent even when its flywheel is only cooling off. These are display flags; the call itself follows the rules under "How the recommendation is decided".`)}`}
+function renderChips(){const c=BFLAGS();const el=$('legend');if(el)el.innerHTML=`Legend: <b>Flywheel ON + CHEAP parent mNAV incl. debt & preferreds = strongest setup for that parent</b> ${Q(`"Flywheel ON" = the parent's preferred (STRC for MSTR, SATA for ASST) closed at ≥ $${fmt(TCL('STRC'))} (STRC) / ≥ $${fmt(TCL('SATA'))} (SATA) and hasn't since spent more than ${D.config.peg.off_minutes_below} straight market minutes below $${fmt(D.config.peg.on_trade_threshold)}; Running hot / Flywheel ON count as on. Warming up (touched $${fmt(D.config.peg.on_trade_threshold)} without a qualifying close) is watch only. STRC's flywheel doesn't count for MSTR while the latest Strategy 8-K week shows STRC buybacks and no STRC sales ("held by buybacks"). SATS is context only. The preferreds are flywheel indicators, not trades. CHEAP = ≤ 25th pct of the stock's own 1y and at or below its cheap cap. Very low mNAV (incl. debt & preferreds) (≤ ${c.very_low_max_mnav}x or ≤ ${c.very_low_max_percentile*100}th percentile) is a secondary cue for the parent even when its flywheel is only cooling off. These are display flags; the call itself follows the rules under "How the recommendation is decided".`)}`}
 
 function renderFlywheel(){const fw=A.flywheel,bf=BFLAGS().per_asset,pc0=D.config.peg;
   $('fwcards').innerHTML=ASSETS.map(a=>{const f=fw[a.preferred],b=bf[a.ticker]||{};if(!f||f.missing)return `<div class="fw f-NO_DATA"><div class="tkhead"><span class="tkbig">${a.preferred}</span><span class="tkto" style="color:${C[a.ticker]}"><span class="arrow">→</span>${a.ticker}</span></div><div class="st">NO DATA</div><div class="note">Missing ${a.preferred} prices.</div></div>`;
@@ -617,6 +655,83 @@ function renderFlywheel(){const fw=A.flywheel,bf=BFLAGS().per_asset,pc0=D.config
      <details class="fwmore"><summary>details</summary>${f.atm&&f.atm.shares_sold>0?`<div class="note">ATM ${f.atm_date||''}: ~${fmt(f.atm.shares_sold/1000,0)}K shares sold → ~${fmt(f.atm.btc_raised,0)} BTC raised${f.atm_day?' (counts as ON: issuing at par)':''} · <a href="${encodeURI(f.atm.source_url||'')}" target="_blank" rel="noopener">@STRC_live</a></div>`:`<div class="note">ATM: no recent issuance reported (@STRC_live)</div>`}
      <div class="imp">${implication(a,f)}</div>
      <div class="row"><span>${fstreak(f)}</span>${lb}</div></details>${fcb}</div>`}).join('')}
+
+let ENG_PREVIEW=false;
+function gearLevel(btc){const n=+btc||0;return n<=0?0:n<75?1:n<200?2:n<400?3:4}
+function gearLabel(lv,engaged){return !engaged&&lv===0?'IDLE':['IDLE','1st GEAR','2nd GEAR','3rd GEAR','OVERDRIVE'][lv]||'IDLE'}
+function spinSec(lv){return [0,4.2,2.6,1.7,1.05][lv]||0}
+function gearSVG(lv,engaged,parentColor,gid){
+  const col=parentColor||'#f7931a', glow=engaged?(lv>=4?'#ff4d1a':col):'#6e7681', g=gid||('hg'+Math.random().toString(36).slice(2,7));
+  const teeth=12,R=42,ri=32,tooth=5;
+  let path='';
+  for(let i=0;i<teeth;i++){const a0=(i/teeth)*Math.PI*2-0.12,a1=((i+.35)/teeth)*Math.PI*2,a2=((i+.65)/teeth)*Math.PI*2,a3=((i+1)/teeth)*Math.PI*2-0.12;
+    const p=(r,a)=>[(50+r*Math.cos(a)).toFixed(2),(50+r*Math.sin(a)).toFixed(2)];
+    const A=p(ri,a0),B=p(R,a1),C=p(R+tooth,a1),D=p(R+tooth,a2),E=p(R,a2),F=p(ri,a3);
+    path+=(i?'L':'M')+A[0]+','+A[1]+' L'+B[0]+','+B[1]+' L'+C[0]+','+C[1]+' L'+D[0]+','+D[1]+' L'+E[0]+','+E[1]+' L'+F[0]+','+F[1]+' ';}
+  path+='Z';
+  // small drive gear
+  const teeth2=8,R2=14,ri2=9,t2=3,cx=78,cy=78;let path2='';
+  for(let i=0;i<teeth2;i++){const a0=(i/teeth2)*Math.PI*2-0.15,a1=((i+.35)/teeth2)*Math.PI*2,a2=((i+.65)/teeth2)*Math.PI*2,a3=((i+1)/teeth2)*Math.PI*2-0.15;
+    const p=(r,a)=>[(cx+r*Math.cos(a)).toFixed(2),(cy+r*Math.sin(a)).toFixed(2)];
+    const A=p(ri2,a0),B=p(R2,a1),C=p(R2+t2,a1),D=p(R2+t2,a2),E=p(R2,a2),F=p(ri2,a3);
+    path2+=(i?'L':'M')+A[0]+','+A[1]+' L'+B[0]+','+B[1]+' L'+C[0]+','+C[1]+' L'+D[0]+','+D[1]+' L'+E[0]+','+E[1]+' L'+F[0]+','+F[1]+' ';}
+  path2+='Z';
+  const arcR=46, start=-210*Math.PI/180, end=30*Math.PI/180;
+  const frac=engaged?Math.max(0.08,lv/4):0.02;
+  const aMid=start+(end-start)*frac;
+  const ax=(a)=>[50+arcR*Math.cos(a),50+arcR*Math.sin(a)];
+  const A=ax(start),B=ax(aMid),C=ax(end);
+  const large=0;
+  const arcTrack=`M${A[0].toFixed(1)},${A[1].toFixed(1)} A${arcR},${arcR} 0 1 1 ${C[0].toFixed(1)},${C[1].toFixed(1)}`;
+  const arcFill=`M${A[0].toFixed(1)},${A[1].toFixed(1)} A${arcR},${arcR} 0 ${frac>0.5?1:0} 1 ${B[0].toFixed(1)},${B[1].toFixed(1)}`;
+  return `<svg viewBox="0 0 100 100" aria-hidden="true">
+    <defs><radialGradient id="${g}" cx="50%" cy="50%"><stop offset="0%" stop-color="${glow}" stop-opacity="${engaged?0.55:0.12}"/><stop offset="100%" stop-color="${glow}" stop-opacity="0"/></radialGradient></defs>
+    <circle class="hub-glow" cx="50" cy="50" r="28" fill="url(#${g})"/>
+    <path d="${arcTrack}" fill="none" stroke="var(--line)" stroke-width="3.5" stroke-linecap="round" opacity=".55"/>
+    <path d="${arcFill}" fill="none" stroke="${glow}" stroke-width="3.5" stroke-linecap="round" opacity="${engaged?0.95:0.35}"/>
+    <g class="gear-main"><path d="${path}" fill="#2a3038" stroke="${engaged?glow:'#8b949e'}" stroke-width="1.2"/>
+      <circle cx="50" cy="50" r="14" fill="#161b22" stroke="${glow}" stroke-width="1.6"/>
+      <text x="50" y="54.5" text-anchor="middle" font-size="14" font-weight="800" fill="${engaged?glow:'#8b949e'}">₿</text></g>
+    <g class="gear-drive"><path d="${path2}" fill="#21262d" stroke="${engaged?col:'#6e7681'}" stroke-width="1"/>
+      <circle cx="${cx}" cy="${cy}" r="4" fill="#161b22" stroke="${engaged?col:'#6e7681'}" stroke-width="1"/></g>
+  </svg>`}
+function renderEngines(){const host=$('engcards');if(!host)return;const fw=A.flywheel||{},preview=ENG_PREVIEW;
+  host.innerHTML=ASSETS.map(a=>{const f=fw[a.preferred]||{};if(f.missing)return `<div class="eng off"><div class="enghead"><span class="tkbig">${a.preferred}</span></div><div class="note">No data</div></div>`;
+    const st=fn(fcode(f)),h=fheld(f),onLive=flyOn(st)&&!h;
+    const btcLive=+(f.btc_today!=null?f.btc_today:((f.atm_day&&f.atm)?f.atm.btc_raised:0))||0;
+    const haul=f.atm_last_haul||((f.atm&&(f.atm.btc_raised||0)>0)?{date:f.atm_date,...f.atm}:null);
+    // Preview: temporarily show last real haul (or a sample 191) spinning, clearly marked.
+    const sampleBtc=haul&&haul.btc_raised>0?haul.btc_raised:191;
+    const engaged=preview?true:onLive||btcLive>0;
+    const btc=preview?sampleBtc:btcLive;
+    const lv=gearLevel(btc), lab=preview?'PREVIEW · '+gearLabel(lv,true):(engaged?(btc>0?gearLabel(lv,true):(st==='RUNNING_HOT'?'RUNNING HOT':'ENGAGED')):(st==='WARMING_UP'?'WARMING UP — NOT ENGAGED':'FLYWHEEL OFF'));
+    const cls=preview?'on preview':(engaged?(st==='RUNNING_HOT'||lv>=4?'hot':'on'):'off');
+    const statusCls=preview||engaged?(st==='RUNNING_HOT'||lv>=4?'hot':'on'):(st==='WARMING_UP'?'warm':'off');
+    const spin=engaged?spinSec(Math.max(lv,1))+'s':'0s';
+    const segs=[0,1,2,3,4].map(i=>`<div class="seg s${i}${engaged&&i<=lv?' on':(!engaged&&i===0?' on':'')}"></div>`).join('');
+    const src=(preview?haul: (btcLive>0?{date:f.date,source_url:(f.atm&&f.atm.source_url),btc_raised:btcLive,shares_sold:f.shares_today}:haul))||{};
+    const srcUrl=src.source_url||(f.atm&&f.atm.source_url)||'https://x.com/STRC_live';
+    const lastLine=!engaged&&haul?`Last engaged ${haul.date}: +${fmt(haul.btc_raised,0)} BTC`:((f.atm_btc_7d!=null&&f.atm_btc_7d>0)?`7d haul ${fmt(f.atm_btc_7d,0)} BTC`:'No recent @STRC_live haul');
+    const shareLine=(preview||btcLive>0)&&((src.shares_sold||f.shares_today)>0)?` · ~${fmt((src.shares_sold||f.shares_today)/1000,0)}K sh`:'';
+    return `<div class="eng ${cls}" style="--spin:${spin}" data-pref="${a.preferred}">
+      <div class="enghead"><div class="tkhead"><span class="tkbig">${a.preferred}</span><span class="tkto" style="color:${C[a.ticker]}"><span class="arrow">→</span>${a.ticker}</span></div>
+        <div class="engstatus ${statusCls}">${esc(lab)}</div></div>
+      <div class="engbody">
+        <div class="engviz">${gearSVG(lv,engaged,C[a.ticker]||'#f7931a','hg-'+a.preferred)}</div>
+        <div>
+          <div class="engbtc">${btc>0?'+':''}${fmt(btc,0)}<span class="u">BTC${preview?' · demo':(btcLive>0?' today':'')}</span></div>
+          <div class="enggearlab">${esc(gearLabel(lv,engaged))}${h?' · held by buybacks':''}</div>
+          <div class="engsub">${engaged&&btc>0?`@STRC_live ATM feeding ${a.ticker}${shareLine}`:esc(lastLine)}</div>
+          <div class="engmeter"><div class="labs"><span>IDLE</span><span>1st</span><span>2nd</span><span>3rd</span><span>OD</span></div><div class="bar">${segs}</div></div>
+          <div class="engsrc"><a href="${encodeURI(srcUrl)}" target="_blank" rel="noopener">@STRC_live</a>${src.date?` · ${src.date}`:''}${src.note?` · ${esc(src.note)}`:''}</div>
+        </div>
+      </div>
+    </div>`}).join('')}
+function initEngPreview(){const b=$('engpreview');if(!b||b._ok)return;b._ok=1;
+  b.onclick=()=>{ENG_PREVIEW=!ENG_PREVIEW;b.classList.toggle('on',ENG_PREVIEW);b.textContent=ENG_PREVIEW?'⚡ Preview ON — tap for live':'⚡ Test spin';safe('engines',renderEngines)};
+  // Auto-poll / refresh always re-renders from live data; preview flag is session-only.
+}
+
 function renderSummary(){const V=S.valuation||{},Y=A.btc_yield,bf=BFLAGS(),fw=A.flywheel;
   $('mnavsum').innerHTML=ASSETS.map(a=>{const x=V[a.ticker]||{},ev=x.all_in_ev||{},st=x.market_standard||{},b=bf.per_asset[a.ticker]||{},y=Y[a.ticker]||{},f=fw[a.preferred]||{};
     const yv=k=>y[k]&&y[k].value!=null?cp(y[k].value,1):'—';
@@ -624,19 +739,23 @@ function renderSummary(){const V=S.valuation||{},Y=A.btc_yield,bf=BFLAGS(),fw=A.
      <div class="row"><span>BTC yield ${Q('Change in BTC held per diluted share. Accelerating = last 30d positive and higher than the prior 30d.')} 30d <b>${yv('30d')}</b></span><span>prior 30d ${yv('prev_30d')}</span><span>90d ${yv('90d')}</span></div>
      <div>${accB(y,!!f.flywheel_on_for_call)}</div></div>`}).join('')}
 function renderRec(){const R=S.recommendation_detail||{},rc=S.recommendation;
-  $('recbanner').className='rec r-'+rc;$('rec_big').textContent=S.recommendation_label||RECL[rc]||rc;$('rec_sub').textContent=RECSUB();$('rec_sub').style.display=RECSUB()?'':'none';
-  $('rec_why').textContent='Today: '+S.recommendation_reason;
+  // Banner removed from top; keep filling hidden/relocated rule nodes so routines + Signal details stay intact.
+  const set=(id,fn)=>{const el=$(id);if(!el)return;fn(el)};
+  set('recbanner',el=>{el.className='rec r-'+rc});
+  set('rec_big',el=>{el.textContent=S.recommendation_label||RECL[rc]||rc});
+  set('rec_sub',el=>{el.textContent=RECSUB();el.style.display=RECSUB()?'':'none'});
+  set('rec_why',el=>{el.textContent='Today: '+S.recommendation_reason});
   {const x=RVD('ev'),fw=A.flywheel,pa=S.per_asset||{},parts=[rvShort(x)];
    for(const a of ASSETS){const f=fw[a.preferred]||{};parts.push(flyEff(a.preferred,fcode(f),a.ticker,fheld(f)))}
    for(const a of ASSETS)if((pa[a.ticker]||{}).overheated)parts.push(a.ticker+' overheated');
    if(S.also_valid)parts.push(S.also_valid+' also valid');
-   $('rec_short').textContent=parts.join(' · ')}
+   set('rec_short',el=>{el.textContent=parts.join(' · ')})}
   const lrc=S.last_recommendation_change,lc=S.last_changed;
-  $('rec_more').innerHTML=[S.also_valid?`<b>${S.also_valid} is also valid</b> (both flywheels ON).`:'',...(S.recommendation_notes||[]).map(n=>'⚠️ '+esc(n)),
+  set('rec_more',el=>{el.innerHTML=[S.also_valid?`<b>${S.also_valid} is also valid</b> (both flywheels ON).`:'',...(S.recommendation_notes||[]).map(n=>'⚠️ '+esc(n)),
     lrc?`Recommendation unchanged since ${lrc.date} (was ${RECL[lrc.old]||lrc.old}).`:'',lc?`Last state change ${lc.date}: ${esc(lc.what||'')}.`:'',
-    `signal_hash <code>${S.signal_hash}</code> · as of ${S.as_of}`].filter(Boolean).join(' ');
+    `signal_hash <code>${S.signal_hash}</code> · as of ${S.as_of}`].filter(Boolean).join(' ')});
   const mc=D.config.mnav,pc=D.config.peg,ob=(D.config.recommendation||{}).overheat_basis||'ev',bf=BFLAGS();
-  $('rec_rules').innerHTML=`1. <b>Trigger: flywheel on (close-based).</b> A parent qualifies while its preferred's flywheel is on (STRC → MSTR, SATA → ASST). It turns on only on a <b>daily close ≥ $${fmt(TCL('STRC'))}</b> for STRC and <b>≥ $${fmt(TCL('SATA'))}</b> for SATA, and turns off after the preferred trades below $${fmt(pc.on_trade_threshold)} for <b>more than ${pc.off_minutes_below} straight regular-market minutes</b> (overnight / weekend gaps don't count). On shows ${flyPill('RUNNING_HOT')} (≥ $${(pc.running_hot||{}).price_min} on heavy volume: ≥ ${(pc.running_hot||{}).vol_mult_min}× the ${(pc.running_hot||{}).vol_avg_days}-day average, pace-adjusted intraday, with ≥ ${((pc.running_hot||{}).min_share_at_or_above||0.5)*100}% of the day's volume at ≥ $100) or ${flyPill('ON')}. ${flyPill('WARMING_UP')} = touched ≥ $${fmt(pc.on_trade_threshold)} intraday (or, for STRC, closed $${fmt(pc.on_trade_threshold)}–${fmt(TCL('STRC')-0.01)}) without a qualifying close: <b>watch only, not on for the call</b>. Off: ${flyPill('COOLING_OFF')} (≥ $${pc.stalled_below}) or ${flyPill('STALLED')} (&lt; $${pc.stalled_below}). Before the 4 PM ET close the call uses the last completed close plus the intraday off rule; the chips may show today's intraday warming up. <b>Held by buybacks:</b> while the latest Strategy 8-K week shows STRC repurchases and no STRC sales, STRC's par is held up by buybacks and MSTR's flywheel doesn't count (chip in muted color) until a later 8-K shows STRC sales. Uses Yahoo 1-minute bars (last ~7 days) or 5-minute bars (~60 days); older days use daily bars (a day that touched the level but closed below it counts as off / warming up). The preferreds are flywheel indicators, never traded.<br>
+  const _rr=$('rec_rules');if(_rr)_rr.innerHTML=`1. <b>Trigger: flywheel on (close-based).</b> A parent qualifies while its preferred's flywheel is on (STRC → MSTR, SATA → ASST). It turns on only on a <b>daily close ≥ $${fmt(TCL('STRC'))}</b> for STRC and <b>≥ $${fmt(TCL('SATA'))}</b> for SATA, and turns off after the preferred trades below $${fmt(pc.on_trade_threshold)} for <b>more than ${pc.off_minutes_below} straight regular-market minutes</b> (overnight / weekend gaps don't count). On shows ${flyPill('RUNNING_HOT')} (≥ $${(pc.running_hot||{}).price_min} on heavy volume: ≥ ${(pc.running_hot||{}).vol_mult_min}× the ${(pc.running_hot||{}).vol_avg_days}-day average, pace-adjusted intraday, with ≥ ${((pc.running_hot||{}).min_share_at_or_above||0.5)*100}% of the day's volume at ≥ $100) or ${flyPill('ON')}. ${flyPill('WARMING_UP')} = touched ≥ $${fmt(pc.on_trade_threshold)} intraday (or, for STRC, closed $${fmt(pc.on_trade_threshold)}–${fmt(TCL('STRC')-0.01)}) without a qualifying close: <b>watch only, not on for the call</b>. Off: ${flyPill('COOLING_OFF')} (≥ $${pc.stalled_below}) or ${flyPill('STALLED')} (&lt; $${pc.stalled_below}). Before the 4 PM ET close the call uses the last completed close plus the intraday off rule; the chips may show today's intraday warming up. <b>Held by buybacks:</b> while the latest Strategy 8-K week shows STRC repurchases and no STRC sales, STRC's par is held up by buybacks and MSTR's flywheel doesn't count (chip in muted color) until a later 8-K shows STRC sales. Uses Yahoo 1-minute bars (last ~7 days) or 5-minute bars (~60 days); older days use daily bars (a day that touched the level but closed below it counts as off / warming up). The preferreds are flywheel indicators, never traded.<br>
    2. <b>Filter: overheated.</b> Skip a parent whose ${BL(ob)} mNAV is ≥ its <b>overheated floor</b> AND ≥ the ${mc.overheated_percentile*100}th percentile of its last ${mc.lookback_trading_days} trading days. Floor = the stock's cheap cap + ${fmt(mc.overheated_gap_above_cheap,2)} (today base ${ASSETS.map(a=>`${a.ticker} ${fmt(CAP(a.ticker)+mc.overheated_gap_above_cheap,2)}x`).join(', ')}), + ${fmt(mc.overheated_bonus_on,2)} while its flywheel is ON, + ${fmt(mc.overheated_bonus_running_hot,2)} instead while running hot (today: ${ASSETS.map(a=>`${a.ticker} ${fmt(OHF(a.ticker),2)}x`).join(', ')}). A working flywheel earns a higher premium, so a buy isn't filtered out as easily. Flywheel on but overheated → "wait / reduce size".<br>
    3. <b>Both qualify: gap decides.</b> Only if both flywheels are ON and neither parent is overheated: if the gap z (ASST − MSTR, ${BL(ob)}) is unusual (≤ ${mc.spread_z_favor_asst} → BUY ASST, ≥ +${mc.spread_z_favor_mstr} → BUY MSTR; the other is shown as also valid); otherwise (normal gap) <b>BUY BOTH</b>, 50/50, with the slightly cheaper one shown as the lean.<br>
    4. <b>Otherwise WAIT: no buy right now.</b> (BTC or cash are your choice while waiting; the tracker doesn't tell you to hold either.) The dip rule, legacy per-asset actions and zone verdicts are shown as context only and don't change the call.<br>
@@ -930,7 +1049,7 @@ function safe(n,f){try{f()}catch(e){console.warn(n,e);const el=document.getEleme
  document.querySelectorAll('details').forEach(d=>d.addEventListener('toggle',()=>{if(d.open)d.querySelectorAll('.js-plotly-plot').forEach(el=>{try{Plotly.Plots.resize(el)}catch(e){}})}));
 }catch(e){console.error(e);$('gen').textContent='Failed to load data: '+e}})();
 function renderAll(){
- for(const [n,f] of [['relative value',renderRV],['top',renderTop],['recommendation',renderRec],['chips',renderChips],['flywheel',renderFlywheel],['summary',renderSummary],['kpis',renderKpis],['signals',renderSignal],['valuation',renderValuation],['yield',renderYield],['atm',renderAtm],['events',()=>{initEvents();renderEvents()}],['toggles',initToggles],['charts',()=>{renderCharts();segInit('gbasis',GB,b=>{GB=b;plotSpread()});segInit('spmode',SPM,b=>{SPM=b;plotSpread()})}],['peg performance',renderPegPerf],['backtest',renderBacktest],['signal log',renderSigLog],['big moves',renderBig],['odds',renderPM],['method',renderMethod],['csv',initCsv]])safe(n,f);
+ for(const [n,f] of [['relative value',renderRV],['top',renderTop],['recommendation',renderRec],['chips',renderChips],['flywheel',renderFlywheel],['engines',()=>{initEngPreview();renderEngines()}],['summary',renderSummary],['kpis',renderKpis],['signals',renderSignal],['valuation',renderValuation],['yield',renderYield],['atm',renderAtm],['events',()=>{initEvents();renderEvents()}],['toggles',initToggles],['charts',()=>{renderCharts();segInit('gbasis',GB,b=>{GB=b;plotSpread()});segInit('spmode',SPM,b=>{SPM=b;plotSpread()})}],['peg performance',renderPegPerf],['backtest',renderBacktest],['signal log',renderSigLog],['big moves',renderBig],['odds',renderPM],['method',renderMethod],['csv',initCsv]])safe(n,f);
  linkCharts()}
 // Refresh button: starts a fresh data run, then polls the published files until a newer generated_utc appears.
 // No tokens/secrets in this page. If config.json refresh_trigger_url is set (a tiny proxy, e.g. workers/refresh-trigger,

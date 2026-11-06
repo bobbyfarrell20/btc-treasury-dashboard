@@ -145,19 +145,56 @@ def rec_hash_action(rec):
     return hashlib.sha1(rec["action"].encode()).hexdigest()[:12]
 
 # ---------------------------------------------------------------- flywheel cards
-def flywheel(rows, pref, parent, pc, detail=None, bars=None):
-    """Flywheel card for one preferred, from the engine output (scripts/flywheel.py)."""
+def flywheel(rows, pref, parent, pc, detail=None, bars=None, atm_hist=None):
+    """Flywheel card for one preferred, from the engine output (scripts/flywheel.py).
+
+    Optional atm_hist: {date: {shares_sold, btc_raised, source_url, note}} from data/atm_activity.json.
+    Adds atm_recent / atm_last_haul / atm_btc_7d / btc_today for the UI gear modules without
+    changing recommendation fields in signals.json.
+    """
     R = [r for r in rows if r.get(pref) is not None]
     if not R: return {"preferred": pref, "parent": parent, "missing": True}
     last = R[-1]; st = last.get("peg_" + pref); code = last.get("fly_" + pref); held = bool(last.get("held_" + pref))
     x = (detail or {}).get(last["date"]) or {}
     def _atm_at(d):
-        return ((detail or {}).get(d) or {}).get("atm")
+        a = ((detail or {}).get(d) or {}).get("atm")
+        if a: return a
+        return (atm_hist or {}).get(d)
     sale_d = next((r["date"] for r in reversed(R) if ((_atm_at(r["date"]) or {}).get("shares_sold") or 0) > 0), None)
     any_d = next((r["date"] for r in reversed(R) if _atm_at(r["date"])), None)
+    # Prefer explicit atm_hist dates (covers days present only in the activity file).
+    hist = {}
+    if atm_hist:
+        for d, v in atm_hist.items():
+            if isinstance(v, dict) and not str(d).startswith("_"): hist[d] = v
+    if detail:
+        for d, v in detail.items():
+            if isinstance(v, dict) and v.get("atm") and d not in hist: hist[d] = v["atm"]
+    hist_dates = sorted(hist)
+    if not sale_d:
+        sale_d = next((d for d in reversed(hist_dates) if (hist[d].get("shares_sold") or 0) > 0), None)
+    if not any_d:
+        any_d = hist_dates[-1] if hist_dates else None
     atm_date = sale_d or any_d
-    today_a = x.get("atm")
+    today_a = x.get("atm") or hist.get(last["date"])
     atm_show = today_a if ((today_a or {}).get("shares_sold") or 0) > 0 else (_atm_at(atm_date) if atm_date else None)
+    btc_today = float((today_a or {}).get("btc_raised") or 0) if today_a else 0.0
+    shares_today = int((today_a or {}).get("shares_sold") or 0) if today_a else 0
+    atm_recent = [{"date": d, "shares_sold": hist[d].get("shares_sold") or 0, "btc_raised": hist[d].get("btc_raised") or 0,
+                   "source_url": hist[d].get("source_url"), "note": hist[d].get("note")} for d in hist_dates[-10:]]
+    atm_last_haul = None
+    for d in reversed(hist_dates):
+        if (hist[d].get("btc_raised") or 0) > 0 or (hist[d].get("shares_sold") or 0) > 0:
+            atm_last_haul = {"date": d, "shares_sold": hist[d].get("shares_sold") or 0, "btc_raised": hist[d].get("btc_raised") or 0,
+                             "source_url": hist[d].get("source_url"), "note": hist[d].get("note")}
+            break
+    atm_btc_7d = None
+    try:
+        from datetime import date as _date, timedelta as _td
+        end = _date.fromisoformat(last["date"]); cut = (end - _td(days=6)).isoformat()
+        atm_btc_7d = round(sum(float(hist[d].get("btc_raised") or 0) for d in hist_dates if d >= cut), 2)
+    except Exception:
+        atm_btc_7d = None
     T, FULL, HOT = pc["on_trade_threshold"], pc["full_on_threshold"], pc.get("running_hot", {}).get("price_min", 100.0)
     oc = pc.get("on_close_threshold"); TC = oc.get(pref, T) if isinstance(oc, dict) else (oc or T)
     px = x.get("price", last[pref])
@@ -181,6 +218,8 @@ def flywheel(rows, pref, parent, pc, detail=None, bars=None):
             "share_vol_at_or_above_100": x.get("share_vol_at_or_above_100"),
             "days_in_state": run, "running_hot_days_1y": hot_days_1y,
             "atm_day": x.get("atm_day"), "atm": atm_show, "atm_date": atm_date,
+            "btc_today": btc_today, "shares_today": shares_today,
+            "atm_recent": atm_recent, "atm_last_haul": atm_last_haul, "atm_btc_7d": atm_btc_7d,
             "on_trade_threshold": T, "full_on_threshold": FULL, "off_minutes_below": pc["off_minutes_below"], "stalled_below": pc["stalled_below"],
             "threshold": target, "distance_to_threshold": round(px - target, 3) if target is not None else None,
             "distance_to_trigger": round(px - T, 3), "distance_to_par": round(px - pc["par"], 3),
