@@ -21,7 +21,7 @@
     "new": "STAY_BTC"
   },
   "_hash_note": "signal_hash changes when the recommendation, also_valid, any preferred peg state (on for the call = RUNNING_HOT/ON, hashed alike; WARMING_UP and COOLING_OFF hash as WATCH, STALLED as SELL; ON held by buybacks hashes as WATCH) or any overheated flag changes; last_changed is the most recent trading day it changed.",
-  "generated_utc": "2026-11-06T01:39:55+00:00",
+  "generated_utc": "2026-11-06T01:47:51+00:00",
   "as_of": "2026-11-05",
   "disclaimer": "Rules-based indicator, not financial advice.",
   "recommendation_detail": {
@@ -98,6 +98,32 @@
         "note": "touched par, closed $99.97; first STRC ATM activity since May 14"
       },
       "atm_date": "2026-11-04",
+      "btc_today": 0.0,
+      "shares_today": 0,
+      "atm_recent": [
+        {
+          "date": "2026-11-04",
+          "shares_sold": 392000,
+          "btc_raised": 191,
+          "source_url": "https://x.com/STRC_live/status/2118086674903163193",
+          "note": "touched par, closed $99.97; first STRC ATM activity since May 14"
+        },
+        {
+          "date": "2026-11-05",
+          "shares_sold": 0,
+          "btc_raised": 0,
+          "source_url": "https://x.com/STRC_live/status/2118449058725458145",
+          "note": "no ATM activity; slipped to $99.49 close after yesterday's breakthrough"
+        }
+      ],
+      "atm_last_haul": {
+        "date": "2026-11-04",
+        "shares_sold": 392000,
+        "btc_raised": 191,
+        "source_url": "https://x.com/STRC_live/status/2118086674903163193",
+        "note": "touched par, closed $99.97; first STRC ATM activity since May 14"
+      },
+      "atm_btc_7d": 191.0,
       "on_trade_threshold": 99.8,
       "full_on_threshold": 99.95,
       "off_minutes_below": 30,
@@ -773,6 +799,26 @@
         "note": "no ATM activity; closed $95.98"
       },
       "atm_date": "2026-11-05",
+      "btc_today": 0.0,
+      "shares_today": 0,
+      "atm_recent": [
+        {
+          "date": "2026-11-04",
+          "shares_sold": 0,
+          "btc_raised": 0,
+          "source_url": "https://x.com/STRC_live/status/2118086674903163193",
+          "note": "no ATM activity; closed $97.85"
+        },
+        {
+          "date": "2026-11-05",
+          "shares_sold": 0,
+          "btc_raised": 0,
+          "source_url": "https://x.com/STRC_live/status/2118449058725458145",
+          "note": "no ATM activity; closed $95.98"
+        }
+      ],
+      "atm_last_haul": null,
+      "atm_btc_7d": 0.0,
       "on_trade_threshold": 99.8,
       "full_on_threshold": 99.95,
       "off_minutes_below": 30,
@@ -1673,10 +1719,10 @@
       "change_pts": -13.0,
       "from_date": "2026-11-05",
       "news": {
-        "headline": "Fed\u2019s Rate Hold Sends Bond Yields in Different Directions - WSJ",
-        "url": "https://news.google.com/rss/articles/CBMiuwFBVV95cUxPaEkwMGl6T29kQlFSbU9EanZNX3VMdG5PcG9tWXh3cUQ0U0R5ZTFuUU1QRl9PWl9nd2l4bFpwWl9OOFFTS0VfSV9UcFR0VEtsRW9ld25admRIbkFQa292VTNWVV9xb2g3ZlQwZ2ZuNlVSQkNTQzhGN0RDSl9wZ0hDWi1fcGFTRnJHUTAzeEhUY1BZeVFJU1ZyaVFPdDkzNm9sVTVmcm9pSkxRWjlTOHRpSjlPNmxUb0pPaHBN?oc=5",
-        "published": "Thu, 05 Nov 2026 11:17:11 GMT",
-        "publisher": "WSJ",
+        "headline": "How Fed Interest Rates Affect Crypto - The Defiant",
+        "url": "https://news.google.com/rss/articles/CBMie0FVX3lxTFBmSHBwREJLSWV2X0x1SF9KMmN6WW1laUhpQXF0WjdjdTY0S25NUmRNWkdsODl0bzdDdkFWRVMxSHdRYnhnY0tWakZfazUtQ0owTmp4Z2VhZ2JUSGhyMGFaOUE4b2ZBVVpWcTRNZXFZVl9sczZxM1kxa1hXaw?oc=5",
+        "published": "Thu, 05 Nov 2026 15:19:21 GMT",
+        "publisher": "The Defiant",
         "via": "Google News RSS"
       }
     },
@@ -1785,7 +1831,7 @@
       "top": [
         {
           "outcome": "25 bps increase",
-          "yes": 0.665
+          "yes": 0.645
         },
         {
           "outcome": "No change",
@@ -1808,11 +1854,11 @@
       "top": [
         {
           "outcome": "0 (0 bps)",
-          "yes": 0.9725
+          "yes": 0.9715
         },
         {
           "outcome": "1 (25 bps)",
-          "yes": 0.0105
+          "yes": 0.0075
         },
         {
           "outcome": "2 (50 bps)",
@@ -1954,7 +2000,7 @@
         },
         {
           "outcome": "Fed maintains rate",
-          "yes": 0.33
+          "yes": 0.35
         },
         {
           "outcome": "Cut 25bps",
