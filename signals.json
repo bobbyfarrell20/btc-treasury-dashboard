@@ -21,7 +21,7 @@
     "new": "STAY_BTC"
   },
   "_hash_note": "signal_hash changes when the recommendation, also_valid, any preferred peg state (on for the call = RUNNING_HOT/ON, hashed alike; WARMING_UP and COOLING_OFF hash as WATCH, STALLED as SELL; ON held by buybacks hashes as WATCH) or any overheated flag changes; last_changed is the most recent trading day it changed.",
-  "generated_utc": "2026-11-06T02:10:58+00:00",
+  "generated_utc": "2026-11-06T02:25:45+00:00",
   "as_of": "2026-11-05",
   "disclaimer": "Rules-based indicator, not financial advice.",
   "recommendation_detail": {
@@ -85,7 +85,7 @@
       "last_below_trigger": null,
       "minutes_below_trigger_now": null,
       "method": "intraday_1m",
-      "vol_mult": 1.64,
+      "vol_mult": 1.65,
       "vol_partial_session": false,
       "share_vol_at_or_above_100": 0.0,
       "days_in_state": 1,
@@ -1814,7 +1814,7 @@
         },
         {
           "outcome": "\u2193 50,000",
-          "yes": 0.065
+          "yes": 0.075
         }
       ]
     },
@@ -1839,7 +1839,7 @@
         },
         {
           "outcome": "25 bps decrease",
-          "yes": 0.0105
+          "yes": 0.011
         },
         {
           "outcome": "50+ bps increase",
@@ -2000,7 +2000,7 @@
         },
         {
           "outcome": "Fed maintains rate",
-          "yes": 0.33
+          "yes": 0.35
         },
         {
           "outcome": "Cut 25bps",
