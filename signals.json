@@ -21,7 +21,7 @@
     "new": "STAY_BTC"
   },
   "_hash_note": "signal_hash changes when the recommendation, also_valid, any preferred peg state (on for the call = RUNNING_HOT/ON, hashed alike; WARMING_UP and COOLING_OFF hash as WATCH, STALLED as SELL; ON held by buybacks hashes as WATCH) or any overheated flag changes; last_changed is the most recent trading day it changed.",
-  "generated_utc": "2026-11-06T01:57:36+00:00",
+  "generated_utc": "2026-11-06T02:03:52+00:00",
   "as_of": "2026-11-05",
   "disclaimer": "Rules-based indicator, not financial advice.",
   "recommendation_detail": {
@@ -1719,10 +1719,10 @@
       "change_pts": -13.0,
       "from_date": "2026-11-05",
       "news": {
-        "headline": "How Fed Interest Rates Affect Crypto - The Defiant",
-        "url": "https://news.google.com/rss/articles/CBMie0FVX3lxTFBmSHBwREJLSWV2X0x1SF9KMmN6WW1laUhpQXF0WjdjdTY0S25NUmRNWkdsODl0bzdDdkFWRVMxSHdRYnhnY0tWakZfazUtQ0owTmp4Z2VhZ2JUSGhyMGFaOUE4b2ZBVVpWcTRNZXFZVl9sczZxM1kxa1hXaw?oc=5",
-        "published": "Thu, 05 Nov 2026 15:19:21 GMT",
-        "publisher": "The Defiant",
+        "headline": "Fed\u2019s Rate Hold Sends Bond Yields in Different Directions - WSJ",
+        "url": "https://news.google.com/rss/articles/CBMiuwFBVV95cUxPaEkwMGl6T29kQlFSbU9EanZNX3VMdG5PcG9tWXh3cUQ0U0R5ZTFuUU1QRl9PWl9nd2l4bFpwWl9OOFFTS0VfSV9UcFR0VEtsRW9ld25admRIbkFQa292VTNWVV9xb2g3ZlQwZ2ZuNlVSQkNTQzhGN0RDSl9wZ0hDWi1fcGFTRnJHUTAzeEhUY1BZeVFJU1ZyaVFPdDkzNm9sVTVmcm9pSkxRWjlTOHRpSjlPNmxUb0pPaHBN?oc=5",
+        "published": "Thu, 05 Nov 2026 11:17:11 GMT",
+        "publisher": "WSJ",
         "via": "Google News RSS"
       }
     },
@@ -1814,7 +1814,7 @@
         },
         {
           "outcome": "\u2193 50,000",
-          "yes": 0.075
+          "yes": 0.065
         }
       ]
     },
