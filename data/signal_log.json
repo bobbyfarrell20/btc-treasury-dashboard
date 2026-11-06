@@ -108,11 +108,11 @@
     },
     "7d": {
      "to": "2026-11-06",
-     "BTC": -0.0255,
-     "MSTR": -0.0341,
-     "MSTR_mnav_ev": -0.001,
-     "ASST": -0.1093,
-     "ASST_mnav_ev": -0.046
+     "BTC": -0.0204,
+     "MSTR": -0.0205,
+     "MSTR_mnav_ev": 0.0048,
+     "ASST": -0.0746,
+     "ASST_mnav_ev": -0.0281
     },
     "30d": null
    }
@@ -137,11 +137,11 @@
     },
     "7d": {
      "to": "2026-11-06",
-     "BTC": -0.0255,
-     "MSTR": -0.0341,
-     "MSTR_mnav_ev": -0.001,
-     "ASST": -0.1093,
-     "ASST_mnav_ev": -0.046
+     "BTC": -0.0204,
+     "MSTR": -0.0205,
+     "MSTR_mnav_ev": 0.0048,
+     "ASST": -0.0746,
+     "ASST_mnav_ev": -0.0281
     },
     "30d": null
    }
@@ -180,11 +180,11 @@
    "after": {
     "1d": {
      "to": "2026-11-06",
-     "BTC": -0.0094,
-     "MSTR": -0.0251,
-     "MSTR_mnav_ev": -0.0105,
-     "ASST": -0.0398,
-     "ASST_mnav_ev": -0.0157
+     "BTC": -0.0042,
+     "MSTR": -0.0114,
+     "MSTR_mnav_ev": -0.0048,
+     "ASST": -0.0024,
+     "ASST_mnav_ev": 0.0027
     },
     "7d": null,
     "30d": null
@@ -202,11 +202,11 @@
    "after": {
     "1d": {
      "to": "2026-11-06",
-     "BTC": -0.0094,
-     "MSTR": -0.0251,
-     "MSTR_mnav_ev": -0.0105,
-     "ASST": -0.0398,
-     "ASST_mnav_ev": -0.0157
+     "BTC": -0.0042,
+     "MSTR": -0.0114,
+     "MSTR_mnav_ev": -0.0048,
+     "ASST": -0.0024,
+     "ASST_mnav_ev": 0.0027
     },
     "7d": null,
     "30d": null
@@ -224,11 +224,11 @@
    "after": {
     "1d": {
      "to": "2026-11-06",
-     "BTC": -0.0094,
-     "MSTR": -0.0251,
-     "MSTR_mnav_ev": -0.0105,
-     "ASST": -0.0398,
-     "ASST_mnav_ev": -0.0157
+     "BTC": -0.0042,
+     "MSTR": -0.0114,
+     "MSTR_mnav_ev": -0.0048,
+     "ASST": -0.0024,
+     "ASST_mnav_ev": 0.0027
     },
     "7d": null,
     "30d": null

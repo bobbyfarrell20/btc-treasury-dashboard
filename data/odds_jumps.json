@@ -18,13 +18,7 @@
    "to": 0.65,
    "change_pts": -16.0,
    "from_date": "2026-11-05",
-   "news": {
-    "headline": "The Fed Begins Transition to Holding Fewer Policy Meetings a Year - Bloomberg.com",
-    "url": "https://news.google.com/rss/articles/CBMiuAFBVV95cUxQQVRaRUF0MGFNU0FqcjMxNFhoVDhjalFkZGIxUDNaRk9aWWFyaFhnckZxLUwwRjBKQ3FaM0VlbkRJUUdVZE03OGctOElYc25uMnFnejFrbG5aSXE1LTFXWDVsb3FOMlV5dGF0emNFbklwN2swOVMwa3lFMldkUU8zLVFIbXVCMHR5RFh2Sy1YQ3pER0VidVpVTHJMSy1ZNzl6cjZOMFFzd2RkT2FGMjVVOWVERUh4ZWpN?oc=5",
-    "published": "Fri, 06 Nov 2026 11:00:00 GMT",
-    "publisher": "Bloomberg.com",
-    "via": "Google News RSS"
-   }
+   "news": null
   },
   {
    "date": "2026-11-06",
@@ -39,13 +33,7 @@
    "to": 0.335,
    "change_pts": 13.0,
    "from_date": "2026-11-06",
-   "news": {
-    "headline": "The Fed Begins Transition to Holding Fewer Policy Meetings a Year - Bloomberg.com",
-    "url": "https://news.google.com/rss/articles/CBMiuAFBVV95cUxQQVRaRUF0MGFNU0FqcjMxNFhoVDhjalFkZGIxUDNaRk9aWWFyaFhnckZxLUwwRjBKQ3FaM0VlbkRJUUdVZE03OGctOElYc25uMnFnejFrbG5aSXE1LTFXWDVsb3FOMlV5dGF0emNFbklwN2swOVMwa3lFMldkUU8zLVFIbXVCMHR5RFh2Sy1YQ3pER0VidVpVTHJMSy1ZNzl6cjZOMFFzd2RkT2FGMjVVOWVERUh4ZWpN?oc=5",
-    "published": "Fri, 06 Nov 2026 11:00:00 GMT",
-    "publisher": "Bloomberg.com",
-    "via": "Google News RSS"
-   }
+   "news": null
   },
   {
    "date": "2026-10-30",
@@ -60,13 +48,7 @@
    "to": 0.29,
    "change_pts": 10.0,
    "from_date": "2026-10-29",
-   "news": {
-    "headline": "Fed leaves rates unchanged as it awaits 'accumulation of more information' - Reuters",
-    "url": "https://news.google.com/rss/articles/CBMikAFBVV95cUxPaU93czlpTHJXMTJGby0yOGppZGVlVkZzZW4tNC11WTcwVk1yQUZHTVMza0dTLURMRi0tTUtYTHhITkI2OVBWN2k0anZCN2liNnlyNFpaTmFTaWlFTHItWmtBXzh1VWhkRjZBNjVDejQxOGNUTW1HWWRBUzNjbGdKUDV0MlFSWXRsaWQwMXpWQXI?oc=5",
-    "published": "Thu, 29 Oct 2026 07:00:00 GMT",
-    "publisher": "Reuters",
-    "via": "Google News RSS"
-   }
+   "news": null
   }
  ],
  "summary": [
@@ -81,7 +63,7 @@
     },
     {
      "outcome": "↓ 55,000",
-     "yes": 0.115
+     "yes": 0.125
     }
    ]
   },
@@ -98,7 +80,7 @@
    "odds": [
     {
      "outcome": "Before Jan 1, 2027",
-     "yes": 0.037
+     "yes": 0.029
     }
    ]
   },
@@ -115,5 +97,5 @@
    "odds": []
   }
  ],
- "generated_utc": "2026-11-06T15:38:08+00:00"
+ "generated_utc": "2026-11-06T19:46:36+00:00"
 }
