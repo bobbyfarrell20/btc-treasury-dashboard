@@ -32,13 +32,13 @@
    "source": "polymarket",
    "group": "Fed",
    "market": "Fed decision - Dec 9",
-   "outcome": "No change",
-   "question": "Will there be no change in Fed interest rates after the December 2026 meeting?",
+   "outcome": "25 bps increase",
+   "question": "Will the Fed increase interest rates by 25 bps after the December 2026 meeting?",
    "url": "https://polymarket.com/event/fed-decision-in-december-20260729232808632",
-   "from": 0.205,
-   "to": 0.335,
-   "change_pts": 13.0,
-   "from_date": "2026-11-06",
+   "from": 0.775,
+   "to": 0.645,
+   "change_pts": -13.0,
+   "from_date": "2026-11-05",
    "news": {
     "headline": "The Fed Begins Transition to Holding Fewer Policy Meetings a Year - Bloomberg.com",
     "url": "https://news.google.com/rss/articles/CBMiuAFBVV95cUxQQVRaRUF0MGFNU0FqcjMxNFhoVDhjalFkZGIxUDNaRk9aWWFyaFhnckZxLUwwRjBKQ3FaM0VlbkRJUUdVZE03OGctOElYc25uMnFnejFrbG5aSXE1LTFXWDVsb3FOMlV5dGF0emNFbklwN2swOVMwa3lFMldkUU8zLVFIbXVCMHR5RFh2Sy1YQ3pER0VidVpVTHJMSy1ZNzl6cjZOMFFzd2RkT2FGMjVVOWVERUh4ZWpN?oc=5",
@@ -77,7 +77,7 @@
    "odds": [
     {
      "outcome": "↑ 100,000",
-     "yes": 0.075
+     "yes": 0.085
     },
     {
      "outcome": "↓ 55,000",
@@ -98,7 +98,7 @@
    "odds": [
     {
      "outcome": "Before Jan 1, 2027",
-     "yes": 0.029
+     "yes": 0.033
     }
    ]
   },
@@ -115,5 +115,5 @@
    "odds": []
   }
  ],
- "generated_utc": "2026-11-06T21:41:01+00:00"
+ "generated_utc": "2026-11-06T23:53:04+00:00"
 }
