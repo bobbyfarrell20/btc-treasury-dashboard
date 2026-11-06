@@ -154,21 +154,20 @@ details.sec{margin-top:8px}details.sec>summary{font-size:13px;font-weight:600;co
 .mntrio>.mnstock{min-width:0}.mntrio>.mnstock.card{margin:0}
 .mntrio>.mnstock.cheapv{border-color:#2ea043;box-shadow:0 0 0 1px #2ea04388;background:linear-gradient(0deg,rgba(46,160,67,.07),rgba(46,160,67,.07)),var(--panel)}
 .mnspread{background:var(--panel);border:1px solid rgba(247,147,26,.45);border-radius:12px;padding:10px 12px;min-width:0;text-align:center;background-image:radial-gradient(420px 120px at 50% 0%,rgba(247,147,26,.12),transparent 70%);display:flex;flex-direction:column;justify-content:center;gap:4px}
-.mnspread .sg-hero{font-size:clamp(24px,2.4vw,36px);font-weight:900;line-height:1.05;letter-spacing:-.3px;white-space:nowrap;margin:0 0 2px;text-transform:uppercase}
-.mnspread .sg-hero.neutral{color:var(--fg)}
-.mnspread .sg-hero.leans-mstr{color:#f0a030}
-.mnspread .sg-hero.leans-asst{color:#8b7cf6}
-.mnspread .sg-hero.cheap{color:#4ade80}
-[data-theme=light] .mnspread .sg-hero.neutral{color:#0d1117}
-[data-theme=light] .mnspread .sg-hero.leans-mstr{color:#9a6700}
-[data-theme=light] .mnspread .sg-hero.leans-asst{color:#5a32a3}
-[data-theme=light] .mnspread .sg-hero.cheap{color:#1a7f37}
+.mnspread .sghead{display:flex;flex-direction:column;align-items:center;justify-content:center;gap:4px;margin:0 0 2px;text-align:center}
+.mnspread .lab{font-size:10.5px;color:var(--mut);font-weight:700;letter-spacing:.4px;text-transform:uppercase;line-height:1.1}
 .mnspread .sg-read{font-size:12.5px;font-weight:700;line-height:1.25;margin:1px 0 0}
 .mnspread .sg-read .mut{font-weight:600;color:var(--mut)}
 .mnspread .sg-read.edge{color:#fbbf24}.mnspread .sg-read.flip{color:#86efac}
-.vpill{display:inline-block;margin:0;padding:3px 10px;border-radius:999px;font-weight:800;font-size:12px}
-.v-NORMAL{background:#388bfd26;color:#b6d7ff;border:1px solid #388bfd88}.v-MSTR_CHEAP,.v-ASST_CHEAP{background:#2ea04333;color:#86efac;border:1px solid #2ea043}
-[data-theme=light] .v-NORMAL{color:#0969da}[data-theme=light] .v-MSTR_CHEAP,[data-theme=light] .v-ASST_CHEAP{color:#1a7f37}
+.vpill{display:inline-block;margin:0;padding:5px 14px;border-radius:999px;font-weight:800;font-size:14px;letter-spacing:.2px;white-space:nowrap;line-height:1.15}
+.v-NORMAL{background:#388bfd26;color:#b6d7ff;border:1px solid #388bfd88}
+.v-MSTR_CHEAP,.v-ASST_CHEAP{background:#2ea04333;color:#86efac;border:1px solid #2ea043}
+.v-LEANS_MSTR{background:#f0a03033;color:#fbbf24;border:1px solid #f0a03088}
+.v-LEANS_ASST{background:#8b7cf633;color:#c4b5fd;border:1px solid #8b7cf688}
+[data-theme=light] .v-NORMAL{color:#0969da;background:#ddf4ff;border-color:#54aeff88}
+[data-theme=light] .v-MSTR_CHEAP,[data-theme=light] .v-ASST_CHEAP{color:#1a7f37;background:#dafbe1;border-color:#4ac26b88}
+[data-theme=light] .v-LEANS_MSTR{color:#9a6700;background:#fff8c5;border-color:#d4a72c88}
+[data-theme=light] .v-LEANS_ASST{color:#5a32a3;background:#fbefff;border-color:#a371f788}
 .tb-rv{font-size:11px;padding:2px 7px}
 /* Spread z-gauge: left = MSTR cheap (z≥+1), right = ASST cheap (z≤−1). Axis is −z so cards match sides. */
 .sg{margin:2px 0 0}.sg-ends{display:flex;justify-content:space-between;font-size:10px;font-weight:700;letter-spacing:.25px;color:var(--mut);margin-bottom:2px}
@@ -181,7 +180,7 @@ details.sec{margin-top:8px}details.sec>summary{font-size:13px;font-weight:600;co
 .mnspread details.sgmore{margin-top:2px;line-height:1}.mnspread details.sgmore>summary{cursor:pointer;font-size:11px;color:var(--mut);list-style:none;display:inline}
 .mnspread details.sgmore>summary::before{content:"▸ ";color:var(--b)}.mnspread details.sgmore[open]>summary::before{content:"▾ "}
 .mnspread details.sgmore .note{text-align:left;margin-top:6px}
-@media (max-width:640px){.mnspread .sg-read{font-size:12px}.mnspread .sg-hero{font-size:clamp(22px,7vw,30px)}}
+@media (max-width:640px){.mnspread .sg-read{font-size:12px}.mnspread .vpill{font-size:13px;padding:4px 12px}}
 .rec{display:flex;flex-wrap:wrap;align-items:center;justify-content:center;gap:2px 14px;padding:8px 14px}.rec .lbl{flex-basis:100%}.rec .big{font-size:28px}.recshort{font-size:14px;font-weight:600;flex-basis:100%}.recsub{font-size:17px;font-weight:800;color:#fde68a}.rec.r-BUY_BOTH .recsub,.rec.r-BUY_MSTR .recsub,.rec.r-BUY_ASST .recsub{color:#7ee2a8}[data-theme=light] .recsub{color:#9a6700}[data-theme=light] .rec.r-BUY_BOTH .recsub,[data-theme=light] .rec.r-BUY_MSTR .recsub,[data-theme=light] .rec.r-BUY_ASST .recsub{color:#1a7f37}
 .grp{font-size:13px;color:var(--mut);text-transform:uppercase;letter-spacing:.8px;margin:18px 0 8px}
 details.card{margin-bottom:10px;padding:11px 14px}
@@ -505,12 +504,12 @@ function nearSpread(x,mc){const z=x.diff_z,sd=x.diff_sd_1y;if(z==null||sd==null|
   return{txt:`${(toA*sd).toFixed(2)}x from ASST cheap (${toA.toFixed(2)}σ)`,short:`${(toA*sd).toFixed(2)}× to ASST flip`,cls:edge?'edge':''}}
 /* 5-step glance label from ASST−MSTR gap z. Gauge axis flips so +z (MSTR cheap) is LEFT. */
 function spreadState(z,mc){const thr=Math.abs(mc.spread_z_favor_mstr||1),half=thr*0.5;
-  if(z==null||!isFinite(z))return{label:'NEUTRAL',cls:'neutral'};
-  if(z>=thr)return{label:'MSTR CHEAP',cls:'cheap'};
-  if(z>=half)return{label:'LEANS MSTR',cls:'leans-mstr'};
-  if(z<=-thr)return{label:'ASST CHEAP',cls:'cheap'};
-  if(z<=-half)return{label:'LEANS ASST',cls:'leans-asst'};
-  return{label:'NEUTRAL',cls:'neutral'}}
+  if(z==null||!isFinite(z))return{label:'Neutral',cls:'NORMAL'};
+  if(z>=thr)return{label:'MSTR Cheap',cls:'MSTR_CHEAP'};
+  if(z>=half)return{label:'Leans MSTR',cls:'LEANS_MSTR'};
+  if(z<=-thr)return{label:'ASST Cheap',cls:'ASST_CHEAP'};
+  if(z<=-half)return{label:'Leans ASST',cls:'LEANS_ASST'};
+  return{label:'Neutral',cls:'NORMAL'}}
 function spreadGauge(x,mc){/* visual axis: LEFT = MSTR cheap (high +z), RIGHT = ASST cheap (low −z). Needle uses −z. */
   const z=x.diff_z,zMax=2,zm=mc.spread_z_favor_mstr,za=mc.spread_z_favor_asst;
   const zc=z==null?0:Math.max(-zMax,Math.min(zMax,z));
@@ -531,7 +530,7 @@ function renderRV(){const x=RVD('ev'),b=RVD('basic'),mc=D.config.mnav,el=$('rv_m
   const zt=`Verdict rule (config.json → mnav): z-score of the ASST−MSTR mNAV incl. debt & preferreds gap vs its trailing ${mc.lookback_trading_days} trading days. z ≤ ${mc.spread_z_favor_asst} → ASST cheap vs usual; z ≥ +${mc.spread_z_favor_mstr} → MSTR cheap vs usual; otherwise normal. Gauge axis is flipped so the marker moves toward the cheap side's card. The call itself still needs that parent's Flywheel ON.`;
   const hi=x.diff_mean_1y+mc.spread_z_favor_mstr*x.diff_sd_1y,lo=x.diff_mean_1y+mc.spread_z_favor_asst*x.diff_sd_1y;
   const near=nearSpread(x,mc),st=spreadState(x.diff_z,mc);
-  el.innerHTML=`<div class="sg-hero ${st.cls}" title="ASST−MSTR mNAV gap z ${sx2(x.diff_z)} vs ±${Math.abs(mc.spread_z_favor_mstr)}σ flip">${esc(st.label)}</div>
+  el.innerHTML=`<div class="sghead"><div class="lab">Spread Indicator</div><span class="vpill v-${st.cls}" title="ASST−MSTR mNAV gap z ${sx2(x.diff_z)} vs ±${Math.abs(mc.spread_z_favor_mstr)}σ flip">${esc(st.label)}</span></div>
    ${spreadGauge(x,mc)}
    <div class="sg-read${near.cls?' '+near.cls:''}">${sx2(x.diff_now)}× <span class="mut">(avg ${sx2(x.diff_mean_1y)}×)</span>${near.short?' · '+esc(near.short):''}</div>
    <details class="sgmore"><summary>details</summary>
