@@ -138,7 +138,8 @@ def compute(dates, daily, bars, pc, now=None, pref=None, atm=None):
 
 def sparkline(bars, n_days=2, step_min=5):
     """Compact close series for the last n_days of regular-session bars (downsampled to step_min).
-    Returns [{"t": unix_ts, "c": close}, ...] for the dashboard sparkline next to the preferred price."""
+    Regular US hours only (09:30–16:00 America/New_York). Returns [{"t": unix_ts, "c": close}, ...]
+    for the dashboard sparkline; the SVG plots by bar index so overnight gaps never flatten the line."""
     if not bars: return []
     out = []
     for d in sorted(bars.keys())[-n_days:]:
@@ -147,12 +148,17 @@ def sparkline(bars, n_days=2, step_min=5):
         for ts, mins, h, l, c, v in B:
             if c is None: continue
             t_et = dt.datetime.fromtimestamp(ts, ET)
+            if not (dt.time(9, 30) <= t_et.time() < dt.time(16, 0)): continue
             if mins >= step_min or t_et.minute % step_min == 0:
                 kept.append({"t": int(ts), "c": round(float(c), 3)})
-        if B:
-            ts, mins, h, l, c, v = B[-1]
-            if c is not None and (not kept or kept[-1]["t"] != int(ts)):
+        # Always include the last regular-session bar of the day (session close).
+        for ts, mins, h, l, c, v in reversed(B):
+            if c is None: continue
+            t_et = dt.datetime.fromtimestamp(ts, ET)
+            if not (dt.time(9, 30) <= t_et.time() < dt.time(16, 0)): continue
+            if not kept or kept[-1]["t"] != int(ts):
                 kept.append({"t": int(ts), "c": round(float(c), 3)})
+            break
         out.extend(kept)
     return out
 

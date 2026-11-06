@@ -376,13 +376,16 @@ const TCL=pref=>{const o=D.config.peg.on_close_threshold;return (o&&typeof o==='
 const fheld=f=>!!(f&&f.buyback_held);
 
 // Tiny SVG sparkline for last 2 trading days of a preferred vs $100 par (no Plotly — keeps pinch-zoom off).
+// X is by sequential regular-session bar index (not wall-clock), so overnight / weekend gaps don't flatten the chart.
 function sparkSVG(series, par, color){if(!series||!series.length)return '';
-  const w=200,h=56,pad=3,ys=series.map(p=>p.c),xs=series.map(p=>p.t);
+  const w=200,h=56,pad=3,ys=series.map(p=>p.c),n=series.length;
   const yMin=Math.min(par-0.8,...ys)-0.15,yMax=Math.max(par+0.4,...ys)+0.15;
-  const x0=xs[0],x1=xs[xs.length-1]||x0+1,X=t=>pad+(t-x0)/Math.max(1,x1-x0)*(w-2*pad),Y=c=>h-pad-((c-yMin)/Math.max(0.01,yMax-yMin))*(h-2*pad);
-  const path=series.map((p,i)=>(i?'L':'M')+X(p.t).toFixed(1)+','+Y(p.c).toFixed(1)).join(' ');
-  const py=Y(par),lx=X(xs.at(-1)),ly=Y(ys.at(-1)),col=color||'currentColor';
-  return `<svg viewBox="0 0 ${w} ${h}" preserveAspectRatio="none" aria-hidden="true"><line x1="0" x2="${w}" y1="${py.toFixed(1)}" y2="${py.toFixed(1)}" stroke="#2ea043" stroke-dasharray="3 3" stroke-width="1" opacity=".85"/><path d="${path}" fill="none" stroke="${col}" stroke-width="2" stroke-linejoin="round" stroke-linecap="round"/><circle cx="${lx.toFixed(1)}" cy="${ly.toFixed(1)}" r="2.6" fill="${col}"/></svg>`}
+  const X=i=>pad+(n<=1?0:i/Math.max(1,n-1))*(w-2*pad),Y=c=>h-pad-((c-yMin)/Math.max(0.01,yMax-yMin))*(h-2*pad);
+  const path=series.map((p,i)=>(i?'L':'M')+X(i).toFixed(1)+','+Y(p.c).toFixed(1)).join(' ');
+  const dayOf=t=>new Intl.DateTimeFormat('en-CA',{timeZone:'America/New_York',year:'numeric',month:'2-digit',day:'2-digit'}).format(new Date(t*1000));
+  let div='';for(let i=1;i<n;i++){if(dayOf(series[i].t)!==dayOf(series[i-1].t)){const x=X(i).toFixed(1);div=`<line x1="${x}" x2="${x}" y1="0" y2="${h}" stroke="currentColor" stroke-dasharray="2 3" stroke-width="1" opacity=".3"/>`;break}}
+  const py=Y(par),lx=X(n-1),ly=Y(ys.at(-1)),col=color||'currentColor';
+  return `<svg viewBox="0 0 ${w} ${h}" preserveAspectRatio="none" aria-hidden="true">${div}<line x1="0" x2="${w}" y1="${py.toFixed(1)}" y2="${py.toFixed(1)}" stroke="#2ea043" stroke-dasharray="3 3" stroke-width="1" opacity=".85"/><path d="${path}" fill="none" stroke="${col}" stroke-width="2" stroke-linejoin="round" stroke-linecap="round"/><circle cx="${lx.toFixed(1)}" cy="${ly.toFixed(1)}" r="2.6" fill="${col}"/></svg>`}
 const flyEff=(pref,st,t,held)=>`${pref} ${flyS(st)}${held?' (held by buybacks)':''} → flywheel ${flyOn(st)&&!held?'on':'off'} for ${t}${fn(st)==='WARMING_UP'?' (watch only)':''}`;
 const tET=s=>{if(!s)return '—';if(s.length<=10)return new Date(s+'T12:00:00Z').toLocaleDateString('en-US',{month:'short',day:'numeric',timeZone:'UTC'});return new Date(s).toLocaleString('en-US',{timeZone:'America/New_York',month:'short',day:'numeric',hour:'numeric',minute:'2-digit'})+' ET'};
 // one-line flywheel detail: since when, distance to the close that turns it on (when off), volume multiple
