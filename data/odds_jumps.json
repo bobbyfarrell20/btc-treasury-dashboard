@@ -8,21 +8,42 @@
   {
    "date": "2026-11-06",
    "window": "24h",
+   "source": "kalshi",
+   "group": "Fed",
+   "market": "Fed decision - Dec 2026",
+   "outcome": "Hike 25bps",
+   "question": null,
+   "url": "https://kalshi.com/markets/kxfeddecision",
+   "from": 0.81,
+   "to": 0.65,
+   "change_pts": -16.0,
+   "from_date": "2026-11-05",
+   "news": {
+    "headline": "The Fed Begins Transition to Holding Fewer Policy Meetings a Year - Bloomberg.com",
+    "url": "https://news.google.com/rss/articles/CBMiuAFBVV95cUxQQVRaRUF0MGFNU0FqcjMxNFhoVDhjalFkZGIxUDNaRk9aWWFyaFhnckZxLUwwRjBKQ3FaM0VlbkRJUUdVZE03OGctOElYc25uMnFnejFrbG5aSXE1LTFXWDVsb3FOMlV5dGF0emNFbklwN2swOVMwa3lFMldkUU8zLVFIbXVCMHR5RFh2Sy1YQ3pER0VidVpVTHJMSy1ZNzl6cjZOMFFzd2RkT2FGMjVVOWVERUh4ZWpN?oc=5",
+    "published": "Fri, 06 Nov 2026 11:00:00 GMT",
+    "publisher": "Bloomberg.com",
+    "via": "Google News RSS"
+   }
+  },
+  {
+   "date": "2026-11-06",
+   "window": "24h",
    "source": "polymarket",
    "group": "Fed",
    "market": "Fed decision - Dec 9",
-   "outcome": "25 bps increase",
-   "question": "Will the Fed increase interest rates by 25 bps after the December 2026 meeting?",
+   "outcome": "No change",
+   "question": "Will there be no change in Fed interest rates after the December 2026 meeting?",
    "url": "https://polymarket.com/event/fed-decision-in-december-20260729232808632",
-   "from": 0.775,
-   "to": 0.645,
-   "change_pts": -13.0,
-   "from_date": "2026-11-05",
+   "from": 0.205,
+   "to": 0.335,
+   "change_pts": 13.0,
+   "from_date": "2026-11-06",
    "news": {
-    "headline": "Fed’s Rate Hold Sends Bond Yields in Different Directions - WSJ",
-    "url": "https://news.google.com/rss/articles/CBMiuwFBVV95cUxPaEkwMGl6T29kQlFSbU9EanZNX3VMdG5PcG9tWXh3cUQ0U0R5ZTFuUU1QRl9PWl9nd2l4bFpwWl9OOFFTS0VfSV9UcFR0VEtsRW9ld25admRIbkFQa292VTNWVV9xb2g3ZlQwZ2ZuNlVSQkNTQzhGN0RDSl9wZ0hDWi1fcGFTRnJHUTAzeEhUY1BZeVFJU1ZyaVFPdDkzNm9sVTVmcm9pSkxRWjlTOHRpSjlPNmxUb0pPaHBN?oc=5",
-    "published": "Thu, 05 Nov 2026 11:17:11 GMT",
-    "publisher": "WSJ",
+    "headline": "The Fed Begins Transition to Holding Fewer Policy Meetings a Year - Bloomberg.com",
+    "url": "https://news.google.com/rss/articles/CBMiuAFBVV95cUxQQVRaRUF0MGFNU0FqcjMxNFhoVDhjalFkZGIxUDNaRk9aWWFyaFhnckZxLUwwRjBKQ3FaM0VlbkRJUUdVZE03OGctOElYc25uMnFnejFrbG5aSXE1LTFXWDVsb3FOMlV5dGF0emNFbklwN2swOVMwa3lFMldkUU8zLVFIbXVCMHR5RFh2Sy1YQ3pER0VidVpVTHJMSy1ZNzl6cjZOMFFzd2RkT2FGMjVVOWVERUh4ZWpN?oc=5",
+    "published": "Fri, 06 Nov 2026 11:00:00 GMT",
+    "publisher": "Bloomberg.com",
     "via": "Google News RSS"
    }
   },
@@ -42,7 +63,7 @@
    "news": {
     "headline": "Fed leaves rates unchanged as it awaits 'accumulation of more information' - Reuters",
     "url": "https://news.google.com/rss/articles/CBMikAFBVV95cUxPaU93czlpTHJXMTJGby0yOGppZGVlVkZzZW4tNC11WTcwVk1yQUZHTVMza0dTLURMRi0tTUtYTHhITkI2OVBWN2k0anZCN2liNnlyNFpaTmFTaWlFTHItWmtBXzh1VWhkRjZBNjVDejQxOGNUTW1HWWRBUzNjbGdKUDV0MlFSWXRsaWQwMXpWQXI?oc=5",
-    "published": "Thu, 29 Oct 2026 19:22:23 GMT",
+    "published": "Thu, 29 Oct 2026 07:00:00 GMT",
     "publisher": "Reuters",
     "via": "Google News RSS"
    }
@@ -56,7 +77,7 @@
    "odds": [
     {
      "outcome": "↑ 100,000",
-     "yes": 0.085
+     "yes": 0.075
     },
     {
      "outcome": "↓ 55,000",
@@ -77,7 +98,7 @@
    "odds": [
     {
      "outcome": "Before Jan 1, 2027",
-     "yes": 0.031
+     "yes": 0.037
     }
    ]
   },
@@ -94,5 +115,5 @@
    "odds": []
   }
  ],
- "generated_utc": "2026-11-06T02:25:45+00:00"
+ "generated_utc": "2026-11-06T15:38:08+00:00"
 }

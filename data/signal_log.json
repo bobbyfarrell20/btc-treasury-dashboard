@@ -106,7 +106,14 @@
      "ASST": -0.0629,
      "ASST_mnav_ev": -0.034
     },
-    "7d": null,
+    "7d": {
+     "to": "2026-11-06",
+     "BTC": -0.0255,
+     "MSTR": -0.0341,
+     "MSTR_mnav_ev": -0.001,
+     "ASST": -0.1093,
+     "ASST_mnav_ev": -0.046
+    },
     "30d": null
    }
   },
@@ -128,7 +135,14 @@
      "ASST": -0.0629,
      "ASST_mnav_ev": -0.034
     },
-    "7d": null,
+    "7d": {
+     "to": "2026-11-06",
+     "BTC": -0.0255,
+     "MSTR": -0.0341,
+     "MSTR_mnav_ev": -0.001,
+     "ASST": -0.1093,
+     "ASST_mnav_ev": -0.046
+    },
     "30d": null
    }
   },
@@ -144,11 +158,11 @@
    "after": {
     "1d": {
      "to": "2026-11-05",
-     "BTC": -0.055,
+     "BTC": -0.0555,
      "MSTR": -0.0929,
-     "MSTR_mnav_ev": -0.0206,
+     "MSTR_mnav_ev": -0.02,
      "ASST": -0.1017,
-     "ASST_mnav_ev": -0.0118
+     "ASST_mnav_ev": -0.0113
     },
     "7d": null,
     "30d": null
@@ -164,7 +178,14 @@
    "reason": "No flywheel ON (STRC ON \u00b7 held by buybacks \u2192 flywheel off for MSTR; SATA stalled \u2192 flywheel off for ASST): wait (no buy right now)",
    "initial": false,
    "after": {
-    "1d": null,
+    "1d": {
+     "to": "2026-11-06",
+     "BTC": -0.0094,
+     "MSTR": -0.0251,
+     "MSTR_mnav_ev": -0.0105,
+     "ASST": -0.0398,
+     "ASST_mnav_ev": -0.0157
+    },
     "7d": null,
     "30d": null
    }
@@ -179,7 +200,14 @@
    "reason": "STRC Flywheel ON \u2192 flywheel on for MSTR; MSTR mNAV incl. debt & preferreds 1.08x is not overheated",
    "initial": false,
    "after": {
-    "1d": null,
+    "1d": {
+     "to": "2026-11-06",
+     "BTC": -0.0094,
+     "MSTR": -0.0251,
+     "MSTR_mnav_ev": -0.0105,
+     "ASST": -0.0398,
+     "ASST_mnav_ev": -0.0157
+    },
     "7d": null,
     "30d": null
    }
@@ -194,7 +222,14 @@
    "reason": "No flywheel ON (STRC cooling off \u2192 flywheel off for MSTR; SATA stalled \u2192 flywheel off for ASST): wait (no buy right now)",
    "initial": false,
    "after": {
-    "1d": null,
+    "1d": {
+     "to": "2026-11-06",
+     "BTC": -0.0094,
+     "MSTR": -0.0251,
+     "MSTR_mnav_ev": -0.0105,
+     "ASST": -0.0398,
+     "ASST_mnav_ev": -0.0157
+    },
     "7d": null,
     "30d": null
    }
