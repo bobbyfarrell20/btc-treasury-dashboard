@@ -21,7 +21,7 @@
     "new": "STAY_BTC"
   },
   "_hash_note": "signal_hash changes when the recommendation, also_valid, any preferred peg state (on for the call = RUNNING_HOT/ON, hashed alike; WARMING_UP and COOLING_OFF hash as WATCH, STALLED as SELL; ON held by buybacks hashes as WATCH) or any overheated flag changes; last_changed is the most recent trading day it changed.",
-  "generated_utc": "2026-11-06T01:47:51+00:00",
+  "generated_utc": "2026-11-06T01:57:36+00:00",
   "as_of": "2026-11-05",
   "disclaimer": "Rules-based indicator, not financial advice.",
   "recommendation_detail": {
@@ -1842,7 +1842,7 @@
           "yes": 0.0105
         },
         {
-          "outcome": "50+ bps decrease",
+          "outcome": "50+ bps increase",
           "yes": 0.0065
         }
       ]
@@ -1858,7 +1858,7 @@
         },
         {
           "outcome": "1 (25 bps)",
-          "yes": 0.0075
+          "yes": 0.0065
         },
         {
           "outcome": "2 (50 bps)",
