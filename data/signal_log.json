@@ -108,11 +108,11 @@
     },
     "7d": {
      "to": "2026-11-06",
-     "BTC": -0.0189,
+     "BTC": -0.0188,
      "MSTR": -0.0121,
-     "MSTR_mnav_ev": 0.01,
+     "MSTR_mnav_ev": 0.0099,
      "ASST": -0.0336,
-     "ASST_mnav_ev": -0.0028
+     "ASST_mnav_ev": -0.0029
     },
     "30d": null
    }
@@ -137,11 +137,11 @@
     },
     "7d": {
      "to": "2026-11-06",
-     "BTC": -0.0189,
+     "BTC": -0.0188,
      "MSTR": -0.0121,
-     "MSTR_mnav_ev": 0.01,
+     "MSTR_mnav_ev": 0.0099,
      "ASST": -0.0336,
-     "ASST_mnav_ev": -0.0028
+     "ASST_mnav_ev": -0.0029
     },
     "30d": null
    }
@@ -182,9 +182,9 @@
      "to": "2026-11-06",
      "BTC": -0.0026,
      "MSTR": -0.0029,
-     "MSTR_mnav_ev": 0.0004,
+     "MSTR_mnav_ev": 0.0003,
      "ASST": 0.0418,
-     "ASST_mnav_ev": 0.0289
+     "ASST_mnav_ev": 0.0288
     },
     "7d": null,
     "30d": null
@@ -204,9 +204,9 @@
      "to": "2026-11-06",
      "BTC": -0.0026,
      "MSTR": -0.0029,
-     "MSTR_mnav_ev": 0.0004,
+     "MSTR_mnav_ev": 0.0003,
      "ASST": 0.0418,
-     "ASST_mnav_ev": 0.0289
+     "ASST_mnav_ev": 0.0288
     },
     "7d": null,
     "30d": null
@@ -226,9 +226,9 @@
      "to": "2026-11-06",
      "BTC": -0.0026,
      "MSTR": -0.0029,
-     "MSTR_mnav_ev": 0.0004,
+     "MSTR_mnav_ev": 0.0003,
      "ASST": 0.0418,
-     "ASST_mnav_ev": 0.0289
+     "ASST_mnav_ev": 0.0288
     },
     "7d": null,
     "30d": null

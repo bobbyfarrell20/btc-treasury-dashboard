@@ -21,7 +21,7 @@
     "new": "STAY_BTC"
   },
   "_hash_note": "signal_hash changes when the recommendation, also_valid, any preferred peg state (on for the call = RUNNING_HOT/ON, hashed alike; WARMING_UP and COOLING_OFF hash as WATCH, STALLED as SELL; ON held by buybacks hashes as WATCH) or any overheated flag changes; last_changed is the most recent trading day it changed.",
-  "generated_utc": "2026-11-07T01:55:59+00:00",
+  "generated_utc": "2026-11-07T18:44:47+00:00",
   "as_of": "2026-11-06",
   "disclaimer": "Rules-based indicator, not financial advice.",
   "recommendation_detail": {
@@ -42,7 +42,7 @@
         "buyback_held": false,
         "flywheel_state": "Warming up",
         "flywheel_effect": "STRC warming up \u2192 flywheel off for MSTR",
-        "mnav_ev": 1.081,
+        "mnav_ev": 1.0809,
         "mnav_ev_pct": 0.365,
         "has_data": true
       },
@@ -56,7 +56,7 @@
         "buyback_held": false,
         "flywheel_state": "Stalled",
         "flywheel_effect": "SATA stalled \u2192 flywheel off for ASST",
-        "mnav_ev": 1.3147,
+        "mnav_ev": 1.3146,
         "mnav_ev_pct": 0.508,
         "has_data": true
       }
@@ -85,7 +85,7 @@
       "last_below_trigger": null,
       "minutes_below_trigger_now": null,
       "method": "intraday_1m",
-      "vol_mult": 0.88,
+      "vol_mult": 0.89,
       "vol_partial_session": false,
       "share_vol_at_or_above_100": 0.0,
       "days_in_state": 2,
@@ -785,7 +785,7 @@
       "last_below_trigger": null,
       "minutes_below_trigger_now": null,
       "method": "intraday_1m",
-      "vol_mult": 0.5,
+      "vol_mult": 0.51,
       "vol_partial_session": false,
       "share_vol_at_or_above_100": 0.0,
       "days_in_state": 23,
@@ -1223,7 +1223,7 @@
         "peg_state": "WATCH",
         "flywheel_code": "WARMING_UP",
         "flywheel_state": "Warming up",
-        "mnav": 1.081,
+        "mnav": 1.0809,
         "mnav_pct_1y": 0.365,
         "zone": "FAIR",
         "low_fair": true,
@@ -1238,7 +1238,7 @@
         "peg_state": "SELL",
         "flywheel_code": "STALLED",
         "flywheel_state": "Stalled",
-        "mnav": 1.3147,
+        "mnav": 1.3146,
         "mnav_pct_1y": 0.508,
         "zone": "OVERVALUED",
         "low_fair": false,
@@ -1280,11 +1280,11 @@
       "flywheel_code": "WARMING_UP",
       "overheated_floor": 1.25,
       "action": "WATCH",
-      "mnav": 1.081,
+      "mnav": 1.0809,
       "mnav_pct_1y": 0.365,
       "overheated": false,
       "price_chg_dip_window": -0.117,
-      "mnav_chg_dip_window": -0.0391
+      "mnav_chg_dip_window": -0.0392
     },
     "ASST": {
       "peg_state": "SELL",
@@ -1294,7 +1294,7 @@
       "flywheel_code": "STALLED",
       "overheated_floor": 1.255,
       "action": "SELL",
-      "mnav": 1.3147,
+      "mnav": 1.3146,
       "mnav_pct_1y": 0.508,
       "overheated": false,
       "price_chg_dip_window": -0.2596,
@@ -1308,11 +1308,11 @@
     "target": null,
     "lookback_trading_days": 10,
     "trigger_btc_drop": 0.15,
-    "btc_change": -0.0658,
+    "btc_change": -0.0657,
     "cheapened_most": "ASST",
     "mstr_price_change": -0.117,
     "asst_price_change": -0.2596,
-    "mstr_mnav_change": -0.0391,
+    "mstr_mnav_change": -0.0392,
     "asst_mnav_change": -0.1249
   },
   "strc_buyback_support": false,
@@ -1371,27 +1371,27 @@
   "values": {
     "MSTR": 128.93,
     "ASST": 21.45,
-    "btc": 75741.0156,
-    "mstr_mnav": 1.081,
-    "asst_mnav": 1.3147,
+    "btc": 75746.9297,
+    "mstr_mnav": 1.0809,
+    "asst_mnav": 1.3146,
     "mnav_avg": 1.1978,
     "mnav_spread": 0.2337,
     "spread_z": 0.097,
     "ratio": 0.16637,
-    "mstr_mnav_basic": 0.8489,
-    "asst_mnav_basic": 0.8362,
-    "mstr_mnav_ev": 1.081,
-    "asst_mnav_ev": 1.3147,
+    "mstr_mnav_basic": 0.8488,
+    "asst_mnav_basic": 0.8361,
+    "mstr_mnav_ev": 1.0809,
+    "asst_mnav_ev": 1.3146,
     "mstr_mnav_diluted": 0.9081,
     "asst_mnav_diluted": 0.854,
-    "mstr_ev_m": 69538.1,
+    "mstr_ev_m": 69539.7,
     "asst_ev_m": 4294.2,
-    "btc_chg": -0.0658,
+    "btc_chg": -0.0657,
     "mstr_chg": -0.117,
     "asst_chg": -0.2596,
-    "mstr_mnav_chg": -0.0391,
+    "mstr_mnav_chg": -0.0392,
     "asst_mnav_chg": -0.1249,
-    "mstr_nav_ps": 141.97,
+    "mstr_nav_ps": 141.98,
     "asst_nav_ps": 25.12
   },
   "valuation": {
@@ -1399,7 +1399,7 @@
       "signal_basis": "ev",
       "zone": "FAIR",
       "market_standard": {
-        "mnav": 0.8489,
+        "mnav": 0.8488,
         "mnav_pct_1y": 0.46,
         "zone": "FAIR",
         "cutoffs": {
@@ -1413,7 +1413,7 @@
         }
       },
       "all_in_ev": {
-        "mnav": 1.081,
+        "mnav": 1.0809,
         "mnav_pct_1y": 0.365,
         "zone": "FAIR",
         "cutoffs": {
@@ -1429,19 +1429,19 @@
       "diluted_equity_mnav": 0.9081,
       "price": 128.93,
       "btc_held": 849327.0,
-      "basic_shares": 423532149.0,
-      "debt_m": 6714.0,
-      "preferred_notional_m": 13140.1,
-      "cash_m": 4922.0,
-      "enterprise_value_m": 69538.1,
-      "btc_nav_m": 64329,
-      "btc_nav_per_basic_share": 151.89
+      "basic_shares": 423533159.0,
+      "debt_m": 6715.4,
+      "preferred_notional_m": 13140.8,
+      "cash_m": 4922.7,
+      "enterprise_value_m": 69539.7,
+      "btc_nav_m": 64334,
+      "btc_nav_per_basic_share": 151.9
     },
     "ASST": {
       "signal_basis": "ev",
       "zone": "OVERVALUED",
       "market_standard": {
-        "mnav": 0.8362,
+        "mnav": 0.8361,
         "mnav_pct_1y": 0.329,
         "zone": "FAIR",
         "cutoffs": {
@@ -1455,7 +1455,7 @@
         }
       },
       "all_in_ev": {
-        "mnav": 1.3147,
+        "mnav": 1.3146,
         "mnav_pct_1y": 0.508,
         "zone": "OVERVALUED",
         "cutoffs": {
@@ -1476,7 +1476,7 @@
       "preferred_notional_m": 2103.4,
       "cash_m": 540.5,
       "enterprise_value_m": 4294.2,
-      "btc_nav_m": 3266,
+      "btc_nav_m": 3267,
       "btc_nav_per_basic_share": 25.65
     },
     "spread_z": {
@@ -1491,8 +1491,8 @@
       "ev": {
         "basis": "ev",
         "lookback_trading_days": 252,
-        "mstr_mnav": 1.081,
-        "asst_mnav": 1.3147,
+        "mstr_mnav": 1.0809,
+        "asst_mnav": 1.3146,
         "ratio_now": 1.2162,
         "ratio_mean_1y": 1.1942,
         "ratio_median_1y": 1.215,
@@ -1512,8 +1512,8 @@
       "basic": {
         "basis": "basic",
         "lookback_trading_days": 252,
-        "mstr_mnav": 0.8489,
-        "asst_mnav": 0.8362,
+        "mstr_mnav": 0.8488,
+        "asst_mnav": 0.8361,
         "ratio_now": 0.985,
         "ratio_mean_1y": 1.1821,
         "ratio_median_1y": 1.1898,
@@ -1698,10 +1698,31 @@
       "change_pts": -12.0,
       "from_date": "2026-11-06",
       "news": {
-        "headline": "S&P 500 Forecast: SPX flat ahead of FOMC rate decision and tech earnings - StoneX",
-        "url": "https://news.google.com/rss/articles/CBMivgFBVV95cUxNQjgxZzVKblZ0aDNsQUN0azRrZHN6LVdDd2ZIV3R5TFlaSTRYQ2xnNnFFQmZmVHN4RkhTTEpudUpUelVmbE5rX0N2cEZBRU5JX1cyZ09SeDhldUJJOXU3cHNsdndJNlFiUzlWYzlSWU8zUXVCM3hFd3o2cVRqNm5KUk5RN1pLcEZ1Z2pKelNxUjRKTzFQMEVGUUs2dXRFZUN5Qms1a3NfQ2hNaEE4aS1QY0VHMmdtSUo5aXF1SFNR?oc=5",
-        "published": "Fri, 06 Nov 2026 23:15:56 GMT",
-        "publisher": "StoneX",
+        "headline": "The Fed Begins Transition to Holding Fewer Policy Meetings a Year - Bloomberg.com",
+        "url": "https://news.google.com/rss/articles/CBMiuAFBVV95cUxQQVRaRUF0MGFNU0FqcjMxNFhoVDhjalFkZGIxUDNaRk9aWWFyaFhnckZxLUwwRjBKQ3FaM0VlbkRJUUdVZE03OGctOElYc25uMnFnejFrbG5aSXE1LTFXWDVsb3FOMlV5dGF0emNFbklwN2swOVMwa3lFMldkUU8zLVFIbXVCMHR5RFh2Sy1YQ3pER0VidVpVTHJMSy1ZNzl6cjZOMFFzd2RkT2FGMjVVOWVERUh4ZWpN?oc=5",
+        "published": "Fri, 06 Nov 2026 11:00:00 GMT",
+        "publisher": "Bloomberg.com",
+        "via": "Google News RSS"
+      }
+    },
+    {
+      "date": "2026-11-07",
+      "window": "24h",
+      "source": "kalshi",
+      "group": "Fed",
+      "market": "Fed decision - Dec 2026",
+      "outcome": "Hike 25bps",
+      "question": null,
+      "url": "https://kalshi.com/markets/kxfeddecision",
+      "from": 0.65,
+      "to": 0.77,
+      "change_pts": 12.0,
+      "from_date": "2026-11-06",
+      "news": {
+        "headline": "The Fed Begins Transition to Holding Fewer Policy Meetings a Year - Bloomberg.com",
+        "url": "https://news.google.com/rss/articles/CBMiuAFBVV95cUxQQVRaRUF0MGFNU0FqcjMxNFhoVDhjalFkZGIxUDNaRk9aWWFyaFhnckZxLUwwRjBKQ3FaM0VlbkRJUUdVZE03OGctOElYc25uMnFnejFrbG5aSXE1LTFXWDVsb3FOMlV5dGF0emNFbklwN2swOVMwa3lFMldkUU8zLVFIbXVCMHR5RFh2Sy1YQ3pER0VidVpVTHJMSy1ZNzl6cjZOMFFzd2RkT2FGMjVVOWVERUh4ZWpN?oc=5",
+        "published": "Fri, 06 Nov 2026 11:00:00 GMT",
+        "publisher": "Bloomberg.com",
         "via": "Google News RSS"
       }
     },
@@ -1760,7 +1781,7 @@
         },
         {
           "outcome": "\u2193 55,000",
-          "yes": 0.125
+          "yes": 0.105
         }
       ]
     },
@@ -1777,7 +1798,7 @@
       "odds": [
         {
           "outcome": "Before Jan 1, 2027",
-          "yes": 0.017
+          "yes": 0.028
         }
       ]
     },
@@ -1806,7 +1827,7 @@
         },
         {
           "outcome": "\u2193 55,000",
-          "yes": 0.125
+          "yes": 0.105
         },
         {
           "outcome": "\u2191 100,000",
@@ -1814,7 +1835,7 @@
         },
         {
           "outcome": "\u2193 50,000",
-          "yes": 0.07
+          "yes": 0.055
         }
       ]
     },
@@ -1839,7 +1860,7 @@
         },
         {
           "outcome": "50+ bps decrease",
-          "yes": 0.0085
+          "yes": 0.007
         },
         {
           "outcome": "25 bps decrease",
@@ -1858,7 +1879,7 @@
         },
         {
           "outcome": "1 (25 bps)",
-          "yes": 0.013
+          "yes": 0.011
         },
         {
           "outcome": "2 (50 bps)",
@@ -1877,7 +1898,7 @@
       "top": [
         {
           "outcome": "Clarity Act (H.R.3633) signed into law in 2026?",
-          "yes": 0.025
+          "yes": 0.0195
         }
       ]
     },
@@ -1888,7 +1909,7 @@
       "top": [
         {
           "outcome": "Crypto Market Structure legislation becomes law in 2026?",
-          "yes": 0.022
+          "yes": 0.0315
         }
       ]
     },
@@ -1911,7 +1932,7 @@
       "top": [
         {
           "outcome": "1M+",
-          "yes": 0.014
+          "yes": 0.0065
         }
       ]
     },
@@ -1944,7 +1965,7 @@
       "top": [
         {
           "outcome": "Above $99,999.99",
-          "yes": 0.11
+          "yes": 0.1
         },
         {
           "outcome": "Above $109,999.99",
@@ -1955,7 +1976,7 @@
           "yes": 0.04
         },
         {
-          "outcome": "Above $129,999.99",
+          "outcome": "Above $199,999.99",
           "yes": 0.02
         }
       ]
@@ -1967,15 +1988,15 @@
       "top": [
         {
           "outcome": "Below $55,000.00",
-          "yes": 0.13
+          "yes": 0.15
         },
         {
           "outcome": "Below $50,000.00",
-          "yes": 0.09
+          "yes": 0.08
         },
         {
           "outcome": "Below $45,000.00",
-          "yes": 0.06
+          "yes": 0.07
         },
         {
           "outcome": "Below $40,000.00",
@@ -1996,19 +2017,19 @@
       "top": [
         {
           "outcome": "Hike 25bps",
-          "yes": 0.76
+          "yes": 0.77
         },
         {
           "outcome": "Fed maintains rate",
-          "yes": 0.25
+          "yes": 0.22
+        },
+        {
+          "outcome": "Hike >25bps",
+          "yes": 0.02
         },
         {
           "outcome": "Cut 25bps",
           "yes": 0.02
-        },
-        {
-          "outcome": "Hike >25bps",
-          "yes": 0.01
         }
       ]
     },
@@ -2019,15 +2040,15 @@
       "top": [
         {
           "outcome": "Before Jan 1, 2028",
-          "yes": 0.23
-        },
-        {
-          "outcome": "Before Oct 1, 2027",
           "yes": 0.2
         },
         {
           "outcome": "Before Jul 1, 2027",
           "yes": 0.16
+        },
+        {
+          "outcome": "Before Oct 1, 2027",
+          "yes": 0.12
         },
         {
           "outcome": "Before Apr 1, 2027",

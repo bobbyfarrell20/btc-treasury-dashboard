@@ -1,5 +1,5 @@
 {
- "generated_utc": "2026-11-07T01:55:40+00:00",
+ "generated_utc": "2026-11-07T18:44:27+00:00",
  "version": 1,
  "MSTR": {
   "basic_shares": [
@@ -484,7 +484,7 @@
     false
    ],
    [
-    "2026-11-06",
+    "2026-11-07",
     423532149.0,
     "https://api.strategy.com/btc/kpiData",
     false
@@ -582,7 +582,7 @@
     false
    ],
    [
-    "2026-11-06",
+    "2026-11-07",
     6714.0,
     "https://api.strategy.com/btc/mstrKpiData",
     false
@@ -980,7 +980,7 @@
     false
    ],
    [
-    "2026-11-06",
+    "2026-11-07",
     122695894.0,
     "https://api.strategy.com/btc/kpiData",
     false
@@ -994,7 +994,7 @@
     false
    ],
    [
-    "2026-11-06",
+    "2026-11-07",
     7753447,
     "https://api.strategy.com/btc/kpiData",
     false
@@ -1194,7 +1194,7 @@
     false
    ],
    [
-    "2026-11-06",
+    "2026-11-07",
     4922.0,
     "https://api.strategy.com/btc/mstrKpiData",
     false
@@ -1280,7 +1280,7 @@
      "src": "https://www.sec.gov/Archives/edgar/data/1050446/000105044626000060/mstr-20260930.htm"
     },
     {
-     "date": "2026-11-06",
+     "date": "2026-11-07",
      "anchor": 423532149,
      "predicted_from_flows": 423533159.0,
      "residual": -1010.0,
@@ -1366,7 +1366,7 @@
      "src": "https://www.sec.gov/Archives/edgar/data/1050446/000105044626000060/"
     },
     {
-     "date": "2026-11-06",
+     "date": "2026-11-07",
      "anchor": 6714.0,
      "predicted_from_flows": 6715.414,
      "residual": -1.414,
@@ -1396,7 +1396,7 @@
      "src": "https://www.sec.gov/Archives/edgar/data/1050446/000105044626000044/"
     },
     {
-     "date": "2026-11-06",
+     "date": "2026-11-07",
      "anchor": 122695894,
      "predicted_from_flows": 122706457.0,
      "residual": -10563.0,
@@ -1405,7 +1405,7 @@
    ],
    "pref_stre_shares": [
     {
-     "date": "2026-11-06",
+     "date": "2026-11-07",
      "anchor": 7753447,
      "predicted_from_flows": 7750000,
      "residual": 3447,
@@ -1414,7 +1414,7 @@
    ]
   },
   "strategy_kpi_latest": {
-   "fetched_utc": "2026-11-07T01:55:40+00:00",
+   "fetched_utc": "2026-11-07T18:44:28+00:00",
    "timestamp_utc": "2026-11-06T21:00:00",
    "market_cap_m": 54606.0,
    "ev_m": 69534.0,
@@ -1448,7 +1448,7 @@
     }
    },
    "cash_m": 4922.0,
-   "date": "2026-11-06"
+   "date": "2026-11-07"
   },
   "pref_check": [
    {
