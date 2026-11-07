@@ -6,6 +6,27 @@
  },
  "jumps": [
   {
+   "date": "2026-11-07",
+   "window": "24h",
+   "source": "polymarket",
+   "group": "Fed",
+   "market": "Fed decision - Dec 9",
+   "outcome": "No change",
+   "question": "Will there be no change in Fed interest rates after the December 2026 meeting?",
+   "url": "https://polymarket.com/event/fed-decision-in-december-20260729232808632",
+   "from": 0.335,
+   "to": 0.215,
+   "change_pts": -12.0,
+   "from_date": "2026-11-06",
+   "news": {
+    "headline": "S&P 500 Forecast: SPX flat ahead of FOMC rate decision and tech earnings - StoneX",
+    "url": "https://news.google.com/rss/articles/CBMivgFBVV95cUxNQjgxZzVKblZ0aDNsQUN0azRrZHN6LVdDd2ZIV3R5TFlaSTRYQ2xnNnFFQmZmVHN4RkhTTEpudUpUelVmbE5rX0N2cEZBRU5JX1cyZ09SeDhldUJJOXU3cHNsdndJNlFiUzlWYzlSWU8zUXVCM3hFd3o2cVRqNm5KUk5RN1pLcEZ1Z2pKelNxUjRKTzFQMEVGUUs2dXRFZUN5Qms1a3NfQ2hNaEE4aS1QY0VHMmdtSUo5aXF1SFNR?oc=5",
+    "published": "Fri, 06 Nov 2026 23:15:56 GMT",
+    "publisher": "StoneX",
+    "via": "Google News RSS"
+   }
+  },
+  {
    "date": "2026-11-06",
    "window": "24h",
    "source": "kalshi",
@@ -46,27 +67,6 @@
     "publisher": "Bloomberg.com",
     "via": "Google News RSS"
    }
-  },
-  {
-   "date": "2026-10-30",
-   "window": "24h",
-   "source": "kalshi",
-   "group": "Fed",
-   "market": "Fed decision - Dec 2026",
-   "outcome": "Fed maintains rate",
-   "question": null,
-   "url": "https://kalshi.com/markets/kxfeddecision",
-   "from": 0.19,
-   "to": 0.29,
-   "change_pts": 10.0,
-   "from_date": "2026-10-29",
-   "news": {
-    "headline": "Fed leaves rates unchanged as it awaits 'accumulation of more information' - Reuters",
-    "url": "https://news.google.com/rss/articles/CBMikAFBVV95cUxPaU93czlpTHJXMTJGby0yOGppZGVlVkZzZW4tNC11WTcwVk1yQUZHTVMza0dTLURMRi0tTUtYTHhITkI2OVBWN2k0anZCN2liNnlyNFpaTmFTaWlFTHItWmtBXzh1VWhkRjZBNjVDejQxOGNUTW1HWWRBUzNjbGdKUDV0MlFSWXRsaWQwMXpWQXI?oc=5",
-    "published": "Thu, 29 Oct 2026 07:00:00 GMT",
-    "publisher": "Reuters",
-    "via": "Google News RSS"
-   }
   }
  ],
  "summary": [
@@ -98,7 +98,7 @@
    "odds": [
     {
      "outcome": "Before Jan 1, 2027",
-     "yes": 0.033
+     "yes": 0.017
     }
    ]
   },
@@ -115,5 +115,5 @@
    "odds": []
   }
  ],
- "generated_utc": "2026-11-06T23:53:04+00:00"
+ "generated_utc": "2026-11-07T01:55:59+00:00"
 }
