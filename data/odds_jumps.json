@@ -6,6 +6,48 @@
  },
  "jumps": [
   {
+   "date": "2026-11-08",
+   "window": "24h",
+   "source": "polymarket",
+   "group": "MSTR",
+   "market": "MSTR delisted from MSCI",
+   "outcome": "December 31",
+   "question": "Microstrategy delisted from MSCI index by December 31?",
+   "url": "https://polymarket.com/event/will-microstrategy-be-delisted-from-the-msci-index-by-march-31",
+   "from": 0.705,
+   "to": 0.93,
+   "change_pts": 22.5,
+   "from_date": "2026-11-08",
+   "news": {
+    "headline": "Bitcoin Trades $200 Above Strategy's Average Cost of $75,451. What Happens to MSTR if BTC Closes Below It? - 24/7 Wall St.",
+    "url": "https://news.google.com/rss/articles/CBMi8AFBVV95cUxPNUU1ZDV4NGpvajc0Z0lzUDl4TVY0QlI0RWFETWFKZ1JsOU9xc1J5SW81QzBFVVhTNHhCamxNenFWSmU3NG1EUDdrdm52M0JxUGt1VWtlTlFCVlJHbE10WG8yN2oyRXZnai1BekMxYm83S0tmUGo0Z2w4M0F0UlIyMy14aHByN1FlSU51VUFvTDYzM1JjVER0VE9pSHBZeHFuRWlQNGxlenkwUTlVSXFqREdvRGNTVTJRMThKRlNYeWNMYlhYLUI4UHRUWFcxZlRMQmhHd1FoX2poWU1Ka18tRUZYRjBaaTA4MFNtdUZteWI?oc=5",
+    "published": "Sun, 08 Nov 2026 18:31:00 GMT",
+    "publisher": "24/7 Wall St.",
+    "via": "Google News RSS"
+   }
+  },
+  {
+   "date": "2026-11-08",
+   "window": "7d",
+   "source": "polymarket",
+   "group": "MSTR",
+   "market": "MSTR delisted from MSCI",
+   "outcome": "December 31",
+   "question": "Microstrategy delisted from MSCI index by December 31?",
+   "url": "https://polymarket.com/event/will-microstrategy-be-delisted-from-the-msci-index-by-march-31",
+   "from": 0.925,
+   "to": 0.705,
+   "change_pts": -22.0,
+   "from_date": "2026-11-01",
+   "news": {
+    "headline": "Bitcoin Trades $200 Above Strategy's Average Cost of $75,451. What Happens to MSTR if BTC Closes Below It? - 24/7 Wall St.",
+    "url": "https://news.google.com/rss/articles/CBMi8AFBVV95cUxPNUU1ZDV4NGpvajc0Z0lzUDl4TVY0QlI0RWFETWFKZ1JsOU9xc1J5SW81QzBFVVhTNHhCamxNenFWSmU3NG1EUDdrdm52M0JxUGt1VWtlTlFCVlJHbE10WG8yN2oyRXZnai1BekMxYm83S0tmUGo0Z2w4M0F0UlIyMy14aHByN1FlSU51VUFvTDYzM1JjVER0VE9pSHBZeHFuRWlQNGxlenkwUTlVSXFqREdvRGNTVTJRMThKRlNYeWNMYlhYLUI4UHRUWFcxZlRMQmhHd1FoX2poWU1Ka18tRUZYRjBaaTA4MFNtdUZteWI?oc=5",
+    "published": "Sun, 08 Nov 2026 18:31:00 GMT",
+    "publisher": "24/7 Wall St.",
+    "via": "Google News RSS"
+   }
+  },
+  {
    "date": "2026-11-07",
    "window": "24h",
    "source": "polymarket",
@@ -19,10 +61,10 @@
    "change_pts": -12.0,
    "from_date": "2026-11-06",
    "news": {
-    "headline": "The Fed Begins Transition to Holding Fewer Policy Meetings a Year - Bloomberg.com",
-    "url": "https://news.google.com/rss/articles/CBMiuAFBVV95cUxQQVRaRUF0MGFNU0FqcjMxNFhoVDhjalFkZGIxUDNaRk9aWWFyaFhnckZxLUwwRjBKQ3FaM0VlbkRJUUdVZE03OGctOElYc25uMnFnejFrbG5aSXE1LTFXWDVsb3FOMlV5dGF0emNFbklwN2swOVMwa3lFMldkUU8zLVFIbXVCMHR5RFh2Sy1YQ3pER0VidVpVTHJMSy1ZNzl6cjZOMFFzd2RkT2FGMjVVOWVERUh4ZWpN?oc=5",
-    "published": "Fri, 06 Nov 2026 11:00:00 GMT",
-    "publisher": "Bloomberg.com",
+    "headline": "Fed holds interest rates steady as inflation hits 3-year high - ABC News - Breaking News, Latest News and Videos",
+    "url": "https://news.google.com/rss/articles/CBMinwFBVV95cUxObE9meWdub2FOS2dVY0pKYUxReEZrZGJhMnIyNG9JTEJpZlhISXFXMlZGZk1kSjRPWlRPejV6aTdXSHZnWWFkeHBvZVEydk9Sa1dLallzVGtIenB2OV9yR2daTDNrb2psQW5uZ2JSYnlOMUxmYzExZ1NBT1V3OGVlaERaZ1pPaVYwTDUyNVJCR1lJUkpoRFhhMzJha09TOVXSAaQBQVVfeXFMUGc0WHV5TzVaUnlTZjZ2Y1h3RHdSSnc0LWZoTzF3Uzk4WFkyQVByY1kxNkNoeDREX3Z6TDRSOUsyMmFvbHBGUWNlWUlXZGxJZFN6RFB5NWREWWtlRXUyMXJyUUlMTXo0cmh4NlpfT1pMUklyOGJLb1F5SDdteTItMzl5NVQybXk5U2ZQWkRGYmhnU0dJZ2hoTEFjb3FLaktRcjZNbDc?oc=5",
+    "published": "Sat, 07 Nov 2026 07:40:00 GMT",
+    "publisher": "ABC News - Breaking News, Latest News and Videos",
     "via": "Google News RSS"
    }
   },
@@ -40,10 +82,10 @@
    "change_pts": 12.0,
    "from_date": "2026-11-06",
    "news": {
-    "headline": "The Fed Begins Transition to Holding Fewer Policy Meetings a Year - Bloomberg.com",
-    "url": "https://news.google.com/rss/articles/CBMiuAFBVV95cUxQQVRaRUF0MGFNU0FqcjMxNFhoVDhjalFkZGIxUDNaRk9aWWFyaFhnckZxLUwwRjBKQ3FaM0VlbkRJUUdVZE03OGctOElYc25uMnFnejFrbG5aSXE1LTFXWDVsb3FOMlV5dGF0emNFbklwN2swOVMwa3lFMldkUU8zLVFIbXVCMHR5RFh2Sy1YQ3pER0VidVpVTHJMSy1ZNzl6cjZOMFFzd2RkT2FGMjVVOWVERUh4ZWpN?oc=5",
-    "published": "Fri, 06 Nov 2026 11:00:00 GMT",
-    "publisher": "Bloomberg.com",
+    "headline": "Fed holds interest rates steady as inflation hits 3-year high - ABC News - Breaking News, Latest News and Videos",
+    "url": "https://news.google.com/rss/articles/CBMinwFBVV95cUxObE9meWdub2FOS2dVY0pKYUxReEZrZGJhMnIyNG9JTEJpZlhISXFXMlZGZk1kSjRPWlRPejV6aTdXSHZnWWFkeHBvZVEydk9Sa1dLallzVGtIenB2OV9yR2daTDNrb2psQW5uZ2JSYnlOMUxmYzExZ1NBT1V3OGVlaERaZ1pPaVYwTDUyNVJCR1lJUkpoRFhhMzJha09TOVXSAaQBQVVfeXFMUGc0WHV5TzVaUnlTZjZ2Y1h3RHdSSnc0LWZoTzF3Uzk4WFkyQVByY1kxNkNoeDREX3Z6TDRSOUsyMmFvbHBGUWNlWUlXZGxJZFN6RFB5NWREWWtlRXUyMXJyUUlMTXo0cmh4NlpfT1pMUklyOGJLb1F5SDdteTItMzl5NVQybXk5U2ZQWkRGYmhnU0dJZ2hoTEFjb3FLaktRcjZNbDc?oc=5",
+    "published": "Sat, 07 Nov 2026 07:40:00 GMT",
+    "publisher": "ABC News - Breaking News, Latest News and Videos",
     "via": "Google News RSS"
    }
   },
@@ -61,10 +103,10 @@
    "change_pts": -16.0,
    "from_date": "2026-11-05",
    "news": {
-    "headline": "The Fed Begins Transition to Holding Fewer Policy Meetings a Year - Bloomberg.com",
-    "url": "https://news.google.com/rss/articles/CBMiuAFBVV95cUxQQVRaRUF0MGFNU0FqcjMxNFhoVDhjalFkZGIxUDNaRk9aWWFyaFhnckZxLUwwRjBKQ3FaM0VlbkRJUUdVZE03OGctOElYc25uMnFnejFrbG5aSXE1LTFXWDVsb3FOMlV5dGF0emNFbklwN2swOVMwa3lFMldkUU8zLVFIbXVCMHR5RFh2Sy1YQ3pER0VidVpVTHJMSy1ZNzl6cjZOMFFzd2RkT2FGMjVVOWVERUh4ZWpN?oc=5",
-    "published": "Fri, 06 Nov 2026 11:00:00 GMT",
-    "publisher": "Bloomberg.com",
+    "headline": "Will the Fed raise interest rates this year? Divided economists weigh in - ABC News - Breaking News, Latest News and Videos",
+    "url": "https://news.google.com/rss/articles/CBMipAFBVV95cUxNX3NMLXhhYU1lOVVLWU9sY0k0SDUyQnEwMG9SZ1RzNHZobTIyYk9KWGJlOGhic3FKdlQ2NXlIVDF6SW1oRlNWZlY2NHlNLWlnNGoybzAwLWlkV3V1Q1ZtM21KS2FLTy02NEF6VjY4UmFNc2hYa21mRURlSkJYZWxtc1R3VmRYZFlKNUU3NzZiMkZGNGJZcG1xZUNCN0RQNkRndEVPb9IBqgFBVV95cUxOU1FSZ3pWOURaQUxBS296TzBtRFFGclJXTnpLYWwzZXU1Q01kcVZUczBxUDAwR3FaYmFZdzlXUWM2T0Q3TDVldm9nSVY4OERYRUtkdm5sdndPSU1ETU1yc3BuMEpXLTd2VFFZRTVQcWdMZFdEZ0EzYjhTS200RFBkZy1jbE01WVhVbEgyX1Z2dXc4MWxmbXd6cl9pSlp2TDRldkdkS2hwOVE0Zw?oc=5",
+    "published": "Sat, 07 Nov 2026 07:03:16 GMT",
+    "publisher": "ABC News - Breaking News, Latest News and Videos",
     "via": "Google News RSS"
    }
   },
@@ -82,10 +124,10 @@
    "change_pts": -13.0,
    "from_date": "2026-11-05",
    "news": {
-    "headline": "The Fed Begins Transition to Holding Fewer Policy Meetings a Year - Bloomberg.com",
-    "url": "https://news.google.com/rss/articles/CBMiuAFBVV95cUxQQVRaRUF0MGFNU0FqcjMxNFhoVDhjalFkZGIxUDNaRk9aWWFyaFhnckZxLUwwRjBKQ3FaM0VlbkRJUUdVZE03OGctOElYc25uMnFnejFrbG5aSXE1LTFXWDVsb3FOMlV5dGF0emNFbklwN2swOVMwa3lFMldkUU8zLVFIbXVCMHR5RFh2Sy1YQ3pER0VidVpVTHJMSy1ZNzl6cjZOMFFzd2RkT2FGMjVVOWVERUh4ZWpN?oc=5",
-    "published": "Fri, 06 Nov 2026 11:00:00 GMT",
-    "publisher": "Bloomberg.com",
+    "headline": "Will the Fed raise interest rates this year? Divided economists weigh in - ABC News - Breaking News, Latest News and Videos",
+    "url": "https://news.google.com/rss/articles/CBMipAFBVV95cUxNX3NMLXhhYU1lOVVLWU9sY0k0SDUyQnEwMG9SZ1RzNHZobTIyYk9KWGJlOGhic3FKdlQ2NXlIVDF6SW1oRlNWZlY2NHlNLWlnNGoybzAwLWlkV3V1Q1ZtM21KS2FLTy02NEF6VjY4UmFNc2hYa21mRURlSkJYZWxtc1R3VmRYZFlKNUU3NzZiMkZGNGJZcG1xZUNCN0RQNkRndEVPb9IBqgFBVV95cUxOU1FSZ3pWOURaQUxBS296TzBtRFFGclJXTnpLYWwzZXU1Q01kcVZUczBxUDAwR3FaYmFZdzlXUWM2T0Q3TDVldm9nSVY4OERYRUtkdm5sdndPSU1ETU1yc3BuMEpXLTd2VFFZRTVQcWdMZFdEZ0EzYjhTS200RFBkZy1jbE01WVhVbEgyX1Z2dXc4MWxmbXd6cl9pSlp2TDRldkdkS2hwOVE0Zw?oc=5",
+    "published": "Sat, 07 Nov 2026 07:03:16 GMT",
+    "publisher": "ABC News - Breaking News, Latest News and Videos",
     "via": "Google News RSS"
    }
   }
@@ -102,7 +144,7 @@
     },
     {
      "outcome": "↓ 55,000",
-     "yes": 0.105
+     "yes": 0.095
     }
    ]
   },
@@ -119,7 +161,7 @@
    "odds": [
     {
      "outcome": "Before Jan 1, 2027",
-     "yes": 0.028
+     "yes": 0.021
     }
    ]
   },
@@ -136,5 +178,5 @@
    "odds": []
   }
  ],
- "generated_utc": "2026-11-07T18:44:47+00:00"
+ "generated_utc": "2026-11-08T18:49:12+00:00"
 }
