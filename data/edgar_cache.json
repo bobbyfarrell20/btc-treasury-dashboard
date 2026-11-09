@@ -5004,5 +5004,98 @@
 "class_a": 402714357.0,
 "class_b": 19640250.0
 }
+},
+"0001193125-26-452693": {
+"filed": "2026-11-09",
+"url": "https://www.sec.gov/Archives/edgar/data/1050446/000119312526452693/mstr-20261109.htm",
+"v": 3,
+"parsed": {
+"holdings": [
+{
+"date": "2026-11-08",
+"btc": 850364.0
+}
+],
+"strc_atm": [
+{
+"start": "2026-11-02",
+"end": "2026-11-08",
+"shares": 0.0,
+"notional_m": 0.0,
+"net_m": 0.0
+}
+],
+"strc_repurchase": [
+{
+"start": "2026-11-02",
+"end": "2026-11-08",
+"shares": 1887464.0,
+"usd_m": 188.3
+}
+]
+}
+},
+"0001628280-26-071888": {
+"filed": "2026-11-09",
+"url": "https://www.sec.gov/Archives/edgar/data/1920406/000162828026071888/asst-20261109.htm",
+"v": 3,
+"parsed": {
+"events": [
+{
+"date": "2026-10-30",
+"btc": 43124.0,
+"shares_basic": 127331109.0,
+"shares": 130044690.0,
+"shares_basis": "assumed_fully_diluted",
+"sata": 14030176.0,
+"sats": 7003418.0,
+"cash_k": 490400.0,
+"strc_fv_k": 50061.0
+},
+{
+"date": "2026-11-06",
+"btc": 43153.0,
+"shares_basic": 127331109.0,
+"shares": 130044690.0,
+"shares_basis": "assumed_fully_diluted",
+"sata": 14030176.0,
+"sats": 7036559.0,
+"cash_k": 487600.0,
+"strc_fv_k": 50419.0
+}
+]
+}
+},
+"8k:0001193125-26-452693": {
+"v": 1,
+"filed": "2026-11-09",
+"url": "https://www.sec.gov/Archives/edgar/data/1050446/000119312526452693/mstr-20261109.htm",
+"parsed": {
+"atm": [
+{
+"end": "2026-11-08",
+"sec": "MSTR",
+"shares": 2051348.0
+}
+],
+"rep": [
+{
+"end": "2026-11-08",
+"sec": "STRC",
+"shares": 1887464.0,
+"usd_m": 188.3
+}
+],
+"levels": {
+"usd_reserve": [
+"2026-11-08",
+4770.0
+],
+"usd_cash": [
+"2026-11-08",
+146.2
+]
+}
+}
 }
 }

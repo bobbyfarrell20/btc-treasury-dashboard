@@ -112,7 +112,7 @@
      "MSTR": -0.0121,
      "MSTR_mnav_ev": 0.0099,
      "ASST": -0.0336,
-     "ASST_mnav_ev": -0.0029
+     "ASST_mnav_ev": -0.0022
     },
     "30d": null
    }
@@ -141,7 +141,7 @@
      "MSTR": -0.0121,
      "MSTR_mnav_ev": 0.0099,
      "ASST": -0.0336,
-     "ASST_mnav_ev": -0.0029
+     "ASST_mnav_ev": -0.0022
     },
     "30d": null
    }
@@ -184,7 +184,7 @@
      "MSTR": -0.0029,
      "MSTR_mnav_ev": 0.0003,
      "ASST": 0.0418,
-     "ASST_mnav_ev": 0.0288
+     "ASST_mnav_ev": 0.0295
     },
     "7d": null,
     "30d": null
@@ -206,7 +206,7 @@
      "MSTR": -0.0029,
      "MSTR_mnav_ev": 0.0003,
      "ASST": 0.0418,
-     "ASST_mnav_ev": 0.0288
+     "ASST_mnav_ev": 0.0295
     },
     "7d": null,
     "30d": null
@@ -228,7 +228,7 @@
      "MSTR": -0.0029,
      "MSTR_mnav_ev": 0.0003,
      "ASST": 0.0418,
-     "ASST_mnav_ev": 0.0288
+     "ASST_mnav_ev": 0.0295
     },
     "7d": null,
     "30d": null
