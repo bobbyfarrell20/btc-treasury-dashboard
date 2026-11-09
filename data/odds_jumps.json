@@ -14,10 +14,10 @@
    "outcome": "December 31",
    "question": "Microstrategy delisted from MSCI index by December 31?",
    "url": "https://polymarket.com/event/will-microstrategy-be-delisted-from-the-msci-index-by-march-31",
-   "from": 0.93,
-   "to": 0.705,
-   "change_pts": -22.5,
-   "from_date": "2026-11-08",
+   "from": 0.705,
+   "to": 0.935,
+   "change_pts": 23.0,
+   "from_date": "2026-11-09",
    "news": {
     "headline": "Strategy Spent More on Its Own Shares Than on Bitcoin Last Week. Why Is Saylor Buying Back Stock Instead of BTC? - 24/7 Wall St.",
     "url": "https://news.google.com/rss/articles/CBMi_gFBVV95cUxNMndrT3pqMHI4TUpLRExaWGZJeWhMV0dsQU93TW5PYlBlZlNEY0RiV29JekhXVGZGeHhIcVJTY056TDRJbTVLbXVpTE9TOU5UUzdjZEhkZ3N4UllYQ19tcHplOXhDd3lIUldjX2VJeWVDSk9wUjQ5XzB0MFZZeVRFbnZuUE1VWjNYd1RtNkltQ1p3SUhFMFE5clg3blNfdWFwSDlyRDB3NVJfZTlaMUw4Y3FvdXhRcnJWZWpRTXB6djl3a2RaaVVZYkFOX3MwOGllVmVvVnBZNnRESi1sb2k3cmhlb205OU9JZUc3dVZ1U3dkREFfdVpxY2tvYVNjZw?oc=5",
@@ -161,7 +161,7 @@
    "odds": [
     {
      "outcome": "Before Jan 1, 2027",
-     "yes": 0.02
+     "yes": 0.029
     }
    ]
   },
@@ -178,5 +178,5 @@
    "odds": []
   }
  ],
- "generated_utc": "2026-11-09T21:33:24+00:00"
+ "generated_utc": "2026-11-09T22:48:17+00:00"
 }
