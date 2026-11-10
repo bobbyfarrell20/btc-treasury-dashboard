@@ -15,13 +15,13 @@
    "question": "Will there be no change in Fed interest rates after the December 2026 meeting?",
    "url": "https://polymarket.com/event/fed-decision-in-december-20260729232808632",
    "from": 0.255,
-   "to": 0.0255,
-   "change_pts": -22.9,
+   "to": 0.035,
+   "change_pts": -22.0,
    "from_date": "2026-11-03",
    "news": {
     "headline": "Fed's Waller plans to support at least a quarter-point rate hike in December - Reuters",
     "url": "https://news.google.com/rss/articles/CBMirgFBVV95cUxNR3RjbDlfcXFBbHp0SVRSeHIzZHFTTnY5bjBuWGszTTMzUmxLUXNzRTFid29sbXV1emJSZWMwTEo4V2dWYjJ3TGlESmRlRzdFcDdQU3RxWi1QVEZrRlNBU0N3NG50WUNBWVdXbnZFS0RuVDNyRVdGWm1aRjFjWGRlRFRoTFhlbFMwQ1NjbTZMd2x0cnlHR0F4d2JNV3dKcHFOOE5TRFVsSlc5ekxoQ0E?oc=5",
-    "published": "Tue, 10 Nov 2026 11:37:57 GMT",
+    "published": "Tue, 10 Nov 2026 14:41:30 GMT",
     "publisher": "Reuters",
     "via": "Google News RSS"
    }
@@ -36,13 +36,13 @@
    "question": "Will there be no change in Fed interest rates after the December 2026 meeting?",
    "url": "https://polymarket.com/event/fed-decision-in-december-20260729232808632",
    "from": 0.225,
-   "to": 0.0255,
-   "change_pts": -20.0,
+   "to": 0.035,
+   "change_pts": -19.0,
    "from_date": "2026-11-09",
    "news": {
     "headline": "Fed's Waller plans to support at least a quarter-point rate hike in December - Reuters",
     "url": "https://news.google.com/rss/articles/CBMirgFBVV95cUxNR3RjbDlfcXFBbHp0SVRSeHIzZHFTTnY5bjBuWGszTTMzUmxLUXNzRTFid29sbXV1emJSZWMwTEo4V2dWYjJ3TGlESmRlRzdFcDdQU3RxWi1QVEZrRlNBU0N3NG50WUNBWVdXbnZFS0RuVDNyRVdGWm1aRjFjWGRlRFRoTFhlbFMwQ1NjbTZMd2x0cnlHR0F4d2JNV3dKcHFOOE5TRFVsSlc5ekxoQ0E?oc=5",
-    "published": "Tue, 10 Nov 2026 11:37:57 GMT",
+    "published": "Tue, 10 Nov 2026 14:41:30 GMT",
     "publisher": "Reuters",
     "via": "Google News RSS"
    }
@@ -57,8 +57,8 @@
    "question": "Microstrategy delisted from MSCI index by December 31?",
    "url": "https://polymarket.com/event/will-microstrategy-be-delisted-from-the-msci-index-by-march-31",
    "from": 0.705,
-   "to": 0.845,
-   "change_pts": 14.0,
+   "to": 0.865,
+   "change_pts": 16.0,
    "from_date": "2026-11-09",
    "news": {
     "headline": "Strategy (MSTR) Is Building A Global Bitcoin Bank - Yahoo Finance",
@@ -207,7 +207,7 @@
     },
     {
      "outcome": "↓ 55,000",
-     "yes": 0.095
+     "yes": 0.115
     }
    ]
   },
@@ -224,7 +224,7 @@
    "odds": [
     {
      "outcome": "Before Jan 1, 2027",
-     "yes": 0.02
+     "yes": 0.027
     }
    ]
   },
@@ -241,5 +241,5 @@
    "odds": []
   }
  ],
- "generated_utc": "2026-11-10T14:53:47+00:00"
+ "generated_utc": "2026-11-10T15:52:50+00:00"
 }
