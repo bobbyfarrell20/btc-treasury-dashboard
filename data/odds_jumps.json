@@ -15,9 +15,30 @@
    "question": "Will there be no change in Fed interest rates after the December 2026 meeting?",
    "url": "https://polymarket.com/event/fed-decision-in-december-20260729232808632",
    "from": 0.255,
-   "to": 0.0365,
+   "to": 0.0355,
    "change_pts": -21.9,
    "from_date": "2026-11-03",
+   "news": {
+    "headline": "Fed's Waller plans to support at least a quarter-point rate hike in December - Reuters",
+    "url": "https://news.google.com/rss/articles/CBMirgFBVV95cUxNR3RjbDlfcXFBbHp0SVRSeHIzZHFTTnY5bjBuWGszTTMzUmxLUXNzRTFid29sbXV1emJSZWMwTEo4V2dWYjJ3TGlESmRlRzdFcDdQU3RxWi1QVEZrRlNBU0N3NG50WUNBWVdXbnZFS0RuVDNyRVdGWm1aRjFjWGRlRFRoTFhlbFMwQ1NjbTZMd2x0cnlHR0F4d2JNV3dKcHFOOE5TRFVsSlc5ekxoQ0E?oc=5",
+    "published": "Tue, 10 Nov 2026 14:41:30 GMT",
+    "publisher": "Reuters",
+    "via": "Google News RSS"
+   }
+  },
+  {
+   "date": "2026-11-10",
+   "window": "24h",
+   "source": "polymarket",
+   "group": "Fed",
+   "market": "Fed decision - Dec 9",
+   "outcome": "No change",
+   "question": "Will there be no change in Fed interest rates after the December 2026 meeting?",
+   "url": "https://polymarket.com/event/fed-decision-in-december-20260729232808632",
+   "from": 0.225,
+   "to": 0.0355,
+   "change_pts": -18.9,
+   "from_date": "2026-11-09",
    "news": {
     "headline": "Fed's Waller plans to support at least a quarter-point rate hike in December - Reuters",
     "url": "https://news.google.com/rss/articles/CBMirgFBVV95cUxNR3RjbDlfcXFBbHp0SVRSeHIzZHFTTnY5bjBuWGszTTMzUmxLUXNzRTFid29sbXV1emJSZWMwTEo4V2dWYjJ3TGlESmRlRzdFcDdQU3RxWi1QVEZrRlNBU0N3NG50WUNBWVdXbnZFS0RuVDNyRVdGWm1aRjFjWGRlRFRoTFhlbFMwQ1NjbTZMd2x0cnlHR0F4d2JNV3dKcHFOOE5TRFVsSlc5ekxoQ0E?oc=5",
@@ -36,35 +57,14 @@
    "question": "Microstrategy delisted from MSCI index by December 31?",
    "url": "https://polymarket.com/event/will-microstrategy-be-delisted-from-the-msci-index-by-march-31",
    "from": 0.705,
-   "to": 0.895,
-   "change_pts": 19.0,
+   "to": 0.89,
+   "change_pts": 18.5,
    "from_date": "2026-11-09",
    "news": {
     "headline": "Strategy (MSTR) Is Building A Global Bitcoin Bank - Yahoo Finance",
     "url": "https://news.google.com/rss/articles/CBMipAFBVV95cUxPd1RNUlIxSmp3MDJJbzUxMTdqTFBUQksyT0FBRjJTaHZjWk5IV04tYVlwbm5mZ21jTEY1NFJtTTI4bEFLUWstdER4eGJFbjBKS1MwRzdwMllhR0QtWktRa0pmd2R5T0dpYlYwRWkyRnBkZ3o0OW81ZWNyLVJyVXY5UldTRE1lYUkzNnFJbEF3dUFLTFNpWHBiQjlHaDYySU9iYTNINA?oc=5",
     "published": "Tue, 10 Nov 2026 02:18:00 GMT",
     "publisher": "Yahoo Finance",
-    "via": "Google News RSS"
-   }
-  },
-  {
-   "date": "2026-11-10",
-   "window": "24h",
-   "source": "polymarket",
-   "group": "Fed",
-   "market": "Fed decision - Dec 9",
-   "outcome": "No change",
-   "question": "Will there be no change in Fed interest rates after the December 2026 meeting?",
-   "url": "https://polymarket.com/event/fed-decision-in-december-20260729232808632",
-   "from": 0.225,
-   "to": 0.0365,
-   "change_pts": -18.9,
-   "from_date": "2026-11-09",
-   "news": {
-    "headline": "Fed's Waller plans to support at least a quarter-point rate hike in December - Reuters",
-    "url": "https://news.google.com/rss/articles/CBMirgFBVV95cUxNR3RjbDlfcXFBbHp0SVRSeHIzZHFTTnY5bjBuWGszTTMzUmxLUXNzRTFid29sbXV1emJSZWMwTEo4V2dWYjJ3TGlESmRlRzdFcDdQU3RxWi1QVEZrRlNBU0N3NG50WUNBWVdXbnZFS0RuVDNyRVdGWm1aRjFjWGRlRFRoTFhlbFMwQ1NjbTZMd2x0cnlHR0F4d2JNV3dKcHFOOE5TRFVsSlc5ekxoQ0E?oc=5",
-    "published": "Tue, 10 Nov 2026 14:41:30 GMT",
-    "publisher": "Reuters",
     "via": "Google News RSS"
    }
   },
@@ -241,5 +241,5 @@
    "odds": []
   }
  ],
- "generated_utc": "2026-11-10T21:02:39+00:00"
+ "generated_utc": "2026-11-10T21:29:26+00:00"
 }
