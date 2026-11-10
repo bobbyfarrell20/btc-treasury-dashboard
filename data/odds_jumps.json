@@ -15,7 +15,7 @@
    "question": "Will there be no change in Fed interest rates after the December 2026 meeting?",
    "url": "https://polymarket.com/event/fed-decision-in-december-20260729232808632",
    "from": 0.255,
-   "to": 0.0355,
+   "to": 0.0365,
    "change_pts": -21.9,
    "from_date": "2026-11-03",
    "news": {
@@ -36,8 +36,8 @@
    "question": "Microstrategy delisted from MSCI index by December 31?",
    "url": "https://polymarket.com/event/will-microstrategy-be-delisted-from-the-msci-index-by-march-31",
    "from": 0.705,
-   "to": 0.92,
-   "change_pts": 21.5,
+   "to": 0.895,
+   "change_pts": 19.0,
    "from_date": "2026-11-09",
    "news": {
     "headline": "Strategy (MSTR) Is Building A Global Bitcoin Bank - Yahoo Finance",
@@ -57,7 +57,7 @@
    "question": "Will there be no change in Fed interest rates after the December 2026 meeting?",
    "url": "https://polymarket.com/event/fed-decision-in-december-20260729232808632",
    "from": 0.225,
-   "to": 0.0355,
+   "to": 0.0365,
    "change_pts": -18.9,
    "from_date": "2026-11-09",
    "news": {
@@ -207,7 +207,7 @@
     },
     {
      "outcome": "↓ 55,000",
-     "yes": 0.115
+     "yes": 0.125
     }
    ]
   },
@@ -241,5 +241,5 @@
    "odds": []
   }
  ],
- "generated_utc": "2026-11-10T19:19:28+00:00"
+ "generated_utc": "2026-11-10T21:02:39+00:00"
 }
