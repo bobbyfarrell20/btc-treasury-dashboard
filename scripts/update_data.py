@@ -3,6 +3,7 @@
 
 Sources
 - Prices (daily close): Yahoo Finance chart API (query1.finance.yahoo.com/v8/finance/chart).
+- Extended-hours quotes (display only, never used for signals/mNAV/flywheel rules): Yahoo 1-minute chart bars with includePrePost=true.
 - MSTR BTC holdings & Assumed Diluted Shares history: btcexposure.com MSTR mNAV CSV (built from Strategy filings),
   overridden for holdings by Strategy's weekly 8-Ks on SEC EDGAR when newer.
 - MSTR STRC ATM issuance / repurchases: Strategy weekly 8-Ks (SEC EDGAR).
@@ -88,6 +89,74 @@ def fetch_prices():
         # use live regular market price for today's bar if present
         out[t] = ser
         log(t, len(ser), "rows, last", max(ser), ser[max(ser)])
+    return out
+
+
+def fetch_ext_quotes():
+    """Latest pre-market / after-hours prints for display only.
+
+    Signals, mNAV, zones, flywheel state and recommendation stay on regular-session closes.
+    Missing quotes are skipped so an off-hours run never fails the job.
+    """
+    tickers = ("MSTR", "ASST", "STRC", "SATA", "SATS")
+    out = {}
+    now = dt.datetime.now(dt.timezone.utc)
+    for t in tickers:
+        try:
+            res = None
+            for attempt in range(4):
+                host = "query1" if attempt % 2 == 0 else "query2"
+                url = f"https://{host}.finance.yahoo.com/v8/finance/chart/{t}?range=5d&interval=1m&includePrePost=true"
+                try:
+                    r = requests.get(url, headers=UA_WEB, timeout=20); r.raise_for_status()
+                    res = r.json()["chart"]["result"][0]; break
+                except Exception as e:
+                    log("ext quote retry", t, e); time.sleep(1 + attempt)
+            if not res:
+                log("ext quote unavailable", t); continue
+            meta = res.get("meta") or {}
+            close = meta.get("regularMarketPrice")
+            close_ts = meta.get("regularMarketTime")
+            tz = dt.timezone(dt.timedelta(seconds=meta.get("gmtoffset") if meta.get("gmtoffset") is not None else -18000))
+            ts_list = res.get("timestamp") or []
+            q = ((res.get("indicators") or {}).get("quote") or [{}])[0]
+            c_list = q.get("close") or []
+            last = None
+            for i in range(len(ts_list) - 1, -1, -1):
+                if i < len(c_list) and c_list[i] is not None:
+                    last = (int(ts_list[i]), float(c_list[i])); break
+            if not last or close is None or not close_ts:
+                continue
+            last_ts, last_px = last
+            t_et = dt.datetime.fromtimestamp(last_ts, tz)
+            hm = t_et.hour * 60 + t_et.minute
+            if 9 * 60 + 30 <= hm < 16 * 60:
+                sess = "regular"
+            elif 4 * 60 <= hm < 9 * 60 + 30:
+                sess = "pre"
+            elif 16 * 60 <= hm < 20 * 60:
+                sess = "post"
+            else:
+                continue
+            now_et = now.astimezone(tz)
+            now_hm = now_et.hour * 60 + now_et.minute
+            in_regular = now_et.weekday() < 5 and (9 * 60 + 30 <= now_hm < 16 * 60)
+            # Hide during regular hours; only keep a print that is after the official close.
+            if in_regular or sess == "regular" or last_ts <= int(close_ts):
+                continue
+            if close == 0:
+                continue
+            rec = {
+                "price": round(last_px, 4),
+                "close": round(float(close), 4),
+                "change_pct_vs_close": round(last_px / float(close) - 1, 6),
+                "session": sess,
+                "as_of": dt.datetime.fromtimestamp(last_ts, dt.timezone.utc).isoformat(timespec="seconds").replace("+00:00", "Z"),
+            }
+            out[t] = rec
+            log("ext", t, sess, rec["price"], "vs close", rec["close"], rec["change_pct_vs_close"])
+        except Exception as e:
+            log("ext quote failed", t, e)
     return out
 
 # ---------------- EDGAR ----------------
@@ -678,11 +747,15 @@ def main():
 
     out_rows = [r for r in rows if r["date"] >= (dt.date.fromisoformat(start) - dt.timedelta(days=200)).isoformat()]
     gen = dt.datetime.now(dt.timezone.utc).isoformat(timespec="seconds")
+    try:
+        ext = fetch_ext_quotes()
+    except Exception as e:
+        log("ext quotes skipped", e); ext = {}
     dash = {"generated_utc": gen, "config": CFG, "rows": out_rows, "fuel": fuel,
             "asst_events": a_ev, "mstr_holdings_edgar": edgar_h,
             "latest_btc_spot": {"date": max(btc), "price": btc[max(btc)]}, "big_moves": big, "signal_basis": BASIS, "basis_labels": BASIS_LABEL,
             "capital_residuals": cap["MSTR"]["residuals"], "strategy_kpi_latest": cap["MSTR"].get("strategy_kpi_latest"),
-            "sats": prices.get("SATS", {}), "analytics": ana}
+            "sats": prices.get("SATS", {}), "ext": ext, "analytics": ana}
     (DATA / "dashboard.json").write_text(json.dumps(dash, separators=(",", ":")))
 
     # ---- SATS context (display only, never a trigger)

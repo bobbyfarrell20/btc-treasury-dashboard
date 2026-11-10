@@ -116,6 +116,12 @@ details.sec{margin-top:8px}details.sec>summary{font-size:13px;font-weight:600;co
 .mnsec .k{font-weight:600}.mnsec .n{font-weight:700;color:var(--mut);font-size:13px}
 .mnsec .pill{font-size:10px;padding:1px 6px;opacity:.75;transform:scale(.92);transform-origin:left center}
 @media (max-width:640px){.mnprim .vbig{font-size:30px}}
+.extq{font-size:11.5px;color:var(--mut);font-weight:600;margin:3px 0 2px;line-height:1.3}
+.extq .ch{font-weight:700}.extq .ch.pos{color:#3fb950}.extq .ch.neg{color:#f85149}
+[data-theme=light] .extq .ch.pos{color:#1a7f37}[data-theme=light] .extq .ch.neg{color:#cf222e}
+.tk .extq{font-size:10.5px;margin:2px 0 0;display:block}
+.fw .extq{margin-top:3px}
+.tb-ext{font-size:10.5px;color:var(--mut);font-weight:600;white-space:nowrap}
 .legend{text-align:center;font-size:12.5px;color:var(--mut);margin:2px 0 6px}
 .hist{background:var(--panel);border:1px solid var(--line);border-radius:10px;padding:6px 10px;margin:4px 0}
 .hist .hh{display:flex;flex-wrap:wrap;gap:4px 12px;align-items:center;font-size:12px}.flip,.hist .hh>.note{white-space:nowrap}.flip .pill{font-size:10.5px;padding:1px 6px;margin:0 2px}
@@ -454,6 +460,13 @@ function runs(pred){const R=D.rows.filter(r=>r.date>=D.config.window_start),out=
 function bands(pref){const sh=[];for(const st of Object.keys(BAND))runs(r=>(r['fly_'+pref]||fn(r['peg_'+pref]))===st).forEach(([a,b])=>sh.push({type:'rect',xref:'x',yref:'paper',x0:a,x1:b,y0:0,y1:1,fillcolor:BAND[st],line:{width:0},layer:'below'}));return sh}
 function hline(y,c,dash='dash'){return{type:'line',xref:'paper',x0:0,x1:1,yref:'y',y0:y,y1:y,line:{color:c,width:1,dash}}}
 function lastTwo(k){const R=D.rows.filter(r=>r[k]!=null);const a=R[R.length-1],b=R[R.length-2];return a?{v:a[k],d:a.date,ch:b?a[k]/b[k]-1:null}:null}
+// Display-only pre/post quotes from dashboard.json ext (never used for mNAV, zones, or the call).
+function extQuote(t){const x=(D.ext||{})[t];if(!x||x.price==null||(x.session!=='pre'&&x.session!=='post'))return null;return x}
+function extLine(t,opts){const x=extQuote(t);if(!x)return '';const o=opts||{};
+  const lab=x.session==='pre'?'Pre-market':'After hours';
+  const tm=new Intl.DateTimeFormat('en-US',{timeZone:'America/New_York',hour:'numeric',minute:'2-digit'}).format(new Date(x.as_of));
+  const ch=x.change_pct_vs_close,dp=o.dp??2;
+  return `<div class="extq" title="${lab} $${fmt(x.price,dp)} vs regular close $${fmt(x.close,dp)} · ${tm} ET. Display only; mNAV and signals still use the official close.">${lab} $${fmt(x.price,dp)} <span class="ch ${cls(ch)}">(${spct(ch,1)})</span> <span class="note">${tm} ET</span></div>`}
 function chgN(k,n=10){const R=D.rows.filter(r=>r[k]!=null);if(R.length<=n)return null;return R[R.length-1][k]/R[R.length-1-n][k]-1}
 function diffN(k,n=10){const R=D.rows.filter(r=>r[k]!=null);if(R.length<=n)return null;return R[R.length-1][k]-R[R.length-1-n][k]}
 const BL=b=>({basic:'stock only',ev:'incl. debt & preferreds',diluted:'diluted equity'}[b]||b);
@@ -636,12 +649,16 @@ function renderTop(){const F=freshness(),fw=A.flywheel,t=lastTwo('btc');
   $('tb_btc').innerHTML=`BTC $${fmt(t.v,0)} <span class="tb-ch ${cls(t.ch)}">${spct(t.ch,1)}</span>`;
   const r=$('tb_rec');r.className='pill r-'+S.recommendation;r.textContent=(S.recommendation_label||RECL[S.recommendation]||S.recommendation)+(S.recommendation==='STAY_BTC'?' · no buy':S.recommendation==='BUY_BOTH'&&S.recommendation_lean?' · '+S.recommendation_lean+' leans cheaper':'');
   {const x=RVD('ev'),el=$('tb_rv');if(el)el.innerHTML=`<span class="pill tb-rv v-${x.verdict}" title="${esc(x.verdict_text)} · ASST/MSTR mNAV (incl. debt & preferreds) ratio ${fmt(x.ratio_now,2)}x vs ${fmt(x.ratio_mean_1y,2)}x 1y avg · gap z ${sx2(x.diff_z)}">${x.verdict==='NORMAL'?'Spread normal':x.cheaper_vs_usual+' cheap'}</span>`}
-  for(const a of ASSETS){const f=fw[a.preferred],el=$('tb_'+a.preferred.toLowerCase());if(!el)continue;el.innerHTML=flyPill(fcode(f),`${a.preferred} ${flyS(fcode(f))}${fheld(f)?' · held':''}`,`${a.preferred} $${fmt(f.price??f.close)} · ${flyL(fcode(f))}${fheld(f)?' · held by buybacks':''} · ${fstreak(f)} · flywheel indicator for ${a.ticker}, not a trade`,fheld(f))}
+  for(const a of ASSETS){const f=fw[a.preferred],el=$('tb_'+a.preferred.toLowerCase());if(!el)continue;{const xq=extQuote(a.preferred),lab=xq?(xq.session==='pre'?'pre-market':'after hours')+' $'+fmt(xq.price)+' ('+spct(xq.change_pct_vs_close,1)+') · ':'';
+    el.innerHTML=flyPill(fcode(f),`${a.preferred} ${flyS(fcode(f))}${fheld(f)?' · held':''}`,`${a.preferred} $${fmt(f.price??f.close)} · ${lab}${flyL(fcode(f))}${fheld(f)?' · held by buybacks':''} · ${fstreak(f)} · flywheel indicator for ${a.ticker}, not a trade`,fheld(f))}}
   $('tb_fresh').innerHTML=`<span class="dot" style="background:${F.col}"></span><span class="note tb-asof">${asOfL()} · upd ${genET()}</span><span class="note tb-upm">upd ${new Intl.DateTimeFormat('en-US',{timeZone:'America/New_York',hour:'numeric',minute:'2-digit'}).format(new Date(D.generated_utc))} ET</span>`;
   $('tb_fresh').title=`Data ${F.txt}: last bar ${S.as_of}, expected ${F.exp}. Generated ${D.generated_utc} UTC (${F.ageH.toFixed(1)} h ago).`;
   const tk=[['BTC','btc',0],...ASSETS.map(a=>[a.ticker,a.ticker,2])].map(([n,k,dp])=>{const t=lastTwo(k);if(!t)return'';
-    return `<div class="tk" title="last close ${t.d}"><div class="s">${n}</div><span class="p">$${fmt(t.v,dp)}</span><span class="c ${cls(t.ch)}">${t.ch==null?'':(t.ch>=0?'▲ +':'▼ ')+pct(t.ch,2).replace('-','')}</span></div>`}).join('');
+    return `<div class="tk" title="last close ${t.d}"><div class="s">${n}</div><span class="p">$${fmt(t.v,dp)}</span><span class="c ${cls(t.ch)}">${t.ch==null?'':(t.ch>=0?'▲ +':'▼ ')+pct(t.ch,2).replace('-','')}</span>${n!=='BTC'?extLine(n,{dp}):''}</div>`}).join('');
   $('tickers').innerHTML=tk;
+  {const bits=['MSTR','ASST','STRC','SATA'].map(t=>{const x=extQuote(t);if(!x)return '';const lab=x.session==='pre'?'Pre':'AH';return `${t} ${lab} $${fmt(x.price,t==='MSTR'||t==='ASST'?2:2)}`;}).filter(Boolean);
+    let el=$('tb_ext');if(!el){el=document.createElement('span');el.id='tb_ext';el.className='tb-ext';const r=$('tb_r')||$('topbar');if($('tb_fresh'))$('tb_fresh').before(el);else if(r)r.prepend(el)}
+    if(bits.length){el.textContent=bits.join(' · ');el.style.display='';el.title='Extended-hours prints vs the official close. Display only.'}else if(el)el.style.display='none'}
   const lvl={g:'Fresh',y:'1 session behind',r:'Stale'}[F.lv];
   $('gen').innerHTML=`<span class="dot" style="background:${F.col}"></span><b style="color:${F.col}">${lvl}</b> · Data as of ${asOfL()} · updated ${genET()} ${Q('Updated = when the data job last ran (shown in ET). Data as of = the last US market close included (\'intraday\' if the job ran before that day\'s 4 PM ET close). Dot: green = the latest US trading close is in (expected '+F.exp+'). Yellow = one session behind (e.g. Yahoo has not finalized today\'s bar yet). Red = two or more sessions behind. Exchange holidays are not modeled, so the day after a holiday can show yellow.')}`}
 function implication(a,f){const p=a.preferred,t=a.ticker,st=fn(fcode(f)),pc=D.config.peg,rh=pc.running_hot||{},TC=f.on_close_threshold??TCL(p);
@@ -662,7 +679,7 @@ function renderFlywheel(){const fw=A.flywheel,bf=BFLAGS().per_asset,pc0=D.config
     const dtxt=dpar==null?'':(dpar>=0?`+$${fmt(dpar)}`:`−$${fmt(Math.abs(dpar))}`)+` vs $${fmt(par,0)}`;
     const spark=sparkSVG(f.sparkline,par,C[a.preferred]||C[a.ticker]);
     return `<div class="fw f-${flyK(st)}${h?' held':''}"><div class="tkhead"><span class="tkbig">${a.preferred}</span><span class="tkto" style="color:${C[a.ticker]}"><span class="arrow">→</span>${a.ticker}</span></div><div class="tkmeta">flywheel indicator, not a trade</div><div class="st"${h?' style="opacity:.6"':''}>${flyL(st)}${h?' <span style="font-size:15px;font-weight:600">· held by buybacks</span>':''}</div>
-     <div class="pxrow"><div class="pxblock"><div class="px">$${fmt(px)}</div><div class="vspar"><span class="${dcls}">${dtxt}</span> <span class="note">${f.date}${f.method&&f.method!=='daily'?' · intraday':''}</span></div></div>${spark?`<div class="sparkwrap" title="Last 2 trading days vs $${fmt(par,0)} par">${spark}<div class="sparklab">last 2 sessions · green = $${fmt(par,0)}</div></div>`:''}</div>
+     <div class="pxrow"><div class="pxblock"><div class="px">$${fmt(px)}</div><div class="vspar"><span class="${dcls}">${dtxt}</span> <span class="note">${f.date}${f.method&&f.method!=='daily'?' · intraday':''}</span></div>${extLine(a.preferred)}</div>${spark?`<div class="sparkwrap" title="Last 2 trading days vs $${fmt(par,0)} par">${spark}<div class="sparklab">last 2 sessions · green = $${fmt(par,0)}</div></div>`:''}</div>
      <details class="fwmore"><summary>details</summary>${f.atm&&f.atm.shares_sold>0?`<div class="note">ATM ${f.atm_date||''}: ~${fmt(f.atm.shares_sold/1000,0)}K shares sold → ~${fmt(f.atm.btc_raised,0)} BTC raised${f.atm_day?' (counts as ON: issuing at par)':''} · <a href="${encodeURI(f.atm.source_url||'')}" target="_blank" rel="noopener">@STRC_live</a></div>`:`<div class="note">ATM: no recent issuance reported (@STRC_live)</div>`}
      <div class="imp">${implication(a,f)}</div>
      <div class="row"><span>${fstreak(f)}</span>${lb}</div></details>${fcb}</div>`}).join('')}
@@ -862,6 +879,7 @@ function renderValuation(){
     el.style.borderColor=(ZC[Ev.zone||x.zone]||'var(--line)')+'55';
     el.style.borderTop=`3px solid ${C[a]}`;
     el.innerHTML=`<h2 class="tkhead"><span class="tkbig" style="color:${C[a]}">${a}</span></h2>
+     ${extLine(a)}
      <div class="vflags">${fc}${vl}</div>
      ${prim}${sec}
      <details class="sec" style="margin-top:8px"><summary>Details</summary>
@@ -1042,7 +1060,7 @@ function renderMethod(){const K=D.strategy_kpi_latest||{},R=D.capital_residuals|
  <br>• <b>Cash</b>: XBRL cash at quarter-ends until Dec 2025, then the USD Reserve from weekly 8-Ks (may slightly understate cash until Aug 30 2026).</p>
  <p><b>ASST capital timeline:</b> basic shares = Effective Common Shares from weekly 8-Ks. Preferred = (SATA + SATS) × $100 stated amount. Cash = cash + STRC held from weekly tables from May 2026, XBRL before that. Debt: Semler's notes + Coinbase loan assumed at the 2026-01-16 merger, exchanged/repaid by Q2 2026. Documented in <a href="data/capital_events.json">capital_events.json</a>.</p>
  <p><b>Not available / approximations:</b> EV history is rebuilt from filings (step function; lags issuance by up to a week, or a quarter for undated debt changes). ASST EV starts 2025-09-30. STRC ATM before Nov 2025 is not parsed. SATA issuance is shares × $100 stated value, not cash raised. SATS history is short. Freshness assumes weekday closes (US holidays not modeled). Yahoo's latest bar can be intraday or missing for a few hours after the close.</p>
- <p><b>Data files:</b> <a href="signals.json">signals.json</a> · <a href="data/dashboard.json">dashboard.json</a> · <a href="data/rows.csv">rows.csv</a> · <a href="data/signal_log.json">signal_log.json</a> · <a href="config.json">config.json</a>. <b>Refresh:</b> GitHub Actions runs <code>scripts/update_data.py</code> about every 15 minutes on weekdays during US market hours, once after the close, once on weekends, and on demand; the open page quietly reloads when new data is published. <a href="https://github.com/bobbyfarrell20/btc-treasury-dashboard">GitHub repo</a>.</p>`}
+ <p><b>Data files:</b> <a href="signals.json">signals.json</a> · <a href="data/dashboard.json">dashboard.json</a> · <a href="data/rows.csv">rows.csv</a> · <a href="data/signal_log.json">signal_log.json</a> · <a href="config.json">config.json</a>. <b>Refresh:</b> GitHub Actions runs <code>scripts/update_data.py</code> about every 15 minutes on weekdays from pre-market through after-hours (no bot tokens), once on weekends, and on demand. Extended-hours prints live in <code>dashboard.json → ext</code> as display-only (mNAV, zones and the call still use the official regular-session close). The open page quietly reloads when new data is published. <a href="https://github.com/bobbyfarrell20/btc-treasury-dashboard">GitHub repo</a>.</p>`}
 // ---------- toggles, theme, loader
 function initToggles(){const L=[...ASSETS.map(a=>a.ticker),'BTC'];
   $('assettoggles').innerHTML=L.map(t=>`<label class="chip"><input type="checkbox" data-a="${t}" ${HIDE.has(t)?'':'checked'}><span style="color:${C[t]}">●</span> ${t}</label>`).join('');
