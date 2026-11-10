@@ -57,8 +57,8 @@
    "question": "Microstrategy delisted from MSCI index by December 31?",
    "url": "https://polymarket.com/event/will-microstrategy-be-delisted-from-the-msci-index-by-march-31",
    "from": 0.705,
-   "to": 0.84,
-   "change_pts": 13.5,
+   "to": 0.845,
+   "change_pts": 14.0,
    "from_date": "2026-11-09",
    "news": {
     "headline": "Strategy (MSTR) Is Building A Global Bitcoin Bank - Yahoo Finance",
@@ -207,7 +207,7 @@
     },
     {
      "outcome": "↓ 55,000",
-     "yes": 0.105
+     "yes": 0.095
     }
    ]
   },
@@ -241,5 +241,5 @@
    "odds": []
   }
  ],
- "generated_utc": "2026-11-10T14:31:20+00:00"
+ "generated_utc": "2026-11-10T14:53:47+00:00"
 }
