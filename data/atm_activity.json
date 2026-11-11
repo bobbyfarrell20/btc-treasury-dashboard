@@ -69,5 +69,19 @@
       "source_url": "https://x.com/STRC_live/status/2120260999206863120",
       "note": "no ATM activity; closed $96.31, still well below $100"
     }
+  },
+  "2026-11-11": {
+    "STRC": {
+      "shares_sold": 0,
+      "btc_raised": 0,
+      "source_url": "https://x.com/STRC_live/status/2120623391728169180",
+      "note": "no ATM activity; closed $99.99, one cent from par; 1.8M shares traded"
+    },
+    "SATA": {
+      "shares_sold": 0,
+      "btc_raised": 0,
+      "source_url": "https://x.com/STRC_live/status/2120623391728169180",
+      "note": "no ATM activity; closed $97.15, still well below $100"
+    }
   }
 }
