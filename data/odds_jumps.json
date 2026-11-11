@@ -15,8 +15,8 @@
    "question": "Will there be no change in Fed interest rates after the December 2026 meeting?",
    "url": "https://polymarket.com/event/fed-decision-in-december-20260729232808632",
    "from": 0.225,
-   "to": 0.0355,
-   "change_pts": -18.9,
+   "to": 0.031,
+   "change_pts": -19.4,
    "from_date": "2026-11-04",
    "news": {
     "headline": "Fed Forced to Confront Case for Bigger and Faster Rate Rises - WSJ",
@@ -50,15 +50,15 @@
   {
    "date": "2026-11-11",
    "window": "24h",
-   "source": "kalshi",
+   "source": "polymarket",
    "group": "Fed",
-   "market": "Fed decision - Dec 2026",
-   "outcome": "Fed maintains rate",
-   "question": null,
-   "url": "https://kalshi.com/markets/kxfeddecision",
-   "from": 0.2,
-   "to": 0.05,
-   "change_pts": -15.0,
+   "market": "Fed decision - Dec 9",
+   "outcome": "No change",
+   "question": "Will there be no change in Fed interest rates after the December 2026 meeting?",
+   "url": "https://polymarket.com/event/fed-decision-in-december-20260729232808632",
+   "from": 0.185,
+   "to": 0.031,
+   "change_pts": -15.4,
    "from_date": "2026-11-10",
    "news": {
     "headline": "Fed Forced to Confront Case for Bigger and Faster Rate Rises - WSJ",
@@ -71,15 +71,15 @@
   {
    "date": "2026-11-11",
    "window": "24h",
-   "source": "polymarket",
+   "source": "kalshi",
    "group": "Fed",
-   "market": "Fed decision - Dec 9",
-   "outcome": "No change",
-   "question": "Will there be no change in Fed interest rates after the December 2026 meeting?",
-   "url": "https://polymarket.com/event/fed-decision-in-december-20260729232808632",
-   "from": 0.185,
-   "to": 0.0355,
-   "change_pts": -14.9,
+   "market": "Fed decision - Dec 2026",
+   "outcome": "Fed maintains rate",
+   "question": null,
+   "url": "https://kalshi.com/markets/kxfeddecision",
+   "from": 0.2,
+   "to": 0.05,
+   "change_pts": -15.0,
    "from_date": "2026-11-10",
    "news": {
     "headline": "Fed Forced to Confront Case for Bigger and Faster Rate Rises - WSJ",
@@ -304,5 +304,5 @@
    "odds": []
   }
  ],
- "generated_utc": "2026-11-11T14:48:27+00:00"
+ "generated_utc": "2026-11-11T15:07:34+00:00"
 }
