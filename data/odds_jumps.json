@@ -15,8 +15,8 @@
    "question": "Will there be no change in Fed interest rates after the December 2026 meeting?",
    "url": "https://polymarket.com/event/fed-decision-in-december-20260729232808632",
    "from": 0.225,
-   "to": 0.031,
-   "change_pts": -19.4,
+   "to": 0.029,
+   "change_pts": -19.6,
    "from_date": "2026-11-04",
    "news": {
     "headline": "Fed Forced to Confront Case for Bigger and Faster Rate Rises - WSJ",
@@ -57,8 +57,8 @@
    "question": "Will there be no change in Fed interest rates after the December 2026 meeting?",
    "url": "https://polymarket.com/event/fed-decision-in-december-20260729232808632",
    "from": 0.185,
-   "to": 0.031,
-   "change_pts": -15.4,
+   "to": 0.029,
+   "change_pts": -15.6,
    "from_date": "2026-11-10",
    "news": {
     "headline": "Fed Forced to Confront Case for Bigger and Faster Rate Rises - WSJ",
@@ -304,5 +304,5 @@
    "odds": []
   }
  ],
- "generated_utc": "2026-11-11T15:07:34+00:00"
+ "generated_utc": "2026-11-11T15:57:55+00:00"
 }
