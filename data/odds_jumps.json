@@ -15,7 +15,7 @@
    "question": "Will there be no change in Fed interest rates after the December 2026 meeting?",
    "url": "https://polymarket.com/event/fed-decision-in-december-20260729232808632",
    "from": 0.225,
-   "to": 0.029,
+   "to": 0.0295,
    "change_pts": -19.6,
    "from_date": "2026-11-04",
    "news": {
@@ -57,7 +57,7 @@
    "question": "Will there be no change in Fed interest rates after the December 2026 meeting?",
    "url": "https://polymarket.com/event/fed-decision-in-december-20260729232808632",
    "from": 0.185,
-   "to": 0.029,
+   "to": 0.0295,
    "change_pts": -15.6,
    "from_date": "2026-11-10",
    "news": {
@@ -126,7 +126,7 @@
    "news": {
     "headline": "Strategy (MSTR) Is Building A Global Bitcoin Bank - Yahoo Finance",
     "url": "https://news.google.com/rss/articles/CBMipAFBVV95cUxPd1RNUlIxSmp3MDJJbzUxMTdqTFBUQksyT0FBRjJTaHZjWk5IV04tYVlwbm5mZ21jTEY1NFJtTTI4bEFLUWstdER4eGJFbjBKS1MwRzdwMllhR0QtWktRa0pmd2R5T0dpYlYwRWkyRnBkZ3o0OW81ZWNyLVJyVXY5UldTRE1lYUkzNnFJbEF3dUFLTFNpWHBiQjlHaDYySU9iYTNINA?oc=5",
-    "published": "Tue, 10 Nov 2026 02:42:36 GMT",
+    "published": "Tue, 10 Nov 2026 02:18:00 GMT",
     "publisher": "Yahoo Finance",
     "via": "Google News RSS"
    }
@@ -147,7 +147,7 @@
    "news": {
     "headline": "Strategy (MSTR) Is Building A Global Bitcoin Bank - Yahoo Finance",
     "url": "https://news.google.com/rss/articles/CBMipAFBVV95cUxPd1RNUlIxSmp3MDJJbzUxMTdqTFBUQksyT0FBRjJTaHZjWk5IV04tYVlwbm5mZ21jTEY1NFJtTTI4bEFLUWstdER4eGJFbjBKS1MwRzdwMllhR0QtWktRa0pmd2R5T0dpYlYwRWkyRnBkZ3o0OW81ZWNyLVJyVXY5UldTRE1lYUkzNnFJbEF3dUFLTFNpWHBiQjlHaDYySU9iYTNINA?oc=5",
-    "published": "Tue, 10 Nov 2026 02:42:36 GMT",
+    "published": "Tue, 10 Nov 2026 02:18:00 GMT",
     "publisher": "Yahoo Finance",
     "via": "Google News RSS"
    }
@@ -168,7 +168,7 @@
    "news": {
     "headline": "Strategy (MSTR) Is Building A Global Bitcoin Bank - Yahoo Finance",
     "url": "https://news.google.com/rss/articles/CBMipAFBVV95cUxPd1RNUlIxSmp3MDJJbzUxMTdqTFBUQksyT0FBRjJTaHZjWk5IV04tYVlwbm5mZ21jTEY1NFJtTTI4bEFLUWstdER4eGJFbjBKS1MwRzdwMllhR0QtWktRa0pmd2R5T0dpYlYwRWkyRnBkZ3o0OW81ZWNyLVJyVXY5UldTRE1lYUkzNnFJbEF3dUFLTFNpWHBiQjlHaDYySU9iYTNINA?oc=5",
-    "published": "Tue, 10 Nov 2026 02:42:36 GMT",
+    "published": "Tue, 10 Nov 2026 02:18:00 GMT",
     "publisher": "Yahoo Finance",
     "via": "Google News RSS"
    }
@@ -304,5 +304,5 @@
    "odds": []
   }
  ],
- "generated_utc": "2026-11-11T16:00:45+00:00"
+ "generated_utc": "2026-11-11T16:18:46+00:00"
 }
