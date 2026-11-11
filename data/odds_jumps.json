@@ -15,8 +15,8 @@
    "question": "Will there be no change in Fed interest rates after the December 2026 meeting?",
    "url": "https://polymarket.com/event/fed-decision-in-december-20260729232808632",
    "from": 0.225,
-   "to": 0.0295,
-   "change_pts": -19.6,
+   "to": 0.0305,
+   "change_pts": -19.4,
    "from_date": "2026-11-04",
    "news": {
     "headline": "Fed Forced to Confront Case for Bigger and Faster Rate Rises - WSJ",
@@ -51,14 +51,35 @@
    "date": "2026-11-11",
    "window": "24h",
    "source": "polymarket",
+   "group": "MSTR",
+   "market": "MSTR delisted from MSCI",
+   "outcome": "December 31",
+   "question": "Microstrategy delisted from MSCI index by December 31?",
+   "url": "https://polymarket.com/event/will-microstrategy-be-delisted-from-the-msci-index-by-march-31",
+   "from": 0.825,
+   "to": 0.9995,
+   "change_pts": 17.5,
+   "from_date": "2026-11-11",
+   "news": {
+    "headline": "Bitcoin Treasury Selling Hits Rare Level Ahead of MicroStrategy’s MSCI Test - Yahoo Finance",
+    "url": "https://news.google.com/rss/articles/CBMioAFBVV95cUxNZlFHWEIxbDdBTkVmMlB5alJ0c2JzMXdwejZPb29TcG50UjFzMVpEanN1cDlxRFVKNTdTUndZRG5JQlNzQkdJNFJMc1ltNHdCb0ZGcW5kTy1JVDQzc25PWDVfZ0p2NkZ2NlJ1SzM5QndFSGlRcW12TmdmU3ZxQXozYmRLanQ3eGI5aldGeW1oRkNJWG9tWmZGNW5JNk5MLThx?oc=5",
+    "published": "Wed, 11 Nov 2026 19:44:14 GMT",
+    "publisher": "Yahoo Finance",
+    "via": "Google News RSS"
+   }
+  },
+  {
+   "date": "2026-11-11",
+   "window": "24h",
+   "source": "polymarket",
    "group": "Fed",
    "market": "Fed decision - Dec 9",
    "outcome": "No change",
    "question": "Will there be no change in Fed interest rates after the December 2026 meeting?",
    "url": "https://polymarket.com/event/fed-decision-in-december-20260729232808632",
    "from": 0.185,
-   "to": 0.0295,
-   "change_pts": -15.6,
+   "to": 0.0305,
+   "change_pts": -15.4,
    "from_date": "2026-11-10",
    "news": {
     "headline": "Fed Forced to Confront Case for Bigger and Faster Rate Rises - WSJ",
@@ -86,27 +107,6 @@
     "url": "https://news.google.com/rss/articles/CBMiswFBVV95cUxPelFYdmxqTmVYeGJuX2VCMUg3MFowTVhFV25kb1NUN1Z0QUZuMnNVUmVabWhfZU1PVjVTakhlRVRzdHpvWENxd3Y4Y3RJLURrVmNYMkZ3UnpNZUx1RjJvc0xIZDFsZ0xqcDcxbDAwVHNOaUpNSkRuSW00cnVlRy1uQ1F1MjBydEtZSnNVTDJtM2xxaWFXcUcybTUzVGpoaEpSTDM5REtFQ2J0a3Z3WVEtQ25xdw?oc=5",
     "published": "Wed, 11 Nov 2026 01:00:00 GMT",
     "publisher": "WSJ",
-    "via": "Google News RSS"
-   }
-  },
-  {
-   "date": "2026-11-11",
-   "window": "24h",
-   "source": "polymarket",
-   "group": "MSTR",
-   "market": "MSTR delisted from MSCI",
-   "outcome": "December 31",
-   "question": "Microstrategy delisted from MSCI index by December 31?",
-   "url": "https://polymarket.com/event/will-microstrategy-be-delisted-from-the-msci-index-by-march-31",
-   "from": 0.935,
-   "to": 0.825,
-   "change_pts": -11.0,
-   "from_date": "2026-11-10",
-   "news": {
-    "headline": "Bitcoin Treasury Selling Hits Rare Level Ahead of MicroStrategy’s MSCI Test - Yahoo Finance",
-    "url": "https://news.google.com/rss/articles/CBMioAFBVV95cUxNZlFHWEIxbDdBTkVmMlB5alJ0c2JzMXdwejZPb29TcG50UjFzMVpEanN1cDlxRFVKNTdTUndZRG5JQlNzQkdJNFJMc1ltNHdCb0ZGcW5kTy1JVDQzc25PWDVfZ0p2NkZ2NlJ1SzM5QndFSGlRcW12TmdmU3ZxQXozYmRLanQ3eGI5aldGeW1oRkNJWG9tWmZGNW5JNk5MLThx?oc=5",
-    "published": "Wed, 11 Nov 2026 19:44:14 GMT",
-    "publisher": "Yahoo Finance",
     "via": "Google News RSS"
    }
   },
@@ -304,5 +304,5 @@
    "odds": []
   }
  ],
- "generated_utc": "2026-11-11T21:29:30+00:00"
+ "generated_utc": "2026-11-11T22:37:02+00:00"
 }
