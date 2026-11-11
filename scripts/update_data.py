@@ -580,6 +580,27 @@ def main():
             cap0 = r[k + "_cheap_cap"]
             r[k + "_cheap_cap_eff"] = round((cap0 if cap0 is not None else r["cheap_line"]) + cap_bump * score, 4)
             r[k + "_cheap_pct"] = round(qc0 + pct_relax * score, 4)
+            # Effective chart lines (same rule, backfilled through history): cheap gate =
+            # min(cap_eff, trailing-window quantile at cheap_pct); overvalued line =
+            # min(floor, 90th pct) — the first mNAV that would print that zone.
+            cap_e = r[k + "_cheap_cap_eff"]
+            for bs in ("", "basic", "ev"):
+                sfx = "_" + bs if bs else ""
+                key = k + "_mnav" + sfx
+                win = [w.get(key) for w in rows[max(0, i - L + 1): i + 1]]
+                q_ch = quant(win, r[k + "_cheap_pct"]) if r.get(k + "_cheap_pct") is not None else None
+                if q_ch is not None and cap_e is not None:
+                    r[k + "_cheap_gate" + sfx] = round(min(cap_e, q_ch), 4)
+                elif cap_e is not None:
+                    r[k + "_cheap_gate" + sfx] = cap_e
+                elif q_ch is not None:
+                    r[k + "_cheap_gate" + sfx] = round(q_ch, 4)
+                q90 = r.get(key + "_q90")
+                fl = r.get(k + "_oh_floor")
+                if fl is not None and q90 is not None:
+                    r[k + "_ov_line" + sfx] = round(min(fl, q90), 4)
+                elif fl is not None:
+                    r[k + "_ov_line" + sfx] = fl
 
     # ---- signals per day
     def day_signal(r):
@@ -732,8 +753,10 @@ def main():
         return {"mnav": v, "mnav_pct_1y": last.get(k + "_pct"), "zone": last.get(a + "_zone_" + bs),
                 "cutoffs": {"p25": last.get(k + "_q25"), "median": last.get(k + "_q50"), "p75": last.get(k + "_q75"), "p90": last.get(k + "_q90"),
                             "cheap_cap": last.get(a + "_cheap_cap"), "cheap_cap_eff": last.get(a + "_cheap_cap_eff", last.get(a + "_cheap_cap")),
-                            "cheap_pct": last.get(a + "_cheap_pct"), "cap_mode": last.get(a + "_cap_mode"),
+                            "cheap_pct": last.get(a + "_cheap_pct"), "cheap_gate": last.get(a + "_cheap_gate_" + bs, last.get(a + "_cheap_gate")),
+                            "cap_mode": last.get(a + "_cap_mode"),
                             "overheated_floor": last.get(a + "_oh_floor"), "overheated_premium": last.get(a + "_oh_prem"),
+                            "ov_line": last.get(a + "_ov_line_" + bs, last.get(a + "_ov_line")),
                             "anticip_score": last.get(a + "_anticip_score")}}
     BASIS_LABEL = {"basic": "mNAV stock only: stock market value / bitcoin held (price x basic shares / BTC NAV)",
                    "ev": "mNAV incl. debt & preferreds: adds debt and preferreds, minus cash ((price x basic shares + debt + preferred notional - cash) / BTC NAV)",

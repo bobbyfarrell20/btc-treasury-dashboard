@@ -21,7 +21,7 @@ h1{margin:0;font-size:20px}h2{font-size:16px;margin:0 0 8px}
 .kv{display:flex;justify-content:space-between;border-bottom:1px dashed var(--line);padding:3px 0}.kv span:first-child{color:var(--mut)}
 table{border-collapse:collapse;width:100%;font-size:13px}th,td{border-bottom:1px solid var(--line);padding:5px 6px;text-align:left;vertical-align:top}th{color:var(--mut);font-weight:600;position:sticky;top:0;background:var(--panel)}
 .scroll{max-height:420px;overflow:auto}.pos{color:#3fb950}.neg{color:#f85149}.tbd{color:var(--y);font-weight:700}
-.chart{height:440px}.chart.sm{height:300px}.gapsum{font-size:15px;font-weight:600;margin:2px 0 2px}.gapsum .zw{color:#3fb950}.gapsum .zn{color:#38bdd4}#c_spread{height:700px}
+.chart{height:440px}.chart.sm{height:300px}.gapsum{font-size:15px;font-weight:600;margin:2px 0 2px}.gapsum .zw{color:#3fb950}.gapsum .zn{color:#38bdd4}#c_spread{height:440px}.mncharts{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-top:10px}.mnchart-h{display:flex;justify-content:space-between;align-items:baseline;gap:8px;margin:0 0 4px;font-size:13px;font-weight:700}.mnchart-h .mut{font-weight:500;font-size:12px}.mnleg{margin:8px 0 0;font-size:12.5px}
 .disc{border-left:4px solid var(--y);padding:8px 12px;background:rgba(210,153,34,.10);border-radius:6px;margin-bottom:16px;font-size:13px}
 .controls label{margin-right:12px;font-size:12px;color:var(--mut)}
 .pmrow{display:flex;align-items:center;gap:8px;font-size:12px;margin:2px 0}.pmbar{height:10px;background:var(--b);border-radius:3px}
@@ -42,7 +42,7 @@ details summary{cursor:pointer;color:var(--b)}
 .hl-red{background:rgba(248,81,73,.16);color:#ffb4ae;border:1px solid rgba(248,81,73,.5)}.hl-green{background:rgba(46,160,67,.16);color:#9be9a8;border:1px solid rgba(46,160,67,.5)}
 .hl-amber{background:rgba(210,153,34,.16);color:#fde68a;border:1px solid rgba(210,153,34,.5)}.hl-blue{background:rgba(88,166,255,.14);color:#b6d7ff;border:1px solid rgba(88,166,255,.45)}
 .hero .sub{max-width:1500px;margin:8px auto 0}
-@media (max-width:640px){.hero{padding:16px 14px 12px}.hero h1{font-size:21px}.logo{width:42px;height:42px;font-size:26px;line-height:42px}.tk{min-width:0;flex:1 1 30%;padding:6px 8px}.tk .p{font-size:14px}.tk .c{display:block;margin:0}main{padding:12px}.chart{height:360px}#c_spread{height:640px}.gapsum{font-size:14px}}
+@media (max-width:640px){.hero{padding:16px 14px 12px}.hero h1{font-size:21px}.logo{width:42px;height:42px;font-size:26px;line-height:42px}.tk{min-width:0;flex:1 1 30%;padding:6px 8px}.tk .p{font-size:14px}.tk .c{display:block;margin:0}main{padding:12px}.chart{height:360px}#c_spread{height:360px}.chart.sm{height:260px}.mncharts{grid-template-columns:1fr}.gapsum{font-size:14px}}
 .verdict{font-size:17px;font-weight:700;padding:12px 14px;border-radius:8px;background:linear-gradient(90deg,rgba(163,113,247,.16),rgba(240,136,62,.10));border:1px solid var(--line);margin-bottom:12px}
 .vz{font-weight:800}.z-CHEAP{background:#14532d;color:#86efac}.z-FAIR{background:#1e3a5f;color:#93c5fd}.z-RICH{background:#713f12;color:#fde68a}.z-OVERVALUED{background:#7f1d1d;color:#fecaca}
 .vbig{font-size:30px;font-weight:800}.gauge{position:relative;height:16px;border-radius:8px;overflow:hidden;display:flex;margin:22px 0 4px}
@@ -254,10 +254,15 @@ details.card{margin-bottom:10px;padding:11px 14px}
 <div class="enggrid" id="engcards">loading…</div>
 <div class="gen"><span id="gen">loading…</span> <span class="refw"><button type="button" class="btn refb" id="refbtn" title="Start a fresh data run and update when the new data is published (a few minutes)" aria-label="Refresh data"><span class="ri">↻</span> <span class="rl">Refresh</span></button><span class="refmsg" id="refmsg" aria-live="polite"></span> · <a href="https://github.com/bobbyfarrell20/btc-treasury-dashboard/actions/workflows/update.yml" target="_blank" rel="noopener" title="Opens GitHub Actions: press &quot;Run workflow&quot; to pull fresh prices and rebuild. A full refresh takes a few minutes; then tap Refresh here.">Run fresh update ↗</a></span></div>
 </section>
-<section class="card" id="gapsec"><div class="cardhead"><h2>MSTR vs ASST mNAV gap <span class="seg" id="gbasis"><button data-b="ev" title="Adds debt and preferreds, minus cash">incl. debt &amp; preferreds</button><button data-b="basic" title="Stock market value ÷ bitcoin held">stock only</button></span></h2><span class="csvb" data-c="c_spread"></span></div>
+<section class="card" id="gapsec"><div class="cardhead"><h2>MSTR vs ASST mNAV gap <span class="seg" id="gbasis"><button data-b="ev" title="Adds debt and preferreds, minus cash">incl. debt &amp; preferreds</button><button data-b="basic" title="Stock market value ÷ bitcoin held">stock only</button></span></h2><span class="csvb" data-c="c_spread,c_mnav_mstr,c_mnav_asst"></span></div>
 <div class="gapsum" id="gapsum"></div>
 <div class="note" id="gapsub" style="margin-bottom:4px"></div>
 <div id="c_spread" class="chart"></div>
+<div class="note mnleg" id="mnleg">Each stock is compared to its own sliding cheap (green) and overvalued (red) lines — they rise as that stock's preferred (STRC for MSTR, SATA for ASST) nears $100 par.</div>
+<div class="mncharts">
+  <div class="mnchart"><div class="mnchart-h" id="mnh_mstr"></div><div id="c_mnav_mstr" class="chart sm"></div></div>
+  <div class="mnchart"><div class="mnchart-h" id="mnh_asst"></div><div id="c_mnav_asst" class="chart sm"></div></div>
+</div>
 <details class="sec"><summary>Options &amp; notes: ratio view, zones</summary><div style="margin:6px 0"><span class="note">View:</span><span class="seg" id="spmode"><button data-b="diff">gap ASST−MSTR</button><button data-b="ratio">ratio ASST÷MSTR</button></span></div><div class="note" id="spnote"></div><div class="note" id="mnnote" style="margin-top:6px"></div></details></section>
 
 <details class="card controls" id="chartctl"><summary>Chart options: show / hide assets, link time axes</summary><div style="margin-top:6px"><span id="assettoggles"></span> <label class="chip"><input type="checkbox" id="linkx" checked> link time axes</label></div></details>
@@ -594,62 +599,93 @@ function plotSpread(){const bs=GB,sx='_'+bs,mode=SPM,mc=D.config.mnav,kh=mc.spre
     {xref:'x',yref:'y',x:x[mid],y:(up[mid]+lo[mid])/2,xanchor:'left',showarrow:false,text:'Normal gap',font:{size:fs,color:t.mut},bgcolor:ab,opacity:0.85},
     {xref:'x',yref:'y',x:x[n],y:y[n],text:`<b>Today ${f(y[n])}</b> (avg ${f(m[n])})`,showarrow:true,arrowhead:0,arrowcolor:'#f7931a',ax:mob?-70:-90,ay:y[n]>m[n]?-34:34,
      font:{size:fs,color:t.fg},bgcolor:ab,bordercolor:'#f7931a',borderpad:3}];
-  // ---- bottom panel: MSTR & ASST mNAV lines with the valuation zones the premium cards use
-  const vc=D.config.valuation||{fair_max_percentile:0.5},ch=CL(),ov=LR().oh_floor_base??(ch+(mc.overheated_gap_above_cheap??0.15)),V=S.valuation||{},bf=BFLAGS();
   const zl=z=>({CHEAP:'cheap',FAIR:'fair',RICH:'rich',OVERVALUED:'overvalued'}[z]||'n/a');
-  const MR=D.rows.filter(r=>r.date>=x[0]&&r.date<=x[n]);let b0=Infinity,b1=-Infinity;
-  ASSETS.forEach(aa=>{const k=aa.key;MR.forEach(r=>{const v=r[k+'_mnav'+sx];if(v!=null&&!HIDE.has(aa.ticker)){b0=Math.min(b0,v);b1=Math.max(b1,v)}})});
-  // cheap line and base overheated floor change over time (rising cheap line), so the band edges are sloped paths, not flat lines
-  const CLS=(d)=>{const c=vc.cheap_below_mnav_schedule;if(!c)return ch;if(d<=c.start_date)return c.start;if(d>=c.end_date)return c.end;const t0=Date.parse(c.start_date),t1=Date.parse(c.end_date);return c.start+(c.end-c.start)*(Date.parse(d)-t0)/(t1-t0)};
-  // project the schedule ~40 days ahead so the rising edge is visible right of today
-  const FUT=MR.length?[10,20,30,40].map(k=>{const d=new Date(Date.parse(MR[MR.length-1].date)+k*864e5).toISOString().slice(0,10),c=CLS(d);return{date:d,cheap_line:c,oh_floor_base:c+(mc.overheated_gap_above_cheap??0.15)}}):[];
-  const ZP=MR.filter((r,i)=>i%3===0||i===MR.length-1).filter(r=>r.cheap_line!=null).concat(FUT),cl0=Math.min(...ZP.map(r=>r.cheap_line).concat([ch]));
-  const B0=Math.min(cl0-0.08,b0-0.06),B1=Math.max(Math.max(...ZP.map(r=>r.oh_floor_base??ov).concat([ov]))+0.1,b1+0.08);
-  const PT=(k,dflt)=>ZP.map(r=>`${r.date},${r[k]??dflt}`),RV_=a=>a.slice().reverse();
-  const pth=(pts)=>'M'+pts.join('L'),poly=(upper,lower)=>pth(upper.concat(RV_(lower)))+'Z';
-  const xs0=ZP.length?ZP[0].date:x[0],xs1=ZP.length?ZP[ZP.length-1].date:x[n],flat=v=>[`${xs0},${v}`,`${xs1},${v}`];
-  const zsh=ZP.length<2?[]:[{type:'path',xref:'x',yref:'y2',path:poly(PT('cheap_line',ch),ZP.map(r=>`${r.date},${B0}`)),fillcolor:'rgba(46,160,67,0.16)',line:{width:0},layer:'below'},
-    {type:'path',xref:'x',yref:'y2',path:poly(PT('oh_floor_base',ov),PT('cheap_line',ch)),fillcolor:'rgba(56,139,253,0.09)',line:{width:0},layer:'below'},
-    {type:'path',xref:'x',yref:'y2',path:poly(ZP.map(r=>`${r.date},${B1}`),PT('oh_floor_base',ov)),fillcolor:'rgba(248,81,73,0.12)',line:{width:0},layer:'below'},
-    {type:'path',xref:'x',yref:'y2',path:pth(PT('cheap_line',ch)),line:{color:'rgba(46,160,67,0.7)',width:1,dash:'dot'}},
-    {type:'path',xref:'x',yref:'y2',path:pth(PT('oh_floor_base',ov)),line:{color:'rgba(248,81,73,0.6)',width:1,dash:'dot'}}];
-  const fs2=mob?9.5:11;
-  ann.push({xref:'paper',yref:'y2',x:0.01,y:B1,xanchor:'left',yanchor:'top',showarrow:false,text:`Overvalued ≥ ${fmt(ov,2)}x base floor`,font:{size:fs2,color:'#f85149'},bgcolor:ab,opacity:0.85},
-    {xref:'paper',yref:'y2',x:0.01,y:B0,xanchor:'left',yanchor:'bottom',showarrow:false,text:mob?`Cheap cap ${fmt(ch,2)}x`:`Cheap cap ${fmt(ch,2)}x (CHEAP also needs a low 1y pct, relaxing toward the 40th when the preferred is near par; MSTR cap held at ${fmt((((vc.cheap_cap||{}).MSTR)||{}).hold_value,2)}x)`,font:{size:fs2,color:'#3fb950'},bgcolor:ab,opacity:0.85},
-    {xref:'paper',yref:'y2',x:mob?0.01:0.5,y:(ch+ov)/2,xanchor:mob?'left':'center',showarrow:false,text:mob?'Fair / rich':'Fair / rich: each stock\'s own 1y 25th–75th / above 75th pct (see hover)',font:{size:fs2,color:'#79a6e8'},bgcolor:ab,opacity:0.8});
-  ASSETS.forEach((aa,ai)=>{const a=aa.ticker,k=aa.key,P=MR.filter(r=>r[k+'_mnav'+sx]!=null);if(!P.length)return;
-    tr.push({name:`${a} ${bl} mNAV`,meta:a,x:P.map(r=>r.date),y:P.map(r=>r[k+'_mnav'+sx]),yaxis:'y2',mode:'lines',line:{color:C[a],width:2.2},
-      customdata:P.map(r=>[zl(r[k+'_zone_'+bs]),r[k+'_mnav_'+bs+'_pct']==null?'—':ord(Math.round(r[k+'_mnav_'+bs+'_pct']*100))]),
-      hoverinfo:'skip'});
-    if(HIDE.has(a))return;const L0=P[P.length-1],v=L0[k+'_mnav'+sx],o=((V[a]||{})[bs==='ev'?'all_in_ev':'market_standard'])||{};
-    const zt=bs==='ev'?zoneTxt({zone:o.zone,low_fair:((bf.per_asset||{})[a]||bf[a]||{}).low_fair}):(o.zone||zl(L0[k+'_zone_'+bs]).toUpperCase());
-    const other=ASSETS.map(q=>q.key).filter(q=>q!==k).map(q=>L0[q+'_mnav'+sx])[0],above=other==null||v>=other;
-    tr.push({...sk,name:a+' today',x:[L0.date],y:[v],yaxis:'y2',mode:'markers',marker:{size:8,color:C[a],line:{color:t.fg,width:1.5}}});
-    ann.push({xref:'x',yref:'y2',x:L0.date,y:v,text:`${a} ${fmt(v,2)}x ${zt}`,showarrow:true,arrowhead:0,arrowcolor:C[a],ax:mob?-46:-64,ay:above?-16:16,font:{size:fs2,color:C[a]},bgcolor:ab,bordercolor:C[a],borderpad:2})});
-  // one shared hover block (date, both mNAVs + zones, gap, who looks cheaper) on both panels
-  const byD={};MR.forEach(r=>byD[r.date]=r);
-  const HT=R.map((r,i)=>{const q=byD[r.date]||r,dz=y[i]-m[i];
-    return ASSETS.map(aa=>{const v=q[aa.key+'_mnav'+sx],pc=q[aa.key+'_mnav_'+bs+'_pct'];
-      return `<span style="color:${C[aa.ticker]}">${aa.ticker}</span> mNAV (${bl}) <b>${fmt(v,2)}x</b> · ${zl(q[aa.key+'_zone_'+bs])}${pc==null?'':' ('+ord(Math.round(pc*100))+' pct)'}`}).join('<br>')+
+  const HT=R.map((r,i)=>{const dz=y[i]-m[i];
+    return ASSETS.map(aa=>{const v=r[aa.key+'_mnav'+sx],pc=r[aa.key+'_mnav_'+bs+'_pct'];
+      return `<span style="color:${C[aa.ticker]}">${aa.ticker}</span> mNAV (${bl}) <b>${fmt(v,2)}x</b> · ${zl(r[aa.key+'_zone_'+bs])}${pc==null?'':' ('+ord(Math.round(pc*100))+' pct)'}`}).join('<br>')+
       `<br>${mode==='ratio'?'Ratio <b>'+fmt(y[i],2)+'x</b>':'Gap <b>'+sx2(y[i])+'x</b>'} · vs 1y avg ${mode==='ratio'?sx2(dz):sx2(dz)+'x'} (gap z ${sx2(r['spread_z'+sx])})<br><b>${gapWord(r['spread_z'+sx],mc)}</b>`});
   tr.forEach(t=>{if(t._gap){t.text=HT;delete t._gap}});
-  tr.push({name:'hover',x,y:x.map(()=>(B0+B1)/2),yaxis:'y2',mode:'markers',marker:{size:1,opacity:0},showlegend:false,_h:1,text:HT,hovertemplate:'%{text}<extra></extra>'});
-  const L=keepRange('c_spread',baseLayout(mode==='ratio'?'ratio (x)':'gap (x)',{shapes:(mode==='diff'?[hline(0,'#8b949e','dot')]:[hline(1,'#8b949e','dot')]).concat(zsh)}));
+  const L=keepRange('c_spread',baseLayout(mode==='ratio'?'ratio (x)':'gap (x)',{shapes:(mode==='diff'?[hline(0,'#8b949e','dot')]:[hline(1,'#8b949e','dot')])}));
   delete L.yaxis9;
   const endD=new Date(new Date(x[n]).getTime()+(mob?12:6)*864e5).toISOString().slice(0,10);
   if(!$('c_spread')._fullLayout)L.xaxis.range=[x[0],endD];
   Object.assign(L,{hovermode:'x unified',showlegend:false,annotations:ann,margin:{l:mob?44:56,r:mob?12:24,t:mob?36:30,b:20}});
-  L.xaxis.anchor='y2';L.yaxis2={domain:[0,0.33],range:[B0,B1],autorange:false,gridcolor:t.grid,gridwidth:0.5,ticksuffix:'x',tickformat:'.2f',title:mob?'':'mNAV (x)',zeroline:false,fixedrange:true};
-  L.yaxis.domain=[0.4,1];
   L.yaxis=Object.assign(L.yaxis,{range:[Y0,Y1],autorange:false,tickformat:mode==='ratio'?'.2f':'+.2f',ticksuffix:'x',title:mob?'':L.yaxis.title,zeroline:false});
-  Object.assign(L.xaxis.rangeslider,{thickness:0.04,bgcolor:t.bg,bordercolor:t.line,borderwidth:1});
+  Object.assign(L.xaxis.rangeslider,{thickness:0.08,bgcolor:t.bg,bordercolor:t.line,borderwidth:1});
   if(mob){L.xaxis.rangeselector.buttons=L.xaxis.rangeselector.buttons.filter(b=>['3M','6M','1Y','All'].includes(b.label));L.xaxis.rangeselector.font={size:11,color:t.fg}}
   plot('c_spread',tr,L,{hover:false});
-  $('mnnote').innerHTML=`<b>Bottom panel</b>: MSTR and ASST ${BL(bs)} mNAV (same toggle as the gap). Zones use each stock's own trailing ${mc.lookback_trading_days}-day percentiles on this basis (config.json → valuation / mnav): <b>cheap</b> ≤ the day's percentile gate (base ${(vc.cheap_max_percentile??0.25)*100}th, up to the 40th when the preferred is near par) <i>and</i> at or below the cheap <b>cap</b> (green band is the schedule, today ${fmt(ch,2)}x rising to ${fmt((vc.cheap_below_mnav_schedule||{}).end,2)}x by ${(vc.cheap_below_mnav_schedule||{}).end_date}; the cap itself can rise slightly with anticipation; MSTR's cap is held at ${fmt((((vc.cheap_cap||{}).MSTR)||{}).hold_value,2)}x until its own 1y median > ${fmt((((vc.cheap_cap||{}).MSTR)||{}).median_above,2)}x); <b>fair</b> up to the ${(vc.rich_above_percentile??0.75)*100}th pct; <b>rich</b> above it; <b>overvalued</b> at or above the stock's overheated floor (cap + ${fmt(mc.overheated_gap_above_cheap,2)}, today ${fmt(ov,2)}x base, plus a sliding anticipation premium while the flywheel is off — up to +${fmt((mc.anticipation||{}).max_premium,2)} as the preferred approaches $${fmt((mc.anticipation||{}).on_trade_threshold,2)}, tilted if it has been climbing or falling — or +${fmt((mc.anticipation||{}).max_premium,2)} while ON / running hot) <i>or</i> ≥ the ${mc.overheated_percentile*100}th pct. The red band starts at the base floor; today's exact floor (incl. anticipation) and cheap gate are on the cards. Stock-only and diluted-equity mNAV are in the CSV and the cards; step jumps happen where filings change debt, preferreds or cash (see Method).`;
-  $('gapsub').textContent=`ASST's ${bs==='ev'?'incl. debt & preferreds':'stock-only'} mNAV minus MSTR's${mode==='ratio'?' (shown as a ratio)':''}: the dashed line is its 1-year average, and the shaded edges are ±1σ from that average, the same bands the rotation rule uses; below, each stock's own mNAV.`;
+  plotMnavZones();
+  $('mnnote').innerHTML=`<b>Per-stock charts</b> under the gap: each name is drawn against its own sliding cheap gate (green) and overvalued floor (red). Both lines move with that stock's preferred (STRC for MSTR, SATA for ASST): they rise toward par / a turning-on flywheel, and sit lower when the preferred is washed out. The cheap gate is the effective CHEAP threshold — the lower of the (anticipation-raised) cap and the mNAV at the day's percentile gate (25th, up to the 40th near par). The red line is the first print that would be OVERVALUED (the lower of the overheated floor and the 90th percentile). Today's exact numbers are on the cards and in the hover. Stock-only and diluted-equity mNAV are in the CSV; the toggle above switches the basis for the gap and these charts together.`;
+  $('gapsub').textContent=`ASST's ${bs==='ev'?'incl. debt & preferreds':'stock-only'} mNAV minus MSTR's${mode==='ratio'?' (shown as a ratio)':''}: the dashed line is its 1-year average, and the shaded edges are ±1σ from that average, the same bands the rotation rule uses. The two charts underneath compare each stock to its own sliding cheap and overvalued lines.`;
   renderGapSum();
   $('spnote').innerHTML=`Orange = ${lab} (${BL(bs)}). Dashed = its trailing ${mc.lookback_trading_days}-trading-day (1-year) average. Green zone = above average + ${kh}σ (gap z ≥ +${kh}: MSTR cheap vs ASST); teal zone = below average ${kl}σ (gap z ≤ ${kl}: ASST cheap vs MSTR); in between = normal. These are the rotation thresholds in config.json → mnav, so the chart and the rule agree. ${mode==='ratio'?'The ratio view draws ±1σ bands of the ratio; the rule itself uses the gap, so ratio band edges are close but not identical.':'The ratio view (ASST ÷ MSTR) is available above.'} ASST usually trades at a higher mNAV than MSTR, so a positive gap is normal. A wide gap is not a buy signal by itself; the call still needs that parent's Flywheel ON.`;
   linkCharts()}
+
+
+function plotMnavZones(){
+  const bs=GB,sx='_'+bs,mc=D.config.mnav,t=TH(),mob=innerWidth<640,bl=bs==='ev'?'incl. debt & pref.':'stock only';
+  const start=D.config.window_start,zl=z=>({CHEAP:'cheap',FAIR:'fair',RICH:'rich',OVERVALUED:'overvalued'}[z]||'n/a');
+  const gateOf=(r,k)=>r[k+'_cheap_gate'+sx]??r[k+'_cheap_gate']??r[k+'_cheap_cap_eff']??r[k+'_cheap_cap']??null;
+  const ovOf=(r,k)=>{const fl=r[k+'_oh_floor'],q90=r[k+'_mnav'+sx+'_q90']??r[k+'_mnav_q90'];
+    return r[k+'_ov_line'+sx]??r[k+'_ov_line']??(fl!=null&&q90!=null?Math.min(fl,q90):fl??null)};
+  ASSETS.forEach(aa=>{
+    const a=aa.ticker,k=aa.key,id='c_mnav_'+a.toLowerCase(),el=$(id);if(!el)return;
+    const P=D.rows.filter(r=>r.date>=start&&r[k+'_mnav'+sx]!=null);if(!P.length)return;
+    const x=P.map(r=>r.date),mnav=P.map(r=>r[k+'_mnav'+sx]),cheap=P.map(r=>gateOf(r,k)),ov=P.map(r=>ovOf(r,k));
+    const vals=[...mnav,...cheap,...ov].filter(v=>v!=null&&isFinite(v));
+    const mn=Math.min(...vals),mx=Math.max(...vals),pad=Math.max((mx-mn)*0.08,0.04),Y0=mn-pad,Y1=mx+pad;
+    const last=P[P.length-1],v=last[k+'_mnav'+sx],ch=gateOf(last,k),fl=ovOf(last,k),prem=last[k+'_oh_prem'],pref=last[aa.preferred];
+    const zone=last[k+'_zone_'+bs]||last[k+'_zone'],pc=last[k+'_mnav_'+bs+'_pct'];
+    const fly=flyS(last['fly_'+aa.preferred]||last['peg_'+aa.preferred]);
+    const h=$('mnh_'+a.toLowerCase());
+    const ohf=last[k+'_oh_floor'];
+    if(h)h.innerHTML=`<span style="color:${C[a]}">${a} ${bl} mNAV</span><span class="mut">${aa.preferred} $${fmt(pref)} ${fly} · overvalued ≥ ${fmt(fl,2)}x · cheap ≤ ${fmt(ch,2)}x</span>`;
+    const sk={hoverinfo:'skip',showlegend:false,mode:'lines',_h:1};
+    const tr=[
+      {...sk,name:'_lo',x,y:x.map(()=>Y0),line:{width:0}},
+      {name:'Cheap gate',x,y:cheap,mode:'lines',fill:'tonexty',fillcolor:'rgba(46,160,67,0.16)',
+        line:{color:'rgba(46,160,67,0.95)',width:1.7,dash:'dot',shape:'hv'},
+        hovertemplate:'Cheap gate %{y:.2f}x (cap & percentile; rises near par)<extra></extra>'},
+      {name:'Overvalued floor',x,y:ov,mode:'lines',fill:'tonexty',fillcolor:'rgba(56,139,253,0.06)',
+        line:{color:'rgba(248,81,73,0.95)',width:1.8,dash:'dot',shape:'hv'},
+        hovertemplate:'Overvalued floor %{y:.2f}x (rises as the preferred nears par)<extra></extra>'},
+      {...sk,name:'_hi',x,y:x.map(()=>Y1),fill:'tonexty',fillcolor:'rgba(248,81,73,0.14)',line:{width:0}},
+      {name:a+' mNAV',meta:a,x,y:mnav,mode:'lines',line:{color:C[a],width:2.4},
+        customdata:P.map(r=>[zl(r[k+'_zone_'+bs]||r[k+'_zone']),r[k+'_mnav_'+bs+'_pct'],gateOf(r,k),ovOf(r,k),r[k+'_oh_prem'],r[aa.preferred],flyS(r['fly_'+aa.preferred]||r['peg_'+aa.preferred])]),
+        hovertemplate:`<span style="color:${C[a]}">${a}</span> <b>%{y:.2f}x</b> · %{customdata[0]}%{customdata[1]?" (" + "" : ""}`+
+          `%{customdata[1]}<extra></extra>`}
+    ];
+    // Build a clear hover string per day (customdata hovertemplate with ordinals is awkward)
+    const HT=P.map((r,i)=>{
+      const z=zl(r[k+'_zone_'+bs]||r[k+'_zone']),p=r[k+'_mnav_'+bs+'_pct'];
+      const g=gateOf(r,k),o=ovOf(r,k),pr=r[k+'_oh_prem'],ohf=r[k+'_oh_floor'];
+      const just=o!=null&&mnav[i]!=null&&mnav[i]>=o&&mnav[i]-o<=0.06?' · just above the line':o!=null&&mnav[i]!=null&&mnav[i]<o&&o-mnav[i]<=0.06?' · just below the line':'';
+      const ohbit=ohf!=null&&o!=null&&Math.abs(ohf-o)>0.0005?` (90th; overheated floor ${fmt(ohf,2)}x)`:(pr?` (+${fmt(pr,2)} anticipation)`:'');
+      return `<span style="color:${C[a]}">${a}</span> mNAV (${bl}) <b>${fmt(mnav[i],2)}x</b> · ${z}${p==null?'':' ('+ord(Math.round(p*100))+' pct)'}${just}`+
+        `<br>Overvalued line <b>${fmt(o,2)}x</b>${ohbit}`+
+        `<br>Cheap gate <b>${fmt(g,2)}x</b>`+
+        `<br>${aa.preferred} $${fmt(r[aa.preferred])} ${flyS(r['fly_'+aa.preferred]||r['peg_'+aa.preferred])}`;
+    });
+    tr[4].text=HT;tr[4].hovertemplate='%{text}<extra></extra>';delete tr[4].customdata;
+    tr.push({...sk,name:a+' today',x:[last.date],y:[v],mode:'markers',marker:{size:10,color:C[a],line:{color:t.fg,width:1.5}}});
+    const fs=mob?10.5:12,ab=t.panel,above=fl==null||v>=((ch??Y0)+ (fl??Y1))/2;
+    const just=fl!=null&&v>=fl&&v-fl<=0.06?' · just above':fl!=null&&v<fl&&fl-v<=0.06?' · just below':'';
+    const ann=[
+      {xref:'paper',yref:'y',x:0.01,y:fl??Y1,xanchor:'left',yanchor:'bottom',showarrow:false,text:`Overvalued ≥ ${fmt(fl,2)}x`,font:{size:fs,color:'#f85149'},bgcolor:ab,opacity:0.88},
+      {xref:'paper',yref:'y',x:0.01,y:ch??Y0,xanchor:'left',yanchor:'top',showarrow:false,text:`Cheap ≤ ${fmt(ch,2)}x`,font:{size:fs,color:'#3fb950'},bgcolor:ab,opacity:0.88},
+      {xref:'x',yref:'y',x:last.date,y:v,text:`${a} ${fmt(v,2)}x ${zone||''}${just}`,showarrow:true,arrowhead:0,arrowcolor:C[a],ax:mob?-36:-44,ay:above?-22:22,xanchor:'right',font:{size:fs,color:C[a]},bgcolor:ab,bordercolor:C[a],borderpad:2}
+    ];
+    const L=keepRange(id,baseLayout('mNAV (x)',{}));
+    delete L.yaxis9;
+    const endD=new Date(new Date(x[x.length-1]).getTime()+(mob?12:6)*864e5).toISOString().slice(0,10);
+    if(!el._fullLayout)L.xaxis.range=[x[0],endD];
+    Object.assign(L,{hovermode:'x unified',showlegend:false,annotations:ann,margin:{l:mob?42:52,r:mob?14:22,t:8,b:28}});
+    L.yaxis=Object.assign(L.yaxis,{range:[Y0,Y1],autorange:false,ticksuffix:'x',tickformat:'.2f',title:mob?'':'mNAV (x)',zeroline:false,fixedrange:true});
+    L.xaxis.rangeslider={visible:false};
+    L.xaxis.rangeselector={visible:false};
+    plot(id,tr,L,{hover:false});
+  });
+}
 let GB='ev',SPM='diff';
 function renderTop(){const F=freshness(),fw=A.flywheel,t=lastTwo('btc');
   $('tb_btc').innerHTML=`BTC $${fmt(t.v,0)} <span class="tb-ch ${cls(t.ch)}">${spct(t.ch,1)}</span>`;
