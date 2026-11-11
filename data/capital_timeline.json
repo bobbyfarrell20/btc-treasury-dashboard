@@ -1,5 +1,5 @@
 {
- "generated_utc": "2026-11-11T17:00:30+00:00",
+ "generated_utc": "2026-11-11T21:29:05+00:00",
  "version": 1,
  "MSTR": {
   "basic_shares": [
@@ -491,7 +491,7 @@
    ],
    [
     "2026-11-11",
-    425589288.0,
+    425590519.0,
     "https://api.strategy.com/btc/kpiData",
     false
    ]
@@ -993,7 +993,7 @@
    ],
    [
     "2026-11-11",
-    120823128.0,
+    120811877.0,
     "https://api.strategy.com/btc/kpiData",
     false
    ]
@@ -1299,9 +1299,9 @@
     },
     {
      "date": "2026-11-11",
-     "anchor": 425589288,
+     "anchor": 425590519,
      "predicted_from_flows": 425584507.0,
-     "residual": 4781.0,
+     "residual": 6012.0,
      "src": "https://api.strategy.com/btc/kpiData"
     }
    ],
@@ -1415,9 +1415,9 @@
     },
     {
      "date": "2026-11-11",
-     "anchor": 120823128,
+     "anchor": 120811877,
      "predicted_from_flows": 120818993.0,
-     "residual": 4135.0,
+     "residual": -7116.0,
      "src": "https://api.strategy.com/btc/kpiData"
     }
    ],
@@ -1432,33 +1432,33 @@
    ]
   },
   "strategy_kpi_latest": {
-   "fetched_utc": "2026-11-11T17:00:31+00:00",
-   "timestamp_utc": "2026-11-11T17:00:00",
-   "market_cap_m": 52241.0,
-   "ev_m": 66987.0,
+   "fetched_utc": "2026-11-11T21:29:06+00:00",
+   "timestamp_utc": "2026-11-11T21:00:00",
+   "market_cap_m": 52071.0,
+   "ev_m": 66817.0,
    "debt_m": 6714.0,
    "pref_m": 12946.0,
-   "price": 122.75,
+   "price": 122.35,
    "per_ticker": {
     "MSTR": {
-     "shares": 425589288,
-     "price": 122.7498
+     "shares": 425590519,
+     "price": 122.35
     },
     "STRK": {
-     "shares": 14021978,
-     "price": 68.25
+     "shares": 14013765,
+     "price": 68.29
     },
     "STRF": {
-     "shares": 12839747,
-     "price": 102.65
+     "shares": 12838300,
+     "price": 102.35
     },
     "STRD": {
-     "shares": 14029981,
-     "price": 68.71
+     "shares": 14021818,
+     "price": 68.75
     },
     "STRC": {
-     "shares": 79931422,
-     "price": 99.9732
+     "shares": 79937994,
+     "price": 99.99
     },
     "STRE": {
      "shares": 7753038,

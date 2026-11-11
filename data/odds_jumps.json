@@ -15,8 +15,8 @@
    "question": "Will there be no change in Fed interest rates after the December 2026 meeting?",
    "url": "https://polymarket.com/event/fed-decision-in-december-20260729232808632",
    "from": 0.225,
-   "to": 0.0305,
-   "change_pts": -19.4,
+   "to": 0.0295,
+   "change_pts": -19.6,
    "from_date": "2026-11-04",
    "news": {
     "headline": "Fed Forced to Confront Case for Bigger and Faster Rate Rises - WSJ",
@@ -57,8 +57,8 @@
    "question": "Will there be no change in Fed interest rates after the December 2026 meeting?",
    "url": "https://polymarket.com/event/fed-decision-in-december-20260729232808632",
    "from": 0.185,
-   "to": 0.0305,
-   "change_pts": -15.4,
+   "to": 0.0295,
+   "change_pts": -15.6,
    "from_date": "2026-11-10",
    "news": {
     "headline": "Fed Forced to Confront Case for Bigger and Faster Rate Rises - WSJ",
@@ -103,9 +103,9 @@
    "change_pts": -11.0,
    "from_date": "2026-11-10",
    "news": {
-    "headline": "MSTR Stock In Focus: MSCI Prepares First Index Review Under New Crypto Treasury Rules - Yahoo Finance",
-    "url": "https://news.google.com/rss/articles/CBMimwFBVV95cUxQZjBndEgzZGVKWi1zRkJMZWxxVmNEVWo2d3RLWWZuUi15NW52N0tDbHV3TlBXdV9iQ05CYlZrYnM4bmx2Z3QyRWg0amRzaXNOYmdxSDE4TmtDbmJSa1JOUENnc2FocDVEYkRodHpFTk13bDZPNURPM1RGZ3N5aE5HcjRjTHBGS0JXV1BUZ1JseXBKcGU5blZaNk5yUQ?oc=5",
-    "published": "Wed, 11 Nov 2026 09:03:31 GMT",
+    "headline": "Bitcoin Treasury Selling Hits Rare Level Ahead of MicroStrategy’s MSCI Test - Yahoo Finance",
+    "url": "https://news.google.com/rss/articles/CBMioAFBVV95cUxNZlFHWEIxbDdBTkVmMlB5alJ0c2JzMXdwejZPb29TcG50UjFzMVpEanN1cDlxRFVKNTdTUndZRG5JQlNzQkdJNFJMc1ltNHdCb0ZGcW5kTy1JVDQzc25PWDVfZ0p2NkZ2NlJ1SzM5QndFSGlRcW12TmdmU3ZxQXozYmRLanQ3eGI5aldGeW1oRkNJWG9tWmZGNW5JNk5MLThx?oc=5",
+    "published": "Wed, 11 Nov 2026 19:44:14 GMT",
     "publisher": "Yahoo Finance",
     "via": "Google News RSS"
    }
@@ -287,7 +287,7 @@
    "odds": [
     {
      "outcome": "Before Jan 1, 2027",
-     "yes": 0.037
+     "yes": 0.038
     }
    ]
   },
@@ -304,5 +304,5 @@
    "odds": []
   }
  ],
- "generated_utc": "2026-11-11T17:00:50+00:00"
+ "generated_utc": "2026-11-11T21:29:30+00:00"
 }
