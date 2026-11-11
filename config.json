@@ -56,10 +56,22 @@
     "lookback_trading_days": 252,
     "overheated_percentile": 0.9,
     "overheated_min_mnav": 1.25,
-    "_overheated_comment": "Overheated floor is per stock per date: base = that stock's cheap CAP (valuation.cheap_cap; MSTR held flat at 1.10x until its own 1y median mNAV > 1.30x, ASST on the rising schedule) + overheated_gap_above_cheap, + overheated_bonus_on while its flywheel is ON (code ON), + overheated_bonus_running_hot while RUNNING_HOT (not WARMING_UP). Overheated = mNAV >= floor AND >= overheated_percentile of the lookback. overheated_min_mnav is the legacy fixed floor, kept only as a fallback.",
+    "_overheated_comment": "Overheated floor is per stock per date: base = that stock's cheap CAP (valuation.cheap_cap; MSTR held flat at 1.10x until its own 1y median mNAV > 1.30x, ASST on the rising schedule) + overheated_gap_above_cheap, plus mnav.anticipation (preferred-driven sliding premium) while the flywheel is OFF, or max(the ON / RUNNING_HOT bonus, anticipation.max_premium) while ON / RUNNING_HOT so the line never drops below the off-state maximum. There is no extra RUNNING_HOT bump on top of max_premium. Overheated (the call's filter) = mNAV >= floor AND >= overheated_percentile of the lookback. The OVERVALUED zone is floor OR that percentile. overheated_min_mnav is the legacy fixed floor, kept only as a fallback. overheated_bonus_on / overheated_bonus_running_hot remain the legacy ON / RUNNING_HOT adders (0.15 / 0.30); with anticipation.enabled they are floored at max_premium (both 0.30 under the 2026-11-11 rule).",
     "overheated_gap_above_cheap": 0.15,
     "overheated_bonus_on": 0.15,
     "overheated_bonus_running_hot": 0.3,
+    "anticipation": {
+      "_comment": "Bobby, 2026-11-11: sliding 'anticipation' premium on the overheated floor and a matching CHEAP-gate bump, driven by how close the parent's preferred is to par (STRC for MSTR, SATA for ASST) and whether it is climbing or falling. Symmetric; no fixed ASST extra. Off-state floor premium = clamp(max_premium x proximity + tilt, 0, max_premium), with proximity = clamp((preferred close - low) / (on_trade_threshold - low), 0, 1). Tilt is +/-tilt from the preferred's trend_days trading-day close change; |change| < tilt_dead_zone is flat (tilt 0). Missing preferred close -> premium 0. When the flywheel is ON or RUNNING_HOT, floor premium = max(overheated_bonus_on or overheated_bonus_running_hot, max_premium) and score = 1. The same 0-1 score (off premium / max_premium) raises the CHEAP gate: cheap_cap_eff = cheap_cap + cheap_cap_bump x score, cheap_pct = valuation.cheap_max_percentile + cheap_percentile_relax x score (25th -> 40th at full score). CHEAP is display-only and does not change the call. Regular-session closes only.",
+      "enabled": true,
+      "max_premium": 0.3,
+      "low": 95.0,
+      "on_trade_threshold": 99.8,
+      "tilt": 0.05,
+      "tilt_dead_zone": 0.1,
+      "trend_days": 5,
+      "cheap_cap_bump": 0.05,
+      "cheap_percentile_relax": 0.15
+    },
     "spread_z_favor_asst": -1.0,
     "spread_z_favor_mstr": 1.0,
     "both_overheated_action": "SELL_TO_BTC",
@@ -70,7 +82,7 @@
     "_ev_share_basis_comment": "Share count used for the equity leg of EV. 'basic' (Strategy's own EV definition) avoids double-counting convertible notes, which are already in debt. 'diluted' is an option."
   },
   "valuation": {
-    "_comment": "Zones (review change 4), applied to each mNAV basis separately using each stock's own trailing mnav.lookback_trading_days (252) percentile on that basis: OVERVALUED: mNAV >= the stock's overheated floor OR percentile >= mnav.overheated_percentile (90th). CHEAP: percentile <= cheap_max_percentile (25th) AND mNAV <= the stock's cheap cap. FAIR: percentile <= rich_above_percentile (75th) (incl. bottom-quartile days above the cap). RICH: above the 75th percentile, below OVERVALUED.",
+    "_comment": "Zones, applied to each mNAV basis separately using each stock's own trailing mnav.lookback_trading_days (252) percentile on that basis: OVERVALUED: mNAV >= the stock's overheated floor OR percentile >= mnav.overheated_percentile (90th). CHEAP: percentile <= the per-day cheap_pct (valuation.cheap_max_percentile, 25th, plus mnav.anticipation.cheap_percentile_relax x score, up to the 40th when the preferred is at/near par or the flywheel is ON) AND mNAV <= the stock's cheap_cap_eff (structural cheap cap + cheap_cap_bump x the same score). FAIR: percentile <= rich_above_percentile (75th) (incl. bottom-quartile days above the cap). RICH: above the 75th percentile, below OVERVALUED. See mnav.anticipation for the score (preferred proximity + 5-day tilt).",
     "fair_max_percentile": 0.5,
     "cheap_below_mnav_schedule": {
       "_comment": "Bull-cycle cheap line: start at start_date, rising linearly to end at end_date (next BTC halving estimate; update when known), flat at end afterwards. Dates before start_date use the flat start value (1.10x).",

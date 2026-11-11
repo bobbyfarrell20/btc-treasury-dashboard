@@ -339,6 +339,46 @@ def cheap_cap(d, vc, asset, med):
         return pol.get("hold_value", 1.1), "held"
     return cheap_line(d, vc), "schedule"
 
+def _clamp(x, lo, hi):
+    return lo if x < lo else hi if x > hi else x
+
+def anticipation(rows, i, pref, code, mc=None):
+    """Preferred-driven sliding premium and 0-1 score (config mnav.anticipation).
+
+    Off-state: clamp(max_premium * proximity + tilt, 0, max_premium), with
+    proximity = clamp((close - low) / (on_trade_threshold - low), 0, 1) and tilt
+    from the preferred's trend_days change. ON / RUNNING_HOT: premium =
+    max(the matching overheated_bonus_*, max_premium), score = 1, so the floor
+    never drops below the off-state maximum. Returns (premium, score, extras).
+    """
+    mc = mc or CFG["mnav"]
+    ac = mc.get("anticipation") or {}
+    bonus_hot = mc.get("overheated_bonus_running_hot", 0.30)
+    bonus_on = mc.get("overheated_bonus_on", 0.15)
+    if not ac.get("enabled"):
+        prem = bonus_hot if code == "RUNNING_HOT" else (bonus_on if code == "ON" else 0.0)
+        return prem, (1.0 if code in FW.ON_CODES else 0.0), {}
+    max_p = float(ac.get("max_premium", 0.30))
+    low = float(ac.get("low", 95.0))
+    thresh = float(ac.get("on_trade_threshold", (CFG.get("peg") or {}).get("on_trade_threshold", 99.8)))
+    tilt_m = float(ac.get("tilt", 0.05))
+    dead = float(ac.get("tilt_dead_zone", 0.10))
+    n = int(ac.get("trend_days", 5))
+    if code in FW.ON_CODES:
+        prem = max(bonus_hot if code == "RUNNING_HOT" else bonus_on, max_p)
+        return prem, 1.0, {"proximity": 1.0, "tilt": 0.0, "chg": None}
+    px = rows[i].get(pref) if 0 <= i < len(rows) else None
+    prox = 0.0 if px is None or thresh <= low else _clamp((px - low) / (thresh - low), 0.0, 1.0)
+    chg = None
+    if i >= n:
+        prev = rows[i - n].get(pref)
+        if prev is not None and px is not None:
+            chg = px - prev
+    tilt = 0.0 if chg is None or abs(chg) < dead else (tilt_m if chg > 0 else -tilt_m)
+    prem = _clamp(max_p * prox + tilt, 0.0, max_p)
+    score = 0.0 if max_p <= 0 else prem / max_p
+    return prem, score, {"proximity": prox, "tilt": tilt, "chg": chg}
+
 def main():
     cache_f = DATA / "edgar_cache.json"
     cache = json.loads(cache_f.read_text()) if cache_f.exists() else {}
@@ -514,9 +554,13 @@ def main():
     if rows and BB.get("flag") and not rows[-1].get("bb_" + bpref):
         BB = dict(BB, flag=False, cleared_by_atm=last_clearing_atm or rows[-1]["date"],
                   note="8-K flag overridden: STRC ATM issuance after the latest 8-K week (data/atm_activity.json) stays active until a later 8-K week reports buybacks with no sales")
-    # ---- per-stock overheated floor: cheap line + gap, + flywheel bonus (on / running hot)
+    # ---- per-stock overheated floor + CHEAP gate: cheap cap + gap, + anticipation / ON premium
     vc0 = CFG.get("valuation", {})
-    for r in rows:
+    ac0 = mc.get("anticipation") or {}
+    qc0 = vc0.get("cheap_max_percentile", 0.25)
+    cap_bump = float(ac0.get("cheap_cap_bump", 0.0) if ac0.get("enabled") else 0.0)
+    pct_relax = float(ac0.get("cheap_percentile_relax", 0.0) if ac0.get("enabled") else 0.0)
+    for i, r in enumerate(rows):
         r["cheap_line"] = cheap_line(r["date"], vc0)
         r["oh_floor_base"] = round(r["cheap_line"] + mc.get("overheated_gap_above_cheap", 0.15), 4)
         for A in (CFG.get("assets") or []):
@@ -525,8 +569,17 @@ def main():
             base = round(r[k + "_cheap_cap"] + mc.get("overheated_gap_above_cheap", 0.15), 4)
             r[k + "_oh_floor_base"] = base
             code = r.get("fly_" + A["preferred"])
-            bonus = mc.get("overheated_bonus_running_hot", 0.30) if code == "RUNNING_HOT" else (mc.get("overheated_bonus_on", 0.15) if code == "ON" else 0.0)
-            r[k + "_oh_floor"] = round(base + bonus, 4)
+            prem, score, extra = anticipation(rows, i, A["preferred"], code, mc)
+            r[k + "_oh_prem"] = round(prem, 4)
+            r[k + "_oh_floor"] = round(base + prem, 4)
+            r[k + "_anticip_score"] = round(score, 4)
+            if extra.get("proximity") is not None:
+                r[k + "_anticip_prox"] = round(extra["proximity"], 4)
+            if extra.get("chg") is not None:
+                r[k + "_pref_chg5"] = round(extra["chg"], 4)
+            cap0 = r[k + "_cheap_cap"]
+            r[k + "_cheap_cap_eff"] = round((cap0 if cap0 is not None else r["cheap_line"]) + cap_bump * score, 4)
+            r[k + "_cheap_pct"] = round(qc0 + pct_relax * score, 4)
 
     # ---- signals per day
     def day_signal(r):
@@ -589,19 +642,22 @@ def main():
     # ---- valuation zones (who's cheap vs expensive)
     vc = CFG.get("valuation", {})
     QC, QR = vc.get("cheap_max_percentile", 0.25), vc.get("rich_above_percentile", 0.75)
-    def zone(v, p, cap, fl):
-        """Own trailing-1y percentile zones; the cap blocks CHEAP above it; OVERVALUED = floor or top decile."""
+    def zone(v, p, cap, fl, cheap_pct=None):
+        """Own trailing-1y percentile zones; the (possibly anticipation-raised) cap and
+        cheap_pct block CHEAP; OVERVALUED = floor or top decile."""
         if v is None: return None
         if v >= fl or (p is not None and p >= mc["overheated_percentile"]): return "OVERVALUED"
-        if p is not None and p <= QC and v <= cap: return "CHEAP"
+        qc = QC if cheap_pct is None else cheap_pct
+        if p is not None and p <= qc and v <= cap: return "CHEAP"
         if p is None or p <= QR: return "FAIR"
         return "RICH"
     for r in rows:
         for a in ("mstr", "asst"):
-            capv = r.get(a + "_cheap_cap", r["cheap_line"])
-            r[a + "_zone"] = zone(r.get(a + "_mnav"), r.get(a + "_mnav_pct"), capv, r.get(a + "_oh_floor", mc["overheated_min_mnav"]))
+            capv = r.get(a + "_cheap_cap_eff", r.get(a + "_cheap_cap", r["cheap_line"]))
+            qc = r.get(a + "_cheap_pct", QC)
+            r[a + "_zone"] = zone(r.get(a + "_mnav"), r.get(a + "_mnav_pct"), capv, r.get(a + "_oh_floor", mc["overheated_min_mnav"]), qc)
             for bs in ("basic", "ev"):
-                r[a + "_zone_" + bs] = zone(r.get(a + "_mnav_" + bs), r.get(a + "_mnav_" + bs + "_pct"), capv, r.get(a + "_oh_floor", mc["overheated_min_mnav"]))
+                r[a + "_zone_" + bs] = zone(r.get(a + "_mnav_" + bs), r.get(a + "_mnav_" + bs + "_pct"), capv, r.get(a + "_oh_floor", mc["overheated_min_mnav"]), qc)
     def verdict(r, bs=""):
         sfx = "_" + bs if bs else ""
         z, m, s = r.get("spread_z" + sfx), r.get("mstr_mnav" + sfx), r.get("asst_mnav" + sfx)
@@ -675,7 +731,10 @@ def main():
         k = a + "_mnav_" + bs
         return {"mnav": v, "mnav_pct_1y": last.get(k + "_pct"), "zone": last.get(a + "_zone_" + bs),
                 "cutoffs": {"p25": last.get(k + "_q25"), "median": last.get(k + "_q50"), "p75": last.get(k + "_q75"), "p90": last.get(k + "_q90"),
-                            "cheap_cap": last.get(a + "_cheap_cap"), "cap_mode": last.get(a + "_cap_mode"), "overheated_floor": last.get(a + "_oh_floor")}}
+                            "cheap_cap": last.get(a + "_cheap_cap"), "cheap_cap_eff": last.get(a + "_cheap_cap_eff", last.get(a + "_cheap_cap")),
+                            "cheap_pct": last.get(a + "_cheap_pct"), "cap_mode": last.get(a + "_cap_mode"),
+                            "overheated_floor": last.get(a + "_oh_floor"), "overheated_premium": last.get(a + "_oh_prem"),
+                            "anticip_score": last.get(a + "_anticip_score")}}
     BASIS_LABEL = {"basic": "mNAV stock only: stock market value / bitcoin held (price x basic shares / BTC NAV)",
                    "ev": "mNAV incl. debt & preferreds: adds debt and preferreds, minus cash ((price x basic shares + debt + preferred notional - cash) / BTC NAV)",
                    "diluted": "diluted equity mNAV: price x assumed-diluted shares / BTC NAV"}
