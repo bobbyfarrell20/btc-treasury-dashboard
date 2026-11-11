@@ -15,14 +15,56 @@
    "question": "Will there be no change in Fed interest rates after the December 2026 meeting?",
    "url": "https://polymarket.com/event/fed-decision-in-december-20260729232808632",
    "from": 0.225,
-   "to": 0.0365,
+   "to": 0.0355,
    "change_pts": -18.9,
    "from_date": "2026-11-04",
    "news": {
-    "headline": "Fed's Waller plans to support at least a quarter-point rate hike in December - Reuters",
-    "url": "https://news.google.com/rss/articles/CBMirgFBVV95cUxNR3RjbDlfcXFBbHp0SVRSeHIzZHFTTnY5bjBuWGszTTMzUmxLUXNzRTFid29sbXV1emJSZWMwTEo4V2dWYjJ3TGlESmRlRzdFcDdQU3RxWi1QVEZrRlNBU0N3NG50WUNBWVdXbnZFS0RuVDNyRVdGWm1aRjFjWGRlRFRoTFhlbFMwQ1NjbTZMd2x0cnlHR0F4d2JNV3dKcHFOOE5TRFVsSlc5ekxoQ0E?oc=5",
-    "published": "Tue, 10 Nov 2026 14:41:30 GMT",
-    "publisher": "Reuters",
+    "headline": "Fed Forced to Confront Case for Bigger and Faster Rate Rises - WSJ",
+    "url": "https://news.google.com/rss/articles/CBMiswFBVV95cUxPelFYdmxqTmVYeGJuX2VCMUg3MFowTVhFV25kb1NUN1Z0QUZuMnNVUmVabWhfZU1PVjVTakhlRVRzdHpvWENxd3Y4Y3RJLURrVmNYMkZ3UnpNZUx1RjJvc0xIZDFsZ0xqcDcxbDAwVHNOaUpNSkRuSW00cnVlRy1uQ1F1MjBydEtZSnNVTDJtM2xxaWFXcUcybTUzVGpoaEpSTDM5REtFQ2J0a3Z3WVEtQ25xdw?oc=5",
+    "published": "Wed, 11 Nov 2026 01:00:00 GMT",
+    "publisher": "WSJ",
+    "via": "Google News RSS"
+   }
+  },
+  {
+   "date": "2026-11-11",
+   "window": "7d",
+   "source": "kalshi",
+   "group": "Fed",
+   "market": "Fed decision - Dec 2026",
+   "outcome": "Fed maintains rate",
+   "question": null,
+   "url": "https://kalshi.com/markets/kxfeddecision",
+   "from": 0.23,
+   "to": 0.05,
+   "change_pts": -18.0,
+   "from_date": "2026-11-04",
+   "news": {
+    "headline": "Fed Forced to Confront Case for Bigger and Faster Rate Rises - WSJ",
+    "url": "https://news.google.com/rss/articles/CBMiswFBVV95cUxPelFYdmxqTmVYeGJuX2VCMUg3MFowTVhFV25kb1NUN1Z0QUZuMnNVUmVabWhfZU1PVjVTakhlRVRzdHpvWENxd3Y4Y3RJLURrVmNYMkZ3UnpNZUx1RjJvc0xIZDFsZ0xqcDcxbDAwVHNOaUpNSkRuSW00cnVlRy1uQ1F1MjBydEtZSnNVTDJtM2xxaWFXcUcybTUzVGpoaEpSTDM5REtFQ2J0a3Z3WVEtQ25xdw?oc=5",
+    "published": "Wed, 11 Nov 2026 01:00:00 GMT",
+    "publisher": "WSJ",
+    "via": "Google News RSS"
+   }
+  },
+  {
+   "date": "2026-11-11",
+   "window": "24h",
+   "source": "kalshi",
+   "group": "Fed",
+   "market": "Fed decision - Dec 2026",
+   "outcome": "Fed maintains rate",
+   "question": null,
+   "url": "https://kalshi.com/markets/kxfeddecision",
+   "from": 0.2,
+   "to": 0.05,
+   "change_pts": -15.0,
+   "from_date": "2026-11-10",
+   "news": {
+    "headline": "Fed Forced to Confront Case for Bigger and Faster Rate Rises - WSJ",
+    "url": "https://news.google.com/rss/articles/CBMiswFBVV95cUxPelFYdmxqTmVYeGJuX2VCMUg3MFowTVhFV25kb1NUN1Z0QUZuMnNVUmVabWhfZU1PVjVTakhlRVRzdHpvWENxd3Y4Y3RJLURrVmNYMkZ3UnpNZUx1RjJvc0xIZDFsZ0xqcDcxbDAwVHNOaUpNSkRuSW00cnVlRy1uQ1F1MjBydEtZSnNVTDJtM2xxaWFXcUcybTUzVGpoaEpSTDM5REtFQ2J0a3Z3WVEtQ25xdw?oc=5",
+    "published": "Wed, 11 Nov 2026 01:00:00 GMT",
+    "publisher": "WSJ",
     "via": "Google News RSS"
    }
   },
@@ -36,14 +78,14 @@
    "question": "Will there be no change in Fed interest rates after the December 2026 meeting?",
    "url": "https://polymarket.com/event/fed-decision-in-december-20260729232808632",
    "from": 0.185,
-   "to": 0.0365,
-   "change_pts": -14.8,
+   "to": 0.0355,
+   "change_pts": -14.9,
    "from_date": "2026-11-10",
    "news": {
-    "headline": "Fed's Waller plans to support at least a quarter-point rate hike in December - Reuters",
-    "url": "https://news.google.com/rss/articles/CBMirgFBVV95cUxNR3RjbDlfcXFBbHp0SVRSeHIzZHFTTnY5bjBuWGszTTMzUmxLUXNzRTFid29sbXV1emJSZWMwTEo4V2dWYjJ3TGlESmRlRzdFcDdQU3RxWi1QVEZrRlNBU0N3NG50WUNBWVdXbnZFS0RuVDNyRVdGWm1aRjFjWGRlRFRoTFhlbFMwQ1NjbTZMd2x0cnlHR0F4d2JNV3dKcHFOOE5TRFVsSlc5ekxoQ0E?oc=5",
-    "published": "Tue, 10 Nov 2026 14:41:30 GMT",
-    "publisher": "Reuters",
+    "headline": "Fed Forced to Confront Case for Bigger and Faster Rate Rises - WSJ",
+    "url": "https://news.google.com/rss/articles/CBMiswFBVV95cUxPelFYdmxqTmVYeGJuX2VCMUg3MFowTVhFV25kb1NUN1Z0QUZuMnNVUmVabWhfZU1PVjVTakhlRVRzdHpvWENxd3Y4Y3RJLURrVmNYMkZ3UnpNZUx1RjJvc0xIZDFsZ0xqcDcxbDAwVHNOaUpNSkRuSW00cnVlRy1uQ1F1MjBydEtZSnNVTDJtM2xxaWFXcUcybTUzVGpoaEpSTDM5REtFQ2J0a3Z3WVEtQ25xdw?oc=5",
+    "published": "Wed, 11 Nov 2026 01:00:00 GMT",
+    "publisher": "WSJ",
     "via": "Google News RSS"
    }
   },
@@ -61,10 +103,10 @@
    "change_pts": -11.0,
    "from_date": "2026-11-10",
    "news": {
-    "headline": "Bitcoin Doesn't Need a Bank, Yet MicroStrategy Wants to Become One - BeInCrypto",
-    "url": "https://news.google.com/rss/articles/CBMiaEFVX3lxTE5MeVF1b3d1NEhmVVFCTUxpLUVOS1c0bWl2SExDR1pVQU5ReHdGd293RTVLcmdDMXhKa3Q2VWg3QXdBQ0FwWlo5RTZmMGFuNVpmSEhqQVBoOTB2TDBjY1dBOTkwNXh1NE5f?oc=5",
-    "published": "Wed, 11 Nov 2026 01:45:00 GMT",
-    "publisher": "BeInCrypto",
+    "headline": "MSTR Stock In Focus: MSCI Prepares First Index Review Under New Crypto Treasury Rules - Yahoo Finance",
+    "url": "https://news.google.com/rss/articles/CBMimwFBVV95cUxQZjBndEgzZGVKWi1zRkJMZWxxVmNEVWo2d3RLWWZuUi15NW52N0tDbHV3TlBXdV9iQ05CYlZrYnM4bmx2Z3QyRWg0amRzaXNOYmdxSDE4TmtDbmJSa1JOUENnc2FocDVEYkRodHpFTk13bDZPNURPM1RGZ3N5aE5HcjRjTHBGS0JXV1BUZ1JseXBKcGU5blZaNk5yUQ?oc=5",
+    "published": "Wed, 11 Nov 2026 09:03:31 GMT",
+    "publisher": "Yahoo Finance",
     "via": "Google News RSS"
    }
   },
@@ -224,11 +266,11 @@
    "odds": [
     {
      "outcome": "↑ 100,000",
-     "yes": 0.045
+     "yes": 0.055
     },
     {
      "outcome": "↓ 55,000",
-     "yes": 0.115
+     "yes": 0.105
     }
    ]
   },
@@ -245,7 +287,7 @@
    "odds": [
     {
      "outcome": "Before Jan 1, 2027",
-     "yes": 0.03
+     "yes": 0.037
     }
    ]
   },
@@ -262,5 +304,5 @@
    "odds": []
   }
  ],
- "generated_utc": "2026-11-11T04:41:45+00:00"
+ "generated_utc": "2026-11-11T14:48:27+00:00"
 }
