@@ -21,7 +21,7 @@
     "new": "STAY_BTC"
   },
   "_hash_note": "signal_hash changes when the recommendation, also_valid, any preferred peg state (on for the call = RUNNING_HOT/ON, hashed alike; WARMING_UP and COOLING_OFF hash as WATCH, STALLED as SELL; ON held by buybacks hashes as WATCH) or any overheated flag changes; last_changed is the most recent trading day it changed.",
-  "generated_utc": "2026-11-11T01:16:07+00:00",
+  "generated_utc": "2026-11-11T04:41:45+00:00",
   "as_of": "2026-11-10",
   "disclaimer": "Rules-based indicator, not financial advice.",
   "recommendation_detail": {
@@ -1368,13 +1368,13 @@
     "mnav_spread": 0.2985,
     "spread_z": 0.413,
     "ratio": 0.178,
-    "mstr_mnav_basic": 0.8221,
+    "mstr_mnav_basic": 0.822,
     "asst_mnav_basic": 0.8627,
     "mstr_mnav_ev": 1.0574,
     "asst_mnav_ev": 1.3559,
     "mstr_mnav_diluted": 0.8792,
     "asst_mnav_diluted": 0.8811,
-    "mstr_ev_m": 66277.6,
+    "mstr_ev_m": 66276.3,
     "asst_ev_m": 4312.6,
     "btc_chg": -0.0878,
     "mstr_chg": -0.1438,
@@ -1389,7 +1389,7 @@
       "signal_basis": "ev",
       "zone": "FAIR",
       "market_standard": {
-        "mnav": 0.8221,
+        "mnav": 0.822,
         "mnav_pct_1y": 0.345,
         "zone": "FAIR",
         "cutoffs": {
@@ -1419,11 +1419,11 @@
       "diluted_equity_mnav": 0.8792,
       "price": 121.07,
       "btc_held": 850364.0,
-      "basic_shares": 425588503.0,
-      "debt_m": 6714.0,
+      "basic_shares": 425584507.0,
+      "debt_m": 6715.4,
       "preferred_notional_m": 12951.6,
-      "cash_m": 4914.0,
-      "enterprise_value_m": 66277.6,
+      "cash_m": 4916.2,
+      "enterprise_value_m": 66276.3,
       "btc_nav_m": 62679,
       "btc_nav_per_basic_share": 147.28
     },
@@ -1470,7 +1470,7 @@
       "btc_nav_per_basic_share": 24.98
     },
     "spread_z": {
-      "basic": -0.457,
+      "basic": -0.456,
       "ev": 0.413
     },
     "relative_verdict": {
@@ -1502,18 +1502,18 @@
       "basic": {
         "basis": "basic",
         "lookback_trading_days": 252,
-        "mstr_mnav": 0.8221,
+        "mstr_mnav": 0.822,
         "asst_mnav": 0.8627,
-        "ratio_now": 1.0494,
+        "ratio_now": 1.0495,
         "ratio_mean_1y": 1.1744,
         "ratio_median_1y": 1.1875,
         "ratio_sd_1y": 0.2583,
         "ratio_z": -0.484,
         "ratio_pct_1y": 0.254,
-        "diff_now": 0.0406,
+        "diff_now": 0.0407,
         "diff_mean_1y": 0.1437,
         "diff_sd_1y": 0.2258,
-        "diff_z": -0.457,
+        "diff_z": -0.456,
         "diff_pct_1y": 0.242,
         "verdict": "NORMAL",
         "verdict_text": "Spread normal",
@@ -1716,9 +1716,9 @@
       "change_pts": -11.0,
       "from_date": "2026-11-10",
       "news": {
-        "headline": "MicroStrategy and Strive Buy 1,065 Bitcoin: Can Saylor Keep Adding Below Cost? - BeInCrypto",
-        "url": "https://news.google.com/rss/articles/CBMidkFVX3lxTE0xRE9hTFJ0a3RYcl9FQ1ZXTkJZQmtOSTBFMnFrajNzVXlUa3pvVXV1dDI2aGoteXpVVmd1N2hGWFFPTk5NV0dwc3V3WGdNbks0VXpUYVlRVkI4aWRTalZCUXpnM1M3TVN0TWRPaEFFamVwZ0RaTFE?oc=5",
-        "published": "Tue, 10 Nov 2026 08:51:47 GMT",
+        "headline": "Bitcoin Doesn't Need a Bank, Yet MicroStrategy Wants to Become One - BeInCrypto",
+        "url": "https://news.google.com/rss/articles/CBMiaEFVX3lxTE5MeVF1b3d1NEhmVVFCTUxpLUVOS1c0bWl2SExDR1pVQU5ReHdGd293RTVLcmdDMXhKa3Q2VWg3QXdBQ0FwWlo5RTZmMGFuNVpmSEhqQVBoOTB2TDBjY1dBOTkwNXh1NE5f?oc=5",
+        "published": "Wed, 11 Nov 2026 01:45:00 GMT",
         "publisher": "BeInCrypto",
         "via": "Google News RSS"
       }
@@ -1879,11 +1879,11 @@
       "odds": [
         {
           "outcome": "\u2191 100,000",
-          "yes": 0.055
+          "yes": 0.045
         },
         {
           "outcome": "\u2193 55,000",
-          "yes": 0.125
+          "yes": 0.115
         }
       ]
     },
@@ -1900,7 +1900,7 @@
       "odds": [
         {
           "outcome": "Before Jan 1, 2027",
-          "yes": 0.034
+          "yes": 0.03
         }
       ]
     },
@@ -1925,19 +1925,19 @@
       "top": [
         {
           "outcome": "\u2191 90,000",
-          "yes": 0.155
+          "yes": 0.165
         },
         {
           "outcome": "\u2193 55,000",
-          "yes": 0.125
+          "yes": 0.115
         },
         {
           "outcome": "\u2193 50,000",
-          "yes": 0.0595
+          "yes": 0.0585
         },
         {
           "outcome": "\u2191 100,000",
-          "yes": 0.055
+          "yes": 0.045
         }
       ]
     },
@@ -1958,7 +1958,7 @@
         },
         {
           "outcome": "50+ bps increase",
-          "yes": 0.107
+          "yes": 0.1105
         },
         {
           "outcome": "No change",
@@ -1977,15 +1977,15 @@
       "top": [
         {
           "outcome": "0 (0 bps)",
-          "yes": 0.9805
+          "yes": 0.9835
         },
         {
           "outcome": "1 (25 bps)",
-          "yes": 0.0075
+          "yes": 0.0055
         },
         {
           "outcome": "2 (50 bps)",
-          "yes": 0.0045
+          "yes": 0.004
         },
         {
           "outcome": "12+ (300+ bps)",
@@ -2045,7 +2045,7 @@
       "top": [
         {
           "outcome": "December 31",
-          "yes": 0.85
+          "yes": 0.84
         }
       ]
     },
@@ -2078,8 +2078,8 @@
           "yes": 0.03
         },
         {
-          "outcome": "Above $199,999.99",
-          "yes": 0.01
+          "outcome": "Above $129,999.99",
+          "yes": 0.02
         }
       ]
     },
@@ -2090,7 +2090,7 @@
       "top": [
         {
           "outcome": "Below $55,000.00",
-          "yes": 0.15
+          "yes": 0.13
         },
         {
           "outcome": "Below $50,000.00",
@@ -2119,7 +2119,7 @@
       "top": [
         {
           "outcome": "Hike 25bps",
-          "yes": 0.86
+          "yes": 0.84
         },
         {
           "outcome": "Hike >25bps",
@@ -2127,7 +2127,7 @@
         },
         {
           "outcome": "Fed maintains rate",
-          "yes": 0.05
+          "yes": 0.04
         },
         {
           "outcome": "Cut 25bps",

@@ -61,9 +61,9 @@
    "change_pts": -11.0,
    "from_date": "2026-11-10",
    "news": {
-    "headline": "MicroStrategy and Strive Buy 1,065 Bitcoin: Can Saylor Keep Adding Below Cost? - BeInCrypto",
-    "url": "https://news.google.com/rss/articles/CBMidkFVX3lxTE0xRE9hTFJ0a3RYcl9FQ1ZXTkJZQmtOSTBFMnFrajNzVXlUa3pvVXV1dDI2aGoteXpVVmd1N2hGWFFPTk5NV0dwc3V3WGdNbks0VXpUYVlRVkI4aWRTalZCUXpnM1M3TVN0TWRPaEFFamVwZ0RaTFE?oc=5",
-    "published": "Tue, 10 Nov 2026 08:51:47 GMT",
+    "headline": "Bitcoin Doesn't Need a Bank, Yet MicroStrategy Wants to Become One - BeInCrypto",
+    "url": "https://news.google.com/rss/articles/CBMiaEFVX3lxTE5MeVF1b3d1NEhmVVFCTUxpLUVOS1c0bWl2SExDR1pVQU5ReHdGd293RTVLcmdDMXhKa3Q2VWg3QXdBQ0FwWlo5RTZmMGFuNVpmSEhqQVBoOTB2TDBjY1dBOTkwNXh1NE5f?oc=5",
+    "published": "Wed, 11 Nov 2026 01:45:00 GMT",
     "publisher": "BeInCrypto",
     "via": "Google News RSS"
    }
@@ -224,11 +224,11 @@
    "odds": [
     {
      "outcome": "↑ 100,000",
-     "yes": 0.055
+     "yes": 0.045
     },
     {
      "outcome": "↓ 55,000",
-     "yes": 0.125
+     "yes": 0.115
     }
    ]
   },
@@ -245,7 +245,7 @@
    "odds": [
     {
      "outcome": "Before Jan 1, 2027",
-     "yes": 0.034
+     "yes": 0.03
     }
    ]
   },
@@ -262,5 +262,5 @@
    "odds": []
   }
  ],
- "generated_utc": "2026-11-11T01:16:07+00:00"
+ "generated_utc": "2026-11-11T04:41:45+00:00"
 }
