@@ -1,5 +1,5 @@
 {
- "generated_utc": "2026-11-12T14:47:43+00:00",
+ "generated_utc": "2026-11-12T14:57:01+00:00",
  "version": 1,
  "MSTR": {
   "basic_shares": [
@@ -491,7 +491,7 @@
    ],
    [
     "2026-11-12",
-    425589309.0,
+    425593924.0,
     "https://api.strategy.com/btc/kpiData",
     false
    ]
@@ -993,7 +993,7 @@
    ],
    [
     "2026-11-12",
-    120823177.0,
+    120817821.0,
     "https://api.strategy.com/btc/kpiData",
     false
    ]
@@ -1299,9 +1299,9 @@
     },
     {
      "date": "2026-11-12",
-     "anchor": 425589309,
+     "anchor": 425593924,
      "predicted_from_flows": 425584507.0,
-     "residual": 4802.0,
+     "residual": 9417.0,
      "src": "https://api.strategy.com/btc/kpiData"
     }
    ],
@@ -1415,9 +1415,9 @@
     },
     {
      "date": "2026-11-12",
-     "anchor": 120823177,
+     "anchor": 120817821,
      "predicted_from_flows": 120818993.0,
-     "residual": 4184.0,
+     "residual": -1172.0,
      "src": "https://api.strategy.com/btc/kpiData"
     }
    ],
@@ -1432,33 +1432,33 @@
    ]
   },
   "strategy_kpi_latest": {
-   "fetched_utc": "2026-11-12T14:47:43+00:00",
-   "timestamp_utc": "2026-11-12T14:47:00",
-   "market_cap_m": 48228.0,
-   "ev_m": 62974.0,
+   "fetched_utc": "2026-11-12T14:57:02+00:00",
+   "timestamp_utc": "2026-11-12T14:56:00",
+   "market_cap_m": 48190.0,
+   "ev_m": 62936.0,
    "debt_m": 6714.0,
    "pref_m": 12946.0,
-   "price": 113.32,
+   "price": 113.23,
    "per_ticker": {
     "MSTR": {
-     "shares": 425589309,
-     "price": 113.438
+     "shares": 425593924,
+     "price": 113.23
     },
     "STRK": {
-     "shares": 14026946,
-     "price": 66.8
+     "shares": 14026925,
+     "price": 66.8001
     },
     "STRF": {
      "shares": 12837438,
      "price": 101.5
     },
     "STRD": {
-     "shares": 14023495,
-     "price": 68.1
+     "shares": 14023669,
+     "price": 67.6
     },
     "STRC": {
-     "shares": 79935298,
-     "price": 99.7807
+     "shares": 79929789,
+     "price": 99.7
     },
     "STRE": {
      "shares": 7753038,
