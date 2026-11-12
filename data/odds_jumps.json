@@ -15,8 +15,8 @@
    "question": "Will there be no change in Fed interest rates after the December 2026 meeting?",
    "url": "https://polymarket.com/event/fed-decision-in-december-20260729232808632",
    "from": 0.215,
-   "to": 0.0155,
-   "change_pts": -20.0,
+   "to": 0.014,
+   "change_pts": -20.1,
    "from_date": "2026-11-05",
    "news": {
     "headline": "Federal Reserve to Forgo Rate Decision at October 2027 Meeting - WSJ",
@@ -186,7 +186,7 @@
     },
     {
      "outcome": "↓ 55,000",
-     "yes": 0.125
+     "yes": 0.135
     }
    ]
   },
@@ -220,5 +220,5 @@
    "odds": []
   }
  ],
- "generated_utc": "2026-11-12T21:23:51+00:00"
+ "generated_utc": "2026-11-12T22:28:01+00:00"
 }
