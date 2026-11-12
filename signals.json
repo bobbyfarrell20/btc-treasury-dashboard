@@ -21,7 +21,7 @@
     "new": "STAY_BTC"
   },
   "_hash_note": "signal_hash changes when the recommendation, also_valid, any preferred peg state (on for the call = RUNNING_HOT/ON, hashed alike; WARMING_UP and COOLING_OFF hash as WATCH, STALLED as SELL; ON held by buybacks hashes as WATCH) or any overheated flag changes; last_changed is the most recent trading day it changed.",
-  "generated_utc": "2026-11-12T03:24:48+00:00",
+  "generated_utc": "2026-11-12T05:44:17+00:00",
   "as_of": "2026-11-11",
   "disclaimer": "Rules-based indicator, not financial advice.",
   "recommendation_detail": {
@@ -1352,7 +1352,7 @@
     "asst_mnav_ev": 1.4177,
     "mstr_mnav_diluted": 0.8859,
     "asst_mnav_diluted": 0.9458,
-    "mstr_ev_m": 66818.1,
+    "mstr_ev_m": 66817.0,
     "asst_ev_m": 4522.7,
     "btc_chg": -0.0903,
     "mstr_chg": -0.1571,
@@ -1409,11 +1409,11 @@
       "diluted_equity_mnav": 0.8859,
       "price": 122.35,
       "btc_held": 850364.0,
-      "basic_shares": 425590519.0,
-      "debt_m": 6714.0,
-      "preferred_notional_m": 12947.1,
-      "cash_m": 4914.0,
-      "enterprise_value_m": 66818.1,
+      "basic_shares": 425584507.0,
+      "debt_m": 6715.4,
+      "preferred_notional_m": 12947.5,
+      "cash_m": 4916.2,
+      "enterprise_value_m": 66817.0,
       "btc_nav_m": 62863,
       "btc_nav_per_basic_share": 147.71
     },
@@ -1681,19 +1681,19 @@
       "question": "Will there be no change in Fed interest rates after the December 2026 meeting?",
       "url": "https://polymarket.com/event/fed-decision-in-december-20260729232808632",
       "from": 0.215,
-      "to": 0.03,
-      "change_pts": -18.5,
+      "to": 0.0315,
+      "change_pts": -18.4,
       "from_date": "2026-11-05",
       "news": {
-        "headline": "Gold Prices Recover Above $4,040 as Investors Assess Federal Reserve Rate Hike Expectations - Yahoo Finance",
-        "url": "https://news.google.com/rss/articles/CBMingFBVV95cUxPbE9pY2xWMlFnbjZTNnNOU04tbE1fZzUzQ2xfS3JaUUZ3ZnM4bFpGLUM1QXJ1UEVSOVlzc3ctUUtkYVowR01lQTNEUExDMzlNTU53bnVYN0ZLTTB5ZXpzVE9rcDM3ME9ncTNYM3hoa21UY0trOG9IWHlOVzhHOFNONGtYOHF3WjZ2RXF4S0k5eDZpUEZWVU1IX1V5dGNzQQ?oc=5",
-        "published": "Wed, 11 Nov 2026 10:13:49 GMT",
-        "publisher": "Yahoo Finance",
+        "headline": "Gold Holds Below $4,000 as Market Looks Ahead to Fed Rate Hike - Bloomberg.com",
+        "url": "https://news.google.com/rss/articles/CBMisgFBVV95cUxNMTJybnByRUZtMk5uajdEUVROVDJnSmZlQVRsazNHSmZaY0FKMVM0d0tvVnhDdlozdUhuMkx4ZkJZV0IyUDRCMmxtSzF0U3RmWWkxckVJVVVUV1pZczI2dmZfN29TYmN0YkVWMml2X2NJY1liZk1WeWFVdXNHbFpqdHBVWmhMTE4zTHozN2l5ZGFOWVBxWVBzTVB6V3dLeTR5UmlYYTVtN0xJQW5MMTVRdUJn?oc=5",
+        "published": "Thu, 12 Nov 2026 01:24:00 GMT",
+        "publisher": "Bloomberg.com",
         "via": "Google News RSS"
       }
     },
     {
-      "date": "2026-11-11",
+      "date": "2026-11-12",
       "window": "7d",
       "source": "kalshi",
       "group": "Fed",
@@ -1701,15 +1701,15 @@
       "outcome": "Fed maintains rate",
       "question": null,
       "url": "https://kalshi.com/markets/kxfeddecision",
-      "from": 0.23,
+      "from": 0.21,
       "to": 0.05,
-      "change_pts": -18.0,
-      "from_date": "2026-11-04",
+      "change_pts": -16.0,
+      "from_date": "2026-11-05",
       "news": {
-        "headline": "Fed Forced to Confront Case for Bigger and Faster Rate Rises - WSJ",
-        "url": "https://news.google.com/rss/articles/CBMiswFBVV95cUxPelFYdmxqTmVYeGJuX2VCMUg3MFowTVhFV25kb1NUN1Z0QUZuMnNVUmVabWhfZU1PVjVTakhlRVRzdHpvWENxd3Y4Y3RJLURrVmNYMkZ3UnpNZUx1RjJvc0xIZDFsZ0xqcDcxbDAwVHNOaUpNSkRuSW00cnVlRy1uQ1F1MjBydEtZSnNVTDJtM2xxaWFXcUcybTUzVGpoaEpSTDM5REtFQ2J0a3Z3WVEtQ25xdw?oc=5",
-        "published": "Wed, 11 Nov 2026 01:00:00 GMT",
-        "publisher": "WSJ",
+        "headline": "Gold Holds Below $4,000 as Market Looks Ahead to Fed Rate Hike - Bloomberg.com",
+        "url": "https://news.google.com/rss/articles/CBMisgFBVV95cUxNMTJybnByRUZtMk5uajdEUVROVDJnSmZlQVRsazNHSmZaY0FKMVM0d0tvVnhDdlozdUhuMkx4ZkJZV0IyUDRCMmxtSzF0U3RmWWkxckVJVVVUV1pZczI2dmZfN29TYmN0YkVWMml2X2NJY1liZk1WeWFVdXNHbFpqdHBVWmhMTE4zTHozN2l5ZGFOWVBxWVBzTVB6V3dLeTR5UmlYYTVtN0xJQW5MMTVRdUJn?oc=5",
+        "published": "Thu, 12 Nov 2026 01:24:00 GMT",
+        "publisher": "Bloomberg.com",
         "via": "Google News RSS"
       }
     },
@@ -1852,7 +1852,7 @@
         },
         {
           "outcome": "\u2193 55,000",
-          "yes": 0.095
+          "yes": 0.085
         }
       ]
     },
@@ -1869,7 +1869,7 @@
       "odds": [
         {
           "outcome": "Before Jan 1, 2027",
-          "yes": 0.026
+          "yes": 0.038
         }
       ]
     },
@@ -1898,11 +1898,11 @@
         },
         {
           "outcome": "\u2193 55,000",
-          "yes": 0.095
+          "yes": 0.085
         },
         {
           "outcome": "\u2193 50,000",
-          "yes": 0.054
+          "yes": 0.0475
         },
         {
           "outcome": "\u2191 100,000",
@@ -1927,11 +1927,11 @@
         },
         {
           "outcome": "50+ bps increase",
-          "yes": 0.0995
+          "yes": 0.0955
         },
         {
           "outcome": "No change",
-          "yes": 0.03
+          "yes": 0.037
         },
         {
           "outcome": "25 bps decrease",
@@ -2054,11 +2054,11 @@
       "top": [
         {
           "outcome": "Below $55,000.00",
-          "yes": 0.11
+          "yes": 0.13
         },
         {
           "outcome": "Below $50,000.00",
-          "yes": 0.08
+          "yes": 0.06
         },
         {
           "outcome": "Below $40,000.00",
@@ -2091,7 +2091,7 @@
         },
         {
           "outcome": "Fed maintains rate",
-          "yes": 0.04
+          "yes": 0.05
         },
         {
           "outcome": "Cut 25bps",

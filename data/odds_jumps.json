@@ -15,19 +15,19 @@
    "question": "Will there be no change in Fed interest rates after the December 2026 meeting?",
    "url": "https://polymarket.com/event/fed-decision-in-december-20260729232808632",
    "from": 0.215,
-   "to": 0.03,
-   "change_pts": -18.5,
+   "to": 0.0315,
+   "change_pts": -18.4,
    "from_date": "2026-11-05",
    "news": {
-    "headline": "Gold Prices Recover Above $4,040 as Investors Assess Federal Reserve Rate Hike Expectations - Yahoo Finance",
-    "url": "https://news.google.com/rss/articles/CBMingFBVV95cUxPbE9pY2xWMlFnbjZTNnNOU04tbE1fZzUzQ2xfS3JaUUZ3ZnM4bFpGLUM1QXJ1UEVSOVlzc3ctUUtkYVowR01lQTNEUExDMzlNTU53bnVYN0ZLTTB5ZXpzVE9rcDM3ME9ncTNYM3hoa21UY0trOG9IWHlOVzhHOFNONGtYOHF3WjZ2RXF4S0k5eDZpUEZWVU1IX1V5dGNzQQ?oc=5",
-    "published": "Wed, 11 Nov 2026 10:13:49 GMT",
-    "publisher": "Yahoo Finance",
+    "headline": "Gold Holds Below $4,000 as Market Looks Ahead to Fed Rate Hike - Bloomberg.com",
+    "url": "https://news.google.com/rss/articles/CBMisgFBVV95cUxNMTJybnByRUZtMk5uajdEUVROVDJnSmZlQVRsazNHSmZaY0FKMVM0d0tvVnhDdlozdUhuMkx4ZkJZV0IyUDRCMmxtSzF0U3RmWWkxckVJVVVUV1pZczI2dmZfN29TYmN0YkVWMml2X2NJY1liZk1WeWFVdXNHbFpqdHBVWmhMTE4zTHozN2l5ZGFOWVBxWVBzTVB6V3dLeTR5UmlYYTVtN0xJQW5MMTVRdUJn?oc=5",
+    "published": "Thu, 12 Nov 2026 01:24:00 GMT",
+    "publisher": "Bloomberg.com",
     "via": "Google News RSS"
    }
   },
   {
-   "date": "2026-11-11",
+   "date": "2026-11-12",
    "window": "7d",
    "source": "kalshi",
    "group": "Fed",
@@ -35,15 +35,15 @@
    "outcome": "Fed maintains rate",
    "question": null,
    "url": "https://kalshi.com/markets/kxfeddecision",
-   "from": 0.23,
+   "from": 0.21,
    "to": 0.05,
-   "change_pts": -18.0,
-   "from_date": "2026-11-04",
+   "change_pts": -16.0,
+   "from_date": "2026-11-05",
    "news": {
-    "headline": "Fed Forced to Confront Case for Bigger and Faster Rate Rises - WSJ",
-    "url": "https://news.google.com/rss/articles/CBMiswFBVV95cUxPelFYdmxqTmVYeGJuX2VCMUg3MFowTVhFV25kb1NUN1Z0QUZuMnNVUmVabWhfZU1PVjVTakhlRVRzdHpvWENxd3Y4Y3RJLURrVmNYMkZ3UnpNZUx1RjJvc0xIZDFsZ0xqcDcxbDAwVHNOaUpNSkRuSW00cnVlRy1uQ1F1MjBydEtZSnNVTDJtM2xxaWFXcUcybTUzVGpoaEpSTDM5REtFQ2J0a3Z3WVEtQ25xdw?oc=5",
-    "published": "Wed, 11 Nov 2026 01:00:00 GMT",
-    "publisher": "WSJ",
+    "headline": "Gold Holds Below $4,000 as Market Looks Ahead to Fed Rate Hike - Bloomberg.com",
+    "url": "https://news.google.com/rss/articles/CBMisgFBVV95cUxNMTJybnByRUZtMk5uajdEUVROVDJnSmZlQVRsazNHSmZaY0FKMVM0d0tvVnhDdlozdUhuMkx4ZkJZV0IyUDRCMmxtSzF0U3RmWWkxckVJVVVUV1pZczI2dmZfN29TYmN0YkVWMml2X2NJY1liZk1WeWFVdXNHbFpqdHBVWmhMTE4zTHozN2l5ZGFOWVBxWVBzTVB6V3dLeTR5UmlYYTVtN0xJQW5MMTVRdUJn?oc=5",
+    "published": "Thu, 12 Nov 2026 01:24:00 GMT",
+    "publisher": "Bloomberg.com",
     "via": "Google News RSS"
    }
   },
@@ -186,7 +186,7 @@
     },
     {
      "outcome": "↓ 55,000",
-     "yes": 0.095
+     "yes": 0.085
     }
    ]
   },
@@ -203,7 +203,7 @@
    "odds": [
     {
      "outcome": "Before Jan 1, 2027",
-     "yes": 0.026
+     "yes": 0.038
     }
    ]
   },
@@ -220,5 +220,5 @@
    "odds": []
   }
  ],
- "generated_utc": "2026-11-12T03:24:48+00:00"
+ "generated_utc": "2026-11-12T05:44:17+00:00"
 }
