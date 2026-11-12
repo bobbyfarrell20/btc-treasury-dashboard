@@ -259,16 +259,6 @@ def mean_std(w):
     m = sum(w) / len(w); s = math.sqrt(sum((v - m) ** 2 for v in w) / len(w))
     return m, s
 
-def cheap_line(d, vc):
-    """Bull-cycle CHEAP line for date d (ISO). Linear from start (start_date) to end (end_date), flat after.
-    Dates before start_date use the flat start value (1.10x): the line was introduced 2026-10-28 and is not back-cast."""
-    sc = vc.get("cheap_below_mnav_schedule")
-    if not sc: return vc.get("cheap_below_mnav", 1.0)
-    if d <= sc["start_date"]: return sc["start"]
-    if d >= sc["end_date"]: return sc["end"]
-    D0, D1, DD = dt.date.fromisoformat(sc["start_date"]), dt.date.fromisoformat(sc["end_date"]), dt.date.fromisoformat(d)
-    return round(sc["start"] + (sc["end"] - sc["start"]) * (DD - D0).days / (D1 - D0).days, 4)
-
 def buyback_flag_series(mdocs, bc, state_f):
     """'Par held up by buybacks' (config.buyback_support). Weeks come from Strategy's weekly 8-Ks (STRC ATM table +
     STRC repurchase table). A week with a repurchase but no STRC ATM row counts as 0 sales (Strategy omits the ATM table
@@ -331,13 +321,6 @@ def apply_atm_buyback_override(flag, row_date, atm_map, weeks):
     if atm_d and (latest_end is None or atm_d > latest_end):
         return False, atm_d
     return flag, atm_d
-
-def cheap_cap(d, vc, asset, med):
-    """Per-stock CHEAP cap (valuation.cheap_cap): the bull-cycle line, or held flat until the stock's 1y median clears a level."""
-    pol = (vc.get("cheap_cap") or {}).get(asset) or {"mode": "schedule"}
-    if pol.get("mode") == "hold_until_median" and (med is None or med <= pol.get("median_above", 1.3)):
-        return pol.get("hold_value", 1.1), "held"
-    return cheap_line(d, vc), "schedule"
 
 def halving_bonus(d, hc, ticker):
     """Halving-cycle time bonus (valuation.halving_bonus, Bobby 2026-11-12) added to the DISPLAY cheap cap and
@@ -585,28 +568,25 @@ def main():
     pct_relax = float(ac0.get("cheap_percentile_relax", 0.0) if ac0.get("enabled") else 0.0)
     hc0 = vc0.get("halving_bonus") or {}
     for i, r in enumerate(rows):
-        r["cheap_line"] = cheap_line(r["date"], vc0)
-        r["oh_floor_base"] = round(r["cheap_line"] + mc.get("overheated_gap_above_cheap", 0.15), 4)
+        base_cap = float(hc0.get("base_cap", 1.10))
+        r["cheap_line"] = base_cap   # structural base cap (kept for page fallbacks); per-stock caps add the halving bonus
+        r["oh_floor_base"] = round(base_cap + mc.get("overheated_gap_above_cheap", 0.15), 4)
         for A in (CFG.get("assets") or []):
             k = A["key"]
             gap = mc.get("overheated_gap_above_cheap", 0.15)
             code = r.get("fly_" + A["preferred"])
+            # preferred-par slide (proximity + 5-day tilt; ON / RUNNING_HOT = max_premium) - applies to zones AND the call
             prem, score, extra = anticipation(rows, i, A["preferred"], code, mc)
-            # CALL filter floor: frozen legacy definition (old cheap_below_mnav_schedule + MSTR median hold) so the
-            # call / backtest are unchanged by the halving bonus (Bobby 2026-11-12: zones, cards and chart lines only).
-            ccap, _cm = cheap_cap(r["date"], vc0, A["ticker"], r.get(k + "_mnav_q50"))
-            r[k + "_oh_floor_call"] = round(round(ccap + gap, 4) + prem, 4)
-            # DISPLAY lines: base cap + per-stock halving-cycle bonus (replaces the linear schedule / MSTR hold for zones)
-            if hc0.get("enabled"):
-                hb, hw, hph = halving_bonus(r["date"], hc0, A["ticker"])
-                r[k + "_halving_bonus"], r[k + "_halving_weight"], r[k + "_halving_phase"] = hb, hw, hph
-                r[k + "_cheap_cap"], r[k + "_cap_mode"] = round(float(hc0.get("base_cap", 1.10)) + hb, 4), "halving"
-            else:
-                r[k + "_cheap_cap"], r[k + "_cap_mode"] = ccap, _cm
+            hb, hw, hph = halving_bonus(r["date"], hc0, A["ticker"])
+            r[k + "_halving_bonus"], r[k + "_halving_weight"], r[k + "_halving_phase"] = hb, hw, hph
+            r[k + "_cheap_cap"], r[k + "_cap_mode"] = round(base_cap + hb, 4), "halving"
             base = round(r[k + "_cheap_cap"] + gap, 4)
             r[k + "_oh_floor_base"] = base
             r[k + "_oh_prem"] = round(prem, 4)
             r[k + "_oh_floor"] = round(base + prem, 4)
+            # Call's overheated filter (Bobby 2026-11-12): same floor as the zones = base cap + halving bonus + gap +
+            # preferred slide; the call still also needs mNAV >= the 90th percentile.
+            r[k + "_oh_floor_call"] = r[k + "_oh_floor"]
             r[k + "_anticip_score"] = round(score, 4)
             if extra.get("proximity") is not None:
                 r[k + "_anticip_prox"] = round(extra["proximity"], 4)
@@ -904,8 +884,7 @@ def main():
            "recommendation_detail": lrec,
            "flywheel": ana["flywheel"],
            "flywheel_state": {p: ana["flywheel"][p].get("flywheel_code") for p in ana["flywheel"]},
-           "cheap_line": {"today": last.get("cheap_line"), "schedule": CFG["valuation"].get("cheap_below_mnav_schedule"),
-                          "_note": "legacy schedule: now feeds only the call's overheated filter floor; zones use halving_bonus"},
+           "cheap_line": {"today": last.get("cheap_line"), "_note": "structural base cap; per-stock caps = base + halving_bonus (see halving_bonus)"},
            "halving_bonus": {"config": CFG["valuation"].get("halving_bonus"),
                              **{A["ticker"]: {"bonus": last.get(A["key"] + "_halving_bonus"), "weight": last.get(A["key"] + "_halving_weight"),
                                               "phase": last.get(A["key"] + "_halving_phase"), "cheap_cap": last.get(A["key"] + "_cheap_cap"),

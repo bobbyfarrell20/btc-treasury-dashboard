@@ -77,7 +77,7 @@ def recommendation(r, assets, cfg):
     for A in assets:
         a, p = A["key"], A["preferred"]
         v, pc = r.get(f"{a}_mnav_{ob}"), r.get(f"{a}_mnav_{ob}_pct")
-        # call filter uses the frozen legacy floor (no halving bonus); display zones use {a}_oh_floor
+        # call filter floor = base cap + halving bonus + gap + preferred slide (same as the zones' floor)
         fl = r.get(f"{a}_oh_floor_call", r.get(f"{a}_oh_floor", mc["overheated_min_mnav"]))
         oh = bool(v is not None and pc is not None and v >= fl and pc >= mc["overheated_percentile"])
         st = r.get("peg_" + p); code = r.get("fly_" + p); held = bool(r.get("held_" + p))
