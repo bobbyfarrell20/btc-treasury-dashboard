@@ -339,6 +339,29 @@ def cheap_cap(d, vc, asset, med):
         return pol.get("hold_value", 1.1), "held"
     return cheap_line(d, vc), "schedule"
 
+def halving_bonus(d, hc, ticker):
+    """Halving-cycle time bonus (valuation.halving_bonus, Bobby 2026-11-12) added to the DISPLAY cheap cap and
+    overvalued floor for one stock on date d (ISO). Zero until ramp_days before the next halving estimate, quadratic
+    ramp (ramp_shape) up to the halving, full for hold_days, linear fade to 0 over fade_days, then zero (bear_bonus,
+    never negative by default). Amplitude per stock is amp_next[ticker] for the next halving and x decay_per_cycle
+    for each later cycle (spaced cycle_days apart). Earlier halvings are not back-cast. Returns (bonus, weight, phase)."""
+    if not hc or not hc.get("enabled"):
+        return 0.0, 0.0, "off"
+    amp0 = float((hc.get("amp_next") or {}).get(ticker, 0.0))
+    h0 = dt.date.fromisoformat(hc["next_halving_est"]); D = dt.date.fromisoformat(d)
+    ramp, hold, fade = int(hc.get("ramp_days", 365)), int(hc.get("hold_days", 365)), int(hc.get("fade_days", 180))
+    shape, decay, step = float(hc.get("ramp_shape", 2.0)), float(hc.get("decay_per_cycle", 0.6)), int(hc.get("cycle_days", 1458))
+    best = (float(hc.get("bear_bonus", 0.0)), 0.0, "bear")
+    for n in range(0, 4):
+        h = h0 + dt.timedelta(days=step * n); t = (D - h).days
+        if -ramp <= t < 0: w, ph = ((t + ramp) / ramp) ** shape, "ramp"
+        elif 0 <= t <= hold: w, ph = 1.0, "hold"
+        elif hold < t <= hold + fade: w, ph = 1.0 - (t - hold) / fade, "fade"
+        else: continue
+        b = amp0 * decay ** n * w
+        if b >= best[0]: best = (b, w, ph)
+    return round(best[0], 4), round(best[1], 4), best[2]
+
 def _clamp(x, lo, hi):
     return lo if x < lo else hi if x > hi else x
 
@@ -560,16 +583,28 @@ def main():
     qc0 = vc0.get("cheap_max_percentile", 0.25)
     cap_bump = float(ac0.get("cheap_cap_bump", 0.0) if ac0.get("enabled") else 0.0)
     pct_relax = float(ac0.get("cheap_percentile_relax", 0.0) if ac0.get("enabled") else 0.0)
+    hc0 = vc0.get("halving_bonus") or {}
     for i, r in enumerate(rows):
         r["cheap_line"] = cheap_line(r["date"], vc0)
         r["oh_floor_base"] = round(r["cheap_line"] + mc.get("overheated_gap_above_cheap", 0.15), 4)
         for A in (CFG.get("assets") or []):
             k = A["key"]
-            r[k + "_cheap_cap"], r[k + "_cap_mode"] = cheap_cap(r["date"], vc0, A["ticker"], r.get(k + "_mnav_q50"))
-            base = round(r[k + "_cheap_cap"] + mc.get("overheated_gap_above_cheap", 0.15), 4)
-            r[k + "_oh_floor_base"] = base
+            gap = mc.get("overheated_gap_above_cheap", 0.15)
             code = r.get("fly_" + A["preferred"])
             prem, score, extra = anticipation(rows, i, A["preferred"], code, mc)
+            # CALL filter floor: frozen legacy definition (old cheap_below_mnav_schedule + MSTR median hold) so the
+            # call / backtest are unchanged by the halving bonus (Bobby 2026-11-12: zones, cards and chart lines only).
+            ccap, _cm = cheap_cap(r["date"], vc0, A["ticker"], r.get(k + "_mnav_q50"))
+            r[k + "_oh_floor_call"] = round(round(ccap + gap, 4) + prem, 4)
+            # DISPLAY lines: base cap + per-stock halving-cycle bonus (replaces the linear schedule / MSTR hold for zones)
+            if hc0.get("enabled"):
+                hb, hw, hph = halving_bonus(r["date"], hc0, A["ticker"])
+                r[k + "_halving_bonus"], r[k + "_halving_weight"], r[k + "_halving_phase"] = hb, hw, hph
+                r[k + "_cheap_cap"], r[k + "_cap_mode"] = round(float(hc0.get("base_cap", 1.10)) + hb, 4), "halving"
+            else:
+                r[k + "_cheap_cap"], r[k + "_cap_mode"] = ccap, _cm
+            base = round(r[k + "_cheap_cap"] + gap, 4)
+            r[k + "_oh_floor_base"] = base
             r[k + "_oh_prem"] = round(prem, 4)
             r[k + "_oh_floor"] = round(base + prem, 4)
             r[k + "_anticip_score"] = round(score, 4)
@@ -608,7 +643,7 @@ def main():
         oh = {}
         for a in ("mstr", "asst"):
             v, p = r.get(a + "_mnav"), r.get(a + "_mnav_pct")
-            oh[a] = bool(v is not None and p is not None and p >= mc["overheated_percentile"] and v >= r.get(a + "_oh_floor", mc["overheated_min_mnav"]))
+            oh[a] = bool(v is not None and p is not None and p >= mc["overheated_percentile"] and v >= r.get(a + "_oh_floor_call", r.get(a + "_oh_floor", mc["overheated_min_mnav"])))
         both_oh = oh["mstr"] and oh["asst"]
         z = r.get("spread_z")
         rot = "NEUTRAL"
@@ -625,7 +660,7 @@ def main():
             ps = r.get("peg_" + pref)
             act = {"ON": "BUY", "NEAR": "HOLD", "WATCH": "WATCH", "SELL": "SELL", None: "NO_DATA"}[ps]
             if both_oh: act = CFG["mnav"].get("both_overheated_action", "SELL_TO_BTC")
-            per[asset] = {"peg_state": ps, "preferred": pref, "preferred_flywheel_state": AN.fly_label(ps, r.get("fly_" + pref), r.get("held_" + pref)), "buyback_held": bool(r.get("held_" + pref)), "flywheel_code": r.get("fly_" + pref), "overheated_floor": r.get(asset.lower() + "_oh_floor"), "action": act, "mnav": r.get(asset.lower() + "_mnav"),
+            per[asset] = {"peg_state": ps, "preferred": pref, "preferred_flywheel_state": AN.fly_label(ps, r.get("fly_" + pref), r.get("held_" + pref)), "buyback_held": bool(r.get("held_" + pref)), "flywheel_code": r.get("fly_" + pref), "overheated_floor": r.get(asset.lower() + "_oh_floor_call", r.get(asset.lower() + "_oh_floor")), "action": act, "mnav": r.get(asset.lower() + "_mnav"),
                           "mnav_pct_1y": r.get(asset.lower() + "_mnav_pct"), "overheated": oh[asset.lower()],
                           "price_chg_dip_window": r.get(asset.lower() + "_chg"), "mnav_chg_dip_window": r.get(asset.lower() + "_mnav_chg")}
         out.update(per=per, both_overheated=both_oh, rotation=rot, dip=dip, dip_target=hardest if dip else None, cheapened_most=hardest)
@@ -755,6 +790,8 @@ def main():
                             "cheap_cap": last.get(a + "_cheap_cap"), "cheap_cap_eff": last.get(a + "_cheap_cap_eff", last.get(a + "_cheap_cap")),
                             "cheap_pct": last.get(a + "_cheap_pct"), "cheap_gate": last.get(a + "_cheap_gate_" + bs, last.get(a + "_cheap_gate")),
                             "cap_mode": last.get(a + "_cap_mode"),
+                            "halving_bonus": last.get(a + "_halving_bonus"), "halving_phase": last.get(a + "_halving_phase"),
+                            "call_filter_floor": last.get(a + "_oh_floor_call"),
                             "overheated_floor": last.get(a + "_oh_floor"), "overheated_premium": last.get(a + "_oh_prem"),
                             "ov_line": last.get(a + "_ov_line_" + bs, last.get(a + "_ov_line")),
                             "anticip_score": last.get(a + "_anticip_score")}}
@@ -867,7 +904,13 @@ def main():
            "recommendation_detail": lrec,
            "flywheel": ana["flywheel"],
            "flywheel_state": {p: ana["flywheel"][p].get("flywheel_code") for p in ana["flywheel"]},
-           "cheap_line": {"today": last.get("cheap_line"), "schedule": CFG["valuation"].get("cheap_below_mnav_schedule")},
+           "cheap_line": {"today": last.get("cheap_line"), "schedule": CFG["valuation"].get("cheap_below_mnav_schedule"),
+                          "_note": "legacy schedule: now feeds only the call's overheated filter floor; zones use halving_bonus"},
+           "halving_bonus": {"config": CFG["valuation"].get("halving_bonus"),
+                             **{A["ticker"]: {"bonus": last.get(A["key"] + "_halving_bonus"), "weight": last.get(A["key"] + "_halving_weight"),
+                                              "phase": last.get(A["key"] + "_halving_phase"), "cheap_cap": last.get(A["key"] + "_cheap_cap"),
+                                              "overvalued_floor": last.get(A["key"] + "_oh_floor"), "call_filter_floor": last.get(A["key"] + "_oh_floor_call")}
+                                for A in (CFG.get("assets") or [])}},
            "buy_flags": ana["buy_flags"],
            "btc_yield": {t: {k: (v.get("value") if isinstance(v, dict) else v) for k, v in y.items()} for t, y in ana["btc_yield"].items()},
            "headline": last["sig"]["headline"], "per_asset": last["sig"]["per"],

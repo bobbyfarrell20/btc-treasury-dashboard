@@ -21,7 +21,7 @@
     "new": "STAY_BTC"
   },
   "_hash_note": "signal_hash changes when the recommendation, also_valid, any preferred peg state (on for the call = RUNNING_HOT/ON, hashed alike; WARMING_UP and COOLING_OFF hash as WATCH, STALLED as SELL; ON held by buybacks hashes as WATCH) or any overheated flag changes; last_changed is the most recent trading day it changed.",
-  "generated_utc": "2026-11-12T16:41:21+00:00",
+  "generated_utc": "2026-11-12T16:45:50+00:00",
   "as_of": "2026-11-12",
   "disclaimer": "Rules-based indicator, not financial advice.",
   "recommendation_detail": {
@@ -42,8 +42,8 @@
         "buyback_held": false,
         "flywheel_state": "Warming up",
         "flywheel_effect": "STRC warming up \u2192 flywheel off for MSTR",
-        "mnav_ev": 1.0614,
-        "mnav_ev_pct": 0.298,
+        "mnav_ev": 1.0634,
+        "mnav_ev_pct": 0.306,
         "has_data": true
       },
       "ASST": {
@@ -51,12 +51,12 @@
         "peg_state": "SELL",
         "peg_confirmed": false,
         "overheated": false,
-        "overheated_floor": 1.435,
+        "overheated_floor": 1.4318,
         "flywheel_code": "STALLED",
         "buyback_held": false,
         "flywheel_state": "Stalled",
         "flywheel_effect": "SATA stalled \u2192 flywheel off for ASST",
-        "mnav_ev": 1.4135,
+        "mnav_ev": 1.4154,
         "mnav_ev_pct": 0.655,
         "has_data": true
       }
@@ -67,8 +67,8 @@
       "preferred": "STRC",
       "parent": "MSTR",
       "date": "2026-11-12",
-      "close": 99.9222,
-      "price": 99.9222,
+      "close": 99.92,
+      "price": 99.92,
       "peg_state": "WATCH",
       "status": "WARMING_UP",
       "flywheel_code": "WARMING_UP",
@@ -85,7 +85,7 @@
       "last_below_trigger": null,
       "minutes_below_trigger_now": null,
       "method": "intraday_1m",
-      "vol_mult": 1.92,
+      "vol_mult": 1.89,
       "vol_partial_session": true,
       "share_vol_at_or_above_100": 0.0,
       "days_in_state": 6,
@@ -157,9 +157,9 @@
       "off_minutes_below": 30,
       "stalled_below": 99.0,
       "threshold": 100.0,
-      "distance_to_threshold": -0.078,
-      "distance_to_trigger": 0.122,
-      "distance_to_par": -0.078,
+      "distance_to_threshold": -0.08,
+      "distance_to_trigger": 0.12,
+      "distance_to_par": -0.08,
       "sparkline": [
         {
           "t": 1794407400,
@@ -558,8 +558,8 @@
           "c": 99.922
         },
         {
-          "t": 1794501656,
-          "c": 99.922
+          "t": 1794501922,
+          "c": 99.92
         }
       ],
       "sparkline_par": 100.0
@@ -568,8 +568,8 @@
       "preferred": "SATA",
       "parent": "ASST",
       "date": "2026-11-12",
-      "close": 97.025,
-      "price": 97.025,
+      "close": 96.975,
+      "price": 96.975,
       "peg_state": "SELL",
       "status": "OFF_PEG",
       "flywheel_code": "STALLED",
@@ -586,7 +586,7 @@
       "last_below_trigger": null,
       "minutes_below_trigger_now": null,
       "method": "intraday_1m",
-      "vol_mult": 0.88,
+      "vol_mult": 0.85,
       "vol_partial_session": true,
       "share_vol_at_or_above_100": 0.0,
       "days_in_state": 27,
@@ -652,9 +652,9 @@
       "off_minutes_below": 30,
       "stalled_below": 99.0,
       "threshold": 99.8,
-      "distance_to_threshold": -2.775,
-      "distance_to_trigger": -2.775,
-      "distance_to_par": -2.975,
+      "distance_to_threshold": -2.825,
+      "distance_to_trigger": -2.825,
+      "distance_to_par": -3.025,
       "sparkline": [
         {
           "t": 1794407400,
@@ -806,7 +806,7 @@
         },
         {
           "t": 1794430740,
-          "c": 97.2
+          "c": 97.18
         },
         {
           "t": 1794493800,
@@ -865,8 +865,12 @@
           "c": 96.96
         },
         {
-          "t": 1794501624,
+          "t": 1794501600,
           "c": 97.025
+        },
+        {
+          "t": 1794501790,
+          "c": 96.975
         }
       ],
       "sparkline_par": 100.0
@@ -879,11 +883,54 @@
   "cheap_line": {
     "today": 1.1084,
     "schedule": {
-      "_comment": "Bull-cycle cheap line: start at start_date, rising linearly to end at end_date (next BTC halving estimate; update when known), flat at end afterwards. Dates before start_date use the flat start value (1.10x).",
+      "_comment": "LEGACY (call filter only, 2026-11-12): linear line from start_date to end_date. Now feeds only the call's overheated-filter floor ({key}_oh_floor_call) so the call/backtest are unchanged; zone labels, cards and chart lines use valuation.halving_bonus instead.",
       "start_date": "2026-10-28",
       "start": 1.1,
       "end_date": "2028-04-15",
       "end": 1.4
+    },
+    "_note": "legacy schedule: now feeds only the call's overheated filter floor; zones use halving_bonus"
+  },
+  "halving_bonus": {
+    "config": {
+      "_comment": "Bobby, 2026-11-12: halving-cycle time bonus (mNAV x) added to each stock's DISPLAY cheap cap AND overvalued floor (zone labels, cards, per-stock chart cheap_gate / ov_line). Replaces the linear cheap_below_mnav_schedule and the MSTR hold_until_median for zones. cheap cap = base_cap + bonus (+ anticipation cap bump); overvalued floor = cap + mnav.overheated_gap_above_cheap + anticipation premium. Shape per stock: 0 until ramp_days before next_halving_est; quadratic ramp ((t+ramp)/ramp)^ramp_shape up to the halving; full amp for hold_days; linear fade to 0 over fade_days (~the usual BTC cycle top, ~535 days after a halving); then bear_bonus (0, never negative). Amplitude = amp_next[ticker] for the next halving, x decay_per_cycle for each later one (cycle_days apart, ~4 years). Earlier halvings are not back-cast. Does NOT change the call: the overheated filter keeps its legacy floor ({key}_oh_floor_call, from cheap_below_mnav_schedule / cheap_cap). Re-check next_halving_est against mempool.space every quarter (block 1,050,000; 12 Nov 2026 estimate 4-15 Apr 2028). Rules-based, not financial advice.",
+      "enabled": true,
+      "base_cap": 1.1,
+      "next_halving_est": "2028-04-12",
+      "past_halvings": [
+        "2012-11-28",
+        "2016-07-09",
+        "2020-05-11",
+        "2024-04-19"
+      ],
+      "amp_next": {
+        "MSTR": 0.3,
+        "ASST": 0.5
+      },
+      "_amp_comment": "ASST gets the bigger premium (Bobby: smaller, faster horse; easier to stack BTC when its flywheel is on).",
+      "decay_per_cycle": 0.6,
+      "cycle_days": 1458,
+      "ramp_days": 365,
+      "ramp_shape": 2.0,
+      "hold_days": 365,
+      "fade_days": 180,
+      "bear_bonus": 0.0
+    },
+    "MSTR": {
+      "bonus": 0.0,
+      "weight": 0.0,
+      "phase": "bear",
+      "cheap_cap": 1.1,
+      "overvalued_floor": 1.55,
+      "call_filter_floor": 1.55
+    },
+    "ASST": {
+      "bonus": 0.0,
+      "weight": 0.0,
+      "phase": "bear",
+      "cheap_cap": 1.1,
+      "overvalued_floor": 1.4234,
+      "call_filter_floor": 1.4318
     }
   },
   "buy_flags": {
@@ -897,8 +944,8 @@
         "peg_state": "WATCH",
         "flywheel_code": "WARMING_UP",
         "flywheel_state": "Warming up",
-        "mnav": 1.0614,
-        "mnav_pct_1y": 0.298,
+        "mnav": 1.0634,
+        "mnav_pct_1y": 0.306,
         "zone": "CHEAP",
         "low_fair": false,
         "cheap_or_low_fair": true,
@@ -912,7 +959,7 @@
         "peg_state": "SELL",
         "flywheel_code": "STALLED",
         "flywheel_state": "Stalled",
-        "mnav": 1.4135,
+        "mnav": 1.4154,
         "mnav_pct_1y": 0.655,
         "zone": "FAIR",
         "low_fair": false,
@@ -954,11 +1001,11 @@
       "flywheel_code": "WARMING_UP",
       "overheated_floor": 1.55,
       "action": "WATCH",
-      "mnav": 1.0614,
-      "mnav_pct_1y": 0.298,
+      "mnav": 1.0634,
+      "mnav_pct_1y": 0.306,
       "overheated": false,
-      "price_chg_dip_window": -0.1724,
-      "mnav_chg_dip_window": -0.0636
+      "price_chg_dip_window": -0.1727,
+      "mnav_chg_dip_window": -0.0618
     },
     "ASST": {
       "peg_state": "SELL",
@@ -966,13 +1013,13 @@
       "preferred_flywheel_state": "Stalled",
       "buyback_held": false,
       "flywheel_code": "STALLED",
-      "overheated_floor": 1.435,
+      "overheated_floor": 1.4318,
       "action": "SELL",
-      "mnav": 1.4135,
+      "mnav": 1.4154,
       "mnav_pct_1y": 0.655,
       "overheated": false,
-      "price_chg_dip_window": -0.1177,
-      "mnav_chg_dip_window": 0.0015
+      "price_chg_dip_window": -0.1188,
+      "mnav_chg_dip_window": 0.0028
     }
   },
   "both_overheated": false,
@@ -982,12 +1029,12 @@
     "target": null,
     "lookback_trading_days": 10,
     "trigger_btc_drop": 0.15,
-    "btc_change": -0.0794,
+    "btc_change": -0.0814,
     "cheapened_most": "MSTR",
-    "mstr_price_change": -0.1724,
-    "asst_price_change": -0.1177,
-    "mstr_mnav_change": -0.0636,
-    "asst_mnav_change": 0.0015
+    "mstr_price_change": -0.1727,
+    "asst_price_change": -0.1188,
+    "mstr_mnav_change": -0.0618,
+    "asst_mnav_change": 0.0028
   },
   "strc_buyback_support": true,
   "buyback_support": {
@@ -1004,11 +1051,11 @@
   },
   "sats_context": {
     "date": "2026-11-12",
-    "price": 95.8,
+    "price": 95.83,
     "stated_value": 100.0,
     "issue_price": 90.0,
-    "vs_stated": -4.2,
-    "vs_issue": 5.8,
+    "vs_stated": -4.17,
+    "vs_issue": 5.83,
     "shares_outstanding": 7036559.0,
     "shares_date": "2026-11-06",
     "shares_source": "https://www.sec.gov/Archives/edgar/data/1920406/000162828026071888/asst-20261109.htm",
@@ -1024,55 +1071,55 @@
   },
   "peg": {
     "STRC": {
-      "price": 99.9222,
+      "price": 99.92,
       "state": "WATCH",
       "flywheel_state": "Warming up",
       "flywheel_code": "WARMING_UP",
-      "distance_from_par": -0.078
+      "distance_from_par": -0.08
     },
     "SATA": {
-      "price": 97.025,
+      "price": 96.975,
       "state": "SELL",
       "flywheel_state": "Stalled",
       "flywheel_code": "STALLED",
-      "distance_from_par": -2.975
+      "distance_from_par": -3.025
     }
   },
   "signal_basis": "ev",
   "signal_basis_label": "mNAV incl. debt & preferreds: adds debt and preferreds, minus cash ((price x basic shares + debt + preferred notional - cash) / BTC NAV)",
   "values": {
-    "MSTR": 117.21,
-    "ASST": 21.9788,
-    "btc": 71597.5078,
-    "mstr_mnav": 1.0614,
-    "asst_mnav": 1.4135,
-    "mnav_avg": 1.2374,
-    "mnav_spread": 0.3521,
+    "MSTR": 117.16,
+    "ASST": 21.95,
+    "btc": 71441.8125,
+    "mstr_mnav": 1.0634,
+    "asst_mnav": 1.4154,
+    "mnav_avg": 1.2394,
+    "mnav_spread": 0.352,
     "spread_z": 0.669,
-    "ratio": 0.18752,
-    "mstr_mnav_basic": 0.8193,
-    "asst_mnav_basic": 0.9058,
-    "mstr_mnav_ev": 1.0614,
-    "asst_mnav_ev": 1.4135,
-    "mstr_mnav_diluted": 0.8763,
-    "asst_mnav_diluted": 0.9251,
-    "mstr_ev_m": 64621.8,
-    "asst_ev_m": 4367.2,
-    "btc_chg": -0.0794,
-    "mstr_chg": -0.1724,
-    "asst_chg": -0.1177,
-    "mstr_mnav_chg": -0.0636,
-    "asst_mnav_chg": 0.0015,
-    "mstr_nav_ps": 133.76,
-    "asst_nav_ps": 23.76
+    "ratio": 0.18735,
+    "mstr_mnav_basic": 0.8208,
+    "asst_mnav_basic": 0.9066,
+    "mstr_mnav_ev": 1.0634,
+    "asst_mnav_ev": 1.4154,
+    "mstr_mnav_diluted": 0.8778,
+    "asst_mnav_diluted": 0.9259,
+    "mstr_ev_m": 64600.7,
+    "asst_ev_m": 4363.6,
+    "btc_chg": -0.0814,
+    "mstr_chg": -0.1727,
+    "asst_chg": -0.1188,
+    "mstr_mnav_chg": -0.0618,
+    "asst_mnav_chg": 0.0028,
+    "mstr_nav_ps": 133.47,
+    "asst_nav_ps": 23.71
   },
   "valuation": {
     "MSTR": {
       "signal_basis": "ev",
       "zone": "CHEAP",
       "market_standard": {
-        "mnav": 0.8193,
-        "mnav_pct_1y": 0.337,
+        "mnav": 0.8208,
+        "mnav_pct_1y": 0.345,
         "zone": "CHEAP",
         "cutoffs": {
           "p25": 0.7998,
@@ -1083,7 +1130,10 @@
           "cheap_cap_eff": 1.15,
           "cheap_pct": 0.4,
           "cheap_gate": 0.8292,
-          "cap_mode": "held",
+          "cap_mode": "halving",
+          "halving_bonus": 0.0,
+          "halving_phase": "bear",
+          "call_filter_floor": 1.55,
           "overheated_floor": 1.55,
           "overheated_premium": 0.3,
           "ov_line": 0.9525,
@@ -1091,8 +1141,8 @@
         }
       },
       "all_in_ev": {
-        "mnav": 1.0614,
-        "mnav_pct_1y": 0.298,
+        "mnav": 1.0634,
+        "mnav_pct_1y": 0.306,
         "zone": "CHEAP",
         "cutoffs": {
           "p25": 1.0527,
@@ -1103,29 +1153,32 @@
           "cheap_cap_eff": 1.15,
           "cheap_pct": 0.4,
           "cheap_gate": 1.0898,
-          "cap_mode": "held",
+          "cap_mode": "halving",
+          "halving_bonus": 0.0,
+          "halving_phase": "bear",
+          "call_filter_floor": 1.55,
           "overheated_floor": 1.55,
           "overheated_premium": 0.3,
           "ov_line": 1.2344,
           "anticip_score": 1.0
         }
       },
-      "diluted_equity_mnav": 0.8763,
-      "price": 117.21,
+      "diluted_equity_mnav": 0.8778,
+      "price": 117.16,
       "btc_held": 850364.0,
-      "basic_shares": 425595086.0,
+      "basic_shares": 425593589.0,
       "debt_m": 6714.0,
-      "preferred_notional_m": 12938.8,
-      "cash_m": 4915.0,
-      "enterprise_value_m": 64621.8,
-      "btc_nav_m": 60884,
-      "btc_nav_per_basic_share": 143.06
+      "preferred_notional_m": 12938.2,
+      "cash_m": 4914.0,
+      "enterprise_value_m": 64600.7,
+      "btc_nav_m": 60752,
+      "btc_nav_per_basic_share": 142.75
     },
     "ASST": {
       "signal_basis": "ev",
       "zone": "FAIR",
       "market_standard": {
-        "mnav": 0.9058,
+        "mnav": 0.9066,
         "mnav_pct_1y": 0.409,
         "zone": "FAIR",
         "cutoffs": {
@@ -1133,19 +1186,22 @@
           "median": 0.9771,
           "p75": 1.1458,
           "p90": 1.3177,
-          "cheap_cap": 1.1084,
-          "cheap_cap_eff": 1.1378,
-          "cheap_pct": 0.3383,
-          "cheap_gate": 0.8413,
-          "cap_mode": "schedule",
-          "overheated_floor": 1.435,
-          "overheated_premium": 0.1766,
+          "cheap_cap": 1.1,
+          "cheap_cap_eff": 1.1289,
+          "cheap_pct": 0.3367,
+          "cheap_gate": 0.8412,
+          "cap_mode": "halving",
+          "halving_bonus": 0.0,
+          "halving_phase": "bear",
+          "call_filter_floor": 1.4318,
+          "overheated_floor": 1.4234,
+          "overheated_premium": 0.1734,
           "ov_line": 1.3177,
-          "anticip_score": 0.5885
+          "anticip_score": 0.5781
         }
       },
       "all_in_ev": {
-        "mnav": 1.4135,
+        "mnav": 1.4154,
         "mnav_pct_1y": 0.655,
         "zone": "FAIR",
         "cutoffs": {
@@ -1153,49 +1209,52 @@
           "median": 1.3131,
           "p75": 1.4634,
           "p90": 1.6125,
-          "cheap_cap": 1.1084,
-          "cheap_cap_eff": 1.1378,
-          "cheap_pct": 0.3383,
-          "cheap_gate": 1.1378,
-          "cap_mode": "schedule",
-          "overheated_floor": 1.435,
-          "overheated_premium": 0.1766,
-          "ov_line": 1.435,
-          "anticip_score": 0.5885
+          "cheap_cap": 1.1,
+          "cheap_cap_eff": 1.1289,
+          "cheap_pct": 0.3367,
+          "cheap_gate": 1.1289,
+          "cap_mode": "halving",
+          "halving_bonus": 0.0,
+          "halving_phase": "bear",
+          "call_filter_floor": 1.4318,
+          "overheated_floor": 1.4234,
+          "overheated_premium": 0.1734,
+          "ov_line": 1.4234,
+          "anticip_score": 0.5781
         }
       },
-      "diluted_equity_mnav": 0.9251,
-      "price": 21.9788,
+      "diluted_equity_mnav": 0.9259,
+      "price": 21.95,
       "btc_held": 43153.0,
       "basic_shares": 127331109.0,
       "debt_m": 0.0,
       "preferred_notional_m": 2106.7,
       "cash_m": 538.0,
-      "enterprise_value_m": 4367.2,
-      "btc_nav_m": 3090,
-      "btc_nav_per_basic_share": 24.26
+      "enterprise_value_m": 4363.6,
+      "btc_nav_m": 3083,
+      "btc_nav_per_basic_share": 24.21
     },
     "spread_z": {
-      "basic": -0.24,
+      "basic": -0.243,
       "ev": 0.669
     },
     "relative_verdict": {
       "basic": "Neither is clearly cheaper vs its usual gap (spread z -0.24, within \u00b11); MSTR has the lower mNAV today (0.82x vs 0.91x)",
-      "ev": "Neither is clearly cheaper vs its usual gap (spread z +0.67, within \u00b11); MSTR has the lower mNAV today (1.06x vs 1.41x)"
+      "ev": "Neither is clearly cheaper vs its usual gap (spread z +0.67, within \u00b11); MSTR has the lower mNAV today (1.06x vs 1.42x)"
     },
     "relative_value": {
       "ev": {
         "basis": "ev",
         "lookback_trading_days": 252,
-        "mstr_mnav": 1.0614,
-        "asst_mnav": 1.4135,
-        "ratio_now": 1.3317,
+        "mstr_mnav": 1.0634,
+        "asst_mnav": 1.4154,
+        "ratio_now": 1.331,
         "ratio_mean_1y": 1.1919,
         "ratio_median_1y": 1.215,
         "ratio_sd_1y": 0.1928,
-        "ratio_z": 0.725,
+        "ratio_z": 0.721,
         "ratio_pct_1y": 0.798,
-        "diff_now": 0.3521,
+        "diff_now": 0.352,
         "diff_mean_1y": 0.2087,
         "diff_sd_1y": 0.2142,
         "diff_z": 0.669,
@@ -1208,18 +1267,18 @@
       "basic": {
         "basis": "basic",
         "lookback_trading_days": 252,
-        "mstr_mnav": 0.8193,
-        "asst_mnav": 0.9058,
-        "ratio_now": 1.1056,
+        "mstr_mnav": 0.8208,
+        "asst_mnav": 0.9066,
+        "ratio_now": 1.1045,
         "ratio_mean_1y": 1.1707,
         "ratio_median_1y": 1.1832,
         "ratio_sd_1y": 0.2558,
-        "ratio_z": -0.255,
+        "ratio_z": -0.259,
         "ratio_pct_1y": 0.349,
-        "diff_now": 0.0865,
-        "diff_mean_1y": 0.1399,
+        "diff_now": 0.0858,
+        "diff_mean_1y": 0.1398,
         "diff_sd_1y": 0.2224,
-        "diff_z": -0.24,
+        "diff_z": -0.243,
         "diff_pct_1y": 0.345,
         "verdict": "NORMAL",
         "verdict_text": "Spread normal",
@@ -1391,7 +1450,7 @@
       "news": {
         "headline": "Mortgage Rates & the Fed: Focus on Affordability, Not Headlines - HousingWire",
         "url": "https://news.google.com/rss/articles/CBMibkFVX3lxTE1ZSnhVajR5bXp0WHYwUkt5amFHdWdXVWN3REVIVEZHa202SjNGcVEwbnZPYU85UlpOOWxsV0RuVDd3bkdiZm01NFZKOWlFVEwtd0hrUDA4ZWtBdjZyWUFfcGd0eE5JVWJwZHd5eFhn?oc=5",
-        "published": "Thu, 12 Nov 2026 08:03:27 GMT",
+        "published": "Thu, 12 Nov 2026 10:03:27 GMT",
         "publisher": "HousingWire",
         "via": "Google News RSS"
       }
@@ -1412,7 +1471,7 @@
       "news": {
         "headline": "Mortgage Rates & the Fed: Focus on Affordability, Not Headlines - HousingWire",
         "url": "https://news.google.com/rss/articles/CBMibkFVX3lxTE1ZSnhVajR5bXp0WHYwUkt5amFHdWdXVWN3REVIVEZHa202SjNGcVEwbnZPYU85UlpOOWxsV0RuVDd3bkdiZm01NFZKOWlFVEwtd0hrUDA4ZWtBdjZyWUFfcGd0eE5JVWJwZHd5eFhn?oc=5",
-        "published": "Thu, 12 Nov 2026 08:03:27 GMT",
+        "published": "Thu, 12 Nov 2026 10:03:27 GMT",
         "publisher": "HousingWire",
         "via": "Google News RSS"
       }
@@ -1606,11 +1665,11 @@
         },
         {
           "outcome": "\u2193 50,000",
-          "yes": 0.0695
+          "yes": 0.07
         },
         {
-          "outcome": "\u2191 100,000",
-          "yes": 0.045
+          "outcome": "\u2193 45,000",
+          "yes": 0.047
         }
       ]
     },
@@ -1631,7 +1690,7 @@
         },
         {
           "outcome": "50+ bps increase",
-          "yes": 0.0725
+          "yes": 0.0705
         },
         {
           "outcome": "No change",
@@ -1897,7 +1956,7 @@
       "lookback_trading_days": 252,
       "overheated_percentile": 0.9,
       "overheated_min_mnav": 1.25,
-      "_overheated_comment": "Overheated floor is per stock per date: base = that stock's cheap CAP (valuation.cheap_cap; MSTR held flat at 1.10x until its own 1y median mNAV > 1.30x, ASST on the rising schedule) + overheated_gap_above_cheap, plus mnav.anticipation (preferred-driven sliding premium) while the flywheel is OFF, or max(the ON / RUNNING_HOT bonus, anticipation.max_premium) while ON / RUNNING_HOT so the line never drops below the off-state maximum. There is no extra RUNNING_HOT bump on top of max_premium. Overheated (the call's filter) = mNAV >= floor AND >= overheated_percentile of the lookback. The OVERVALUED zone is floor OR that percentile. overheated_min_mnav is the legacy fixed floor, kept only as a fallback. overheated_bonus_on / overheated_bonus_running_hot remain the legacy ON / RUNNING_HOT adders (0.15 / 0.30); with anticipation.enabled they are floored at max_premium (both 0.30 under the 2026-11-11 rule).",
+      "_overheated_comment": "Overheated floor is per stock per date: base = that stock's cheap CAP (valuation.cheap_cap; MSTR held flat at 1.10x until its own 1y median mNAV > 1.30x, ASST on the rising schedule) + overheated_gap_above_cheap, plus mnav.anticipation (preferred-driven sliding premium) while the flywheel is OFF, or max(the ON / RUNNING_HOT bonus, anticipation.max_premium) while ON / RUNNING_HOT so the line never drops below the off-state maximum. There is no extra RUNNING_HOT bump on top of max_premium. Overheated (the call's filter) = mNAV >= floor AND >= overheated_percentile of the lookback. The OVERVALUED zone is floor OR that percentile. overheated_min_mnav is the legacy fixed floor, kept only as a fallback. overheated_bonus_on / overheated_bonus_running_hot remain the legacy ON / RUNNING_HOT adders (0.15 / 0.30); with anticipation.enabled they are floored at max_premium (both 0.30 under the 2026-11-11 rule). 2026-11-12: two floors per stock. DISPLAY floor ({key}_oh_floor, zones / cards / chart ov_line) = halving_bonus.base_cap + that stock's halving bonus + gap + anticipation. CALL floor ({key}_oh_floor_call, the overheated filter in the call) = legacy cheap cap (cheap_below_mnav_schedule / cheap_cap policy) + gap + anticipation, unchanged.",
       "overheated_gap_above_cheap": 0.15,
       "overheated_bonus_on": 0.15,
       "overheated_bonus_running_hot": 0.3,
@@ -1923,10 +1982,34 @@
       "_ev_share_basis_comment": "Share count used for the equity leg of EV. 'basic' (Strategy's own EV definition) avoids double-counting convertible notes, which are already in debt. 'diluted' is an option."
     },
     "valuation": {
-      "_comment": "Zones, applied to each mNAV basis separately using each stock's own trailing mnav.lookback_trading_days (252) percentile on that basis: OVERVALUED: mNAV >= the stock's overheated floor OR percentile >= mnav.overheated_percentile (90th). CHEAP: percentile <= the per-day cheap_pct (valuation.cheap_max_percentile, 25th, plus mnav.anticipation.cheap_percentile_relax x score, up to the 40th when the preferred is at/near par or the flywheel is ON) AND mNAV <= the stock's cheap_cap_eff (structural cheap cap + cheap_cap_bump x the same score). FAIR: percentile <= rich_above_percentile (75th) (incl. bottom-quartile days above the cap). RICH: above the 75th percentile, below OVERVALUED. See mnav.anticipation for the score (preferred proximity + 5-day tilt).",
+      "_comment": "Zones, applied to each mNAV basis separately using each stock's own trailing mnav.lookback_trading_days (252) percentile on that basis: OVERVALUED: mNAV >= the stock's overheated floor OR percentile >= mnav.overheated_percentile (90th). CHEAP: percentile <= the per-day cheap_pct (valuation.cheap_max_percentile, 25th, plus mnav.anticipation.cheap_percentile_relax x score, up to the 40th when the preferred is at/near par or the flywheel is ON) AND mNAV <= the stock's cheap_cap_eff (halving_bonus.base_cap + that stock's halving bonus + cheap_cap_bump x the same score). FAIR: percentile <= rich_above_percentile (75th) (incl. bottom-quartile days above the cap). RICH: above the 75th percentile, below OVERVALUED. See mnav.anticipation for the score (preferred proximity + 5-day tilt).",
       "fair_max_percentile": 0.5,
+      "halving_bonus": {
+        "_comment": "Bobby, 2026-11-12: halving-cycle time bonus (mNAV x) added to each stock's DISPLAY cheap cap AND overvalued floor (zone labels, cards, per-stock chart cheap_gate / ov_line). Replaces the linear cheap_below_mnav_schedule and the MSTR hold_until_median for zones. cheap cap = base_cap + bonus (+ anticipation cap bump); overvalued floor = cap + mnav.overheated_gap_above_cheap + anticipation premium. Shape per stock: 0 until ramp_days before next_halving_est; quadratic ramp ((t+ramp)/ramp)^ramp_shape up to the halving; full amp for hold_days; linear fade to 0 over fade_days (~the usual BTC cycle top, ~535 days after a halving); then bear_bonus (0, never negative). Amplitude = amp_next[ticker] for the next halving, x decay_per_cycle for each later one (cycle_days apart, ~4 years). Earlier halvings are not back-cast. Does NOT change the call: the overheated filter keeps its legacy floor ({key}_oh_floor_call, from cheap_below_mnav_schedule / cheap_cap). Re-check next_halving_est against mempool.space every quarter (block 1,050,000; 12 Nov 2026 estimate 4-15 Apr 2028). Rules-based, not financial advice.",
+        "enabled": true,
+        "base_cap": 1.1,
+        "next_halving_est": "2028-04-12",
+        "past_halvings": [
+          "2012-11-28",
+          "2016-07-09",
+          "2020-05-11",
+          "2024-04-19"
+        ],
+        "amp_next": {
+          "MSTR": 0.3,
+          "ASST": 0.5
+        },
+        "_amp_comment": "ASST gets the bigger premium (Bobby: smaller, faster horse; easier to stack BTC when its flywheel is on).",
+        "decay_per_cycle": 0.6,
+        "cycle_days": 1458,
+        "ramp_days": 365,
+        "ramp_shape": 2.0,
+        "hold_days": 365,
+        "fade_days": 180,
+        "bear_bonus": 0.0
+      },
       "cheap_below_mnav_schedule": {
-        "_comment": "Bull-cycle cheap line: start at start_date, rising linearly to end at end_date (next BTC halving estimate; update when known), flat at end afterwards. Dates before start_date use the flat start value (1.10x).",
+        "_comment": "LEGACY (call filter only, 2026-11-12): linear line from start_date to end_date. Now feeds only the call's overheated-filter floor ({key}_oh_floor_call) so the call/backtest are unchanged; zone labels, cards and chart lines use valuation.halving_bonus instead.",
         "start_date": "2026-10-28",
         "start": 1.1,
         "end_date": "2028-04-15",
@@ -1935,7 +2018,7 @@
       "cheap_max_percentile": 0.25,
       "rich_above_percentile": 0.75,
       "cheap_cap": {
-        "_comment": "The bull-cycle line (cheap_below_mnav_schedule) is a CAP: never CHEAP above it. Per stock: 'schedule' follows it; 'hold_until_median' stays flat at hold_value until the stock's own trailing-1y median mNAV (signal basis) is above median_above, then follows the schedule.",
+        "_comment": "LEGACY (call filter only, 2026-11-12): per-stock policy for the call's overheated-filter floor: 'schedule' follows cheap_below_mnav_schedule; 'hold_until_median' stays at hold_value until the stock's 1y median > median_above. Zones use valuation.halving_bonus.",
         "MSTR": {
           "mode": "hold_until_median",
           "hold_value": 1.1,

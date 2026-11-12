@@ -1,5 +1,5 @@
 {
- "generated_utc": "2026-11-12T16:40:59+00:00",
+ "generated_utc": "2026-11-12T16:45:30+00:00",
  "version": 1,
  "MSTR": {
   "basic_shares": [
@@ -491,7 +491,7 @@
    ],
    [
     "2026-11-12",
-    425595086.0,
+    425593589.0,
     "https://api.strategy.com/btc/kpiData",
     false
    ]
@@ -993,7 +993,7 @@
    ],
    [
     "2026-11-12",
-    120813962.0,
+    120807636.0,
     "https://api.strategy.com/btc/kpiData",
     false
    ]
@@ -1213,7 +1213,7 @@
    ],
    [
     "2026-11-12",
-    4915.0,
+    4914.0,
     "https://api.strategy.com/btc/mstrKpiData",
     false
    ]
@@ -1299,9 +1299,9 @@
     },
     {
      "date": "2026-11-12",
-     "anchor": 425595086,
+     "anchor": 425593589,
      "predicted_from_flows": 425584507.0,
-     "residual": 10579.0,
+     "residual": 9082.0,
      "src": "https://api.strategy.com/btc/kpiData"
     }
    ],
@@ -1415,9 +1415,9 @@
     },
     {
      "date": "2026-11-12",
-     "anchor": 120813962,
+     "anchor": 120807636,
      "predicted_from_flows": 120818993.0,
-     "residual": -5031.0,
+     "residual": -11357.0,
      "src": "https://api.strategy.com/btc/kpiData"
     }
    ],
@@ -1432,17 +1432,17 @@
    ]
   },
   "strategy_kpi_latest": {
-   "fetched_utc": "2026-11-12T16:41:00+00:00",
-   "timestamp_utc": "2026-11-12T16:40:00",
-   "market_cap_m": 49884.0,
-   "ev_m": 64629.0,
+   "fetched_utc": "2026-11-12T16:45:31+00:00",
+   "timestamp_utc": "2026-11-12T16:45:00",
+   "market_cap_m": 49920.0,
+   "ev_m": 64666.0,
    "debt_m": 6714.0,
    "pref_m": 12946.0,
-   "price": 117.21,
+   "price": 117.3,
    "per_ticker": {
     "MSTR": {
-     "shares": 425595086,
-     "price": 117.21
+     "shares": 425593589,
+     "price": 117.295
     },
     "STRK": {
      "shares": 14014815,
@@ -1453,8 +1453,8 @@
      "price": 102.335
     },
     "STRD": {
-     "shares": 14025018,
-     "price": 67.95
+     "shares": 14018692,
+     "price": 67.41
     },
     "STRC": {
      "shares": 79933947,
@@ -1465,7 +1465,7 @@
      "price": 86.6757
     }
    },
-   "cash_m": 4915.0,
+   "cash_m": 4914.0,
    "date": "2026-11-12"
   },
   "pref_check": [

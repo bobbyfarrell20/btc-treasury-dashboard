@@ -56,7 +56,7 @@
     "lookback_trading_days": 252,
     "overheated_percentile": 0.9,
     "overheated_min_mnav": 1.25,
-    "_overheated_comment": "Overheated floor is per stock per date: base = that stock's cheap CAP (valuation.cheap_cap; MSTR held flat at 1.10x until its own 1y median mNAV > 1.30x, ASST on the rising schedule) + overheated_gap_above_cheap, plus mnav.anticipation (preferred-driven sliding premium) while the flywheel is OFF, or max(the ON / RUNNING_HOT bonus, anticipation.max_premium) while ON / RUNNING_HOT so the line never drops below the off-state maximum. There is no extra RUNNING_HOT bump on top of max_premium. Overheated (the call's filter) = mNAV >= floor AND >= overheated_percentile of the lookback. The OVERVALUED zone is floor OR that percentile. overheated_min_mnav is the legacy fixed floor, kept only as a fallback. overheated_bonus_on / overheated_bonus_running_hot remain the legacy ON / RUNNING_HOT adders (0.15 / 0.30); with anticipation.enabled they are floored at max_premium (both 0.30 under the 2026-11-11 rule).",
+    "_overheated_comment": "Overheated floor is per stock per date: base = that stock's cheap CAP (valuation.cheap_cap; MSTR held flat at 1.10x until its own 1y median mNAV > 1.30x, ASST on the rising schedule) + overheated_gap_above_cheap, plus mnav.anticipation (preferred-driven sliding premium) while the flywheel is OFF, or max(the ON / RUNNING_HOT bonus, anticipation.max_premium) while ON / RUNNING_HOT so the line never drops below the off-state maximum. There is no extra RUNNING_HOT bump on top of max_premium. Overheated (the call's filter) = mNAV >= floor AND >= overheated_percentile of the lookback. The OVERVALUED zone is floor OR that percentile. overheated_min_mnav is the legacy fixed floor, kept only as a fallback. overheated_bonus_on / overheated_bonus_running_hot remain the legacy ON / RUNNING_HOT adders (0.15 / 0.30); with anticipation.enabled they are floored at max_premium (both 0.30 under the 2026-11-11 rule). 2026-11-12: two floors per stock. DISPLAY floor ({key}_oh_floor, zones / cards / chart ov_line) = halving_bonus.base_cap + that stock's halving bonus + gap + anticipation. CALL floor ({key}_oh_floor_call, the overheated filter in the call) = legacy cheap cap (cheap_below_mnav_schedule / cheap_cap policy) + gap + anticipation, unchanged.",
     "overheated_gap_above_cheap": 0.15,
     "overheated_bonus_on": 0.15,
     "overheated_bonus_running_hot": 0.3,
@@ -82,10 +82,34 @@
     "_ev_share_basis_comment": "Share count used for the equity leg of EV. 'basic' (Strategy's own EV definition) avoids double-counting convertible notes, which are already in debt. 'diluted' is an option."
   },
   "valuation": {
-    "_comment": "Zones, applied to each mNAV basis separately using each stock's own trailing mnav.lookback_trading_days (252) percentile on that basis: OVERVALUED: mNAV >= the stock's overheated floor OR percentile >= mnav.overheated_percentile (90th). CHEAP: percentile <= the per-day cheap_pct (valuation.cheap_max_percentile, 25th, plus mnav.anticipation.cheap_percentile_relax x score, up to the 40th when the preferred is at/near par or the flywheel is ON) AND mNAV <= the stock's cheap_cap_eff (structural cheap cap + cheap_cap_bump x the same score). FAIR: percentile <= rich_above_percentile (75th) (incl. bottom-quartile days above the cap). RICH: above the 75th percentile, below OVERVALUED. See mnav.anticipation for the score (preferred proximity + 5-day tilt).",
+    "_comment": "Zones, applied to each mNAV basis separately using each stock's own trailing mnav.lookback_trading_days (252) percentile on that basis: OVERVALUED: mNAV >= the stock's overheated floor OR percentile >= mnav.overheated_percentile (90th). CHEAP: percentile <= the per-day cheap_pct (valuation.cheap_max_percentile, 25th, plus mnav.anticipation.cheap_percentile_relax x score, up to the 40th when the preferred is at/near par or the flywheel is ON) AND mNAV <= the stock's cheap_cap_eff (halving_bonus.base_cap + that stock's halving bonus + cheap_cap_bump x the same score). FAIR: percentile <= rich_above_percentile (75th) (incl. bottom-quartile days above the cap). RICH: above the 75th percentile, below OVERVALUED. See mnav.anticipation for the score (preferred proximity + 5-day tilt).",
     "fair_max_percentile": 0.5,
+    "halving_bonus": {
+      "_comment": "Bobby, 2026-11-12: halving-cycle time bonus (mNAV x) added to each stock's DISPLAY cheap cap AND overvalued floor (zone labels, cards, per-stock chart cheap_gate / ov_line). Replaces the linear cheap_below_mnav_schedule and the MSTR hold_until_median for zones. cheap cap = base_cap + bonus (+ anticipation cap bump); overvalued floor = cap + mnav.overheated_gap_above_cheap + anticipation premium. Shape per stock: 0 until ramp_days before next_halving_est; quadratic ramp ((t+ramp)/ramp)^ramp_shape up to the halving; full amp for hold_days; linear fade to 0 over fade_days (~the usual BTC cycle top, ~535 days after a halving); then bear_bonus (0, never negative). Amplitude = amp_next[ticker] for the next halving, x decay_per_cycle for each later one (cycle_days apart, ~4 years). Earlier halvings are not back-cast. Does NOT change the call: the overheated filter keeps its legacy floor ({key}_oh_floor_call, from cheap_below_mnav_schedule / cheap_cap). Re-check next_halving_est against mempool.space every quarter (block 1,050,000; 12 Nov 2026 estimate 4-15 Apr 2028). Rules-based, not financial advice.",
+      "enabled": true,
+      "base_cap": 1.1,
+      "next_halving_est": "2028-04-12",
+      "past_halvings": [
+        "2012-11-28",
+        "2016-07-09",
+        "2020-05-11",
+        "2024-04-19"
+      ],
+      "amp_next": {
+        "MSTR": 0.3,
+        "ASST": 0.5
+      },
+      "_amp_comment": "ASST gets the bigger premium (Bobby: smaller, faster horse; easier to stack BTC when its flywheel is on).",
+      "decay_per_cycle": 0.6,
+      "cycle_days": 1458,
+      "ramp_days": 365,
+      "ramp_shape": 2.0,
+      "hold_days": 365,
+      "fade_days": 180,
+      "bear_bonus": 0.0
+    },
     "cheap_below_mnav_schedule": {
-      "_comment": "Bull-cycle cheap line: start at start_date, rising linearly to end at end_date (next BTC halving estimate; update when known), flat at end afterwards. Dates before start_date use the flat start value (1.10x).",
+      "_comment": "LEGACY (call filter only, 2026-11-12): linear line from start_date to end_date. Now feeds only the call's overheated-filter floor ({key}_oh_floor_call) so the call/backtest are unchanged; zone labels, cards and chart lines use valuation.halving_bonus instead.",
       "start_date": "2026-10-28",
       "start": 1.1,
       "end_date": "2028-04-15",
@@ -94,7 +118,7 @@
     "cheap_max_percentile": 0.25,
     "rich_above_percentile": 0.75,
     "cheap_cap": {
-      "_comment": "The bull-cycle line (cheap_below_mnav_schedule) is a CAP: never CHEAP above it. Per stock: 'schedule' follows it; 'hold_until_median' stays flat at hold_value until the stock's own trailing-1y median mNAV (signal basis) is above median_above, then follows the schedule.",
+      "_comment": "LEGACY (call filter only, 2026-11-12): per-stock policy for the call's overheated-filter floor: 'schedule' follows cheap_below_mnav_schedule; 'hold_until_median' stays at hold_value until the stock's 1y median > median_above. Zones use valuation.halving_bonus.",
       "MSTR": {
         "mode": "hold_until_median",
         "hold_value": 1.1,
