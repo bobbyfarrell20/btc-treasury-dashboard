@@ -15,14 +15,14 @@
    "question": "Will there be no change in Fed interest rates after the December 2026 meeting?",
    "url": "https://polymarket.com/event/fed-decision-in-december-20260729232808632",
    "from": 0.215,
-   "to": 0.0265,
-   "change_pts": -18.9,
+   "to": 0.0155,
+   "change_pts": -20.0,
    "from_date": "2026-11-05",
    "news": {
-    "headline": "Mortgage Rates & the Fed: Focus on Affordability, Not Headlines - HousingWire",
-    "url": "https://news.google.com/rss/articles/CBMibkFVX3lxTE1ZSnhVajR5bXp0WHYwUkt5amFHdWdXVWN3REVIVEZHa202SjNGcVEwbnZPYU85UlpOOWxsV0RuVDd3bkdiZm01NFZKOWlFVEwtd0hrUDA4ZWtBdjZyWUFfcGd0eE5JVWJwZHd5eFhn?oc=5",
-    "published": "Thu, 12 Nov 2026 10:03:27 GMT",
-    "publisher": "HousingWire",
+    "headline": "Federal Reserve to Forgo Rate Decision at October 2027 Meeting - WSJ",
+    "url": "https://news.google.com/rss/articles/CBMitgFBVV95cUxPWkZiVk1uU2k5a1RQRGUxdFBJMEcxSVhtWEJfR0s3Q3E3T185OXRrZHRZMDVsQlhTdVpIbVlfQnNPem4zbGlTMDR6elFDRlM3RzhETUhCVzlTTDJvWmtfQzctcUFhRXZsVmxpVjBQUXpXTkRUTThQNVJwQV9YX19qaTZGVGswRGF1N2d0dktsZW5DVHlFWVNENmtQaERZYm5ZTmREdm8tMzVjX3ZCQUdqbTFCbWktdw?oc=5",
+    "published": "Thu, 12 Nov 2026 18:33:00 GMT",
+    "publisher": "WSJ",
     "via": "Google News RSS"
    }
   },
@@ -40,10 +40,10 @@
    "change_pts": -16.0,
    "from_date": "2026-11-05",
    "news": {
-    "headline": "Mortgage Rates & the Fed: Focus on Affordability, Not Headlines - HousingWire",
-    "url": "https://news.google.com/rss/articles/CBMibkFVX3lxTE1ZSnhVajR5bXp0WHYwUkt5amFHdWdXVWN3REVIVEZHa202SjNGcVEwbnZPYU85UlpOOWxsV0RuVDd3bkdiZm01NFZKOWlFVEwtd0hrUDA4ZWtBdjZyWUFfcGd0eE5JVWJwZHd5eFhn?oc=5",
-    "published": "Thu, 12 Nov 2026 10:03:27 GMT",
-    "publisher": "HousingWire",
+    "headline": "Federal Reserve to Forgo Rate Decision at October 2027 Meeting - WSJ",
+    "url": "https://news.google.com/rss/articles/CBMitgFBVV95cUxPWkZiVk1uU2k5a1RQRGUxdFBJMEcxSVhtWEJfR0s3Q3E3T185OXRrZHRZMDVsQlhTdVpIbVlfQnNPem4zbGlTMDR6elFDRlM3RzhETUhCVzlTTDJvWmtfQzctcUFhRXZsVmxpVjBQUXpXTkRUTThQNVJwQV9YX19qaTZGVGswRGF1N2d0dktsZW5DVHlFWVNENmtQaERZYm5ZTmREdm8tMzVjX3ZCQUdqbTFCbWktdw?oc=5",
+    "published": "Thu, 12 Nov 2026 18:33:00 GMT",
+    "publisher": "WSJ",
     "via": "Google News RSS"
    }
   },
@@ -186,7 +186,7 @@
     },
     {
      "outcome": "↓ 55,000",
-     "yes": 0.115
+     "yes": 0.125
     }
    ]
   },
@@ -203,7 +203,7 @@
    "odds": [
     {
      "outcome": "Before Jan 1, 2027",
-     "yes": 0.029
+     "yes": 0.028
     }
    ]
   },
@@ -220,5 +220,5 @@
    "odds": []
   }
  ],
- "generated_utc": "2026-11-12T16:54:26+00:00"
+ "generated_utc": "2026-11-12T21:23:51+00:00"
 }
