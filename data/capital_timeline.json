@@ -1,5 +1,5 @@
 {
- "generated_utc": "2026-11-12T16:45:30+00:00",
+ "generated_utc": "2026-11-12T16:46:54+00:00",
  "version": 1,
  "MSTR": {
   "basic_shares": [
@@ -491,7 +491,7 @@
    ],
    [
     "2026-11-12",
-    425593589.0,
+    425588536.0,
     "https://api.strategy.com/btc/kpiData",
     false
    ]
@@ -993,7 +993,7 @@
    ],
    [
     "2026-11-12",
-    120807636.0,
+    120817030.0,
     "https://api.strategy.com/btc/kpiData",
     false
    ]
@@ -1299,9 +1299,9 @@
     },
     {
      "date": "2026-11-12",
-     "anchor": 425593589,
+     "anchor": 425588536,
      "predicted_from_flows": 425584507.0,
-     "residual": 9082.0,
+     "residual": 4029.0,
      "src": "https://api.strategy.com/btc/kpiData"
     }
    ],
@@ -1415,9 +1415,9 @@
     },
     {
      "date": "2026-11-12",
-     "anchor": 120807636,
+     "anchor": 120817030,
      "predicted_from_flows": 120818993.0,
-     "residual": -11357.0,
+     "residual": -1963.0,
      "src": "https://api.strategy.com/btc/kpiData"
     }
    ],
@@ -1432,17 +1432,17 @@
    ]
   },
   "strategy_kpi_latest": {
-   "fetched_utc": "2026-11-12T16:45:31+00:00",
-   "timestamp_utc": "2026-11-12T16:45:00",
-   "market_cap_m": 49920.0,
-   "ev_m": 64666.0,
+   "fetched_utc": "2026-11-12T16:46:54+00:00",
+   "timestamp_utc": "2026-11-12T16:46:00",
+   "market_cap_m": 49896.0,
+   "ev_m": 64642.0,
    "debt_m": 6714.0,
    "pref_m": 12946.0,
-   "price": 117.3,
+   "price": 117.24,
    "per_ticker": {
     "MSTR": {
-     "shares": 425593589,
-     "price": 117.295
+     "shares": 425588536,
+     "price": 117.24
     },
     "STRK": {
      "shares": 14014815,
@@ -1453,8 +1453,8 @@
      "price": 102.335
     },
     "STRD": {
-     "shares": 14018692,
-     "price": 67.41
+     "shares": 14028086,
+     "price": 67.65
     },
     "STRC": {
      "shares": 79933947,
