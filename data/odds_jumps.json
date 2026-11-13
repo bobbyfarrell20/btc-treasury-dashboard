@@ -21,13 +21,13 @@
    "news": {
     "headline": "Federal Reserve to Forgo Rate Decision at October 2027 Meeting - WSJ",
     "url": "https://news.google.com/rss/articles/CBMitgFBVV95cUxPWkZiVk1uU2k5a1RQRGUxdFBJMEcxSVhtWEJfR0s3Q3E3T185OXRrZHRZMDVsQlhTdVpIbVlfQnNPem4zbGlTMDR6elFDRlM3RzhETUhCVzlTTDJvWmtfQzctcUFhRXZsVmxpVjBQUXpXTkRUTThQNVJwQV9YX19qaTZGVGswRGF1N2d0dktsZW5DVHlFWVNENmtQaERZYm5ZTmREdm8tMzVjX3ZCQUdqbTFCbWktdw?oc=5",
-    "published": "Fri, 13 Nov 2026 01:57:25 GMT",
+    "published": "Fri, 13 Nov 2026 04:32:36 GMT",
     "publisher": "WSJ",
     "via": "Google News RSS"
    }
   },
   {
-   "date": "2026-11-12",
+   "date": "2026-11-13",
    "window": "7d",
    "source": "kalshi",
    "group": "Fed",
@@ -35,15 +35,36 @@
    "outcome": "Fed maintains rate",
    "question": null,
    "url": "https://kalshi.com/markets/kxfeddecision",
-   "from": 0.21,
-   "to": 0.05,
-   "change_pts": -16.0,
-   "from_date": "2026-11-05",
+   "from": 0.36,
+   "to": 0.04,
+   "change_pts": -32.0,
+   "from_date": "2026-11-06",
    "news": {
     "headline": "Federal Reserve to Forgo Rate Decision at October 2027 Meeting - WSJ",
     "url": "https://news.google.com/rss/articles/CBMitgFBVV95cUxPWkZiVk1uU2k5a1RQRGUxdFBJMEcxSVhtWEJfR0s3Q3E3T185OXRrZHRZMDVsQlhTdVpIbVlfQnNPem4zbGlTMDR6elFDRlM3RzhETUhCVzlTTDJvWmtfQzctcUFhRXZsVmxpVjBQUXpXTkRUTThQNVJwQV9YX19qaTZGVGswRGF1N2d0dktsZW5DVHlFWVNENmtQaERZYm5ZTmREdm8tMzVjX3ZCQUdqbTFCbWktdw?oc=5",
-    "published": "Fri, 13 Nov 2026 01:57:25 GMT",
+    "published": "Fri, 13 Nov 2026 04:32:36 GMT",
     "publisher": "WSJ",
+    "via": "Google News RSS"
+   }
+  },
+  {
+   "date": "2026-11-13",
+   "window": "24h",
+   "source": "kalshi",
+   "group": "BTC",
+   "market": "How low will BTC get in 2026",
+   "outcome": "Below $55,000.00",
+   "question": null,
+   "url": "https://kalshi.com/markets/kxbtcminy",
+   "from": 0.11,
+   "to": 0.21,
+   "change_pts": 10.0,
+   "from_date": "2026-11-12",
+   "news": {
+    "headline": "Bitcoin BTC (BTC-USD) Live Price, News, Chart & Price History - Yahoo! Finance Canada",
+    "url": "https://news.google.com/rss/articles/CBMiVkFVX3lxTE1HSGlGRjBhSUlQdXZtSXRJWmhTcWlLMmt2WEM2WFk0LV9Bd3BzOGNZQzJmQXJycTBZcmpSNWZiWHMzMDdzY3cyQzlKYXNYSk0tUF9MVzdB?oc=5",
+    "published": "Thu, 12 Nov 2026 21:23:54 GMT",
+    "publisher": "Yahoo! Finance Canada",
     "via": "Google News RSS"
    }
   },
@@ -182,11 +203,11 @@
    "odds": [
     {
      "outcome": "↑ 100,000",
-     "yes": 0.055
+     "yes": 0.045
     },
     {
      "outcome": "↓ 55,000",
-     "yes": 0.135
+     "yes": 0.175
     }
    ]
   },
@@ -203,7 +224,7 @@
    "odds": [
     {
      "outcome": "Before Jan 1, 2027",
-     "yes": 0.028
+     "yes": 0.02
     }
    ]
   },
@@ -220,5 +241,5 @@
    "odds": []
   }
  ],
- "generated_utc": "2026-11-13T02:52:17+00:00"
+ "generated_utc": "2026-11-13T05:02:04+00:00"
 }

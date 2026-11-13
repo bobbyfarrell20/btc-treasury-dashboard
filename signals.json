@@ -21,7 +21,7 @@
     "new": "STAY_BTC"
   },
   "_hash_note": "signal_hash changes when the recommendation, also_valid, any preferred peg state (on for the call = RUNNING_HOT/ON, hashed alike; WARMING_UP and COOLING_OFF hash as WATCH, STALLED as SELL; ON held by buybacks hashes as WATCH) or any overheated flag changes; last_changed is the most recent trading day it changed.",
-  "generated_utc": "2026-11-13T02:52:17+00:00",
+  "generated_utc": "2026-11-13T05:02:04+00:00",
   "as_of": "2026-11-12",
   "disclaimer": "Rules-based indicator, not financial advice.",
   "recommendation_detail": {
@@ -30,7 +30,7 @@
     "also_valid": null,
     "lean": null,
     "notes": [],
-    "rotation_z": 0.817,
+    "rotation_z": 0.818,
     "per_asset": {
       "MSTR": {
         "preferred": "STRC",
@@ -42,7 +42,7 @@
         "buyback_held": false,
         "flywheel_state": "Warming up",
         "flywheel_effect": "STRC warming up \u2192 flywheel off for MSTR",
-        "mnav_ev": 1.0452,
+        "mnav_ev": 1.0451,
         "mnav_ev_pct": 0.21,
         "has_data": true
       },
@@ -1255,7 +1255,7 @@
         "peg_state": "WATCH",
         "flywheel_code": "WARMING_UP",
         "flywheel_state": "Warming up",
-        "mnav": 1.0452,
+        "mnav": 1.0451,
         "mnav_pct_1y": 0.21,
         "zone": "CHEAP",
         "low_fair": false,
@@ -1312,11 +1312,11 @@
       "flywheel_code": "WARMING_UP",
       "overheated_floor": 1.55,
       "action": "WATCH",
-      "mnav": 1.0452,
+      "mnav": 1.0451,
       "mnav_pct_1y": 0.21,
       "overheated": false,
       "price_chg_dip_window": -0.1921,
-      "mnav_chg_dip_window": -0.0779
+      "mnav_chg_dip_window": -0.078
     },
     "ASST": {
       "peg_state": "SELL",
@@ -1344,7 +1344,7 @@
     "cheapened_most": "MSTR",
     "mstr_price_change": -0.1921,
     "asst_price_change": -0.1068,
-    "mstr_mnav_change": -0.0779,
+    "mstr_mnav_change": -0.078,
     "asst_mnav_change": 0.0126
   },
   "strc_buyback_support": true,
@@ -1402,24 +1402,24 @@
     "MSTR": 114.41,
     "ASST": 22.25,
     "btc": 71371.7656,
-    "mstr_mnav": 1.0452,
+    "mstr_mnav": 1.0451,
     "asst_mnav": 1.4292,
-    "mnav_avg": 1.2372,
-    "mnav_spread": 0.384,
-    "spread_z": 0.817,
+    "mnav_avg": 1.2371,
+    "mnav_spread": 0.3841,
+    "spread_z": 0.818,
     "ratio": 0.19448,
     "mstr_mnav_basic": 0.8023,
     "asst_mnav_basic": 0.9199,
-    "mstr_mnav_ev": 1.0452,
+    "mstr_mnav_ev": 1.0451,
     "asst_mnav_ev": 1.4292,
     "mstr_mnav_diluted": 0.858,
     "asst_mnav_diluted": 0.9395,
-    "mstr_ev_m": 63432.6,
+    "mstr_ev_m": 63432.1,
     "asst_ev_m": 4401.8,
     "btc_chg": -0.0823,
     "mstr_chg": -0.1921,
     "asst_chg": -0.1068,
-    "mstr_mnav_chg": -0.0779,
+    "mstr_mnav_chg": -0.078,
     "asst_mnav_chg": 0.0126,
     "mstr_nav_ps": 133.34,
     "asst_nav_ps": 23.68
@@ -1452,7 +1452,7 @@
         }
       },
       "all_in_ev": {
-        "mnav": 1.0452,
+        "mnav": 1.0451,
         "mnav_pct_1y": 0.21,
         "zone": "CHEAP",
         "cutoffs": {
@@ -1477,11 +1477,11 @@
       "diluted_equity_mnav": 0.858,
       "price": 114.41,
       "btc_held": 850364.0,
-      "basic_shares": 425592169.0,
-      "debt_m": 6714.0,
-      "preferred_notional_m": 12940.6,
-      "cash_m": 4914.0,
-      "enterprise_value_m": 63432.6,
+      "basic_shares": 425584507.0,
+      "debt_m": 6715.4,
+      "preferred_notional_m": 12941.8,
+      "cash_m": 4916.2,
+      "enterprise_value_m": 63432.1,
       "btc_nav_m": 60692,
       "btc_nav_per_basic_share": 142.61
     },
@@ -1547,7 +1547,7 @@
     },
     "spread_z": {
       "basic": -0.101,
-      "ev": 0.817
+      "ev": 0.818
     },
     "relative_verdict": {
       "basic": "Neither is clearly cheaper vs its usual gap (spread z -0.10, within \u00b11); MSTR has the lower mNAV today (0.80x vs 0.92x)",
@@ -1557,18 +1557,18 @@
       "ev": {
         "basis": "ev",
         "lookback_trading_days": 252,
-        "mstr_mnav": 1.0452,
+        "mstr_mnav": 1.0451,
         "asst_mnav": 1.4292,
-        "ratio_now": 1.3674,
+        "ratio_now": 1.3675,
         "ratio_mean_1y": 1.1921,
         "ratio_median_1y": 1.215,
         "ratio_sd_1y": 0.1929,
         "ratio_z": 0.909,
         "ratio_pct_1y": 0.821,
-        "diff_now": 0.384,
+        "diff_now": 0.3841,
         "diff_mean_1y": 0.2089,
         "diff_sd_1y": 0.2143,
-        "diff_z": 0.817,
+        "diff_z": 0.818,
         "diff_pct_1y": 0.817,
         "verdict": "NORMAL",
         "verdict_text": "Spread normal",
@@ -1599,15 +1599,24 @@
     }
   },
   "latest_big_move": {
-    "date": "2026-11-11",
-    "asset": "ASST",
-    "change": 0.0766,
-    "close": 23.2,
-    "prev_close": 21.55,
-    "threshold": 0.07,
-    "btc_change_same_day": 0.0033
+    "date": "2026-11-13",
+    "asset": "BTC",
+    "change": -0.042,
+    "close": 68372.5625,
+    "prev_close": 71371.7656,
+    "threshold": 0.04,
+    "btc_change_same_day": -0.042
   },
   "big_moves_last_30d": [
+    {
+      "date": "2026-11-13",
+      "asset": "BTC",
+      "change": -0.042,
+      "close": 68372.5625,
+      "prev_close": 71371.7656,
+      "threshold": 0.04,
+      "btc_change_same_day": -0.042
+    },
     {
       "date": "2026-11-11",
       "asset": "ASST",
@@ -1761,13 +1770,13 @@
       "news": {
         "headline": "Federal Reserve to Forgo Rate Decision at October 2027 Meeting - WSJ",
         "url": "https://news.google.com/rss/articles/CBMitgFBVV95cUxPWkZiVk1uU2k5a1RQRGUxdFBJMEcxSVhtWEJfR0s3Q3E3T185OXRrZHRZMDVsQlhTdVpIbVlfQnNPem4zbGlTMDR6elFDRlM3RzhETUhCVzlTTDJvWmtfQzctcUFhRXZsVmxpVjBQUXpXTkRUTThQNVJwQV9YX19qaTZGVGswRGF1N2d0dktsZW5DVHlFWVNENmtQaERZYm5ZTmREdm8tMzVjX3ZCQUdqbTFCbWktdw?oc=5",
-        "published": "Fri, 13 Nov 2026 01:57:25 GMT",
+        "published": "Fri, 13 Nov 2026 04:32:36 GMT",
         "publisher": "WSJ",
         "via": "Google News RSS"
       }
     },
     {
-      "date": "2026-11-12",
+      "date": "2026-11-13",
       "window": "7d",
       "source": "kalshi",
       "group": "Fed",
@@ -1775,15 +1784,36 @@
       "outcome": "Fed maintains rate",
       "question": null,
       "url": "https://kalshi.com/markets/kxfeddecision",
-      "from": 0.21,
-      "to": 0.05,
-      "change_pts": -16.0,
-      "from_date": "2026-11-05",
+      "from": 0.36,
+      "to": 0.04,
+      "change_pts": -32.0,
+      "from_date": "2026-11-06",
       "news": {
         "headline": "Federal Reserve to Forgo Rate Decision at October 2027 Meeting - WSJ",
         "url": "https://news.google.com/rss/articles/CBMitgFBVV95cUxPWkZiVk1uU2k5a1RQRGUxdFBJMEcxSVhtWEJfR0s3Q3E3T185OXRrZHRZMDVsQlhTdVpIbVlfQnNPem4zbGlTMDR6elFDRlM3RzhETUhCVzlTTDJvWmtfQzctcUFhRXZsVmxpVjBQUXpXTkRUTThQNVJwQV9YX19qaTZGVGswRGF1N2d0dktsZW5DVHlFWVNENmtQaERZYm5ZTmREdm8tMzVjX3ZCQUdqbTFCbWktdw?oc=5",
-        "published": "Fri, 13 Nov 2026 01:57:25 GMT",
+        "published": "Fri, 13 Nov 2026 04:32:36 GMT",
         "publisher": "WSJ",
+        "via": "Google News RSS"
+      }
+    },
+    {
+      "date": "2026-11-13",
+      "window": "24h",
+      "source": "kalshi",
+      "group": "BTC",
+      "market": "How low will BTC get in 2026",
+      "outcome": "Below $55,000.00",
+      "question": null,
+      "url": "https://kalshi.com/markets/kxbtcminy",
+      "from": 0.11,
+      "to": 0.21,
+      "change_pts": 10.0,
+      "from_date": "2026-11-12",
+      "news": {
+        "headline": "Bitcoin BTC (BTC-USD) Live Price, News, Chart & Price History - Yahoo! Finance Canada",
+        "url": "https://news.google.com/rss/articles/CBMiVkFVX3lxTE1HSGlGRjBhSUlQdXZtSXRJWmhTcWlLMmt2WEM2WFk0LV9Bd3BzOGNZQzJmQXJycTBZcmpSNWZiWHMzMDdzY3cyQzlKYXNYSk0tUF9MVzdB?oc=5",
+        "published": "Thu, 12 Nov 2026 21:23:54 GMT",
+        "publisher": "Yahoo! Finance Canada",
         "via": "Google News RSS"
       }
     },
@@ -1922,11 +1952,11 @@
       "odds": [
         {
           "outcome": "\u2191 100,000",
-          "yes": 0.055
+          "yes": 0.045
         },
         {
           "outcome": "\u2193 55,000",
-          "yes": 0.135
+          "yes": 0.175
         }
       ]
     },
@@ -1943,7 +1973,7 @@
       "odds": [
         {
           "outcome": "Before Jan 1, 2027",
-          "yes": 0.028
+          "yes": 0.02
         }
       ]
     },
@@ -1968,19 +1998,19 @@
       "top": [
         {
           "outcome": "\u2193 55,000",
-          "yes": 0.135
-        },
-        {
-          "outcome": "\u2191 90,000",
-          "yes": 0.115
+          "yes": 0.175
         },
         {
           "outcome": "\u2193 50,000",
-          "yes": 0.0825
+          "yes": 0.1015
         },
         {
-          "outcome": "\u2191 100,000",
-          "yes": 0.055
+          "outcome": "\u2191 90,000",
+          "yes": 0.085
+        },
+        {
+          "outcome": "\u2193 45,000",
+          "yes": 0.063
         }
       ]
     },
@@ -2001,15 +2031,15 @@
         },
         {
           "outcome": "50+ bps increase",
-          "yes": 0.0965
+          "yes": 0.0915
         },
         {
           "outcome": "No change",
-          "yes": 0.0175
+          "yes": 0.023
         },
         {
           "outcome": "25 bps decrease",
-          "yes": 0.0035
+          "yes": 0.0045
         }
       ]
     },
@@ -2020,11 +2050,11 @@
       "top": [
         {
           "outcome": "0 (0 bps)",
-          "yes": 0.984
+          "yes": 0.9845
         },
         {
           "outcome": "1 (25 bps)",
-          "yes": 0.0075
+          "yes": 0.0055
         },
         {
           "outcome": "2 (50 bps)",
@@ -2043,7 +2073,7 @@
       "top": [
         {
           "outcome": "Clarity Act (H.R.3633) signed into law in 2026?",
-          "yes": 0.018
+          "yes": 0.0185
         }
       ]
     },
@@ -2054,7 +2084,7 @@
       "top": [
         {
           "outcome": "Crypto Market Structure legislation becomes law in 2026?",
-          "yes": 0.046
+          "yes": 0.0505
         }
       ]
     },
@@ -2116,7 +2146,7 @@
           "yes": 0.02
         },
         {
-          "outcome": "Above $129,999.99",
+          "outcome": "Above $139,999.99",
           "yes": 0.02
         }
       ]
@@ -2128,18 +2158,18 @@
       "top": [
         {
           "outcome": "Below $55,000.00",
-          "yes": 0.14
+          "yes": 0.21
         },
         {
           "outcome": "Below $50,000.00",
-          "yes": 0.09
-        },
-        {
-          "outcome": "Below $40,000.00",
-          "yes": 0.05
+          "yes": 0.1
         },
         {
           "outcome": "Below $45,000.00",
+          "yes": 0.07
+        },
+        {
+          "outcome": "Below $40,000.00",
           "yes": 0.05
         }
       ]
@@ -2165,7 +2195,7 @@
         },
         {
           "outcome": "Fed maintains rate",
-          "yes": 0.03
+          "yes": 0.04
         },
         {
           "outcome": "Cut 25bps",
@@ -2180,11 +2210,11 @@
       "top": [
         {
           "outcome": "Before Jan 1, 2028",
-          "yes": 0.29
+          "yes": 0.28
         },
         {
           "outcome": "Before Oct 1, 2027",
-          "yes": 0.15
+          "yes": 0.21
         },
         {
           "outcome": "Before Jul 1, 2027",
