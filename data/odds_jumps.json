@@ -21,7 +21,7 @@
    "news": {
     "headline": "Federal Reserve to Forgo Rate Decision at October 2027 Meeting - WSJ",
     "url": "https://news.google.com/rss/articles/CBMitgFBVV95cUxPWkZiVk1uU2k5a1RQRGUxdFBJMEcxSVhtWEJfR0s3Q3E3T185OXRrZHRZMDVsQlhTdVpIbVlfQnNPem4zbGlTMDR6elFDRlM3RzhETUhCVzlTTDJvWmtfQzctcUFhRXZsVmxpVjBQUXpXTkRUTThQNVJwQV9YX19qaTZGVGswRGF1N2d0dktsZW5DVHlFWVNENmtQaERZYm5ZTmREdm8tMzVjX3ZCQUdqbTFCbWktdw?oc=5",
-    "published": "Fri, 13 Nov 2026 04:32:36 GMT",
+    "published": "Fri, 13 Nov 2026 01:04:28 GMT",
     "publisher": "WSJ",
     "via": "Google News RSS"
    }
@@ -42,7 +42,7 @@
    "news": {
     "headline": "Federal Reserve to Forgo Rate Decision at October 2027 Meeting - WSJ",
     "url": "https://news.google.com/rss/articles/CBMitgFBVV95cUxPWkZiVk1uU2k5a1RQRGUxdFBJMEcxSVhtWEJfR0s3Q3E3T185OXRrZHRZMDVsQlhTdVpIbVlfQnNPem4zbGlTMDR6elFDRlM3RzhETUhCVzlTTDJvWmtfQzctcUFhRXZsVmxpVjBQUXpXTkRUTThQNVJwQV9YX19qaTZGVGswRGF1N2d0dktsZW5DVHlFWVNENmtQaERZYm5ZTmREdm8tMzVjX3ZCQUdqbTFCbWktdw?oc=5",
-    "published": "Fri, 13 Nov 2026 04:32:36 GMT",
+    "published": "Fri, 13 Nov 2026 01:04:28 GMT",
     "publisher": "WSJ",
     "via": "Google News RSS"
    }
@@ -61,10 +61,10 @@
    "change_pts": 10.0,
    "from_date": "2026-11-12",
    "news": {
-    "headline": "Bitcoin BTC (BTC-USD) Live Price, News, Chart & Price History - Yahoo! Finance Canada",
-    "url": "https://news.google.com/rss/articles/CBMiVkFVX3lxTE1HSGlGRjBhSUlQdXZtSXRJWmhTcWlLMmt2WEM2WFk0LV9Bd3BzOGNZQzJmQXJycTBZcmpSNWZiWHMzMDdzY3cyQzlKYXNYSk0tUF9MVzdB?oc=5",
-    "published": "Thu, 12 Nov 2026 21:23:54 GMT",
-    "publisher": "Yahoo! Finance Canada",
+    "headline": "Bitcoin Slips Below $69K For First Time Since August: Is This A Buying Opportunity Or A Deeper Crypto Rout? - Yahoo Finance",
+    "url": "https://news.google.com/rss/articles/CBMimgFBVV95cUxNajlWOWZOdjB4UWROeWtwbklmZ2pIeFMyN2dSZ1U4dWNNdmVRQ0kzT2hqT3pGWXpwQ2ltS25lQXdGakNkZXl1US0xZU9idURNaGZURlJ3elRkYmZIS0FVVjgzdVpQUTBHdEk4eWNfXzRuMGJPOGM4X1M2eFhGdDMyd3I4alpXREpaNXpnSThmaDBmdGRaUVBrNEVn?oc=5",
+    "published": "Fri, 13 Nov 2026 06:53:00 GMT",
+    "publisher": "Yahoo Finance",
     "via": "Google News RSS"
    }
   },
@@ -203,11 +203,11 @@
    "odds": [
     {
      "outcome": "↑ 100,000",
-     "yes": 0.045
+     "yes": 0.03
     },
     {
      "outcome": "↓ 55,000",
-     "yes": 0.175
+     "yes": 0.145
     }
    ]
   },
@@ -241,5 +241,5 @@
    "odds": []
   }
  ],
- "generated_utc": "2026-11-13T05:02:04+00:00"
+ "generated_utc": "2026-11-13T14:07:36+00:00"
 }
