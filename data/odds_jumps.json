@@ -61,10 +61,10 @@
    "change_pts": 10.0,
    "from_date": "2026-11-12",
    "news": {
-    "headline": "Bitcoin Slips Below $69K For First Time Since August: Is This A Buying Opportunity Or A Deeper Crypto Rout? - Yahoo Finance",
-    "url": "https://news.google.com/rss/articles/CBMimgFBVV95cUxNajlWOWZOdjB4UWROeWtwbklmZ2pIeFMyN2dSZ1U4dWNNdmVRQ0kzT2hqT3pGWXpwQ2ltS25lQXdGakNkZXl1US0xZU9idURNaGZURlJ3elRkYmZIS0FVVjgzdVpQUTBHdEk4eWNfXzRuMGJPOGM4X1M2eFhGdDMyd3I4alpXREpaNXpnSThmaDBmdGRaUVBrNEVn?oc=5",
-    "published": "Fri, 13 Nov 2026 06:53:00 GMT",
-    "publisher": "Yahoo Finance",
+    "headline": "Current price of Bitcoin for Nov. 13, 2026 - Fortune",
+    "url": "https://news.google.com/rss/articles/CBMiZ0FVX3lxTFA3SmQxZ1EyU2VheHYzYmZZWm11N3R0ZmNKOEtUcVJSLXVyTDkxWERDb3pxMkhuZm9GMzJQeHUwbmlreXJjdUJTYkdlUEZ2U0Zxc25EbC1JSndUOENZMk9NY3BrRzBVQms?oc=5",
+    "published": "Fri, 13 Nov 2026 14:01:52 GMT",
+    "publisher": "Fortune",
     "via": "Google News RSS"
    }
   },
@@ -207,7 +207,7 @@
     },
     {
      "outcome": "↓ 55,000",
-     "yes": 0.145
+     "yes": 0.185
     }
    ]
   },
@@ -241,5 +241,5 @@
    "odds": []
   }
  ],
- "generated_utc": "2026-11-13T14:49:15+00:00"
+ "generated_utc": "2026-11-13T15:07:59+00:00"
 }
