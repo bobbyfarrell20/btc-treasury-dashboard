@@ -6,7 +6,7 @@
  },
  "jumps": [
   {
-   "date": "2026-11-12",
+   "date": "2026-11-13",
    "window": "7d",
    "source": "polymarket",
    "group": "Fed",
@@ -14,14 +14,14 @@
    "outcome": "No change",
    "question": "Will there be no change in Fed interest rates after the December 2026 meeting?",
    "url": "https://polymarket.com/event/fed-decision-in-december-20260729232808632",
-   "from": 0.215,
-   "to": 0.014,
-   "change_pts": -20.1,
-   "from_date": "2026-11-05",
+   "from": 0.335,
+   "to": 0.0145,
+   "change_pts": -32.0,
+   "from_date": "2026-11-06",
    "news": {
     "headline": "Federal Reserve to Forgo Rate Decision at October 2027 Meeting - WSJ",
     "url": "https://news.google.com/rss/articles/CBMitgFBVV95cUxPWkZiVk1uU2k5a1RQRGUxdFBJMEcxSVhtWEJfR0s3Q3E3T185OXRrZHRZMDVsQlhTdVpIbVlfQnNPem4zbGlTMDR6elFDRlM3RzhETUhCVzlTTDJvWmtfQzctcUFhRXZsVmxpVjBQUXpXTkRUTThQNVJwQV9YX19qaTZGVGswRGF1N2d0dktsZW5DVHlFWVNENmtQaERZYm5ZTmREdm8tMzVjX3ZCQUdqbTFCbWktdw?oc=5",
-    "published": "Thu, 12 Nov 2026 18:33:00 GMT",
+    "published": "Fri, 13 Nov 2026 01:57:25 GMT",
     "publisher": "WSJ",
     "via": "Google News RSS"
    }
@@ -42,7 +42,7 @@
    "news": {
     "headline": "Federal Reserve to Forgo Rate Decision at October 2027 Meeting - WSJ",
     "url": "https://news.google.com/rss/articles/CBMitgFBVV95cUxPWkZiVk1uU2k5a1RQRGUxdFBJMEcxSVhtWEJfR0s3Q3E3T185OXRrZHRZMDVsQlhTdVpIbVlfQnNPem4zbGlTMDR6elFDRlM3RzhETUhCVzlTTDJvWmtfQzctcUFhRXZsVmxpVjBQUXpXTkRUTThQNVJwQV9YX19qaTZGVGswRGF1N2d0dktsZW5DVHlFWVNENmtQaERZYm5ZTmREdm8tMzVjX3ZCQUdqbTFCbWktdw?oc=5",
-    "published": "Thu, 12 Nov 2026 18:33:00 GMT",
+    "published": "Fri, 13 Nov 2026 01:57:25 GMT",
     "publisher": "WSJ",
     "via": "Google News RSS"
    }
@@ -103,10 +103,10 @@
    "change_pts": -12.0,
    "from_date": "2026-11-06",
    "news": {
-    "headline": "The Fed Begins Transition to Holding Fewer Policy Meetings a Year - Bloomberg.com",
-    "url": "https://news.google.com/rss/articles/CBMiuAFBVV95cUxQQVRaRUF0MGFNU0FqcjMxNFhoVDhjalFkZGIxUDNaRk9aWWFyaFhnckZxLUwwRjBKQ3FaM0VlbkRJUUdVZE03OGctOElYc25uMnFnejFrbG5aSXE1LTFXWDVsb3FOMlV5dGF0emNFbklwN2swOVMwa3lFMldkUU8zLVFIbXVCMHR5RFh2Sy1YQ3pER0VidVpVTHJMSy1ZNzl6cjZOMFFzd2RkT2FGMjVVOWVERUh4ZWpN?oc=5",
-    "published": "Fri, 06 Nov 2026 11:00:00 GMT",
-    "publisher": "Bloomberg.com",
+    "headline": "Fed Holds Rates Steady in Warsh’s First Meeting as Chair - National Association of Wholesaler-Distributors",
+    "url": "https://news.google.com/rss/articles/CBMijgFBVV95cUxPNl91MDloVUVTaUpaaTNhbnpXM3FRQjY4ZWV3c0tnMlBLVjRWX3J2djkzTldRd0J4UFI2ckhZaEttMmRaY0dLdnNtRkJYRDdTUzlHZ0NRTkJVU1Y4YllJampkX2hJRzg1dzUtUmFtRVhtdGpiN3ZfaVVDbURRNE5Yb3FyVGF6SEpTQVRvQzF3?oc=5",
+    "published": "Sun, 08 Nov 2026 04:10:21 GMT",
+    "publisher": "National Association of Wholesaler-Distributors",
     "via": "Google News RSS"
    }
   },
@@ -124,10 +124,10 @@
    "change_pts": 12.0,
    "from_date": "2026-11-06",
    "news": {
-    "headline": "The Fed Begins Transition to Holding Fewer Policy Meetings a Year - Bloomberg.com",
-    "url": "https://news.google.com/rss/articles/CBMiuAFBVV95cUxQQVRaRUF0MGFNU0FqcjMxNFhoVDhjalFkZGIxUDNaRk9aWWFyaFhnckZxLUwwRjBKQ3FaM0VlbkRJUUdVZE03OGctOElYc25uMnFnejFrbG5aSXE1LTFXWDVsb3FOMlV5dGF0emNFbklwN2swOVMwa3lFMldkUU8zLVFIbXVCMHR5RFh2Sy1YQ3pER0VidVpVTHJMSy1ZNzl6cjZOMFFzd2RkT2FGMjVVOWVERUh4ZWpN?oc=5",
-    "published": "Fri, 06 Nov 2026 11:00:00 GMT",
-    "publisher": "Bloomberg.com",
+    "headline": "Fed Holds Rates Steady in Warsh’s First Meeting as Chair - National Association of Wholesaler-Distributors",
+    "url": "https://news.google.com/rss/articles/CBMijgFBVV95cUxPNl91MDloVUVTaUpaaTNhbnpXM3FRQjY4ZWV3c0tnMlBLVjRWX3J2djkzTldRd0J4UFI2ckhZaEttMmRaY0dLdnNtRkJYRDdTUzlHZ0NRTkJVU1Y4YllJampkX2hJRzg1dzUtUmFtRVhtdGpiN3ZfaVVDbURRNE5Yb3FyVGF6SEpTQVRvQzF3?oc=5",
+    "published": "Sun, 08 Nov 2026 04:10:21 GMT",
+    "publisher": "National Association of Wholesaler-Distributors",
     "via": "Google News RSS"
    }
   },
@@ -182,7 +182,7 @@
    "odds": [
     {
      "outcome": "↑ 100,000",
-     "yes": 0.045
+     "yes": 0.055
     },
     {
      "outcome": "↓ 55,000",
@@ -220,5 +220,5 @@
    "odds": []
   }
  ],
- "generated_utc": "2026-11-12T22:28:01+00:00"
+ "generated_utc": "2026-11-13T02:52:17+00:00"
 }
