@@ -19,9 +19,9 @@
    "change_pts": -32.0,
    "from_date": "2026-11-06",
    "news": {
-    "headline": "Federal Reserve to Forgo Rate Decision at October 2027 Meeting - WSJ",
-    "url": "https://news.google.com/rss/articles/CBMitgFBVV95cUxPWkZiVk1uU2k5a1RQRGUxdFBJMEcxSVhtWEJfR0s3Q3E3T185OXRrZHRZMDVsQlhTdVpIbVlfQnNPem4zbGlTMDR6elFDRlM3RzhETUhCVzlTTDJvWmtfQzctcUFhRXZsVmxpVjBQUXpXTkRUTThQNVJwQV9YX19qaTZGVGswRGF1N2d0dktsZW5DVHlFWVNENmtQaERZYm5ZTmREdm8tMzVjX3ZCQUdqbTFCbWktdw?oc=5",
-    "published": "Fri, 13 Nov 2026 01:34:28 GMT",
+    "headline": "Kevin Warsh’s Plan to Remake the Fed: Fewer Rate Votes, More Deliberating - WSJ",
+    "url": "https://news.google.com/rss/articles/CBMijgFBVV95cUxPWWREYWtpWllac2NUdW9FOW1tdXZrTS1FclFzZnA4TEhkOEFJQ0liTEZZdElXbU5BUHMtTnNVME1zYUVpWHY5VXZmM0Z4YWRMY0U4YzVFdldTOEhEQUpSSnluaXNNM2VVVlQ0YnNXR0hUNHRhM1gwSWhtZXl3QlB2QXR5aUVXajZBTTlRdDhB?oc=5",
+    "published": "Fri, 13 Nov 2026 21:01:00 GMT",
     "publisher": "WSJ",
     "via": "Google News RSS"
    }
@@ -40,9 +40,9 @@
    "change_pts": -32.0,
    "from_date": "2026-11-06",
    "news": {
-    "headline": "Federal Reserve to Forgo Rate Decision at October 2027 Meeting - WSJ",
-    "url": "https://news.google.com/rss/articles/CBMitgFBVV95cUxPWkZiVk1uU2k5a1RQRGUxdFBJMEcxSVhtWEJfR0s3Q3E3T185OXRrZHRZMDVsQlhTdVpIbVlfQnNPem4zbGlTMDR6elFDRlM3RzhETUhCVzlTTDJvWmtfQzctcUFhRXZsVmxpVjBQUXpXTkRUTThQNVJwQV9YX19qaTZGVGswRGF1N2d0dktsZW5DVHlFWVNENmtQaERZYm5ZTmREdm8tMzVjX3ZCQUdqbTFCbWktdw?oc=5",
-    "published": "Fri, 13 Nov 2026 01:34:28 GMT",
+    "headline": "Kevin Warsh’s Plan to Remake the Fed: Fewer Rate Votes, More Deliberating - WSJ",
+    "url": "https://news.google.com/rss/articles/CBMijgFBVV95cUxPWWREYWtpWllac2NUdW9FOW1tdXZrTS1FclFzZnA4TEhkOEFJQ0liTEZZdElXbU5BUHMtTnNVME1zYUVpWHY5VXZmM0Z4YWRMY0U4YzVFdldTOEhEQUpSSnluaXNNM2VVVlQ0YnNXR0hUNHRhM1gwSWhtZXl3QlB2QXR5aUVXajZBTTlRdDhB?oc=5",
+    "published": "Fri, 13 Nov 2026 21:01:00 GMT",
     "publisher": "WSJ",
     "via": "Google News RSS"
    }
@@ -203,7 +203,7 @@
    "odds": [
     {
      "outcome": "↑ 100,000",
-     "yes": 0.0295
+     "yes": 0.0345
     },
     {
      "outcome": "↓ 55,000",
@@ -224,7 +224,7 @@
    "odds": [
     {
      "outcome": "Before Jan 1, 2027",
-     "yes": 0.02
+     "yes": 0.026
     }
    ]
   },
@@ -241,5 +241,5 @@
    "odds": []
   }
  ],
- "generated_utc": "2026-11-13T16:32:39+00:00"
+ "generated_utc": "2026-11-13T21:28:12+00:00"
 }
