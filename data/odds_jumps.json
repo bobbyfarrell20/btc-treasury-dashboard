@@ -8,6 +8,27 @@
   {
    "date": "2026-11-14",
    "window": "7d",
+   "source": "kalshi",
+   "group": "Fed",
+   "market": "Fed decision - Dec 2026",
+   "outcome": "Fed maintains rate",
+   "question": null,
+   "url": "https://kalshi.com/markets/kxfeddecision",
+   "from": 0.25,
+   "to": 0.04,
+   "change_pts": -21.0,
+   "from_date": "2026-11-07",
+   "news": {
+    "headline": "Kevin Warsh’s Plan to Remake the Fed: Fewer Rate Votes, More Deliberating - WSJ",
+    "url": "https://news.google.com/rss/articles/CBMijgFBVV95cUxPWWREYWtpWllac2NUdW9FOW1tdXZrTS1FclFzZnA4TEhkOEFJQ0liTEZZdElXbU5BUHMtTnNVME1zYUVpWHY5VXZmM0Z4YWRMY0U4YzVFdldTOEhEQUpSSnluaXNNM2VVVlQ0YnNXR0hUNHRhM1gwSWhtZXl3QlB2QXR5aUVXajZBTTlRdDhB?oc=5",
+    "published": "Fri, 13 Nov 2026 21:01:00 GMT",
+    "publisher": "WSJ",
+    "via": "Google News RSS"
+   }
+  },
+  {
+   "date": "2026-11-14",
+   "window": "7d",
    "source": "polymarket",
    "group": "Fed",
    "market": "Fed decision - Dec 9",
@@ -27,23 +48,44 @@
    }
   },
   {
-   "date": "2026-11-13",
+   "date": "2026-11-14",
    "window": "7d",
-   "source": "kalshi",
-   "group": "Fed",
-   "market": "Fed decision - Dec 2026",
-   "outcome": "Fed maintains rate",
-   "question": null,
-   "url": "https://kalshi.com/markets/kxfeddecision",
-   "from": 0.36,
-   "to": 0.04,
-   "change_pts": -32.0,
-   "from_date": "2026-11-06",
+   "source": "polymarket",
+   "group": "BTC",
+   "market": "BTC price targets hit in 2026",
+   "outcome": "↓ 55,000",
+   "question": "Will Bitcoin dip to $55,000 by December 31, 2026?",
+   "url": "https://polymarket.com/event/what-price-will-bitcoin-hit-before-2027",
+   "from": 0.125,
+   "to": 0.305,
+   "change_pts": 18.0,
+   "from_date": "2026-11-07",
    "news": {
-    "headline": "Kevin Warsh’s Plan to Remake the Fed: Fewer Rate Votes, More Deliberating - WSJ",
-    "url": "https://news.google.com/rss/articles/CBMijgFBVV95cUxPWWREYWtpWllac2NUdW9FOW1tdXZrTS1FclFzZnA4TEhkOEFJQ0liTEZZdElXbU5BUHMtTnNVME1zYUVpWHY5VXZmM0Z4YWRMY0U4YzVFdldTOEhEQUpSSnluaXNNM2VVVlQ0YnNXR0hUNHRhM1gwSWhtZXl3QlB2QXR5aUVXajZBTTlRdDhB?oc=5",
-    "published": "Fri, 13 Nov 2026 21:01:00 GMT",
-    "publisher": "WSJ",
+    "headline": "Bitcoin price analysis: BTC continues to decline Saturday, entering 'deep value zone' - CoinDesk",
+    "url": "https://news.google.com/rss/articles/CBMiqAFBVV95cUxPREhQQTJ6T1M4cmdyMzU2SUhaYWszWDZOOWp0TzJ1M240RnY3RjI4OEpCQmlHR0pFbU1FekdXMXE1dzVjVHJlZ2ZMUjdOYXZIem5JY01DQ3JyYnIyUWxnZWNoR25TTG9DdExHNjNGMTdSNzJLZ3pKQ0JJeWxzMjV5cUlid3JkR0czV3ZmWlRnWXZ5QVBaSFJYZmltaU1Caks4NkdPTHo2bjE?oc=5",
+    "published": "Sat, 14 Nov 2026 16:38:57 GMT",
+    "publisher": "CoinDesk",
+    "via": "Google News RSS"
+   }
+  },
+  {
+   "date": "2026-11-14",
+   "window": "24h",
+   "source": "polymarket",
+   "group": "BTC",
+   "market": "BTC price targets hit in 2026",
+   "outcome": "↓ 55,000",
+   "question": "Will Bitcoin dip to $55,000 by December 31, 2026?",
+   "url": "https://polymarket.com/event/what-price-will-bitcoin-hit-before-2027",
+   "from": 0.185,
+   "to": 0.305,
+   "change_pts": 12.0,
+   "from_date": "2026-11-14",
+   "news": {
+    "headline": "Bitcoin price analysis: BTC continues to decline Saturday, entering 'deep value zone' - CoinDesk",
+    "url": "https://news.google.com/rss/articles/CBMiqAFBVV95cUxPREhQQTJ6T1M4cmdyMzU2SUhaYWszWDZOOWp0TzJ1M240RnY3RjI4OEpCQmlHR0pFbU1FekdXMXE1dzVjVHJlZ2ZMUjdOYXZIem5JY01DQ3JyYnIyUWxnZWNoR25TTG9DdExHNjNGMTdSNzJLZ3pKQ0JJeWxzMjV5cUlid3JkR0czV3ZmWlRnWXZ5QVBaSFJYZmltaU1Caks4NkdPTHo2bjE?oc=5",
+    "published": "Sat, 14 Nov 2026 16:38:57 GMT",
+    "publisher": "CoinDesk",
     "via": "Google News RSS"
    }
   },
@@ -61,10 +103,10 @@
    "change_pts": 10.0,
    "from_date": "2026-11-12",
    "news": {
-    "headline": "Bitcoin is falling to fresh lows today: What’s causing the crypto decline? - Fast Company",
-    "url": "https://news.google.com/rss/articles/CBMimAFBVV95cUxNYWJYNlFZNUVIUzdMNFpmQ216eXZmbnQ2Qlcydnd2Vzd0NTgtTFBlRHVaRFd3emtUMW5peVZHZEtyYWJDQTYwQlctZ0x3c1FRUTZ2WjhKZlJ3WExVUV9nemE1bkZhbXAxN1o2aHU2Z2swZnFOUE5YWkNQTUx4Sk1JMi1YV1hFWmtrb3VxZ21sdXdRQlNfZDM2VQ?oc=5",
-    "published": "Fri, 13 Nov 2026 15:01:20 GMT",
-    "publisher": "Fast Company",
+    "headline": "Current price of Bitcoin for November 13, 2026 - Fortune",
+    "url": "https://news.google.com/rss/articles/CBMiZ0FVX3lxTFA3SmQxZ1EyU2VheHYzYmZZWm11N3R0ZmNKOEtUcVJSLXVyTDkxWERDb3pxMkhuZm9GMzJQeHUwbmlreXJjdUJTYkdlUEZ2U0Zxc25EbC1JSndUOENZMk9NY3BrRzBVQms?oc=5",
+    "published": "Fri, 13 Nov 2026 15:31:52 GMT",
+    "publisher": "Fortune",
     "via": "Google News RSS"
    }
   },
@@ -161,11 +203,11 @@
    "odds": [
     {
      "outcome": "↑ 100,000",
-     "yes": 0.0305
+     "yes": 0.0275
     },
     {
      "outcome": "↓ 55,000",
-     "yes": 0.245
+     "yes": 0.295
     }
    ]
   },
@@ -182,7 +224,7 @@
    "odds": [
     {
      "outcome": "Before Jan 1, 2027",
-     "yes": 0.021
+     "yes": 0.022
     }
    ]
   },
@@ -199,5 +241,5 @@
    "odds": []
   }
  ],
- "generated_utc": "2026-11-14T04:55:52+00:00"
+ "generated_utc": "2026-11-14T19:08:57+00:00"
 }
