@@ -6,7 +6,7 @@
  },
  "jumps": [
   {
-   "date": "2026-11-13",
+   "date": "2026-11-14",
    "window": "7d",
    "source": "polymarket",
    "group": "Fed",
@@ -14,10 +14,10 @@
    "outcome": "No change",
    "question": "Will there be no change in Fed interest rates after the December 2026 meeting?",
    "url": "https://polymarket.com/event/fed-decision-in-december-20260729232808632",
-   "from": 0.335,
-   "to": 0.0145,
-   "change_pts": -32.0,
-   "from_date": "2026-11-06",
+   "from": 0.215,
+   "to": 0.025,
+   "change_pts": -19.0,
+   "from_date": "2026-11-07",
    "news": {
     "headline": "Kevin Warsh’s Plan to Remake the Fed: Fewer Rate Votes, More Deliberating - WSJ",
     "url": "https://news.google.com/rss/articles/CBMijgFBVV95cUxPWWREYWtpWllac2NUdW9FOW1tdXZrTS1FclFzZnA4TEhkOEFJQ0liTEZZdElXbU5BUHMtTnNVME1zYUVpWHY5VXZmM0Z4YWRMY0U4YzVFdldTOEhEQUpSSnluaXNNM2VVVlQ0YnNXR0hUNHRhM1gwSWhtZXl3QlB2QXR5aUVXajZBTTlRdDhB?oc=5",
@@ -61,10 +61,10 @@
    "change_pts": 10.0,
    "from_date": "2026-11-12",
    "news": {
-    "headline": "Bitcoin is falling to fresh lows today: What’s causing the crypto decline? - Fast Company",
-    "url": "https://news.google.com/rss/articles/CBMimAFBVV95cUxNYWJYNlFZNUVIUzdMNFpmQ216eXZmbnQ2Qlcydnd2Vzd0NTgtTFBlRHVaRFd3emtUMW5peVZHZEtyYWJDQTYwQlctZ0x3c1FRUTZ2WjhKZlJ3WExVUV9nemE1bkZhbXAxN1o2aHU2Z2swZnFOUE5YWkNQTUx4Sk1JMi1YV1hFWmtrb3VxZ21sdXdRQlNfZDM2VQ?oc=5",
-    "published": "Fri, 13 Nov 2026 15:01:20 GMT",
-    "publisher": "Fast Company",
+    "headline": "Bitcoin BTC (BTC-USD) Live Price, News, Chart & Price History - Yahoo! Finance Canada",
+    "url": "https://news.google.com/rss/articles/CBMiVkFVX3lxTE1HSGlGRjBhSUlQdXZtSXRJWmhTcWlLMmt2WEM2WFk0LV9Bd3BzOGNZQzJmQXJycTBZcmpSNWZiWHMzMDdzY3cyQzlKYXNYSk0tUF9MVzdB?oc=5",
+    "published": "Fri, 13 Nov 2026 16:13:24 GMT",
+    "publisher": "Yahoo! Finance Canada",
     "via": "Google News RSS"
    }
   },
@@ -124,10 +124,10 @@
    "change_pts": -12.0,
    "from_date": "2026-11-06",
    "news": {
-    "headline": "Fed Holds Rates Steady in Warsh’s First Meeting as Chair - National Association of Wholesaler-Distributors",
-    "url": "https://news.google.com/rss/articles/CBMijgFBVV95cUxPNl91MDloVUVTaUpaaTNhbnpXM3FRQjY4ZWV3c0tnMlBLVjRWX3J2djkzTldRd0J4UFI2ckhZaEttMmRaY0dLdnNtRkJYRDdTUzlHZ0NRTkJVU1Y4YllJampkX2hJRzg1dzUtUmFtRVhtdGpiN3ZfaVVDbURRNE5Yb3FyVGF6SEpTQVRvQzF3?oc=5",
-    "published": "Sun, 08 Nov 2026 04:10:21 GMT",
-    "publisher": "National Association of Wholesaler-Distributors",
+    "headline": "The Fed Begins Transition to Holding Fewer Policy Meetings a Year - Bloomberg.com",
+    "url": "https://news.google.com/rss/articles/CBMiuAFBVV95cUxQQVRaRUF0MGFNU0FqcjMxNFhoVDhjalFkZGIxUDNaRk9aWWFyaFhnckZxLUwwRjBKQ3FaM0VlbkRJUUdVZE03OGctOElYc25uMnFnejFrbG5aSXE1LTFXWDVsb3FOMlV5dGF0emNFbklwN2swOVMwa3lFMldkUU8zLVFIbXVCMHR5RFh2Sy1YQ3pER0VidVpVTHJMSy1ZNzl6cjZOMFFzd2RkT2FGMjVVOWVERUh4ZWpN?oc=5",
+    "published": "Fri, 06 Nov 2026 11:00:00 GMT",
+    "publisher": "Bloomberg.com",
     "via": "Google News RSS"
    }
   },
@@ -144,48 +144,6 @@
    "to": 0.77,
    "change_pts": 12.0,
    "from_date": "2026-11-06",
-   "news": {
-    "headline": "Fed Holds Rates Steady in Warsh’s First Meeting as Chair - National Association of Wholesaler-Distributors",
-    "url": "https://news.google.com/rss/articles/CBMijgFBVV95cUxPNl91MDloVUVTaUpaaTNhbnpXM3FRQjY4ZWV3c0tnMlBLVjRWX3J2djkzTldRd0J4UFI2ckhZaEttMmRaY0dLdnNtRkJYRDdTUzlHZ0NRTkJVU1Y4YllJampkX2hJRzg1dzUtUmFtRVhtdGpiN3ZfaVVDbURRNE5Yb3FyVGF6SEpTQVRvQzF3?oc=5",
-    "published": "Sun, 08 Nov 2026 04:10:21 GMT",
-    "publisher": "National Association of Wholesaler-Distributors",
-    "via": "Google News RSS"
-   }
-  },
-  {
-   "date": "2026-11-06",
-   "window": "24h",
-   "source": "kalshi",
-   "group": "Fed",
-   "market": "Fed decision - Dec 2026",
-   "outcome": "Hike 25bps",
-   "question": null,
-   "url": "https://kalshi.com/markets/kxfeddecision",
-   "from": 0.81,
-   "to": 0.65,
-   "change_pts": -16.0,
-   "from_date": "2026-11-05",
-   "news": {
-    "headline": "The Fed Begins Transition to Holding Fewer Policy Meetings a Year - Bloomberg.com",
-    "url": "https://news.google.com/rss/articles/CBMiuAFBVV95cUxQQVRaRUF0MGFNU0FqcjMxNFhoVDhjalFkZGIxUDNaRk9aWWFyaFhnckZxLUwwRjBKQ3FaM0VlbkRJUUdVZE03OGctOElYc25uMnFnejFrbG5aSXE1LTFXWDVsb3FOMlV5dGF0emNFbklwN2swOVMwa3lFMldkUU8zLVFIbXVCMHR5RFh2Sy1YQ3pER0VidVpVTHJMSy1ZNzl6cjZOMFFzd2RkT2FGMjVVOWVERUh4ZWpN?oc=5",
-    "published": "Fri, 06 Nov 2026 11:00:00 GMT",
-    "publisher": "Bloomberg.com",
-    "via": "Google News RSS"
-   }
-  },
-  {
-   "date": "2026-11-06",
-   "window": "24h",
-   "source": "polymarket",
-   "group": "Fed",
-   "market": "Fed decision - Dec 9",
-   "outcome": "25 bps increase",
-   "question": "Will the Fed increase interest rates by 25 bps after the December 2026 meeting?",
-   "url": "https://polymarket.com/event/fed-decision-in-december-20260729232808632",
-   "from": 0.775,
-   "to": 0.645,
-   "change_pts": -13.0,
-   "from_date": "2026-11-05",
    "news": {
     "headline": "The Fed Begins Transition to Holding Fewer Policy Meetings a Year - Bloomberg.com",
     "url": "https://news.google.com/rss/articles/CBMiuAFBVV95cUxQQVRaRUF0MGFNU0FqcjMxNFhoVDhjalFkZGIxUDNaRk9aWWFyaFhnckZxLUwwRjBKQ3FaM0VlbkRJUUdVZE03OGctOElYc25uMnFnejFrbG5aSXE1LTFXWDVsb3FOMlV5dGF0emNFbklwN2swOVMwa3lFMldkUU8zLVFIbXVCMHR5RFh2Sy1YQ3pER0VidVpVTHJMSy1ZNzl6cjZOMFFzd2RkT2FGMjVVOWVERUh4ZWpN?oc=5",
@@ -207,7 +165,7 @@
     },
     {
      "outcome": "↓ 55,000",
-     "yes": 0.185
+     "yes": 0.195
     }
    ]
   },
@@ -224,7 +182,7 @@
    "odds": [
     {
      "outcome": "Before Jan 1, 2027",
-     "yes": 0.026
+     "yes": 0.02
     }
    ]
   },
@@ -241,5 +199,5 @@
    "odds": []
   }
  ],
- "generated_utc": "2026-11-13T21:55:35+00:00"
+ "generated_utc": "2026-11-14T02:05:03+00:00"
 }
