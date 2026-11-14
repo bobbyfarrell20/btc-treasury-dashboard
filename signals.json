@@ -21,7 +21,7 @@
     "new": "STAY_BTC"
   },
   "_hash_note": "signal_hash changes when the recommendation, also_valid, any preferred peg state (on for the call = RUNNING_HOT/ON, hashed alike; WARMING_UP and COOLING_OFF hash as WATCH, STALLED as SELL; ON held by buybacks hashes as WATCH) or any overheated flag changes; last_changed is the most recent trading day it changed.",
-  "generated_utc": "2026-11-14T02:05:03+00:00",
+  "generated_utc": "2026-11-14T04:55:52+00:00",
   "as_of": "2026-11-13",
   "disclaimer": "Rules-based indicator, not financial advice.",
   "recommendation_detail": {
@@ -85,7 +85,7 @@
       "last_below_trigger": null,
       "minutes_below_trigger_now": null,
       "method": "intraday_1m",
-      "vol_mult": 1.07,
+      "vol_mult": 1.08,
       "vol_partial_session": false,
       "share_vol_at_or_above_100": 0.0,
       "days_in_state": 7,
@@ -780,7 +780,7 @@
       "last_below_trigger": null,
       "minutes_below_trigger_now": null,
       "method": "intraday_1m",
-      "vol_mult": 0.65,
+      "vol_mult": 0.66,
       "vol_partial_session": false,
       "share_vol_at_or_above_100": 0.0,
       "days_in_state": 28,
@@ -1404,11 +1404,11 @@
   },
   "sats_context": {
     "date": "2026-11-13",
-    "price": 96.915,
+    "price": 96.92,
     "stated_value": 100.0,
     "issue_price": 90.0,
-    "vs_stated": -3.085,
-    "vs_issue": 6.915,
+    "vs_stated": -3.08,
+    "vs_issue": 6.92,
     "shares_outstanding": 7036559.0,
     "shares_date": "2026-11-06",
     "shares_source": "https://www.sec.gov/Archives/edgar/data/1920406/000162828026071888/asst-20261109.htm",
@@ -1450,13 +1450,13 @@
     "mnav_spread": 0.3837,
     "spread_z": 0.816,
     "ratio": 0.19136,
-    "mstr_mnav_basic": 0.8187,
+    "mstr_mnav_basic": 0.8186,
     "asst_mnav_basic": 0.9236,
     "mstr_mnav_ev": 1.0726,
     "asst_mnav_ev": 1.4563,
     "mstr_mnav_diluted": 0.8755,
     "asst_mnav_diluted": 0.9433,
-    "mstr_ev_m": 62242.3,
+    "mstr_ev_m": 62241.2,
     "asst_ev_m": 4288.4,
     "btc_chg": -0.1161,
     "mstr_chg": -0.1447,
@@ -1471,7 +1471,7 @@
       "signal_basis": "ev",
       "zone": "CHEAP",
       "market_standard": {
-        "mnav": 0.8187,
+        "mnav": 0.8186,
         "mnav_pct_1y": 0.341,
         "zone": "CHEAP",
         "cutoffs": {
@@ -1519,13 +1519,13 @@
       "diluted_equity_mnav": 0.8755,
       "price": 111.62,
       "btc_held": 850364.0,
-      "basic_shares": 425595771.0,
-      "debt_m": 6714.0,
+      "basic_shares": 425584507.0,
+      "debt_m": 6715.4,
       "preferred_notional_m": 12938.3,
-      "cash_m": 4915.0,
-      "enterprise_value_m": 62242.3,
+      "cash_m": 4916.2,
+      "enterprise_value_m": 62241.2,
       "btc_nav_m": 58027,
-      "btc_nav_per_basic_share": 136.34
+      "btc_nav_per_basic_share": 136.35
     },
     "ASST": {
       "signal_basis": "ev",
@@ -1588,7 +1588,7 @@
       "btc_nav_per_basic_share": 23.13
     },
     "spread_z": {
-      "basic": -0.152,
+      "basic": -0.151,
       "ev": 0.816
     },
     "relative_verdict": {
@@ -1620,18 +1620,18 @@
       "basic": {
         "basis": "basic",
         "lookback_trading_days": 252,
-        "mstr_mnav": 0.8187,
+        "mstr_mnav": 0.8186,
         "asst_mnav": 0.9236,
-        "ratio_now": 1.1281,
+        "ratio_now": 1.1283,
         "ratio_mean_1y": 1.1694,
         "ratio_median_1y": 1.1822,
         "ratio_sd_1y": 0.255,
-        "ratio_z": -0.162,
-        "ratio_pct_1y": 0.377,
-        "diff_now": 0.1049,
+        "ratio_z": -0.161,
+        "ratio_pct_1y": 0.381,
+        "diff_now": 0.105,
         "diff_mean_1y": 0.1384,
         "diff_sd_1y": 0.2213,
-        "diff_z": -0.152,
+        "diff_z": -0.151,
         "diff_pct_1y": 0.389,
         "verdict": "NORMAL",
         "verdict_text": "Spread normal",
@@ -1843,10 +1843,10 @@
       "change_pts": 10.0,
       "from_date": "2026-11-12",
       "news": {
-        "headline": "Bitcoin BTC (BTC-USD) Live Price, News, Chart & Price History - Yahoo! Finance Canada",
-        "url": "https://news.google.com/rss/articles/CBMiVkFVX3lxTE1HSGlGRjBhSUlQdXZtSXRJWmhTcWlLMmt2WEM2WFk0LV9Bd3BzOGNZQzJmQXJycTBZcmpSNWZiWHMzMDdzY3cyQzlKYXNYSk0tUF9MVzdB?oc=5",
-        "published": "Fri, 13 Nov 2026 16:13:24 GMT",
-        "publisher": "Yahoo! Finance Canada",
+        "headline": "Bitcoin is falling to fresh lows today: What\u2019s causing the crypto decline? - Fast Company",
+        "url": "https://news.google.com/rss/articles/CBMimAFBVV95cUxNYWJYNlFZNUVIUzdMNFpmQ216eXZmbnQ2Qlcydnd2Vzd0NTgtTFBlRHVaRFd3emtUMW5peVZHZEtyYWJDQTYwQlctZ0x3c1FRUTZ2WjhKZlJ3WExVUV9nemE1bkZhbXAxN1o2aHU2Z2swZnFOUE5YWkNQTUx4Sk1JMi1YV1hFWmtrb3VxZ21sdXdRQlNfZDM2VQ?oc=5",
+        "published": "Fri, 13 Nov 2026 15:01:20 GMT",
+        "publisher": "Fast Company",
         "via": "Google News RSS"
       }
     },
@@ -1943,11 +1943,11 @@
       "odds": [
         {
           "outcome": "\u2191 100,000",
-          "yes": 0.0345
+          "yes": 0.0305
         },
         {
           "outcome": "\u2193 55,000",
-          "yes": 0.195
+          "yes": 0.245
         }
       ]
     },
@@ -1964,7 +1964,7 @@
       "odds": [
         {
           "outcome": "Before Jan 1, 2027",
-          "yes": 0.02
+          "yes": 0.021
         }
       ]
     },
@@ -1989,19 +1989,19 @@
       "top": [
         {
           "outcome": "\u2193 55,000",
-          "yes": 0.195
+          "yes": 0.245
         },
         {
           "outcome": "\u2193 50,000",
-          "yes": 0.1095
-        },
-        {
-          "outcome": "\u2191 90,000",
-          "yes": 0.075
+          "yes": 0.126
         },
         {
           "outcome": "\u2193 45,000",
-          "yes": 0.0625
+          "yes": 0.0675
+        },
+        {
+          "outcome": "\u2191 90,000",
+          "yes": 0.065
         }
       ]
     },
@@ -2026,7 +2026,7 @@
         },
         {
           "outcome": "No change",
-          "yes": 0.029
+          "yes": 0.03
         },
         {
           "outcome": "25 bps decrease",
@@ -2045,7 +2045,7 @@
         },
         {
           "outcome": "1 (25 bps)",
-          "yes": 0.006
+          "yes": 0.0065
         },
         {
           "outcome": "2 (50 bps)",
@@ -2075,7 +2075,7 @@
       "top": [
         {
           "outcome": "Crypto Market Structure legislation becomes law in 2026?",
-          "yes": 0.046
+          "yes": 0.0465
         }
       ]
     },
@@ -2115,7 +2115,7 @@
       "top": [
         {
           "outcome": "Will MicroStrategy be margin called in 2026?",
-          "yes": 0.0175
+          "yes": 0.017
         }
       ]
     },
@@ -2126,19 +2126,19 @@
       "top": [
         {
           "outcome": "Above $99,999.99",
-          "yes": 0.04
+          "yes": 0.03
         },
         {
           "outcome": "Above $109,999.99",
           "yes": 0.03
         },
         {
-          "outcome": "Above $139,999.99",
-          "yes": 0.02
+          "outcome": "Above $119,999.99",
+          "yes": 0.03
         },
         {
-          "outcome": "Above $199,999.99",
-          "yes": 0.01
+          "outcome": "Above $139,999.99",
+          "yes": 0.02
         }
       ]
     },
@@ -2149,7 +2149,7 @@
       "top": [
         {
           "outcome": "Below $55,000.00",
-          "yes": 0.19
+          "yes": 0.21
         },
         {
           "outcome": "Below $50,000.00",
@@ -2157,7 +2157,7 @@
         },
         {
           "outcome": "Below $45,000.00",
-          "yes": 0.07
+          "yes": 0.08
         },
         {
           "outcome": "Below $40,000.00",
@@ -2178,7 +2178,7 @@
       "top": [
         {
           "outcome": "Hike 25bps",
-          "yes": 0.89
+          "yes": 0.9
         },
         {
           "outcome": "Hike >25bps",
@@ -2186,7 +2186,7 @@
         },
         {
           "outcome": "Fed maintains rate",
-          "yes": 0.03
+          "yes": 0.04
         },
         {
           "outcome": "Cut 25bps",
@@ -2201,11 +2201,11 @@
       "top": [
         {
           "outcome": "Before Jan 1, 2028",
-          "yes": 0.29
+          "yes": 0.25
         },
         {
           "outcome": "Before Oct 1, 2027",
-          "yes": 0.21
+          "yes": 0.15
         },
         {
           "outcome": "Before Jul 1, 2027",

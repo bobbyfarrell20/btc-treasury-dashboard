@@ -61,10 +61,10 @@
    "change_pts": 10.0,
    "from_date": "2026-11-12",
    "news": {
-    "headline": "Bitcoin BTC (BTC-USD) Live Price, News, Chart & Price History - Yahoo! Finance Canada",
-    "url": "https://news.google.com/rss/articles/CBMiVkFVX3lxTE1HSGlGRjBhSUlQdXZtSXRJWmhTcWlLMmt2WEM2WFk0LV9Bd3BzOGNZQzJmQXJycTBZcmpSNWZiWHMzMDdzY3cyQzlKYXNYSk0tUF9MVzdB?oc=5",
-    "published": "Fri, 13 Nov 2026 16:13:24 GMT",
-    "publisher": "Yahoo! Finance Canada",
+    "headline": "Bitcoin is falling to fresh lows today: What’s causing the crypto decline? - Fast Company",
+    "url": "https://news.google.com/rss/articles/CBMimAFBVV95cUxNYWJYNlFZNUVIUzdMNFpmQ216eXZmbnQ2Qlcydnd2Vzd0NTgtTFBlRHVaRFd3emtUMW5peVZHZEtyYWJDQTYwQlctZ0x3c1FRUTZ2WjhKZlJ3WExVUV9nemE1bkZhbXAxN1o2aHU2Z2swZnFOUE5YWkNQTUx4Sk1JMi1YV1hFWmtrb3VxZ21sdXdRQlNfZDM2VQ?oc=5",
+    "published": "Fri, 13 Nov 2026 15:01:20 GMT",
+    "publisher": "Fast Company",
     "via": "Google News RSS"
    }
   },
@@ -161,11 +161,11 @@
    "odds": [
     {
      "outcome": "↑ 100,000",
-     "yes": 0.0345
+     "yes": 0.0305
     },
     {
      "outcome": "↓ 55,000",
-     "yes": 0.195
+     "yes": 0.245
     }
    ]
   },
@@ -182,7 +182,7 @@
    "odds": [
     {
      "outcome": "Before Jan 1, 2027",
-     "yes": 0.02
+     "yes": 0.021
     }
    ]
   },
@@ -199,5 +199,5 @@
    "odds": []
   }
  ],
- "generated_utc": "2026-11-14T02:05:03+00:00"
+ "generated_utc": "2026-11-14T04:55:52+00:00"
 }
