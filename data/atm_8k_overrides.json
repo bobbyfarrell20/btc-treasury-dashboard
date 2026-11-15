@@ -1,0 +1,30 @@
+{
+  "_comment": "8-K verification of @STRC_live ATM rows (data/atm_activity.json). @STRC_live rows are PROVISIONAL until the issuer's weekly 8-K covering that date is filed. scripts/update_data.py builds verified periods automatically (Strategy weekly 8-K STRC ATM + repurchase tables for STRC; Strive weekly 8-K SATA shares-outstanding table for SATA: unchanged count = no sales) and merges the manual entries below, which take precedence for the dates they cover. A row with shares_sold > 0 whose date falls in a period with verdict 'no_sales' is CANCELLED: it no longer counts as an ATM day for FLYWHEEL ON (peg.atm) and no longer clears the STRC buyback flag (buyback_support). The raw row stays in atm_activity.json untouched; the effective copy keeps reported_shares_sold / reported_btc_raised and cancelled_by_8k. Cancellation is applied to the whole recomputed history (a data correction), not only from the filing date. HOW TO ADD AN ENTRY (routines / manual): append to verified_periods {preferred: 'STRC'|'SATA', issuer: 'MSTR'|'ASST', start, end (ISO dates, inclusive, the 8-K's 'During Period'), filed (8-K filing date), verdict: 'no_sales'|'sales', sec_shares_sold, source_url (sec.gov Archives link), note}. Use 'sales' to confirm a row and stop the auto rule from cancelling it if a parse is wrong. Rules-based, not financial advice.",
+  "verified_periods": [
+    {
+      "preferred": "STRC",
+      "issuer": "MSTR",
+      "start": "2026-11-02",
+      "end": "2026-11-08",
+      "filed": "2026-11-09",
+      "verdict": "no_sales",
+      "sec_shares_sold": 0,
+      "sec_notional_m": 0.0,
+      "buyback_shares": 1887464,
+      "buyback_m": 188.3,
+      "source_url": "https://www.sec.gov/Archives/edgar/data/1050446/000119312526452693/mstr-20261109.htm",
+      "note": "Strategy 8-K (filed 2026-11-09, accession 0001193125-26-452693), ATM table for Nov 2-8: STRC Shares Sold '-', notional '-'. Repurchase table: 1,887,464 STRC repurchased for $188.3M, funded by MSTR ATM sales (2,051,348 MSTR shares, $283.8M net; 1,036 BTC bought with MSTR proceeds). Contradicts @STRC_live's 2026-11-04 '392k STRC shares / 191 BTC' wrap. No later Strategy 8-K filed through 2026-11-13 (next weekly expected Mon 2026-11-16)."
+    },
+    {
+      "preferred": "SATA",
+      "issuer": "ASST",
+      "start": "2026-10-31",
+      "end": "2026-11-06",
+      "filed": "2026-11-09",
+      "verdict": "no_sales",
+      "sec_shares_sold": 0,
+      "source_url": "https://www.sec.gov/Archives/edgar/data/1920406/000162828026071888/asst-20261109.htm",
+      "note": "Strive 8-K (filed 2026-11-09): SATA shares outstanding 14,030,176 as of both Oct 30 and Nov 6 = no SATA issuance; agrees with @STRC_live (zero SATA ATM all week). Strive's 2026-11-12 8-K is the SATA 13.25% Dec rate/dividend notice, no share table."
+    }
+  ]
+}

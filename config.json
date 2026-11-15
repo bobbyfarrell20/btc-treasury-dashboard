@@ -45,11 +45,16 @@
       "min_share_at_or_above": 0.5
     },
     "atm": {
-      "_comment": "Bobby's rule (2026-11-04): a day where the issuer actively sold the preferred through its ATM (data/atm_activity.json, shares_sold > 0) with intraday high >= min_high and close >= min_close counts like a qualifying close: promotes to at least FLYWHEEL ON. That ON then persists under the usual off rules (more than off_minutes_below minutes below on_trade_threshold, or a daily-approx close below it); a later day with no ATM row that closes slightly under $100 does not drop it to WARMING_UP. STRC ATM sales also turn the buyback flag OFF and keep it off until a later 8-K week (ending after that ATM date) shows buybacks with no sales. Price-close rule remains the fallback when no ATM data exists.",
+      "_comment": "Bobby's rule (2026-11-04): a day where the issuer actively sold the preferred through its ATM (data/atm_activity.json, shares_sold > 0) with intraday high >= min_high and close >= min_close counts like a qualifying close: promotes to at least FLYWHEEL ON. That ON then persists under the usual off rules (more than off_minutes_below minutes below on_trade_threshold, or a daily-approx close below it); a later day with no ATM row that closes slightly under $100 does not drop it to WARMING_UP. STRC ATM sales also turn the buyback flag OFF and keep it off until a later 8-K week (ending after that ATM date) shows buybacks with no sales. Price-close rule remains the fallback when no ATM data exists. 8-K check (2026-11-15): @STRC_live rows are provisional; see verify_8k.",
       "enabled": true,
       "file": "data/atm_activity.json",
       "min_high": 100.0,
-      "min_close": 99.8
+      "min_close": 99.8,
+      "verify_8k": {
+        "_comment": "Fix 2026-11-15 (Bobby): @STRC_live ATM rows are provisional until the issuer's weekly 8-K for that date is filed. Verified periods = automatic (Strategy weekly 8-K STRC ATM/repurchase tables for STRC; Strive weekly 8-K SATA share count for SATA) + manual entries in `file` (manual wins). A row with shares_sold > 0 inside a period whose verdict is 'no_sales' is cancelled: it no longer counts as an ATM day for FLYWHEEL ON and no longer clears the buyback flag. Applied to the whole recomputed history. Routines: when a new Strategy/Strive weekly 8-K contradicts or confirms an @STRC_live row and the parser missed it, append {preferred, issuer, start, end, filed, verdict: 'no_sales'|'sales', sec_shares_sold, source_url, note} to verified_periods in the file and push; never edit the raw @STRC_live row. Published in signals.json -> atm_verification. Rules-based, not financial advice.",
+        "enabled": true,
+        "file": "data/atm_8k_overrides.json"
+      }
     }
   },
   "mnav": {
@@ -61,7 +66,7 @@
     "overheated_bonus_on": 0.15,
     "overheated_bonus_running_hot": 0.3,
     "anticipation": {
-      "_comment": "Bobby, 2026-11-11: sliding 'anticipation' premium on the overheated floor and a matching CHEAP-gate bump, driven by how close the parent's preferred is to par (STRC for MSTR, SATA for ASST) and whether it is climbing or falling. Symmetric; no fixed ASST extra. Off-state floor premium = clamp(max_premium x proximity + tilt, 0, max_premium), with proximity = clamp((preferred close - low) / (on_trade_threshold - low), 0, 1). Tilt is +/-tilt from the preferred's trend_days trading-day close change; |change| < tilt_dead_zone is flat (tilt 0). Missing preferred close -> premium 0. When the flywheel is ON or RUNNING_HOT, floor premium = max(overheated_bonus_on or overheated_bonus_running_hot, max_premium) and score = 1. The same 0-1 score (off premium / max_premium) raises the CHEAP gate: cheap_cap_eff = cheap_cap + cheap_cap_bump x score, cheap_pct = valuation.cheap_max_percentile + cheap_percentile_relax x score (25th -> 40th at full score). CHEAP is display-only and does not change the call. Regular-session closes only.",
+      "_comment": "Bobby, 2026-11-11: sliding 'anticipation' premium on the overheated floor and a matching CHEAP-gate bump, driven by how close the parent's preferred is to par (STRC for MSTR, SATA for ASST) and whether it is climbing or falling. Symmetric; no fixed ASST extra. Off-state floor premium = clamp(max_premium x proximity + tilt, 0, max_premium), with proximity = clamp((preferred close - low) / (on_trade_threshold - low), 0, 1). Tilt is +/-tilt from the preferred's trend_days trading-day close change; |change| < tilt_dead_zone is flat (tilt 0). Missing preferred close -> premium 0. When the flywheel is ON or RUNNING_HOT, floor premium = max(overheated_bonus_on or overheated_bonus_running_hot, max_premium) and score = 1. The same 0-1 score (off premium / max_premium) raises the CHEAP gate: cheap_cap_eff = cheap_cap + cheap_cap_bump x score, cheap_pct = valuation.cheap_max_percentile + cheap_percentile_relax x score (25th -> 40th at full score). CHEAP is display-only and does not change the call. Regular-session closes only. Buyback rule (2026-11-15): while buyback_support flags the preferred (par held by the issuer's own buybacks, no ATM sales), premium = 0 and score = 0 (zero_while_buyback_held), so buyback-held par never raises the cheap cap, the cheap percentile or the overvalued / call floor; the halving bonus and base gap are unchanged. The slide applies normally whenever the flag is off.",
       "enabled": true,
       "max_premium": 0.3,
       "low": 95.0,
@@ -70,7 +75,8 @@
       "tilt_dead_zone": 0.1,
       "trend_days": 5,
       "cheap_cap_bump": 0.05,
-      "cheap_percentile_relax": 0.15
+      "cheap_percentile_relax": 0.15,
+      "zero_while_buyback_held": true
     },
     "spread_z_favor_asst": -1.0,
     "spread_z_favor_mstr": 1.0,
@@ -82,19 +88,12 @@
     "_ev_share_basis_comment": "Share count used for the equity leg of EV. 'basic' (Strategy's own EV definition) avoids double-counting convertible notes, which are already in debt. 'diluted' is an option."
   },
   "valuation": {
-    "_comment": "Zones, applied to each mNAV basis separately using each stock's own trailing mnav.lookback_trading_days (252) percentile on that basis: OVERVALUED: mNAV >= the stock's overheated floor OR percentile >= mnav.overheated_percentile (90th). CHEAP: percentile <= the per-day cheap_pct (valuation.cheap_max_percentile, 25th, plus mnav.anticipation.cheap_percentile_relax x score, up to the 40th when the preferred is at/near par or the flywheel is ON) AND mNAV <= the stock's cheap_cap_eff (halving_bonus.base_cap + that stock's halving bonus + cheap_cap_bump x the same score). FAIR: percentile <= rich_above_percentile (75th) (incl. bottom-quartile days above the cap). RICH: above the 75th percentile, below OVERVALUED. See mnav.anticipation for the score (preferred proximity + 5-day tilt).",
-    "fair_max_percentile": 0.5,
+    "_comment": "Zones, applied to each mNAV basis separately using each stock's own trailing mnav.lookback_trading_days (252) percentile on that basis: OVERVALUED: mNAV >= the stock's overheated floor OR percentile >= mnav.overheated_percentile (90th). CHEAP: percentile <= the per-day cheap_pct (valuation.cheap_max_percentile, 25th, plus mnav.anticipation.cheap_percentile_relax x score, up to the 40th when the preferred is at/near par or the flywheel is ON) AND mNAV <= the stock's cheap_cap_eff (halving_bonus.base_cap + that stock's halving bonus + cheap_cap_bump x the same score). FAIR: percentile <= rich_above_percentile (75th) (incl. bottom-quartile days above the cap). RICH: above the 75th percentile, below OVERVALUED. See mnav.anticipation for the score (preferred proximity + 5-day tilt). Hysteresis (2026-11-15): zone_buffer_mnav (0.03x) - a zone label changes only once mNAV is at least 0.03x beyond the line it crossed (zone re-tested at mNAV -/+ 0.03 with the percentile recomputed); otherwise the previous day's label is kept. Applies to all zone labels / charts for MSTR and ASST on both bases; the call's overheated filter is NOT buffered. Raw (unbuffered) labels are kept as {key}_zone*_raw in data rows.",
     "halving_bonus": {
       "_comment": "Bobby, 2026-11-12: halving-cycle time bonus (mNAV x) added to each stock's cheap cap AND overvalued / overheated floor (zone labels, cards, per-stock chart cheap_gate / ov_line, and the call's overheated filter). Replaced the old linear cheap_below_mnav_schedule and the MSTR hold_until_median (removed 2026-11-12). cheap cap = base_cap + bonus (+ anticipation cap bump); overvalued floor = cap + mnav.overheated_gap_above_cheap + anticipation premium. Shape per stock: 0 until ramp_days before next_halving_est; quadratic ramp ((t+ramp)/ramp)^ramp_shape up to the halving; full amp for hold_days; linear fade to 0 over fade_days (~the usual BTC cycle top, ~535 days after a halving); then bear_bonus (0, never negative). Amplitude = amp_next[ticker] for the next halving, x decay_per_cycle for each later one (cycle_days apart, ~4 years). Earlier halvings are not back-cast. Also drives the call (Bobby 2026-11-12): {key}_oh_floor_call = the same floor (incl. the preferred-par slide); the call's overheated filter still requires mNAV >= the floor AND >= mnav.overheated_percentile. Re-check next_halving_est against mempool.space every quarter (block 1,050,000; 12 Nov 2026 estimate 4-15 Apr 2028). Rules-based, not financial advice.",
       "enabled": true,
       "base_cap": 1.1,
       "next_halving_est": "2028-04-12",
-      "past_halvings": [
-        "2012-11-28",
-        "2016-07-09",
-        "2020-05-11",
-        "2024-04-19"
-      ],
       "amp_next": {
         "MSTR": 0.3,
         "ASST": 0.5
@@ -109,7 +108,8 @@
       "bear_bonus": 0.0
     },
     "cheap_max_percentile": 0.25,
-    "rich_above_percentile": 0.75
+    "rich_above_percentile": 0.75,
+    "zone_buffer_mnav": 0.03
   },
   "dip": {
     "_comment": "Dip = BTC down >= btc_drop_pct over the last lookback_days trading days. Target = whichever of MSTR/ASST had the larger % drop in mNAV (mnav.signal_basis) over the same window (got cheaper vs its own bitcoin); tie (within tie_tolerance) broken by the larger price drop.",
@@ -289,17 +289,15 @@
     "very_low_max_percentile": 0.2
   },
   "buyback_support": {
-    "_comment": "Par held up by buybacks (review change 3). From the latest Strategy weekly 8-K table: if the latest reported week shows STRC buybacks > 0 and STRC ATM sales = 0 the flag turns on; it stays on until a later 8-K shows STRC sales again. A STRC ATM day in data/atm_activity.json (shares_sold > 0) dated after that week's end clears the flag and keeps it off until a newer 8-K week ending after the ATM date shows buybacks with no sales. While on, MSTR's flywheel does NOT count as on for the call (STRC may still show ON). If the 8-K parse fails, the last known value is kept (data/strc_buyback_state.json) with its date.",
+    "_comment": "Par held up by buybacks (review change 3). From the latest Strategy weekly 8-K table: if the latest reported week shows STRC buybacks > 0 and STRC ATM sales = 0 the flag turns on; it stays on until a later 8-K shows STRC sales again. A STRC ATM day in data/atm_activity.json (shares_sold > 0) dated after that week's end clears the flag and keeps it off until a newer 8-K week ending after the ATM date shows buybacks with no sales. While on, MSTR's flywheel does NOT count as on for the call (STRC may still show ON). If the 8-K parse fails, the last known value is kept (data/strc_buyback_state.json) with its date. Only 8-K-verified (or still provisional) ATM rows clear the flag; rows cancelled by an 8-K (peg.atm.verify_8k) do not.",
     "enabled": true,
     "preferred": "STRC",
-    "parent": "MSTR",
     "min_buyback_m": 0.0
   },
   "sats_context": {
     "_comment": "SATS context chip near SATA (review change 5). Display only, never a trigger.",
     "stated_value": 100.0,
-    "issue_price": 90.0,
-    "ipo_date": "2026-10-15"
+    "issue_price": 90.0
   },
   "refresh_trigger_url": "https://btc-dashboard-refresh.mergerwatch.workers.dev",
   "_refresh_trigger_comment": "Optional URL of a proxy (see workers/refresh-trigger) that starts update.yml. Empty = Refresh opens the GitHub Run workflow page and polls. Never put a token here."

@@ -322,6 +322,55 @@ def apply_atm_buyback_override(flag, row_date, atm_map, weeks):
         return False, atm_d
     return flag, atm_d
 
+def atm_verified_periods(bb_weeks, a_ev, manual):
+    """8-K-verified ATM periods per preferred (data/atm_8k_overrides.json, fix 2026-11-15).
+
+    Automatic: STRC from Strategy's weekly 8-K weeks (ATM table + repurchase table; sales_m == 0 -> 'no_sales'),
+    SATA from Strive's weekly 8-K SATA shares-outstanding table (consecutive 8-K dates <= 10 days apart; unchanged
+    count -> 'no_sales', increase -> 'sales'). Manual entries (verified_periods in the overrides file) are listed
+    first and win for the dates they cover. Returns {pref: [period, ...]} (manual first, then auto)."""
+    out = {"STRC": [], "SATA": []}
+    for m in (manual or []):
+        if m.get("preferred") in out and m.get("start") and m.get("end"):
+            out[m["preferred"]].append(dict(m, origin="manual"))
+    for e, w in sorted((bb_weeks or {}).items()):
+        if not w.get("start") or not w.get("end"): continue
+        sm = w.get("sales_m") or 0.0
+        out["STRC"].append({"preferred": "STRC", "issuer": "MSTR", "start": w["start"], "end": w["end"], "filed": w.get("filed"),
+                            "verdict": "sales" if sm > 0 else "no_sales", "sec_notional_m": sm, "sec_shares_sold": w.get("sales_shares") or 0,
+                            "buyback_m": w.get("buyback_m"), "source_url": w.get("url"), "origin": "auto_8k"})
+    pts = sorted({e["date"]: e for e in (a_ev or []) if e.get("src") and e.get("sata") is not None}.values(), key=lambda e: e["date"])
+    for a_, b_ in zip(pts, pts[1:]):
+        d0, d1 = dt.date.fromisoformat(a_["date"]), dt.date.fromisoformat(b_["date"])
+        if (d1 - d0).days > 10: continue
+        add = (b_["sata"] or 0) - (a_["sata"] or 0)
+        out["SATA"].append({"preferred": "SATA", "issuer": "ASST", "start": (d0 + dt.timedelta(days=1)).isoformat(), "end": b_["date"],
+                            "filed": b_.get("filed"), "verdict": "sales" if add > 0 else "no_sales", "sec_shares_sold": max(add, 0),
+                            "source_url": b_.get("src"), "origin": "auto_8k"})
+    return out
+
+def verify_atm(atm_raw, periods):
+    """Apply 8-K verification to @STRC_live ATM rows. A row with shares_sold > 0 inside a 'no_sales' period is
+    cancelled (effective shares_sold / btc_raised = 0; the reported values are kept). Rows not covered by any
+    period are marked provisional. Returns (effective {pref: {date: row}}, cancellations list)."""
+    eff, canc = {}, []
+    for pref, rows_ in (atm_raw or {}).items():
+        P = periods.get(pref) or []
+        eff[pref] = {}
+        for d, v in rows_.items():
+            v = dict(v or {})
+            per = next((x for x in P if x["start"] <= d <= x["end"]), None)
+            v["verified_by_8k"] = bool(per)
+            if not per: v["provisional"] = True
+            if per and per.get("verdict") == "no_sales" and (v.get("shares_sold") or 0) > 0:
+                v["reported_shares_sold"], v["reported_btc_raised"] = v.get("shares_sold"), v.get("btc_raised")
+                v["shares_sold"], v["btc_raised"] = 0, 0
+                v["cancelled_by_8k"] = {k: per.get(k) for k in ("start", "end", "filed", "source_url", "origin", "buyback_m", "note") if per.get(k) is not None}
+                canc.append({"date": d, "preferred": pref, "reported_shares_sold": v["reported_shares_sold"],
+                             "reported_btc_raised": v["reported_btc_raised"], "x_source": v.get("source_url"), **{"by_8k": v["cancelled_by_8k"]}})
+            eff[pref][d] = v
+    return eff, canc
+
 def halving_bonus(d, hc, ticker):
     """Halving-cycle time bonus (valuation.halving_bonus, Bobby 2026-11-12) added to the DISPLAY cheap cap and
     overvalued floor for one stock on date d (ISO). Zero until ramp_days before the next halving estimate, quadratic
@@ -419,7 +468,7 @@ def main():
     a_ev = list(seed["events"])
     for doc in adocs:
         for e in doc["parsed"].get("events", []):
-            e = dict(e); e["src"] = doc["url"]; a_ev.append(e)
+            e = dict(e); e["src"] = doc["url"]; e["filed"] = doc["filed"]; a_ev.append(e)
     a_ev.sort(key=lambda e: e["date"])
     a_btc = step_lookup(a_ev, "btc"); a_sh = step_lookup(a_ev, "shares")
     sata_ev = sorted({e["date"]: e["sata"] for e in a_ev + seed.get("sata_other", []) if "sata" in e}.items())
@@ -526,7 +575,23 @@ def main():
         raise RuntimeError("intraday fetch failed " + url)
     try: ATMJ = json.loads((ROOT / pc.get("atm", {}).get("file", "data/atm_activity.json")).read_text())
     except Exception as e: ATMJ = {}; log("atm activity file missing", e)
-    ATM = {p_: {d: v[p_] for d, v in ATMJ.items() if not d.startswith("_") and isinstance(v, dict) and p_ in v} for p_ in ("STRC", "SATA")}
+    ATM_RAW = {p_: {d: v[p_] for d, v in ATMJ.items() if not d.startswith("_") and isinstance(v, dict) and p_ in v} for p_ in ("STRC", "SATA")}
+    # ---- par held up by buybacks (STRC) weeks from the 8-Ks (also feeds the ATM verification below)
+    bc = CFG.get("buyback_support", {})
+    if bc.get("enabled"):
+        BB_CH, BB, BB_WEEKS = buyback_flag_series(mdocs, bc, DATA / "strc_buyback_state.json")
+    else:
+        BB_CH, BB, BB_WEEKS = [], {"flag": False}, {}
+    # ---- 8-K verification of @STRC_live ATM rows (provisional until the weekly 8-K): contradicted rows are cancelled
+    vcfg = pc.get("atm", {}).get("verify_8k", {})
+    try: OVR = json.loads((ROOT / vcfg.get("file", "data/atm_8k_overrides.json")).read_text())
+    except Exception as e: OVR = {}; log("atm 8-K overrides file missing", e)
+    if vcfg.get("enabled", True):
+        ATM_PERIODS = atm_verified_periods(BB_WEEKS, a_ev, OVR.get("verified_periods"))
+        ATM, ATM_CANCELLED = verify_atm(ATM_RAW, ATM_PERIODS)
+    else:
+        ATM_PERIODS, ATM, ATM_CANCELLED = {"STRC": [], "SATA": []}, ATM_RAW, []
+    for c_ in ATM_CANCELLED: log("ATM row cancelled by 8-K", c_["preferred"], c_["date"], c_["reported_shares_sold"], c_["by_8k"].get("source_url"))
     for pref in ("STRC", "SATA"):
         bars = FW.fetch_bars(yj, pref)
         BARS[pref] = bars
@@ -539,11 +604,6 @@ def main():
             r["peg_" + pref] = FW.LEGACY[x["code"]] if x else None
             if x and x.get("vol_mult") is not None: r["volx_" + pref] = x["vol_mult"]
     # ---- par held up by buybacks (STRC): MSTR's flywheel is not on for the call while flagged
-    bc = CFG.get("buyback_support", {})
-    if bc.get("enabled"):
-        BB_CH, BB, BB_WEEKS = buyback_flag_series(mdocs, bc, DATA / "strc_buyback_state.json")
-    else:
-        BB_CH, BB, BB_WEEKS = [], {"flag": False}, {}
     bpref = bc.get("preferred", "STRC")
     last_clearing_atm = None
     for r in rows:
@@ -577,6 +637,14 @@ def main():
             code = r.get("fly_" + A["preferred"])
             # preferred-par slide (proximity + 5-day tilt; ON / RUNNING_HOT = max_premium) - applies to zones AND the call
             prem, score, extra = anticipation(rows, i, A["preferred"], code, mc)
+            # Fix 2026-11-15: par held up by the issuer's own buybacks (buyback_support flag, STRC) is not demand,
+            # so it earns no par-slide credit: premium and score are 0 while flagged (cheap-cap bump, cheap
+            # percentile relax and overvalued-floor premium all drop out; halving bonus + base gap unchanged).
+            bb_held = bool(r.get("bb_" + A["preferred"])) and bool(ac0.get("zero_while_buyback_held", True))
+            r[k + "_anticip_bb_zeroed"] = bb_held and (prem > 0 or score > 0)
+            if bb_held:
+                r[k + "_anticip_raw_prem"], r[k + "_anticip_raw_score"] = round(prem, 4), round(score, 4)
+                prem, score = 0.0, 0.0
             hb, hw, hph = halving_bonus(r["date"], hc0, A["ticker"])
             r[k + "_halving_bonus"], r[k + "_halving_weight"], r[k + "_halving_phase"] = hb, hw, hph
             r[k + "_cheap_cap"], r[k + "_cap_mode"] = round(base_cap + hb, 4), "halving"
@@ -687,13 +755,33 @@ def main():
         if p is not None and p <= qc and v <= cap: return "CHEAP"
         if p is None or p <= QR: return "FAIR"
         return "RICH"
-    for r in rows:
+    # Zone hysteresis (fix 2026-11-15, valuation.zone_buffer_mnav): a label only changes once mNAV is at least
+    # `buf` beyond the line it crossed (re-evaluating the zone at mNAV -/+ buf, percentile recomputed on the same
+    # trailing window); otherwise yesterday's label is kept. Display labels only; the call is unchanged.
+    ZORD = {"CHEAP": 0, "FAIR": 1, "RICH": 2, "OVERVALUED": 3}
+    ZBUF = float(vc.get("zone_buffer_mnav", 0.0) or 0.0)
+    for i, r in enumerate(rows):
         for a in ("mstr", "asst"):
             capv = r.get(a + "_cheap_cap_eff", r.get(a + "_cheap_cap", r["cheap_line"]))
             qc = r.get(a + "_cheap_pct", QC)
-            r[a + "_zone"] = zone(r.get(a + "_mnav"), r.get(a + "_mnav_pct"), capv, r.get(a + "_oh_floor", mc["overheated_min_mnav"]), qc)
-            for bs in ("basic", "ev"):
-                r[a + "_zone_" + bs] = zone(r.get(a + "_mnav_" + bs), r.get(a + "_mnav_" + bs + "_pct"), capv, r.get(a + "_oh_floor", mc["overheated_min_mnav"]), qc)
+            fl = r.get(a + "_oh_floor", mc["overheated_min_mnav"])
+            for out_k, bs in ((a + "_zone", ""), (a + "_zone_basic", "basic"), (a + "_zone_ev", "ev")):
+                key = a + "_mnav" + ("_" + bs if bs else "")
+                v, p = r.get(key), r.get(key + "_pct")
+                raw = zone(v, p, capv, fl, qc)
+                r[out_k + "_raw"] = raw
+                prev = rows[i - 1].get(out_k) if i > 0 else None
+                z = raw
+                if ZBUF > 0 and raw and prev and raw != prev:
+                    win = [w.get(key) for w in rows[max(0, i - L + 1): i]]
+                    def zat(x):
+                        pr = pct_rank(win + [x], x)
+                        return zone(x, round(pr, 3) if pr is not None else None, capv, fl, qc)
+                    if ZORD[raw] > ZORD[prev]:
+                        up = zat(v - ZBUF); z = up if ZORD[up] > ZORD[prev] else prev
+                    else:
+                        dn = zat(v + ZBUF); z = dn if ZORD[dn] < ZORD[prev] else prev
+                r[out_k] = z
     def verdict(r, bs=""):
         sfx = "_" + bs if bs else ""
         z, m, s = r.get("spread_z" + sfx), r.get("mstr_mnav" + sfx), r.get("asst_mnav" + sfx)
@@ -837,6 +925,20 @@ def main():
         "buy_flags": analytics.buy_flags(rows[-1], ASSETS, CFG),
         "signal_events": analytics.signal_events(rows, ASSETS, rb),
         "signal_flips": flips, "last_changed": lc, "last_recommendation_change": lrc, "sources": sources}
+    # ---- 8-K verification summary (display + routines)
+    def _last_period(pref):
+        P = [x for x in ATM_PERIODS.get(pref, [])]
+        return max(P, key=lambda x: x["end"]) if P else None
+    ana["atm_verification"] = {
+        "rule": "@STRC_live ATM rows are provisional until the issuer's weekly 8-K covering that date; a row with shares sold inside an 8-K period that shows no sales of that preferred is cancelled (does not turn the flywheel ON or clear the STRC buyback flag). Manual entries: data/atm_8k_overrides.json.",
+        "cancelled": ATM_CANCELLED,
+        "latest_verified": {p_: _last_period(p_) for p_ in ("STRC", "SATA")},
+        "provisional_after": {p_: (_last_period(p_) or {}).get("end") for p_ in ("STRC", "SATA")}}
+    for p_, fcard in ana["flywheel"].items():
+        if isinstance(fcard, dict):
+            cs = [c_ for c_ in ATM_CANCELLED if c_["preferred"] == p_]
+            fcard["atm_cancelled"] = cs[-1] if cs else None
+            fcard["atm_verified_through"] = ana["atm_verification"]["provisional_after"].get(p_)
     for k in ("cash_idle",):  # keep only stats + curve for the variant
         ana["backtest"][k].pop("dates", None); ana["backtest"][k].pop("positions", None); ana["backtest"][k].pop("periods", None)
         ana["backtest"][k]["curves"] = {"rules": ana["backtest"][k]["curves"]["rules"]}
@@ -899,6 +1001,8 @@ def main():
                    "mstr_price_change": last.get("mstr_chg"), "asst_price_change": last.get("asst_chg"),
                    "mstr_mnav_change": last.get("mstr_mnav_chg"), "asst_mnav_change": last.get("asst_mnav_chg")},
            "strc_buyback_support": BB.get("flag"), "buyback_support": BB,
+           "atm_verification": ana["atm_verification"],
+           "zone_buffer_mnav": CFG["valuation"].get("zone_buffer_mnav"),
            "sats_context": SATS_CTX,
            "peg": {p: {"price": last.get(p), "state": last.get("peg_" + p), "flywheel_state": AN.fly_label(last.get("peg_" + p), last.get("fly_" + p), last.get("held_" + p)),
                        "flywheel_code": last.get("fly_" + p),
