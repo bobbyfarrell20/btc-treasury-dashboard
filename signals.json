@@ -21,7 +21,7 @@
     "new": "STAY_BTC"
   },
   "_hash_note": "signal_hash changes when the recommendation, also_valid, any preferred peg state (on for the call = RUNNING_HOT/ON, hashed alike; WARMING_UP and COOLING_OFF hash as WATCH, STALLED as SELL; ON held by buybacks hashes as WATCH) or any overheated flag changes; last_changed is the most recent trading day it changed.",
-  "generated_utc": "2026-11-15T07:53:00+00:00",
+  "generated_utc": "2026-11-15T19:45:44+00:00",
   "as_of": "2026-11-13",
   "disclaimer": "Rules-based indicator, not financial advice.",
   "recommendation_detail": {
@@ -1872,14 +1872,14 @@
       "question": "Will Bitcoin dip to $55,000 by December 31, 2026?",
       "url": "https://polymarket.com/event/what-price-will-bitcoin-hit-before-2027",
       "from": 0.105,
-      "to": 0.345,
-      "change_pts": 24.0,
+      "to": 0.335,
+      "change_pts": 23.0,
       "from_date": "2026-11-08",
       "news": {
-        "headline": "Bitcoin price analysis: BTC continues to decline Saturday, entering 'deep value zone' - CoinDesk",
-        "url": "https://news.google.com/rss/articles/CBMiqAFBVV95cUxPREhQQTJ6T1M4cmdyMzU2SUhaYWszWDZOOWp0TzJ1M240RnY3RjI4OEpCQmlHR0pFbU1FekdXMXE1dzVjVHJlZ2ZMUjdOYXZIem5JY01DQ3JyYnIyUWxnZWNoR25TTG9DdExHNjNGMTdSNzJLZ3pKQ0JJeWxzMjV5cUlid3JkR0czV3ZmWlRnWXZ5QVBaSFJYZmltaU1Caks4NkdPTHo2bjE?oc=5",
-        "published": "Sun, 15 Nov 2026 02:01:00 GMT",
-        "publisher": "CoinDesk",
+        "headline": "Bitcoin\u2019s four-year cycle is about to turn bullish \u2014 if history repeats: Chart of the Day - Yahoo Finance",
+        "url": "https://news.google.com/rss/articles/CBMi5AFBVV95cUxOZnJscnVUWk1EM255N01qYlh4M2xtWkFTV0VXdDRZcU9RbWFlOWZ0ekN6MlZESUxjRlUyRUxVQ09UWWVrcTRkZDM2Ykg3d0lueTNXQ0tBOFVEekxpazZ2OVlqVGdyb2xxYnAzSGs2OFF5WXN4Qk0wdDMxNDBnejd6ZmZjOFAyNHZkY0NmS25KcWMzcXlOYTRPRFcwSGw5aTc1NmFwdVQtMDI2ZFcxdFdTZlN6aVcxb2c4azZMQkNhWklNbXZQY2xYNFI2SlowVi0tVUJVNnFNRWdONDhfSjl4UGRFa0M?oc=5",
+        "published": "Sun, 15 Nov 2026 14:17:44 GMT",
+        "publisher": "Yahoo Finance",
         "via": "Google News RSS"
       }
     },
@@ -1897,31 +1897,10 @@
       "change_pts": -19.0,
       "from_date": "2026-11-08",
       "news": {
-        "headline": "Fed Rate Hikes Threaten U.S. Farm Margins as Debt Hits $605 Billion - AgroLatam",
-        "url": "https://news.google.com/rss/articles/CBMie0FVX3lxTFAzeVIwRHdsY045UWNkZThtVkhWb2QwWVhVSlVFaUM1TTRCV1dNRVh5ZDJEV1JqZnNGYlBlam5sS2RhVkJ1dWUwTVhLRmNfdEpUeDVpVldtcDZibUJ5eHdOUTVOa0U3eTBpSFlQaGpVSVZoXzZMUGtjelBHQQ?oc=5",
-        "published": "Sat, 14 Nov 2026 21:04:04 GMT",
-        "publisher": "AgroLatam",
-        "via": "Google News RSS"
-      }
-    },
-    {
-      "date": "2026-11-15",
-      "window": "7d",
-      "source": "polymarket",
-      "group": "Fed",
-      "market": "Fed decision - Dec 9",
-      "outcome": "No change",
-      "question": "Will there be no change in Fed interest rates after the December 2026 meeting?",
-      "url": "https://polymarket.com/event/fed-decision-in-december-20260729232808632",
-      "from": 0.215,
-      "to": 0.0345,
-      "change_pts": -18.1,
-      "from_date": "2026-11-08",
-      "news": {
-        "headline": "Fed Rate Hikes Threaten U.S. Farm Margins as Debt Hits $605 Billion - AgroLatam",
-        "url": "https://news.google.com/rss/articles/CBMie0FVX3lxTFAzeVIwRHdsY045UWNkZThtVkhWb2QwWVhVSlVFaUM1TTRCV1dNRVh5ZDJEV1JqZnNGYlBlam5sS2RhVkJ1dWUwTVhLRmNfdEpUeDVpVldtcDZibUJ5eHdOUTVOa0U3eTBpSFlQaGpVSVZoXzZMUGtjelBHQQ?oc=5",
-        "published": "Sat, 14 Nov 2026 21:04:04 GMT",
-        "publisher": "AgroLatam",
+        "headline": "How Will the Market React to a Potential Fed Rate Hike in December? Here's What History Suggests. - The Motley Fool",
+        "url": "https://news.google.com/rss/articles/CBMilwFBVV95cUxPcDBodFF6V2tfV2dzVGJsY0k2bFJVeXNuM29DR1FzaXRpSjdwMnRKdFdramhvb1pFaW1mRVp4WkZUbTNwZjdrNkt5c0RmSHhYa0xNOTZNVFI1ZFpEQzBsdVFnRjMyMElDZjVkNVdFVE1yVlhLVWs2bXFsSDFPTE91VzQ4UkZBZlQ0d0swbzhCSHZpSDBzcGhn?oc=5",
+        "published": "Sun, 15 Nov 2026 12:02:00 GMT",
+        "publisher": "The Motley Fool",
         "via": "Google News RSS"
       }
     },
@@ -1939,10 +1918,31 @@
       "change_pts": 18.0,
       "from_date": "2026-11-08",
       "news": {
-        "headline": "Bitcoin price analysis: BTC continues to decline Saturday, entering 'deep value zone' - CoinDesk",
-        "url": "https://news.google.com/rss/articles/CBMiqAFBVV95cUxPREhQQTJ6T1M4cmdyMzU2SUhaYWszWDZOOWp0TzJ1M240RnY3RjI4OEpCQmlHR0pFbU1FekdXMXE1dzVjVHJlZ2ZMUjdOYXZIem5JY01DQ3JyYnIyUWxnZWNoR25TTG9DdExHNjNGMTdSNzJLZ3pKQ0JJeWxzMjV5cUlid3JkR0czV3ZmWlRnWXZ5QVBaSFJYZmltaU1Caks4NkdPTHo2bjE?oc=5",
-        "published": "Sun, 15 Nov 2026 02:01:00 GMT",
-        "publisher": "CoinDesk",
+        "headline": "Bitcoin\u2019s four-year cycle is about to turn bullish \u2014 if history repeats: Chart of the Day - Yahoo Finance",
+        "url": "https://news.google.com/rss/articles/CBMi5AFBVV95cUxOZnJscnVUWk1EM255N01qYlh4M2xtWkFTV0VXdDRZcU9RbWFlOWZ0ekN6MlZESUxjRlUyRUxVQ09UWWVrcTRkZDM2Ykg3d0lueTNXQ0tBOFVEekxpazZ2OVlqVGdyb2xxYnAzSGs2OFF5WXN4Qk0wdDMxNDBnejd6ZmZjOFAyNHZkY0NmS25KcWMzcXlOYTRPRFcwSGw5aTc1NmFwdVQtMDI2ZFcxdFdTZlN6aVcxb2c4azZMQkNhWklNbXZQY2xYNFI2SlowVi0tVUJVNnFNRWdONDhfSjl4UGRFa0M?oc=5",
+        "published": "Sun, 15 Nov 2026 14:17:44 GMT",
+        "publisher": "Yahoo Finance",
+        "via": "Google News RSS"
+      }
+    },
+    {
+      "date": "2026-11-15",
+      "window": "7d",
+      "source": "polymarket",
+      "group": "Fed",
+      "market": "Fed decision - Dec 9",
+      "outcome": "No change",
+      "question": "Will there be no change in Fed interest rates after the December 2026 meeting?",
+      "url": "https://polymarket.com/event/fed-decision-in-december-20260729232808632",
+      "from": 0.215,
+      "to": 0.0365,
+      "change_pts": -17.8,
+      "from_date": "2026-11-08",
+      "news": {
+        "headline": "How Will the Market React to a Potential Fed Rate Hike in December? Here's What History Suggests. - The Motley Fool",
+        "url": "https://news.google.com/rss/articles/CBMilwFBVV95cUxPcDBodFF6V2tfV2dzVGJsY0k2bFJVeXNuM29DR1FzaXRpSjdwMnRKdFdramhvb1pFaW1mRVp4WkZUbTNwZjdrNkt5c0RmSHhYa0xNOTZNVFI1ZFpEQzBsdVFnRjMyMElDZjVkNVdFVE1yVlhLVWs2bXFsSDFPTE91VzQ4UkZBZlQ0d0swbzhCSHZpSDBzcGhn?oc=5",
+        "published": "Sun, 15 Nov 2026 12:02:00 GMT",
+        "publisher": "The Motley Fool",
         "via": "Google News RSS"
       }
     },
@@ -1956,14 +1956,14 @@
       "question": "Will Bitcoin dip to $55,000 by December 31, 2026?",
       "url": "https://polymarket.com/event/what-price-will-bitcoin-hit-before-2027",
       "from": 0.185,
-      "to": 0.345,
-      "change_pts": 16.0,
+      "to": 0.335,
+      "change_pts": 15.0,
       "from_date": "2026-11-14",
       "news": {
-        "headline": "Bitcoin price analysis: BTC continues to decline Saturday, entering 'deep value zone' - CoinDesk",
-        "url": "https://news.google.com/rss/articles/CBMiqAFBVV95cUxPREhQQTJ6T1M4cmdyMzU2SUhaYWszWDZOOWp0TzJ1M240RnY3RjI4OEpCQmlHR0pFbU1FekdXMXE1dzVjVHJlZ2ZMUjdOYXZIem5JY01DQ3JyYnIyUWxnZWNoR25TTG9DdExHNjNGMTdSNzJLZ3pKQ0JJeWxzMjV5cUlid3JkR0czV3ZmWlRnWXZ5QVBaSFJYZmltaU1Caks4NkdPTHo2bjE?oc=5",
-        "published": "Sun, 15 Nov 2026 02:01:00 GMT",
-        "publisher": "CoinDesk",
+        "headline": "Bitcoin\u2019s four-year cycle is about to turn bullish \u2014 if history repeats: Chart of the Day - Yahoo Finance",
+        "url": "https://news.google.com/rss/articles/CBMi5AFBVV95cUxOZnJscnVUWk1EM255N01qYlh4M2xtWkFTV0VXdDRZcU9RbWFlOWZ0ekN6MlZESUxjRlUyRUxVQ09UWWVrcTRkZDM2Ykg3d0lueTNXQ0tBOFVEekxpazZ2OVlqVGdyb2xxYnAzSGs2OFF5WXN4Qk0wdDMxNDBnejd6ZmZjOFAyNHZkY0NmS25KcWMzcXlOYTRPRFcwSGw5aTc1NmFwdVQtMDI2ZFcxdFdTZlN6aVcxb2c4azZMQkNhWklNbXZQY2xYNFI2SlowVi0tVUJVNnFNRWdONDhfSjl4UGRFa0M?oc=5",
+        "published": "Sun, 15 Nov 2026 14:17:44 GMT",
+        "publisher": "Yahoo Finance",
         "via": "Google News RSS"
       }
     },
@@ -1981,10 +1981,10 @@
       "change_pts": 11.0,
       "from_date": "2026-11-14",
       "news": {
-        "headline": "Bitcoin price analysis: BTC continues to decline Saturday, entering 'deep value zone' - CoinDesk",
-        "url": "https://news.google.com/rss/articles/CBMiqAFBVV95cUxPREhQQTJ6T1M4cmdyMzU2SUhaYWszWDZOOWp0TzJ1M240RnY3RjI4OEpCQmlHR0pFbU1FekdXMXE1dzVjVHJlZ2ZMUjdOYXZIem5JY01DQ3JyYnIyUWxnZWNoR25TTG9DdExHNjNGMTdSNzJLZ3pKQ0JJeWxzMjV5cUlid3JkR0czV3ZmWlRnWXZ5QVBaSFJYZmltaU1Caks4NkdPTHo2bjE?oc=5",
-        "published": "Sun, 15 Nov 2026 02:01:00 GMT",
-        "publisher": "CoinDesk",
+        "headline": "Bitcoin\u2019s four-year cycle is about to turn bullish \u2014 if history repeats: Chart of the Day - Yahoo Finance",
+        "url": "https://news.google.com/rss/articles/CBMi5AFBVV95cUxOZnJscnVUWk1EM255N01qYlh4M2xtWkFTV0VXdDRZcU9RbWFlOWZ0ekN6MlZESUxjRlUyRUxVQ09UWWVrcTRkZDM2Ykg3d0lueTNXQ0tBOFVEekxpazZ2OVlqVGdyb2xxYnAzSGs2OFF5WXN4Qk0wdDMxNDBnejd6ZmZjOFAyNHZkY0NmS25KcWMzcXlOYTRPRFcwSGw5aTc1NmFwdVQtMDI2ZFcxdFdTZlN6aVcxb2c4azZMQkNhWklNbXZQY2xYNFI2SlowVi0tVUJVNnFNRWdONDhfSjl4UGRFa0M?oc=5",
+        "published": "Sun, 15 Nov 2026 14:17:44 GMT",
+        "publisher": "Yahoo Finance",
         "via": "Google News RSS"
       }
     },
@@ -2025,7 +2025,7 @@
       "news": {
         "headline": "Fed Forced to Confront Case for Bigger and Faster Rate Rises - WSJ",
         "url": "https://news.google.com/rss/articles/CBMiswFBVV95cUxPelFYdmxqTmVYeGJuX2VCMUg3MFowTVhFV25kb1NUN1Z0QUZuMnNVUmVabWhfZU1PVjVTakhlRVRzdHpvWENxd3Y4Y3RJLURrVmNYMkZ3UnpNZUx1RjJvc0xIZDFsZ0xqcDcxbDAwVHNOaUpNSkRuSW00cnVlRy1uQ1F1MjBydEtZSnNVTDJtM2xxaWFXcUcybTUzVGpoaEpSTDM5REtFQ2J0a3Z3WVEtQ25xdw?oc=5",
-        "published": "Wed, 11 Nov 2026 01:00:00 GMT",
+        "published": "Thu, 12 Nov 2026 08:00:00 GMT",
         "publisher": "WSJ",
         "via": "Google News RSS"
       }
@@ -2046,7 +2046,7 @@
       "news": {
         "headline": "Fed Forced to Confront Case for Bigger and Faster Rate Rises - WSJ",
         "url": "https://news.google.com/rss/articles/CBMiswFBVV95cUxPelFYdmxqTmVYeGJuX2VCMUg3MFowTVhFV25kb1NUN1Z0QUZuMnNVUmVabWhfZU1PVjVTakhlRVRzdHpvWENxd3Y4Y3RJLURrVmNYMkZ3UnpNZUx1RjJvc0xIZDFsZ0xqcDcxbDAwVHNOaUpNSkRuSW00cnVlRy1uQ1F1MjBydEtZSnNVTDJtM2xxaWFXcUcybTUzVGpoaEpSTDM5REtFQ2J0a3Z3WVEtQ25xdw?oc=5",
-        "published": "Wed, 11 Nov 2026 01:00:00 GMT",
+        "published": "Thu, 12 Nov 2026 08:00:00 GMT",
         "publisher": "WSJ",
         "via": "Google News RSS"
       }
@@ -2060,11 +2060,11 @@
       "odds": [
         {
           "outcome": "\u2191 100,000",
-          "yes": 0.0325
+          "yes": 0.0355
         },
         {
           "outcome": "\u2193 55,000",
-          "yes": 0.345
+          "yes": 0.335
         }
       ]
     },
@@ -2106,15 +2106,15 @@
       "top": [
         {
           "outcome": "\u2193 55,000",
-          "yes": 0.345
+          "yes": 0.335
         },
         {
           "outcome": "\u2193 50,000",
-          "yes": 0.164
+          "yes": 0.1805
         },
         {
           "outcome": "\u2193 45,000",
-          "yes": 0.082
+          "yes": 0.0875
         },
         {
           "outcome": "\u2191 90,000",
@@ -2143,7 +2143,7 @@
         },
         {
           "outcome": "No change",
-          "yes": 0.0345
+          "yes": 0.0365
         },
         {
           "outcome": "25 bps decrease",
@@ -2158,11 +2158,11 @@
       "top": [
         {
           "outcome": "0 (0 bps)",
-          "yes": 0.9845
+          "yes": 0.985
         },
         {
           "outcome": "1 (25 bps)",
-          "yes": 0.0075
+          "yes": 0.0105
         },
         {
           "outcome": "2 (50 bps)",
@@ -2181,7 +2181,7 @@
       "top": [
         {
           "outcome": "Clarity Act (H.R.3633) signed into law in 2026?",
-          "yes": 0.018
+          "yes": 0.017
         }
       ]
     },
@@ -2192,7 +2192,7 @@
       "top": [
         {
           "outcome": "Crypto Market Structure legislation becomes law in 2026?",
-          "yes": 0.0285
+          "yes": 0.0275
         }
       ]
     },
@@ -2232,7 +2232,7 @@
       "top": [
         {
           "outcome": "Will MicroStrategy be margin called in 2026?",
-          "yes": 0.043
+          "yes": 0.0355
         }
       ]
     },
@@ -2243,11 +2243,11 @@
       "top": [
         {
           "outcome": "Above $99,999.99",
-          "yes": 0.04
+          "yes": 0.05
         },
         {
           "outcome": "Above $109,999.99",
-          "yes": 0.02
+          "yes": 0.03
         },
         {
           "outcome": "Above $119,999.99",
@@ -2266,19 +2266,19 @@
       "top": [
         {
           "outcome": "Below $55,000.00",
-          "yes": 0.33
+          "yes": 0.36
         },
         {
           "outcome": "Below $50,000.00",
-          "yes": 0.19
+          "yes": 0.16
         },
         {
           "outcome": "Below $45,000.00",
-          "yes": 0.1
+          "yes": 0.08
         },
         {
           "outcome": "Below $40,000.00",
-          "yes": 0.09
+          "yes": 0.07
         }
       ]
     },
@@ -2303,7 +2303,7 @@
         },
         {
           "outcome": "Fed maintains rate",
-          "yes": 0.03
+          "yes": 0.04
         },
         {
           "outcome": "Cut 25bps",
@@ -2318,11 +2318,11 @@
       "top": [
         {
           "outcome": "Before Jan 1, 2028",
-          "yes": 0.27
+          "yes": 0.29
         },
         {
           "outcome": "Before Oct 1, 2027",
-          "yes": 0.22
+          "yes": 0.23
         },
         {
           "outcome": "Before Jul 1, 2027",
