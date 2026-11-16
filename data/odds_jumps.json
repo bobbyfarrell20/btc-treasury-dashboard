@@ -21,7 +21,7 @@
    "news": {
     "headline": "Did Bitcoin Prices Bottom at $62,000? Strategy Has Bought the Decline. - Barron's",
     "url": "https://news.google.com/rss/articles/CBMif0FVX3lxTE0yS0RmaHF4aWFYdWEwa1Z4TmZ0dzdqM1NPR21vdTZvc3dZNlVDalJHdHROUjJEcm03V0YtdHhEdC01T0tpS0RDLWZNRFpLNWlnZVJPeXlXY3k0Tk1NNW1hUEtrOE9DaWp6OU44VGpQclQtQW9pTF9jazVRNVV2UDA?oc=5",
-    "published": "Mon, 16 Nov 2026 16:07:00 GMT",
+    "published": "Mon, 16 Nov 2026 18:56:00 GMT",
     "publisher": "Barron's",
     "via": "Google News RSS"
    }
@@ -36,8 +36,8 @@
    "question": "Will there be no change in Fed interest rates after the December 2026 meeting?",
    "url": "https://polymarket.com/event/fed-decision-in-december-20260729232808632",
    "from": 0.225,
-   "to": 0.035,
-   "change_pts": -19.0,
+   "to": 0.0315,
+   "change_pts": -19.4,
    "from_date": "2026-11-09",
    "news": {
     "headline": "Mortgage Rates Forecast For 2026: Experts Predict Whether Interest Rates Will Drop - Forbes",
@@ -84,28 +84,7 @@
    "news": {
     "headline": "Did Bitcoin Prices Bottom at $62,000? Strategy Has Bought the Decline. - Barron's",
     "url": "https://news.google.com/rss/articles/CBMif0FVX3lxTE0yS0RmaHF4aWFYdWEwa1Z4TmZ0dzdqM1NPR21vdTZvc3dZNlVDalJHdHROUjJEcm03V0YtdHhEdC01T0tpS0RDLWZNRFpLNWlnZVJPeXlXY3k0Tk1NNW1hUEtrOE9DaWp6OU44VGpQclQtQW9pTF9jazVRNVV2UDA?oc=5",
-    "published": "Mon, 16 Nov 2026 16:07:00 GMT",
-    "publisher": "Barron's",
-    "via": "Google News RSS"
-   }
-  },
-  {
-   "date": "2026-11-16",
-   "window": "24h",
-   "source": "polymarket",
-   "group": "BTC",
-   "market": "BTC price targets hit in 2026",
-   "outcome": "↓ 55,000",
-   "question": "Will Bitcoin dip to $55,000 by December 31, 2026?",
-   "url": "https://polymarket.com/event/what-price-will-bitcoin-hit-before-2027",
-   "from": 0.185,
-   "to": 0.305,
-   "change_pts": 12.0,
-   "from_date": "2026-11-14",
-   "news": {
-    "headline": "Did Bitcoin Prices Bottom at $62,000? Strategy Has Bought the Decline. - Barron's",
-    "url": "https://news.google.com/rss/articles/CBMif0FVX3lxTE0yS0RmaHF4aWFYdWEwa1Z4TmZ0dzdqM1NPR21vdTZvc3dZNlVDalJHdHROUjJEcm03V0YtdHhEdC01T0tpS0RDLWZNRFpLNWlnZVJPeXlXY3k0Tk1NNW1hUEtrOE9DaWp6OU44VGpQclQtQW9pTF9jazVRNVV2UDA?oc=5",
-    "published": "Mon, 16 Nov 2026 16:07:00 GMT",
+    "published": "Mon, 16 Nov 2026 18:56:00 GMT",
     "publisher": "Barron's",
     "via": "Google News RSS"
    }
@@ -123,13 +102,7 @@
    "to": 0.32,
    "change_pts": 11.0,
    "from_date": "2026-11-14",
-   "news": {
-    "headline": "How Much Bitcoin Do You Need to Be a Millionaire by 2030? - Yahoo Finance",
-    "url": "https://news.google.com/rss/articles/CBMimgFBVV95cUxPREg4VEx3R2NPNU54elZmOVo4UWxFZ1J3ZTVPS2tmUEdIM2daWUdUanB2cnRDQ05SUzRjSTUxcDhwY3MtSm4wNk03aUY0SlBaaW11Y3BxVHFkVmZ4MXJKM1B3R195THZ1TV83R09YSVlYRWlVMXFYZkh2NUEtUS15NHBIM2ZhRnFCUThoRFh5WEZZLWZlOHRlRG5n?oc=5",
-    "published": "Sun, 15 Nov 2026 22:23:10 GMT",
-    "publisher": "Yahoo Finance",
-    "via": "Google News RSS"
-   }
+   "news": null
   },
   {
    "date": "2026-11-13",
@@ -207,7 +180,7 @@
     },
     {
      "outcome": "↓ 55,000",
-     "yes": 0.305
+     "yes": 0.275
     }
    ]
   },
@@ -241,5 +214,5 @@
    "odds": []
   }
  ],
- "generated_utc": "2026-11-16T18:08:48+00:00"
+ "generated_utc": "2026-11-16T21:44:17+00:00"
 }
