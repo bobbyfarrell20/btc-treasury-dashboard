@@ -6,7 +6,7 @@
  },
  "jumps": [
   {
-   "date": "2026-11-15",
+   "date": "2026-11-16",
    "window": "7d",
    "source": "polymarket",
    "group": "BTC",
@@ -14,62 +14,20 @@
    "outcome": "↓ 55,000",
    "question": "Will Bitcoin dip to $55,000 by December 31, 2026?",
    "url": "https://polymarket.com/event/what-price-will-bitcoin-hit-before-2027",
-   "from": 0.105,
-   "to": 0.335,
-   "change_pts": 23.0,
-   "from_date": "2026-11-08",
+   "from": 0.095,
+   "to": 0.315,
+   "change_pts": 22.0,
+   "from_date": "2026-11-09",
    "news": {
-    "headline": "Bitcoin’s four-year cycle is about to turn bullish — if history repeats: Chart of the Day - Yahoo Finance",
-    "url": "https://news.google.com/rss/articles/CBMi5AFBVV95cUxOZnJscnVUWk1EM255N01qYlh4M2xtWkFTV0VXdDRZcU9RbWFlOWZ0ekN6MlZESUxjRlUyRUxVQ09UWWVrcTRkZDM2Ykg3d0lueTNXQ0tBOFVEekxpazZ2OVlqVGdyb2xxYnAzSGs2OFF5WXN4Qk0wdDMxNDBnejd6ZmZjOFAyNHZkY0NmS25KcWMzcXlOYTRPRFcwSGw5aTc1NmFwdVQtMDI2ZFcxdFdTZlN6aVcxb2c4azZMQkNhWklNbXZQY2xYNFI2SlowVi0tVUJVNnFNRWdONDhfSjl4UGRFa0M?oc=5",
-    "published": "Sun, 15 Nov 2026 14:17:44 GMT",
-    "publisher": "Yahoo Finance",
+    "headline": "Current price of Bitcoin for Nov. 16, 2026 - Fortune",
+    "url": "https://news.google.com/rss/articles/CBMiZ0FVX3lxTE9nV25Edng4OEdJYUx0X2pPOEhLNGE4bnVZQm4tX1d1SVZ3Y3NFbjJpNzdERDVRQlBVSmZOU0VHWmhoWi03MWtZZHNZbHBYaHNTZ0UzRHprU05YZ18xMW04M0Nsck5NOTg?oc=5",
+    "published": "Mon, 16 Nov 2026 12:45:00 GMT",
+    "publisher": "Fortune",
     "via": "Google News RSS"
    }
   },
   {
-   "date": "2026-11-15",
-   "window": "7d",
-   "source": "kalshi",
-   "group": "Fed",
-   "market": "Fed decision - Dec 2026",
-   "outcome": "Fed maintains rate",
-   "question": null,
-   "url": "https://kalshi.com/markets/kxfeddecision",
-   "from": 0.23,
-   "to": 0.04,
-   "change_pts": -19.0,
-   "from_date": "2026-11-08",
-   "news": {
-    "headline": "How Will the Market React to a Potential Fed Rate Hike in December? Here's What History Suggests. - The Motley Fool",
-    "url": "https://news.google.com/rss/articles/CBMilwFBVV95cUxPcDBodFF6V2tfV2dzVGJsY0k2bFJVeXNuM29DR1FzaXRpSjdwMnRKdFdramhvb1pFaW1mRVp4WkZUbTNwZjdrNkt5c0RmSHhYa0xNOTZNVFI1ZFpEQzBsdVFnRjMyMElDZjVkNVdFVE1yVlhLVWs2bXFsSDFPTE91VzQ4UkZBZlQ0d0swbzhCSHZpSDBzcGhn?oc=5",
-    "published": "Sun, 15 Nov 2026 12:02:00 GMT",
-    "publisher": "The Motley Fool",
-    "via": "Google News RSS"
-   }
-  },
-  {
-   "date": "2026-11-15",
-   "window": "7d",
-   "source": "kalshi",
-   "group": "BTC",
-   "market": "How low will BTC get in 2026",
-   "outcome": "Below $55,000.00",
-   "question": null,
-   "url": "https://kalshi.com/markets/kxbtcminy",
-   "from": 0.14,
-   "to": 0.32,
-   "change_pts": 18.0,
-   "from_date": "2026-11-08",
-   "news": {
-    "headline": "Bitcoin’s four-year cycle is about to turn bullish — if history repeats: Chart of the Day - Yahoo Finance",
-    "url": "https://news.google.com/rss/articles/CBMi5AFBVV95cUxOZnJscnVUWk1EM255N01qYlh4M2xtWkFTV0VXdDRZcU9RbWFlOWZ0ekN6MlZESUxjRlUyRUxVQ09UWWVrcTRkZDM2Ykg3d0lueTNXQ0tBOFVEekxpazZ2OVlqVGdyb2xxYnAzSGs2OFF5WXN4Qk0wdDMxNDBnejd6ZmZjOFAyNHZkY0NmS25KcWMzcXlOYTRPRFcwSGw5aTc1NmFwdVQtMDI2ZFcxdFdTZlN6aVcxb2c4azZMQkNhWklNbXZQY2xYNFI2SlowVi0tVUJVNnFNRWdONDhfSjl4UGRFa0M?oc=5",
-    "published": "Sun, 15 Nov 2026 14:17:44 GMT",
-    "publisher": "Yahoo Finance",
-    "via": "Google News RSS"
-   }
-  },
-  {
-   "date": "2026-11-15",
+   "date": "2026-11-16",
    "window": "7d",
    "source": "polymarket",
    "group": "Fed",
@@ -77,20 +35,62 @@
    "outcome": "No change",
    "question": "Will there be no change in Fed interest rates after the December 2026 meeting?",
    "url": "https://polymarket.com/event/fed-decision-in-december-20260729232808632",
-   "from": 0.215,
-   "to": 0.0365,
-   "change_pts": -17.8,
-   "from_date": "2026-11-08",
+   "from": 0.225,
+   "to": 0.0335,
+   "change_pts": -19.1,
+   "from_date": "2026-11-09",
    "news": {
-    "headline": "How Will the Market React to a Potential Fed Rate Hike in December? Here's What History Suggests. - The Motley Fool",
-    "url": "https://news.google.com/rss/articles/CBMilwFBVV95cUxPcDBodFF6V2tfV2dzVGJsY0k2bFJVeXNuM29DR1FzaXRpSjdwMnRKdFdramhvb1pFaW1mRVp4WkZUbTNwZjdrNkt5c0RmSHhYa0xNOTZNVFI1ZFpEQzBsdVFnRjMyMElDZjVkNVdFVE1yVlhLVWs2bXFsSDFPTE91VzQ4UkZBZlQ0d0swbzhCSHZpSDBzcGhn?oc=5",
-    "published": "Sun, 15 Nov 2026 12:02:00 GMT",
-    "publisher": "The Motley Fool",
+    "headline": "Gold set to snap blistering run of 3-year gains as Fed rate increase looms - South China Morning Post",
+    "url": "https://news.google.com/rss/articles/CBMixgFBVV95cUxQRGdDNFBYZTA2bFNMS1ZCVVVFZjhWOUNSNmJjT1lBcHZwUkhiSFctTEZ5ZlNRenozMEREc1RpVHltTjVLcER0aExLOUNrNjZmQV9KU2dnb2Jqa1RZcEJDS0F0Ym9nT1FTZzVWTXpraE5OV25wQkNieDk2SWh4VnRLTmZhQnJsbFFkaHRsTWlLdTNkNmEwbmtXdDF1bFBoWUo5M01Hd0xfZXZpSnFSTHZ1V3FJNHJ3WVY2WmNQQVpHUkZJRmZTWEE?oc=5",
+    "published": "Mon, 16 Nov 2026 08:00:07 GMT",
+    "publisher": "South China Morning Post",
     "via": "Google News RSS"
    }
   },
   {
-   "date": "2026-11-15",
+   "date": "2026-11-16",
+   "window": "7d",
+   "source": "kalshi",
+   "group": "Fed",
+   "market": "Fed decision - Dec 2026",
+   "outcome": "Fed maintains rate",
+   "question": null,
+   "url": "https://kalshi.com/markets/kxfeddecision",
+   "from": 0.22,
+   "to": 0.04,
+   "change_pts": -18.0,
+   "from_date": "2026-11-09",
+   "news": {
+    "headline": "Gold set to snap blistering run of 3-year gains as Fed rate increase looms - South China Morning Post",
+    "url": "https://news.google.com/rss/articles/CBMixgFBVV95cUxQRGdDNFBYZTA2bFNMS1ZCVVVFZjhWOUNSNmJjT1lBcHZwUkhiSFctTEZ5ZlNRenozMEREc1RpVHltTjVLcER0aExLOUNrNjZmQV9KU2dnb2Jqa1RZcEJDS0F0Ym9nT1FTZzVWTXpraE5OV25wQkNieDk2SWh4VnRLTmZhQnJsbFFkaHRsTWlLdTNkNmEwbmtXdDF1bFBoWUo5M01Hd0xfZXZpSnFSTHZ1V3FJNHJ3WVY2WmNQQVpHUkZJRmZTWEE?oc=5",
+    "published": "Mon, 16 Nov 2026 08:00:07 GMT",
+    "publisher": "South China Morning Post",
+    "via": "Google News RSS"
+   }
+  },
+  {
+   "date": "2026-11-16",
+   "window": "7d",
+   "source": "kalshi",
+   "group": "BTC",
+   "market": "How low will BTC get in 2026",
+   "outcome": "Below $55,000.00",
+   "question": null,
+   "url": "https://kalshi.com/markets/kxbtcminy",
+   "from": 0.13,
+   "to": 0.3,
+   "change_pts": 17.0,
+   "from_date": "2026-11-09",
+   "news": {
+    "headline": "Current price of Bitcoin for Nov. 16, 2026 - Fortune",
+    "url": "https://news.google.com/rss/articles/CBMiZ0FVX3lxTE9nV25Edng4OEdJYUx0X2pPOEhLNGE4bnVZQm4tX1d1SVZ3Y3NFbjJpNzdERDVRQlBVSmZOU0VHWmhoWi03MWtZZHNZbHBYaHNTZ0UzRHprU05YZ18xMW04M0Nsck5NOTg?oc=5",
+    "published": "Mon, 16 Nov 2026 12:45:00 GMT",
+    "publisher": "Fortune",
+    "via": "Google News RSS"
+   }
+  },
+  {
+   "date": "2026-11-16",
    "window": "24h",
    "source": "polymarket",
    "group": "BTC",
@@ -99,14 +99,14 @@
    "question": "Will Bitcoin dip to $55,000 by December 31, 2026?",
    "url": "https://polymarket.com/event/what-price-will-bitcoin-hit-before-2027",
    "from": 0.185,
-   "to": 0.335,
-   "change_pts": 15.0,
+   "to": 0.315,
+   "change_pts": 13.0,
    "from_date": "2026-11-14",
    "news": {
-    "headline": "Bitcoin’s four-year cycle is about to turn bullish — if history repeats: Chart of the Day - Yahoo Finance",
-    "url": "https://news.google.com/rss/articles/CBMi5AFBVV95cUxOZnJscnVUWk1EM255N01qYlh4M2xtWkFTV0VXdDRZcU9RbWFlOWZ0ekN6MlZESUxjRlUyRUxVQ09UWWVrcTRkZDM2Ykg3d0lueTNXQ0tBOFVEekxpazZ2OVlqVGdyb2xxYnAzSGs2OFF5WXN4Qk0wdDMxNDBnejd6ZmZjOFAyNHZkY0NmS25KcWMzcXlOYTRPRFcwSGw5aTc1NmFwdVQtMDI2ZFcxdFdTZlN6aVcxb2c4azZMQkNhWklNbXZQY2xYNFI2SlowVi0tVUJVNnFNRWdONDhfSjl4UGRFa0M?oc=5",
-    "published": "Sun, 15 Nov 2026 14:17:44 GMT",
-    "publisher": "Yahoo Finance",
+    "headline": "Current price of Bitcoin for Nov. 16, 2026 - Fortune",
+    "url": "https://news.google.com/rss/articles/CBMiZ0FVX3lxTE9nV25Edng4OEdJYUx0X2pPOEhLNGE4bnVZQm4tX1d1SVZ3Y3NFbjJpNzdERDVRQlBVSmZOU0VHWmhoWi03MWtZZHNZbHBYaHNTZ0UzRHprU05YZ18xMW04M0Nsck5NOTg?oc=5",
+    "published": "Mon, 16 Nov 2026 12:45:00 GMT",
+    "publisher": "Fortune",
     "via": "Google News RSS"
    }
   },
@@ -124,9 +124,9 @@
    "change_pts": 11.0,
    "from_date": "2026-11-14",
    "news": {
-    "headline": "Bitcoin’s four-year cycle is about to turn bullish — if history repeats: Chart of the Day - Yahoo Finance",
-    "url": "https://news.google.com/rss/articles/CBMi5AFBVV95cUxOZnJscnVUWk1EM255N01qYlh4M2xtWkFTV0VXdDRZcU9RbWFlOWZ0ekN6MlZESUxjRlUyRUxVQ09UWWVrcTRkZDM2Ykg3d0lueTNXQ0tBOFVEekxpazZ2OVlqVGdyb2xxYnAzSGs2OFF5WXN4Qk0wdDMxNDBnejd6ZmZjOFAyNHZkY0NmS25KcWMzcXlOYTRPRFcwSGw5aTc1NmFwdVQtMDI2ZFcxdFdTZlN6aVcxb2c4azZMQkNhWklNbXZQY2xYNFI2SlowVi0tVUJVNnFNRWdONDhfSjl4UGRFa0M?oc=5",
-    "published": "Sun, 15 Nov 2026 14:17:44 GMT",
+    "headline": "How Much Bitcoin Do You Need to Be a Millionaire by 2030? - Yahoo Finance",
+    "url": "https://news.google.com/rss/articles/CBMimgFBVV95cUxPREg4VEx3R2NPNU54elZmOVo4UWxFZ1J3ZTVPS2tmUEdIM2daWUdUanB2cnRDQ05SUzRjSTUxcDhwY3MtSm4wNk03aUY0SlBaaW11Y3BxVHFkVmZ4MXJKM1B3R195THZ1TV83R09YSVlYRWlVMXFYZkh2NUEtUS15NHBIM2ZhRnFCUThoRFh5WEZZLWZlOHRlRG5n?oc=5",
+    "published": "Sun, 15 Nov 2026 22:23:10 GMT",
     "publisher": "Yahoo Finance",
     "via": "Google News RSS"
    }
@@ -168,7 +168,7 @@
    "news": {
     "headline": "Fed Forced to Confront Case for Bigger and Faster Rate Rises - WSJ",
     "url": "https://news.google.com/rss/articles/CBMiswFBVV95cUxPelFYdmxqTmVYeGJuX2VCMUg3MFowTVhFV25kb1NUN1Z0QUZuMnNVUmVabWhfZU1PVjVTakhlRVRzdHpvWENxd3Y4Y3RJLURrVmNYMkZ3UnpNZUx1RjJvc0xIZDFsZ0xqcDcxbDAwVHNOaUpNSkRuSW00cnVlRy1uQ1F1MjBydEtZSnNVTDJtM2xxaWFXcUcybTUzVGpoaEpSTDM5REtFQ2J0a3Z3WVEtQ25xdw?oc=5",
-    "published": "Thu, 12 Nov 2026 08:00:00 GMT",
+    "published": "Wed, 11 Nov 2026 01:00:00 GMT",
     "publisher": "WSJ",
     "via": "Google News RSS"
    }
@@ -189,7 +189,7 @@
    "news": {
     "headline": "Fed Forced to Confront Case for Bigger and Faster Rate Rises - WSJ",
     "url": "https://news.google.com/rss/articles/CBMiswFBVV95cUxPelFYdmxqTmVYeGJuX2VCMUg3MFowTVhFV25kb1NUN1Z0QUZuMnNVUmVabWhfZU1PVjVTakhlRVRzdHpvWENxd3Y4Y3RJLURrVmNYMkZ3UnpNZUx1RjJvc0xIZDFsZ0xqcDcxbDAwVHNOaUpNSkRuSW00cnVlRy1uQ1F1MjBydEtZSnNVTDJtM2xxaWFXcUcybTUzVGpoaEpSTDM5REtFQ2J0a3Z3WVEtQ25xdw?oc=5",
-    "published": "Thu, 12 Nov 2026 08:00:00 GMT",
+    "published": "Wed, 11 Nov 2026 01:00:00 GMT",
     "publisher": "WSJ",
     "via": "Google News RSS"
    }
@@ -203,11 +203,11 @@
    "odds": [
     {
      "outcome": "↑ 100,000",
-     "yes": 0.0355
+     "yes": 0.0315
     },
     {
      "outcome": "↓ 55,000",
-     "yes": 0.335
+     "yes": 0.315
     }
    ]
   },
@@ -224,7 +224,7 @@
    "odds": [
     {
      "outcome": "Before Jan 1, 2027",
-     "yes": 0.02
+     "yes": 0.018
     }
    ]
   },
@@ -241,5 +241,5 @@
    "odds": []
   }
  ],
- "generated_utc": "2026-11-15T19:45:44+00:00"
+ "generated_utc": "2026-11-16T14:47:01+00:00"
 }

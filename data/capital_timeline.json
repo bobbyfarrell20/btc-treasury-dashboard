@@ -1,5 +1,5 @@
 {
- "generated_utc": "2026-11-15T19:45:24+00:00",
+ "generated_utc": "2026-11-16T14:46:40+00:00",
  "version": 1,
  "MSTR": {
   "basic_shares": [
@@ -491,7 +491,13 @@
    ],
    [
     "2026-11-15",
-    425595771.0,
+    427671547.0,
+    "https://www.sec.gov/Archives/edgar/data/1050446/000119312526462151/mstr-20261116.htm",
+    false
+   ],
+   [
+    "2026-11-16",
+    427676538.0,
     "https://api.strategy.com/btc/kpiData",
     false
    ]
@@ -588,7 +594,7 @@
     false
    ],
    [
-    "2026-11-15",
+    "2026-11-16",
     6714.0,
     "https://api.strategy.com/btc/mstrKpiData",
     false
@@ -993,7 +999,13 @@
    ],
    [
     "2026-11-15",
-    120822125.0,
+    118536483.0,
+    "https://www.sec.gov/Archives/edgar/data/1050446/000119312526462151/mstr-20261116.htm",
+    false
+   ],
+   [
+    "2026-11-16",
+    118537071.0,
     "https://api.strategy.com/btc/kpiData",
     false
    ]
@@ -1006,8 +1018,8 @@
     false
    ],
    [
-    "2026-11-15",
-    7747007,
+    "2026-11-16",
+    7746763,
     "https://api.strategy.com/btc/kpiData",
     false
    ]
@@ -1213,7 +1225,13 @@
    ],
    [
     "2026-11-15",
-    4915.0,
+    4901.2,
+    "https://www.sec.gov/Archives/edgar/data/1050446/000119312526462151/mstr-20261116.htm",
+    false
+   ],
+   [
+    "2026-11-16",
+    4900.0,
     "https://api.strategy.com/btc/mstrKpiData",
     false
    ]
@@ -1298,10 +1316,10 @@
      "src": "https://www.sec.gov/Archives/edgar/data/1050446/000105044626000060/mstr-20260930.htm"
     },
     {
-     "date": "2026-11-15",
-     "anchor": 425595771,
-     "predicted_from_flows": 425584507.0,
-     "residual": 11264.0,
+     "date": "2026-11-16",
+     "anchor": 427676538,
+     "predicted_from_flows": 427671547.0,
+     "residual": 4991.0,
      "src": "https://api.strategy.com/btc/kpiData"
     }
    ],
@@ -1384,7 +1402,7 @@
      "src": "https://www.sec.gov/Archives/edgar/data/1050446/000105044626000060/"
     },
     {
-     "date": "2026-11-15",
+     "date": "2026-11-16",
      "anchor": 6714.0,
      "predicted_from_flows": 6715.414,
      "residual": -1.414,
@@ -1414,59 +1432,59 @@
      "src": "https://www.sec.gov/Archives/edgar/data/1050446/000105044626000044/"
     },
     {
-     "date": "2026-11-15",
-     "anchor": 120822125,
-     "predicted_from_flows": 120818993.0,
-     "residual": 3132.0,
+     "date": "2026-11-16",
+     "anchor": 118537071,
+     "predicted_from_flows": 118536483.0,
+     "residual": 588.0,
      "src": "https://api.strategy.com/btc/kpiData"
     }
    ],
    "pref_stre_shares": [
     {
-     "date": "2026-11-15",
-     "anchor": 7747007,
+     "date": "2026-11-16",
+     "anchor": 7746763,
      "predicted_from_flows": 7750000,
-     "residual": -2993,
+     "residual": -3237,
      "src": "https://api.strategy.com/btc/kpiData"
     }
    ]
   },
   "strategy_kpi_latest": {
-   "fetched_utc": "2026-11-15T19:45:25+00:00",
-   "timestamp_utc": "2026-11-13T21:00:00",
-   "market_cap_m": 47505.0,
-   "ev_m": 62250.0,
+   "fetched_utc": "2026-11-16T14:46:41+00:00",
+   "timestamp_utc": "2026-11-16T14:46:00",
+   "market_cap_m": 45060.0,
+   "ev_m": 59583.0,
    "debt_m": 6714.0,
-   "pref_m": 12946.0,
-   "price": 111.62,
+   "pref_m": 12709.0,
+   "price": 105.36,
    "per_ticker": {
     "MSTR": {
-     "shares": 425595771,
-     "price": 111.62
+     "shares": 427676538,
+     "price": 105.36
     },
     "STRK": {
-     "shares": 14026602,
-     "price": 66.16
+     "shares": 14019832,
+     "price": 65.55
     },
     "STRF": {
-     "shares": 12835077,
-     "price": 100.35
+     "shares": 12837703,
+     "price": 99.94
     },
     "STRD": {
-     "shares": 14028507,
-     "price": 66.65
+     "shares": 14023270,
+     "price": 65.32
     },
     "STRC": {
-     "shares": 79931939,
-     "price": 99.91
+     "shares": 77656266,
+     "price": 99.67
     },
     "STRE": {
-     "shares": 7747007,
-     "price": 85.8396
+     "shares": 7746763,
+     "price": 84.9387
     }
    },
-   "cash_m": 4915.0,
-   "date": "2026-11-15"
+   "cash_m": 4900.0,
+   "date": "2026-11-16"
   },
   "pref_check": [
    {
@@ -1706,6 +1724,12 @@
     127331109.0,
     "https://www.sec.gov/Archives/edgar/data/1920406/000162828026071888/asst-20261109.htm",
     false
+   ],
+   [
+    "2026-11-13",
+    127331109.0,
+    "https://www.sec.gov/Archives/edgar/data/1920406/000162828026074004/asst-20261116.htm",
+    false
    ]
   ],
   "sata_shares": [
@@ -1924,6 +1948,12 @@
     14030176.0,
     "https://www.sec.gov/Archives/edgar/data/1920406/000162828026071888/asst-20261109.htm",
     false
+   ],
+   [
+    "2026-11-13",
+    14030176.0,
+    "https://www.sec.gov/Archives/edgar/data/1920406/000162828026074004/asst-20261116.htm",
+    false
    ]
   ],
   "sats_shares": [
@@ -1949,6 +1979,12 @@
     "2026-11-06",
     7036559.0,
     "https://www.sec.gov/Archives/edgar/data/1920406/000162828026071888/asst-20261109.htm",
+    false
+   ],
+   [
+    "2026-11-13",
+    7141037.0,
+    "https://www.sec.gov/Archives/edgar/data/1920406/000162828026074004/asst-20261116.htm",
     false
    ]
   ],
@@ -2131,6 +2167,12 @@
     "2026-11-06",
     538.019,
     "https://www.sec.gov/Archives/edgar/data/1920406/000162828026071888/asst-20261109.htm",
+    false
+   ],
+   [
+    "2026-11-13",
+    515.755,
+    "https://www.sec.gov/Archives/edgar/data/1920406/000162828026074004/asst-20261116.htm",
     false
    ]
   ],
