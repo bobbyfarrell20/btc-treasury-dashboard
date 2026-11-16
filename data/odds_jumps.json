@@ -15,14 +15,14 @@
    "question": "Will Bitcoin dip to $55,000 by December 31, 2026?",
    "url": "https://polymarket.com/event/what-price-will-bitcoin-hit-before-2027",
    "from": 0.095,
-   "to": 0.315,
-   "change_pts": 22.0,
+   "to": 0.325,
+   "change_pts": 23.0,
    "from_date": "2026-11-09",
    "news": {
-    "headline": "Current price of Bitcoin for Nov. 16, 2026 - Fortune",
-    "url": "https://news.google.com/rss/articles/CBMiZ0FVX3lxTE9nV25Edng4OEdJYUx0X2pPOEhLNGE4bnVZQm4tX1d1SVZ3Y3NFbjJpNzdERDVRQlBVSmZOU0VHWmhoWi03MWtZZHNZbHBYaHNTZ0UzRHprU05YZ18xMW04M0Nsck5NOTg?oc=5",
-    "published": "Mon, 16 Nov 2026 12:45:00 GMT",
-    "publisher": "Fortune",
+    "headline": "Bitcoin was supposed to gain as AI faltered, but it crashed. Here's why. - CoinDesk",
+    "url": "https://news.google.com/rss/articles/CBMitwFBVV95cUxPSmZ3eG9qd1hTVG81bG5NUFBnQWxQc1lQOXY2bEd2bXJVX19nRGxxUU4tZGhjaUJTMm9salhvZ0h0Q3VaemZDa25fdEtqbXMtUVhfaks1b0VZZjBzWjRWelJaOXNzd0xBWUpZNEZndEhYLTZoY05lOG1uSzdpWlJjYjFMSkRuaVRXMW1CRzBIb3ZZSHF4dlZyUnkybl8xcENuOVNnbHB1VjFCM2U5aTBaNXo2amlWN1U?oc=5",
+    "published": "Mon, 16 Nov 2026 12:09:00 GMT",
+    "publisher": "CoinDesk",
     "via": "Google News RSS"
    }
   },
@@ -36,14 +36,14 @@
    "question": "Will there be no change in Fed interest rates after the December 2026 meeting?",
    "url": "https://polymarket.com/event/fed-decision-in-december-20260729232808632",
    "from": 0.225,
-   "to": 0.0335,
+   "to": 0.0345,
    "change_pts": -19.1,
    "from_date": "2026-11-09",
    "news": {
-    "headline": "Gold set to snap blistering run of 3-year gains as Fed rate increase looms - South China Morning Post",
-    "url": "https://news.google.com/rss/articles/CBMixgFBVV95cUxQRGdDNFBYZTA2bFNMS1ZCVVVFZjhWOUNSNmJjT1lBcHZwUkhiSFctTEZ5ZlNRenozMEREc1RpVHltTjVLcER0aExLOUNrNjZmQV9KU2dnb2Jqa1RZcEJDS0F0Ym9nT1FTZzVWTXpraE5OV25wQkNieDk2SWh4VnRLTmZhQnJsbFFkaHRsTWlLdTNkNmEwbmtXdDF1bFBoWUo5M01Hd0xfZXZpSnFSTHZ1V3FJNHJ3WVY2WmNQQVpHUkZJRmZTWEE?oc=5",
-    "published": "Mon, 16 Nov 2026 08:00:07 GMT",
-    "publisher": "South China Morning Post",
+    "headline": "Mortgage Rates Forecast For 2026: Experts Predict Whether Interest Rates Will Drop - Forbes",
+    "url": "https://news.google.com/rss/articles/CBMif0FVX3lxTE9kMlJHRWhRY2owbnpsZWhWOHVVZFR1ZmM3NzhqTUVEVnpHR2xlMHp0QnR2eXFwV2wzQ2FMbXZTN3lTLUJ5OHgxdnk0S3Z2Q3hEQ2pEYW9xcWhrRktVS3B0RXB0NkdnM0hPMzBReG5neWZ1TTdvVWs4bWgxdWFNUkk?oc=5",
+    "published": "Mon, 16 Nov 2026 12:34:00 GMT",
+    "publisher": "Forbes",
     "via": "Google News RSS"
    }
   },
@@ -61,10 +61,10 @@
    "change_pts": -18.0,
    "from_date": "2026-11-09",
    "news": {
-    "headline": "Gold set to snap blistering run of 3-year gains as Fed rate increase looms - South China Morning Post",
-    "url": "https://news.google.com/rss/articles/CBMixgFBVV95cUxQRGdDNFBYZTA2bFNMS1ZCVVVFZjhWOUNSNmJjT1lBcHZwUkhiSFctTEZ5ZlNRenozMEREc1RpVHltTjVLcER0aExLOUNrNjZmQV9KU2dnb2Jqa1RZcEJDS0F0Ym9nT1FTZzVWTXpraE5OV25wQkNieDk2SWh4VnRLTmZhQnJsbFFkaHRsTWlLdTNkNmEwbmtXdDF1bFBoWUo5M01Hd0xfZXZpSnFSTHZ1V3FJNHJ3WVY2WmNQQVpHUkZJRmZTWEE?oc=5",
-    "published": "Mon, 16 Nov 2026 08:00:07 GMT",
-    "publisher": "South China Morning Post",
+    "headline": "Mortgage Rates Forecast For 2026: Experts Predict Whether Interest Rates Will Drop - Forbes",
+    "url": "https://news.google.com/rss/articles/CBMif0FVX3lxTE9kMlJHRWhRY2owbnpsZWhWOHVVZFR1ZmM3NzhqTUVEVnpHR2xlMHp0QnR2eXFwV2wzQ2FMbXZTN3lTLUJ5OHgxdnk0S3Z2Q3hEQ2pEYW9xcWhrRktVS3B0RXB0NkdnM0hPMzBReG5neWZ1TTdvVWs4bWgxdWFNUkk?oc=5",
+    "published": "Mon, 16 Nov 2026 12:34:00 GMT",
+    "publisher": "Forbes",
     "via": "Google News RSS"
    }
   },
@@ -82,10 +82,10 @@
    "change_pts": 17.0,
    "from_date": "2026-11-09",
    "news": {
-    "headline": "Current price of Bitcoin for Nov. 16, 2026 - Fortune",
-    "url": "https://news.google.com/rss/articles/CBMiZ0FVX3lxTE9nV25Edng4OEdJYUx0X2pPOEhLNGE4bnVZQm4tX1d1SVZ3Y3NFbjJpNzdERDVRQlBVSmZOU0VHWmhoWi03MWtZZHNZbHBYaHNTZ0UzRHprU05YZ18xMW04M0Nsck5NOTg?oc=5",
-    "published": "Mon, 16 Nov 2026 12:45:00 GMT",
-    "publisher": "Fortune",
+    "headline": "Bitcoin was supposed to gain as AI faltered, but it crashed. Here's why. - CoinDesk",
+    "url": "https://news.google.com/rss/articles/CBMitwFBVV95cUxPSmZ3eG9qd1hTVG81bG5NUFBnQWxQc1lQOXY2bEd2bXJVX19nRGxxUU4tZGhjaUJTMm9salhvZ0h0Q3VaemZDa25fdEtqbXMtUVhfaks1b0VZZjBzWjRWelJaOXNzd0xBWUpZNEZndEhYLTZoY05lOG1uSzdpWlJjYjFMSkRuaVRXMW1CRzBIb3ZZSHF4dlZyUnkybl8xcENuOVNnbHB1VjFCM2U5aTBaNXo2amlWN1U?oc=5",
+    "published": "Mon, 16 Nov 2026 12:09:00 GMT",
+    "publisher": "CoinDesk",
     "via": "Google News RSS"
    }
   },
@@ -103,10 +103,10 @@
    "change_pts": 13.0,
    "from_date": "2026-11-14",
    "news": {
-    "headline": "Current price of Bitcoin for Nov. 16, 2026 - Fortune",
-    "url": "https://news.google.com/rss/articles/CBMiZ0FVX3lxTE9nV25Edng4OEdJYUx0X2pPOEhLNGE4bnVZQm4tX1d1SVZ3Y3NFbjJpNzdERDVRQlBVSmZOU0VHWmhoWi03MWtZZHNZbHBYaHNTZ0UzRHprU05YZ18xMW04M0Nsck5NOTg?oc=5",
-    "published": "Mon, 16 Nov 2026 12:45:00 GMT",
-    "publisher": "Fortune",
+    "headline": "Bitcoin was supposed to gain as AI faltered, but it crashed. Here's why. - CoinDesk",
+    "url": "https://news.google.com/rss/articles/CBMitwFBVV95cUxPSmZ3eG9qd1hTVG81bG5NUFBnQWxQc1lQOXY2bEd2bXJVX19nRGxxUU4tZGhjaUJTMm9salhvZ0h0Q3VaemZDa25fdEtqbXMtUVhfaks1b0VZZjBzWjRWelJaOXNzd0xBWUpZNEZndEhYLTZoY05lOG1uSzdpWlJjYjFMSkRuaVRXMW1CRzBIb3ZZSHF4dlZyUnkybl8xcENuOVNnbHB1VjFCM2U5aTBaNXo2amlWN1U?oc=5",
+    "published": "Mon, 16 Nov 2026 12:09:00 GMT",
+    "publisher": "CoinDesk",
     "via": "Google News RSS"
    }
   },
@@ -203,11 +203,11 @@
    "odds": [
     {
      "outcome": "↑ 100,000",
-     "yes": 0.0315
+     "yes": 0.0295
     },
     {
      "outcome": "↓ 55,000",
-     "yes": 0.315
+     "yes": 0.325
     }
    ]
   },
@@ -241,5 +241,5 @@
    "odds": []
   }
  ],
- "generated_utc": "2026-11-16T14:47:01+00:00"
+ "generated_utc": "2026-11-16T15:39:08+00:00"
 }
