@@ -6,7 +6,7 @@
  },
  "jumps": [
   {
-   "date": "2026-11-16",
+   "date": "2026-11-17",
    "window": "7d",
    "source": "polymarket",
    "group": "BTC",
@@ -15,19 +15,19 @@
    "question": "Will Bitcoin dip to $55,000 by December 31, 2026?",
    "url": "https://polymarket.com/event/what-price-will-bitcoin-hit-before-2027",
    "from": 0.095,
-   "to": 0.315,
-   "change_pts": 22.0,
-   "from_date": "2026-11-09",
+   "to": 0.275,
+   "change_pts": 18.0,
+   "from_date": "2026-11-10",
    "news": {
-    "headline": "Did Bitcoin Prices Bottom at $62,000? Strategy Has Bought the Decline. - Barron's",
-    "url": "https://news.google.com/rss/articles/CBMif0FVX3lxTE0yS0RmaHF4aWFYdWEwa1Z4TmZ0dzdqM1NPR21vdTZvc3dZNlVDalJHdHROUjJEcm03V0YtdHhEdC01T0tpS0RDLWZNRFpLNWlnZVJPeXlXY3k0Tk1NNW1hUEtrOE9DaWp6OU44VGpQclQtQW9pTF9jazVRNVV2UDA?oc=5",
-    "published": "Mon, 16 Nov 2026 18:56:00 GMT",
-    "publisher": "Barron's",
+    "headline": "Bitcoin BTC (BTC-USD) Live Price, News, Chart & Price History - Yahoo! Finance Canada",
+    "url": "https://news.google.com/rss/articles/CBMiVkFVX3lxTE1HSGlGRjBhSUlQdXZtSXRJWmhTcWlLMmt2WEM2WFk0LV9Bd3BzOGNZQzJmQXJycTBZcmpSNWZiWHMzMDdzY3cyQzlKYXNYSk0tUF9MVzdB?oc=5",
+    "published": "Mon, 16 Nov 2026 17:55:37 GMT",
+    "publisher": "Yahoo! Finance Canada",
     "via": "Google News RSS"
    }
   },
   {
-   "date": "2026-11-16",
+   "date": "2026-11-17",
    "window": "7d",
    "source": "polymarket",
    "group": "Fed",
@@ -35,10 +35,10 @@
    "outcome": "No change",
    "question": "Will there be no change in Fed interest rates after the December 2026 meeting?",
    "url": "https://polymarket.com/event/fed-decision-in-december-20260729232808632",
-   "from": 0.225,
-   "to": 0.0315,
-   "change_pts": -19.4,
-   "from_date": "2026-11-09",
+   "from": 0.185,
+   "to": 0.0325,
+   "change_pts": -15.2,
+   "from_date": "2026-11-10",
    "news": {
     "headline": "Mortgage Rates Forecast For 2026: Experts Predict Whether Interest Rates Will Drop - Forbes",
     "url": "https://news.google.com/rss/articles/CBMif0FVX3lxTE9kMlJHRWhRY2owbnpsZWhWOHVVZFR1ZmM3NzhqTUVEVnpHR2xlMHp0QnR2eXFwV2wzQ2FMbXZTN3lTLUJ5OHgxdnk0S3Z2Q3hEQ2pEYW9xcWhrRktVS3B0RXB0NkdnM0hPMzBReG5neWZ1TTdvVWs4bWgxdWFNUkk?oc=5",
@@ -60,13 +60,7 @@
    "to": 0.04,
    "change_pts": -18.0,
    "from_date": "2026-11-09",
-   "news": {
-    "headline": "Mortgage Rates Forecast For 2026: Experts Predict Whether Interest Rates Will Drop - Forbes",
-    "url": "https://news.google.com/rss/articles/CBMif0FVX3lxTE9kMlJHRWhRY2owbnpsZWhWOHVVZFR1ZmM3NzhqTUVEVnpHR2xlMHp0QnR2eXFwV2wzQ2FMbXZTN3lTLUJ5OHgxdnk0S3Z2Q3hEQ2pEYW9xcWhrRktVS3B0RXB0NkdnM0hPMzBReG5neWZ1TTdvVWs4bWgxdWFNUkk?oc=5",
-    "published": "Mon, 16 Nov 2026 12:34:00 GMT",
-    "publisher": "Forbes",
-    "via": "Google News RSS"
-   }
+   "news": null
   },
   {
    "date": "2026-11-16",
@@ -82,10 +76,31 @@
    "change_pts": 17.0,
    "from_date": "2026-11-09",
    "news": {
-    "headline": "Did Bitcoin Prices Bottom at $62,000? Strategy Has Bought the Decline. - Barron's",
-    "url": "https://news.google.com/rss/articles/CBMif0FVX3lxTE0yS0RmaHF4aWFYdWEwa1Z4TmZ0dzdqM1NPR21vdTZvc3dZNlVDalJHdHROUjJEcm03V0YtdHhEdC01T0tpS0RDLWZNRFpLNWlnZVJPeXlXY3k0Tk1NNW1hUEtrOE9DaWp6OU44VGpQclQtQW9pTF9jazVRNVV2UDA?oc=5",
-    "published": "Mon, 16 Nov 2026 18:56:00 GMT",
-    "publisher": "Barron's",
+    "headline": "Bitcoin BTC (BTC-USD) Live Price, News, Chart & Price History - Yahoo! Finance Canada",
+    "url": "https://news.google.com/rss/articles/CBMiVkFVX3lxTE1HSGlGRjBhSUlQdXZtSXRJWmhTcWlLMmt2WEM2WFk0LV9Bd3BzOGNZQzJmQXJycTBZcmpSNWZiWHMzMDdzY3cyQzlKYXNYSk0tUF9MVzdB?oc=5",
+    "published": "Mon, 16 Nov 2026 17:55:37 GMT",
+    "publisher": "Yahoo! Finance Canada",
+    "via": "Google News RSS"
+   }
+  },
+  {
+   "date": "2026-11-16",
+   "window": "24h",
+   "source": "polymarket",
+   "group": "BTC",
+   "market": "BTC price targets hit in 2026",
+   "outcome": "↓ 55,000",
+   "question": "Will Bitcoin dip to $55,000 by December 31, 2026?",
+   "url": "https://polymarket.com/event/what-price-will-bitcoin-hit-before-2027",
+   "from": 0.185,
+   "to": 0.315,
+   "change_pts": 13.0,
+   "from_date": "2026-11-14",
+   "news": {
+    "headline": "Bitcoin BTC (BTC-USD) Live Price, News, Chart & Price History - Yahoo! Finance Canada",
+    "url": "https://news.google.com/rss/articles/CBMiVkFVX3lxTE1HSGlGRjBhSUlQdXZtSXRJWmhTcWlLMmt2WEM2WFk0LV9Bd3BzOGNZQzJmQXJycTBZcmpSNWZiWHMzMDdzY3cyQzlKYXNYSk0tUF9MVzdB?oc=5",
+    "published": "Mon, 16 Nov 2026 17:55:37 GMT",
+    "publisher": "Yahoo! Finance Canada",
     "via": "Google News RSS"
    }
   },
@@ -197,7 +212,7 @@
    "odds": [
     {
      "outcome": "Before Jan 1, 2027",
-     "yes": 0.018
+     "yes": 0.016
     }
    ]
   },
@@ -214,5 +229,5 @@
    "odds": []
   }
  ],
- "generated_utc": "2026-11-16T21:44:17+00:00"
+ "generated_utc": "2026-11-17T01:52:56+00:00"
 }
