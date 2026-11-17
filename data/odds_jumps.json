@@ -18,13 +18,22 @@
    "to": 0.275,
    "change_pts": 18.0,
    "from_date": "2026-11-10",
-   "news": {
-    "headline": "Bitcoin BTC (BTC-USD) Live Price, News, Chart & Price History - Yahoo! Finance Canada",
-    "url": "https://news.google.com/rss/articles/CBMiVkFVX3lxTE1HSGlGRjBhSUlQdXZtSXRJWmhTcWlLMmt2WEM2WFk0LV9Bd3BzOGNZQzJmQXJycTBZcmpSNWZiWHMzMDdzY3cyQzlKYXNYSk0tUF9MVzdB?oc=5",
-    "published": "Mon, 16 Nov 2026 17:55:37 GMT",
-    "publisher": "Yahoo! Finance Canada",
-    "via": "Google News RSS"
-   }
+   "news": null
+  },
+  {
+   "date": "2026-11-17",
+   "window": "7d",
+   "source": "kalshi",
+   "group": "BTC",
+   "market": "How low will BTC get in 2026",
+   "outcome": "Below $55,000.00",
+   "question": null,
+   "url": "https://kalshi.com/markets/kxbtcminy",
+   "from": 0.11,
+   "to": 0.27,
+   "change_pts": 16.0,
+   "from_date": "2026-11-10",
+   "news": null
   },
   {
    "date": "2026-11-17",
@@ -36,14 +45,14 @@
    "question": "Will there be no change in Fed interest rates after the December 2026 meeting?",
    "url": "https://polymarket.com/event/fed-decision-in-december-20260729232808632",
    "from": 0.185,
-   "to": 0.0325,
-   "change_pts": -15.2,
+   "to": 0.0315,
+   "change_pts": -15.3,
    "from_date": "2026-11-10",
    "news": {
-    "headline": "Mortgage Rates Forecast For 2026: Experts Predict Whether Interest Rates Will Drop - Forbes",
-    "url": "https://news.google.com/rss/articles/CBMif0FVX3lxTE9kMlJHRWhRY2owbnpsZWhWOHVVZFR1ZmM3NzhqTUVEVnpHR2xlMHp0QnR2eXFwV2wzQ2FMbXZTN3lTLUJ5OHgxdnk0S3Z2Q3hEQ2pEYW9xcWhrRktVS3B0RXB0NkdnM0hPMzBReG5neWZ1TTdvVWs4bWgxdWFNUkk?oc=5",
-    "published": "Mon, 16 Nov 2026 12:34:00 GMT",
-    "publisher": "Forbes",
+    "headline": "US Federal Reserve Meeting: List Of Things To Know Ahead Of The December Interest Rate Decision - Jagran Josh",
+    "url": "https://news.google.com/rss/articles/CBMi5wFBVV95cUxNQjRKTGF0Um80RU1uYV9UaHFqYTdWblVLU0NTeUkwSFZyR0tQcjBtX3lzQkFmT1JXWkJLbVk5WWg5UFRueGpRSU1xYndQci15bHhuVXhvb29DRUN0cGVCX2k2T3YwZ081cjlzaVlFX1pmYm9POEdaa0c2S3FNSl9GUGo1Y3RoSnNtN0g0RF85NG1wbmZBOHBzRlhWYUNyODVyRW5UUUhqUzl1dzlaVW5sNHpiT0ZKd2NjZGI1VHAta08tdlZ0RmpRVXVtUnZXTnBncG1hU0drYTE0azVMRk95UDlvYmpoX1XSAe4BQVVfeXFMTTFnSWs3Q2pWNkVWdkpIMnVFanE1Z2FjV3FIQVE0cEgwc3VyVFZORU1mVFJOd19XWDNhR3FhVzJhQmxfSUctR0ZrUGxXN2t6X0lBTmxyTGU1bFBYaGV1dGE1dmxjbWpubHAwaFllOXJ6Rks4RWM4NG1XX29PMmNaNzdTeGJjWWdidmZCV0ExcFdKM21PcUdHVWZBZDFhSUh6eDdnRXM4Ym94Qi1RQzZycmxjbk83SzVXOVduX3c0aXhteUdySFFwRjBScGlxcGN0Ujd4X0JUYktYck42M2RZejNCc1o3eW5pcXo5bFhEdw?oc=5",
+    "published": "Tue, 17 Nov 2026 05:29:08 GMT",
+    "publisher": "Jagran Josh",
     "via": "Google News RSS"
    }
   },
@@ -60,26 +69,11 @@
    "to": 0.04,
    "change_pts": -18.0,
    "from_date": "2026-11-09",
-   "news": null
-  },
-  {
-   "date": "2026-11-16",
-   "window": "7d",
-   "source": "kalshi",
-   "group": "BTC",
-   "market": "How low will BTC get in 2026",
-   "outcome": "Below $55,000.00",
-   "question": null,
-   "url": "https://kalshi.com/markets/kxbtcminy",
-   "from": 0.13,
-   "to": 0.3,
-   "change_pts": 17.0,
-   "from_date": "2026-11-09",
    "news": {
-    "headline": "Bitcoin BTC (BTC-USD) Live Price, News, Chart & Price History - Yahoo! Finance Canada",
-    "url": "https://news.google.com/rss/articles/CBMiVkFVX3lxTE1HSGlGRjBhSUlQdXZtSXRJWmhTcWlLMmt2WEM2WFk0LV9Bd3BzOGNZQzJmQXJycTBZcmpSNWZiWHMzMDdzY3cyQzlKYXNYSk0tUF9MVzdB?oc=5",
-    "published": "Mon, 16 Nov 2026 17:55:37 GMT",
-    "publisher": "Yahoo! Finance Canada",
+    "headline": "US Federal Reserve Meeting: List Of Things To Know Ahead Of The December Interest Rate Decision - Jagran Josh",
+    "url": "https://news.google.com/rss/articles/CBMi5wFBVV95cUxNQjRKTGF0Um80RU1uYV9UaHFqYTdWblVLU0NTeUkwSFZyR0tQcjBtX3lzQkFmT1JXWkJLbVk5WWg5UFRueGpRSU1xYndQci15bHhuVXhvb29DRUN0cGVCX2k2T3YwZ081cjlzaVlFX1pmYm9POEdaa0c2S3FNSl9GUGo1Y3RoSnNtN0g0RF85NG1wbmZBOHBzRlhWYUNyODVyRW5UUUhqUzl1dzlaVW5sNHpiT0ZKd2NjZGI1VHAta08tdlZ0RmpRVXVtUnZXTnBncG1hU0drYTE0azVMRk95UDlvYmpoX1XSAe4BQVVfeXFMTTFnSWs3Q2pWNkVWdkpIMnVFanE1Z2FjV3FIQVE0cEgwc3VyVFZORU1mVFJOd19XWDNhR3FhVzJhQmxfSUctR0ZrUGxXN2t6X0lBTmxyTGU1bFBYaGV1dGE1dmxjbWpubHAwaFllOXJ6Rks4RWM4NG1XX29PMmNaNzdTeGJjWWdidmZCV0ExcFdKM21PcUdHVWZBZDFhSUh6eDdnRXM4Ym94Qi1RQzZycmxjbk83SzVXOVduX3c0aXhteUdySFFwRjBScGlxcGN0Ujd4X0JUYktYck42M2RZejNCc1o3eW5pcXo5bFhEdw?oc=5",
+    "published": "Tue, 17 Nov 2026 05:29:08 GMT",
+    "publisher": "Jagran Josh",
     "via": "Google News RSS"
    }
   },
@@ -96,13 +90,7 @@
    "to": 0.315,
    "change_pts": 13.0,
    "from_date": "2026-11-14",
-   "news": {
-    "headline": "Bitcoin BTC (BTC-USD) Live Price, News, Chart & Price History - Yahoo! Finance Canada",
-    "url": "https://news.google.com/rss/articles/CBMiVkFVX3lxTE1HSGlGRjBhSUlQdXZtSXRJWmhTcWlLMmt2WEM2WFk0LV9Bd3BzOGNZQzJmQXJycTBZcmpSNWZiWHMzMDdzY3cyQzlKYXNYSk0tUF9MVzdB?oc=5",
-    "published": "Mon, 16 Nov 2026 17:55:37 GMT",
-    "publisher": "Yahoo! Finance Canada",
-    "via": "Google News RSS"
-   }
+   "news": null
   },
   {
    "date": "2026-11-15",
@@ -117,7 +105,13 @@
    "to": 0.32,
    "change_pts": 11.0,
    "from_date": "2026-11-14",
-   "news": null
+   "news": {
+    "headline": "Bitcoin’s four-year cycle is about to turn bullish — if history repeats: Chart of the Day - Yahoo Finance",
+    "url": "https://news.google.com/rss/articles/CBMi5AFBVV95cUxOZnJscnVUWk1EM255N01qYlh4M2xtWkFTV0VXdDRZcU9RbWFlOWZ0ekN6MlZESUxjRlUyRUxVQ09UWWVrcTRkZDM2Ykg3d0lueTNXQ0tBOFVEekxpazZ2OVlqVGdyb2xxYnAzSGs2OFF5WXN4Qk0wdDMxNDBnejd6ZmZjOFAyNHZkY0NmS25KcWMzcXlOYTRPRFcwSGw5aTc1NmFwdVQtMDI2ZFcxdFdTZlN6aVcxb2c4azZMQkNhWklNbXZQY2xYNFI2SlowVi0tVUJVNnFNRWdONDhfSjl4UGRFa0M?oc=5",
+    "published": "Sun, 15 Nov 2026 14:17:44 GMT",
+    "publisher": "Yahoo Finance",
+    "via": "Google News RSS"
+   }
   },
   {
    "date": "2026-11-13",
@@ -132,13 +126,7 @@
    "to": 0.21,
    "change_pts": 10.0,
    "from_date": "2026-11-12",
-   "news": {
-    "headline": "Current price of Bitcoin for November 13, 2026 - Fortune",
-    "url": "https://news.google.com/rss/articles/CBMiZ0FVX3lxTFA3SmQxZ1EyU2VheHYzYmZZWm11N3R0ZmNKOEtUcVJSLXVyTDkxWERDb3pxMkhuZm9GMzJQeHUwbmlreXJjdUJTYkdlUEZ2U0Zxc25EbC1JSndUOENZMk9NY3BrRzBVQms?oc=5",
-    "published": "Fri, 13 Nov 2026 13:30:00 GMT",
-    "publisher": "Fortune",
-    "via": "Google News RSS"
-   }
+   "news": null
   },
   {
    "date": "2026-11-11",
@@ -153,13 +141,7 @@
    "to": 0.05,
    "change_pts": -15.0,
    "from_date": "2026-11-10",
-   "news": {
-    "headline": "Fed Forced to Confront Case for Bigger and Faster Rate Rises - WSJ",
-    "url": "https://news.google.com/rss/articles/CBMiswFBVV95cUxPelFYdmxqTmVYeGJuX2VCMUg3MFowTVhFV25kb1NUN1Z0QUZuMnNVUmVabWhfZU1PVjVTakhlRVRzdHpvWENxd3Y4Y3RJLURrVmNYMkZ3UnpNZUx1RjJvc0xIZDFsZ0xqcDcxbDAwVHNOaUpNSkRuSW00cnVlRy1uQ1F1MjBydEtZSnNVTDJtM2xxaWFXcUcybTUzVGpoaEpSTDM5REtFQ2J0a3Z3WVEtQ25xdw?oc=5",
-    "published": "Wed, 11 Nov 2026 01:00:00 GMT",
-    "publisher": "WSJ",
-    "via": "Google News RSS"
-   }
+   "news": null
   },
   {
    "date": "2026-11-11",
@@ -174,13 +156,7 @@
    "to": 0.0365,
    "change_pts": -14.8,
    "from_date": "2026-11-10",
-   "news": {
-    "headline": "Fed Forced to Confront Case for Bigger and Faster Rate Rises - WSJ",
-    "url": "https://news.google.com/rss/articles/CBMiswFBVV95cUxPelFYdmxqTmVYeGJuX2VCMUg3MFowTVhFV25kb1NUN1Z0QUZuMnNVUmVabWhfZU1PVjVTakhlRVRzdHpvWENxd3Y4Y3RJLURrVmNYMkZ3UnpNZUx1RjJvc0xIZDFsZ0xqcDcxbDAwVHNOaUpNSkRuSW00cnVlRy1uQ1F1MjBydEtZSnNVTDJtM2xxaWFXcUcybTUzVGpoaEpSTDM5REtFQ2J0a3Z3WVEtQ25xdw?oc=5",
-    "published": "Wed, 11 Nov 2026 01:00:00 GMT",
-    "publisher": "WSJ",
-    "via": "Google News RSS"
-   }
+   "news": null
   }
  ],
  "summary": [
@@ -191,7 +167,7 @@
    "odds": [
     {
      "outcome": "↑ 100,000",
-     "yes": 0.0285
+     "yes": 0.028
     },
     {
      "outcome": "↓ 55,000",
@@ -212,7 +188,7 @@
    "odds": [
     {
      "outcome": "Before Jan 1, 2027",
-     "yes": 0.016
+     "yes": 0.018
     }
    ]
   },
@@ -229,5 +205,5 @@
    "odds": []
   }
  ],
- "generated_utc": "2026-11-17T01:52:56+00:00"
+ "generated_utc": "2026-11-17T06:31:31+00:00"
 }
