@@ -261,6 +261,21 @@
     },
     "30d": null
    }
+  },
+  {
+   "detected_utc": "2026-11-17T21:29:28+00:00",
+   "as_of": "2026-11-17",
+   "old": "STAY_BTC",
+   "new": "STAY_BTC",
+   "old_hash": "a2be7024860b",
+   "new_hash": "aadda5de10f2",
+   "reason": "No flywheel ON (STRC stalled \u2192 flywheel off for MSTR; SATA stalled \u2192 flywheel off for ASST): wait (no buy right now)",
+   "initial": false,
+   "after": {
+    "1d": null,
+    "7d": null,
+    "30d": null
+   }
   }
  ]
 }

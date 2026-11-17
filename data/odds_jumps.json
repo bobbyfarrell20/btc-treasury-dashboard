@@ -15,14 +15,14 @@
    "question": "Will Bitcoin dip to $55,000 by December 31, 2026?",
    "url": "https://polymarket.com/event/what-price-will-bitcoin-hit-before-2027",
    "from": 0.095,
-   "to": 0.34,
-   "change_pts": 24.5,
+   "to": 0.335,
+   "change_pts": 24.0,
    "from_date": "2026-11-10",
    "news": {
-    "headline": "Bitcoin BTC (BTC-USD) Live Price, News, Chart and Price History - Yahoo Finance Singapore",
-    "url": "https://news.google.com/rss/articles/CBMiVkFVX3lxTE5yOVM0ZTRBWjRWRW9KcFF1czB4bV9VbHNOYnZqSTRlXzk2SHBHTEo5RnIzR0xkNklES1Z6ZnZZSTRhM2tjZEFnQ3VEd1BCUDFPcFRBSlhB?oc=5",
-    "published": "Tue, 17 Nov 2026 01:27:40 GMT",
-    "publisher": "Yahoo Finance Singapore",
+    "headline": "Bitcoin Falls Below $70,000. Here's Where It Could Finish the Year - Yahoo Finance",
+    "url": "https://news.google.com/rss/articles/CBMilgFBVV95cUxQeWhPb2NsM3JlOGNuT1VfTTh1Y3N5MHlPX2c0VnVud0FfdHQwMURqUDVjNTQ0NnkyLWFFOHNJM1hWR2pyVWRVNXREbmduaGFKQzZIVzhGdm8xSThYcUZjNllDR2ZfU0l1RS01SzhRNW9QYlNEdGw0VnJsVU90Z0tkRWRZVV91Sm1YUW9pVXBkb3cxYnFtMmc?oc=5",
+    "published": "Tue, 17 Nov 2026 18:31:02 GMT",
+    "publisher": "Yahoo Finance",
     "via": "Google News RSS"
    }
   },
@@ -40,10 +40,10 @@
    "change_pts": 16.0,
    "from_date": "2026-11-10",
    "news": {
-    "headline": "Bitcoin BTC (BTC-USD) Live Price, News, Chart and Price History - Yahoo Finance Singapore",
-    "url": "https://news.google.com/rss/articles/CBMiVkFVX3lxTE5yOVM0ZTRBWjRWRW9KcFF1czB4bV9VbHNOYnZqSTRlXzk2SHBHTEo5RnIzR0xkNklES1Z6ZnZZSTRhM2tjZEFnQ3VEd1BCUDFPcFRBSlhB?oc=5",
-    "published": "Tue, 17 Nov 2026 01:27:40 GMT",
-    "publisher": "Yahoo Finance Singapore",
+    "headline": "Bitcoin Falls Below $70,000. Here's Where It Could Finish the Year - Yahoo Finance",
+    "url": "https://news.google.com/rss/articles/CBMilgFBVV95cUxQeWhPb2NsM3JlOGNuT1VfTTh1Y3N5MHlPX2c0VnVud0FfdHQwMURqUDVjNTQ0NnkyLWFFOHNJM1hWR2pyVWRVNXREbmduaGFKQzZIVzhGdm8xSThYcUZjNllDR2ZfU0l1RS01SzhRNW9QYlNEdGw0VnJsVU90Z0tkRWRZVV91Sm1YUW9pVXBkb3cxYnFtMmc?oc=5",
+    "published": "Tue, 17 Nov 2026 18:31:02 GMT",
+    "publisher": "Yahoo Finance",
     "via": "Google News RSS"
    }
   },
@@ -57,13 +57,13 @@
    "question": "Will there be no change in Fed interest rates after the December 2026 meeting?",
    "url": "https://polymarket.com/event/fed-decision-in-december-20260729232808632",
    "from": 0.185,
-   "to": 0.0305,
-   "change_pts": -15.4,
+   "to": 0.0295,
+   "change_pts": -15.6,
    "from_date": "2026-11-10",
    "news": {
-    "headline": "Will the Fed raise interest rates this year? Divided economists weigh in - ABC News - Breaking News, Latest News and Videos",
-    "url": "https://news.google.com/rss/articles/CBMipAFBVV95cUxNX3NMLXhhYU1lOVVLWU9sY0k0SDUyQnEwMG9SZ1RzNHZobTIyYk9KWGJlOGhic3FKdlQ2NXlIVDF6SW1oRlNWZlY2NHlNLWlnNGoybzAwLWlkV3V1Q1ZtM21KS2FLTy02NEF6VjY4UmFNc2hYa21mRURlSkJYZWxtc1R3VmRYZFlKNUU3NzZiMkZGNGJZcG1xZUNCN0RQNkRndEVPb9IBqgFBVV95cUxOU1FSZ3pWOURaQUxBS296TzBtRFFGclJXTnpLYWwzZXU1Q01kcVZUczBxUDAwR3FaYmFZdzlXUWM2T0Q3TDVldm9nSVY4OERYRUtkdm5sdndPSU1ETU1yc3BuMEpXLTd2VFFZRTVQcWdMZFdEZ0EzYjhTS200RFBkZy1jbE01WVhVbEgyX1Z2dXc4MWxmbXd6cl9pSlp2TDRldkdkS2hwOVE0Zw?oc=5",
-    "published": "Mon, 16 Nov 2026 22:06:22 GMT",
+    "headline": "Fed holds interest rates steady as inflation hits 3-year high - ABC News - Breaking News, Latest News and Videos",
+    "url": "https://news.google.com/rss/articles/CBMinwFBVV95cUxObE9meWdub2FOS2dVY0pKYUxReEZrZGJhMnIyNG9JTEJpZlhISXFXMlZGZk1kSjRPWlRPejV6aTdXSHZnWWFkeHBvZVEydk9Sa1dLallzVGtIenB2OV9yR2daTDNrb2psQW5uZ2JSYnlOMUxmYzExZ1NBT1V3OGVlaERaZ1pPaVYwTDUyNVJCR1lJUkpoRFhhMzJha09TOVXSAaQBQVVfeXFMUGc0WHV5TzVaUnlTZjZ2Y1h3RHdSSnc0LWZoTzF3Uzk4WFkyQVByY1kxNkNoeDREX3Z6TDRSOUsyMmFvbHBGUWNlWUlXZGxJZFN6RFB5NWREWWtlRXUyMXJyUUlMTXo0cmh4NlpfT1pMUklyOGJLb1F5SDdteTItMzl5NVQybXk5U2ZQWkRGYmhnU0dJZ2hoTEFjb3FLaktRcjZNbDc?oc=5",
+    "published": "Tue, 17 Nov 2026 08:43:59 GMT",
     "publisher": "ABC News - Breaking News, Latest News and Videos",
     "via": "Google News RSS"
    }
@@ -82,10 +82,10 @@
    "change_pts": -18.0,
    "from_date": "2026-11-09",
    "news": {
-    "headline": "Will the Fed raise interest rates this year? Divided economists weigh in - ABC News - Breaking News, Latest News and Videos",
-    "url": "https://news.google.com/rss/articles/CBMipAFBVV95cUxNX3NMLXhhYU1lOVVLWU9sY0k0SDUyQnEwMG9SZ1RzNHZobTIyYk9KWGJlOGhic3FKdlQ2NXlIVDF6SW1oRlNWZlY2NHlNLWlnNGoybzAwLWlkV3V1Q1ZtM21KS2FLTy02NEF6VjY4UmFNc2hYa21mRURlSkJYZWxtc1R3VmRYZFlKNUU3NzZiMkZGNGJZcG1xZUNCN0RQNkRndEVPb9IBqgFBVV95cUxOU1FSZ3pWOURaQUxBS296TzBtRFFGclJXTnpLYWwzZXU1Q01kcVZUczBxUDAwR3FaYmFZdzlXUWM2T0Q3TDVldm9nSVY4OERYRUtkdm5sdndPSU1ETU1yc3BuMEpXLTd2VFFZRTVQcWdMZFdEZ0EzYjhTS200RFBkZy1jbE01WVhVbEgyX1Z2dXc4MWxmbXd6cl9pSlp2TDRldkdkS2hwOVE0Zw?oc=5",
-    "published": "Mon, 16 Nov 2026 22:06:22 GMT",
-    "publisher": "ABC News - Breaking News, Latest News and Videos",
+    "headline": "How Will the Market React to a Potential Fed Rate Hike in December? Here's What History Suggests. - Yahoo Finance",
+    "url": "https://news.google.com/rss/articles/CBMinAFBVV95cUxQQ3daeDNPVnBBam5nRFZiZEltR3lUUU1iUGFLakhvVmJoLVBEbWhiUHRRcnlLcnFjMGtqWEdoOWVEd21QNlpfdzdGc0dhczNQcENxbnNpeHNyMTZtR1FkaEx6aG1RYVNuWGhKSHpFa0Z0R2RYbVNxWlhjbzNmN1RNNDE4d2hCS1h2YWtuWFhrRTJiSzhlNWUtMXZLVGg?oc=5",
+    "published": "Sun, 15 Nov 2026 12:22:00 GMT",
+    "publisher": "Yahoo Finance",
     "via": "Google News RSS"
    }
   },
@@ -103,10 +103,10 @@
    "change_pts": 13.0,
    "from_date": "2026-11-14",
    "news": {
-    "headline": "Bitcoin BTC (BTC-USD) Live Price, News, Chart and Price History - Yahoo Finance Singapore",
-    "url": "https://news.google.com/rss/articles/CBMiVkFVX3lxTE5yOVM0ZTRBWjRWRW9KcFF1czB4bV9VbHNOYnZqSTRlXzk2SHBHTEo5RnIzR0xkNklES1Z6ZnZZSTRhM2tjZEFnQ3VEd1BCUDFPcFRBSlhB?oc=5",
-    "published": "Tue, 17 Nov 2026 01:27:40 GMT",
-    "publisher": "Yahoo Finance Singapore",
+    "headline": "Did Bitcoin Prices Bottom at $62,000? Strategy Has Bought the Decline. - Barron's",
+    "url": "https://news.google.com/rss/articles/CBMif0FVX3lxTE0yS0RmaHF4aWFYdWEwa1Z4TmZ0dzdqM1NPR21vdTZvc3dZNlVDalJHdHROUjJEcm03V0YtdHhEdC01T0tpS0RDLWZNRFpLNWlnZVJPeXlXY3k0Tk1NNW1hUEtrOE9DaWp6OU44VGpQclQtQW9pTF9jazVRNVV2UDA?oc=5",
+    "published": "Mon, 16 Nov 2026 18:56:00 GMT",
+    "publisher": "Barron's",
     "via": "Google News RSS"
    }
   },
@@ -124,10 +124,10 @@
    "change_pts": 11.0,
    "from_date": "2026-11-14",
    "news": {
-    "headline": "Bitcoin’s four-year cycle is about to turn bullish — if history repeats: Chart of the Day - Yahoo Finance",
-    "url": "https://news.google.com/rss/articles/CBMi5AFBVV95cUxOZnJscnVUWk1EM255N01qYlh4M2xtWkFTV0VXdDRZcU9RbWFlOWZ0ekN6MlZESUxjRlUyRUxVQ09UWWVrcTRkZDM2Ykg3d0lueTNXQ0tBOFVEekxpazZ2OVlqVGdyb2xxYnAzSGs2OFF5WXN4Qk0wdDMxNDBnejd6ZmZjOFAyNHZkY0NmS25KcWMzcXlOYTRPRFcwSGw5aTc1NmFwdVQtMDI2ZFcxdFdTZlN6aVcxb2c4azZMQkNhWklNbXZQY2xYNFI2SlowVi0tVUJVNnFNRWdONDhfSjl4UGRFa0M?oc=5",
-    "published": "Sun, 15 Nov 2026 14:17:44 GMT",
-    "publisher": "Yahoo Finance",
+    "headline": "Bitcoin Futures - CME Group",
+    "url": "https://news.google.com/rss/articles/CBMic0FVX3lxTE9Db1M3SWg3WG9OOU9xZ1QwTjlKUDZvSVpVektnRnFTSXFvdXBmQm5lS2h5ODFwdWl2eFlQT0hRZWR1ZUxfdzFHVXhBZUNKRl9Semw3NG55S0lrUXFXNFR4eVZwdHFtLVZxU1NZeS1Va0RZNU0?oc=5",
+    "published": "Sat, 14 Nov 2026 13:59:43 GMT",
+    "publisher": "CME Group",
     "via": "Google News RSS"
    }
   },
@@ -207,7 +207,7 @@
     },
     {
      "outcome": "↓ 55,000",
-     "yes": 0.345
+     "yes": 0.335
     }
    ]
   },
@@ -241,5 +241,5 @@
    "odds": []
   }
  ],
- "generated_utc": "2026-11-17T17:29:07+00:00"
+ "generated_utc": "2026-11-17T21:29:28+00:00"
 }
