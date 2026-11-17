@@ -15,8 +15,8 @@
    "question": "Will Bitcoin dip to $55,000 by December 31, 2026?",
    "url": "https://polymarket.com/event/what-price-will-bitcoin-hit-before-2027",
    "from": 0.095,
-   "to": 0.305,
-   "change_pts": 21.0,
+   "to": 0.34,
+   "change_pts": 24.5,
    "from_date": "2026-11-10",
    "news": {
     "headline": "Bitcoin BTC (BTC-USD) Live Price, News, Chart and Price History - Yahoo Finance Singapore",
@@ -57,8 +57,8 @@
    "question": "Will there be no change in Fed interest rates after the December 2026 meeting?",
    "url": "https://polymarket.com/event/fed-decision-in-december-20260729232808632",
    "from": 0.185,
-   "to": 0.0295,
-   "change_pts": -15.6,
+   "to": 0.0305,
+   "change_pts": -15.4,
    "from_date": "2026-11-10",
    "news": {
     "headline": "Will the Fed raise interest rates this year? Divided economists weigh in - ABC News - Breaking News, Latest News and Videos",
@@ -103,10 +103,10 @@
    "change_pts": 13.0,
    "from_date": "2026-11-14",
    "news": {
-    "headline": "Bitcoin BTC (BTC-USD) Live Price, News, Chart & Price History - Yahoo! Finance Canada",
-    "url": "https://news.google.com/rss/articles/CBMiVkFVX3lxTE1HSGlGRjBhSUlQdXZtSXRJWmhTcWlLMmt2WEM2WFk0LV9Bd3BzOGNZQzJmQXJycTBZcmpSNWZiWHMzMDdzY3cyQzlKYXNYSk0tUF9MVzdB?oc=5",
-    "published": "Mon, 16 Nov 2026 17:59:48 GMT",
-    "publisher": "Yahoo! Finance Canada",
+    "headline": "Bitcoin BTC (BTC-USD) Live Price, News, Chart and Price History - Yahoo Finance Singapore",
+    "url": "https://news.google.com/rss/articles/CBMiVkFVX3lxTE5yOVM0ZTRBWjRWRW9KcFF1czB4bV9VbHNOYnZqSTRlXzk2SHBHTEo5RnIzR0xkNklES1Z6ZnZZSTRhM2tjZEFnQ3VEd1BCUDFPcFRBSlhB?oc=5",
+    "published": "Tue, 17 Nov 2026 01:27:40 GMT",
+    "publisher": "Yahoo Finance Singapore",
     "via": "Google News RSS"
    }
   },
@@ -203,11 +203,11 @@
    "odds": [
     {
      "outcome": "↑ 100,000",
-     "yes": 0.0285
+     "yes": 0.0275
     },
     {
      "outcome": "↓ 55,000",
-     "yes": 0.305
+     "yes": 0.345
     }
    ]
   },
@@ -241,5 +241,5 @@
    "odds": []
   }
  ],
- "generated_utc": "2026-11-17T14:48:41+00:00"
+ "generated_utc": "2026-11-17T17:29:07+00:00"
 }
