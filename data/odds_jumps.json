@@ -57,8 +57,8 @@
    "question": "Will there be no change in Fed interest rates after the December 2026 meeting?",
    "url": "https://polymarket.com/event/fed-decision-in-december-20260729232808632",
    "from": 0.185,
-   "to": 0.028,
-   "change_pts": -15.7,
+   "to": 0.0295,
+   "change_pts": -15.6,
    "from_date": "2026-11-10",
    "news": {
     "headline": "Will the Fed raise interest rates this year? Divided economists weigh in - ABC News - Breaking News, Latest News and Videos",
@@ -241,5 +241,5 @@
    "odds": []
   }
  ],
- "generated_utc": "2026-11-17T14:32:40+00:00"
+ "generated_utc": "2026-11-17T14:48:41+00:00"
 }
