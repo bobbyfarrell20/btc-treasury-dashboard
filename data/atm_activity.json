@@ -139,5 +139,19 @@
       "source_url": "https://x.com/STRC_live/status/2122797715880866123",
       "note": "no ATM activity; closed $93.38, lowest since late June"
     }
+  },
+  "2026-11-18": {
+    "STRC": {
+      "shares_sold": 0,
+      "btc_raised": 0,
+      "source_url": "https://x.com/STRC_live/status/2123160105453576271",
+      "note": "no ATM activity; closed $96.10, lowest since late August; 6.5M shares traded"
+    },
+    "SATA": {
+      "shares_sold": 0,
+      "btc_raised": 0,
+      "source_url": "https://x.com/STRC_live/status/2123160105453576271",
+      "note": "no ATM activity; closed $89.08, lowest since late June"
+    }
   }
 }
