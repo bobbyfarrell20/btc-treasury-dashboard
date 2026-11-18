@@ -15,8 +15,8 @@
    "question": "Will Bitcoin dip to $55,000 by December 31, 2026?",
    "url": "https://polymarket.com/event/what-price-will-bitcoin-hit-before-2027",
    "from": 0.125,
-   "to": 0.315,
-   "change_pts": 19.0,
+   "to": 0.335,
+   "change_pts": 21.0,
    "from_date": "2026-11-11",
    "news": {
     "headline": "Current price of Bitcoin for Nov. 18, 2026 - Fortune",
@@ -207,7 +207,7 @@
     },
     {
      "outcome": "↓ 55,000",
-     "yes": 0.315
+     "yes": 0.335
     }
    ]
   },
@@ -241,5 +241,5 @@
    "odds": []
   }
  ],
- "generated_utc": "2026-11-18T14:37:52+00:00"
+ "generated_utc": "2026-11-18T14:49:19+00:00"
 }

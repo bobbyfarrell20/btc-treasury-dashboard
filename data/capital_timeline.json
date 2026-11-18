@@ -1,5 +1,5 @@
 {
- "generated_utc": "2026-11-18T14:37:27+00:00",
+ "generated_utc": "2026-11-18T14:48:55+00:00",
  "version": 1,
  "MSTR": {
   "basic_shares": [
@@ -497,7 +497,7 @@
    ],
    [
     "2026-11-18",
-    427681027.0,
+    427673637.0,
     "https://api.strategy.com/btc/kpiData",
     false
    ]
@@ -1005,7 +1005,7 @@
    ],
    [
     "2026-11-18",
-    118541335.0,
+    118547875.0,
     "https://api.strategy.com/btc/kpiData",
     false
    ]
@@ -1231,7 +1231,7 @@
    ],
    [
     "2026-11-18",
-    4901.0,
+    4900.0,
     "https://api.strategy.com/btc/mstrKpiData",
     false
    ]
@@ -1317,9 +1317,9 @@
     },
     {
      "date": "2026-11-18",
-     "anchor": 427681027,
+     "anchor": 427673637,
      "predicted_from_flows": 427671547.0,
-     "residual": 9480.0,
+     "residual": 2090.0,
      "src": "https://api.strategy.com/btc/kpiData"
     }
    ],
@@ -1433,9 +1433,9 @@
     },
     {
      "date": "2026-11-18",
-     "anchor": 118541335,
+     "anchor": 118547875,
      "predicted_from_flows": 118536483.0,
-     "residual": 4852.0,
+     "residual": 11392.0,
      "src": "https://api.strategy.com/btc/kpiData"
     }
    ],
@@ -1450,40 +1450,40 @@
    ]
   },
   "strategy_kpi_latest": {
-   "fetched_utc": "2026-11-18T14:37:28+00:00",
-   "timestamp_utc": "2026-11-18T14:37:00",
-   "market_cap_m": 39661.0,
-   "ev_m": 54183.0,
+   "fetched_utc": "2026-11-18T14:48:55+00:00",
+   "timestamp_utc": "2026-11-18T14:48:00",
+   "market_cap_m": 39470.0,
+   "ev_m": 53993.0,
    "debt_m": 6714.0,
    "pref_m": 12709.0,
-   "price": 92.74,
+   "price": 92.29,
    "per_ticker": {
     "MSTR": {
-     "shares": 427681027,
-     "price": 92.735
+     "shares": 427673637,
+     "price": 92.29
     },
     "STRK": {
-     "shares": 14019871,
-     "price": 63.41
+     "shares": 14026140,
+     "price": 62.74
     },
     "STRF": {
-     "shares": 12843483,
-     "price": 99.35
+     "shares": 12836272,
+     "price": 99.25
     },
     "STRD": {
-     "shares": 14027930,
-     "price": 63.73
+     "shares": 14030653,
+     "price": 63.29
     },
     "STRC": {
-     "shares": 77650051,
-     "price": 98.3
+     "shares": 77654810,
+     "price": 97.6501
     },
     "STRE": {
      "shares": 7751627,
      "price": 84.111375
     }
    },
-   "cash_m": 4901.0,
+   "cash_m": 4900.0,
    "date": "2026-11-18"
   },
   "pref_check": [
