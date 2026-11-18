@@ -6,28 +6,7 @@
  },
  "jumps": [
   {
-   "date": "2026-11-17",
-   "window": "7d",
-   "source": "polymarket",
-   "group": "BTC",
-   "market": "BTC price targets hit in 2026",
-   "outcome": "↓ 55,000",
-   "question": "Will Bitcoin dip to $55,000 by December 31, 2026?",
-   "url": "https://polymarket.com/event/what-price-will-bitcoin-hit-before-2027",
-   "from": 0.095,
-   "to": 0.285,
-   "change_pts": 19.0,
-   "from_date": "2026-11-10",
-   "news": {
-    "headline": "Bitcoin BTC (BTC-USD) Live Price, News, Chart and Price History - Yahoo Finance UK",
-    "url": "https://news.google.com/rss/articles/CBMiVkFVX3lxTE5NeVkwY1dKeWxrcExZc0dzcnlWSUZ4czQtZHIyX1JYUnp5cWE5WFcwNjl3clkxY3dyUjFtbG1FOU43Ny1leHhSaVpCMzFQREhacmFmaTRR?oc=5",
-    "published": "Tue, 17 Nov 2026 17:08:21 GMT",
-    "publisher": "Yahoo Finance UK",
-    "via": "Google News RSS"
-   }
-  },
-  {
-   "date": "2026-11-17",
+   "date": "2026-11-18",
    "window": "7d",
    "source": "kalshi",
    "group": "BTC",
@@ -35,15 +14,36 @@
    "outcome": "Below $55,000.00",
    "question": null,
    "url": "https://kalshi.com/markets/kxbtcminy",
-   "from": 0.11,
-   "to": 0.27,
-   "change_pts": 16.0,
-   "from_date": "2026-11-10",
+   "from": 0.13,
+   "to": 0.32,
+   "change_pts": 19.0,
+   "from_date": "2026-11-11",
    "news": {
-    "headline": "Bitcoin BTC (BTC-USD) Live Price, News, Chart and Price History - Yahoo Finance UK",
-    "url": "https://news.google.com/rss/articles/CBMiVkFVX3lxTE5NeVkwY1dKeWxrcExZc0dzcnlWSUZ4czQtZHIyX1JYUnp5cWE5WFcwNjl3clkxY3dyUjFtbG1FOU43Ny1leHhSaVpCMzFQREhacmFmaTRR?oc=5",
-    "published": "Tue, 17 Nov 2026 17:08:21 GMT",
-    "publisher": "Yahoo Finance UK",
+    "headline": "BTC price range on Nov 18, 2026 at 1am EST Crypto Prediction Market - Robinhood",
+    "url": "https://news.google.com/rss/articles/CBMitgFBVV95cUxPem9pZTd4RkZoaF9WYjFOXzlfcVg5S3JqLXFKMkl5MlVBdU04MjdRZEhkdThqV2N6UmJQMEN3NHItc3lRZENrQVByNVhsZ01vZlZIOTR6S2hSQnJ2NFhSN1l3ak5xZWxjV1UwYjRMQ2VlT1hldXU2YXgwWDFtMWgtZGczYkFscU0wcmtxNmhuY1NzTjdTT1lWeUtTak1nQVFyNUpiWS1oRDRWa3BZMDNMOTdlZXQ1UQ?oc=5",
+    "published": "Wed, 18 Nov 2026 05:13:29 GMT",
+    "publisher": "Robinhood",
+    "via": "Google News RSS"
+   }
+  },
+  {
+   "date": "2026-11-18",
+   "window": "7d",
+   "source": "polymarket",
+   "group": "BTC",
+   "market": "BTC price targets hit in 2026",
+   "outcome": "↓ 55,000",
+   "question": "Will Bitcoin dip to $55,000 by December 31, 2026?",
+   "url": "https://polymarket.com/event/what-price-will-bitcoin-hit-before-2027",
+   "from": 0.125,
+   "to": 0.295,
+   "change_pts": 17.0,
+   "from_date": "2026-11-11",
+   "news": {
+    "headline": "BTC price range on Nov 18, 2026 at 1am EST Crypto Prediction Market - Robinhood",
+    "url": "https://news.google.com/rss/articles/CBMitgFBVV95cUxPem9pZTd4RkZoaF9WYjFOXzlfcVg5S3JqLXFKMkl5MlVBdU04MjdRZEhkdThqV2N6UmJQMEN3NHItc3lRZENrQVByNVhsZ01vZlZIOTR6S2hSQnJ2NFhSN1l3ak5xZWxjV1UwYjRMQ2VlT1hldXU2YXgwWDFtMWgtZGczYkFscU0wcmtxNmhuY1NzTjdTT1lWeUtTak1nQVFyNUpiWS1oRDRWa3BZMDNMOTdlZXQ1UQ?oc=5",
+    "published": "Wed, 18 Nov 2026 05:13:29 GMT",
+    "publisher": "Robinhood",
     "via": "Google News RSS"
    }
   },
@@ -57,8 +57,8 @@
    "question": "Will there be no change in Fed interest rates after the December 2026 meeting?",
    "url": "https://polymarket.com/event/fed-decision-in-december-20260729232808632",
    "from": 0.185,
-   "to": 0.0305,
-   "change_pts": -15.4,
+   "to": 0.0335,
+   "change_pts": -15.2,
    "from_date": "2026-11-10",
    "news": {
     "headline": "Fed holds interest rates steady as inflation hits 3-year high - ABC News - Breaking News, Latest News and Videos",
@@ -124,9 +124,9 @@
    "change_pts": 11.0,
    "from_date": "2026-11-14",
    "news": {
-    "headline": "Bitcoin’s four-year cycle is about to turn bullish — if history repeats: Chart of the Day - Yahoo Finance",
-    "url": "https://news.google.com/rss/articles/CBMi5AFBVV95cUxOZnJscnVUWk1EM255N01qYlh4M2xtWkFTV0VXdDRZcU9RbWFlOWZ0ekN6MlZESUxjRlUyRUxVQ09UWWVrcTRkZDM2Ykg3d0lueTNXQ0tBOFVEekxpazZ2OVlqVGdyb2xxYnAzSGs2OFF5WXN4Qk0wdDMxNDBnejd6ZmZjOFAyNHZkY0NmS25KcWMzcXlOYTRPRFcwSGw5aTc1NmFwdVQtMDI2ZFcxdFdTZlN6aVcxb2c4azZMQkNhWklNbXZQY2xYNFI2SlowVi0tVUJVNnFNRWdONDhfSjl4UGRFa0M?oc=5",
-    "published": "Sun, 15 Nov 2026 14:17:44 GMT",
+    "headline": "Bitcoin Price Prediction: Where Could Bitcoin Be by Year-End? - Yahoo Finance",
+    "url": "https://news.google.com/rss/articles/CBMiowFBVV95cUxNay1mV0lDVnEzVWZVZEo4MjdfVzVCYXhLQmVTMllibVlpaEE0aUxoQ0E4V3lwV3k0dkNMZzBCY1BGX1p6U2hjSkFpNm5XRDFHZ2ZNV0NXWTZ6QjRrejdRTDZqSVJxZDNGU0pzdGszTzdrelFwQVVtSWVkZWx2b2l0a3pkOHk4XzlVME9OZFJrUEJIR0VEYkRQLXlnUGU3dGdUZU9V?oc=5",
+    "published": "Sat, 14 Nov 2026 22:03:28 GMT",
     "publisher": "Yahoo Finance",
     "via": "Google News RSS"
    }
@@ -203,11 +203,11 @@
    "odds": [
     {
      "outcome": "↑ 100,000",
-     "yes": 0.0275
+     "yes": 0.0255
     },
     {
      "outcome": "↓ 55,000",
-     "yes": 0.285
+     "yes": 0.295
     }
    ]
   },
@@ -224,7 +224,7 @@
    "odds": [
     {
      "outcome": "Before Jan 1, 2027",
-     "yes": 0.019
+     "yes": 0.018
     }
    ]
   },
@@ -241,5 +241,5 @@
    "odds": []
   }
  ],
- "generated_utc": "2026-11-17T23:56:32+00:00"
+ "generated_utc": "2026-11-18T05:54:22+00:00"
 }
