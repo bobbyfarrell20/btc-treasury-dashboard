@@ -272,7 +272,14 @@
    "reason": "No flywheel ON (STRC stalled \u2192 flywheel off for MSTR; SATA stalled \u2192 flywheel off for ASST): wait (no buy right now)",
    "initial": false,
    "after": {
-    "1d": null,
+    "1d": {
+     "to": "2026-11-18",
+     "BTC": -0.0233,
+     "MSTR": -0.0387,
+     "MSTR_mnav_ev": -0.0054,
+     "ASST": -0.0199,
+     "ASST_mnav_ev": 0.0119
+    },
     "7d": null,
     "30d": null
    }

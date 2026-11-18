@@ -8,6 +8,27 @@
   {
    "date": "2026-11-18",
    "window": "7d",
+   "source": "polymarket",
+   "group": "BTC",
+   "market": "BTC price targets hit in 2026",
+   "outcome": "↓ 55,000",
+   "question": "Will Bitcoin dip to $55,000 by December 31, 2026?",
+   "url": "https://polymarket.com/event/what-price-will-bitcoin-hit-before-2027",
+   "from": 0.125,
+   "to": 0.315,
+   "change_pts": 19.0,
+   "from_date": "2026-11-11",
+   "news": {
+    "headline": "Current price of Bitcoin for Nov. 18, 2026 - Fortune",
+    "url": "https://news.google.com/rss/articles/CBMiZ0FVX3lxTE5BeUI5Y19hOG1KTjJTbVpVRFVMOHJESmpkT2tYNUJVQnJRZmw1NGhFeFBqM3F0UjRRZGo3dnoyeFZHV0JQQlJCS1NHUGZtNktYSzVwY1NsT3JlckpEYUtuZVlkTnV2eEU?oc=5",
+    "published": "Wed, 18 Nov 2026 11:45:00 GMT",
+    "publisher": "Fortune",
+    "via": "Google News RSS"
+   }
+  },
+  {
+   "date": "2026-11-18",
+   "window": "7d",
    "source": "kalshi",
    "group": "BTC",
    "market": "How low will BTC get in 2026",
@@ -19,31 +40,10 @@
    "change_pts": 19.0,
    "from_date": "2026-11-11",
    "news": {
-    "headline": "BTC price range on Nov 18, 2026 at 1am EST Crypto Prediction Market - Robinhood",
-    "url": "https://news.google.com/rss/articles/CBMitgFBVV95cUxPem9pZTd4RkZoaF9WYjFOXzlfcVg5S3JqLXFKMkl5MlVBdU04MjdRZEhkdThqV2N6UmJQMEN3NHItc3lRZENrQVByNVhsZ01vZlZIOTR6S2hSQnJ2NFhSN1l3ak5xZWxjV1UwYjRMQ2VlT1hldXU2YXgwWDFtMWgtZGczYkFscU0wcmtxNmhuY1NzTjdTT1lWeUtTak1nQVFyNUpiWS1oRDRWa3BZMDNMOTdlZXQ1UQ?oc=5",
-    "published": "Wed, 18 Nov 2026 05:13:29 GMT",
-    "publisher": "Robinhood",
-    "via": "Google News RSS"
-   }
-  },
-  {
-   "date": "2026-11-18",
-   "window": "7d",
-   "source": "polymarket",
-   "group": "BTC",
-   "market": "BTC price targets hit in 2026",
-   "outcome": "↓ 55,000",
-   "question": "Will Bitcoin dip to $55,000 by December 31, 2026?",
-   "url": "https://polymarket.com/event/what-price-will-bitcoin-hit-before-2027",
-   "from": 0.125,
-   "to": 0.295,
-   "change_pts": 17.0,
-   "from_date": "2026-11-11",
-   "news": {
-    "headline": "BTC price range on Nov 18, 2026 at 1am EST Crypto Prediction Market - Robinhood",
-    "url": "https://news.google.com/rss/articles/CBMitgFBVV95cUxPem9pZTd4RkZoaF9WYjFOXzlfcVg5S3JqLXFKMkl5MlVBdU04MjdRZEhkdThqV2N6UmJQMEN3NHItc3lRZENrQVByNVhsZ01vZlZIOTR6S2hSQnJ2NFhSN1l3ak5xZWxjV1UwYjRMQ2VlT1hldXU2YXgwWDFtMWgtZGczYkFscU0wcmtxNmhuY1NzTjdTT1lWeUtTak1nQVFyNUpiWS1oRDRWa3BZMDNMOTdlZXQ1UQ?oc=5",
-    "published": "Wed, 18 Nov 2026 05:13:29 GMT",
-    "publisher": "Robinhood",
+    "headline": "Current price of Bitcoin for Nov. 18, 2026 - Fortune",
+    "url": "https://news.google.com/rss/articles/CBMiZ0FVX3lxTE5BeUI5Y19hOG1KTjJTbVpVRFVMOHJESmpkT2tYNUJVQnJRZmw1NGhFeFBqM3F0UjRRZGo3dnoyeFZHV0JQQlJCS1NHUGZtNktYSzVwY1NsT3JlckpEYUtuZVlkTnV2eEU?oc=5",
+    "published": "Wed, 18 Nov 2026 11:45:00 GMT",
+    "publisher": "Fortune",
     "via": "Google News RSS"
    }
   },
@@ -61,10 +61,10 @@
    "change_pts": -15.2,
    "from_date": "2026-11-10",
    "news": {
-    "headline": "Fed holds interest rates steady as inflation hits 3-year high - ABC News - Breaking News, Latest News and Videos",
-    "url": "https://news.google.com/rss/articles/CBMinwFBVV95cUxObE9meWdub2FOS2dVY0pKYUxReEZrZGJhMnIyNG9JTEJpZlhISXFXMlZGZk1kSjRPWlRPejV6aTdXSHZnWWFkeHBvZVEydk9Sa1dLallzVGtIenB2OV9yR2daTDNrb2psQW5uZ2JSYnlOMUxmYzExZ1NBT1V3OGVlaERaZ1pPaVYwTDUyNVJCR1lJUkpoRFhhMzJha09TOVXSAaQBQVVfeXFMUGc0WHV5TzVaUnlTZjZ2Y1h3RHdSSnc0LWZoTzF3Uzk4WFkyQVByY1kxNkNoeDREX3Z6TDRSOUsyMmFvbHBGUWNlWUlXZGxJZFN6RFB5NWREWWtlRXUyMXJyUUlMTXo0cmh4NlpfT1pMUklyOGJLb1F5SDdteTItMzl5NVQybXk5U2ZQWkRGYmhnU0dJZ2hoTEFjb3FLaktRcjZNbDc?oc=5",
-    "published": "Tue, 17 Nov 2026 08:43:59 GMT",
-    "publisher": "ABC News - Breaking News, Latest News and Videos",
+    "headline": "Fed’s Musalem Says Several Rate Hikes Likely Needed Before Spring 2027 - WSJ",
+    "url": "https://news.google.com/rss/articles/CBMivwFBVV95cUxONlE5MkU2R0ZHZmVES3lZRXd0anBhR25DRkJOcTM5UU1INjc2VXVuMTFZSG9ONE9HTUdCTGpiVnE2bTdxNmQ5a0JuZWZwVlNFM3dKc0JiZ3U4OElZRWtkLTFOU20tMGZDNVRWMFk5YjdsTzlZdkxNRGV5dl9QWjF3YW5SMV9RdVJUUGNqcmpuSzhNT25wYllhWVcwSXIzYU5acEZkRmlMbUdiQl91NXpnbG95M2NiVmdCYjVuUlFJdw?oc=5",
+    "published": "Tue, 17 Nov 2026 13:14:00 GMT",
+    "publisher": "WSJ",
     "via": "Google News RSS"
    }
   },
@@ -103,10 +103,10 @@
    "change_pts": 13.0,
    "from_date": "2026-11-14",
    "news": {
-    "headline": "Did Bitcoin Prices Bottom at $62,000? Strategy Has Bought the Decline. - Barron's",
-    "url": "https://news.google.com/rss/articles/CBMif0FVX3lxTE0yS0RmaHF4aWFYdWEwa1Z4TmZ0dzdqM1NPR21vdTZvc3dZNlVDalJHdHROUjJEcm03V0YtdHhEdC01T0tpS0RDLWZNRFpLNWlnZVJPeXlXY3k0Tk1NNW1hUEtrOE9DaWp6OU44VGpQclQtQW9pTF9jazVRNVV2UDA?oc=5",
-    "published": "Mon, 16 Nov 2026 18:56:00 GMT",
-    "publisher": "Barron's",
+    "headline": "Bitcoin Futures - CME Group",
+    "url": "https://news.google.com/rss/articles/CBMic0FVX3lxTE9Db1M3SWg3WG9OOU9xZ1QwTjlKUDZvSVpVektnRnFTSXFvdXBmQm5lS2h5ODFwdWl2eFlQT0hRZWR1ZUxfdzFHVXhBZUNKRl9Semw3NG55S0lrUXFXNFR4eVZwdHFtLVZxU1NZeS1Va0RZNU0?oc=5",
+    "published": "Tue, 17 Nov 2026 00:00:00 GMT",
+    "publisher": "CME Group",
     "via": "Google News RSS"
    }
   },
@@ -124,10 +124,10 @@
    "change_pts": 11.0,
    "from_date": "2026-11-14",
    "news": {
-    "headline": "Bitcoin Price Prediction: Where Could Bitcoin Be by Year-End? - Yahoo Finance",
-    "url": "https://news.google.com/rss/articles/CBMiowFBVV95cUxNay1mV0lDVnEzVWZVZEo4MjdfVzVCYXhLQmVTMllibVlpaEE0aUxoQ0E4V3lwV3k0dkNMZzBCY1BGX1p6U2hjSkFpNm5XRDFHZ2ZNV0NXWTZ6QjRrejdRTDZqSVJxZDNGU0pzdGszTzdrelFwQVVtSWVkZWx2b2l0a3pkOHk4XzlVME9OZFJrUEJIR0VEYkRQLXlnUGU3dGdUZU9V?oc=5",
-    "published": "Sat, 14 Nov 2026 22:03:28 GMT",
-    "publisher": "Yahoo Finance",
+    "headline": "Bitcoin Futures - CME Group",
+    "url": "https://news.google.com/rss/articles/CBMic0FVX3lxTE9Db1M3SWg3WG9OOU9xZ1QwTjlKUDZvSVpVektnRnFTSXFvdXBmQm5lS2h5ODFwdWl2eFlQT0hRZWR1ZUxfdzFHVXhBZUNKRl9Semw3NG55S0lrUXFXNFR4eVZwdHFtLVZxU1NZeS1Va0RZNU0?oc=5",
+    "published": "Sat, 14 Nov 2026 13:59:43 GMT",
+    "publisher": "CME Group",
     "via": "Google News RSS"
    }
   },
@@ -168,7 +168,7 @@
    "news": {
     "headline": "Fed Forced to Confront Case for Bigger and Faster Rate Rises - WSJ",
     "url": "https://news.google.com/rss/articles/CBMiswFBVV95cUxPelFYdmxqTmVYeGJuX2VCMUg3MFowTVhFV25kb1NUN1Z0QUZuMnNVUmVabWhfZU1PVjVTakhlRVRzdHpvWENxd3Y4Y3RJLURrVmNYMkZ3UnpNZUx1RjJvc0xIZDFsZ0xqcDcxbDAwVHNOaUpNSkRuSW00cnVlRy1uQ1F1MjBydEtZSnNVTDJtM2xxaWFXcUcybTUzVGpoaEpSTDM5REtFQ2J0a3Z3WVEtQ25xdw?oc=5",
-    "published": "Wed, 11 Nov 2026 01:00:00 GMT",
+    "published": "Tue, 10 Nov 2026 08:00:00 GMT",
     "publisher": "WSJ",
     "via": "Google News RSS"
    }
@@ -189,7 +189,7 @@
    "news": {
     "headline": "Fed Forced to Confront Case for Bigger and Faster Rate Rises - WSJ",
     "url": "https://news.google.com/rss/articles/CBMiswFBVV95cUxPelFYdmxqTmVYeGJuX2VCMUg3MFowTVhFV25kb1NUN1Z0QUZuMnNVUmVabWhfZU1PVjVTakhlRVRzdHpvWENxd3Y4Y3RJLURrVmNYMkZ3UnpNZUx1RjJvc0xIZDFsZ0xqcDcxbDAwVHNOaUpNSkRuSW00cnVlRy1uQ1F1MjBydEtZSnNVTDJtM2xxaWFXcUcybTUzVGpoaEpSTDM5REtFQ2J0a3Z3WVEtQ25xdw?oc=5",
-    "published": "Wed, 11 Nov 2026 01:00:00 GMT",
+    "published": "Tue, 10 Nov 2026 08:00:00 GMT",
     "publisher": "WSJ",
     "via": "Google News RSS"
    }
@@ -203,11 +203,11 @@
    "odds": [
     {
      "outcome": "↑ 100,000",
-     "yes": 0.0255
+     "yes": 0.0215
     },
     {
      "outcome": "↓ 55,000",
-     "yes": 0.295
+     "yes": 0.315
     }
    ]
   },
@@ -241,5 +241,5 @@
    "odds": []
   }
  ],
- "generated_utc": "2026-11-18T05:54:22+00:00"
+ "generated_utc": "2026-11-18T14:37:52+00:00"
 }
