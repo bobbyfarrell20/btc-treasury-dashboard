@@ -21,7 +21,7 @@
     "new": "STAY_BTC"
   },
   "_hash_note": "signal_hash changes when the recommendation, also_valid, any preferred peg state (on for the call = RUNNING_HOT/ON, hashed alike; WARMING_UP and COOLING_OFF hash as WATCH, STALLED as SELL; ON held by buybacks hashes as WATCH) or any overheated flag changes; last_changed is the most recent trading day it changed.",
-  "generated_utc": "2026-11-18T21:48:43+00:00",
+  "generated_utc": "2026-11-18T23:25:20+00:00",
   "as_of": "2026-11-18",
   "disclaimer": "Rules-based indicator, not financial advice.",
   "recommendation_detail": {
@@ -30,7 +30,7 @@
     "also_valid": null,
     "lean": null,
     "notes": [],
-    "rotation_z": 0.868,
+    "rotation_z": 0.858,
     "per_asset": {
       "MSTR": {
         "preferred": "STRC",
@@ -42,8 +42,8 @@
         "buyback_held": false,
         "flywheel_state": "Stalled",
         "flywheel_effect": "STRC stalled \u2192 flywheel off for MSTR",
-        "mnav_ev": 1.0018,
-        "mnav_ev_pct": 0.028,
+        "mnav_ev": 0.9962,
+        "mnav_ev_pct": 0.024,
         "has_data": true
       },
       "ASST": {
@@ -56,8 +56,8 @@
         "buyback_held": false,
         "flywheel_state": "Stalled",
         "flywheel_effect": "SATA stalled \u2192 flywheel off for ASST",
-        "mnav_ev": 1.3987,
-        "mnav_ev_pct": 0.631,
+        "mnav_ev": 1.3909,
+        "mnav_ev_pct": 0.627,
         "has_data": true
       }
     }
@@ -843,7 +843,7 @@
       "last_below_trigger": null,
       "minutes_below_trigger_now": null,
       "method": "intraday_1m",
-      "vol_mult": 1.6,
+      "vol_mult": 1.63,
       "vol_partial_session": false,
       "share_vol_at_or_above_100": 0.0,
       "days_in_state": 31,
@@ -1432,14 +1432,14 @@
         "peg_state": "SELL",
         "flywheel_code": "STALLED",
         "flywheel_state": "Stalled",
-        "mnav": 1.0018,
-        "mnav_pct_1y": 0.028,
+        "mnav": 0.9962,
+        "mnav_pct_1y": 0.024,
         "zone": "CHEAP",
         "low_fair": false,
         "cheap_or_low_fair": true,
         "flywheel_cheap": false,
         "very_low_mnav": true,
-        "very_low_reason": "1y percentile 3% <= 20%",
+        "very_low_reason": "mNAV incl. debt & preferreds 1.00x <= 1.0x; 1y percentile 2% <= 20%",
         "very_low_with_peg_near_or_on": false
       },
       "ASST": {
@@ -1447,8 +1447,8 @@
         "peg_state": "SELL",
         "flywheel_code": "STALLED",
         "flywheel_state": "Stalled",
-        "mnav": 1.3987,
-        "mnav_pct_1y": 0.631,
+        "mnav": 1.3909,
+        "mnav_pct_1y": 0.627,
         "zone": "OVERVALUED",
         "low_fair": false,
         "cheap_or_low_fair": false,
@@ -1489,11 +1489,11 @@
       "flywheel_code": "STALLED",
       "overheated_floor": 1.25,
       "action": "SELL",
-      "mnav": 1.0018,
-      "mnav_pct_1y": 0.028,
+      "mnav": 0.9962,
+      "mnav_pct_1y": 0.024,
       "overheated": false,
       "price_chg_dip_window": -0.3664,
-      "mnav_chg_dip_window": -0.0915
+      "mnav_chg_dip_window": -0.0966
     },
     "ASST": {
       "peg_state": "SELL",
@@ -1503,11 +1503,11 @@
       "flywheel_code": "STALLED",
       "overheated_floor": 1.25,
       "action": "SELL",
-      "mnav": 1.3987,
-      "mnav_pct_1y": 0.631,
+      "mnav": 1.3909,
+      "mnav_pct_1y": 0.627,
       "overheated": false,
       "price_chg_dip_window": -0.2517,
-      "mnav_chg_dip_window": 0.0823
+      "mnav_chg_dip_window": 0.0762
     }
   },
   "both_overheated": false,
@@ -1517,12 +1517,12 @@
     "target": "MSTR",
     "lookback_trading_days": 10,
     "trigger_btc_drop": 0.15,
-    "btc_change": -0.2246,
+    "btc_change": -0.2202,
     "cheapened_most": "MSTR",
     "mstr_price_change": -0.3664,
     "asst_price_change": -0.2517,
-    "mstr_mnav_change": -0.0915,
-    "asst_mnav_change": 0.0823
+    "mstr_mnav_change": -0.0966,
+    "asst_mnav_change": 0.0762
   },
   "strc_buyback_support": true,
   "buyback_support": {
@@ -1630,36 +1630,36 @@
   "values": {
     "MSTR": 90.32,
     "ASST": 17.15,
-    "btc": 62347.0312,
-    "mstr_mnav": 1.0018,
-    "asst_mnav": 1.3987,
-    "mnav_avg": 1.2003,
-    "mnav_spread": 0.3969,
-    "spread_z": 0.868,
+    "btc": 62698.3203,
+    "mstr_mnav": 0.9962,
+    "asst_mnav": 1.3909,
+    "mnav_avg": 1.1936,
+    "mnav_spread": 0.3947,
+    "spread_z": 0.858,
     "ratio": 0.18988,
-    "mstr_mnav_basic": 0.7282,
-    "asst_mnav_basic": 0.807,
-    "mstr_mnav_ev": 1.0018,
-    "asst_mnav_ev": 1.3987,
-    "mstr_mnav_diluted": 0.7785,
-    "asst_mnav_diluted": 0.8242,
+    "mstr_mnav_basic": 0.7241,
+    "asst_mnav_basic": 0.8024,
+    "mstr_mnav_ev": 0.9962,
+    "asst_mnav_ev": 1.3909,
+    "mstr_mnav_diluted": 0.7741,
+    "asst_mnav_diluted": 0.8195,
     "mstr_ev_m": 53144.1,
     "asst_ev_m": 3785.1,
-    "btc_chg": -0.2246,
+    "btc_chg": -0.2202,
     "mstr_chg": -0.3664,
     "asst_chg": -0.2517,
-    "mstr_mnav_chg": -0.0915,
-    "asst_mnav_chg": 0.0823,
-    "mstr_nav_ps": 116.02,
-    "asst_nav_ps": 20.81
+    "mstr_mnav_chg": -0.0966,
+    "asst_mnav_chg": 0.0762,
+    "mstr_nav_ps": 116.67,
+    "asst_nav_ps": 20.93
   },
   "valuation": {
     "MSTR": {
       "signal_basis": "ev",
       "zone": "CHEAP",
       "market_standard": {
-        "mnav": 0.7282,
-        "mnav_pct_1y": 0.175,
+        "mnav": 0.7241,
+        "mnav_pct_1y": 0.167,
         "zone": "CHEAP",
         "cutoffs": {
           "p25": 0.7943,
@@ -1681,8 +1681,8 @@
         }
       },
       "all_in_ev": {
-        "mnav": 1.0018,
-        "mnav_pct_1y": 0.028,
+        "mnav": 0.9962,
+        "mnav_pct_1y": 0.024,
         "zone": "CHEAP",
         "cutoffs": {
           "p25": 1.0516,
@@ -1703,7 +1703,7 @@
           "anticip_score": 0.0
         }
       },
-      "diluted_equity_mnav": 0.7785,
+      "diluted_equity_mnav": 0.7741,
       "price": 90.32,
       "btc_held": 850849.0,
       "basic_shares": 427679362.0,
@@ -1711,15 +1711,15 @@
       "preferred_notional_m": 12703.1,
       "cash_m": 4901.0,
       "enterprise_value_m": 53144.1,
-      "btc_nav_m": 53048,
-      "btc_nav_per_basic_share": 124.04
+      "btc_nav_m": 53347,
+      "btc_nav_per_basic_share": 124.74
     },
     "ASST": {
       "signal_basis": "ev",
       "zone": "OVERVALUED",
       "market_standard": {
-        "mnav": 0.807,
-        "mnav_pct_1y": 0.278,
+        "mnav": 0.8024,
+        "mnav_pct_1y": 0.262,
         "zone": "FAIR",
         "cutoffs": {
           "p25": 0.8002,
@@ -1741,8 +1741,8 @@
         }
       },
       "all_in_ev": {
-        "mnav": 1.3987,
-        "mnav_pct_1y": 0.631,
+        "mnav": 1.3909,
+        "mnav_pct_1y": 0.627,
         "zone": "OVERVALUED",
         "cutoffs": {
           "p25": 1.2155,
@@ -1763,7 +1763,7 @@
           "anticip_score": 0.0
         }
       },
-      "diluted_equity_mnav": 0.8242,
+      "diluted_equity_mnav": 0.8195,
       "price": 17.15,
       "btc_held": 43404.0,
       "basic_shares": 127331109.0,
@@ -1771,33 +1771,33 @@
       "preferred_notional_m": 2117.1,
       "cash_m": 515.8,
       "enterprise_value_m": 3785.1,
-      "btc_nav_m": 2706,
-      "btc_nav_per_basic_share": 21.25
+      "btc_nav_m": 2721,
+      "btc_nav_per_basic_share": 21.37
     },
     "spread_z": {
-      "basic": -0.254,
-      "ev": 0.868
+      "basic": -0.256,
+      "ev": 0.858
     },
     "relative_verdict": {
-      "basic": "Neither is clearly cheaper vs its usual gap (spread z -0.25, within \u00b11); MSTR has the lower mNAV today (0.73x vs 0.81x)",
-      "ev": "Neither is clearly cheaper vs its usual gap (spread z +0.87, within \u00b11); MSTR has the lower mNAV today (1.00x vs 1.40x)"
+      "basic": "Neither is clearly cheaper vs its usual gap (spread z -0.26, within \u00b11); MSTR has the lower mNAV today (0.72x vs 0.80x)",
+      "ev": "Neither is clearly cheaper vs its usual gap (spread z +0.86, within \u00b11); MSTR has the lower mNAV today (1.00x vs 1.39x)"
     },
     "relative_value": {
       "ev": {
         "basis": "ev",
         "lookback_trading_days": 252,
-        "mstr_mnav": 1.0018,
-        "asst_mnav": 1.3987,
+        "mstr_mnav": 0.9962,
+        "asst_mnav": 1.3909,
         "ratio_now": 1.3962,
         "ratio_mean_1y": 1.194,
         "ratio_median_1y": 1.2172,
         "ratio_sd_1y": 0.194,
         "ratio_z": 1.042,
         "ratio_pct_1y": 0.861,
-        "diff_now": 0.3969,
+        "diff_now": 0.3947,
         "diff_mean_1y": 0.2102,
         "diff_sd_1y": 0.215,
-        "diff_z": 0.868,
+        "diff_z": 0.858,
         "diff_pct_1y": 0.821,
         "verdict": "NORMAL",
         "verdict_text": "Spread normal",
@@ -1807,18 +1807,18 @@
       "basic": {
         "basis": "basic",
         "lookback_trading_days": 252,
-        "mstr_mnav": 0.7282,
-        "asst_mnav": 0.807,
-        "ratio_now": 1.1082,
+        "mstr_mnav": 0.7241,
+        "asst_mnav": 0.8024,
+        "ratio_now": 1.1081,
         "ratio_mean_1y": 1.1655,
         "ratio_median_1y": 1.1772,
         "ratio_sd_1y": 0.2536,
         "ratio_z": -0.226,
         "ratio_pct_1y": 0.357,
-        "diff_now": 0.0788,
+        "diff_now": 0.0783,
         "diff_mean_1y": 0.1345,
         "diff_sd_1y": 0.2197,
-        "diff_z": -0.254,
+        "diff_z": -0.256,
         "diff_pct_1y": 0.345,
         "verdict": "NORMAL",
         "verdict_text": "Spread normal",
@@ -1998,10 +1998,10 @@
       "change_pts": 27.0,
       "from_date": "2026-11-11",
       "news": {
-        "headline": "BTC price range on Nov 19, 2026 at 5pm EST Crypto Prediction Market - Robinhood",
-        "url": "https://news.google.com/rss/articles/CBMitgFBVV95cUxOb29DV0VNaVJ1cE00blRJZ245bnVkM2Y3UW83TkVTWDBiZ0JyazMta2NmOFJwTjcyalJHcVkwUmpaVmE3cm9pM3ctZ3JNREd6SW95NFEwbVNVZ0V5TWtlWERTTVJrTG5aTnlaX0xYVm5VMVhvTU1GWHlVQktIRk90N204LXZlaGlxWmxIWmNUdHhDc1pmUG1KeDQydVQ0Z1pxYlo3TFc1UmFYMWhWSlBtVW9YTTBoZw?oc=5",
-        "published": "Wed, 18 Nov 2026 21:18:57 GMT",
-        "publisher": "Robinhood",
+        "headline": "Why is Bitcoin Price Falling Continuously and Is $58K Next? - Coinpedia",
+        "url": "https://news.google.com/rss/articles/CBMijgFBVV95cUxPWXlkUk00NEhTYWtHODZUTEhaZ01FRmg2dk9NX2l6M3RzRHN1cnJBQUE3eHpGVE8yMWJDRGNJV0x4Um9kZTRJSmtfZ0VTLWo2bnMtN19XSDN4RXhMU2hzc2dERmZfVE5IckYydmFWY3NoUjI2bGhDb1BsRGdVaUl6S3UyMGNjTnFkWk41aWlB0gGTAUFVX3lxTE5CM2prOU1hVzBpelBkR1RLWWdXb3kzMFprUEhubkhBc3FaWHlCZVRfbW1ZLUJrcVNKODZFRXo0bmllTkZ1QXJnMjlqeFZuUVZ2bkNMX1lMV3lJcUZFYkFjWW1JWkx4S3UxdkRuM0Y1UGJzZ0dfOFpqVXcxUG1SMmczTGd1WWFXc2VBaUlIUHdyVnZXNA?oc=5",
+        "published": "Wed, 18 Nov 2026 21:58:09 GMT",
+        "publisher": "Coinpedia",
         "via": "Google News RSS"
       }
     },
@@ -2019,10 +2019,10 @@
       "change_pts": 19.0,
       "from_date": "2026-11-11",
       "news": {
-        "headline": "BTC price range on Nov 19, 2026 at 5pm EST Crypto Prediction Market - Robinhood",
-        "url": "https://news.google.com/rss/articles/CBMitgFBVV95cUxOb29DV0VNaVJ1cE00blRJZ245bnVkM2Y3UW83TkVTWDBiZ0JyazMta2NmOFJwTjcyalJHcVkwUmpaVmE3cm9pM3ctZ3JNREd6SW95NFEwbVNVZ0V5TWtlWERTTVJrTG5aTnlaX0xYVm5VMVhvTU1GWHlVQktIRk90N204LXZlaGlxWmxIWmNUdHhDc1pmUG1KeDQydVQ0Z1pxYlo3TFc1UmFYMWhWSlBtVW9YTTBoZw?oc=5",
-        "published": "Wed, 18 Nov 2026 21:18:57 GMT",
-        "publisher": "Robinhood",
+        "headline": "Why is Bitcoin Price Falling Continuously and Is $58K Next? - Coinpedia",
+        "url": "https://news.google.com/rss/articles/CBMijgFBVV95cUxPWXlkUk00NEhTYWtHODZUTEhaZ01FRmg2dk9NX2l6M3RzRHN1cnJBQUE3eHpGVE8yMWJDRGNJV0x4Um9kZTRJSmtfZ0VTLWo2bnMtN19XSDN4RXhMU2hzc2dERmZfVE5IckYydmFWY3NoUjI2bGhDb1BsRGdVaUl6S3UyMGNjTnFkWk41aWlB0gGTAUFVX3lxTE5CM2prOU1hVzBpelBkR1RLWWdXb3kzMFprUEhubkhBc3FaWHlCZVRfbW1ZLUJrcVNKODZFRXo0bmllTkZ1QXJnMjlqeFZuUVZ2bkNMX1lMV3lJcUZFYkFjWW1JWkx4S3UxdkRuM0Y1UGJzZ0dfOFpqVXcxUG1SMmczTGd1WWFXc2VBaUlIUHdyVnZXNA?oc=5",
+        "published": "Wed, 18 Nov 2026 21:58:09 GMT",
+        "publisher": "Coinpedia",
         "via": "Google News RSS"
       }
     },
@@ -2040,10 +2040,10 @@
       "change_pts": 11.0,
       "from_date": "2026-11-18",
       "news": {
-        "headline": "BTC price range on Nov 19, 2026 at 5pm EST Crypto Prediction Market - Robinhood",
-        "url": "https://news.google.com/rss/articles/CBMitgFBVV95cUxOb29DV0VNaVJ1cE00blRJZ245bnVkM2Y3UW83TkVTWDBiZ0JyazMta2NmOFJwTjcyalJHcVkwUmpaVmE3cm9pM3ctZ3JNREd6SW95NFEwbVNVZ0V5TWtlWERTTVJrTG5aTnlaX0xYVm5VMVhvTU1GWHlVQktIRk90N204LXZlaGlxWmxIWmNUdHhDc1pmUG1KeDQydVQ0Z1pxYlo3TFc1UmFYMWhWSlBtVW9YTTBoZw?oc=5",
-        "published": "Wed, 18 Nov 2026 21:18:57 GMT",
-        "publisher": "Robinhood",
+        "headline": "Why is Bitcoin Price Falling Continuously and Is $58K Next? - Coinpedia",
+        "url": "https://news.google.com/rss/articles/CBMijgFBVV95cUxPWXlkUk00NEhTYWtHODZUTEhaZ01FRmg2dk9NX2l6M3RzRHN1cnJBQUE3eHpGVE8yMWJDRGNJV0x4Um9kZTRJSmtfZ0VTLWo2bnMtN19XSDN4RXhMU2hzc2dERmZfVE5IckYydmFWY3NoUjI2bGhDb1BsRGdVaUl6S3UyMGNjTnFkWk41aWlB0gGTAUFVX3lxTE5CM2prOU1hVzBpelBkR1RLWWdXb3kzMFprUEhubkhBc3FaWHlCZVRfbW1ZLUJrcVNKODZFRXo0bmllTkZ1QXJnMjlqeFZuUVZ2bkNMX1lMV3lJcUZFYkFjWW1JWkx4S3UxdkRuM0Y1UGJzZ0dfOFpqVXcxUG1SMmczTGd1WWFXc2VBaUlIUHdyVnZXNA?oc=5",
+        "published": "Wed, 18 Nov 2026 21:58:09 GMT",
+        "publisher": "Coinpedia",
         "via": "Google News RSS"
       }
     },
@@ -2203,7 +2203,7 @@
       "odds": [
         {
           "outcome": "\u2191 100,000",
-          "yes": 0.0215
+          "yes": 0.0225
         },
         {
           "outcome": "\u2193 55,000",
@@ -2249,7 +2249,7 @@
       "top": [
         {
           "outcome": "\u2193 60,000",
-          "yes": 0.735
+          "yes": 0.755
         },
         {
           "outcome": "\u2193 55,000",
@@ -2257,11 +2257,11 @@
         },
         {
           "outcome": "\u2193 50,000",
-          "yes": 0.2335
+          "yes": 0.2345
         },
         {
           "outcome": "\u2193 45,000",
-          "yes": 0.1125
+          "yes": 0.1115
         }
       ]
     },
@@ -2286,7 +2286,7 @@
         },
         {
           "outcome": "No change",
-          "yes": 0.0215
+          "yes": 0.023
         },
         {
           "outcome": "25 bps decrease",
@@ -2301,7 +2301,7 @@
       "top": [
         {
           "outcome": "0 (0 bps)",
-          "yes": 0.9835
+          "yes": 0.9825
         },
         {
           "outcome": "1 (25 bps)",
@@ -2324,7 +2324,7 @@
       "top": [
         {
           "outcome": "Clarity Act (H.R.3633) signed into law in 2026?",
-          "yes": 0.018
+          "yes": 0.017
         }
       ]
     },
@@ -2417,11 +2417,11 @@
         },
         {
           "outcome": "Below $45,000.00",
-          "yes": 0.12
+          "yes": 0.1
         },
         {
           "outcome": "Below $40,000.00",
-          "yes": 0.08
+          "yes": 0.07
         }
       ]
     },
@@ -2438,11 +2438,11 @@
       "top": [
         {
           "outcome": "Hike 25bps",
-          "yes": 0.9
+          "yes": 0.91
         },
         {
           "outcome": "Hike >25bps",
-          "yes": 0.08
+          "yes": 0.07
         },
         {
           "outcome": "Fed maintains rate",
@@ -2460,12 +2460,12 @@
       "url": "https://kalshi.com/markets/kxcryptostructure",
       "top": [
         {
-          "outcome": "Before Jan 1, 2028",
-          "yes": 0.23
+          "outcome": "Before Oct 1, 2027",
+          "yes": 0.24
         },
         {
-          "outcome": "Before Oct 1, 2027",
-          "yes": 0.19
+          "outcome": "Before Jan 1, 2028",
+          "yes": 0.2
         },
         {
           "outcome": "Before Apr 1, 2027",
