@@ -15,14 +15,14 @@
    "question": "Will Bitcoin dip to $55,000 by December 31, 2026?",
    "url": "https://polymarket.com/event/what-price-will-bitcoin-hit-before-2027",
    "from": 0.105,
-   "to": 0.385,
-   "change_pts": 28.0,
+   "to": 0.455,
+   "change_pts": 35.0,
    "from_date": "2026-11-12",
    "news": {
-    "headline": "Current price of Bitcoin for November 19, 2026 - Fortune",
-    "url": "https://news.google.com/rss/articles/CBMiZ0FVX3lxTFBaemM4RjBCT0VwNHVnZkdTTUFBVjJoMkQwOW1VMnlhNHJJVnVlbVlQTW1feFZ3SFotcTc3VDE3MnkwNnFyMmFLUkF6cTdSM2tiOUZvdE1GUnZpQ2RiMWVKemNZV1RvSDQ?oc=5",
-    "published": "Thu, 19 Nov 2026 12:32:08 GMT",
-    "publisher": "Fortune",
+    "headline": "Bitcoin Price Slumps Under $62,000, Crashing 25% in One Month - Bitcoin Magazine",
+    "url": "https://news.google.com/rss/articles/CBMid0FVX3lxTE0xUzZMczlWWDUyOXlmX1hhRl9MTExhRWp3MkR4WXJuMXBLdmJHOXEybWs1UEp6R2xzSmxPakhuTDQyVGlsbTVlRlY2MWI4aEtSeFpVWUVqbXNQRlpCQnpUMC1fYkRyYlhfWVVROTNTanN5MlRWQ3pB?oc=5",
+    "published": "Thu, 19 Nov 2026 21:04:11 GMT",
+    "publisher": "Bitcoin Magazine",
     "via": "Google News RSS"
    }
   },
@@ -40,10 +40,31 @@
    "change_pts": 27.0,
    "from_date": "2026-11-12",
    "news": {
-    "headline": "Current price of Bitcoin for November 19, 2026 - Fortune",
-    "url": "https://news.google.com/rss/articles/CBMiZ0FVX3lxTFBaemM4RjBCT0VwNHVnZkdTTUFBVjJoMkQwOW1VMnlhNHJJVnVlbVlQTW1feFZ3SFotcTc3VDE3MnkwNnFyMmFLUkF6cTdSM2tiOUZvdE1GUnZpQ2RiMWVKemNZV1RvSDQ?oc=5",
-    "published": "Thu, 19 Nov 2026 12:32:08 GMT",
-    "publisher": "Fortune",
+    "headline": "Bitcoin Price Slumps Under $62,000, Crashing 25% in One Month - Bitcoin Magazine",
+    "url": "https://news.google.com/rss/articles/CBMid0FVX3lxTE0xUzZMczlWWDUyOXlmX1hhRl9MTExhRWp3MkR4WXJuMXBLdmJHOXEybWs1UEp6R2xzSmxPakhuTDQyVGlsbTVlRlY2MWI4aEtSeFpVWUVqbXNQRlpCQnpUMC1fYkRyYlhfWVVROTNTanN5MlRWQ3pB?oc=5",
+    "published": "Thu, 19 Nov 2026 21:04:11 GMT",
+    "publisher": "Bitcoin Magazine",
+    "via": "Google News RSS"
+   }
+  },
+  {
+   "date": "2026-11-19",
+   "window": "24h",
+   "source": "polymarket",
+   "group": "BTC",
+   "market": "BTC price targets hit in 2026",
+   "outcome": "↓ 55,000",
+   "question": "Will Bitcoin dip to $55,000 by December 31, 2026?",
+   "url": "https://polymarket.com/event/what-price-will-bitcoin-hit-before-2027",
+   "from": 0.285,
+   "to": 0.385,
+   "change_pts": 10.0,
+   "from_date": "2026-11-18",
+   "news": {
+    "headline": "Bitcoin Price Slumps Under $62,000, Crashing 25% in One Month - Bitcoin Magazine",
+    "url": "https://news.google.com/rss/articles/CBMid0FVX3lxTE0xUzZMczlWWDUyOXlmX1hhRl9MTExhRWp3MkR4WXJuMXBLdmJHOXEybWs1UEp6R2xzSmxPakhuTDQyVGlsbTVlRlY2MWI4aEtSeFpVWUVqbXNQRlpCQnpUMC1fYkRyYlhfWVVROTNTanN5MlRWQ3pB?oc=5",
+    "published": "Thu, 19 Nov 2026 21:04:11 GMT",
+    "publisher": "Bitcoin Magazine",
     "via": "Google News RSS"
    }
   },
@@ -61,9 +82,9 @@
    "change_pts": -15.2,
    "from_date": "2026-11-10",
    "news": {
-    "headline": "Will the Fed raise interest rates this year? Divided economists weigh in - ABC News - Breaking News, Latest News and Videos",
-    "url": "https://news.google.com/rss/articles/CBMipAFBVV95cUxNX3NMLXhhYU1lOVVLWU9sY0k0SDUyQnEwMG9SZ1RzNHZobTIyYk9KWGJlOGhic3FKdlQ2NXlIVDF6SW1oRlNWZlY2NHlNLWlnNGoybzAwLWlkV3V1Q1ZtM21KS2FLTy02NEF6VjY4UmFNc2hYa21mRURlSkJYZWxtc1R3VmRYZFlKNUU3NzZiMkZGNGJZcG1xZUNCN0RQNkRndEVPb9IBqgFBVV95cUxOU1FSZ3pWOURaQUxBS296TzBtRFFGclJXTnpLYWwzZXU1Q01kcVZUczBxUDAwR3FaYmFZdzlXUWM2T0Q3TDVldm9nSVY4OERYRUtkdm5sdndPSU1ETU1yc3BuMEpXLTd2VFFZRTVQcWdMZFdEZ0EzYjhTS200RFBkZy1jbE01WVhVbEgyX1Z2dXc4MWxmbXd6cl9pSlp2TDRldkdkS2hwOVE0Zw?oc=5",
-    "published": "Tue, 17 Nov 2026 20:35:55 GMT",
+    "headline": "Fed holds interest rates steady in 1st move since Iran war spiked oil prices - ABC News - Breaking News, Latest News and Videos",
+    "url": "https://news.google.com/rss/articles/CBMilAFBVV95cUxOWVgwU0l2bjYwREJ2NE9WVC1ObnpJa3Qxa2syS0lmUXphVm8zTWpnYVJ5NXpFZmxWYUZlVXpmc3ZFQzk2ZnZlYjNSUHRPb3F1emZhVDdPNEMxak1mM2wzOEZtYnA5dklfUFlfOUdVRU5lSXNmTlhqMy1pUElaMjNBTEFJbV9IRHNkRGt1NHJKVDVFd1Za0gGaAUFVX3lxTE9IOWFDX2MzMVhjUXl2VE1oTGNTTlowMmxkMUZnNEQ1TzhKemJ3TmlSTElmdzVPQ3VmR2E3OGdNLXN2dVBHQ2xiLXl0WWJfdjBUQktuSnNwbTNQV3puQzBJTUVZS295S2lHYU9iQVpFd05FQkw4WmhmZ2EyU3dCUWt0bHNCUy1xX0pHME5ZbVBlZ1RXSkxnSVZ1TWc?oc=5",
+    "published": "Tue, 17 Nov 2026 13:13:19 GMT",
     "publisher": "ABC News - Breaking News, Latest News and Videos",
     "via": "Google News RSS"
    }
@@ -165,7 +186,7 @@
     },
     {
      "outcome": "↓ 55,000",
-     "yes": 0.375
+     "yes": 0.455
     }
    ]
   },
@@ -199,5 +220,5 @@
    "odds": []
   }
  ],
- "generated_utc": "2026-11-19T17:12:00+00:00"
+ "generated_utc": "2026-11-19T21:50:08+00:00"
 }
