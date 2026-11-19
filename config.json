@@ -76,7 +76,8 @@
       "trend_days": 5,
       "cheap_cap_bump": 0.05,
       "cheap_percentile_relax": 0.15,
-      "zero_while_buyback_held": true
+      "zero_while_buyback_held": true,
+      "smoothing": {"_comment": "Research 2026-11-19 (not on main): the par slide uses a 3-day simple average of SATA's regular-session close (proximity and the 5-day tilt) instead of the single close, to stop ASST's zone line jumping 0.1-0.2x day to day. STRC is not smoothed (MSTR has no flicker; its boost is zeroed while buybacks hold par). The flywheel states and the $100.00 / $99.80 ON trigger still use raw closes.", "enabled": true, "method": "sma", "days": 3, "preferreds": ["SATA"], "tilt_from_smoothed": true}
     },
     "spread_z_favor_asst": -1.0,
     "spread_z_favor_mstr": 1.0,
