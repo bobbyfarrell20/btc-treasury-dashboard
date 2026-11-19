@@ -397,6 +397,20 @@ def halving_bonus(d, hc, ticker):
 def _clamp(x, lo, hi):
     return lo if x < lo else hi if x > hi else x
 
+def smooth_close(rows, i, pref, sm):
+    """SMA or EMA of the preferred's regular-session closes ending at row i (missing closes skipped)."""
+    if not (0 <= i < len(rows)) or rows[i].get(pref) is None: return None
+    n = max(1, int(sm.get("days", 3)))
+    if (sm.get("method") or "sma").lower() == "ema":
+        a = 2.0 / (n + 1); v = None
+        for r in rows[max(0, i - 8 * n): i + 1]:
+            x = r.get(pref)
+            if x is None: continue
+            v = x if v is None else a * x + (1 - a) * v
+        return v
+    w = [r.get(pref) for r in rows[max(0, i - n + 1): i + 1] if r.get(pref) is not None]
+    return sum(w) / len(w) if w else None
+
 def anticipation(rows, i, pref, code, mc=None):
     """Preferred-driven sliding premium and 0-1 score (config mnav.anticipation).
 
@@ -422,13 +436,23 @@ def anticipation(rows, i, pref, code, mc=None):
     if code in FW.ON_CODES:
         prem = max(bonus_hot if code == "RUNNING_HOT" else bonus_on, max_p)
         return prem, 1.0, {"proximity": 1.0, "tilt": 0.0, "chg": None}
-    px = rows[i].get(pref) if 0 <= i < len(rows) else None
+    raw = rows[i].get(pref) if 0 <= i < len(rows) else None
+    # Optional smoothing of the preferred's close for the par slide (research branch 2026-11-19,
+    # mnav.anticipation.smoothing): {"enabled", "method": "sma"|"ema", "days", "preferreds": [...],
+    # "tilt_from_smoothed": bool}. Only the slide's proximity (and optionally its tilt) uses the smoothed close;
+    # flywheel states and the ON trigger ($100.00 / $99.80 closes) are untouched.
+    sm = ac.get("smoothing") or {}
+    use_sm = bool(sm.get("enabled")) and pref in (sm.get("preferreds") or [])
+    px = smooth_close(rows, i, pref, sm) if (use_sm and raw is not None) else raw
     prox = 0.0 if px is None or thresh <= low else _clamp((px - low) / (thresh - low), 0.0, 1.0)
     chg = None
     if i >= n:
-        prev = rows[i - n].get(pref)
-        if prev is not None and px is not None:
-            chg = px - prev
+        if use_sm and sm.get("tilt_from_smoothed"):
+            a0, a1 = smooth_close(rows, i - n, pref, sm), px
+        else:
+            a0, a1 = rows[i - n].get(pref), raw
+        if a0 is not None and a1 is not None:
+            chg = a1 - a0
     tilt = 0.0 if chg is None or abs(chg) < dead else (tilt_m if chg > 0 else -tilt_m)
     prem = _clamp(max_p * prox + tilt, 0.0, max_p)
     score = 0.0 if max_p <= 0 else prem / max_p
