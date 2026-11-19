@@ -21,7 +21,7 @@
     "new": "STAY_BTC"
   },
   "_hash_note": "signal_hash changes when the recommendation, also_valid, any preferred peg state (on for the call = RUNNING_HOT/ON, hashed alike; WARMING_UP and COOLING_OFF hash as WATCH, STALLED as SELL; ON held by buybacks hashes as WATCH) or any overheated flag changes; last_changed is the most recent trading day it changed.",
-  "generated_utc": "2026-11-19T05:53:44+00:00",
+  "generated_utc": "2026-11-19T13:13:05+00:00",
   "as_of": "2026-11-18",
   "disclaimer": "Rules-based indicator, not financial advice.",
   "recommendation_detail": {
@@ -1630,7 +1630,7 @@
   "values": {
     "MSTR": 90.32,
     "ASST": 17.15,
-    "btc": 62987.2852,
+    "btc": 62987.2656,
     "mstr_mnav": 0.9917,
     "asst_mnav": 1.3845,
     "mnav_avg": 1.1881,
@@ -1653,14 +1653,35 @@
     "mstr_nav_ps": 117.21,
     "asst_nav_ps": 21.02
   },
+  "zone_display_labels": {
+    "CHEAP": "CHEAP",
+    "FAIR": "FAIR",
+    "RICH": "RICH",
+    "OVERVALUED": "VERY RICH"
+  },
   "valuation": {
     "MSTR": {
       "signal_basis": "ev",
       "zone": "CHEAP",
+      "zone_display": "CHEAP",
+      "overheated_check": {
+        "overheated": false,
+        "blocks_buys": false,
+        "basis": "ev",
+        "mnav": 0.9917,
+        "mnav_pct_1y": 0.02,
+        "floor": 1.25,
+        "percentile_min": 0.9,
+        "above_floor": false,
+        "above_percentile": false,
+        "label": "Not overheated (buys not blocked)",
+        "rule": "overheated = mNAV >= floor AND 1y percentile >= percentile_min; the zone label (VERY RICH = floor OR 90th pct) does not block buys"
+      },
       "market_standard": {
         "mnav": 0.7208,
         "mnav_pct_1y": 0.159,
         "zone": "CHEAP",
+        "zone_display": "CHEAP",
         "cutoffs": {
           "p25": 0.7943,
           "median": 0.8513,
@@ -1684,6 +1705,7 @@
         "mnav": 0.9917,
         "mnav_pct_1y": 0.02,
         "zone": "CHEAP",
+        "zone_display": "CHEAP",
         "cutoffs": {
           "p25": 1.0516,
           "median": 1.1199,
@@ -1717,10 +1739,25 @@
     "ASST": {
       "signal_basis": "ev",
       "zone": "OVERVALUED",
+      "zone_display": "VERY RICH",
+      "overheated_check": {
+        "overheated": false,
+        "blocks_buys": false,
+        "basis": "ev",
+        "mnav": 1.3845,
+        "mnav_pct_1y": 0.623,
+        "floor": 1.25,
+        "percentile_min": 0.9,
+        "above_floor": true,
+        "above_percentile": false,
+        "label": "Not overheated (buys not blocked)",
+        "rule": "overheated = mNAV >= floor AND 1y percentile >= percentile_min; the zone label (VERY RICH = floor OR 90th pct) does not block buys"
+      },
       "market_standard": {
         "mnav": 0.7988,
         "mnav_pct_1y": 0.25,
         "zone": "FAIR",
+        "zone_display": "FAIR",
         "cutoffs": {
           "p25": 0.799,
           "median": 0.9714,
@@ -1744,6 +1781,7 @@
         "mnav": 1.3845,
         "mnav_pct_1y": 0.623,
         "zone": "OVERVALUED",
+        "zone_display": "VERY RICH",
         "cutoffs": {
           "p25": 1.2155,
           "median": 1.3131,
@@ -1998,10 +2036,10 @@
       "change_pts": 28.0,
       "from_date": "2026-11-12",
       "news": {
-        "headline": "BTC price range on Nov 19, 2026 at 1am EST Crypto Prediction Market - Robinhood",
-        "url": "https://news.google.com/rss/articles/CBMitgFBVV95cUxOWEFabmJJckJUSVl5WkpqU2F1ZkYwNHloT2U0eWx4NlNoZGZpYURWX1Y1M1BVYkgtTkU2aV9wWlVRc2R6MHZmQXkySy1ocFczU20yU0cyQ25Ra0gwTTBibFBJbVVKM2dVXzIzcGRhU19GYksxS2paZFJ4UTNiT1Ewem9oVlR3cktoT1VKMTFsQjVBMzRkZlFyeHg0dURPWVRjR2cwWDdqOVZxMEdsdVFTQnFjS0c4UQ?oc=5",
-        "published": "Thu, 19 Nov 2026 05:20:10 GMT",
-        "publisher": "Robinhood",
+        "headline": "Bitcoin BTC (BTC-USD) Live Price, News, Chart and Price History - Yahoo Finance Singapore",
+        "url": "https://news.google.com/rss/articles/CBMiVkFVX3lxTE5yOVM0ZTRBWjRWRW9KcFF1czB4bV9VbHNOYnZqSTRlXzk2SHBHTEo5RnIzR0xkNklES1Z6ZnZZSTRhM2tjZEFnQ3VEd1BCUDFPcFRBSlhB?oc=5",
+        "published": "Thu, 19 Nov 2026 08:59:26 GMT",
+        "publisher": "Yahoo Finance Singapore",
         "via": "Google News RSS"
       }
     },
@@ -2019,31 +2057,10 @@
       "change_pts": 27.0,
       "from_date": "2026-11-12",
       "news": {
-        "headline": "BTC price range on Nov 19, 2026 at 1am EST Crypto Prediction Market - Robinhood",
-        "url": "https://news.google.com/rss/articles/CBMitgFBVV95cUxOWEFabmJJckJUSVl5WkpqU2F1ZkYwNHloT2U0eWx4NlNoZGZpYURWX1Y1M1BVYkgtTkU2aV9wWlVRc2R6MHZmQXkySy1ocFczU20yU0cyQ25Ra0gwTTBibFBJbVVKM2dVXzIzcGRhU19GYksxS2paZFJ4UTNiT1Ewem9oVlR3cktoT1VKMTFsQjVBMzRkZlFyeHg0dURPWVRjR2cwWDdqOVZxMEdsdVFTQnFjS0c4UQ?oc=5",
-        "published": "Thu, 19 Nov 2026 05:20:10 GMT",
-        "publisher": "Robinhood",
-        "via": "Google News RSS"
-      }
-    },
-    {
-      "date": "2026-11-19",
-      "window": "24h",
-      "source": "polymarket",
-      "group": "BTC",
-      "market": "BTC price targets hit in 2026",
-      "outcome": "\u2193 55,000",
-      "question": "Will Bitcoin dip to $55,000 by December 31, 2026?",
-      "url": "https://polymarket.com/event/what-price-will-bitcoin-hit-before-2027",
-      "from": 0.285,
-      "to": 0.385,
-      "change_pts": 10.0,
-      "from_date": "2026-11-18",
-      "news": {
-        "headline": "BTC price range on Nov 19, 2026 at 1am EST Crypto Prediction Market - Robinhood",
-        "url": "https://news.google.com/rss/articles/CBMitgFBVV95cUxOWEFabmJJckJUSVl5WkpqU2F1ZkYwNHloT2U0eWx4NlNoZGZpYURWX1Y1M1BVYkgtTkU2aV9wWlVRc2R6MHZmQXkySy1ocFczU20yU0cyQ25Ra0gwTTBibFBJbVVKM2dVXzIzcGRhU19GYksxS2paZFJ4UTNiT1Ewem9oVlR3cktoT1VKMTFsQjVBMzRkZlFyeHg0dURPWVRjR2cwWDdqOVZxMEdsdVFTQnFjS0c4UQ?oc=5",
-        "published": "Thu, 19 Nov 2026 05:20:10 GMT",
-        "publisher": "Robinhood",
+        "headline": "Bitcoin BTC (BTC-USD) Live Price, News, Chart and Price History - Yahoo Finance Singapore",
+        "url": "https://news.google.com/rss/articles/CBMiVkFVX3lxTE5yOVM0ZTRBWjRWRW9KcFF1czB4bV9VbHNOYnZqSTRlXzk2SHBHTEo5RnIzR0xkNklES1Z6ZnZZSTRhM2tjZEFnQ3VEd1BCUDFPcFRBSlhB?oc=5",
+        "published": "Thu, 19 Nov 2026 08:59:26 GMT",
+        "publisher": "Yahoo Finance Singapore",
         "via": "Google News RSS"
       }
     },
@@ -2161,11 +2178,11 @@
       "odds": [
         {
           "outcome": "\u2191 100,000",
-          "yes": 0.0235
+          "yes": 0.025
         },
         {
           "outcome": "\u2193 55,000",
-          "yes": 0.385
+          "yes": 0.345
         }
       ]
     },
@@ -2182,7 +2199,7 @@
       "odds": [
         {
           "outcome": "Before Jan 1, 2027",
-          "yes": 0.014
+          "yes": 0.02
         }
       ]
     },
@@ -2207,19 +2224,19 @@
       "top": [
         {
           "outcome": "\u2193 60,000",
-          "yes": 0.715
+          "yes": 0.695
         },
         {
           "outcome": "\u2193 55,000",
-          "yes": 0.385
+          "yes": 0.345
         },
         {
           "outcome": "\u2193 50,000",
-          "yes": 0.2155
+          "yes": 0.1915
         },
         {
           "outcome": "\u2193 45,000",
-          "yes": 0.099
+          "yes": 0.0915
         }
       ]
     },
@@ -2240,7 +2257,7 @@
         },
         {
           "outcome": "50+ bps increase",
-          "yes": 0.0625
+          "yes": 0.0645
         },
         {
           "outcome": "No change",
@@ -2259,7 +2276,7 @@
       "top": [
         {
           "outcome": "0 (0 bps)",
-          "yes": 0.9825
+          "yes": 0.9835
         },
         {
           "outcome": "1 (25 bps)",
@@ -2267,7 +2284,7 @@
         },
         {
           "outcome": "2 (50 bps)",
-          "yes": 0.0045
+          "yes": 0.005
         },
         {
           "outcome": "3 (75 bps)",
@@ -2367,7 +2384,7 @@
       "top": [
         {
           "outcome": "Below $55,000.00",
-          "yes": 0.38
+          "yes": 0.37
         },
         {
           "outcome": "Below $50,000.00",
@@ -2375,7 +2392,7 @@
         },
         {
           "outcome": "Below $45,000.00",
-          "yes": 0.11
+          "yes": 0.1
         },
         {
           "outcome": "Below $40,000.00",
@@ -2396,7 +2413,7 @@
       "top": [
         {
           "outcome": "Hike 25bps",
-          "yes": 0.92
+          "yes": 0.91
         },
         {
           "outcome": "Hike >25bps",
@@ -2404,7 +2421,7 @@
         },
         {
           "outcome": "Fed maintains rate",
-          "yes": 0.04
+          "yes": 0.02
         },
         {
           "outcome": "Cut 25bps",
@@ -2419,15 +2436,15 @@
       "top": [
         {
           "outcome": "Before Jan 1, 2028",
-          "yes": 0.2
-        },
-        {
-          "outcome": "Before Oct 1, 2027",
-          "yes": 0.17
+          "yes": 0.18
         },
         {
           "outcome": "Before Apr 1, 2027",
           "yes": 0.1
+        },
+        {
+          "outcome": "Before Oct 1, 2027",
+          "yes": 0.09
         },
         {
           "outcome": "Before Jul 1, 2027",
