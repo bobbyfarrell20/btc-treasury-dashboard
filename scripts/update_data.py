@@ -850,10 +850,25 @@ def main():
     upcoming = [e for e in evf if e.get("date") and today.isoformat() <= e["date"] <= horizon]
 
     last = rows[-1]
+    # Display labels (2026-11-19): the zone code OVERVALUED stays in the data (routines read it) but is shown as
+    # VERY RICH, because it is a zone (floor OR 90th pct) and never blocks a buy by itself. Only the call's
+    # overheated filter (floor AND 90th pct) blocks buys; overheated_check spells that out per stock.
+    ZONE_DISPLAY = {"CHEAP": "CHEAP", "FAIR": "FAIR", "RICH": "RICH", "OVERVALUED": "VERY RICH"}
+    def overheated_check(T):
+        x = (last.get("sig") or {}).get("per", {}).get(T, {})
+        fl, v, p, q = x.get("overheated_floor"), x.get("mnav"), x.get("mnav_pct_1y"), mc["overheated_percentile"]
+        oh = bool(x.get("overheated"))
+        return {"overheated": oh, "blocks_buys": oh, "basis": BASIS, "mnav": v, "mnav_pct_1y": p,
+                "floor": fl, "percentile_min": q,
+                "above_floor": bool(v is not None and fl is not None and v >= fl),
+                "above_percentile": bool(p is not None and p >= q),
+                "label": ("OVERHEATED (blocks buys)" if oh else "Not overheated (buys not blocked)"),
+                "rule": "overheated = mNAV >= floor AND 1y percentile >= percentile_min; the zone label (VERY RICH = floor OR 90th pct) does not block buys"}
     def asset_val(A, a, bs):
         v = last.get(a + "_mnav_" + bs)
         k = a + "_mnav_" + bs
-        return {"mnav": v, "mnav_pct_1y": last.get(k + "_pct"), "zone": last.get(a + "_zone_" + bs),
+        zc = last.get(a + "_zone_" + bs)
+        return {"mnav": v, "mnav_pct_1y": last.get(k + "_pct"), "zone": zc, "zone_display": ZONE_DISPLAY.get(zc, zc),
                 "cutoffs": {"p25": last.get(k + "_q25"), "median": last.get(k + "_q50"), "p75": last.get(k + "_q75"), "p90": last.get(k + "_q90"),
                             "cheap_cap": last.get(a + "_cheap_cap"), "cheap_cap_eff": last.get(a + "_cheap_cap_eff", last.get(a + "_cheap_cap")),
                             "cheap_pct": last.get(a + "_cheap_pct"), "cheap_gate": last.get(a + "_cheap_gate_" + bs, last.get(a + "_cheap_gate")),
@@ -1011,7 +1026,10 @@ def main():
            "values": {k: last.get(k) for k in ("MSTR", "ASST", "btc", "mstr_mnav", "asst_mnav", "mnav_avg", "mnav_spread",
                                                "spread_z", "ratio", "mstr_mnav_basic", "asst_mnav_basic", "mstr_mnav_ev", "asst_mnav_ev",
                                                "mstr_mnav_diluted", "asst_mnav_diluted", "mstr_ev_m", "asst_ev_m", "btc_chg", "mstr_chg", "asst_chg", "mstr_mnav_chg", "asst_mnav_chg", "mstr_nav_ps", "asst_nav_ps")},
+           "zone_display_labels": ZONE_DISPLAY,
            "valuation": {**{A: {"signal_basis": BASIS, "zone": last.get(a + "_zone"),
+                                 "zone_display": ZONE_DISPLAY.get(last.get(a + "_zone"), last.get(a + "_zone")),
+                                 "overheated_check": overheated_check(A),
                                  "market_standard": asset_val(A, a, "basic"), "all_in_ev": asset_val(A, a, "ev"),
                                  "diluted_equity_mnav": last.get(a + "_mnav_diluted"),
                                  "price": last.get(A), "btc_held": last.get(a + "_btc"), "basic_shares": last.get(a + "_basic_shares"),

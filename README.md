@@ -15,7 +15,7 @@ Top to bottom:
 - **Recommendation**: exactly one of **BUY MSTR**, **BUY ASST** or **WAIT** (no buy right now; data code `STAY_BTC`), with the reason, any "also valid" alternative, and when it last changed (rules below).
 - **KPI strip**: prices and day %, both mNAVs, peg states, rotation z, and 10-day changes.
 - **Secondary signals** (collapsible): the older per-asset actions, the dip rule and rotation.
-- **Valuation**: two mNAVs per stock, each with its own 1y percentile, zone gauge (CHEAP / FAIR / RICH / OVERVALUED) and a plain-words read, plus source links for holdings, shares, debt, preferred and cash.
+- **Valuation**: two mNAVs per stock, each with its own 1y percentile, zone gauge (CHEAP / FAIR / RICH / VERY RICH; the data code for VERY RICH stays `OVERVALUED`), an explicit overheated status (the only valuation test that blocks buys) and a plain-words read, plus source links for holdings, shares, debt, preferred and cash.
   - **mNAV (stock only)** = price × basic shares ÷ (BTC held × BTC price).
   - **mNAV incl. debt & preferreds** = (price × basic shares + debt at notional + preferred notional − cash/USD reserve) ÷ BTC NAV.
   - The zone-history chart defaults to EV and has a toggle. Diluted equity mNAV appears only in a tooltip and as a hidden legend line.
@@ -69,7 +69,7 @@ Page layout: decision banner → three chips (STRC peg, SATA peg, mNAV incl. deb
 | Overheated | mNAV ≥ 1.25x and ≥ 90th percentile of the trailing 252 trading days |
 | Both overheated | SELL_TO_BTC: sell / trim MSTR + ASST, no buy right now (overrides the peg actions) |
 | Rotation | z-score of (ASST mNAV − MSTR mNAV) over 252 days: ≤ −1 favor ASST, ≥ +1 favor MSTR |
-| Valuation zones | CHEAP < 1.0x · FAIR up to the 1y median · RICH above median · OVERVALUED ≥ 1.25x or ≥ 90th pct |
+| Valuation zones | CHEAP < 1.0x · FAIR up to the 1y median · RICH above median · VERY RICH (code `OVERVALUED`, zone only) ≥ floor or ≥ 90th pct · OVERHEATED (blocks buys) = floor AND 90th pct |
 | Dip | BTC down ≥ 15% over the last 10 trading days → buy whichever of MSTR/ASST had the larger mNAV drop over that window (tie → larger price drop). No reliance on prior highs. |
 | Odds jump | ≥ 10 pts in 1 day or ≥ 15 pts over 7 days, flagged for 7 days |
 
