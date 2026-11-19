@@ -21,7 +21,7 @@
     "new": "STAY_BTC"
   },
   "_hash_note": "signal_hash changes when the recommendation, also_valid, any preferred peg state (on for the call = RUNNING_HOT/ON, hashed alike; WARMING_UP and COOLING_OFF hash as WATCH, STALLED as SELL; ON held by buybacks hashes as WATCH) or any overheated flag changes; last_changed is the most recent trading day it changed.",
-  "generated_utc": "2026-11-19T13:13:05+00:00",
+  "generated_utc": "2026-11-19T13:25:01+00:00",
   "as_of": "2026-11-18",
   "disclaimer": "Rules-based indicator, not financial advice.",
   "recommendation_detail": {
@@ -2178,11 +2178,11 @@
       "odds": [
         {
           "outcome": "\u2191 100,000",
-          "yes": 0.025
+          "yes": 0.0245
         },
         {
           "outcome": "\u2193 55,000",
-          "yes": 0.345
+          "yes": 0.335
         }
       ]
     },
@@ -2228,7 +2228,7 @@
         },
         {
           "outcome": "\u2193 55,000",
-          "yes": 0.345
+          "yes": 0.335
         },
         {
           "outcome": "\u2193 50,000",
@@ -2236,7 +2236,7 @@
         },
         {
           "outcome": "\u2193 45,000",
-          "yes": 0.0915
+          "yes": 0.0925
         }
       ]
     },
@@ -2257,7 +2257,7 @@
         },
         {
           "outcome": "50+ bps increase",
-          "yes": 0.0645
+          "yes": 0.064
         },
         {
           "outcome": "No change",
@@ -2310,7 +2310,7 @@
       "top": [
         {
           "outcome": "Crypto Market Structure legislation becomes law in 2026?",
-          "yes": 0.026
+          "yes": 0.0265
         }
       ]
     },
@@ -2384,7 +2384,7 @@
       "top": [
         {
           "outcome": "Below $55,000.00",
-          "yes": 0.37
+          "yes": 0.38
         },
         {
           "outcome": "Below $50,000.00",
@@ -2413,7 +2413,7 @@
       "top": [
         {
           "outcome": "Hike 25bps",
-          "yes": 0.91
+          "yes": 0.92
         },
         {
           "outcome": "Hike >25bps",
@@ -2543,7 +2543,17 @@
         "trend_days": 5,
         "cheap_cap_bump": 0.05,
         "cheap_percentile_relax": 0.15,
-        "zero_while_buyback_held": true
+        "zero_while_buyback_held": true,
+        "smoothing": {
+          "_comment": "Bobby approved 2026-11-19: the par slide uses a 3-day simple average of SATA's regular-session close (proximity and the 5-day tilt) instead of the single close, to stop ASST's zone line jumping 0.1-0.2x day to day. STRC is not smoothed (MSTR has no flicker; its boost is zeroed while buybacks hold par). The flywheel states and the $100.00 / $99.80 ON trigger still use raw closes.",
+          "enabled": true,
+          "method": "sma",
+          "days": 3,
+          "preferreds": [
+            "SATA"
+          ],
+          "tilt_from_smoothed": true
+        }
       },
       "spread_z_favor_asst": -1.0,
       "spread_z_favor_mstr": 1.0,
