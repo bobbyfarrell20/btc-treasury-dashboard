@@ -6,7 +6,7 @@
  },
  "jumps": [
   {
-   "date": "2026-11-18",
+   "date": "2026-11-19",
    "window": "7d",
    "source": "polymarket",
    "group": "BTC",
@@ -14,15 +14,36 @@
    "outcome": "↓ 55,000",
    "question": "Will Bitcoin dip to $55,000 by December 31, 2026?",
    "url": "https://polymarket.com/event/what-price-will-bitcoin-hit-before-2027",
-   "from": 0.125,
-   "to": 0.395,
-   "change_pts": 27.0,
-   "from_date": "2026-11-11",
+   "from": 0.105,
+   "to": 0.385,
+   "change_pts": 28.0,
+   "from_date": "2026-11-12",
    "news": {
-    "headline": "Why is Bitcoin Price Falling Continuously and Is $58K Next? - Coinpedia",
-    "url": "https://news.google.com/rss/articles/CBMijgFBVV95cUxPWXlkUk00NEhTYWtHODZUTEhaZ01FRmg2dk9NX2l6M3RzRHN1cnJBQUE3eHpGVE8yMWJDRGNJV0x4Um9kZTRJSmtfZ0VTLWo2bnMtN19XSDN4RXhMU2hzc2dERmZfVE5IckYydmFWY3NoUjI2bGhDb1BsRGdVaUl6S3UyMGNjTnFkWk41aWlB0gGTAUFVX3lxTE5CM2prOU1hVzBpelBkR1RLWWdXb3kzMFprUEhubkhBc3FaWHlCZVRfbW1ZLUJrcVNKODZFRXo0bmllTkZ1QXJnMjlqeFZuUVZ2bkNMX1lMV3lJcUZFYkFjWW1JWkx4S3UxdkRuM0Y1UGJzZ0dfOFpqVXcxUG1SMmczTGd1WWFXc2VBaUlIUHdyVnZXNA?oc=5",
-    "published": "Wed, 18 Nov 2026 21:58:09 GMT",
-    "publisher": "Coinpedia",
+    "headline": "BTC price range on Nov 19, 2026 at 12am EST Prediction Market - Robinhood",
+    "url": "https://news.google.com/rss/articles/CBMitwFBVV95cUxOd3o0LUxmQ3g4a0VzZUNUMk5KRmdBRXBBRFRlMTlZNnB3eGc2alVzNGJIOXlaTktjcUFRcUhhRlpsWEYzdGs0WHcwTjMxcEd1a3g5cXlSRDI0RUlZcHh3dmNMc24yendadzBhTmFPd1Nid2ZHR013NnRsaEpMMGhFMjZzcVNXQ01pMjFpem5QMXUzenEwd3BhRENCMWdRSU42YTIzSWs0S1pBZmJLUWZSbHkwdGNkbVU?oc=5",
+    "published": "Thu, 19 Nov 2026 04:20:43 GMT",
+    "publisher": "Robinhood",
+    "via": "Google News RSS"
+   }
+  },
+  {
+   "date": "2026-11-19",
+   "window": "24h",
+   "source": "polymarket",
+   "group": "BTC",
+   "market": "BTC price targets hit in 2026",
+   "outcome": "↓ 55,000",
+   "question": "Will Bitcoin dip to $55,000 by December 31, 2026?",
+   "url": "https://polymarket.com/event/what-price-will-bitcoin-hit-before-2027",
+   "from": 0.285,
+   "to": 0.385,
+   "change_pts": 10.0,
+   "from_date": "2026-11-18",
+   "news": {
+    "headline": "BTC price range on Nov 19, 2026 at 12am EST Prediction Market - Robinhood",
+    "url": "https://news.google.com/rss/articles/CBMitwFBVV95cUxOd3o0LUxmQ3g4a0VzZUNUMk5KRmdBRXBBRFRlMTlZNnB3eGc2alVzNGJIOXlaTktjcUFRcUhhRlpsWEYzdGs0WHcwTjMxcEd1a3g5cXlSRDI0RUlZcHh3dmNMc24yendadzBhTmFPd1Nid2ZHR013NnRsaEpMMGhFMjZzcVNXQ01pMjFpem5QMXUzenEwd3BhRENCMWdRSU42YTIzSWs0S1pBZmJLUWZSbHkwdGNkbVU?oc=5",
+    "published": "Thu, 19 Nov 2026 04:20:43 GMT",
+    "publisher": "Robinhood",
     "via": "Google News RSS"
    }
   },
@@ -40,31 +61,10 @@
    "change_pts": 19.0,
    "from_date": "2026-11-11",
    "news": {
-    "headline": "Why is Bitcoin Price Falling Continuously and Is $58K Next? - Coinpedia",
-    "url": "https://news.google.com/rss/articles/CBMijgFBVV95cUxPWXlkUk00NEhTYWtHODZUTEhaZ01FRmg2dk9NX2l6M3RzRHN1cnJBQUE3eHpGVE8yMWJDRGNJV0x4Um9kZTRJSmtfZ0VTLWo2bnMtN19XSDN4RXhMU2hzc2dERmZfVE5IckYydmFWY3NoUjI2bGhDb1BsRGdVaUl6S3UyMGNjTnFkWk41aWlB0gGTAUFVX3lxTE5CM2prOU1hVzBpelBkR1RLWWdXb3kzMFprUEhubkhBc3FaWHlCZVRfbW1ZLUJrcVNKODZFRXo0bmllTkZ1QXJnMjlqeFZuUVZ2bkNMX1lMV3lJcUZFYkFjWW1JWkx4S3UxdkRuM0Y1UGJzZ0dfOFpqVXcxUG1SMmczTGd1WWFXc2VBaUlIUHdyVnZXNA?oc=5",
-    "published": "Wed, 18 Nov 2026 21:58:09 GMT",
-    "publisher": "Coinpedia",
-    "via": "Google News RSS"
-   }
-  },
-  {
-   "date": "2026-11-18",
-   "window": "24h",
-   "source": "polymarket",
-   "group": "BTC",
-   "market": "BTC price targets hit in 2026",
-   "outcome": "↓ 55,000",
-   "question": "Will Bitcoin dip to $55,000 by December 31, 2026?",
-   "url": "https://polymarket.com/event/what-price-will-bitcoin-hit-before-2027",
-   "from": 0.285,
-   "to": 0.395,
-   "change_pts": 11.0,
-   "from_date": "2026-11-18",
-   "news": {
-    "headline": "Why is Bitcoin Price Falling Continuously and Is $58K Next? - Coinpedia",
-    "url": "https://news.google.com/rss/articles/CBMijgFBVV95cUxPWXlkUk00NEhTYWtHODZUTEhaZ01FRmg2dk9NX2l6M3RzRHN1cnJBQUE3eHpGVE8yMWJDRGNJV0x4Um9kZTRJSmtfZ0VTLWo2bnMtN19XSDN4RXhMU2hzc2dERmZfVE5IckYydmFWY3NoUjI2bGhDb1BsRGdVaUl6S3UyMGNjTnFkWk41aWlB0gGTAUFVX3lxTE5CM2prOU1hVzBpelBkR1RLWWdXb3kzMFprUEhubkhBc3FaWHlCZVRfbW1ZLUJrcVNKODZFRXo0bmllTkZ1QXJnMjlqeFZuUVZ2bkNMX1lMV3lJcUZFYkFjWW1JWkx4S3UxdkRuM0Y1UGJzZ0dfOFpqVXcxUG1SMmczTGd1WWFXc2VBaUlIUHdyVnZXNA?oc=5",
-    "published": "Wed, 18 Nov 2026 21:58:09 GMT",
-    "publisher": "Coinpedia",
+    "headline": "BTC price range on Nov 19, 2026 at 12am EST Prediction Market - Robinhood",
+    "url": "https://news.google.com/rss/articles/CBMitwFBVV95cUxOd3o0LUxmQ3g4a0VzZUNUMk5KRmdBRXBBRFRlMTlZNnB3eGc2alVzNGJIOXlaTktjcUFRcUhhRlpsWEYzdGs0WHcwTjMxcEd1a3g5cXlSRDI0RUlZcHh3dmNMc24yendadzBhTmFPd1Nid2ZHR013NnRsaEpMMGhFMjZzcVNXQ01pMjFpem5QMXUzenEwd3BhRENCMWdRSU42YTIzSWs0S1pBZmJLUWZSbHkwdGNkbVU?oc=5",
+    "published": "Thu, 19 Nov 2026 04:20:43 GMT",
+    "publisher": "Robinhood",
     "via": "Google News RSS"
    }
   },
@@ -126,7 +126,7 @@
    "news": {
     "headline": "Current price of Bitcoin for November 16, 2026 - Fortune",
     "url": "https://news.google.com/rss/articles/CBMiZ0FVX3lxTE9nV25Edng4OEdJYUx0X2pPOEhLNGE4bnVZQm4tX1d1SVZ3Y3NFbjJpNzdERDVRQlBVSmZOU0VHWmhoWi03MWtZZHNZbHBYaHNTZ0UzRHprU05YZ18xMW04M0Nsck5NOTg?oc=5",
-    "published": "Mon, 16 Nov 2026 22:33:35 GMT",
+    "published": "Mon, 16 Nov 2026 12:45:00 GMT",
     "publisher": "Fortune",
     "via": "Google News RSS"
    }
@@ -172,48 +172,6 @@
     "publisher": "Fortune",
     "via": "Google News RSS"
    }
-  },
-  {
-   "date": "2026-11-11",
-   "window": "24h",
-   "source": "kalshi",
-   "group": "Fed",
-   "market": "Fed decision - Dec 2026",
-   "outcome": "Fed maintains rate",
-   "question": null,
-   "url": "https://kalshi.com/markets/kxfeddecision",
-   "from": 0.2,
-   "to": 0.05,
-   "change_pts": -15.0,
-   "from_date": "2026-11-10",
-   "news": {
-    "headline": "Fed Forced to Confront Case for Bigger and Faster Rate Rises - WSJ",
-    "url": "https://news.google.com/rss/articles/CBMiswFBVV95cUxPelFYdmxqTmVYeGJuX2VCMUg3MFowTVhFV25kb1NUN1Z0QUZuMnNVUmVabWhfZU1PVjVTakhlRVRzdHpvWENxd3Y4Y3RJLURrVmNYMkZ3UnpNZUx1RjJvc0xIZDFsZ0xqcDcxbDAwVHNOaUpNSkRuSW00cnVlRy1uQ1F1MjBydEtZSnNVTDJtM2xxaWFXcUcybTUzVGpoaEpSTDM5REtFQ2J0a3Z3WVEtQ25xdw?oc=5",
-    "published": "Tue, 10 Nov 2026 08:00:00 GMT",
-    "publisher": "WSJ",
-    "via": "Google News RSS"
-   }
-  },
-  {
-   "date": "2026-11-11",
-   "window": "24h",
-   "source": "polymarket",
-   "group": "Fed",
-   "market": "Fed decision - Dec 9",
-   "outcome": "No change",
-   "question": "Will there be no change in Fed interest rates after the December 2026 meeting?",
-   "url": "https://polymarket.com/event/fed-decision-in-december-20260729232808632",
-   "from": 0.185,
-   "to": 0.0365,
-   "change_pts": -14.8,
-   "from_date": "2026-11-10",
-   "news": {
-    "headline": "Fed Forced to Confront Case for Bigger and Faster Rate Rises - WSJ",
-    "url": "https://news.google.com/rss/articles/CBMiswFBVV95cUxPelFYdmxqTmVYeGJuX2VCMUg3MFowTVhFV25kb1NUN1Z0QUZuMnNVUmVabWhfZU1PVjVTakhlRVRzdHpvWENxd3Y4Y3RJLURrVmNYMkZ3UnpNZUx1RjJvc0xIZDFsZ0xqcDcxbDAwVHNOaUpNSkRuSW00cnVlRy1uQ1F1MjBydEtZSnNVTDJtM2xxaWFXcUcybTUzVGpoaEpSTDM5REtFQ2J0a3Z3WVEtQ25xdw?oc=5",
-    "published": "Tue, 10 Nov 2026 08:00:00 GMT",
-    "publisher": "WSJ",
-    "via": "Google News RSS"
-   }
   }
  ],
  "summary": [
@@ -224,11 +182,11 @@
    "odds": [
     {
      "outcome": "↑ 100,000",
-     "yes": 0.0225
+     "yes": 0.0235
     },
     {
      "outcome": "↓ 55,000",
-     "yes": 0.395
+     "yes": 0.385
     }
    ]
   },
@@ -262,5 +220,5 @@
    "odds": []
   }
  ],
- "generated_utc": "2026-11-18T23:25:20+00:00"
+ "generated_utc": "2026-11-19T04:25:20+00:00"
 }
