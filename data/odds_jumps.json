@@ -15,8 +15,8 @@
    "question": "Will Bitcoin dip to $55,000 by December 31, 2026?",
    "url": "https://polymarket.com/event/what-price-will-bitcoin-hit-before-2027",
    "from": 0.135,
-   "to": 0.605,
-   "change_pts": 47.0,
+   "to": 0.635,
+   "change_pts": 50.0,
    "from_date": "2026-11-13",
    "news": {
     "headline": "Bitcoin's regulation bull case is played out. What could drive crypto gains moving forward - CNBC",
@@ -57,8 +57,8 @@
    "question": "Will Bitcoin dip to $55,000 by December 31, 2026?",
    "url": "https://polymarket.com/event/what-price-will-bitcoin-hit-before-2027",
    "from": 0.445,
-   "to": 0.605,
-   "change_pts": 16.0,
+   "to": 0.635,
+   "change_pts": 19.0,
    "from_date": "2026-11-20",
    "news": {
     "headline": "Bitcoin's regulation bull case is played out. What could drive crypto gains moving forward - CNBC",
@@ -82,10 +82,10 @@
    "change_pts": 10.0,
    "from_date": "2026-11-18",
    "news": {
-    "headline": "Can Bitcoin Reach Standard Chartered’s $500,000 Target by 2030? - Yahoo Finance",
-    "url": "https://news.google.com/rss/articles/CBMiowFBVV95cUxNYm5nUW15VjRuZzRBZ3FDX0dGOHJyaUhVYkF6Nl9LQkZoWmJuQzBoaE9hWmNmWlQtY1hyV2dOYk8tbGh2ME9aSWFnMU1KZno0QXNBSk5idHpmZnkyYVdVWl9fbTVKMUJMVXJkbjhGWVMxU1FKRk9teXBNaWNrRzQ0M2lHVTR0cU91OXdpRFhndFVwYXQyQXBSbHJreWROVlhjemFJ?oc=5",
-    "published": "Thu, 19 Nov 2026 21:03:25 GMT",
-    "publisher": "Yahoo Finance",
+    "headline": "Current price of Bitcoin for November 19, 2026 - Fortune",
+    "url": "https://news.google.com/rss/articles/CBMiZ0FVX3lxTFBaemM4RjBCT0VwNHVnZkdTTUFBVjJoMkQwOW1VMnlhNHJJVnVlbVlQTW1feFZ3SFotcTc3VDE3MnkwNnFyMmFLUkF6cTdSM2tiOUZvdE1GUnZpQ2RiMWVKemNZV1RvSDQ?oc=5",
+    "published": "Thu, 19 Nov 2026 12:00:00 GMT",
+    "publisher": "Fortune",
     "via": "Google News RSS"
    }
   },
@@ -207,7 +207,7 @@
     },
     {
      "outcome": "↓ 55,000",
-     "yes": 0.605
+     "yes": 0.635
     }
    ]
   },
@@ -241,5 +241,5 @@
    "odds": []
   }
  ],
- "generated_utc": "2026-11-20T16:49:35+00:00"
+ "generated_utc": "2026-11-20T21:50:06+00:00"
 }
