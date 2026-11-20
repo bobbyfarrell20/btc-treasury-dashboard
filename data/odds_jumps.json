@@ -15,8 +15,8 @@
    "question": "Will Bitcoin dip to $55,000 by December 31, 2026?",
    "url": "https://polymarket.com/event/what-price-will-bitcoin-hit-before-2027",
    "from": 0.135,
-   "to": 0.455,
-   "change_pts": 32.0,
+   "to": 0.515,
+   "change_pts": 38.0,
    "from_date": "2026-11-13",
    "news": {
     "headline": "Bitcoin Price Has Never Had Two Red Years in a Row: 4-Year Cycle Broken? - Yahoo Finance",
@@ -165,13 +165,7 @@
    "to": 0.21,
    "change_pts": 10.0,
    "from_date": "2026-11-12",
-   "news": {
-    "headline": "Current price of Bitcoin for November 13, 2026 - Fortune",
-    "url": "https://news.google.com/rss/articles/CBMiZ0FVX3lxTFA3SmQxZ1EyU2VheHYzYmZZWm11N3R0ZmNKOEtUcVJSLXVyTDkxWERDb3pxMkhuZm9GMzJQeHUwbmlreXJjdUJTYkdlUEZ2U0Zxc25EbC1JSndUOENZMk9NY3BrRzBVQms?oc=5",
-    "published": "Fri, 13 Nov 2026 13:30:00 GMT",
-    "publisher": "Fortune",
-    "via": "Google News RSS"
-   }
+   "news": null
   }
  ],
  "summary": [
@@ -186,7 +180,7 @@
     },
     {
      "outcome": "↓ 55,000",
-     "yes": 0.455
+     "yes": 0.535
     }
    ]
   },
@@ -220,5 +214,5 @@
    "odds": []
   }
  ],
- "generated_utc": "2026-11-20T14:52:51+00:00"
+ "generated_utc": "2026-11-20T15:28:05+00:00"
 }
