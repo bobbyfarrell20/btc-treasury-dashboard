@@ -15,14 +15,14 @@
    "question": "Will Bitcoin dip to $55,000 by December 31, 2026?",
    "url": "https://polymarket.com/event/what-price-will-bitcoin-hit-before-2027",
    "from": 0.135,
-   "to": 0.515,
-   "change_pts": 38.0,
+   "to": 0.605,
+   "change_pts": 47.0,
    "from_date": "2026-11-13",
    "news": {
-    "headline": "Bitcoin Price Has Never Had Two Red Years in a Row: 4-Year Cycle Broken? - Yahoo Finance",
-    "url": "https://news.google.com/rss/articles/CBMilwFBVV95cUxPWXRfdk1IUDF5TXN5b0pmN2RGUkZGZTNuRk9ORlFHRHJYaVhaaENkamFOT0NXTEVSUVVUc3dNSzlWcEx5aGR2Ukt5eU10MHpEekRFTmg2Q2t2T3ltLTRWazFFaEVnS0laVVdMNGMzc1phendQRzAzby1OVTQzbE1POHdOWXRXeG5LYUd0WENKTkFQV3Q4cGZR?oc=5",
-    "published": "Fri, 20 Nov 2026 09:32:40 GMT",
-    "publisher": "Yahoo Finance",
+    "headline": "Bitcoin's regulation bull case is played out. What could drive crypto gains moving forward - CNBC",
+    "url": "https://news.google.com/rss/articles/CBMijAFBVV95cUxQWmZadko1d2NDa3h3cVJUNGZTbHZjcUZGd1ZNYkxOWlBwLWd3Rk9KcHFuVWdVcUVWMUVNQW5iSklCZkEtaC13bGZWZlpKQl9JUmNzSlFBdjViaGZENDBGdWU2Z3FPQk5hZGRNUlVmckQ2aUtOWkIxQlhVa1AwVXFkd2JkYVVva2czQk1NUtIBkgFBVV95cUxPWHg0Ym8yVHNqV2lITW81aDhBSzZyN2M4ekMzelRIQ003YVVGZWkxRjhHMGl1TXBoVWEwUnF0aG9zZ0JFTnFjWWxjQWFnWVhiS2Y3R3ZfallHd2RwczdSQWFoaDYtdmxKSVRiX2ZNeHJqcGVTdldlcjQ3RHpqQWlOVFpjOHU3NHNCWjEzaGZmbFdkdw?oc=5",
+    "published": "Fri, 20 Nov 2026 14:29:45 GMT",
+    "publisher": "CNBC",
     "via": "Google News RSS"
    }
   },
@@ -40,10 +40,31 @@
    "change_pts": 24.0,
    "from_date": "2026-11-13",
    "news": {
-    "headline": "Bitcoin Price Has Never Had Two Red Years in a Row: 4-Year Cycle Broken? - Yahoo Finance",
-    "url": "https://news.google.com/rss/articles/CBMilwFBVV95cUxPWXRfdk1IUDF5TXN5b0pmN2RGUkZGZTNuRk9ORlFHRHJYaVhaaENkamFOT0NXTEVSUVVUc3dNSzlWcEx5aGR2Ukt5eU10MHpEekRFTmg2Q2t2T3ltLTRWazFFaEVnS0laVVdMNGMzc1phendQRzAzby1OVTQzbE1POHdOWXRXeG5LYUd0WENKTkFQV3Q4cGZR?oc=5",
-    "published": "Fri, 20 Nov 2026 09:32:40 GMT",
-    "publisher": "Yahoo Finance",
+    "headline": "Bitcoin's regulation bull case is played out. What could drive crypto gains moving forward - CNBC",
+    "url": "https://news.google.com/rss/articles/CBMijAFBVV95cUxQWmZadko1d2NDa3h3cVJUNGZTbHZjcUZGd1ZNYkxOWlBwLWd3Rk9KcHFuVWdVcUVWMUVNQW5iSklCZkEtaC13bGZWZlpKQl9JUmNzSlFBdjViaGZENDBGdWU2Z3FPQk5hZGRNUlVmckQ2aUtOWkIxQlhVa1AwVXFkd2JkYVVva2czQk1NUtIBkgFBVV95cUxPWHg0Ym8yVHNqV2lITW81aDhBSzZyN2M4ekMzelRIQ003YVVGZWkxRjhHMGl1TXBoVWEwUnF0aG9zZ0JFTnFjWWxjQWFnWVhiS2Y3R3ZfallHd2RwczdSQWFoaDYtdmxKSVRiX2ZNeHJqcGVTdldlcjQ3RHpqQWlOVFpjOHU3NHNCWjEzaGZmbFdkdw?oc=5",
+    "published": "Fri, 20 Nov 2026 14:29:45 GMT",
+    "publisher": "CNBC",
+    "via": "Google News RSS"
+   }
+  },
+  {
+   "date": "2026-11-20",
+   "window": "24h",
+   "source": "polymarket",
+   "group": "BTC",
+   "market": "BTC price targets hit in 2026",
+   "outcome": "↓ 55,000",
+   "question": "Will Bitcoin dip to $55,000 by December 31, 2026?",
+   "url": "https://polymarket.com/event/what-price-will-bitcoin-hit-before-2027",
+   "from": 0.445,
+   "to": 0.605,
+   "change_pts": 16.0,
+   "from_date": "2026-11-20",
+   "news": {
+    "headline": "Bitcoin's regulation bull case is played out. What could drive crypto gains moving forward - CNBC",
+    "url": "https://news.google.com/rss/articles/CBMijAFBVV95cUxQWmZadko1d2NDa3h3cVJUNGZTbHZjcUZGd1ZNYkxOWlBwLWd3Rk9KcHFuVWdVcUVWMUVNQW5iSklCZkEtaC13bGZWZlpKQl9JUmNzSlFBdjViaGZENDBGdWU2Z3FPQk5hZGRNUlVmckQ2aUtOWkIxQlhVa1AwVXFkd2JkYVVva2czQk1NUtIBkgFBVV95cUxPWHg0Ym8yVHNqV2lITW81aDhBSzZyN2M4ekMzelRIQ003YVVGZWkxRjhHMGl1TXBoVWEwUnF0aG9zZ0JFTnFjWWxjQWFnWVhiS2Y3R3ZfallHd2RwczdSQWFoaDYtdmxKSVRiX2ZNeHJqcGVTdldlcjQ3RHpqQWlOVFpjOHU3NHNCWjEzaGZmbFdkdw?oc=5",
+    "published": "Fri, 20 Nov 2026 14:29:45 GMT",
+    "publisher": "CNBC",
     "via": "Google News RSS"
    }
   },
@@ -61,10 +82,10 @@
    "change_pts": 10.0,
    "from_date": "2026-11-18",
    "news": {
-    "headline": "Bitcoin BTC (BTC-USD) Live Price, News, Chart and Price History - Yahoo Finance Singapore",
-    "url": "https://news.google.com/rss/articles/CBMiVkFVX3lxTE5yOVM0ZTRBWjRWRW9KcFF1czB4bV9VbHNOYnZqSTRlXzk2SHBHTEo5RnIzR0xkNklES1Z6ZnZZSTRhM2tjZEFnQ3VEd1BCUDFPcFRBSlhB?oc=5",
-    "published": "Fri, 20 Nov 2026 06:51:45 GMT",
-    "publisher": "Yahoo Finance Singapore",
+    "headline": "Can Bitcoin Reach Standard Chartered’s $500,000 Target by 2030? - Yahoo Finance",
+    "url": "https://news.google.com/rss/articles/CBMiowFBVV95cUxNYm5nUW15VjRuZzRBZ3FDX0dGOHJyaUhVYkF6Nl9LQkZoWmJuQzBoaE9hWmNmWlQtY1hyV2dOYk8tbGh2ME9aSWFnMU1KZno0QXNBSk5idHpmZnkyYVdVWl9fbTVKMUJMVXJkbjhGWVMxU1FKRk9teXBNaWNrRzQ0M2lHVTR0cU91OXdpRFhndFVwYXQyQXBSbHJreWROVlhjemFJ?oc=5",
+    "published": "Thu, 19 Nov 2026 21:03:25 GMT",
+    "publisher": "Yahoo Finance",
     "via": "Google News RSS"
    }
   },
@@ -165,7 +186,13 @@
    "to": 0.21,
    "change_pts": 10.0,
    "from_date": "2026-11-12",
-   "news": null
+   "news": {
+    "headline": "Current price of Bitcoin for November 13, 2026 - Fortune",
+    "url": "https://news.google.com/rss/articles/CBMiZ0FVX3lxTFA3SmQxZ1EyU2VheHYzYmZZWm11N3R0ZmNKOEtUcVJSLXVyTDkxWERDb3pxMkhuZm9GMzJQeHUwbmlreXJjdUJTYkdlUEZ2U0Zxc25EbC1JSndUOENZMk9NY3BrRzBVQms?oc=5",
+    "published": "Fri, 13 Nov 2026 13:30:00 GMT",
+    "publisher": "Fortune",
+    "via": "Google News RSS"
+   }
   }
  ],
  "summary": [
@@ -176,11 +203,11 @@
    "odds": [
     {
      "outcome": "↑ 100,000",
-     "yes": 0.0215
+     "yes": 0.0205
     },
     {
      "outcome": "↓ 55,000",
-     "yes": 0.535
+     "yes": 0.605
     }
    ]
   },
@@ -214,5 +241,5 @@
    "odds": []
   }
  ],
- "generated_utc": "2026-11-20T15:28:05+00:00"
+ "generated_utc": "2026-11-20T16:49:35+00:00"
 }
