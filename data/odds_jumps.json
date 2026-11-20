@@ -6,7 +6,7 @@
  },
  "jumps": [
   {
-   "date": "2026-11-19",
+   "date": "2026-11-20",
    "window": "7d",
    "source": "polymarket",
    "group": "BTC",
@@ -14,17 +14,11 @@
    "outcome": "↓ 55,000",
    "question": "Will Bitcoin dip to $55,000 by December 31, 2026?",
    "url": "https://polymarket.com/event/what-price-will-bitcoin-hit-before-2027",
-   "from": 0.105,
+   "from": 0.135,
    "to": 0.455,
-   "change_pts": 35.0,
-   "from_date": "2026-11-12",
-   "news": {
-    "headline": "Current price of Bitcoin for November 19, 2026 - Fortune",
-    "url": "https://news.google.com/rss/articles/CBMiZ0FVX3lxTFBaemM4RjBCT0VwNHVnZkdTTUFBVjJoMkQwOW1VMnlhNHJJVnVlbVlQTW1feFZ3SFotcTc3VDE3MnkwNnFyMmFLUkF6cTdSM2tiOUZvdE1GUnZpQ2RiMWVKemNZV1RvSDQ?oc=5",
-    "published": "Thu, 19 Nov 2026 18:32:08 GMT",
-    "publisher": "Fortune",
-    "via": "Google News RSS"
-   }
+   "change_pts": 32.0,
+   "from_date": "2026-11-13",
+   "news": null
   },
   {
    "date": "2026-11-19",
@@ -40,10 +34,10 @@
    "change_pts": 27.0,
    "from_date": "2026-11-12",
    "news": {
-    "headline": "Current price of Bitcoin for November 19, 2026 - Fortune",
-    "url": "https://news.google.com/rss/articles/CBMiZ0FVX3lxTFBaemM4RjBCT0VwNHVnZkdTTUFBVjJoMkQwOW1VMnlhNHJJVnVlbVlQTW1feFZ3SFotcTc3VDE3MnkwNnFyMmFLUkF6cTdSM2tiOUZvdE1GUnZpQ2RiMWVKemNZV1RvSDQ?oc=5",
-    "published": "Thu, 19 Nov 2026 18:32:08 GMT",
-    "publisher": "Fortune",
+    "headline": "Bitcoin BTC (BTC-USD) Live Price, News, Chart & Price History - Yahoo! Finance Canada",
+    "url": "https://news.google.com/rss/articles/CBMiVkFVX3lxTE1HSGlGRjBhSUlQdXZtSXRJWmhTcWlLMmt2WEM2WFk0LV9Bd3BzOGNZQzJmQXJycTBZcmpSNWZiWHMzMDdzY3cyQzlKYXNYSk0tUF9MVzdB?oc=5",
+    "published": "Thu, 19 Nov 2026 21:50:19 GMT",
+    "publisher": "Yahoo! Finance Canada",
     "via": "Google News RSS"
    }
   },
@@ -61,10 +55,10 @@
    "change_pts": 10.0,
    "from_date": "2026-11-18",
    "news": {
-    "headline": "Current price of Bitcoin for November 19, 2026 - Fortune",
-    "url": "https://news.google.com/rss/articles/CBMiZ0FVX3lxTFBaemM4RjBCT0VwNHVnZkdTTUFBVjJoMkQwOW1VMnlhNHJJVnVlbVlQTW1feFZ3SFotcTc3VDE3MnkwNnFyMmFLUkF6cTdSM2tiOUZvdE1GUnZpQ2RiMWVKemNZV1RvSDQ?oc=5",
-    "published": "Thu, 19 Nov 2026 18:32:08 GMT",
-    "publisher": "Fortune",
+    "headline": "Bitcoin BTC (BTC-USD) Live Price, News, Chart & Price History - Yahoo! Finance Canada",
+    "url": "https://news.google.com/rss/articles/CBMiVkFVX3lxTE1HSGlGRjBhSUlQdXZtSXRJWmhTcWlLMmt2WEM2WFk0LV9Bd3BzOGNZQzJmQXJycTBZcmpSNWZiWHMzMDdzY3cyQzlKYXNYSk0tUF9MVzdB?oc=5",
+    "published": "Thu, 19 Nov 2026 21:50:19 GMT",
+    "publisher": "Yahoo! Finance Canada",
     "via": "Google News RSS"
    }
   },
@@ -81,13 +75,7 @@
    "to": 0.0335,
    "change_pts": -15.2,
    "from_date": "2026-11-10",
-   "news": {
-    "headline": "The Fed Just Raised Rates Again - And Another Change May Be Coming - FinanceBuzz",
-    "url": "https://news.google.com/rss/articles/CBMibEFVX3lxTE92cHNRbXB5a3pVR25fNllxNm42eVZkNzVkV3pOYzBmcXNTcHF4Vjh1MTlwUHlQa3JNREVEZWZTN1B2Z3U3My1yUDJmR3NMNk11OVFTR2h3QTRFREZLTU5ZREV6c2dKZm02ZW5fQQ?oc=5",
-    "published": "Wed, 18 Nov 2026 01:38:53 GMT",
-    "publisher": "FinanceBuzz",
-    "via": "Google News RSS"
-   }
+   "news": null
   },
   {
    "date": "2026-11-16",
@@ -102,13 +90,7 @@
    "to": 0.04,
    "change_pts": -18.0,
    "from_date": "2026-11-09",
-   "news": {
-    "headline": "How Will the Market React to a Potential Fed Rate Hike in December? Here's What History Suggests. - Yahoo Finance",
-    "url": "https://news.google.com/rss/articles/CBMinAFBVV95cUxQQ3daeDNPVnBBam5nRFZiZEltR3lUUU1iUGFLakhvVmJoLVBEbWhiUHRRcnlLcnFjMGtqWEdoOWVEd21QNlpfdzdGc0dhczNQcENxbnNpeHNyMTZtR1FkaEx6aG1RYVNuWGhKSHpFa0Z0R2RYbVNxWlhjbzNmN1RNNDE4d2hCS1h2YWtuWFhrRTJiSzhlNWUtMXZLVGg?oc=5",
-    "published": "Sun, 15 Nov 2026 12:22:00 GMT",
-    "publisher": "Yahoo Finance",
-    "via": "Google News RSS"
-   }
+   "news": null
   },
   {
    "date": "2026-11-16",
@@ -144,13 +126,7 @@
    "to": 0.32,
    "change_pts": 11.0,
    "from_date": "2026-11-14",
-   "news": {
-    "headline": "Bitcoin’s four-year cycle is about to turn bullish — if history repeats: Chart of the Day - Yahoo Finance",
-    "url": "https://news.google.com/rss/articles/CBMi5AFBVV95cUxOZnJscnVUWk1EM255N01qYlh4M2xtWkFTV0VXdDRZcU9RbWFlOWZ0ekN6MlZESUxjRlUyRUxVQ09UWWVrcTRkZDM2Ykg3d0lueTNXQ0tBOFVEekxpazZ2OVlqVGdyb2xxYnAzSGs2OFF5WXN4Qk0wdDMxNDBnejd6ZmZjOFAyNHZkY0NmS25KcWMzcXlOYTRPRFcwSGw5aTc1NmFwdVQtMDI2ZFcxdFdTZlN6aVcxb2c4azZMQkNhWklNbXZQY2xYNFI2SlowVi0tVUJVNnFNRWdONDhfSjl4UGRFa0M?oc=5",
-    "published": "Sun, 15 Nov 2026 14:17:44 GMT",
-    "publisher": "Yahoo Finance",
-    "via": "Google News RSS"
-   }
+   "news": null
   },
   {
    "date": "2026-11-13",
@@ -182,7 +158,7 @@
    "odds": [
     {
      "outcome": "↑ 100,000",
-     "yes": 0.022
+     "yes": 0.0215
     },
     {
      "outcome": "↓ 55,000",
@@ -220,5 +196,5 @@
    "odds": []
   }
  ],
- "generated_utc": "2026-11-19T23:36:53+00:00"
+ "generated_utc": "2026-11-20T04:21:10+00:00"
 }

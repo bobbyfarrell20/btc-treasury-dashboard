@@ -21,7 +21,7 @@
     "new": "STAY_BTC"
   },
   "_hash_note": "signal_hash changes when the recommendation, also_valid, any preferred peg state (on for the call = RUNNING_HOT/ON, hashed alike; WARMING_UP and COOLING_OFF hash as WATCH, STALLED as SELL; ON held by buybacks hashes as WATCH) or any overheated flag changes; last_changed is the most recent trading day it changed.",
-  "generated_utc": "2026-11-19T23:36:53+00:00",
+  "generated_utc": "2026-11-20T04:21:10+00:00",
   "as_of": "2026-11-19",
   "disclaimer": "Rules-based indicator, not financial advice.",
   "recommendation_detail": {
@@ -30,7 +30,7 @@
     "also_valid": null,
     "lean": null,
     "notes": [],
-    "rotation_z": 0.922,
+    "rotation_z": 0.917,
     "per_asset": {
       "MSTR": {
         "preferred": "STRC",
@@ -42,7 +42,7 @@
         "buyback_held": false,
         "flywheel_state": "Stalled",
         "flywheel_effect": "STRC stalled \u2192 flywheel off for MSTR",
-        "mnav_ev": 0.9774,
+        "mnav_ev": 0.975,
         "mnav_ev_pct": 0.004,
         "has_data": true
       },
@@ -56,8 +56,8 @@
         "buyback_held": false,
         "flywheel_state": "Stalled",
         "flywheel_effect": "SATA stalled \u2192 flywheel off for ASST",
-        "mnav_ev": 1.3865,
-        "mnav_ev_pct": 0.631,
+        "mnav_ev": 1.3831,
+        "mnav_ev_pct": 0.623,
         "has_data": true
       }
     }
@@ -1424,14 +1424,14 @@
         "peg_state": "SELL",
         "flywheel_code": "STALLED",
         "flywheel_state": "Stalled",
-        "mnav": 0.9774,
+        "mnav": 0.975,
         "mnav_pct_1y": 0.004,
         "zone": "CHEAP",
         "low_fair": false,
         "cheap_or_low_fair": true,
         "flywheel_cheap": false,
         "very_low_mnav": true,
-        "very_low_reason": "mNAV incl. debt & preferreds 0.98x <= 1.0x; 1y percentile 0% <= 20%",
+        "very_low_reason": "mNAV incl. debt & preferreds 0.97x <= 1.0x; 1y percentile 0% <= 20%",
         "very_low_with_peg_near_or_on": false
       },
       "ASST": {
@@ -1439,8 +1439,8 @@
         "peg_state": "SELL",
         "flywheel_code": "STALLED",
         "flywheel_state": "Stalled",
-        "mnav": 1.3865,
-        "mnav_pct_1y": 0.631,
+        "mnav": 1.3831,
+        "mnav_pct_1y": 0.623,
         "zone": "OVERVALUED",
         "low_fair": false,
         "cheap_or_low_fair": false,
@@ -1471,7 +1471,7 @@
       "btc_per_1000_diluted_shares": 0.33376
     }
   },
-  "headline": "SELL/TRIM MSTR (STRC Stalled \u2192 flywheel off for MSTR); SELL/TRIM ASST (SATA Stalled \u2192 flywheel off for ASST); DIP-BUY: BTC -19% in 10 trading days; buy MSTR (mNAV fell most)",
+  "headline": "SELL/TRIM MSTR (STRC Stalled \u2192 flywheel off for MSTR); SELL/TRIM ASST (SATA Stalled \u2192 flywheel off for ASST); DIP-BUY: BTC -18% in 10 trading days; buy MSTR (mNAV fell most)",
   "per_asset": {
     "MSTR": {
       "peg_state": "SELL",
@@ -1481,11 +1481,11 @@
       "flywheel_code": "STALLED",
       "overheated_floor": 1.25,
       "action": "SELL",
-      "mnav": 0.9774,
+      "mnav": 0.975,
       "mnav_pct_1y": 0.004,
       "overheated": false,
       "price_chg_dip_window": -0.3339,
-      "mnav_chg_dip_window": -0.0955
+      "mnav_chg_dip_window": -0.0977
     },
     "ASST": {
       "peg_state": "SELL",
@@ -1495,11 +1495,11 @@
       "flywheel_code": "STALLED",
       "overheated_floor": 1.25,
       "action": "SELL",
-      "mnav": 1.3865,
-      "mnav_pct_1y": 0.631,
+      "mnav": 1.3831,
+      "mnav_pct_1y": 0.623,
       "overheated": false,
       "price_chg_dip_window": -0.1933,
-      "mnav_chg_dip_window": 0.0851
+      "mnav_chg_dip_window": 0.0824
     }
   },
   "both_overheated": false,
@@ -1509,12 +1509,12 @@
     "target": "MSTR",
     "lookback_trading_days": 10,
     "trigger_btc_drop": 0.15,
-    "btc_change": -0.1868,
+    "btc_change": -0.1848,
     "cheapened_most": "MSTR",
     "mstr_price_change": -0.3339,
     "asst_price_change": -0.1933,
-    "mstr_mnav_change": -0.0955,
-    "asst_mnav_change": 0.0851
+    "mstr_mnav_change": -0.0977,
+    "asst_mnav_change": 0.0824
   },
   "strc_buyback_support": true,
   "buyback_support": {
@@ -1622,28 +1622,28 @@
   "values": {
     "MSTR": 86.13,
     "ASST": 16.61,
-    "btc": 61754.2305,
-    "mstr_mnav": 0.9774,
-    "asst_mnav": 1.3865,
-    "mnav_avg": 1.182,
-    "mnav_spread": 0.4091,
-    "spread_z": 0.922,
+    "btc": 61904.7617,
+    "mstr_mnav": 0.975,
+    "asst_mnav": 1.3831,
+    "mnav_avg": 1.179,
+    "mnav_spread": 0.4081,
+    "spread_z": 0.917,
     "ratio": 0.19285,
-    "mstr_mnav_basic": 0.7011,
-    "asst_mnav_basic": 0.7891,
-    "mstr_mnav_ev": 0.9774,
-    "asst_mnav_ev": 1.3865,
-    "mstr_mnav_diluted": 0.7495,
-    "asst_mnav_diluted": 0.8059,
-    "mstr_ev_m": 51353.9,
+    "mstr_mnav_basic": 0.6993,
+    "asst_mnav_basic": 0.7871,
+    "mstr_mnav_ev": 0.975,
+    "asst_mnav_ev": 1.3831,
+    "mstr_mnav_diluted": 0.7477,
+    "asst_mnav_diluted": 0.8039,
+    "mstr_ev_m": 51353.5,
     "asst_ev_m": 3716.3,
-    "btc_chg": -0.1868,
+    "btc_chg": -0.1848,
     "mstr_chg": -0.3339,
     "asst_chg": -0.1933,
-    "mstr_mnav_chg": -0.0955,
-    "asst_mnav_chg": 0.0851,
-    "mstr_nav_ps": 114.91,
-    "asst_nav_ps": 20.61
+    "mstr_mnav_chg": -0.0977,
+    "asst_mnav_chg": 0.0824,
+    "mstr_nav_ps": 115.19,
+    "asst_nav_ps": 20.66
   },
   "zone_display_labels": {
     "CHEAP": "CHEAP",
@@ -1660,7 +1660,7 @@
         "overheated": false,
         "blocks_buys": false,
         "basis": "ev",
-        "mnav": 0.9774,
+        "mnav": 0.975,
         "mnav_pct_1y": 0.004,
         "floor": 1.25,
         "percentile_min": 0.9,
@@ -1670,8 +1670,8 @@
         "rule": "overheated = mNAV >= floor AND 1y percentile >= percentile_min; the zone label (VERY RICH = floor OR 90th pct) does not block buys"
       },
       "market_standard": {
-        "mnav": 0.7011,
-        "mnav_pct_1y": 0.119,
+        "mnav": 0.6993,
+        "mnav_pct_1y": 0.115,
         "zone": "CHEAP",
         "zone_display": "CHEAP",
         "cutoffs": {
@@ -1694,7 +1694,7 @@
         }
       },
       "all_in_ev": {
-        "mnav": 0.9774,
+        "mnav": 0.975,
         "mnav_pct_1y": 0.004,
         "zone": "CHEAP",
         "zone_display": "CHEAP",
@@ -1717,16 +1717,16 @@
           "anticip_score": 0.0
         }
       },
-      "diluted_equity_mnav": 0.7495,
+      "diluted_equity_mnav": 0.7477,
       "price": 86.13,
       "btc_held": 850849.0,
-      "basic_shares": 427679090.0,
-      "debt_m": 6714.0,
-      "preferred_notional_m": 12703.9,
-      "cash_m": 4900.0,
-      "enterprise_value_m": 51353.9,
-      "btc_nav_m": 52544,
-      "btc_nav_per_basic_share": 122.86
+      "basic_shares": 427671547.0,
+      "debt_m": 6715.4,
+      "preferred_notional_m": 12704.0,
+      "cash_m": 4901.2,
+      "enterprise_value_m": 51353.5,
+      "btc_nav_m": 52672,
+      "btc_nav_per_basic_share": 123.16
     },
     "ASST": {
       "signal_basis": "ev",
@@ -1736,8 +1736,8 @@
         "overheated": false,
         "blocks_buys": false,
         "basis": "ev",
-        "mnav": 1.3865,
-        "mnav_pct_1y": 0.631,
+        "mnav": 1.3831,
+        "mnav_pct_1y": 0.623,
         "floor": 1.25,
         "percentile_min": 0.9,
         "above_floor": true,
@@ -1746,8 +1746,8 @@
         "rule": "overheated = mNAV >= floor AND 1y percentile >= percentile_min; the zone label (VERY RICH = floor OR 90th pct) does not block buys"
       },
       "market_standard": {
-        "mnav": 0.7891,
-        "mnav_pct_1y": 0.238,
+        "mnav": 0.7871,
+        "mnav_pct_1y": 0.226,
         "zone": "FAIR",
         "zone_display": "FAIR",
         "cutoffs": {
@@ -1770,8 +1770,8 @@
         }
       },
       "all_in_ev": {
-        "mnav": 1.3865,
-        "mnav_pct_1y": 0.631,
+        "mnav": 1.3831,
+        "mnav_pct_1y": 0.623,
         "zone": "OVERVALUED",
         "zone_display": "VERY RICH",
         "cutoffs": {
@@ -1793,7 +1793,7 @@
           "anticip_score": 0.0
         }
       },
-      "diluted_equity_mnav": 0.8059,
+      "diluted_equity_mnav": 0.8039,
       "price": 16.61,
       "btc_held": 43404.0,
       "basic_shares": 127331109.0,
@@ -1801,33 +1801,33 @@
       "preferred_notional_m": 2117.1,
       "cash_m": 515.8,
       "enterprise_value_m": 3716.3,
-      "btc_nav_m": 2680,
-      "btc_nav_per_basic_share": 21.05
+      "btc_nav_m": 2687,
+      "btc_nav_per_basic_share": 21.1
     },
     "spread_z": {
-      "basic": -0.206,
-      "ev": 0.922
+      "basic": -0.207,
+      "ev": 0.917
     },
     "relative_verdict": {
       "basic": "Neither is clearly cheaper vs its usual gap (spread z -0.21, within \u00b11); MSTR has the lower mNAV today (0.70x vs 0.79x)",
-      "ev": "Neither is clearly cheaper vs its usual gap (spread z +0.92, within \u00b11); MSTR has the lower mNAV today (0.98x vs 1.39x)"
+      "ev": "Neither is clearly cheaper vs its usual gap (spread z +0.92, within \u00b11); MSTR has the lower mNAV today (0.97x vs 1.38x)"
     },
     "relative_value": {
       "ev": {
         "basis": "ev",
         "lookback_trading_days": 252,
-        "mstr_mnav": 0.9774,
-        "asst_mnav": 1.3865,
+        "mstr_mnav": 0.975,
+        "asst_mnav": 1.3831,
         "ratio_now": 1.4186,
         "ratio_mean_1y": 1.1947,
         "ratio_median_1y": 1.2172,
         "ratio_sd_1y": 0.1945,
         "ratio_z": 1.151,
         "ratio_pct_1y": 0.897,
-        "diff_now": 0.4091,
-        "diff_mean_1y": 0.2107,
+        "diff_now": 0.4081,
+        "diff_mean_1y": 0.2106,
         "diff_sd_1y": 0.2153,
-        "diff_z": 0.922,
+        "diff_z": 0.917,
         "diff_pct_1y": 0.825,
         "verdict": "NORMAL",
         "verdict_text": "Spread normal",
@@ -1837,18 +1837,18 @@
       "basic": {
         "basis": "basic",
         "lookback_trading_days": 252,
-        "mstr_mnav": 0.7011,
-        "asst_mnav": 0.7891,
-        "ratio_now": 1.1255,
+        "mstr_mnav": 0.6993,
+        "asst_mnav": 0.7871,
+        "ratio_now": 1.1256,
         "ratio_mean_1y": 1.1643,
         "ratio_median_1y": 1.1764,
         "ratio_sd_1y": 0.2531,
         "ratio_z": -0.153,
         "ratio_pct_1y": 0.385,
-        "diff_now": 0.088,
+        "diff_now": 0.0878,
         "diff_mean_1y": 0.1332,
         "diff_sd_1y": 0.2189,
-        "diff_z": -0.206,
+        "diff_z": -0.207,
         "diff_pct_1y": 0.361,
         "verdict": "NORMAL",
         "verdict_text": "Spread normal",
@@ -2015,7 +2015,7 @@
   "upcoming_events_7d": [],
   "odds_jumps": [
     {
-      "date": "2026-11-19",
+      "date": "2026-11-20",
       "window": "7d",
       "source": "polymarket",
       "group": "BTC",
@@ -2023,17 +2023,11 @@
       "outcome": "\u2193 55,000",
       "question": "Will Bitcoin dip to $55,000 by December 31, 2026?",
       "url": "https://polymarket.com/event/what-price-will-bitcoin-hit-before-2027",
-      "from": 0.105,
+      "from": 0.135,
       "to": 0.455,
-      "change_pts": 35.0,
-      "from_date": "2026-11-12",
-      "news": {
-        "headline": "Current price of Bitcoin for November 19, 2026 - Fortune",
-        "url": "https://news.google.com/rss/articles/CBMiZ0FVX3lxTFBaemM4RjBCT0VwNHVnZkdTTUFBVjJoMkQwOW1VMnlhNHJJVnVlbVlQTW1feFZ3SFotcTc3VDE3MnkwNnFyMmFLUkF6cTdSM2tiOUZvdE1GUnZpQ2RiMWVKemNZV1RvSDQ?oc=5",
-        "published": "Thu, 19 Nov 2026 18:32:08 GMT",
-        "publisher": "Fortune",
-        "via": "Google News RSS"
-      }
+      "change_pts": 32.0,
+      "from_date": "2026-11-13",
+      "news": null
     },
     {
       "date": "2026-11-19",
@@ -2049,10 +2043,10 @@
       "change_pts": 27.0,
       "from_date": "2026-11-12",
       "news": {
-        "headline": "Current price of Bitcoin for November 19, 2026 - Fortune",
-        "url": "https://news.google.com/rss/articles/CBMiZ0FVX3lxTFBaemM4RjBCT0VwNHVnZkdTTUFBVjJoMkQwOW1VMnlhNHJJVnVlbVlQTW1feFZ3SFotcTc3VDE3MnkwNnFyMmFLUkF6cTdSM2tiOUZvdE1GUnZpQ2RiMWVKemNZV1RvSDQ?oc=5",
-        "published": "Thu, 19 Nov 2026 18:32:08 GMT",
-        "publisher": "Fortune",
+        "headline": "Bitcoin BTC (BTC-USD) Live Price, News, Chart & Price History - Yahoo! Finance Canada",
+        "url": "https://news.google.com/rss/articles/CBMiVkFVX3lxTE1HSGlGRjBhSUlQdXZtSXRJWmhTcWlLMmt2WEM2WFk0LV9Bd3BzOGNZQzJmQXJycTBZcmpSNWZiWHMzMDdzY3cyQzlKYXNYSk0tUF9MVzdB?oc=5",
+        "published": "Thu, 19 Nov 2026 21:50:19 GMT",
+        "publisher": "Yahoo! Finance Canada",
         "via": "Google News RSS"
       }
     },
@@ -2070,10 +2064,10 @@
       "change_pts": 10.0,
       "from_date": "2026-11-18",
       "news": {
-        "headline": "Current price of Bitcoin for November 19, 2026 - Fortune",
-        "url": "https://news.google.com/rss/articles/CBMiZ0FVX3lxTFBaemM4RjBCT0VwNHVnZkdTTUFBVjJoMkQwOW1VMnlhNHJJVnVlbVlQTW1feFZ3SFotcTc3VDE3MnkwNnFyMmFLUkF6cTdSM2tiOUZvdE1GUnZpQ2RiMWVKemNZV1RvSDQ?oc=5",
-        "published": "Thu, 19 Nov 2026 18:32:08 GMT",
-        "publisher": "Fortune",
+        "headline": "Bitcoin BTC (BTC-USD) Live Price, News, Chart & Price History - Yahoo! Finance Canada",
+        "url": "https://news.google.com/rss/articles/CBMiVkFVX3lxTE1HSGlGRjBhSUlQdXZtSXRJWmhTcWlLMmt2WEM2WFk0LV9Bd3BzOGNZQzJmQXJycTBZcmpSNWZiWHMzMDdzY3cyQzlKYXNYSk0tUF9MVzdB?oc=5",
+        "published": "Thu, 19 Nov 2026 21:50:19 GMT",
+        "publisher": "Yahoo! Finance Canada",
         "via": "Google News RSS"
       }
     },
@@ -2090,13 +2084,7 @@
       "to": 0.0335,
       "change_pts": -15.2,
       "from_date": "2026-11-10",
-      "news": {
-        "headline": "The Fed Just Raised Rates Again - And Another Change May Be Coming - FinanceBuzz",
-        "url": "https://news.google.com/rss/articles/CBMibEFVX3lxTE92cHNRbXB5a3pVR25fNllxNm42eVZkNzVkV3pOYzBmcXNTcHF4Vjh1MTlwUHlQa3JNREVEZWZTN1B2Z3U3My1yUDJmR3NMNk11OVFTR2h3QTRFREZLTU5ZREV6c2dKZm02ZW5fQQ?oc=5",
-        "published": "Wed, 18 Nov 2026 01:38:53 GMT",
-        "publisher": "FinanceBuzz",
-        "via": "Google News RSS"
-      }
+      "news": null
     },
     {
       "date": "2026-11-16",
@@ -2111,13 +2099,7 @@
       "to": 0.04,
       "change_pts": -18.0,
       "from_date": "2026-11-09",
-      "news": {
-        "headline": "How Will the Market React to a Potential Fed Rate Hike in December? Here's What History Suggests. - Yahoo Finance",
-        "url": "https://news.google.com/rss/articles/CBMinAFBVV95cUxQQ3daeDNPVnBBam5nRFZiZEltR3lUUU1iUGFLakhvVmJoLVBEbWhiUHRRcnlLcnFjMGtqWEdoOWVEd21QNlpfdzdGc0dhczNQcENxbnNpeHNyMTZtR1FkaEx6aG1RYVNuWGhKSHpFa0Z0R2RYbVNxWlhjbzNmN1RNNDE4d2hCS1h2YWtuWFhrRTJiSzhlNWUtMXZLVGg?oc=5",
-        "published": "Sun, 15 Nov 2026 12:22:00 GMT",
-        "publisher": "Yahoo Finance",
-        "via": "Google News RSS"
-      }
+      "news": null
     },
     {
       "date": "2026-11-16",
@@ -2153,13 +2135,7 @@
       "to": 0.32,
       "change_pts": 11.0,
       "from_date": "2026-11-14",
-      "news": {
-        "headline": "Bitcoin\u2019s four-year cycle is about to turn bullish \u2014 if history repeats: Chart of the Day - Yahoo Finance",
-        "url": "https://news.google.com/rss/articles/CBMi5AFBVV95cUxOZnJscnVUWk1EM255N01qYlh4M2xtWkFTV0VXdDRZcU9RbWFlOWZ0ekN6MlZESUxjRlUyRUxVQ09UWWVrcTRkZDM2Ykg3d0lueTNXQ0tBOFVEekxpazZ2OVlqVGdyb2xxYnAzSGs2OFF5WXN4Qk0wdDMxNDBnejd6ZmZjOFAyNHZkY0NmS25KcWMzcXlOYTRPRFcwSGw5aTc1NmFwdVQtMDI2ZFcxdFdTZlN6aVcxb2c4azZMQkNhWklNbXZQY2xYNFI2SlowVi0tVUJVNnFNRWdONDhfSjl4UGRFa0M?oc=5",
-        "published": "Sun, 15 Nov 2026 14:17:44 GMT",
-        "publisher": "Yahoo Finance",
-        "via": "Google News RSS"
-      }
+      "news": null
     },
     {
       "date": "2026-11-13",
@@ -2191,7 +2167,7 @@
       "odds": [
         {
           "outcome": "\u2191 100,000",
-          "yes": 0.022
+          "yes": 0.0215
         },
         {
           "outcome": "\u2193 55,000",
@@ -2237,7 +2213,7 @@
       "top": [
         {
           "outcome": "\u2193 60,000",
-          "yes": 0.815
+          "yes": 0.825
         },
         {
           "outcome": "\u2193 55,000",
@@ -2245,11 +2221,11 @@
         },
         {
           "outcome": "\u2193 50,000",
-          "yes": 0.235
+          "yes": 0.229
         },
         {
           "outcome": "\u2193 45,000",
-          "yes": 0.103
+          "yes": 0.105
         }
       ]
     },
@@ -2266,15 +2242,15 @@
       "top": [
         {
           "outcome": "25 bps increase",
-          "yes": 0.915
+          "yes": 0.925
         },
         {
           "outcome": "50+ bps increase",
-          "yes": 0.0505
+          "yes": 0.0405
         },
         {
           "outcome": "No change",
-          "yes": 0.0295
+          "yes": 0.028
         },
         {
           "outcome": "25 bps decrease",
@@ -2289,11 +2265,11 @@
       "top": [
         {
           "outcome": "0 (0 bps)",
-          "yes": 0.9835
+          "yes": 0.9825
         },
         {
           "outcome": "1 (25 bps)",
-          "yes": 0.013
+          "yes": 0.011
         },
         {
           "outcome": "2 (50 bps)",
@@ -2374,7 +2350,7 @@
       "top": [
         {
           "outcome": "Above $99,999.99",
-          "yes": 0.03
+          "yes": 0.02
         },
         {
           "outcome": "Above $109,999.99",
@@ -2385,7 +2361,7 @@
           "yes": 0.02
         },
         {
-          "outcome": "Above $129,999.99",
+          "outcome": "Above $139,999.99",
           "yes": 0.02
         }
       ]
@@ -2397,7 +2373,7 @@
       "top": [
         {
           "outcome": "Below $55,000.00",
-          "yes": 0.46
+          "yes": 0.45
         },
         {
           "outcome": "Below $50,000.00",
@@ -2405,7 +2381,7 @@
         },
         {
           "outcome": "Below $45,000.00",
-          "yes": 0.1
+          "yes": 0.12
         },
         {
           "outcome": "Below $40,000.00",
@@ -2448,16 +2424,16 @@
       "url": "https://kalshi.com/markets/kxcryptostructure",
       "top": [
         {
+          "outcome": "Before Oct 1, 2027",
+          "yes": 0.18
+        },
+        {
           "outcome": "Before Jan 1, 2028",
           "yes": 0.18
         },
         {
           "outcome": "Before Apr 1, 2027",
           "yes": 0.1
-        },
-        {
-          "outcome": "Before Oct 1, 2027",
-          "yes": 0.09
         },
         {
           "outcome": "Before Jul 1, 2027",
