@@ -15,14 +15,56 @@
    "question": "Will Bitcoin dip to $55,000 by December 31, 2026?",
    "url": "https://polymarket.com/event/what-price-will-bitcoin-hit-before-2027",
    "from": 0.185,
-   "to": 0.615,
-   "change_pts": 43.0,
+   "to": 0.875,
+   "change_pts": 69.0,
    "from_date": "2026-11-14",
    "news": {
-    "headline": "Bitcoin BTC (BTC-USD) Live Price, News, Chart & Price History - Yahoo! Finance Canada",
-    "url": "https://news.google.com/rss/articles/CBMiVkFVX3lxTE1HSGlGRjBhSUlQdXZtSXRJWmhTcWlLMmt2WEM2WFk0LV9Bd3BzOGNZQzJmQXJycTBZcmpSNWZiWHMzMDdzY3cyQzlKYXNYSk0tUF9MVzdB?oc=5",
-    "published": "Fri, 20 Nov 2026 16:54:14 GMT",
-    "publisher": "Yahoo! Finance Canada",
+    "headline": "Bitcoin (BTC) tanks below $57,000, wiping out $2.4 billion in crypto bets - CoinDesk",
+    "url": "https://news.google.com/rss/articles/CBMiwAFBVV95cUxQVXQyRVlCTU5XNjdyZDVyTnNOVTUzVGlyWHAxYk5CUm9tME1VTllrVWNaREZHVkpzRVhYX1Q0ajZMUjBiUUloMTFvNGdxRFVlNlRYVkplVEJ1em4waFRfTFVCQXRPRlBhT29NSndpNGRDcVdtbW9Cdkl2NjQxZW1NSGVRcmJhbVFMSTlveGVwOGFSdWRnUXhVUi1UVmNwTjhqTjUtUDB4Q1VIR0duRjNyLW9MN0FFQmZSbFJGeE5kVHE?oc=5",
+    "published": "Sat, 21 Nov 2026 04:24:00 GMT",
+    "publisher": "CoinDesk",
+    "via": "Google News RSS"
+   }
+  },
+  {
+   "date": "2026-11-21",
+   "window": "7d",
+   "source": "kalshi",
+   "group": "BTC",
+   "market": "How low will BTC get in 2026",
+   "outcome": "Below $55,000.00",
+   "question": null,
+   "url": "https://kalshi.com/markets/kxbtcminy",
+   "from": 0.21,
+   "to": 0.86,
+   "change_pts": 65.0,
+   "from_date": "2026-11-14",
+   "news": {
+    "headline": "Bitcoin (BTC) tanks below $57,000, wiping out $2.4 billion in crypto bets - CoinDesk",
+    "url": "https://news.google.com/rss/articles/CBMiwAFBVV95cUxQVXQyRVlCTU5XNjdyZDVyTnNOVTUzVGlyWHAxYk5CUm9tME1VTllrVWNaREZHVkpzRVhYX1Q0ajZMUjBiUUloMTFvNGdxRFVlNlRYVkplVEJ1em4waFRfTFVCQXRPRlBhT29NSndpNGRDcVdtbW9Cdkl2NjQxZW1NSGVRcmJhbVFMSTlveGVwOGFSdWRnUXhVUi1UVmNwTjhqTjUtUDB4Q1VIR0duRjNyLW9MN0FFQmZSbFJGeE5kVHE?oc=5",
+    "published": "Sat, 21 Nov 2026 04:24:00 GMT",
+    "publisher": "CoinDesk",
+    "via": "Google News RSS"
+   }
+  },
+  {
+   "date": "2026-11-21",
+   "window": "24h",
+   "source": "kalshi",
+   "group": "BTC",
+   "market": "How low will BTC get in 2026",
+   "outcome": "Below $55,000.00",
+   "question": null,
+   "url": "https://kalshi.com/markets/kxbtcminy",
+   "from": 0.45,
+   "to": 0.86,
+   "change_pts": 41.0,
+   "from_date": "2026-11-20",
+   "news": {
+    "headline": "Bitcoin (BTC) tanks below $57,000, wiping out $2.4 billion in crypto bets - CoinDesk",
+    "url": "https://news.google.com/rss/articles/CBMiwAFBVV95cUxQVXQyRVlCTU5XNjdyZDVyTnNOVTUzVGlyWHAxYk5CUm9tME1VTllrVWNaREZHVkpzRVhYX1Q0ajZMUjBiUUloMTFvNGdxRFVlNlRYVkplVEJ1em4waFRfTFVCQXRPRlBhT29NSndpNGRDcVdtbW9Cdkl2NjQxZW1NSGVRcmJhbVFMSTlveGVwOGFSdWRnUXhVUi1UVmNwTjhqTjUtUDB4Q1VIR0duRjNyLW9MN0FFQmZSbFJGeE5kVHE?oc=5",
+    "published": "Sat, 21 Nov 2026 04:24:00 GMT",
+    "publisher": "CoinDesk",
     "via": "Google News RSS"
    }
   },
@@ -35,36 +77,15 @@
    "outcome": "↓ 55,000",
    "question": "Will Bitcoin dip to $55,000 by December 31, 2026?",
    "url": "https://polymarket.com/event/what-price-will-bitcoin-hit-before-2027",
-   "from": 0.445,
-   "to": 0.615,
-   "change_pts": 17.0,
-   "from_date": "2026-11-20",
+   "from": 0.615,
+   "to": 0.875,
+   "change_pts": 26.0,
+   "from_date": "2026-11-21",
    "news": {
-    "headline": "Bitcoin BTC (BTC-USD) Live Price, News, Chart & Price History - Yahoo! Finance Canada",
-    "url": "https://news.google.com/rss/articles/CBMiVkFVX3lxTE1HSGlGRjBhSUlQdXZtSXRJWmhTcWlLMmt2WEM2WFk0LV9Bd3BzOGNZQzJmQXJycTBZcmpSNWZiWHMzMDdzY3cyQzlKYXNYSk0tUF9MVzdB?oc=5",
-    "published": "Fri, 20 Nov 2026 16:54:14 GMT",
-    "publisher": "Yahoo! Finance Canada",
-    "via": "Google News RSS"
-   }
-  },
-  {
-   "date": "2026-11-20",
-   "window": "7d",
-   "source": "kalshi",
-   "group": "BTC",
-   "market": "How low will BTC get in 2026",
-   "outcome": "Below $55,000.00",
-   "question": null,
-   "url": "https://kalshi.com/markets/kxbtcminy",
-   "from": 0.21,
-   "to": 0.45,
-   "change_pts": 24.0,
-   "from_date": "2026-11-13",
-   "news": {
-    "headline": "Bitcoin BTC (BTC-USD) Live Price, News, Chart & Price History - Yahoo! Finance Canada",
-    "url": "https://news.google.com/rss/articles/CBMiVkFVX3lxTE1HSGlGRjBhSUlQdXZtSXRJWmhTcWlLMmt2WEM2WFk0LV9Bd3BzOGNZQzJmQXJycTBZcmpSNWZiWHMzMDdzY3cyQzlKYXNYSk0tUF9MVzdB?oc=5",
-    "published": "Fri, 20 Nov 2026 16:54:14 GMT",
-    "publisher": "Yahoo! Finance Canada",
+    "headline": "Bitcoin (BTC) tanks below $57,000, wiping out $2.4 billion in crypto bets - CoinDesk",
+    "url": "https://news.google.com/rss/articles/CBMiwAFBVV95cUxQVXQyRVlCTU5XNjdyZDVyTnNOVTUzVGlyWHAxYk5CUm9tME1VTllrVWNaREZHVkpzRVhYX1Q0ajZMUjBiUUloMTFvNGdxRFVlNlRYVkplVEJ1em4waFRfTFVCQXRPRlBhT29NSndpNGRDcVdtbW9Cdkl2NjQxZW1NSGVRcmJhbVFMSTlveGVwOGFSdWRnUXhVUi1UVmNwTjhqTjUtUDB4Q1VIR0duRjNyLW9MN0FFQmZSbFJGeE5kVHE?oc=5",
+    "published": "Sat, 21 Nov 2026 04:24:00 GMT",
+    "publisher": "CoinDesk",
     "via": "Google News RSS"
    }
   },
@@ -182,11 +203,11 @@
    "odds": [
     {
      "outcome": "↑ 100,000",
-     "yes": 0.021
+     "yes": 0.0215
     },
     {
      "outcome": "↓ 55,000",
-     "yes": 0.755
+     "yes": 0.875
     }
    ]
   },
@@ -220,5 +241,5 @@
    "odds": []
   }
  ],
- "generated_utc": "2026-11-21T03:54:27+00:00"
+ "generated_utc": "2026-11-21T05:37:53+00:00"
 }

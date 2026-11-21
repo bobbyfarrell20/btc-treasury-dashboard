@@ -21,7 +21,7 @@
     "new": "STAY_BTC"
   },
   "_hash_note": "signal_hash changes when the recommendation, also_valid, any preferred peg state (on for the call = RUNNING_HOT/ON, hashed alike; WARMING_UP and COOLING_OFF hash as WATCH, STALLED as SELL; ON held by buybacks hashes as WATCH) or any overheated flag changes; last_changed is the most recent trading day it changed.",
-  "generated_utc": "2026-11-21T03:54:27+00:00",
+  "generated_utc": "2026-11-21T05:37:53+00:00",
   "as_of": "2026-11-20",
   "disclaimer": "Rules-based indicator, not financial advice.",
   "recommendation_detail": {
@@ -1619,7 +1619,7 @@
     "asst_mnav_ev": 1.3513,
     "mstr_mnav_diluted": 0.711,
     "asst_mnav_diluted": 0.7393,
-    "mstr_ev_m": 47789.6,
+    "mstr_ev_m": 47790.9,
     "asst_ev_m": 3448.9,
     "btc_chg": -0.2237,
     "mstr_chg": -0.3966,
@@ -1704,11 +1704,11 @@
       "diluted_equity_mnav": 0.711,
       "price": 77.8,
       "btc_held": 850849.0,
-      "basic_shares": 427673522.0,
-      "debt_m": 6714.0,
-      "preferred_notional_m": 12702.6,
-      "cash_m": 4900.0,
-      "enterprise_value_m": 47789.6,
+      "basic_shares": 427671547.0,
+      "debt_m": 6715.4,
+      "preferred_notional_m": 12703.8,
+      "cash_m": 4901.2,
+      "enterprise_value_m": 47790.9,
       "btc_nav_m": 50032,
       "btc_nav_per_basic_share": 116.99
     },
@@ -1842,15 +1842,24 @@
     }
   },
   "latest_big_move": {
-    "date": "2026-11-20",
-    "asset": "MSTR",
-    "change": -0.0967,
-    "close": 77.8,
-    "prev_close": 86.13,
-    "threshold": 0.07,
+    "date": "2026-11-21",
+    "asset": "BTC",
+    "change": -0.0501,
+    "close": 55855.5391,
+    "prev_close": 58802.6016,
+    "threshold": 0.04,
     "btc_change_same_day": -0.0501
   },
   "big_moves_last_30d": [
+    {
+      "date": "2026-11-21",
+      "asset": "BTC",
+      "change": -0.0501,
+      "close": 55855.5391,
+      "prev_close": 58802.6016,
+      "threshold": 0.04,
+      "btc_change_same_day": -0.0501
+    },
     {
       "date": "2026-11-20",
       "asset": "MSTR",
@@ -2017,14 +2026,56 @@
       "question": "Will Bitcoin dip to $55,000 by December 31, 2026?",
       "url": "https://polymarket.com/event/what-price-will-bitcoin-hit-before-2027",
       "from": 0.185,
-      "to": 0.615,
-      "change_pts": 43.0,
+      "to": 0.875,
+      "change_pts": 69.0,
       "from_date": "2026-11-14",
       "news": {
-        "headline": "Bitcoin BTC (BTC-USD) Live Price, News, Chart & Price History - Yahoo! Finance Canada",
-        "url": "https://news.google.com/rss/articles/CBMiVkFVX3lxTE1HSGlGRjBhSUlQdXZtSXRJWmhTcWlLMmt2WEM2WFk0LV9Bd3BzOGNZQzJmQXJycTBZcmpSNWZiWHMzMDdzY3cyQzlKYXNYSk0tUF9MVzdB?oc=5",
-        "published": "Fri, 20 Nov 2026 16:54:14 GMT",
-        "publisher": "Yahoo! Finance Canada",
+        "headline": "Bitcoin (BTC) tanks below $57,000, wiping out $2.4 billion in crypto bets - CoinDesk",
+        "url": "https://news.google.com/rss/articles/CBMiwAFBVV95cUxQVXQyRVlCTU5XNjdyZDVyTnNOVTUzVGlyWHAxYk5CUm9tME1VTllrVWNaREZHVkpzRVhYX1Q0ajZMUjBiUUloMTFvNGdxRFVlNlRYVkplVEJ1em4waFRfTFVCQXRPRlBhT29NSndpNGRDcVdtbW9Cdkl2NjQxZW1NSGVRcmJhbVFMSTlveGVwOGFSdWRnUXhVUi1UVmNwTjhqTjUtUDB4Q1VIR0duRjNyLW9MN0FFQmZSbFJGeE5kVHE?oc=5",
+        "published": "Sat, 21 Nov 2026 04:24:00 GMT",
+        "publisher": "CoinDesk",
+        "via": "Google News RSS"
+      }
+    },
+    {
+      "date": "2026-11-21",
+      "window": "7d",
+      "source": "kalshi",
+      "group": "BTC",
+      "market": "How low will BTC get in 2026",
+      "outcome": "Below $55,000.00",
+      "question": null,
+      "url": "https://kalshi.com/markets/kxbtcminy",
+      "from": 0.21,
+      "to": 0.86,
+      "change_pts": 65.0,
+      "from_date": "2026-11-14",
+      "news": {
+        "headline": "Bitcoin (BTC) tanks below $57,000, wiping out $2.4 billion in crypto bets - CoinDesk",
+        "url": "https://news.google.com/rss/articles/CBMiwAFBVV95cUxQVXQyRVlCTU5XNjdyZDVyTnNOVTUzVGlyWHAxYk5CUm9tME1VTllrVWNaREZHVkpzRVhYX1Q0ajZMUjBiUUloMTFvNGdxRFVlNlRYVkplVEJ1em4waFRfTFVCQXRPRlBhT29NSndpNGRDcVdtbW9Cdkl2NjQxZW1NSGVRcmJhbVFMSTlveGVwOGFSdWRnUXhVUi1UVmNwTjhqTjUtUDB4Q1VIR0duRjNyLW9MN0FFQmZSbFJGeE5kVHE?oc=5",
+        "published": "Sat, 21 Nov 2026 04:24:00 GMT",
+        "publisher": "CoinDesk",
+        "via": "Google News RSS"
+      }
+    },
+    {
+      "date": "2026-11-21",
+      "window": "24h",
+      "source": "kalshi",
+      "group": "BTC",
+      "market": "How low will BTC get in 2026",
+      "outcome": "Below $55,000.00",
+      "question": null,
+      "url": "https://kalshi.com/markets/kxbtcminy",
+      "from": 0.45,
+      "to": 0.86,
+      "change_pts": 41.0,
+      "from_date": "2026-11-20",
+      "news": {
+        "headline": "Bitcoin (BTC) tanks below $57,000, wiping out $2.4 billion in crypto bets - CoinDesk",
+        "url": "https://news.google.com/rss/articles/CBMiwAFBVV95cUxQVXQyRVlCTU5XNjdyZDVyTnNOVTUzVGlyWHAxYk5CUm9tME1VTllrVWNaREZHVkpzRVhYX1Q0ajZMUjBiUUloMTFvNGdxRFVlNlRYVkplVEJ1em4waFRfTFVCQXRPRlBhT29NSndpNGRDcVdtbW9Cdkl2NjQxZW1NSGVRcmJhbVFMSTlveGVwOGFSdWRnUXhVUi1UVmNwTjhqTjUtUDB4Q1VIR0duRjNyLW9MN0FFQmZSbFJGeE5kVHE?oc=5",
+        "published": "Sat, 21 Nov 2026 04:24:00 GMT",
+        "publisher": "CoinDesk",
         "via": "Google News RSS"
       }
     },
@@ -2037,36 +2088,15 @@
       "outcome": "\u2193 55,000",
       "question": "Will Bitcoin dip to $55,000 by December 31, 2026?",
       "url": "https://polymarket.com/event/what-price-will-bitcoin-hit-before-2027",
-      "from": 0.445,
-      "to": 0.615,
-      "change_pts": 17.0,
-      "from_date": "2026-11-20",
+      "from": 0.615,
+      "to": 0.875,
+      "change_pts": 26.0,
+      "from_date": "2026-11-21",
       "news": {
-        "headline": "Bitcoin BTC (BTC-USD) Live Price, News, Chart & Price History - Yahoo! Finance Canada",
-        "url": "https://news.google.com/rss/articles/CBMiVkFVX3lxTE1HSGlGRjBhSUlQdXZtSXRJWmhTcWlLMmt2WEM2WFk0LV9Bd3BzOGNZQzJmQXJycTBZcmpSNWZiWHMzMDdzY3cyQzlKYXNYSk0tUF9MVzdB?oc=5",
-        "published": "Fri, 20 Nov 2026 16:54:14 GMT",
-        "publisher": "Yahoo! Finance Canada",
-        "via": "Google News RSS"
-      }
-    },
-    {
-      "date": "2026-11-20",
-      "window": "7d",
-      "source": "kalshi",
-      "group": "BTC",
-      "market": "How low will BTC get in 2026",
-      "outcome": "Below $55,000.00",
-      "question": null,
-      "url": "https://kalshi.com/markets/kxbtcminy",
-      "from": 0.21,
-      "to": 0.45,
-      "change_pts": 24.0,
-      "from_date": "2026-11-13",
-      "news": {
-        "headline": "Bitcoin BTC (BTC-USD) Live Price, News, Chart & Price History - Yahoo! Finance Canada",
-        "url": "https://news.google.com/rss/articles/CBMiVkFVX3lxTE1HSGlGRjBhSUlQdXZtSXRJWmhTcWlLMmt2WEM2WFk0LV9Bd3BzOGNZQzJmQXJycTBZcmpSNWZiWHMzMDdzY3cyQzlKYXNYSk0tUF9MVzdB?oc=5",
-        "published": "Fri, 20 Nov 2026 16:54:14 GMT",
-        "publisher": "Yahoo! Finance Canada",
+        "headline": "Bitcoin (BTC) tanks below $57,000, wiping out $2.4 billion in crypto bets - CoinDesk",
+        "url": "https://news.google.com/rss/articles/CBMiwAFBVV95cUxQVXQyRVlCTU5XNjdyZDVyTnNOVTUzVGlyWHAxYk5CUm9tME1VTllrVWNaREZHVkpzRVhYX1Q0ajZMUjBiUUloMTFvNGdxRFVlNlRYVkplVEJ1em4waFRfTFVCQXRPRlBhT29NSndpNGRDcVdtbW9Cdkl2NjQxZW1NSGVRcmJhbVFMSTlveGVwOGFSdWRnUXhVUi1UVmNwTjhqTjUtUDB4Q1VIR0duRjNyLW9MN0FFQmZSbFJGeE5kVHE?oc=5",
+        "published": "Sat, 21 Nov 2026 04:24:00 GMT",
+        "publisher": "CoinDesk",
         "via": "Google News RSS"
       }
     },
@@ -2184,11 +2214,11 @@
       "odds": [
         {
           "outcome": "\u2191 100,000",
-          "yes": 0.021
+          "yes": 0.0215
         },
         {
           "outcome": "\u2193 55,000",
-          "yes": 0.755
+          "yes": 0.875
         }
       ]
     },
@@ -2230,19 +2260,19 @@
       "top": [
         {
           "outcome": "\u2193 55,000",
-          "yes": 0.755
+          "yes": 0.875
         },
         {
           "outcome": "\u2193 50,000",
-          "yes": 0.493
+          "yes": 0.5395
         },
         {
           "outcome": "\u2193 45,000",
-          "yes": 0.2195
+          "yes": 0.257
         },
         {
           "outcome": "\u2193 40,000",
-          "yes": 0.121
+          "yes": 0.152
         }
       ]
     },
@@ -2259,19 +2289,19 @@
       "top": [
         {
           "outcome": "25 bps increase",
-          "yes": 0.895
+          "yes": 0.885
         },
         {
           "outcome": "No change",
-          "yes": 0.086
+          "yes": 0.0845
         },
         {
           "outcome": "50+ bps increase",
-          "yes": 0.0175
+          "yes": 0.0185
         },
         {
-          "outcome": "25 bps decrease",
-          "yes": 0.0035
+          "outcome": "50+ bps decrease",
+          "yes": 0.0045
         }
       ]
     },
@@ -2316,7 +2346,7 @@
       "top": [
         {
           "outcome": "Crypto Market Structure legislation becomes law in 2026?",
-          "yes": 0.0265
+          "yes": 0.029
         }
       ]
     },
@@ -2356,7 +2386,7 @@
       "top": [
         {
           "outcome": "Will MicroStrategy be margin called in 2026?",
-          "yes": 0.05
+          "yes": 0.055
         }
       ]
     },
@@ -2366,12 +2396,12 @@
       "url": "https://kalshi.com/markets/kxbtcmaxy",
       "top": [
         {
-          "outcome": "Above $99,999.99",
+          "outcome": "Above $139,999.99",
           "yes": 0.02
         },
         {
-          "outcome": "Above $139,999.99",
-          "yes": 0.02
+          "outcome": "Above $99,999.99",
+          "yes": 0.01
         },
         {
           "outcome": "Above $199,999.99",
@@ -2390,19 +2420,19 @@
       "top": [
         {
           "outcome": "Below $55,000.00",
-          "yes": 0.76
+          "yes": 0.86
         },
         {
           "outcome": "Below $50,000.00",
-          "yes": 0.47
+          "yes": 0.52
         },
         {
           "outcome": "Below $45,000.00",
-          "yes": 0.22
+          "yes": 0.26
         },
         {
           "outcome": "Below $40,000.00",
-          "yes": 0.13
+          "yes": 0.17
         }
       ]
     },
@@ -2419,7 +2449,7 @@
       "top": [
         {
           "outcome": "Hike 25bps",
-          "yes": 0.89
+          "yes": 0.9
         },
         {
           "outcome": "Fed maintains rate",
