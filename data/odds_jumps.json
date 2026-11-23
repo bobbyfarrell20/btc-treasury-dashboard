@@ -7,27 +7,6 @@
  "jumps": [
   {
    "date": "2026-11-23",
-   "window": "24h",
-   "source": "polymarket",
-   "group": "BTC",
-   "market": "BTC price targets hit in 2026",
-   "outcome": "↓ 55,000",
-   "question": "Will Bitcoin dip to $55,000 by December 31, 2026?",
-   "url": "https://polymarket.com/event/what-price-will-bitcoin-hit-before-2027",
-   "from": 0.6,
-   "to": 0.345,
-   "change_pts": -25.5,
-   "from_date": "2026-11-22",
-   "news": {
-    "headline": "Serious U.S. Treasury Secretary Warning To The Fed Puts Bitcoin And Crypto On The Brink Of A Surprise Price Shock - Forbes",
-    "url": "https://news.google.com/rss/articles/CBMi-wFBVV95cUxQb2w0dG40TTRoWktfekRsLURMTWF6THE5Qi1BWk5zOUNhTC1lVEFOVHdhbTZYMWstbGJYRU5Vckxxekc4S1lnNERuRjVzbk5PYlFHV1F2anNQbUdocXU2V21ScXlBZl9zYklYeDBJeHIxSDJqLTJqUDd1c0VlWWp4MkFiU1FSWGtXTkRncW9uWVBIUUxaQmNlMGQ4bTBwQW4tSngzQTZLQ21PSExlcEw4VWVtTHVCdC1Sc2x5QS1HTVQ5V2YzUTB6Yy01Q2JFX1NMUU5Zc1F6Nnlsb3o4d1p4UzJfMHpUR0FHQTJkQWpNMnhEb1lHTjA4REMyMA?oc=5",
-    "published": "Mon, 23 Nov 2026 13:35:29 GMT",
-    "publisher": "Forbes",
-    "via": "Google News RSS"
-   }
-  },
-  {
-   "date": "2026-11-23",
    "window": "7d",
    "source": "polymarket",
    "group": "BTC",
@@ -71,6 +50,27 @@
   {
    "date": "2026-11-23",
    "window": "24h",
+   "source": "polymarket",
+   "group": "BTC",
+   "market": "BTC price targets hit in 2026",
+   "outcome": "↓ 55,000",
+   "question": "Will Bitcoin dip to $55,000 by December 31, 2026?",
+   "url": "https://polymarket.com/event/what-price-will-bitcoin-hit-before-2027",
+   "from": 0.6,
+   "to": 0.395,
+   "change_pts": -20.5,
+   "from_date": "2026-11-22",
+   "news": {
+    "headline": "Serious U.S. Treasury Secretary Warning To The Fed Puts Bitcoin And Crypto On The Brink Of A Surprise Price Shock - Forbes",
+    "url": "https://news.google.com/rss/articles/CBMi-wFBVV95cUxQb2w0dG40TTRoWktfekRsLURMTWF6THE5Qi1BWk5zOUNhTC1lVEFOVHdhbTZYMWstbGJYRU5Vckxxekc4S1lnNERuRjVzbk5PYlFHV1F2anNQbUdocXU2V21ScXlBZl9zYklYeDBJeHIxSDJqLTJqUDd1c0VlWWp4MkFiU1FSWGtXTkRncW9uWVBIUUxaQmNlMGQ4bTBwQW4tSngzQTZLQ21PSExlcEw4VWVtTHVCdC1Sc2x5QS1HTVQ5V2YzUTB6Yy01Q2JFX1NMUU5Zc1F6Nnlsb3o4d1p4UzJfMHpUR0FHQTJkQWpNMnhEb1lHTjA4REMyMA?oc=5",
+    "published": "Mon, 23 Nov 2026 13:35:29 GMT",
+    "publisher": "Forbes",
+    "via": "Google News RSS"
+   }
+  },
+  {
+   "date": "2026-11-23",
+   "window": "24h",
    "source": "kalshi",
    "group": "BTC",
    "market": "How low will BTC get in 2026",
@@ -103,10 +103,10 @@
    "change_pts": -20.0,
    "from_date": "2026-11-21",
    "news": {
-    "headline": "Bitcoin, XRP plunged more than 70% on Kraken, and buyers get to keep cheap coins - CoinDesk",
-    "url": "https://news.google.com/rss/articles/CBMixAFBVV95cUxONFlvOWxMWFAzZVZJVGNYazEyUlVWdzJ3V21hd1lpdnkxSXB5YkN1NXViSlJSNWwyM1BhWUg2bjc0WGRPUHhJWUw2dHh0XzJER1U4amtTS0RyVGNkdmJ6am5NWlp0QlRWdldtSGUzdWVVVDIxMDRXdnlTSmZlaTd1VW9wOFBVaFRCVXNqa0hOSXd0S2pyVUlaZGtUR3FjQ2xRd094VFF1QjlCRjE1NDhwVllydGpUd0FtWmg3ZEpLcFdpNHNj?oc=5",
-    "published": "Mon, 23 Nov 2026 05:42:22 GMT",
-    "publisher": "CoinDesk",
+    "headline": "Can Bitcoin Still Reach $1 Million by 2035? - Yahoo Finance",
+    "url": "https://news.google.com/rss/articles/CBMimgFBVV95cUxNWmx3S0dNT1ZLSU1qRk1fVDRLc0xUbW5kVEpHNkRtLU1udkhNMjNMcmJnaDVaNUcxWVhkSUpnZUc4b2taTUU3dFExVDRNYmQtVERZRU5ndi14bklyMFNKaDFnSllEU2dTYkdIbGpQNHNJdVBCaEhVeUhwR3Axa3NEeE1kb3JSQ05lNGJfSm14ZnBTUFItbGJTU253?oc=5",
+    "published": "Sun, 22 Nov 2026 21:52:57 GMT",
+    "publisher": "Yahoo Finance",
     "via": "Google News RSS"
    }
   },
@@ -229,10 +229,10 @@
    "change_pts": 13.0,
    "from_date": "2026-11-14",
    "news": {
-    "headline": "Did Bitcoin Prices Bottom at $62,000? Strategy Has Bought the Decline. - Barron's",
-    "url": "https://news.google.com/rss/articles/CBMif0FVX3lxTE0yS0RmaHF4aWFYdWEwa1Z4TmZ0dzdqM1NPR21vdTZvc3dZNlVDalJHdHROUjJEcm03V0YtdHhEdC01T0tpS0RDLWZNRFpLNWlnZVJPeXlXY3k0Tk1NNW1hUEtrOE9DaWp6OU44VGpQclQtQW9pTF9jazVRNVV2UDA?oc=5",
-    "published": "Mon, 16 Nov 2026 18:56:00 GMT",
-    "publisher": "Barron's",
+    "headline": "Current price of Bitcoin for November 16, 2026 - Fortune",
+    "url": "https://news.google.com/rss/articles/CBMiZ0FVX3lxTE9nV25Edng4OEdJYUx0X2pPOEhLNGE4bnVZQm4tX1d1SVZ3Y3NFbjJpNzdERDVRQlBVSmZOU0VHWmhoWi03MWtZZHNZbHBYaHNTZ0UzRHprU05YZ18xMW04M0Nsck5NOTg?oc=5",
+    "published": "Mon, 16 Nov 2026 12:45:00 GMT",
+    "publisher": "Fortune",
     "via": "Google News RSS"
    }
   }
@@ -245,11 +245,11 @@
    "odds": [
     {
      "outcome": "↑ 100,000",
-     "yes": 0.0245
+     "yes": 0.0255
     },
     {
      "outcome": "↓ 55,000",
-     "yes": 0.355
+     "yes": 0.395
     }
    ]
   },
@@ -283,5 +283,5 @@
    "odds": []
   }
  ],
- "generated_utc": "2026-11-23T14:51:30+00:00"
+ "generated_utc": "2026-11-23T16:35:41+00:00"
 }
