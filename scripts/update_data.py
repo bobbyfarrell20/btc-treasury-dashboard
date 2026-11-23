@@ -806,6 +806,9 @@ def main():
                     else:
                         dn = zat(v + ZBUF); z = dn if ZORD[dn] < ZORD[prev] else prev
                 r[out_k] = z
+    # ---- tiered display call (Bobby 2026-11-23, DISPLAY ONLY: recommendation / headline / signal_hash unchanged)
+    for r in rows: r["tier"] = analytics.tiers(r, r["rec"], ASSETS, CFG)
+
     def verdict(r, bs=""):
         sfx = "_" + bs if bs else ""
         z, m, s = r.get("spread_z" + sfx), r.get("mstr_mnav" + sfx), r.get("asst_mnav" + sfx)
@@ -958,7 +961,8 @@ def main():
         "flywheel": {A["preferred"]: analytics.flywheel(rows, A["preferred"], A["ticker"], pc_, FLYDETAIL.get(A["preferred"]), bars=BARS.get(A["preferred"]), atm_hist=ATM.get(A["preferred"])) for A in ASSETS},
         "btc_yield": analytics.btc_yield(rows, ASSETS, dil_from),
         "btc_yield_diluted_from": dil_from,
-        "backtest": {"btc_idle": analytics.backtest(rows, ASSETS, start, "BTC"), "cash_idle": analytics.backtest(rows, ASSETS, start, "CASH")},
+        "backtest": {"btc_idle": analytics.backtest(rows, ASSETS, start, "BTC"), "cash_idle": analytics.backtest(rows, ASSETS, start, "CASH"),
+                     "tiered_cash_idle": analytics.backtest_tiered(rows, ASSETS, start)},
         "peg_stretches": [s_ for A in ASSETS for s_ in analytics.peg_stretches(rows, A["preferred"], A["key"], A["ticker"])],
         "atm": analytics.atm_summary(fuel, prices, pc_, cap["ASST"].get("sats_shares", []), rows[-1]["date"]),
         "buy_flags": analytics.buy_flags(rows[-1], ASSETS, CFG),
@@ -1072,6 +1076,16 @@ def main():
                                    "top": sorted([{"outcome": o["outcome"], "yes": o["yes"]} for o in x.get("outcomes", []) if o.get("yes") is not None],
                                                  key=lambda o: -o["yes"])[:4]} for x in pm if not x.get("error")],
            "thresholds": {k: v for k, v in CFG.items() if k != "prediction_markets"}}
+    # ---- tiered display call (additive fields; routines keep reading recommendation / headline / signal_hash)
+    T_last = last["tier"]; th = analytics.tier_hash(T_last); tlc = None
+    for i_ in range(len(rows) - 1, 0, -1):
+        if analytics.tier_hash(rows[i_ - 1]["tier"]) != analytics.tier_hash(rows[i_]["tier"]):
+            tlc = {"date": rows[i_]["date"], "old": {t: x["tier"] for t, x in rows[i_ - 1]["tier"].items()},
+                   "new": {t: x["tier"] for t, x in rows[i_]["tier"].items()}}
+            break
+    sig.update({"tiers": T_last, "tier_sizes": analytics.tier_sizes(CFG), "tier_headline": analytics.tier_line(T_last),
+                "tier_hash": th, "tier_last_changed": tlc,
+                "_tier_note": "DISPLAY ONLY (Bobby 2026-11-23), not part of the call: recommendation, headline, headline_legacy and signal_hash are unchanged. Per stock: STRONG_BUY = in the official call (flywheel ON, not overheated) + zone CHEAP (100% of that stock's allocation); BUY = in the official call (60%); NIBBLE = CHEAP, not overheated, flywheel off for the call (25%; par held by buybacks is a caveat, not a block); otherwise WAIT (0%). tier_hash changes only when a stock's tier changes. Not yet proven: in the 2025-10-27 to 2026-11-18 backtest most of the gain came from one ASST CHEAP stretch (Feb-Apr 2026). Rules-based, not financial advice."})
     # state-change log (for monitors)
     prev = rows[-2]["sig"] if len(rows) > 1 else None
     sig["changed_since_prev_close"] = bool(prev and (prev["headline"] != last["sig"]["headline"]))
@@ -1082,8 +1096,10 @@ def main():
     cols = sorted({k for r in out_rows for k, v in r.items() if not isinstance(v, (dict, list))})
     cols = ["date"] + [c for c in cols if c != "date"]
     with open(DATA / "rows.csv", "w", newline="") as fh:
-        w = csv.writer(fh); w.writerow(cols + ["recommendation", "headline_legacy"])
-        for r in out_rows: w.writerow([r.get(c, "") for c in cols] + [r["rec"]["action"], r["sig"]["headline"]])
+        TK = [A["ticker"] for A in ASSETS]
+        w = csv.writer(fh); w.writerow(cols + ["recommendation", "headline_legacy"] + [t.lower() + "_tier" for t in TK] + [t.lower() + "_tier_w" for t in TK] + ["tier_hash"])
+        for r in out_rows: w.writerow([r.get(c, "") for c in cols] + [r["rec"]["action"], r["sig"]["headline"]]
+                                      + [r["tier"][t]["tier"] for t in TK] + [r["tier"][t]["size"] for t in TK] + [analytics.tier_hash(r["tier"])])
     # past BUY/SELL events per asset (display-only replay of the daily recommendation)
     with open(DATA / "signal_events.csv", "w", newline="") as fh:
         w = csv.writer(fh); w.writerow(["date", "asset", "signal", "all_in_mnav_ev", "held_since", "from", "to", "reason", "full_reason"])

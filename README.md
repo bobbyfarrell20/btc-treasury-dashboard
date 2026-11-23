@@ -36,6 +36,7 @@ Top to bottom:
 - **Signal-change log**: every recommendation flip (reconstructed from history, plus live entries appended by the daily job to `data/signal_log.json`) with the 1d/7d/30d moves that followed.
 - **Big moves**, **Odds jumps** (Polymarket/Kalshi moves ≥ 10 pts/day or ≥ 15 pts/7d with a likely-news headline), and **Method**.
 - **`signals.json`**: machine-readable. Includes `recommendation`, `recommendation_reason`, `also_valid`, `signal_hash` (changes whenever the action, a peg state or an overheated flag changes), `last_changed`, `last_recommendation_change`, `flywheel` and `btc_yield`, alongside the older fields (per-asset signals, valuation, dip, odds).
+- **Tiers (display only, added 2026-11-23)**: `signals.json` also has `tiers` (per stock: `tier` WAIT / NIBBLE / BUY / STRONG_BUY, `size`, `criteria`, `reason`), `tier_sizes`, `tier_headline`, `tier_hash` (changes only when a stock's tier changes) and `tier_last_changed`; `data/rows.csv` appends `mstr_tier`, `asst_tier`, `mstr_tier_w`, `asst_tier_w`, `tier_hash` after `headline_legacy`. STRONG BUY = in the official call + CHEAP (100%); BUY = in the official call (60%); NIBBLE = CHEAP, not overheated, flywheel off (25%; buyback-held par is a caveat). Tiers never change `recommendation`, `headline`, `headline_legacy` or `signal_hash`. Not yet proven: most of the backtest gain came from one ASST CHEAP stretch (Feb–Apr 2026).
 - **`data/dashboard.json` → `analytics`**: full flywheel, BTC yield, backtest, peg stretches, ATM summary and signal flips.
 
 ## Configure

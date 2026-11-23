@@ -122,6 +122,78 @@ def recommendation(r, assets, cfg):
             reason = "No flywheel ON (" + "; ".join(x["flywheel_effect"] for x in info.values()) + "): wait (no buy right now)"
     return {"action": act, "reason": reason, "also_valid": other, "lean": lean, "notes": notes, "rotation_z": z, "per_asset": info}
 
+# ---------------------------------------------------------------- tiered display call (display only)
+# Bobby 2026-11-23: WAIT / NIBBLE / BUY / STRONG BUY per stock, DISPLAY ONLY. Never changes recommendation,
+# headline, headline_legacy, signal_hash or any threshold. Research: research/tiered-buys-2026-11-23.md.
+TIER_DEFAULT = {"sizes": {"WAIT": 0.0, "NIBBLE": 0.25, "BUY": 0.60, "STRONG_BUY": 1.0}}
+TIER_LABEL = {"WAIT": "WAIT", "NIBBLE": "NIBBLE", "BUY": "BUY", "STRONG_BUY": "STRONG BUY"}
+
+def tier_sizes(cfg):
+    return {**TIER_DEFAULT["sizes"], **((cfg.get("tiers") or {}).get("sizes") or {})}
+
+def tiers(r, rec, assets, cfg):
+    """Per-stock tier from the existing signals. BUY = the stock is in today's official call (flywheel ON and not
+    overheated); STRONG_BUY = BUY + zone CHEAP; NIBBLE = zone CHEAP, not overheated, flywheel off for the call;
+    par held by the issuer's buybacks is a caveat only (does not block NIBBLE). Size = share of the cash allocated
+    to that stock."""
+    sz, act, out = tier_sizes(cfg), rec["action"], {}
+    for A in assets:
+        t, k, p = A["ticker"], A["key"], A["preferred"]
+        pa = rec["per_asset"].get(t, {})
+        v, zone = r.get(k + "_mnav"), r.get(k + "_zone")
+        in_call = act == "BUY_BOTH" or act == "BUY_" + t
+        cheap, oh = zone == "CHEAP", bool(pa.get("overheated"))
+        bb = bool(r.get("bb_" + p))
+        crit = {"cheap": cheap, "not_overheated": not oh, "flywheel_on": bool(pa.get("peg_confirmed")), "in_official_call": in_call,
+                "buyback_held_par": bb, "dip_target": (r.get("sig") or {}).get("dip_target") == t}
+        if v is None: tier = "WAIT"
+        elif in_call: tier = "STRONG_BUY" if cheap else "BUY"
+        elif cheap and not oh: tier = "NIBBLE"
+        else: tier = "WAIT"
+        bits = []
+        if v is not None: bits.append(f"{'CHEAP' if cheap else (zone or '').replace('OVERVALUED', 'VERY RICH')} {v:.2f}x")
+        if oh: bits.append("overheated")
+        bits.append("flywheel ON" if crit["flywheel_on"] else "flywheel off")
+        if bb: bits.append("buyback-held par")
+        out[t] = {"tier": tier, "label": TIER_LABEL[tier], "size": sz[tier], "mnav": v, "zone": zone, "preferred": p,
+                  "criteria": crit, "reason": ", ".join(bits)}
+    return out
+
+def tier_line(T):
+    return " \u00b7 ".join(f"{t}: {x['label']}" + (f" {round(x['size'] * 100)}%" if x["size"] else "") + (f" ({x['reason']})" if x["tier"] != "WAIT" else "")
+                            for t, x in T.items())
+
+def tier_hash(T):
+    return hashlib.sha1(json.dumps({t: x["tier"] for t, x in T.items()}, sort_keys=True).encode()).hexdigest()[:12]
+
+def backtest_tiered(rows, assets, start):
+    """Display-only reference: per-stock weight = tier size (both scaled pro rata if they sum > 1, so two BUYs =
+    50/50); idle money in cash; same timing as backtest() (call at close t executed at close t+1)."""
+    R = [r for r in rows if r["date"] >= start and r.get("tier")]
+    W = [None, None] + [{t: x["size"] for t, x in R[k - 2]["tier"].items()} for k in range(2, len(R))]
+    for w in W:
+        if w and sum(w.values()) > 1:
+            s = sum(w.values())
+            for t in w: w[t] /= s
+    c = [1.0]
+    for k in range(1, len(R)):
+        g = 0.0
+        for t, w in (W[k] or {}).items():
+            p0, p1 = R[k - 1].get(t), R[k].get(t)
+            if w and p0 and p1: g += w * (p1 / p0 - 1)
+        c.append(c[-1] * (1 + g))
+    peak, mdd = 1.0, 0.0
+    for v in c: peak = max(peak, v); mdd = min(mdd, v / peak - 1)
+    Wd = [w or {A["ticker"]: 0 for A in assets} for w in W[1:]]
+    expo = [sum(w.values()) for w in Wd]
+    days = {A["ticker"]: {tl: sum(1 for r in R if r["tier"][A["ticker"]]["tier"] == tl) for tl in TIER_LABEL} for A in assets}
+    return {"start": R[0]["date"] if R else None, "end": R[-1]["date"] if R else None, "curve": [round(v, 5) for v in c],
+            "stats": {"total_return": round(c[-1] - 1, 4), "max_drawdown": round(mdd, 4),
+                      "entries": sum(1 for A in assets for k in range(len(Wd)) if Wd[k][A["ticker"]] > 0 and (k == 0 or Wd[k - 1][A["ticker"]] == 0)),
+                      "avg_exposure": round(sum(expo) / len(expo), 3) if expo else None,
+                      "days_invested": round(sum(e > 0 for e in expo) / len(expo), 3) if expo else None},
+            "tier_days": days}
+
 # display labels (machine codes stay BUY_MSTR / BUY_ASST / STAY_BTC so hashes and history are unchanged)
 REC_LABEL = {"BUY_MSTR": "BUY MSTR", "BUY_ASST": "BUY ASST", "BUY_BOTH": "BUY BOTH", "STAY_BTC": "WAIT"}
 

@@ -234,9 +234,19 @@ details.card{margin-bottom:10px;padding:11px 14px}
 .gen{margin:4px 0 10px;font-size:12.5px;color:var(--mut);text-align:center}
 @media (max-width:760px){.enggrid{grid-template-columns:minmax(0,1fr)}.engbody{grid-template-columns:100px minmax(0,1fr)}.engbtc{font-size:28px}.engviz{max-width:110px}}
 .tb-upm{display:none}
+/* tiered display call (display only, 2026-11-23) */
+.tierline{max-width:1200px;margin:6px auto 0;padding:0 14px;font-size:12.5px;color:var(--mut);text-align:center}.tierline b{color:var(--fg)}
+.tierbox{margin:6px 0 4px;padding:6px 8px;border:1px dashed var(--line);border-radius:8px}
+.tladder{display:flex;flex-wrap:wrap;gap:4px;align-items:center}.tladder .pill{font-size:11px;padding:2px 8px;border:1px solid var(--line);background:transparent;color:var(--mut);font-weight:600}
+.tladder .pill.on.t-WAIT{background:#6e7681;border-color:#6e7681;color:#fff}.tladder .pill.on.t-NIBBLE{background:rgba(46,160,67,.22);border-color:#3fb950;color:#3fb950}
+.tladder .pill.on.t-BUY{background:#2ea043;border-color:#2ea043;color:#fff}.tladder .pill.on.t-STRONG_BUY{background:#14532d;border-color:#2ea043;color:#86efac;box-shadow:0 0 6px #2ea04388}
+[data-theme=light] .tladder .pill.on.t-NIBBLE{color:#1a7f37}
+.tladder .tsz{font-size:11.5px;color:var(--mut);margin-left:4px}.tladder .tdo{font-size:10.5px;color:var(--mut);font-style:italic;margin-left:auto}
+.tcheck{display:flex;flex-wrap:wrap;gap:2px 10px;font-size:11.5px;margin-top:4px;color:var(--mut)}.tcheck .y{color:#3fb950}.tcheck .n{color:var(--mut)}.tcheck .w{color:var(--y)}
 </style></head><body>
 <div class="topbar" id="topbar"><span class="tb-b" id="tb_btc">BTC …</span><span id="tb_rec" class="pill">…</span><span id="tb_rv"></span><span id="tb_strc"></span><span id="tb_sata"></span>
  <span class="tb-r"><span id="tb_fresh" title="data freshness"></span><button type="button" class="btn tbref" id="tbref" title="Start a fresh data run and update when the new data is published (a few minutes)" aria-label="Refresh data"><span class="ri">↻</span><span class="rl"> Refresh</span></button><span class="tbrefmsg" id="tbrefmsg" aria-live="polite"></span><button class="btn ib" id="themebtn" title="Toggle light/dark theme">☾</button></span></div>
+<div class="tierline" id="tierline"></div>
 <header class="hero"><div class="hero-in">
  <div class="brand"><div class="logo" aria-hidden="true">₿</div><div><h1>Flywheel Rotation Tracker</h1><div class="tag">MSTR vs ASST, powered by STRC &amp; SATA, with BTC as home base</div></div></div>
  <div class="tickers" id="tickers"></div></div></header>
@@ -823,6 +833,17 @@ function renderSummary(){const V=S.valuation||{},Y=A.btc_yield,bf=BFLAGS(),fw=A.
     return `<div class="sum"><div class="t">${a.ticker} <span class="note">${esc(a.name||'')}</span></div>
      <div class="row"><span>BTC yield ${Q('Change in BTC held per diluted share. Accelerating = last 30d positive and higher than the prior 30d.')} 30d <b>${yv('30d')}</b></span><span>prior 30d ${yv('prev_30d')}</span><span>90d ${yv('90d')}</span></div>
      <div>${accB(y,!!f.flywheel_on_for_call)}</div></div>`}).join('')}
+const TIERS=['WAIT','NIBBLE','BUY','STRONG_BUY'],TIERL={WAIT:'WAIT',NIBBLE:'NIBBLE',BUY:'BUY',STRONG_BUY:'STRONG BUY'};
+const TIERNOTE='Display only: tiers never change the call, recommendation or headline. Not yet proven: in the Oct 2025 – Nov 2026 backtest most of the tiered gain came from one ASST CHEAP stretch (Feb–Apr 2026); MSTR nibbling alone was flat. Rules-based, not financial advice.';
+function tierBox(t){const T=(S.tiers||{})[t];if(!T)return'';const sz=S.tier_sizes||{},c=T.criteria||{};
+  const lad=TIERS.map(k=>`<span class="pill t-${k}${k===T.tier?' on':''}" title="${TIERL[k]}: ${Math.round((sz[k]||0)*100)}% of the cash allocated to ${t}">${TIERL[k]}</span>`).join('');
+  const ck=(ok,txt,warn)=>`<span class="${warn?'w':ok?'y':'n'}">${warn?'⚠':ok?'✓':'✗'} ${txt}</span>`;
+  const items=[ck(c.cheap,'CHEAP'),ck(c.not_overheated,'not overheated'),ck(c.flywheel_on,T.preferred+' flywheel ON'),ck(c.in_official_call,'in official call')];
+  if(c.buyback_held_par)items.push(ck(false,'par held by buybacks (caveat)',true));
+  if(c.dip_target)items.push(ck(true,'dip setup names '+t));
+  return `<div class="tierbox"><div class="tladder">${lad}<span class="tsz">${Math.round((T.size||0)*100)}%</span><span class="tdo">display only ${Q('Tier rules (display only, not the call): STRONG BUY (100%) = in the official call (flywheel ON, not overheated) + CHEAP. BUY (60%) = in the official call. NIBBLE (25%) = CHEAP and not overheated while the flywheel is off; par held by buybacks is shown as a caveat, not a block. Otherwise WAIT (0%). Sizes = share of the cash allocated to that stock. '+TIERNOTE)}</span></div><div class="tcheck">${items.join('')}</div></div>`}
+function renderTiers(){const el=$('tierline');if(!el)return;if(!S.tiers){el.style.display='none';return}
+  el.style.display='';el.innerHTML=`<b>Tiers</b> <span class="note">(display only)</span>: ${esc(S.tier_headline||'')} ${Q(TIERNOTE)}`}
 function renderRec(){const R=S.recommendation_detail||{},rc=S.recommendation;
   // Banner removed from top; keep filling hidden/relocated rule nodes so routines + Signal details stay intact.
   const set=(id,fn)=>{const el=$(id);if(!el)return;fn(el)};
@@ -938,6 +959,7 @@ function renderValuation(){
     el.innerHTML=`<h2 class="tkhead"><span class="tkbig" style="color:${C[a]}">${a}</span></h2>
      ${extLine(a)}
      <div class="vflags">${fc}${vl}</div>
+     ${tierBox(a)}
      ${prim}${sec}
      <details class="sec" style="margin-top:8px"><summary>Details</summary>
      <div class="note">Signal basis: <b>${BL(sb)}</b> · cheap cap ${fmt(CAP(a),2)}x${CAPM(a)==='held'?' (held)':''}${CAPM(a)==='halving'?` (halving +${fmt(HB(a),2)})`:''}${Math.abs(CAP(a)-CAP0(a))>0.0005?` (incl. +${fmt(CAP(a)-CAP0(a),2)} anticipation)`:''} · CHEAP ≤ ${ord(Math.round(CHP(a)*100))} pct · overheated ≥ ${fmt(OHF(a),2)}x${OHT(a)}</div>
@@ -993,22 +1015,23 @@ function renderPegPerf(){const P=A.peg_stretches||[],n=P.length;
     {paper_bgcolor:t.panel,plot_bgcolor:t.bg,font:{color:t.fg,size:12},margin:{l:55,r:20,t:30,b:70},barmode:'group',legend:{orientation:'h',y:1.15},
      yaxis:{tickformat:'.0%',gridcolor:t.grid,title:'30 days after confirmation'},xaxis:{type:'category'}},{time:false})}
 // ---------- backtest
-function renderBacktest(){const B=A.backtest.btc_idle,Bc=A.backtest.cash_idle,s=B.stats,sc=Bc.stats;
+function renderBacktest(){const B=A.backtest.btc_idle,Bc=A.backtest.cash_idle,s=B.stats,sc=Bc.stats,Tt=A.backtest.tiered_cash_idle&&A.backtest.tiered_cash_idle.curve&&A.backtest.tiered_cash_idle.curve.length===B.dates.length?A.backtest.tiered_cash_idle:null;
   $('btcaveat').innerHTML=`<b>Read this first:</b> only ~1 year of history (${B.start} → ${B.end}, ${B.trading_days} trading days), most of it a falling BTC market. The thresholds were chosen after seeing this data, so this is in-sample and flatters the rules. A handful of trades (${s.rules.stock_periods} stock holding periods) decides the result. Fees, taxes, slippage and spreads are ignored. Not predictive, not financial advice.`;
   const row=(n,x,extra='')=>`<tr><td>${n}</td><td class="num"><b>${cp(x.total_return)}</b></td><td class="num">${cp(x.max_drawdown)}</td>${extra}</tr>`;
   const ti=o=>Object.entries(o.time_in).filter(([k,v])=>v>=0.005).map(([k,v])=>`${k} ${pct(v,0)}`).join(' · ');
   $('bttable').innerHTML=`<tr><th>Strategy</th><th class="num">Total return</th><th class="num">Max drawdown</th><th class="num">Switches</th><th class="num">Hit rate vs BTC ${Q('Share of stock holding periods (BUY MSTR / BUY ASST stretches) where the stock beat simply holding BTC over the same days.')}</th><th>Time in each position</th></tr>`+
     row('Rules, idle in BTC (WAIT days held in BTC)',s.rules,`<td class="num">${s.rules.switches}</td><td class="num">${s.rules.hit_rate_vs_btc==null?'—':pct(s.rules.hit_rate_vs_btc,0)} (${Math.round(s.rules.hit_rate_vs_btc*s.rules.stock_periods)}/${s.rules.stock_periods})</td><td class="note">${ti(s.rules)}</td>`)+
     row('Rules, idle in cash (0% return)',sc.rules,`<td class="num">${sc.rules.switches}</td><td class="num">${sc.rules.hit_rate_vs_btc==null?'—':pct(sc.rules.hit_rate_vs_btc,0)}</td><td class="note">${ti(sc.rules)}</td>`)+
+    (Tt?row('Tiered 25/60/100, idle in cash (display only, not the call)',Tt.stats,`<td class="num">${Tt.stats.entries} entries</td><td class="num">—</td><td class="note">invested ${pct(Tt.stats.days_invested,0)} of days · avg exposure ${pct(Tt.stats.avg_exposure,0)}</td>`):'')+
     ['BTC',...ASSETS.map(a=>a.ticker)].map(k=>row('Buy &amp; hold '+k,s['buy_hold_'+k],'<td></td><td></td><td></td>')).join('');
-  const x=B.dates,tr=[{name:'Rules (idle BTC)',x,y:B.curves.rules,line:{color:'#2ea043',width:2.6}},{name:'Rules (idle cash)',x,y:Bc.curves.rules,line:{color:'#2ea043',width:1.6,dash:'dot'}},
+  const x=B.dates,tr=[{name:'Rules (idle BTC)',x,y:B.curves.rules,line:{color:'#2ea043',width:2.6}},{name:'Rules (idle cash)',x,y:Bc.curves.rules,line:{color:'#2ea043',width:1.6,dash:'dot'}},...(Tt?[{name:'Tiered 25/60/100 (idle cash, display only)',x,y:Tt.curve,line:{color:'#86efac',width:1.6,dash:'dash'}}]:[]),
     {name:'Buy & hold BTC (baseline)',meta:'BTC',x,y:B.curves.BTC,line:{color:C.BTC,width:2}},...ASSETS.map(a=>({name:'Buy & hold '+a.ticker,meta:a.ticker,x,y:B.curves[a.ticker],line:{color:C[a.ticker],width:1.4}}))];
   const sh=[];let cur=null,s0=null;B.positions.forEach((p,i)=>{if(p!==cur){if(cur&&cur!=='BTC')sh.push({type:'rect',xref:'x',yref:'paper',x0:s0,x1:x[i],y0:0,y1:1,fillcolor:(cur==='BOTH'?'#1a7f37':C[cur])+'26',line:{width:0},layer:'below'});cur=p;s0=x[Math.max(0,i-1)]}});
   if(cur&&cur!=='BTC')sh.push({type:'rect',xref:'x',yref:'paper',x0:s0,x1:x[x.length-1],y0:0,y1:1,fillcolor:(cur==='BOTH'?'#1a7f37':C[cur])+'26',line:{width:0},layer:'below'});
   tr.forEach(t=>t.hovertemplate='%{y:.3f}');
   plot('c_bt',tr,keepRange('c_bt',baseLayout('Growth of $1',{shapes:sh.concat([hline(1,'#8b949e')])})),{hover:false});
   $('btperiods').innerHTML='<tr><th>Held</th><th>From (close)</th><th>To (close)</th><th class="num">Days</th><th class="num">Return</th><th class="num">BTC same days</th><th>Beat BTC?</th></tr>'+B.periods.map(p=>`<tr><td style="color:${C[p.position]||'inherit'}"><b>${p.position}</b></td><td>${p.from}</td><td>${p.to}</td><td class="num">${p.days}</td><td class="num">${cp(p.return)}</td><td class="num">${cp(p.btc_return)}</td><td>${p.beat_btc==null?'':p.beat_btc?'✅':'❌'}</td></tr>`).join('');
-  $('btnote').innerHTML=`Mapping: recommendation BUY MSTR → 100% MSTR; BUY ASST → 100% ASST; BUY BOTH → 50% MSTR + 50% ASST (rebalanced daily); WAIT → 100% BTC (or 100% cash in the cash variant; the backtest has to park WAIT days somewhere). The call made after the close on day t is executed at the close of day t+1 (no look-ahead), no leverage, no shorting, fees ignored. Shading = days in a stock (orange MSTR, purple ASST). BTC uses Yahoo BTC-USD daily closes on stock trading days.`}
+  $('btnote').innerHTML=`Mapping: recommendation BUY MSTR → 100% MSTR; BUY ASST → 100% ASST; BUY BOTH → 50% MSTR + 50% ASST (rebalanced daily); WAIT → 100% BTC (or 100% cash in the cash variant; the backtest has to park WAIT days somewhere). The call made after the close on day t is executed at the close of day t+1 (no look-ahead), no leverage, no shorting, fees ignored. Shading = days in a stock (orange MSTR, purple ASST). BTC uses Yahoo BTC-USD daily closes on stock trading days.${Tt?` <b>Tiered line (display only):</b> each stock's tier size (WAIT 0% · NIBBLE 25% · BUY 60% · STRONG BUY 100%, both scaled pro rata if they add up to more than 100%), idle money in cash, same timing. ${TIERNOTE}`:''}`}
 // ---------- ATM summary
 function renderAtm(){const T=A.atm,st=T.STRC,sa=T.SATA,W=[['30d','30d'],['90d','90d'],['ytd','YTD'],['1y','1y']];
   $('atm_strc').innerHTML='<tr><th></th>'+W.map(w=>`<th class="num">${w[1]}</th>`).join('')+'</tr>'+
@@ -1135,7 +1158,7 @@ function safe(n,f){try{f()}catch(e){console.warn(n,e);const el=document.getEleme
  document.querySelectorAll('details').forEach(d=>d.addEventListener('toggle',()=>{if(d.open)d.querySelectorAll('.js-plotly-plot').forEach(el=>{try{Plotly.Plots.resize(el)}catch(e){}})}));
 }catch(e){console.error(e);$('gen').textContent='Failed to load data: '+e}})();
 function renderAll(){
- for(const [n,f] of [['relative value',renderRV],['top',renderTop],['recommendation',renderRec],['chips',renderChips],['flywheel',renderFlywheel],['engines',()=>{initEngPreview();renderEngines()}],['summary',renderSummary],['kpis',renderKpis],['signals',renderSignal],['valuation',renderValuation],['yield',renderYield],['atm',renderAtm],['events',()=>{initEvents();renderEvents()}],['toggles',initToggles],['charts',()=>{renderCharts();segInit('gbasis',GB,b=>{GB=b;plotSpread()});segInit('spmode',SPM,b=>{SPM=b;plotSpread()})}],['peg performance',renderPegPerf],['backtest',renderBacktest],['signal log',renderSigLog],['big moves',renderBig],['odds',renderPM],['method',renderMethod],['csv',initCsv]])safe(n,f);
+ for(const [n,f] of [['relative value',renderRV],['top',renderTop],['tiers',renderTiers],['recommendation',renderRec],['chips',renderChips],['flywheel',renderFlywheel],['engines',()=>{initEngPreview();renderEngines()}],['summary',renderSummary],['kpis',renderKpis],['signals',renderSignal],['valuation',renderValuation],['yield',renderYield],['atm',renderAtm],['events',()=>{initEvents();renderEvents()}],['toggles',initToggles],['charts',()=>{renderCharts();segInit('gbasis',GB,b=>{GB=b;plotSpread()});segInit('spmode',SPM,b=>{SPM=b;plotSpread()})}],['peg performance',renderPegPerf],['backtest',renderBacktest],['signal log',renderSigLog],['big moves',renderBig],['odds',renderPM],['method',renderMethod],['csv',initCsv]])safe(n,f);
  linkCharts()}
 // Refresh button: starts a fresh data run, then polls the published files until a newer generated_utc appears.
 // No tokens/secrets in this page. If config.json refresh_trigger_url is set (a tiny proxy, e.g. workers/refresh-trigger,
