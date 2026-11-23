@@ -50,15 +50,15 @@
   {
    "date": "2026-11-23",
    "window": "24h",
-   "source": "kalshi",
+   "source": "polymarket",
    "group": "BTC",
-   "market": "How low will BTC get in 2026",
-   "outcome": "Below $55,000.00",
-   "question": null,
-   "url": "https://kalshi.com/markets/kxbtcminy",
-   "from": 0.66,
-   "to": 0.52,
-   "change_pts": -14.0,
+   "market": "BTC price targets hit in 2026",
+   "outcome": "↓ 55,000",
+   "question": "Will Bitcoin dip to $55,000 by December 31, 2026?",
+   "url": "https://polymarket.com/event/what-price-will-bitcoin-hit-before-2027",
+   "from": 0.6,
+   "to": 0.455,
+   "change_pts": -14.5,
    "from_date": "2026-11-22",
    "news": {
     "headline": "Bitcoin BTC (BTC-USD) Live Price, News, Chart and Price History - Yahoo Finance UK",
@@ -71,15 +71,15 @@
   {
    "date": "2026-11-23",
    "window": "24h",
-   "source": "polymarket",
+   "source": "kalshi",
    "group": "BTC",
-   "market": "BTC price targets hit in 2026",
-   "outcome": "↓ 55,000",
-   "question": "Will Bitcoin dip to $55,000 by December 31, 2026?",
-   "url": "https://polymarket.com/event/what-price-will-bitcoin-hit-before-2027",
-   "from": 0.6,
-   "to": 0.465,
-   "change_pts": -13.5,
+   "market": "How low will BTC get in 2026",
+   "outcome": "Below $55,000.00",
+   "question": null,
+   "url": "https://kalshi.com/markets/kxbtcminy",
+   "from": 0.66,
+   "to": 0.52,
+   "change_pts": -14.0,
    "from_date": "2026-11-22",
    "news": {
     "headline": "Bitcoin BTC (BTC-USD) Live Price, News, Chart and Price History - Yahoo Finance UK",
@@ -249,7 +249,7 @@
     },
     {
      "outcome": "↓ 55,000",
-     "yes": 0.47
+     "yes": 0.46
     }
    ]
   },
@@ -283,5 +283,5 @@
    "odds": []
   }
  ],
- "generated_utc": "2026-11-23T21:44:03+00:00"
+ "generated_utc": "2026-11-23T22:03:45+00:00"
 }
