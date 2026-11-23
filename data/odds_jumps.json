@@ -6,7 +6,28 @@
  },
  "jumps": [
   {
-   "date": "2026-11-22",
+   "date": "2026-11-23",
+   "window": "24h",
+   "source": "polymarket",
+   "group": "BTC",
+   "market": "BTC price targets hit in 2026",
+   "outcome": "↓ 55,000",
+   "question": "Will Bitcoin dip to $55,000 by December 31, 2026?",
+   "url": "https://polymarket.com/event/what-price-will-bitcoin-hit-before-2027",
+   "from": 0.6,
+   "to": 0.345,
+   "change_pts": -25.5,
+   "from_date": "2026-11-22",
+   "news": {
+    "headline": "Serious U.S. Treasury Secretary Warning To The Fed Puts Bitcoin And Crypto On The Brink Of A Surprise Price Shock - Forbes",
+    "url": "https://news.google.com/rss/articles/CBMi-wFBVV95cUxQb2w0dG40TTRoWktfekRsLURMTWF6THE5Qi1BWk5zOUNhTC1lVEFOVHdhbTZYMWstbGJYRU5Vckxxekc4S1lnNERuRjVzbk5PYlFHV1F2anNQbUdocXU2V21ScXlBZl9zYklYeDBJeHIxSDJqLTJqUDd1c0VlWWp4MkFiU1FSWGtXTkRncW9uWVBIUUxaQmNlMGQ4bTBwQW4tSngzQTZLQ21PSExlcEw4VWVtTHVCdC1Sc2x5QS1HTVQ5V2YzUTB6Yy01Q2JFX1NMUU5Zc1F6Nnlsb3o4d1p4UzJfMHpUR0FHQTJkQWpNMnhEb1lHTjA4REMyMA?oc=5",
+    "published": "Mon, 23 Nov 2026 13:35:29 GMT",
+    "publisher": "Forbes",
+    "via": "Google News RSS"
+   }
+  },
+  {
+   "date": "2026-11-23",
    "window": "7d",
    "source": "polymarket",
    "group": "BTC",
@@ -14,20 +35,20 @@
    "outcome": "↓ 55,000",
    "question": "Will Bitcoin dip to $55,000 by December 31, 2026?",
    "url": "https://polymarket.com/event/what-price-will-bitcoin-hit-before-2027",
-   "from": 0.185,
-   "to": 0.6,
-   "change_pts": 41.5,
-   "from_date": "2026-11-14",
+   "from": 0.315,
+   "to": 0.535,
+   "change_pts": 22.0,
+   "from_date": "2026-11-16",
    "news": {
-    "headline": "How Low Will Bitcoin Price Drop? Analysts Predict - BeInCrypto",
-    "url": "https://news.google.com/rss/articles/CBMiZEFVX3lxTE5Fc21YUXdMcGt1OEdCcE90bDAtZkxsWnItQm15RkFfVHJzSmZCa3NCTmZXbU1DT0NGTjJmbU03cVFldk5sc0E0ZmhoalBPS0FOVlo4a3dFanJDZUFzZWpST1psWE4?oc=5",
-    "published": "Sun, 22 Nov 2026 18:50:38 GMT",
-    "publisher": "BeInCrypto",
+    "headline": "Serious U.S. Treasury Secretary Warning To The Fed Puts Bitcoin And Crypto On The Brink Of A Surprise Price Shock - Forbes",
+    "url": "https://news.google.com/rss/articles/CBMi-wFBVV95cUxQb2w0dG40TTRoWktfekRsLURMTWF6THE5Qi1BWk5zOUNhTC1lVEFOVHdhbTZYMWstbGJYRU5Vckxxekc4S1lnNERuRjVzbk5PYlFHV1F2anNQbUdocXU2V21ScXlBZl9zYklYeDBJeHIxSDJqLTJqUDd1c0VlWWp4MkFiU1FSWGtXTkRncW9uWVBIUUxaQmNlMGQ4bTBwQW4tSngzQTZLQ21PSExlcEw4VWVtTHVCdC1Sc2x5QS1HTVQ5V2YzUTB6Yy01Q2JFX1NMUU5Zc1F6Nnlsb3o4d1p4UzJfMHpUR0FHQTJkQWpNMnhEb1lHTjA4REMyMA?oc=5",
+    "published": "Mon, 23 Nov 2026 13:35:29 GMT",
+    "publisher": "Forbes",
     "via": "Google News RSS"
    }
   },
   {
-   "date": "2026-11-22",
+   "date": "2026-11-23",
    "window": "7d",
    "source": "kalshi",
    "group": "BTC",
@@ -35,15 +56,36 @@
    "outcome": "Below $55,000.00",
    "question": null,
    "url": "https://kalshi.com/markets/kxbtcminy",
-   "from": 0.32,
-   "to": 0.66,
-   "change_pts": 34.0,
-   "from_date": "2026-11-15",
+   "from": 0.3,
+   "to": 0.52,
+   "change_pts": 22.0,
+   "from_date": "2026-11-16",
    "news": {
-    "headline": "How Low Will Bitcoin Price Drop? Analysts Predict - BeInCrypto",
-    "url": "https://news.google.com/rss/articles/CBMiZEFVX3lxTE5Fc21YUXdMcGt1OEdCcE90bDAtZkxsWnItQm15RkFfVHJzSmZCa3NCTmZXbU1DT0NGTjJmbU03cVFldk5sc0E0ZmhoalBPS0FOVlo4a3dFanJDZUFzZWpST1psWE4?oc=5",
-    "published": "Sun, 22 Nov 2026 18:50:38 GMT",
-    "publisher": "BeInCrypto",
+    "headline": "Serious U.S. Treasury Secretary Warning To The Fed Puts Bitcoin And Crypto On The Brink Of A Surprise Price Shock - Forbes",
+    "url": "https://news.google.com/rss/articles/CBMi-wFBVV95cUxQb2w0dG40TTRoWktfekRsLURMTWF6THE5Qi1BWk5zOUNhTC1lVEFOVHdhbTZYMWstbGJYRU5Vckxxekc4S1lnNERuRjVzbk5PYlFHV1F2anNQbUdocXU2V21ScXlBZl9zYklYeDBJeHIxSDJqLTJqUDd1c0VlWWp4MkFiU1FSWGtXTkRncW9uWVBIUUxaQmNlMGQ4bTBwQW4tSngzQTZLQ21PSExlcEw4VWVtTHVCdC1Sc2x5QS1HTVQ5V2YzUTB6Yy01Q2JFX1NMUU5Zc1F6Nnlsb3o4d1p4UzJfMHpUR0FHQTJkQWpNMnhEb1lHTjA4REMyMA?oc=5",
+    "published": "Mon, 23 Nov 2026 13:35:29 GMT",
+    "publisher": "Forbes",
+    "via": "Google News RSS"
+   }
+  },
+  {
+   "date": "2026-11-23",
+   "window": "24h",
+   "source": "kalshi",
+   "group": "BTC",
+   "market": "How low will BTC get in 2026",
+   "outcome": "Below $55,000.00",
+   "question": null,
+   "url": "https://kalshi.com/markets/kxbtcminy",
+   "from": 0.66,
+   "to": 0.52,
+   "change_pts": -14.0,
+   "from_date": "2026-11-22",
+   "news": {
+    "headline": "Serious U.S. Treasury Secretary Warning To The Fed Puts Bitcoin And Crypto On The Brink Of A Surprise Price Shock - Forbes",
+    "url": "https://news.google.com/rss/articles/CBMi-wFBVV95cUxQb2w0dG40TTRoWktfekRsLURMTWF6THE5Qi1BWk5zOUNhTC1lVEFOVHdhbTZYMWstbGJYRU5Vckxxekc4S1lnNERuRjVzbk5PYlFHV1F2anNQbUdocXU2V21ScXlBZl9zYklYeDBJeHIxSDJqLTJqUDd1c0VlWWp4MkFiU1FSWGtXTkRncW9uWVBIUUxaQmNlMGQ4bTBwQW4tSngzQTZLQ21PSExlcEw4VWVtTHVCdC1Sc2x5QS1HTVQ5V2YzUTB6Yy01Q2JFX1NMUU5Zc1F6Nnlsb3o4d1p4UzJfMHpUR0FHQTJkQWpNMnhEb1lHTjA4REMyMA?oc=5",
+    "published": "Mon, 23 Nov 2026 13:35:29 GMT",
+    "publisher": "Forbes",
     "via": "Google News RSS"
    }
   },
@@ -61,10 +103,10 @@
    "change_pts": -20.0,
    "from_date": "2026-11-21",
    "news": {
-    "headline": "How Low Will Bitcoin Price Drop? Analysts Predict - BeInCrypto",
-    "url": "https://news.google.com/rss/articles/CBMiZEFVX3lxTE5Fc21YUXdMcGt1OEdCcE90bDAtZkxsWnItQm15RkFfVHJzSmZCa3NCTmZXbU1DT0NGTjJmbU03cVFldk5sc0E0ZmhoalBPS0FOVlo4a3dFanJDZUFzZWpST1psWE4?oc=5",
-    "published": "Sun, 22 Nov 2026 18:50:38 GMT",
-    "publisher": "BeInCrypto",
+    "headline": "Bitcoin, XRP plunged more than 70% on Kraken, and buyers get to keep cheap coins - CoinDesk",
+    "url": "https://news.google.com/rss/articles/CBMixAFBVV95cUxONFlvOWxMWFAzZVZJVGNYazEyUlVWdzJ3V21hd1lpdnkxSXB5YkN1NXViSlJSNWwyM1BhWUg2bjc0WGRPUHhJWUw2dHh0XzJER1U4amtTS0RyVGNkdmJ6am5NWlp0QlRWdldtSGUzdWVVVDIxMDRXdnlTSmZlaTd1VW9wOFBVaFRCVXNqa0hOSXd0S2pyVUlaZGtUR3FjQ2xRd094VFF1QjlCRjE1NDhwVllydGpUd0FtWmg3ZEpLcFdpNHNj?oc=5",
+    "published": "Mon, 23 Nov 2026 05:42:22 GMT",
+    "publisher": "CoinDesk",
     "via": "Google News RSS"
    }
   },
@@ -84,7 +126,7 @@
    "news": {
     "headline": "Current price of Bitcoin for November 20, 2026 - Fortune",
     "url": "https://news.google.com/rss/articles/CBMiZ0FVX3lxTE5XLVJPckowN01hZzNsTnpXNEx0LTJsSklMX2lCNEstUlVWaXhtM0VGQXowTzBoODZTV244cjFuVE5VSGpLalFMOGhsRVVZQldzOEc0QVJLTll1SjUyMHNhOVBrT1dzMVk?oc=5",
-    "published": "Fri, 20 Nov 2026 21:37:46 GMT",
+    "published": "Fri, 20 Nov 2026 12:40:00 GMT",
     "publisher": "Fortune",
     "via": "Google News RSS"
    }
@@ -105,7 +147,7 @@
    "news": {
     "headline": "Current price of Bitcoin for November 20, 2026 - Fortune",
     "url": "https://news.google.com/rss/articles/CBMiZ0FVX3lxTE5XLVJPckowN01hZzNsTnpXNEx0LTJsSklMX2lCNEstUlVWaXhtM0VGQXowTzBoODZTV244cjFuVE5VSGpLalFMOGhsRVVZQldzOEc0QVJLTll1SjUyMHNhOVBrT1dzMVk?oc=5",
-    "published": "Fri, 20 Nov 2026 21:37:46 GMT",
+    "published": "Fri, 20 Nov 2026 12:40:00 GMT",
     "publisher": "Fortune",
     "via": "Google News RSS"
    }
@@ -145,10 +187,10 @@
    "change_pts": -15.2,
    "from_date": "2026-11-10",
    "news": {
-    "headline": "The Fed Just Raised Rates Again - And Another Change May Be Coming - FinanceBuzz",
-    "url": "https://news.google.com/rss/articles/CBMibEFVX3lxTE92cHNRbXB5a3pVR25fNllxNm42eVZkNzVkV3pOYzBmcXNTcHF4Vjh1MTlwUHlQa3JNREVEZWZTN1B2Z3U3My1yUDJmR3NMNk11OVFTR2h3QTRFREZLTU5ZREV6c2dKZm02ZW5fQQ?oc=5",
-    "published": "Tue, 17 Nov 2026 08:00:00 GMT",
-    "publisher": "FinanceBuzz",
+    "headline": "Fed’s Musalem Says Several Rate Hikes Likely Needed Before Spring 2027 - WSJ",
+    "url": "https://news.google.com/rss/articles/CBMivwFBVV95cUxONlE5MkU2R0ZHZmVES3lZRXd0anBhR25DRkJOcTM5UU1INjc2VXVuMTFZSG9ONE9HTUdCTGpiVnE2bTdxNmQ5a0JuZWZwVlNFM3dKc0JiZ3U4OElZRWtkLTFOU20tMGZDNVRWMFk5YjdsTzlZdkxNRGV5dl9QWjF3YW5SMV9RdVJUUGNqcmpuSzhNT25wYllhWVcwSXIzYU5acEZkRmlMbUdiQl91NXpnbG95M2NiVmdCYjVuUlFJdw?oc=5",
+    "published": "Tue, 17 Nov 2026 13:14:00 GMT",
+    "publisher": "WSJ",
     "via": "Google News RSS"
    }
   },
@@ -187,31 +229,10 @@
    "change_pts": 13.0,
    "from_date": "2026-11-14",
    "news": {
-    "headline": "Current price of Bitcoin for November 16, 2026 - Fortune",
-    "url": "https://news.google.com/rss/articles/CBMiZ0FVX3lxTE9nV25Edng4OEdJYUx0X2pPOEhLNGE4bnVZQm4tX1d1SVZ3Y3NFbjJpNzdERDVRQlBVSmZOU0VHWmhoWi03MWtZZHNZbHBYaHNTZ0UzRHprU05YZ18xMW04M0Nsck5NOTg?oc=5",
-    "published": "Mon, 16 Nov 2026 12:45:00 GMT",
-    "publisher": "Fortune",
-    "via": "Google News RSS"
-   }
-  },
-  {
-   "date": "2026-11-15",
-   "window": "24h",
-   "source": "kalshi",
-   "group": "BTC",
-   "market": "How low will BTC get in 2026",
-   "outcome": "Below $55,000.00",
-   "question": null,
-   "url": "https://kalshi.com/markets/kxbtcminy",
-   "from": 0.21,
-   "to": 0.32,
-   "change_pts": 11.0,
-   "from_date": "2026-11-14",
-   "news": {
-    "headline": "Bitcoin Price Prediction: Where Could Bitcoin Be by Year-End? - Yahoo Finance",
-    "url": "https://news.google.com/rss/articles/CBMiowFBVV95cUxNay1mV0lDVnEzVWZVZEo4MjdfVzVCYXhLQmVTMllibVlpaEE0aUxoQ0E4V3lwV3k0dkNMZzBCY1BGX1p6U2hjSkFpNm5XRDFHZ2ZNV0NXWTZ6QjRrejdRTDZqSVJxZDNGU0pzdGszTzdrelFwQVVtSWVkZWx2b2l0a3pkOHk4XzlVME9OZFJrUEJIR0VEYkRQLXlnUGU3dGdUZU9V?oc=5",
-    "published": "Sat, 14 Nov 2026 22:03:28 GMT",
-    "publisher": "Yahoo Finance",
+    "headline": "Did Bitcoin Prices Bottom at $62,000? Strategy Has Bought the Decline. - Barron's",
+    "url": "https://news.google.com/rss/articles/CBMif0FVX3lxTE0yS0RmaHF4aWFYdWEwa1Z4TmZ0dzdqM1NPR21vdTZvc3dZNlVDalJHdHROUjJEcm03V0YtdHhEdC01T0tpS0RDLWZNRFpLNWlnZVJPeXlXY3k0Tk1NNW1hUEtrOE9DaWp6OU44VGpQclQtQW9pTF9jazVRNVV2UDA?oc=5",
+    "published": "Mon, 16 Nov 2026 18:56:00 GMT",
+    "publisher": "Barron's",
     "via": "Google News RSS"
    }
   }
@@ -224,11 +245,11 @@
    "odds": [
     {
      "outcome": "↑ 100,000",
-     "yes": 0.0205
+     "yes": 0.0245
     },
     {
      "outcome": "↓ 55,000",
-     "yes": 0.555
+     "yes": 0.355
     }
    ]
   },
@@ -245,7 +266,7 @@
    "odds": [
     {
      "outcome": "Before Jan 1, 2027",
-     "yes": 0.016
+     "yes": 0.02
     }
    ]
   },
@@ -262,5 +283,5 @@
    "odds": []
   }
  ],
- "generated_utc": "2026-11-22T20:43:46+00:00"
+ "generated_utc": "2026-11-23T14:51:30+00:00"
 }
