@@ -50,15 +50,15 @@
   {
    "date": "2026-11-23",
    "window": "24h",
-   "source": "polymarket",
+   "source": "kalshi",
    "group": "BTC",
-   "market": "BTC price targets hit in 2026",
-   "outcome": "↓ 55,000",
-   "question": "Will Bitcoin dip to $55,000 by December 31, 2026?",
-   "url": "https://polymarket.com/event/what-price-will-bitcoin-hit-before-2027",
-   "from": 0.6,
-   "to": 0.395,
-   "change_pts": -20.5,
+   "market": "How low will BTC get in 2026",
+   "outcome": "Below $55,000.00",
+   "question": null,
+   "url": "https://kalshi.com/markets/kxbtcminy",
+   "from": 0.66,
+   "to": 0.52,
+   "change_pts": -14.0,
    "from_date": "2026-11-22",
    "news": {
     "headline": "Serious U.S. Treasury Secretary Warning To The Fed Puts Bitcoin And Crypto On The Brink Of A Surprise Price Shock - Forbes",
@@ -71,15 +71,15 @@
   {
    "date": "2026-11-23",
    "window": "24h",
-   "source": "kalshi",
+   "source": "polymarket",
    "group": "BTC",
-   "market": "How low will BTC get in 2026",
-   "outcome": "Below $55,000.00",
-   "question": null,
-   "url": "https://kalshi.com/markets/kxbtcminy",
-   "from": 0.66,
-   "to": 0.52,
-   "change_pts": -14.0,
+   "market": "BTC price targets hit in 2026",
+   "outcome": "↓ 55,000",
+   "question": "Will Bitcoin dip to $55,000 by December 31, 2026?",
+   "url": "https://polymarket.com/event/what-price-will-bitcoin-hit-before-2027",
+   "from": 0.6,
+   "to": 0.465,
+   "change_pts": -13.5,
    "from_date": "2026-11-22",
    "news": {
     "headline": "Serious U.S. Treasury Secretary Warning To The Fed Puts Bitcoin And Crypto On The Brink Of A Surprise Price Shock - Forbes",
@@ -103,10 +103,10 @@
    "change_pts": -20.0,
    "from_date": "2026-11-21",
    "news": {
-    "headline": "Can Bitcoin Still Reach $1 Million by 2035? - Yahoo Finance",
-    "url": "https://news.google.com/rss/articles/CBMimgFBVV95cUxNWmx3S0dNT1ZLSU1qRk1fVDRLc0xUbW5kVEpHNkRtLU1udkhNMjNMcmJnaDVaNUcxWVhkSUpnZUc4b2taTUU3dFExVDRNYmQtVERZRU5ndi14bklyMFNKaDFnSllEU2dTYkdIbGpQNHNJdVBCaEhVeUhwR3Axa3NEeE1kb3JSQ05lNGJfSm14ZnBTUFItbGJTU253?oc=5",
-    "published": "Sun, 22 Nov 2026 21:52:57 GMT",
-    "publisher": "Yahoo Finance",
+    "headline": "Crypto News: Pepeto Clears $11.311M While Whales Buy the Bitcoin Price Crash and a $250,000 Bitcoin Price Prediction Holds - markets.businessinsider.com",
+    "url": "https://news.google.com/rss/articles/CBMiigJBVV95cUxQc2ZHbzhoOHhlZDZ6TVhEWm5RMmlZUzJpdVR4NlV0VTNfX29hd3J6cDc0V1NWQkgwdER4Rl9acEM5blZaRGVBbHo0X1liLUNMLWs4bTk0VkxkVDNYT0NGRWtjYmJnVEwyMlZLMERsT2k4eTVRdERlZl92RDBVS0tJOHhBREpucXRoazBxcDlXMGhpREg2QVdxell5QURjTE5ETkVyZkY0Z3RwY1RPYmJuQlVEZFhyQ2dObWNQRXVpbzFWbG9lSFh1M0F2ZnpRMTg3ci1hQWIxaWNReHNUMHYzMmJpenZjR0hRZVpFb3BYd1I0bGRYOGJweHFUYXN2SFlhNy11eUczU0ZfQQ?oc=5",
+    "published": "Mon, 23 Nov 2026 07:37:52 GMT",
+    "publisher": "markets.businessinsider.com",
     "via": "Google News RSS"
    }
   },
@@ -124,10 +124,10 @@
    "change_pts": 41.0,
    "from_date": "2026-11-20",
    "news": {
-    "headline": "Current price of Bitcoin for November 20, 2026 - Fortune",
-    "url": "https://news.google.com/rss/articles/CBMiZ0FVX3lxTE5XLVJPckowN01hZzNsTnpXNEx0LTJsSklMX2lCNEstUlVWaXhtM0VGQXowTzBoODZTV244cjFuVE5VSGpLalFMOGhsRVVZQldzOEc0QVJLTll1SjUyMHNhOVBrT1dzMVk?oc=5",
-    "published": "Fri, 20 Nov 2026 12:40:00 GMT",
-    "publisher": "Fortune",
+    "headline": "Bitcoin Futures - CME Group",
+    "url": "https://news.google.com/rss/articles/CBMic0FVX3lxTE9Db1M3SWg3WG9OOU9xZ1QwTjlKUDZvSVpVektnRnFTSXFvdXBmQm5lS2h5ODFwdWl2eFlQT0hRZWR1ZUxfdzFHVXhBZUNKRl9Semw3NG55S0lrUXFXNFR4eVZwdHFtLVZxU1NZeS1Va0RZNU0?oc=5",
+    "published": "Sun, 22 Nov 2026 00:00:00 GMT",
+    "publisher": "CME Group",
     "via": "Google News RSS"
    }
   },
@@ -145,10 +145,10 @@
    "change_pts": 17.0,
    "from_date": "2026-11-20",
    "news": {
-    "headline": "Current price of Bitcoin for November 20, 2026 - Fortune",
-    "url": "https://news.google.com/rss/articles/CBMiZ0FVX3lxTE5XLVJPckowN01hZzNsTnpXNEx0LTJsSklMX2lCNEstUlVWaXhtM0VGQXowTzBoODZTV244cjFuVE5VSGpLalFMOGhsRVVZQldzOEc0QVJLTll1SjUyMHNhOVBrT1dzMVk?oc=5",
-    "published": "Fri, 20 Nov 2026 12:40:00 GMT",
-    "publisher": "Fortune",
+    "headline": "Bitcoin Futures - CME Group",
+    "url": "https://news.google.com/rss/articles/CBMic0FVX3lxTE9Db1M3SWg3WG9OOU9xZ1QwTjlKUDZvSVpVektnRnFTSXFvdXBmQm5lS2h5ODFwdWl2eFlQT0hRZWR1ZUxfdzFHVXhBZUNKRl9Semw3NG55S0lrUXFXNFR4eVZwdHFtLVZxU1NZeS1Va0RZNU0?oc=5",
+    "published": "Sun, 22 Nov 2026 00:00:00 GMT",
+    "publisher": "CME Group",
     "via": "Google News RSS"
    }
   },
@@ -166,10 +166,10 @@
    "change_pts": 10.0,
    "from_date": "2026-11-18",
    "news": {
-    "headline": "Bitcoin Futures - CME Group",
-    "url": "https://news.google.com/rss/articles/CBMic0FVX3lxTE9Db1M3SWg3WG9OOU9xZ1QwTjlKUDZvSVpVektnRnFTSXFvdXBmQm5lS2h5ODFwdWl2eFlQT0hRZWR1ZUxfdzFHVXhBZUNKRl9Semw3NG55S0lrUXFXNFR4eVZwdHFtLVZxU1NZeS1Va0RZNU0?oc=5",
-    "published": "Thu, 19 Nov 2026 09:51:04 GMT",
-    "publisher": "CME Group",
+    "headline": "Current price of Bitcoin for November 19, 2026 - Fortune",
+    "url": "https://news.google.com/rss/articles/CBMiZ0FVX3lxTFBaemM4RjBCT0VwNHVnZkdTTUFBVjJoMkQwOW1VMnlhNHJJVnVlbVlQTW1feFZ3SFotcTc3VDE3MnkwNnFyMmFLUkF6cTdSM2tiOUZvdE1GUnZpQ2RiMWVKemNZV1RvSDQ?oc=5",
+    "published": "Thu, 19 Nov 2026 12:00:00 GMT",
+    "publisher": "Fortune",
     "via": "Google News RSS"
    }
   },
@@ -245,11 +245,11 @@
    "odds": [
     {
      "outcome": "↑ 100,000",
-     "yes": 0.0255
+     "yes": 0.022
     },
     {
      "outcome": "↓ 55,000",
-     "yes": 0.395
+     "yes": 0.465
     }
    ]
   },
@@ -283,5 +283,5 @@
    "odds": []
   }
  ],
- "generated_utc": "2026-11-23T16:35:41+00:00"
+ "generated_utc": "2026-11-23T19:58:40+00:00"
 }
