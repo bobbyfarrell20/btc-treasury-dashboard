@@ -6,7 +6,7 @@
  },
  "jumps": [
   {
-   "date": "2026-11-23",
+   "date": "2026-11-24",
    "window": "7d",
    "source": "polymarket",
    "group": "BTC",
@@ -14,15 +14,15 @@
    "outcome": "↓ 55,000",
    "question": "Will Bitcoin dip to $55,000 by December 31, 2026?",
    "url": "https://polymarket.com/event/what-price-will-bitcoin-hit-before-2027",
-   "from": 0.315,
-   "to": 0.535,
-   "change_pts": 22.0,
-   "from_date": "2026-11-16",
+   "from": 0.275,
+   "to": 0.475,
+   "change_pts": 20.0,
+   "from_date": "2026-11-17",
    "news": {
-    "headline": "Bitcoin BTC (BTC-USD) Live Price, News, Chart and Price History - Yahoo Finance UK",
-    "url": "https://news.google.com/rss/articles/CBMiVkFVX3lxTE5NeVkwY1dKeWxrcExZc0dzcnlWSUZ4czQtZHIyX1JYUnp5cWE5WFcwNjl3clkxY3dyUjFtbG1FOU43Ny1leHhSaVpCMzFQREhacmFmaTRR?oc=5",
-    "published": "Mon, 23 Nov 2026 17:15:06 GMT",
-    "publisher": "Yahoo Finance UK",
+    "headline": "Strategy Buys $30 Million Of Bitcoin As Price Hits Two-Year Low - Yahoo Finance",
+    "url": "https://news.google.com/rss/articles/CBMingFBVV95cUxPdnI5VkZYNEpCeFRhN19ybEpFTW9uN3ktWDVPcm8wU3JfY3I1VFpKaVhWaEtxcFhCYldyeGZMNUltc016R2hPdGQyNTFjRlNDRVJHN1VaVDNBRndPbzBOWmY3X2hSWVpCWUhEZHJ5Zmd4STNkMTJSN3VTVUxFWlVyZXQycGprNVhqMkprczZxVHRRYVN2TVdxWTI3Y1ZLUQ?oc=5",
+    "published": "Mon, 23 Nov 2026 14:04:00 GMT",
+    "publisher": "Yahoo Finance",
     "via": "Google News RSS"
    }
   },
@@ -40,31 +40,10 @@
    "change_pts": 22.0,
    "from_date": "2026-11-16",
    "news": {
-    "headline": "Bitcoin BTC (BTC-USD) Live Price, News, Chart and Price History - Yahoo Finance UK",
-    "url": "https://news.google.com/rss/articles/CBMiVkFVX3lxTE5NeVkwY1dKeWxrcExZc0dzcnlWSUZ4czQtZHIyX1JYUnp5cWE5WFcwNjl3clkxY3dyUjFtbG1FOU43Ny1leHhSaVpCMzFQREhacmFmaTRR?oc=5",
-    "published": "Mon, 23 Nov 2026 17:15:06 GMT",
-    "publisher": "Yahoo Finance UK",
-    "via": "Google News RSS"
-   }
-  },
-  {
-   "date": "2026-11-23",
-   "window": "24h",
-   "source": "polymarket",
-   "group": "BTC",
-   "market": "BTC price targets hit in 2026",
-   "outcome": "↓ 55,000",
-   "question": "Will Bitcoin dip to $55,000 by December 31, 2026?",
-   "url": "https://polymarket.com/event/what-price-will-bitcoin-hit-before-2027",
-   "from": 0.6,
-   "to": 0.455,
-   "change_pts": -14.5,
-   "from_date": "2026-11-22",
-   "news": {
-    "headline": "Bitcoin BTC (BTC-USD) Live Price, News, Chart and Price History - Yahoo Finance UK",
-    "url": "https://news.google.com/rss/articles/CBMiVkFVX3lxTE5NeVkwY1dKeWxrcExZc0dzcnlWSUZ4czQtZHIyX1JYUnp5cWE5WFcwNjl3clkxY3dyUjFtbG1FOU43Ny1leHhSaVpCMzFQREhacmFmaTRR?oc=5",
-    "published": "Mon, 23 Nov 2026 17:15:06 GMT",
-    "publisher": "Yahoo Finance UK",
+    "headline": "Strategy Buys $30 Million Of Bitcoin As Price Hits Two-Year Low - Yahoo Finance",
+    "url": "https://news.google.com/rss/articles/CBMingFBVV95cUxPdnI5VkZYNEpCeFRhN19ybEpFTW9uN3ktWDVPcm8wU3JfY3I1VFpKaVhWaEtxcFhCYldyeGZMNUltc016R2hPdGQyNTFjRlNDRVJHN1VaVDNBRndPbzBOWmY3X2hSWVpCWUhEZHJ5Zmd4STNkMTJSN3VTVUxFWlVyZXQycGprNVhqMkprczZxVHRRYVN2TVdxWTI3Y1ZLUQ?oc=5",
+    "published": "Mon, 23 Nov 2026 14:04:00 GMT",
+    "publisher": "Yahoo Finance",
     "via": "Google News RSS"
    }
   },
@@ -82,10 +61,10 @@
    "change_pts": -14.0,
    "from_date": "2026-11-22",
    "news": {
-    "headline": "Bitcoin BTC (BTC-USD) Live Price, News, Chart and Price History - Yahoo Finance UK",
-    "url": "https://news.google.com/rss/articles/CBMiVkFVX3lxTE5NeVkwY1dKeWxrcExZc0dzcnlWSUZ4czQtZHIyX1JYUnp5cWE5WFcwNjl3clkxY3dyUjFtbG1FOU43Ny1leHhSaVpCMzFQREhacmFmaTRR?oc=5",
-    "published": "Mon, 23 Nov 2026 17:15:06 GMT",
-    "publisher": "Yahoo Finance UK",
+    "headline": "Strategy Buys $30 Million Of Bitcoin As Price Hits Two-Year Low - Yahoo Finance",
+    "url": "https://news.google.com/rss/articles/CBMingFBVV95cUxPdnI5VkZYNEpCeFRhN19ybEpFTW9uN3ktWDVPcm8wU3JfY3I1VFpKaVhWaEtxcFhCYldyeGZMNUltc016R2hPdGQyNTFjRlNDRVJHN1VaVDNBRndPbzBOWmY3X2hSWVpCWUhEZHJ5Zmd4STNkMTJSN3VTVUxFWlVyZXQycGprNVhqMkprczZxVHRRYVN2TVdxWTI3Y1ZLUQ?oc=5",
+    "published": "Mon, 23 Nov 2026 14:04:00 GMT",
+    "publisher": "Yahoo Finance",
     "via": "Google News RSS"
    }
   },
@@ -103,10 +82,10 @@
    "change_pts": -20.0,
    "from_date": "2026-11-21",
    "news": {
-    "headline": "Crypto News: Pepeto Clears $11.311M While Whales Buy the Bitcoin Price Crash and a $250,000 Bitcoin Price Prediction Holds - markets.businessinsider.com",
-    "url": "https://news.google.com/rss/articles/CBMiigJBVV95cUxQc2ZHbzhoOHhlZDZ6TVhEWm5RMmlZUzJpdVR4NlV0VTNfX29hd3J6cDc0V1NWQkgwdER4Rl9acEM5blZaRGVBbHo0X1liLUNMLWs4bTk0VkxkVDNYT0NGRWtjYmJnVEwyMlZLMERsT2k4eTVRdERlZl92RDBVS0tJOHhBREpucXRoazBxcDlXMGhpREg2QVdxell5QURjTE5ETkVyZkY0Z3RwY1RPYmJuQlVEZFhyQ2dObWNQRXVpbzFWbG9lSFh1M0F2ZnpRMTg3ci1hQWIxaWNReHNUMHYzMmJpenZjR0hRZVpFb3BYd1I0bGRYOGJweHFUYXN2SFlhNy11eUczU0ZfQQ?oc=5",
-    "published": "Mon, 23 Nov 2026 07:37:52 GMT",
-    "publisher": "markets.businessinsider.com",
+    "headline": "Bitcoin BTC (BTC-USD) Live Price, News, Chart and Price History - Yahoo Finance Singapore",
+    "url": "https://news.google.com/rss/articles/CBMiVkFVX3lxTE5yOVM0ZTRBWjRWRW9KcFF1czB4bV9VbHNOYnZqSTRlXzk2SHBHTEo5RnIzR0xkNklES1Z6ZnZZSTRhM2tjZEFnQ3VEd1BCUDFPcFRBSlhB?oc=5",
+    "published": "Sat, 21 Nov 2026 23:11:12 GMT",
+    "publisher": "Yahoo Finance Singapore",
     "via": "Google News RSS"
    }
   },
@@ -193,48 +172,6 @@
     "publisher": "WSJ",
     "via": "Google News RSS"
    }
-  },
-  {
-   "date": "2026-11-16",
-   "window": "7d",
-   "source": "kalshi",
-   "group": "Fed",
-   "market": "Fed decision - Dec 2026",
-   "outcome": "Fed maintains rate",
-   "question": null,
-   "url": "https://kalshi.com/markets/kxfeddecision",
-   "from": 0.22,
-   "to": 0.04,
-   "change_pts": -18.0,
-   "from_date": "2026-11-09",
-   "news": {
-    "headline": "How Will the Market React to a Potential Fed Rate Hike in December? Here's What History Suggests. - Yahoo Finance",
-    "url": "https://news.google.com/rss/articles/CBMinAFBVV95cUxQQ3daeDNPVnBBam5nRFZiZEltR3lUUU1iUGFLakhvVmJoLVBEbWhiUHRRcnlLcnFjMGtqWEdoOWVEd21QNlpfdzdGc0dhczNQcENxbnNpeHNyMTZtR1FkaEx6aG1RYVNuWGhKSHpFa0Z0R2RYbVNxWlhjbzNmN1RNNDE4d2hCS1h2YWtuWFhrRTJiSzhlNWUtMXZLVGg?oc=5",
-    "published": "Sun, 15 Nov 2026 12:22:00 GMT",
-    "publisher": "Yahoo Finance",
-    "via": "Google News RSS"
-   }
-  },
-  {
-   "date": "2026-11-16",
-   "window": "24h",
-   "source": "polymarket",
-   "group": "BTC",
-   "market": "BTC price targets hit in 2026",
-   "outcome": "↓ 55,000",
-   "question": "Will Bitcoin dip to $55,000 by December 31, 2026?",
-   "url": "https://polymarket.com/event/what-price-will-bitcoin-hit-before-2027",
-   "from": 0.185,
-   "to": 0.315,
-   "change_pts": 13.0,
-   "from_date": "2026-11-14",
-   "news": {
-    "headline": "Current price of Bitcoin for November 16, 2026 - Fortune",
-    "url": "https://news.google.com/rss/articles/CBMiZ0FVX3lxTE9nV25Edng4OEdJYUx0X2pPOEhLNGE4bnVZQm4tX1d1SVZ3Y3NFbjJpNzdERDVRQlBVSmZOU0VHWmhoWi03MWtZZHNZbHBYaHNTZ0UzRHprU05YZ18xMW04M0Nsck5NOTg?oc=5",
-    "published": "Mon, 16 Nov 2026 12:45:00 GMT",
-    "publisher": "Fortune",
-    "via": "Google News RSS"
-   }
   }
  ],
  "summary": [
@@ -245,11 +182,11 @@
    "odds": [
     {
      "outcome": "↑ 100,000",
-     "yes": 0.0215
+     "yes": 0.0185
     },
     {
      "outcome": "↓ 55,000",
-     "yes": 0.46
+     "yes": 0.475
     }
    ]
   },
@@ -283,5 +220,5 @@
    "odds": []
   }
  ],
- "generated_utc": "2026-11-23T22:03:45+00:00"
+ "generated_utc": "2026-11-24T02:12:22+00:00"
 }
