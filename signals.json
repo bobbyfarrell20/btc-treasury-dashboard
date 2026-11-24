@@ -21,7 +21,7 @@
     "new": "STAY_BTC"
   },
   "_hash_note": "signal_hash changes when the recommendation, also_valid, any preferred peg state (on for the call = RUNNING_HOT/ON, hashed alike; WARMING_UP and COOLING_OFF hash as WATCH, STALLED as SELL; ON held by buybacks hashes as WATCH) or any overheated flag changes; last_changed is the most recent trading day it changed.",
-  "generated_utc": "2026-11-24T02:12:22+00:00",
+  "generated_utc": "2026-11-24T02:21:05+00:00",
   "as_of": "2026-11-23",
   "disclaimer": "Rules-based indicator, not financial advice.",
   "recommendation_detail": {
@@ -2010,8 +2010,8 @@
       "question": "Will Bitcoin dip to $55,000 by December 31, 2026?",
       "url": "https://polymarket.com/event/what-price-will-bitcoin-hit-before-2027",
       "from": 0.275,
-      "to": 0.475,
-      "change_pts": 20.0,
+      "to": 0.485,
+      "change_pts": 21.0,
       "from_date": "2026-11-17",
       "news": {
         "headline": "Strategy Buys $30 Million Of Bitcoin As Price Hits Two-Year Low - Yahoo Finance",
@@ -2181,7 +2181,7 @@
         },
         {
           "outcome": "\u2193 55,000",
-          "yes": 0.475
+          "yes": 0.485
         }
       ]
     },
@@ -2223,11 +2223,11 @@
       "top": [
         {
           "outcome": "\u2193 55,000",
-          "yes": 0.475
+          "yes": 0.485
         },
         {
           "outcome": "\u2193 50,000",
-          "yes": 0.301
+          "yes": 0.294
         },
         {
           "outcome": "\u2193 45,000",
@@ -2235,7 +2235,7 @@
         },
         {
           "outcome": "\u2193 40,000",
-          "yes": 0.0855
+          "yes": 0.086
         }
       ]
     },
@@ -2309,7 +2309,7 @@
       "top": [
         {
           "outcome": "Crypto Market Structure legislation becomes law in 2026?",
-          "yes": 0.026
+          "yes": 0.025
         }
       ]
     },
@@ -2383,19 +2383,19 @@
       "top": [
         {
           "outcome": "Below $55,000.00",
-          "yes": 0.46
+          "yes": 0.48
         },
         {
           "outcome": "Below $50,000.00",
-          "yes": 0.25
+          "yes": 0.26
         },
         {
           "outcome": "Below $45,000.00",
-          "yes": 0.14
+          "yes": 0.16
         },
         {
           "outcome": "Below $40,000.00",
-          "yes": 0.08
+          "yes": 0.1
         }
       ]
     },
