@@ -234,15 +234,23 @@ details.card{margin-bottom:10px;padding:11px 14px}
 .gen{margin:4px 0 10px;font-size:12.5px;color:var(--mut);text-align:center}
 @media (max-width:760px){.enggrid{grid-template-columns:minmax(0,1fr)}.engbody{grid-template-columns:100px minmax(0,1fr)}.engbtc{font-size:28px}.engviz{max-width:110px}}
 .tb-upm{display:none}
-/* tiered display call (display only, 2026-11-23) */
-.tierline{max-width:1200px;margin:6px auto 0;padding:0 14px;font-size:12.5px;color:var(--mut);text-align:center}.tierline b{color:var(--fg)}
-.tierbox{margin:6px 0 4px;padding:6px 8px;border:1px dashed var(--line);border-radius:8px}
-.tladder{display:flex;flex-wrap:wrap;gap:4px;align-items:center}.tladder .pill{font-size:11px;padding:2px 8px;border:1px solid var(--line);background:transparent;color:var(--mut);font-weight:600}
+/* tiered display call (display only, 2026-11-23) — front of card is pill + one reason; rest is in Details */
+.tierline{display:none}
+.tierbox{margin:2px 0 6px}
+.tfront{display:flex;flex-wrap:wrap;align-items:center;gap:4px 8px}
+.tfront .pill.on.t-WAIT{background:#6e7681;color:#fff}
+.tfront .pill.on.t-NIBBLE{background:rgba(46,160,67,.22);border:1px solid #3fb950;color:#3fb950}
+.tfront .pill.on.t-BUY{background:#2ea043;color:#fff}
+.tfront .pill.on.t-STRONG_BUY{background:#14532d;border:1px solid #2ea043;color:#86efac;box-shadow:0 0 6px #2ea04388}
+[data-theme=light] .tfront .pill.on.t-NIBBLE{color:#1a7f37}
+.tfront .treason{font-size:11.5px;color:var(--mut);line-height:1.3}
+.tladder{display:flex;flex-wrap:wrap;gap:4px;align-items:center;margin:4px 0}
+.tladder .pill{font-size:11px;padding:2px 8px;border:1px solid var(--line);background:transparent;color:var(--mut);font-weight:600}
 .tladder .pill.on.t-WAIT{background:#6e7681;border-color:#6e7681;color:#fff}.tladder .pill.on.t-NIBBLE{background:rgba(46,160,67,.22);border-color:#3fb950;color:#3fb950}
 .tladder .pill.on.t-BUY{background:#2ea043;border-color:#2ea043;color:#fff}.tladder .pill.on.t-STRONG_BUY{background:#14532d;border-color:#2ea043;color:#86efac;box-shadow:0 0 6px #2ea04388}
 [data-theme=light] .tladder .pill.on.t-NIBBLE{color:#1a7f37}
-.tladder .tsz{font-size:11.5px;color:var(--mut);margin-left:4px}.tladder .tdo{font-size:10.5px;color:var(--mut);font-style:italic;margin-left:auto}
-.tcheck{display:flex;flex-wrap:wrap;gap:2px 10px;font-size:11.5px;margin-top:4px;color:var(--mut)}.tcheck .y{color:#3fb950}.tcheck .n{color:var(--mut)}.tcheck .w{color:var(--y)}
+.tladder .tsz{font-size:11.5px;color:var(--mut);margin-left:4px}
+.tcheck{display:flex;flex-wrap:wrap;gap:2px 10px;font-size:11.5px;margin:4px 0;color:var(--mut)}.tcheck .y{color:#3fb950}.tcheck .n{color:var(--mut)}.tcheck .w{color:var(--y)}
 </style></head><body>
 <div class="topbar" id="topbar"><span class="tb-b" id="tb_btc">BTC …</span><span id="tb_rec" class="pill">…</span><span id="tb_rv"></span><span id="tb_strc"></span><span id="tb_sata"></span>
  <span class="tb-r"><span id="tb_fresh" title="data freshness"></span><button type="button" class="btn tbref" id="tbref" title="Start a fresh data run and update when the new data is published (a few minutes)" aria-label="Refresh data"><span class="ri">↻</span><span class="rl"> Refresh</span></button><span class="tbrefmsg" id="tbrefmsg" aria-live="polite"></span><button class="btn ib" id="themebtn" title="Toggle light/dark theme">☾</button></span></div>
@@ -336,6 +344,7 @@ details.card{margin-bottom:10px;padding:11px 14px}
 <div id="c_bt" class="chart"></div>
 <details class="sec"><summary>Every holding period</summary><div class="tscroll scroll"><table id="btperiods"></table></div></details>
 <div class="note" id="btnote"></div>
+<details class="sec" id="bttierwrap" hidden><summary>About the Tiered line (display only)</summary><div class="note" id="bttiernote"></div></details>
 </details>
 <details class="card" id="atm"><summary>Capital raising: STRC / SATA / SATS issuance and share of days at par</summary>
 <div class="grid g2"><div><h2 style="font-size:14px">STRC (Strategy ATM, weekly 8-Ks)</h2><div class="tscroll"><table id="atm_strc"></table></div><details class="sec"><summary>Recent weeks</summary><div class="tscroll"><table id="atm_strcw"></table></div></details></div>
@@ -835,15 +844,22 @@ function renderSummary(){const V=S.valuation||{},Y=A.btc_yield,bf=BFLAGS(),fw=A.
      <div>${accB(y,!!f.flywheel_on_for_call)}</div></div>`}).join('')}
 const TIERS=['WAIT','NIBBLE','BUY','STRONG_BUY'],TIERL={WAIT:'WAIT',NIBBLE:'NIBBLE',BUY:'BUY',STRONG_BUY:'STRONG BUY'};
 const TIERNOTE='Display only: tiers never change the call, recommendation or headline. Not yet proven: in the Oct 2025 – Nov 2026 backtest most of the tiered gain came from one ASST CHEAP stretch (Feb–Apr 2026); MSTR nibbling alone was flat. Rules-based, not financial advice.';
-function tierBox(t){const T=(S.tiers||{})[t];if(!T)return'';const sz=S.tier_sizes||{},c=T.criteria||{};
+function tierBox(t){const T=(S.tiers||{})[t];if(!T)return'';
+  const lab=TIERL[T.tier]||T.label||T.tier,pctn=Math.round((T.size||0)*100);
+  const pill=`<span class="pill on t-${T.tier}">${esc(lab)}${pctn?` ${pctn}%`:''}</span>`;
+  const reason=T.reason?`<span class="treason">${esc(T.reason)}</span>`:'';
+  return `<div class="tierbox"><div class="tfront">${pill}${reason}</div></div>`}
+function tierDetails(t){const T=(S.tiers||{})[t];if(!T)return'';const sz=S.tier_sizes||{},c=T.criteria||{};
   const lad=TIERS.map(k=>`<span class="pill t-${k}${k===T.tier?' on':''}" title="${TIERL[k]}: ${Math.round((sz[k]||0)*100)}% of the cash allocated to ${t}">${TIERL[k]}</span>`).join('');
   const ck=(ok,txt,warn)=>`<span class="${warn?'w':ok?'y':'n'}">${warn?'⚠':ok?'✓':'✗'} ${txt}</span>`;
   const items=[ck(c.cheap,'CHEAP'),ck(c.not_overheated,'not overheated'),ck(c.flywheel_on,T.preferred+' flywheel ON'),ck(c.in_official_call,'in official call')];
   if(c.buyback_held_par)items.push(ck(false,'par held by buybacks (caveat)',true));
   if(c.dip_target)items.push(ck(true,'dip setup names '+t));
-  return `<div class="tierbox"><div class="tladder">${lad}<span class="tsz">${Math.round((T.size||0)*100)}%</span><span class="tdo">display only ${Q('Tier rules (display only, not the call): STRONG BUY (100%) = in the official call (flywheel ON, not overheated) + CHEAP. BUY (60%) = in the official call. NIBBLE (25%) = CHEAP and not overheated while the flywheel is off; par held by buybacks is shown as a caveat, not a block. Otherwise WAIT (0%). Sizes = share of the cash allocated to that stock. '+TIERNOTE)}</span></div><div class="tcheck">${items.join('')}</div></div>`}
-function renderTiers(){const el=$('tierline');if(!el)return;if(!S.tiers){el.style.display='none';return}
-  el.style.display='';el.innerHTML=`<b>Tiers</b> <span class="note">(display only)</span>: ${esc(S.tier_headline||'')} ${Q(TIERNOTE)}`}
+  return `<div class="note"><b>Tier</b> <span class="note">(display only)</span></div>
+     <div class="tladder">${lad}<span class="tsz">${Math.round((T.size||0)*100)}%</span></div>
+     <div class="tcheck">${items.join('')}</div>
+     <div class="note">Tier rules (display only, not the call): STRONG BUY (100%) = in the official call (flywheel ON, not overheated) + CHEAP. BUY (60%) = in the official call. NIBBLE (25%) = CHEAP and not overheated while the flywheel is off; par held by buybacks is shown as a caveat, not a block. Otherwise WAIT (0%). Sizes = share of the cash allocated to that stock. ${TIERNOTE}</div>`}
+function renderTiers(){const el=$('tierline');if(el){el.style.display='none';el.innerHTML=''}}
 function renderRec(){const R=S.recommendation_detail||{},rc=S.recommendation;
   // Banner removed from top; keep filling hidden/relocated rule nodes so routines + Signal details stay intact.
   const set=(id,fn)=>{const el=$(id);if(!el)return;fn(el)};
@@ -962,6 +978,7 @@ function renderValuation(){
      ${tierBox(a)}
      ${prim}${sec}
      <details class="sec" style="margin-top:8px"><summary>Details</summary>
+     ${tierDetails(a)}
      <div class="note">Signal basis: <b>${BL(sb)}</b> · cheap cap ${fmt(CAP(a),2)}x${CAPM(a)==='held'?' (held)':''}${CAPM(a)==='halving'?` (halving +${fmt(HB(a),2)})`:''}${Math.abs(CAP(a)-CAP0(a))>0.0005?` (incl. +${fmt(CAP(a)-CAP0(a),2)} anticipation)`:''} · CHEAP ≤ ${ord(Math.round(CHP(a)*100))} pct · overheated ≥ ${fmt(OHF(a),2)}x${OHT(a)}</div>
      <div class="note">${MDEF.basic} ${MDEF.ev}</div>
      <div class="note"><b>Stock only:</b> ${fmt(B.mnav,3)}x · ${prem(B.mnav)} · ${plain(a,'basic',B)}</div>
@@ -974,7 +991,7 @@ function renderValuation(){
      ${fc?'':`<div class="note">Flywheel + Cheap needs ${aa.preferred}'s flywheel on (running hot / ON after a qualifying close, not held by buybacks) and CHEAP mNAV incl. debt &amp; preferreds.</div>`}
      <div class="note">Price $${fmt(x.price)} · BTC held ${fmt(x.btc_held,0)}${srcl(a,'holdings','holdings')} · BTC NAV $${fmt(x.btc_nav_m,0)}M ($${fmt(x.btc_nav_per_basic_share)}/basic share) · diluted mNAV ${fmt(x.diluted_equity_mnav,2)}x${Q(dlx)}</div>
      <div class="note">EV $${fmt(x.enterprise_value_m,0)}M = equity $${fmt(x.price*x.basic_shares/1e6,0)}M (${fmt(x.basic_shares/1e6,1)}M basic sh${srcl(a,'basic_shares','shares')}) + debt $${fmt(x.debt_m,0)}M${srcl(a,'debt_m','debt')} + preferred $${fmt(x.preferred_notional_m,0)}M${srcl(a,a==='MSTR'?'pref_usd_shares':'sata_shares','preferred')} − cash $${fmt(x.cash_m,0)}M${srcl(a,'cash_m','cash')}</div></details>`});
-  const vt=$('valtopnote');if(vt)vt.innerHTML=`MSTR and ASST once each, with the relative gap gauge in the middle (ASST−MSTR mNAV z vs 1y; ±1σ flips). Hero number is mNAV incl. debt & preferreds (the signal basis); stock-only sits muted underneath. At a glance: zone, 1y percentile, Flywheel+Cheap / very-low. <span class="badge fc" style="margin:0;font-size:11px;padding:1px 7px">✓ Flywheel + Cheap</span> = parent's Flywheel ON + mNAV incl. debt & preferreds CHEAP; <span class="vlow" style="display:inline">● Very low</span> = ≤ ${bf.very_low_max_mnav}x or ≤ ${bf.very_low_max_percentile*100}th pct. Premiums, gauges, caps, and inputs are under each card's Details.`;
+  const vt=$('valtopnote');if(vt)vt.innerHTML=`MSTR and ASST once each, with the relative gap gauge in the middle (ASST−MSTR mNAV z vs 1y; ±1σ flips). Hero number is mNAV incl. debt & preferreds (the signal basis); stock-only sits muted underneath. At a glance: zone, 1y percentile, Flywheel+Cheap / very-low. <span class="badge fc" style="margin:0;font-size:11px;padding:1px 7px">✓ Flywheel + Cheap</span> = parent's Flywheel ON + mNAV incl. debt & preferreds CHEAP; <span class="vlow" style="display:inline">● Very low</span> = ≤ ${bf.very_low_max_mnav}x or ≤ ${bf.very_low_max_percentile*100}th pct. Each card's tier pill (WAIT / NIBBLE / BUY / STRONG BUY) and one-line reason are display only and do not change the call; the checklist and rules are under Details.${S.tier_headline?` Today: ${esc(S.tier_headline)}.`:''} Premiums, gauges, caps, and inputs are under each card's Details.`;
   $('valnote').innerHTML=`Percentile = where today's value ranks within its own trailing ${mc.lookback_trading_days} trading days, for each basis separately. Zone cutoffs are each stock's own 25th / 75th / 90th percentiles on each basis, plus its cheap cap and overheated floor from <a href="config.json">config.json</a> (<code>valuation</code> + <code>mnav.anticipation</code>): the CHEAP percentile and cap, and the overheated floor, slide with how close the preferred is to par. The relative verdicts use the ASST−MSTR spread z-score on each basis (≤ ${mc.spread_z_favor_asst}: ASST cheaper; ≥ +${mc.spread_z_favor_mstr}: MSTR cheaper). Source links point at the latest filing or API used for each input.`;
   ZB=ZB||sb;segInit('zbasis',ZB,b=>{ZB=b;plotZone();linkCharts()})}
 function segInit(id,cur,fn){const el=$(id);el.querySelectorAll('button').forEach(b=>{b.classList.toggle('on',b.dataset.b===cur);
@@ -1031,7 +1048,9 @@ function renderBacktest(){const B=A.backtest.btc_idle,Bc=A.backtest.cash_idle,s=
   tr.forEach(t=>t.hovertemplate='%{y:.3f}');
   plot('c_bt',tr,keepRange('c_bt',baseLayout('Growth of $1',{shapes:sh.concat([hline(1,'#8b949e')])})),{hover:false});
   $('btperiods').innerHTML='<tr><th>Held</th><th>From (close)</th><th>To (close)</th><th class="num">Days</th><th class="num">Return</th><th class="num">BTC same days</th><th>Beat BTC?</th></tr>'+B.periods.map(p=>`<tr><td style="color:${C[p.position]||'inherit'}"><b>${p.position}</b></td><td>${p.from}</td><td>${p.to}</td><td class="num">${p.days}</td><td class="num">${cp(p.return)}</td><td class="num">${cp(p.btc_return)}</td><td>${p.beat_btc==null?'':p.beat_btc?'✅':'❌'}</td></tr>`).join('');
-  $('btnote').innerHTML=`Mapping: recommendation BUY MSTR → 100% MSTR; BUY ASST → 100% ASST; BUY BOTH → 50% MSTR + 50% ASST (rebalanced daily); WAIT → 100% BTC (or 100% cash in the cash variant; the backtest has to park WAIT days somewhere). The call made after the close on day t is executed at the close of day t+1 (no look-ahead), no leverage, no shorting, fees ignored. Shading = days in a stock (orange MSTR, purple ASST). BTC uses Yahoo BTC-USD daily closes on stock trading days.${Tt?` <b>Tiered line (display only):</b> each stock's tier size (WAIT 0% · NIBBLE 25% · BUY 60% · STRONG BUY 100%, both scaled pro rata if they add up to more than 100%), idle money in cash, same timing. ${TIERNOTE}`:''}`}
+  $('btnote').innerHTML=`Mapping: recommendation BUY MSTR → 100% MSTR; BUY ASST → 100% ASST; BUY BOTH → 50% MSTR + 50% ASST (rebalanced daily); WAIT → 100% BTC (or 100% cash in the cash variant; the backtest has to park WAIT days somewhere). The call made after the close on day t is executed at the close of day t+1 (no look-ahead), no leverage, no shorting, fees ignored. Shading = days in a stock (orange MSTR, purple ASST). BTC uses Yahoo BTC-USD daily closes on stock trading days.`;
+  {const w=$('bttierwrap'),n=$('bttiernote');if(w&&n){if(Tt){w.hidden=false;n.innerHTML=`<b>Tiered line (display only):</b> each stock's tier size (WAIT 0% · NIBBLE 25% · BUY 60% · STRONG BUY 100%, both scaled pro rata if they add up to more than 100%), idle money in cash, same timing. ${TIERNOTE}`}else{w.hidden=true;n.innerHTML=''}}}
+}
 // ---------- ATM summary
 function renderAtm(){const T=A.atm,st=T.STRC,sa=T.SATA,W=[['30d','30d'],['90d','90d'],['ytd','YTD'],['1y','1y']];
   $('atm_strc').innerHTML='<tr><th></th>'+W.map(w=>`<th class="num">${w[1]}</th>`).join('')+'</tr>'+
