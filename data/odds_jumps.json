@@ -8,6 +8,27 @@
   {
    "date": "2026-11-24",
    "window": "7d",
+   "source": "polymarket",
+   "group": "BTC",
+   "market": "BTC price targets hit in 2026",
+   "outcome": "↓ 55,000",
+   "question": "Will Bitcoin dip to $55,000 by December 31, 2026?",
+   "url": "https://polymarket.com/event/what-price-will-bitcoin-hit-before-2027",
+   "from": 0.275,
+   "to": 0.565,
+   "change_pts": 29.0,
+   "from_date": "2026-11-17",
+   "news": {
+    "headline": "Bitcoin Price Drops Below $60,000 As Crypto Market Erases Gains From Nvidia Rally - Forbes",
+    "url": "https://news.google.com/rss/articles/CBMiwAFBVV95cUxQclJfX1V6cWRLc1lEUnlzSXZYaUp6Wk54Tlp3MXhVQzRMVlllT1B5dExIclAwSkktQ05zS0Ixd0ZKSnhPbUd0REtPLTFfb3YyVUV5QmRBZmgzZ2R2UTI2aXlaMk82TWU0RHZ3ZlVnZ2RySGFEMVM0em04TWFxaExETFhqSF84VF92YlJYUER6QTlyUFRwRE9yd2RtRUd6UEJFeVNTZkpyRDZUeXM2NG0tUG9EdUNNYy1RRUFJVXNlV0w?oc=5",
+    "published": "Tue, 24 Nov 2026 11:11:47 GMT",
+    "publisher": "Forbes",
+    "via": "Google News RSS"
+   }
+  },
+  {
+   "date": "2026-11-24",
+   "window": "7d",
    "source": "kalshi",
    "group": "BTC",
    "market": "How low will BTC get in 2026",
@@ -19,31 +40,31 @@
    "change_pts": 29.0,
    "from_date": "2026-11-17",
    "news": {
-    "headline": "Current price of Bitcoin for November 23, 2026 - Fortune",
-    "url": "https://news.google.com/rss/articles/CBMiZ0FVX3lxTE1ZamZzX09EaWptay0tYmdmSk1fbG4wWUJ6X0V0cTdmNGFnd2x6Y3VNZmxnUlRISTJXWTFlTFJ1ZkpucS1LT2EzZE8yNW50d19sSlE2LTczRDNEUWM4RGREMHV5TlJiMXc?oc=5",
-    "published": "Mon, 23 Nov 2026 14:42:04 GMT",
-    "publisher": "Fortune",
+    "headline": "Bitcoin Price Drops Below $60,000 As Crypto Market Erases Gains From Nvidia Rally - Forbes",
+    "url": "https://news.google.com/rss/articles/CBMiwAFBVV95cUxQclJfX1V6cWRLc1lEUnlzSXZYaUp6Wk54Tlp3MXhVQzRMVlllT1B5dExIclAwSkktQ05zS0Ixd0ZKSnhPbUd0REtPLTFfb3YyVUV5QmRBZmgzZ2R2UTI2aXlaMk82TWU0RHZ3ZlVnZ2RySGFEMVM0em04TWFxaExETFhqSF84VF92YlJYUER6QTlyUFRwRE9yd2RtRUd6UEJFeVNTZkpyRDZUeXM2NG0tUG9EdUNNYy1RRUFJVXNlV0w?oc=5",
+    "published": "Tue, 24 Nov 2026 11:11:47 GMT",
+    "publisher": "Forbes",
     "via": "Google News RSS"
    }
   },
   {
    "date": "2026-11-24",
-   "window": "7d",
+   "window": "24h",
    "source": "polymarket",
    "group": "BTC",
    "market": "BTC price targets hit in 2026",
    "outcome": "↓ 55,000",
    "question": "Will Bitcoin dip to $55,000 by December 31, 2026?",
    "url": "https://polymarket.com/event/what-price-will-bitcoin-hit-before-2027",
-   "from": 0.275,
-   "to": 0.545,
-   "change_pts": 27.0,
-   "from_date": "2026-11-17",
+   "from": 0.465,
+   "to": 0.565,
+   "change_pts": 10.0,
+   "from_date": "2026-11-24",
    "news": {
-    "headline": "Current price of Bitcoin for November 23, 2026 - Fortune",
-    "url": "https://news.google.com/rss/articles/CBMiZ0FVX3lxTE1ZamZzX09EaWptay0tYmdmSk1fbG4wWUJ6X0V0cTdmNGFnd2x6Y3VNZmxnUlRISTJXWTFlTFJ1ZkpucS1LT2EzZE8yNW50d19sSlE2LTczRDNEUWM4RGREMHV5TlJiMXc?oc=5",
-    "published": "Mon, 23 Nov 2026 14:42:04 GMT",
-    "publisher": "Fortune",
+    "headline": "Bitcoin Price Drops Below $60,000 As Crypto Market Erases Gains From Nvidia Rally - Forbes",
+    "url": "https://news.google.com/rss/articles/CBMiwAFBVV95cUxQclJfX1V6cWRLc1lEUnlzSXZYaUp6Wk54Tlp3MXhVQzRMVlllT1B5dExIclAwSkktQ05zS0Ixd0ZKSnhPbUd0REtPLTFfb3YyVUV5QmRBZmgzZ2R2UTI2aXlaMk82TWU0RHZ3ZlVnZ2RySGFEMVM0em04TWFxaExETFhqSF84VF92YlJYUER6QTlyUFRwRE9yd2RtRUd6UEJFeVNTZkpyRDZUeXM2NG0tUG9EdUNNYy1RRUFJVXNlV0w?oc=5",
+    "published": "Tue, 24 Nov 2026 11:11:47 GMT",
+    "publisher": "Forbes",
     "via": "Google News RSS"
    }
   },
@@ -61,7 +82,7 @@
    "change_pts": -14.0,
    "from_date": "2026-11-22",
    "news": {
-    "headline": "Current price of Bitcoin for November 23, 2026 - Fortune",
+    "headline": "Current price of Bitcoin for Nov. 23, 2026 - Fortune",
     "url": "https://news.google.com/rss/articles/CBMiZ0FVX3lxTE1ZamZzX09EaWptay0tYmdmSk1fbG4wWUJ6X0V0cTdmNGFnd2x6Y3VNZmxnUlRISTJXWTFlTFJ1ZkpucS1LT2EzZE8yNW50d19sSlE2LTczRDNEUWM4RGREMHV5TlJiMXc?oc=5",
     "published": "Mon, 23 Nov 2026 14:42:04 GMT",
     "publisher": "Fortune",
@@ -103,10 +124,10 @@
    "change_pts": 41.0,
    "from_date": "2026-11-20",
    "news": {
-    "headline": "Bitcoin's regulation bull case is played out. What could drive crypto gains moving forward - CNBC",
-    "url": "https://news.google.com/rss/articles/CBMijAFBVV95cUxQWmZadko1d2NDa3h3cVJUNGZTbHZjcUZGd1ZNYkxOWlBwLWd3Rk9KcHFuVWdVcUVWMUVNQW5iSklCZkEtaC13bGZWZlpKQl9JUmNzSlFBdjViaGZENDBGdWU2Z3FPQk5hZGRNUlVmckQ2aUtOWkIxQlhVa1AwVXFkd2JkYVVva2czQk1NUtIBkgFBVV95cUxPWHg0Ym8yVHNqV2lITW81aDhBSzZyN2M4ekMzelRIQ003YVVGZWkxRjhHMGl1TXBoVWEwUnF0aG9zZ0JFTnFjWWxjQWFnWVhiS2Y3R3ZfallHd2RwczdSQWFoaDYtdmxKSVRiX2ZNeHJqcGVTdldlcjQ3RHpqQWlOVFpjOHU3NHNCWjEzaGZmbFdkdw?oc=5",
-    "published": "Fri, 20 Nov 2026 14:29:45 GMT",
-    "publisher": "CNBC",
+    "headline": "Current price of Bitcoin for November 20, 2026 - Fortune",
+    "url": "https://news.google.com/rss/articles/CBMiZ0FVX3lxTE5XLVJPckowN01hZzNsTnpXNEx0LTJsSklMX2lCNEstUlVWaXhtM0VGQXowTzBoODZTV244cjFuVE5VSGpLalFMOGhsRVVZQldzOEc0QVJLTll1SjUyMHNhOVBrT1dzMVk?oc=5",
+    "published": "Fri, 20 Nov 2026 12:40:00 GMT",
+    "publisher": "Fortune",
     "via": "Google News RSS"
    }
   },
@@ -124,10 +145,10 @@
    "change_pts": 17.0,
    "from_date": "2026-11-20",
    "news": {
-    "headline": "Bitcoin's regulation bull case is played out. What could drive crypto gains moving forward - CNBC",
-    "url": "https://news.google.com/rss/articles/CBMijAFBVV95cUxQWmZadko1d2NDa3h3cVJUNGZTbHZjcUZGd1ZNYkxOWlBwLWd3Rk9KcHFuVWdVcUVWMUVNQW5iSklCZkEtaC13bGZWZlpKQl9JUmNzSlFBdjViaGZENDBGdWU2Z3FPQk5hZGRNUlVmckQ2aUtOWkIxQlhVa1AwVXFkd2JkYVVva2czQk1NUtIBkgFBVV95cUxPWHg0Ym8yVHNqV2lITW81aDhBSzZyN2M4ekMzelRIQ003YVVGZWkxRjhHMGl1TXBoVWEwUnF0aG9zZ0JFTnFjWWxjQWFnWVhiS2Y3R3ZfallHd2RwczdSQWFoaDYtdmxKSVRiX2ZNeHJqcGVTdldlcjQ3RHpqQWlOVFpjOHU3NHNCWjEzaGZmbFdkdw?oc=5",
-    "published": "Fri, 20 Nov 2026 14:29:45 GMT",
-    "publisher": "CNBC",
+    "headline": "Current price of Bitcoin for November 20, 2026 - Fortune",
+    "url": "https://news.google.com/rss/articles/CBMiZ0FVX3lxTE5XLVJPckowN01hZzNsTnpXNEx0LTJsSklMX2lCNEstUlVWaXhtM0VGQXowTzBoODZTV244cjFuVE5VSGpLalFMOGhsRVVZQldzOEc0QVJLTll1SjUyMHNhOVBrT1dzMVk?oc=5",
+    "published": "Fri, 20 Nov 2026 12:40:00 GMT",
+    "publisher": "Fortune",
     "via": "Google News RSS"
    }
   },
@@ -182,11 +203,11 @@
    "odds": [
     {
      "outcome": "↑ 100,000",
-     "yes": 0.016
+     "yes": 0.0125
     },
     {
      "outcome": "↓ 55,000",
-     "yes": 0.545
+     "yes": 0.565
     }
    ]
   },
@@ -203,7 +224,7 @@
    "odds": [
     {
      "outcome": "Before Jan 1, 2027",
-     "yes": 0.02
+     "yes": 0.022
     }
    ]
   },
@@ -220,5 +241,5 @@
    "odds": []
   }
  ],
- "generated_utc": "2026-11-24T08:22:53+00:00"
+ "generated_utc": "2026-11-24T14:48:50+00:00"
 }
