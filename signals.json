@@ -21,7 +21,7 @@
     "new": "STAY_BTC"
   },
   "_hash_note": "signal_hash changes when the recommendation, also_valid, any preferred peg state (on for the call = RUNNING_HOT/ON, hashed alike; WARMING_UP and COOLING_OFF hash as WATCH, STALLED as SELL; ON held by buybacks hashes as WATCH) or any overheated flag changes; last_changed is the most recent trading day it changed.",
-  "generated_utc": "2026-11-24T02:21:05+00:00",
+  "generated_utc": "2026-11-24T02:33:19+00:00",
   "as_of": "2026-11-23",
   "disclaimer": "Rules-based indicator, not financial advice.",
   "recommendation_detail": {
@@ -383,7 +383,7 @@
         },
         {
           "t": 1795200000,
-          "c": 94.38
+          "c": 94.39
         },
         {
           "t": 1795200300,
@@ -2010,8 +2010,8 @@
       "question": "Will Bitcoin dip to $55,000 by December 31, 2026?",
       "url": "https://polymarket.com/event/what-price-will-bitcoin-hit-before-2027",
       "from": 0.275,
-      "to": 0.485,
-      "change_pts": 21.0,
+      "to": 0.5,
+      "change_pts": 22.5,
       "from_date": "2026-11-17",
       "news": {
         "headline": "Strategy Buys $30 Million Of Bitcoin As Price Hits Two-Year Low - Yahoo Finance",
@@ -2077,10 +2077,10 @@
       "change_pts": -20.0,
       "from_date": "2026-11-21",
       "news": {
-        "headline": "Bitcoin BTC (BTC-USD) Live Price, News, Chart and Price History - Yahoo Finance Singapore",
-        "url": "https://news.google.com/rss/articles/CBMiVkFVX3lxTE5yOVM0ZTRBWjRWRW9KcFF1czB4bV9VbHNOYnZqSTRlXzk2SHBHTEo5RnIzR0xkNklES1Z6ZnZZSTRhM2tjZEFnQ3VEd1BCUDFPcFRBSlhB?oc=5",
-        "published": "Sat, 21 Nov 2026 23:11:12 GMT",
-        "publisher": "Yahoo Finance Singapore",
+        "headline": "Bitcoin, XRP plunged more than 70% on Kraken, and buyers get to keep cheap coins - CoinDesk",
+        "url": "https://news.google.com/rss/articles/CBMixAFBVV95cUxONFlvOWxMWFAzZVZJVGNYazEyUlVWdzJ3V21hd1lpdnkxSXB5YkN1NXViSlJSNWwyM1BhWUg2bjc0WGRPUHhJWUw2dHh0XzJER1U4amtTS0RyVGNkdmJ6am5NWlp0QlRWdldtSGUzdWVVVDIxMDRXdnlTSmZlaTd1VW9wOFBVaFRCVXNqa0hOSXd0S2pyVUlaZGtUR3FjQ2xRd094VFF1QjlCRjE1NDhwVllydGpUd0FtWmg3ZEpLcFdpNHNj?oc=5",
+        "published": "Mon, 23 Nov 2026 05:42:22 GMT",
+        "publisher": "CoinDesk",
         "via": "Google News RSS"
       }
     },
@@ -2098,10 +2098,10 @@
       "change_pts": 41.0,
       "from_date": "2026-11-20",
       "news": {
-        "headline": "Bitcoin's regulation bull case is played out. What could drive crypto gains moving forward - CNBC",
-        "url": "https://news.google.com/rss/articles/CBMijAFBVV95cUxQWmZadko1d2NDa3h3cVJUNGZTbHZjcUZGd1ZNYkxOWlBwLWd3Rk9KcHFuVWdVcUVWMUVNQW5iSklCZkEtaC13bGZWZlpKQl9JUmNzSlFBdjViaGZENDBGdWU2Z3FPQk5hZGRNUlVmckQ2aUtOWkIxQlhVa1AwVXFkd2JkYVVva2czQk1NUtIBkgFBVV95cUxPWHg0Ym8yVHNqV2lITW81aDhBSzZyN2M4ekMzelRIQ003YVVGZWkxRjhHMGl1TXBoVWEwUnF0aG9zZ0JFTnFjWWxjQWFnWVhiS2Y3R3ZfallHd2RwczdSQWFoaDYtdmxKSVRiX2ZNeHJqcGVTdldlcjQ3RHpqQWlOVFpjOHU3NHNCWjEzaGZmbFdkdw?oc=5",
-        "published": "Fri, 20 Nov 2026 14:29:45 GMT",
-        "publisher": "CNBC",
+        "headline": "Bitcoin BTC (BTC-USD) Live Price, News, Chart and Price History - Yahoo Finance Singapore",
+        "url": "https://news.google.com/rss/articles/CBMiVkFVX3lxTE5yOVM0ZTRBWjRWRW9KcFF1czB4bV9VbHNOYnZqSTRlXzk2SHBHTEo5RnIzR0xkNklES1Z6ZnZZSTRhM2tjZEFnQ3VEd1BCUDFPcFRBSlhB?oc=5",
+        "published": "Sat, 21 Nov 2026 23:11:12 GMT",
+        "publisher": "Yahoo Finance Singapore",
         "via": "Google News RSS"
       }
     },
@@ -2119,10 +2119,10 @@
       "change_pts": 17.0,
       "from_date": "2026-11-20",
       "news": {
-        "headline": "Bitcoin's regulation bull case is played out. What could drive crypto gains moving forward - CNBC",
-        "url": "https://news.google.com/rss/articles/CBMijAFBVV95cUxQWmZadko1d2NDa3h3cVJUNGZTbHZjcUZGd1ZNYkxOWlBwLWd3Rk9KcHFuVWdVcUVWMUVNQW5iSklCZkEtaC13bGZWZlpKQl9JUmNzSlFBdjViaGZENDBGdWU2Z3FPQk5hZGRNUlVmckQ2aUtOWkIxQlhVa1AwVXFkd2JkYVVva2czQk1NUtIBkgFBVV95cUxPWHg0Ym8yVHNqV2lITW81aDhBSzZyN2M4ekMzelRIQ003YVVGZWkxRjhHMGl1TXBoVWEwUnF0aG9zZ0JFTnFjWWxjQWFnWVhiS2Y3R3ZfallHd2RwczdSQWFoaDYtdmxKSVRiX2ZNeHJqcGVTdldlcjQ3RHpqQWlOVFpjOHU3NHNCWjEzaGZmbFdkdw?oc=5",
-        "published": "Fri, 20 Nov 2026 14:29:45 GMT",
-        "publisher": "CNBC",
+        "headline": "Bitcoin BTC (BTC-USD) Live Price, News, Chart and Price History - Yahoo Finance Singapore",
+        "url": "https://news.google.com/rss/articles/CBMiVkFVX3lxTE5yOVM0ZTRBWjRWRW9KcFF1czB4bV9VbHNOYnZqSTRlXzk2SHBHTEo5RnIzR0xkNklES1Z6ZnZZSTRhM2tjZEFnQ3VEd1BCUDFPcFRBSlhB?oc=5",
+        "published": "Sat, 21 Nov 2026 23:11:12 GMT",
+        "publisher": "Yahoo Finance Singapore",
         "via": "Google News RSS"
       }
     },
@@ -2181,7 +2181,7 @@
         },
         {
           "outcome": "\u2193 55,000",
-          "yes": 0.485
+          "yes": 0.5
         }
       ]
     },
@@ -2223,15 +2223,15 @@
       "top": [
         {
           "outcome": "\u2193 55,000",
-          "yes": 0.485
+          "yes": 0.5
         },
         {
           "outcome": "\u2193 50,000",
-          "yes": 0.294
+          "yes": 0.2955
         },
         {
           "outcome": "\u2193 45,000",
-          "yes": 0.134
+          "yes": 0.135
         },
         {
           "outcome": "\u2193 40,000",
@@ -2309,7 +2309,7 @@
       "top": [
         {
           "outcome": "Crypto Market Structure legislation becomes law in 2026?",
-          "yes": 0.025
+          "yes": 0.026
         }
       ]
     },
@@ -2383,7 +2383,7 @@
       "top": [
         {
           "outcome": "Below $55,000.00",
-          "yes": 0.48
+          "yes": 0.51
         },
         {
           "outcome": "Below $50,000.00",
@@ -2694,7 +2694,8 @@
         "flywheel_on": false,
         "in_official_call": false,
         "buyback_held_par": true,
-        "dip_target": true
+        "dip_target": true,
+        "below_par": true
       },
       "reason": "CHEAP 0.97x, flywheel off, buyback-held par"
     },
@@ -2711,7 +2712,8 @@
         "flywheel_on": false,
         "in_official_call": false,
         "buyback_held_par": false,
-        "dip_target": false
+        "dip_target": false,
+        "below_par": false
       },
       "reason": "VERY RICH 1.35x, flywheel off"
     }
@@ -2735,7 +2737,7 @@
       "ASST": "WAIT"
     }
   },
-  "_tier_note": "DISPLAY ONLY (Bobby 2026-11-23), not part of the call: recommendation, headline, headline_legacy and signal_hash are unchanged. Per stock: STRONG_BUY = in the official call (flywheel ON, not overheated) + zone CHEAP (100% of that stock's allocation); BUY = in the official call (60%); NIBBLE = CHEAP, not overheated, flywheel off for the call (25%; par held by buybacks is a caveat, not a block); otherwise WAIT (0%). tier_hash changes only when a stock's tier changes. Not yet proven: in the 2025-10-27 to 2026-11-18 backtest most of the gain came from one ASST CHEAP stretch (Feb-Apr 2026). Rules-based, not financial advice.",
+  "_tier_note": "DISPLAY ONLY (Bobby 2026-11-23), not part of the call: recommendation, headline, headline_legacy and signal_hash are unchanged. Per stock: STRONG_BUY = in the official call (flywheel ON, not overheated) + zone CHEAP (100% of that stock's allocation); BUY = in the official call (60%); NIBBLE = CHEAP or mNAV below 1.00x, not overheated, flywheel off for the call (25%; par held by buybacks is a caveat, not a block); otherwise WAIT (0%). tier_hash changes only when a stock's tier changes. Not yet proven: in the 2025-10-27 to 2026-11-18 backtest most of the gain came from one ASST CHEAP stretch (Feb-Apr 2026). Rules-based, not financial advice.",
   "changed_since_prev_close": true,
   "prev_headline": "SELL/TRIM MSTR (STRC Stalled \u2192 flywheel off for MSTR); SELL/TRIM ASST (SATA Stalled \u2192 flywheel off for ASST); DIP-BUY: BTC -22% in 10 trading days; buy MSTR (mNAV fell most)"
 }
