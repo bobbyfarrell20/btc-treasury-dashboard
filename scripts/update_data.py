@@ -1085,7 +1085,7 @@ def main():
             break
     sig.update({"tiers": T_last, "tier_sizes": analytics.tier_sizes(CFG), "tier_headline": analytics.tier_line(T_last),
                 "tier_hash": th, "tier_last_changed": tlc,
-                "_tier_note": "DISPLAY ONLY (Bobby 2026-11-23), not part of the call: recommendation, headline, headline_legacy and signal_hash are unchanged. Per stock: STRONG_BUY = in the official call (flywheel ON, not overheated) + zone CHEAP (100% of that stock's allocation); BUY = in the official call (60%); NIBBLE = CHEAP, not overheated, flywheel off for the call (25%; par held by buybacks is a caveat, not a block); otherwise WAIT (0%). tier_hash changes only when a stock's tier changes. Not yet proven: in the 2025-10-27 to 2026-11-18 backtest most of the gain came from one ASST CHEAP stretch (Feb-Apr 2026). Rules-based, not financial advice."})
+                "_tier_note": "DISPLAY ONLY (Bobby 2026-11-23), not part of the call: recommendation, headline, headline_legacy and signal_hash are unchanged. Per stock: STRONG_BUY = in the official call (flywheel ON, not overheated) + zone CHEAP (100% of that stock's allocation); BUY = in the official call (60%); NIBBLE = CHEAP or mNAV below 1.00x, not overheated, flywheel off for the call (25%; par held by buybacks is a caveat, not a block); otherwise WAIT (0%). tier_hash changes only when a stock's tier changes. Not yet proven: in the 2025-10-27 to 2026-11-18 backtest most of the gain came from one ASST CHEAP stretch (Feb-Apr 2026). Rules-based, not financial advice."})
     # state-change log (for monitors)
     prev = rows[-2]["sig"] if len(rows) > 1 else None
     sig["changed_since_prev_close"] = bool(prev and (prev["headline"] != last["sig"]["headline"]))

@@ -131,27 +131,36 @@ TIER_LABEL = {"WAIT": "WAIT", "NIBBLE": "NIBBLE", "BUY": "BUY", "STRONG_BUY": "S
 def tier_sizes(cfg):
     return {**TIER_DEFAULT["sizes"], **((cfg.get("tiers") or {}).get("sizes") or {})}
 
+# Display only (Bobby 2026-11-23 / 11-24): mNAV below this always qualifies for NIBBLE if not overheated,
+# even when the CHEAP zone line (percentile gate ∩ cheap cap) sits below 1.00x.
+TIER_NIBBLE_BELOW = 1.0
+
 def tiers(r, rec, assets, cfg):
     """Per-stock tier from the existing signals. BUY = the stock is in today's official call (flywheel ON and not
-    overheated); STRONG_BUY = BUY + zone CHEAP; NIBBLE = zone CHEAP, not overheated, flywheel off for the call;
-    par held by the issuer's buybacks is a caveat only (does not block NIBBLE). Size = share of the cash allocated
-    to that stock."""
+    overheated); STRONG_BUY = BUY + zone CHEAP; NIBBLE = (zone CHEAP or mNAV < 1.00x), not overheated, flywheel off
+    for the call; par held by the issuer's buybacks is a caveat only (does not block NIBBLE). Size = share of the
+    cash allocated to that stock. Never changes recommendation, headline, headline_legacy or signal_hash."""
     sz, act, out = tier_sizes(cfg), rec["action"], {}
+    floor = float((cfg.get("tiers") or {}).get("nibble_below_mnav", TIER_NIBBLE_BELOW))
     for A in assets:
         t, k, p = A["ticker"], A["key"], A["preferred"]
         pa = rec["per_asset"].get(t, {})
         v, zone = r.get(k + "_mnav"), r.get(k + "_zone")
         in_call = act == "BUY_BOTH" or act == "BUY_" + t
         cheap, oh = zone == "CHEAP", bool(pa.get("overheated"))
+        below = v is not None and v < floor
         bb = bool(r.get("bb_" + p))
         crit = {"cheap": cheap, "not_overheated": not oh, "flywheel_on": bool(pa.get("peg_confirmed")), "in_official_call": in_call,
-                "buyback_held_par": bb, "dip_target": (r.get("sig") or {}).get("dip_target") == t}
+                "buyback_held_par": bb, "dip_target": (r.get("sig") or {}).get("dip_target") == t, "below_par": below}
         if v is None: tier = "WAIT"
         elif in_call: tier = "STRONG_BUY" if cheap else "BUY"
-        elif cheap and not oh: tier = "NIBBLE"
+        elif (cheap or below) and not oh: tier = "NIBBLE"
         else: tier = "WAIT"
         bits = []
-        if v is not None: bits.append(f"{'CHEAP' if cheap else (zone or '').replace('OVERVALUED', 'VERY RICH')} {v:.2f}x")
+        if v is not None:
+            if cheap: bits.append(f"CHEAP {v:.2f}x")
+            elif below: bits.append(f"{v:.2f}x below {floor:.2f}x")
+            else: bits.append(f"{(zone or '').replace('OVERVALUED', 'VERY RICH')} {v:.2f}x")
         if oh: bits.append("overheated")
         bits.append("flywheel ON" if crit["flywheel_on"] else "flywheel off")
         if bb: bits.append("buyback-held par")
