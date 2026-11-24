@@ -8,6 +8,27 @@
   {
    "date": "2026-11-24",
    "window": "7d",
+   "source": "kalshi",
+   "group": "BTC",
+   "market": "How low will BTC get in 2026",
+   "outcome": "Below $55,000.00",
+   "question": null,
+   "url": "https://kalshi.com/markets/kxbtcminy",
+   "from": 0.27,
+   "to": 0.56,
+   "change_pts": 29.0,
+   "from_date": "2026-11-17",
+   "news": {
+    "headline": "Current price of Bitcoin for November 23, 2026 - Fortune",
+    "url": "https://news.google.com/rss/articles/CBMiZ0FVX3lxTE1ZamZzX09EaWptay0tYmdmSk1fbG4wWUJ6X0V0cTdmNGFnd2x6Y3VNZmxnUlRISTJXWTFlTFJ1ZkpucS1LT2EzZE8yNW50d19sSlE2LTczRDNEUWM4RGREMHV5TlJiMXc?oc=5",
+    "published": "Mon, 23 Nov 2026 14:42:04 GMT",
+    "publisher": "Fortune",
+    "via": "Google News RSS"
+   }
+  },
+  {
+   "date": "2026-11-24",
+   "window": "7d",
    "source": "polymarket",
    "group": "BTC",
    "market": "BTC price targets hit in 2026",
@@ -15,35 +36,14 @@
    "question": "Will Bitcoin dip to $55,000 by December 31, 2026?",
    "url": "https://polymarket.com/event/what-price-will-bitcoin-hit-before-2027",
    "from": 0.275,
-   "to": 0.555,
-   "change_pts": 28.0,
+   "to": 0.545,
+   "change_pts": 27.0,
    "from_date": "2026-11-17",
    "news": {
-    "headline": "Strategy Buys $30 Million Of Bitcoin As Price Hits Two-Year Low - Yahoo Finance",
-    "url": "https://news.google.com/rss/articles/CBMingFBVV95cUxPdnI5VkZYNEpCeFRhN19ybEpFTW9uN3ktWDVPcm8wU3JfY3I1VFpKaVhWaEtxcFhCYldyeGZMNUltc016R2hPdGQyNTFjRlNDRVJHN1VaVDNBRndPbzBOWmY3X2hSWVpCWUhEZHJ5Zmd4STNkMTJSN3VTVUxFWlVyZXQycGprNVhqMkprczZxVHRRYVN2TVdxWTI3Y1ZLUQ?oc=5",
-    "published": "Mon, 23 Nov 2026 14:04:00 GMT",
-    "publisher": "Yahoo Finance",
-    "via": "Google News RSS"
-   }
-  },
-  {
-   "date": "2026-11-23",
-   "window": "7d",
-   "source": "kalshi",
-   "group": "BTC",
-   "market": "How low will BTC get in 2026",
-   "outcome": "Below $55,000.00",
-   "question": null,
-   "url": "https://kalshi.com/markets/kxbtcminy",
-   "from": 0.3,
-   "to": 0.52,
-   "change_pts": 22.0,
-   "from_date": "2026-11-16",
-   "news": {
-    "headline": "Strategy Buys $30 Million Of Bitcoin As Price Hits Two-Year Low - Yahoo Finance",
-    "url": "https://news.google.com/rss/articles/CBMingFBVV95cUxPdnI5VkZYNEpCeFRhN19ybEpFTW9uN3ktWDVPcm8wU3JfY3I1VFpKaVhWaEtxcFhCYldyeGZMNUltc016R2hPdGQyNTFjRlNDRVJHN1VaVDNBRndPbzBOWmY3X2hSWVpCWUhEZHJ5Zmd4STNkMTJSN3VTVUxFWlVyZXQycGprNVhqMkprczZxVHRRYVN2TVdxWTI3Y1ZLUQ?oc=5",
-    "published": "Mon, 23 Nov 2026 14:04:00 GMT",
-    "publisher": "Yahoo Finance",
+    "headline": "Current price of Bitcoin for November 23, 2026 - Fortune",
+    "url": "https://news.google.com/rss/articles/CBMiZ0FVX3lxTE1ZamZzX09EaWptay0tYmdmSk1fbG4wWUJ6X0V0cTdmNGFnd2x6Y3VNZmxnUlRISTJXWTFlTFJ1ZkpucS1LT2EzZE8yNW50d19sSlE2LTczRDNEUWM4RGREMHV5TlJiMXc?oc=5",
+    "published": "Mon, 23 Nov 2026 14:42:04 GMT",
+    "publisher": "Fortune",
     "via": "Google News RSS"
    }
   },
@@ -61,10 +61,10 @@
    "change_pts": -14.0,
    "from_date": "2026-11-22",
    "news": {
-    "headline": "Strategy Buys $30 Million Of Bitcoin As Price Hits Two-Year Low - Yahoo Finance",
-    "url": "https://news.google.com/rss/articles/CBMingFBVV95cUxPdnI5VkZYNEpCeFRhN19ybEpFTW9uN3ktWDVPcm8wU3JfY3I1VFpKaVhWaEtxcFhCYldyeGZMNUltc016R2hPdGQyNTFjRlNDRVJHN1VaVDNBRndPbzBOWmY3X2hSWVpCWUhEZHJ5Zmd4STNkMTJSN3VTVUxFWlVyZXQycGprNVhqMkprczZxVHRRYVN2TVdxWTI3Y1ZLUQ?oc=5",
-    "published": "Mon, 23 Nov 2026 14:04:00 GMT",
-    "publisher": "Yahoo Finance",
+    "headline": "Current price of Bitcoin for November 23, 2026 - Fortune",
+    "url": "https://news.google.com/rss/articles/CBMiZ0FVX3lxTE1ZamZzX09EaWptay0tYmdmSk1fbG4wWUJ6X0V0cTdmNGFnd2x6Y3VNZmxnUlRISTJXWTFlTFJ1ZkpucS1LT2EzZE8yNW50d19sSlE2LTczRDNEUWM4RGREMHV5TlJiMXc?oc=5",
+    "published": "Mon, 23 Nov 2026 14:42:04 GMT",
+    "publisher": "Fortune",
     "via": "Google News RSS"
    }
   },
@@ -103,10 +103,10 @@
    "change_pts": 41.0,
    "from_date": "2026-11-20",
    "news": {
-    "headline": "Bitcoin Price, BTC to USD, Research, News & Fundraising | Blockworks Intel - Blockworks",
-    "url": "https://news.google.com/rss/articles/CBMiVkFVX3lxTE9rdkVKdVVfZ0tPUm5jZTRHOU9EUGh0ZlNJSUU2VDVuczRKRmxqSWk4RzFKOTQtMnV2cFcyR2p1M2NjSGExdjVGbDdzZ2ZNNTZKTG0zQ3J3?oc=5",
-    "published": "Fri, 20 Nov 2026 08:00:11 GMT",
-    "publisher": "Blockworks",
+    "headline": "Bitcoin's regulation bull case is played out. What could drive crypto gains moving forward - CNBC",
+    "url": "https://news.google.com/rss/articles/CBMijAFBVV95cUxQWmZadko1d2NDa3h3cVJUNGZTbHZjcUZGd1ZNYkxOWlBwLWd3Rk9KcHFuVWdVcUVWMUVNQW5iSklCZkEtaC13bGZWZlpKQl9JUmNzSlFBdjViaGZENDBGdWU2Z3FPQk5hZGRNUlVmckQ2aUtOWkIxQlhVa1AwVXFkd2JkYVVva2czQk1NUtIBkgFBVV95cUxPWHg0Ym8yVHNqV2lITW81aDhBSzZyN2M4ekMzelRIQ003YVVGZWkxRjhHMGl1TXBoVWEwUnF0aG9zZ0JFTnFjWWxjQWFnWVhiS2Y3R3ZfallHd2RwczdSQWFoaDYtdmxKSVRiX2ZNeHJqcGVTdldlcjQ3RHpqQWlOVFpjOHU3NHNCWjEzaGZmbFdkdw?oc=5",
+    "published": "Fri, 20 Nov 2026 14:29:45 GMT",
+    "publisher": "CNBC",
     "via": "Google News RSS"
    }
   },
@@ -124,10 +124,10 @@
    "change_pts": 17.0,
    "from_date": "2026-11-20",
    "news": {
-    "headline": "Bitcoin Price, BTC to USD, Research, News & Fundraising | Blockworks Intel - Blockworks",
-    "url": "https://news.google.com/rss/articles/CBMiVkFVX3lxTE9rdkVKdVVfZ0tPUm5jZTRHOU9EUGh0ZlNJSUU2VDVuczRKRmxqSWk4RzFKOTQtMnV2cFcyR2p1M2NjSGExdjVGbDdzZ2ZNNTZKTG0zQ3J3?oc=5",
-    "published": "Fri, 20 Nov 2026 08:00:11 GMT",
-    "publisher": "Blockworks",
+    "headline": "Bitcoin's regulation bull case is played out. What could drive crypto gains moving forward - CNBC",
+    "url": "https://news.google.com/rss/articles/CBMijAFBVV95cUxQWmZadko1d2NDa3h3cVJUNGZTbHZjcUZGd1ZNYkxOWlBwLWd3Rk9KcHFuVWdVcUVWMUVNQW5iSklCZkEtaC13bGZWZlpKQl9JUmNzSlFBdjViaGZENDBGdWU2Z3FPQk5hZGRNUlVmckQ2aUtOWkIxQlhVa1AwVXFkd2JkYVVva2czQk1NUtIBkgFBVV95cUxPWHg0Ym8yVHNqV2lITW81aDhBSzZyN2M4ekMzelRIQ003YVVGZWkxRjhHMGl1TXBoVWEwUnF0aG9zZ0JFTnFjWWxjQWFnWVhiS2Y3R3ZfallHd2RwczdSQWFoaDYtdmxKSVRiX2ZNeHJqcGVTdldlcjQ3RHpqQWlOVFpjOHU3NHNCWjEzaGZmbFdkdw?oc=5",
+    "published": "Fri, 20 Nov 2026 14:29:45 GMT",
+    "publisher": "CNBC",
     "via": "Google News RSS"
    }
   },
@@ -166,10 +166,10 @@
    "change_pts": -15.2,
    "from_date": "2026-11-10",
    "news": {
-    "headline": "Fed’s Musalem Says Several Rate Hikes Likely Needed Before Spring 2027 - WSJ",
-    "url": "https://news.google.com/rss/articles/CBMivwFBVV95cUxONlE5MkU2R0ZHZmVES3lZRXd0anBhR25DRkJOcTM5UU1INjc2VXVuMTFZSG9ONE9HTUdCTGpiVnE2bTdxNmQ5a0JuZWZwVlNFM3dKc0JiZ3U4OElZRWtkLTFOU20tMGZDNVRWMFk5YjdsTzlZdkxNRGV5dl9QWjF3YW5SMV9RdVJUUGNqcmpuSzhNT25wYllhWVcwSXIzYU5acEZkRmlMbUdiQl91NXpnbG95M2NiVmdCYjVuUlFJdw?oc=5",
-    "published": "Tue, 17 Nov 2026 13:14:00 GMT",
-    "publisher": "WSJ",
+    "headline": "Monetary Policy - Federal Reserve (.gov)",
+    "url": "https://news.google.com/rss/articles/CBMiXkFVX3lxTE92VDNIRjQ1Wk9RMzBEV3dQS1FTcnh4X0dtTXhXaEZTTGc5S01NY0lWX0hIaFNyNTAyeVpqdnNVYVZ2Tnl5MFRvdURiWlFaOEVEcFhtTlBYbjJaV3o3S3c?oc=5",
+    "published": "Wed, 18 Nov 2026 08:00:00 GMT",
+    "publisher": "Federal Reserve (.gov)",
     "via": "Google News RSS"
    }
   }
@@ -182,11 +182,11 @@
    "odds": [
     {
      "outcome": "↑ 100,000",
-     "yes": 0.0185
+     "yes": 0.016
     },
     {
      "outcome": "↓ 55,000",
-     "yes": 0.555
+     "yes": 0.545
     }
    ]
   },
@@ -220,5 +220,5 @@
    "odds": []
   }
  ],
- "generated_utc": "2026-11-24T04:42:06+00:00"
+ "generated_utc": "2026-11-24T08:22:53+00:00"
 }
