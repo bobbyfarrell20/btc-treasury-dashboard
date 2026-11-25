@@ -6,7 +6,7 @@
  },
  "jumps": [
   {
-   "date": "2026-11-24",
+   "date": "2026-11-25",
    "window": "7d",
    "source": "polymarket",
    "group": "BTC",
@@ -14,15 +14,36 @@
    "outcome": "↓ 55,000",
    "question": "Will Bitcoin dip to $55,000 by December 31, 2026?",
    "url": "https://polymarket.com/event/what-price-will-bitcoin-hit-before-2027",
-   "from": 0.275,
-   "to": 0.595,
-   "change_pts": 32.0,
-   "from_date": "2026-11-17",
+   "from": 0.285,
+   "to": 0.625,
+   "change_pts": 34.0,
+   "from_date": "2026-11-18",
    "news": {
-    "headline": "Bitcoin BTC (BTC-USD) Live Price, News, Chart & Price History - Yahoo! Finance Canada",
-    "url": "https://news.google.com/rss/articles/CBMiVkFVX3lxTE1HSGlGRjBhSUlQdXZtSXRJWmhTcWlLMmt2WEM2WFk0LV9Bd3BzOGNZQzJmQXJycTBZcmpSNWZiWHMzMDdzY3cyQzlKYXNYSk0tUF9MVzdB?oc=5",
-    "published": "Tue, 24 Nov 2026 17:17:28 GMT",
-    "publisher": "Yahoo! Finance Canada",
+    "headline": "The Bitcoin Price That Would Signal the Sell-Off Is Over - Yahoo Finance",
+    "url": "https://news.google.com/rss/articles/CBMimgFBVV95cUxOM0ZDZ0E3RGplU1EyUHo1ajdpY2JtSVpuY2N2UFhySlNINFdoekJqeUw4aHBJN1dRcTlDMnFXVUM4cWhVSVQtWThrOUljb01LeHg2XzlPaVM3ZERlYy1PTkVyUTdhc2o2c1hpaWZjcUJRZG1ILVFEaEVBYlVKMGJTRXF6Y0FGR0tlRWlDTjl3X0dtZGJHaUtva0VB?oc=5",
+    "published": "Tue, 24 Nov 2026 19:11:27 GMT",
+    "publisher": "Yahoo Finance",
+    "via": "Google News RSS"
+   }
+  },
+  {
+   "date": "2026-11-25",
+   "window": "24h",
+   "source": "polymarket",
+   "group": "BTC",
+   "market": "BTC price targets hit in 2026",
+   "outcome": "↓ 55,000",
+   "question": "Will Bitcoin dip to $55,000 by December 31, 2026?",
+   "url": "https://polymarket.com/event/what-price-will-bitcoin-hit-before-2027",
+   "from": 0.465,
+   "to": 0.595,
+   "change_pts": 13.0,
+   "from_date": "2026-11-24",
+   "news": {
+    "headline": "The Bitcoin Price That Would Signal the Sell-Off Is Over - Yahoo Finance",
+    "url": "https://news.google.com/rss/articles/CBMimgFBVV95cUxOM0ZDZ0E3RGplU1EyUHo1ajdpY2JtSVpuY2N2UFhySlNINFdoekJqeUw4aHBJN1dRcTlDMnFXVUM4cWhVSVQtWThrOUljb01LeHg2XzlPaVM3ZERlYy1PTkVyUTdhc2o2c1hpaWZjcUJRZG1ILVFEaEVBYlVKMGJTRXF6Y0FGR0tlRWlDTjl3X0dtZGJHaUtva0VB?oc=5",
+    "published": "Tue, 24 Nov 2026 19:11:27 GMT",
+    "publisher": "Yahoo Finance",
     "via": "Google News RSS"
    }
   },
@@ -40,31 +61,10 @@
    "change_pts": 29.0,
    "from_date": "2026-11-17",
    "news": {
-    "headline": "Bitcoin BTC (BTC-USD) Live Price, News, Chart & Price History - Yahoo! Finance Canada",
-    "url": "https://news.google.com/rss/articles/CBMiVkFVX3lxTE1HSGlGRjBhSUlQdXZtSXRJWmhTcWlLMmt2WEM2WFk0LV9Bd3BzOGNZQzJmQXJycTBZcmpSNWZiWHMzMDdzY3cyQzlKYXNYSk0tUF9MVzdB?oc=5",
-    "published": "Tue, 24 Nov 2026 17:17:28 GMT",
-    "publisher": "Yahoo! Finance Canada",
-    "via": "Google News RSS"
-   }
-  },
-  {
-   "date": "2026-11-24",
-   "window": "24h",
-   "source": "polymarket",
-   "group": "BTC",
-   "market": "BTC price targets hit in 2026",
-   "outcome": "↓ 55,000",
-   "question": "Will Bitcoin dip to $55,000 by December 31, 2026?",
-   "url": "https://polymarket.com/event/what-price-will-bitcoin-hit-before-2027",
-   "from": 0.465,
-   "to": 0.595,
-   "change_pts": 13.0,
-   "from_date": "2026-11-24",
-   "news": {
-    "headline": "Bitcoin BTC (BTC-USD) Live Price, News, Chart & Price History - Yahoo! Finance Canada",
-    "url": "https://news.google.com/rss/articles/CBMiVkFVX3lxTE1HSGlGRjBhSUlQdXZtSXRJWmhTcWlLMmt2WEM2WFk0LV9Bd3BzOGNZQzJmQXJycTBZcmpSNWZiWHMzMDdzY3cyQzlKYXNYSk0tUF9MVzdB?oc=5",
-    "published": "Tue, 24 Nov 2026 17:17:28 GMT",
-    "publisher": "Yahoo! Finance Canada",
+    "headline": "The Bitcoin Price That Would Signal the Sell-Off Is Over - Yahoo Finance",
+    "url": "https://news.google.com/rss/articles/CBMimgFBVV95cUxOM0ZDZ0E3RGplU1EyUHo1ajdpY2JtSVpuY2N2UFhySlNINFdoekJqeUw4aHBJN1dRcTlDMnFXVUM4cWhVSVQtWThrOUljb01LeHg2XzlPaVM3ZERlYy1PTkVyUTdhc2o2c1hpaWZjcUJRZG1ILVFEaEVBYlVKMGJTRXF6Y0FGR0tlRWlDTjl3X0dtZGJHaUtva0VB?oc=5",
+    "published": "Tue, 24 Nov 2026 19:11:27 GMT",
+    "publisher": "Yahoo Finance",
     "via": "Google News RSS"
    }
   },
@@ -124,10 +124,10 @@
    "change_pts": 41.0,
    "from_date": "2026-11-20",
    "news": {
-    "headline": "Current price of Bitcoin for November 20, 2026 - Fortune",
-    "url": "https://news.google.com/rss/articles/CBMiZ0FVX3lxTE5XLVJPckowN01hZzNsTnpXNEx0LTJsSklMX2lCNEstUlVWaXhtM0VGQXowTzBoODZTV244cjFuVE5VSGpLalFMOGhsRVVZQldzOEc0QVJLTll1SjUyMHNhOVBrT1dzMVk?oc=5",
-    "published": "Fri, 20 Nov 2026 12:40:00 GMT",
-    "publisher": "Fortune",
+    "headline": "Bitcoin's regulation bull case is played out. What could drive crypto gains moving forward - CNBC",
+    "url": "https://news.google.com/rss/articles/CBMijAFBVV95cUxQWmZadko1d2NDa3h3cVJUNGZTbHZjcUZGd1ZNYkxOWlBwLWd3Rk9KcHFuVWdVcUVWMUVNQW5iSklCZkEtaC13bGZWZlpKQl9JUmNzSlFBdjViaGZENDBGdWU2Z3FPQk5hZGRNUlVmckQ2aUtOWkIxQlhVa1AwVXFkd2JkYVVva2czQk1NUtIBkgFBVV95cUxPWHg0Ym8yVHNqV2lITW81aDhBSzZyN2M4ekMzelRIQ003YVVGZWkxRjhHMGl1TXBoVWEwUnF0aG9zZ0JFTnFjWWxjQWFnWVhiS2Y3R3ZfallHd2RwczdSQWFoaDYtdmxKSVRiX2ZNeHJqcGVTdldlcjQ3RHpqQWlOVFpjOHU3NHNCWjEzaGZmbFdkdw?oc=5",
+    "published": "Fri, 20 Nov 2026 14:29:45 GMT",
+    "publisher": "CNBC",
     "via": "Google News RSS"
    }
   },
@@ -145,10 +145,10 @@
    "change_pts": 17.0,
    "from_date": "2026-11-20",
    "news": {
-    "headline": "Current price of Bitcoin for November 20, 2026 - Fortune",
-    "url": "https://news.google.com/rss/articles/CBMiZ0FVX3lxTE5XLVJPckowN01hZzNsTnpXNEx0LTJsSklMX2lCNEstUlVWaXhtM0VGQXowTzBoODZTV244cjFuVE5VSGpLalFMOGhsRVVZQldzOEc0QVJLTll1SjUyMHNhOVBrT1dzMVk?oc=5",
-    "published": "Fri, 20 Nov 2026 12:40:00 GMT",
-    "publisher": "Fortune",
+    "headline": "Bitcoin's regulation bull case is played out. What could drive crypto gains moving forward - CNBC",
+    "url": "https://news.google.com/rss/articles/CBMijAFBVV95cUxQWmZadko1d2NDa3h3cVJUNGZTbHZjcUZGd1ZNYkxOWlBwLWd3Rk9KcHFuVWdVcUVWMUVNQW5iSklCZkEtaC13bGZWZlpKQl9JUmNzSlFBdjViaGZENDBGdWU2Z3FPQk5hZGRNUlVmckQ2aUtOWkIxQlhVa1AwVXFkd2JkYVVva2czQk1NUtIBkgFBVV95cUxPWHg0Ym8yVHNqV2lITW81aDhBSzZyN2M4ekMzelRIQ003YVVGZWkxRjhHMGl1TXBoVWEwUnF0aG9zZ0JFTnFjWWxjQWFnWVhiS2Y3R3ZfallHd2RwczdSQWFoaDYtdmxKSVRiX2ZNeHJqcGVTdldlcjQ3RHpqQWlOVFpjOHU3NHNCWjEzaGZmbFdkdw?oc=5",
+    "published": "Fri, 20 Nov 2026 14:29:45 GMT",
+    "publisher": "CNBC",
     "via": "Google News RSS"
    }
   },
@@ -172,27 +172,6 @@
     "publisher": "Fortune",
     "via": "Google News RSS"
    }
-  },
-  {
-   "date": "2026-11-17",
-   "window": "7d",
-   "source": "polymarket",
-   "group": "Fed",
-   "market": "Fed decision - Dec 9",
-   "outcome": "No change",
-   "question": "Will there be no change in Fed interest rates after the December 2026 meeting?",
-   "url": "https://polymarket.com/event/fed-decision-in-december-20260729232808632",
-   "from": 0.185,
-   "to": 0.0335,
-   "change_pts": -15.2,
-   "from_date": "2026-11-10",
-   "news": {
-    "headline": "Fed’s Musalem Says Several Rate Hikes Likely Needed Before Spring 2027 - WSJ",
-    "url": "https://news.google.com/rss/articles/CBMivwFBVV95cUxONlE5MkU2R0ZHZmVES3lZRXd0anBhR25DRkJOcTM5UU1INjc2VXVuMTFZSG9ONE9HTUdCTGpiVnE2bTdxNmQ5a0JuZWZwVlNFM3dKc0JiZ3U4OElZRWtkLTFOU20tMGZDNVRWMFk5YjdsTzlZdkxNRGV5dl9QWjF3YW5SMV9RdVJUUGNqcmpuSzhNT25wYllhWVcwSXIzYU5acEZkRmlMbUdiQl91NXpnbG95M2NiVmdCYjVuUlFJdw?oc=5",
-    "published": "Tue, 17 Nov 2026 13:14:00 GMT",
-    "publisher": "WSJ",
-    "via": "Google News RSS"
-   }
   }
  ],
  "summary": [
@@ -203,11 +182,11 @@
    "odds": [
     {
      "outcome": "↑ 100,000",
-     "yes": 0.013
+     "yes": 0.0135
     },
     {
      "outcome": "↓ 55,000",
-     "yes": 0.595
+     "yes": 0.625
     }
    ]
   },
@@ -224,7 +203,7 @@
    "odds": [
     {
      "outcome": "Before Jan 1, 2027",
-     "yes": 0.014
+     "yes": 0.023
     }
    ]
   },
@@ -241,5 +220,5 @@
    "odds": []
   }
  ],
- "generated_utc": "2026-11-24T21:50:05+00:00"
+ "generated_utc": "2026-11-25T03:08:19+00:00"
 }
