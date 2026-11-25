@@ -8,27 +8,6 @@
   {
    "date": "2026-11-25",
    "window": "7d",
-   "source": "polymarket",
-   "group": "BTC",
-   "market": "BTC price targets hit in 2026",
-   "outcome": "↓ 55,000",
-   "question": "Will Bitcoin dip to $55,000 by December 31, 2026?",
-   "url": "https://polymarket.com/event/what-price-will-bitcoin-hit-before-2027",
-   "from": 0.285,
-   "to": 0.745,
-   "change_pts": 46.0,
-   "from_date": "2026-11-18",
-   "news": {
-    "headline": "Current price of Bitcoin for November 25, 2026 - Fortune",
-    "url": "https://news.google.com/rss/articles/CBMiZ0FVX3lxTE5Na2pvV2xpZm03U3B4MlM5LUhQNDM2cGlsRXNmUDF5UTdtUzBkSHlTZVI3MVp0RGg2MHpWYVhiSFVRR0xFaWxZamsxLXdheUlwaTV6R2RXWW9yVzZMVHctOHRydktiXzg?oc=5",
-    "published": "Wed, 25 Nov 2026 12:58:21 GMT",
-    "publisher": "Fortune",
-    "via": "Google News RSS"
-   }
-  },
-  {
-   "date": "2026-11-25",
-   "window": "7d",
    "source": "kalshi",
    "group": "BTC",
    "market": "How low will BTC get in 2026",
@@ -40,10 +19,31 @@
    "change_pts": 32.0,
    "from_date": "2026-11-18",
    "news": {
-    "headline": "Current price of Bitcoin for November 25, 2026 - Fortune",
-    "url": "https://news.google.com/rss/articles/CBMiZ0FVX3lxTE5Na2pvV2xpZm03U3B4MlM5LUhQNDM2cGlsRXNmUDF5UTdtUzBkSHlTZVI3MVp0RGg2MHpWYVhiSFVRR0xFaWxZamsxLXdheUlwaTV6R2RXWW9yVzZMVHctOHRydktiXzg?oc=5",
-    "published": "Wed, 25 Nov 2026 12:58:21 GMT",
-    "publisher": "Fortune",
+    "headline": "It’s ‘Coming’—Massive AI Crash Predicted To Trigger $25 Trillion Bitcoin Price Boom - Forbes",
+    "url": "https://news.google.com/rss/articles/CBMi0AFBVV95cUxPZmxWSk5HTFBVRER1SUJkQklZQ3JFdV8wdzN3ZlQwRm8tbDhMcmp4NVdlWFduUGhNTHBzUWZvYUdoTlo0Z0ZBSXN3dG8wQ3ROZ2ZQa0hRMmFZSEN2V3FqX3d0VGZRX1IxWnAtWjBMQzZReE83RmtEcEh6eEg3OTh5T3NKanByc29ha0hXQV8tZDljdks4TFpYOXF5YUY0OVVKRGlrcU93UEJxVWs0MGFvUXM2M0V2R0RsSEkzMlNaak5sUmlDNjhUcnpDblU5eWNB?oc=5",
+    "published": "Wed, 25 Nov 2026 12:34:14 GMT",
+    "publisher": "Forbes",
+    "via": "Google News RSS"
+   }
+  },
+  {
+   "date": "2026-11-25",
+   "window": "7d",
+   "source": "polymarket",
+   "group": "BTC",
+   "market": "BTC price targets hit in 2026",
+   "outcome": "↓ 55,000",
+   "question": "Will Bitcoin dip to $55,000 by December 31, 2026?",
+   "url": "https://polymarket.com/event/what-price-will-bitcoin-hit-before-2027",
+   "from": 0.285,
+   "to": 0.595,
+   "change_pts": 31.0,
+   "from_date": "2026-11-18",
+   "news": {
+    "headline": "It’s ‘Coming’—Massive AI Crash Predicted To Trigger $25 Trillion Bitcoin Price Boom - Forbes",
+    "url": "https://news.google.com/rss/articles/CBMi0AFBVV95cUxPZmxWSk5HTFBVRER1SUJkQklZQ3JFdV8wdzN3ZlQwRm8tbDhMcmp4NVdlWFduUGhNTHBzUWZvYUdoTlo0Z0ZBSXN3dG8wQ3ROZ2ZQa0hRMmFZSEN2V3FqX3d0VGZRX1IxWnAtWjBMQzZReE83RmtEcEh6eEg3OTh5T3NKanByc29ha0hXQV8tZDljdks4TFpYOXF5YUY0OVVKRGlrcU93UEJxVWs0MGFvUXM2M0V2R0RsSEkzMlNaak5sUmlDNjhUcnpDblU5eWNB?oc=5",
+    "published": "Wed, 25 Nov 2026 12:34:14 GMT",
+    "publisher": "Forbes",
     "via": "Google News RSS"
    }
   },
@@ -56,15 +56,15 @@
    "outcome": "↓ 55,000",
    "question": "Will Bitcoin dip to $55,000 by December 31, 2026?",
    "url": "https://polymarket.com/event/what-price-will-bitcoin-hit-before-2027",
-   "from": 0.595,
-   "to": 0.745,
-   "change_pts": 15.0,
-   "from_date": "2026-11-25",
+   "from": 0.465,
+   "to": 0.565,
+   "change_pts": 10.0,
+   "from_date": "2026-11-24",
    "news": {
-    "headline": "Current price of Bitcoin for November 25, 2026 - Fortune",
-    "url": "https://news.google.com/rss/articles/CBMiZ0FVX3lxTE5Na2pvV2xpZm03U3B4MlM5LUhQNDM2cGlsRXNmUDF5UTdtUzBkSHlTZVI3MVp0RGg2MHpWYVhiSFVRR0xFaWxZamsxLXdheUlwaTV6R2RXWW9yVzZMVHctOHRydktiXzg?oc=5",
-    "published": "Wed, 25 Nov 2026 12:58:21 GMT",
-    "publisher": "Fortune",
+    "headline": "It’s ‘Coming’—Massive AI Crash Predicted To Trigger $25 Trillion Bitcoin Price Boom - Forbes",
+    "url": "https://news.google.com/rss/articles/CBMi0AFBVV95cUxPZmxWSk5HTFBVRER1SUJkQklZQ3JFdV8wdzN3ZlQwRm8tbDhMcmp4NVdlWFduUGhNTHBzUWZvYUdoTlo0Z0ZBSXN3dG8wQ3ROZ2ZQa0hRMmFZSEN2V3FqX3d0VGZRX1IxWnAtWjBMQzZReE83RmtEcEh6eEg3OTh5T3NKanByc29ha0hXQV8tZDljdks4TFpYOXF5YUY0OVVKRGlrcU93UEJxVWs0MGFvUXM2M0V2R0RsSEkzMlNaak5sUmlDNjhUcnpDblU5eWNB?oc=5",
+    "published": "Wed, 25 Nov 2026 12:34:14 GMT",
+    "publisher": "Forbes",
     "via": "Google News RSS"
    }
   },
@@ -166,10 +166,10 @@
    "change_pts": 10.0,
    "from_date": "2026-11-18",
    "news": {
-    "headline": "Current price of Bitcoin for November 19, 2026 - Fortune",
-    "url": "https://news.google.com/rss/articles/CBMiZ0FVX3lxTFBaemM4RjBCT0VwNHVnZkdTTUFBVjJoMkQwOW1VMnlhNHJJVnVlbVlQTW1feFZ3SFotcTc3VDE3MnkwNnFyMmFLUkF6cTdSM2tiOUZvdE1GUnZpQ2RiMWVKemNZV1RvSDQ?oc=5",
-    "published": "Thu, 19 Nov 2026 12:00:00 GMT",
-    "publisher": "Fortune",
+    "headline": "Where Could Bitcoin Be By The End Of 2027? 3 Scenarios Investors Are Watching - Yahoo Finance",
+    "url": "https://news.google.com/rss/articles/CBMimAFBVV95cUxQekRFTWRkLU9DM09GQl8tUDhnVE84Qm84WFlSUTdaaWZjQnJWLXZERWRwV09ZNzFrS19jeV80TWNzWjRQRkhWekROWC16TUJ3MXVyYmpkekprSFBrZkR6X0tTZHhjQnFQQlBGSW5kZGlBWWZiN3lNY1o5aGg5bkFXYXF3dkMtVFJ2SjB0ZXVwY0NlcnZtdG1mOQ?oc=5",
+    "published": "Thu, 19 Nov 2026 16:23:57 GMT",
+    "publisher": "Yahoo Finance",
     "via": "Google News RSS"
    }
   }
@@ -186,7 +186,7 @@
     },
     {
      "outcome": "↓ 55,000",
-     "yes": 0.745
+     "yes": 0.56
     }
    ]
   },
@@ -203,7 +203,7 @@
    "odds": [
     {
      "outcome": "Before Jan 1, 2027",
-     "yes": 0.014
+     "yes": 0.024
     }
    ]
   },
@@ -220,5 +220,5 @@
    "odds": []
   }
  ],
- "generated_utc": "2026-11-25T14:52:12+00:00"
+ "generated_utc": "2026-11-25T18:32:37+00:00"
 }
