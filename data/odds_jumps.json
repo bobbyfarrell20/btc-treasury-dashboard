@@ -28,6 +28,27 @@
   },
   {
    "date": "2026-11-25",
+   "window": "7d",
+   "source": "kalshi",
+   "group": "BTC",
+   "market": "How low will BTC get in 2026",
+   "outcome": "Below $55,000.00",
+   "question": null,
+   "url": "https://kalshi.com/markets/kxbtcminy",
+   "from": 0.32,
+   "to": 0.64,
+   "change_pts": 32.0,
+   "from_date": "2026-11-18",
+   "news": {
+    "headline": "The Bitcoin Price That Would Signal the Sell-Off Is Over - Yahoo Finance",
+    "url": "https://news.google.com/rss/articles/CBMimgFBVV95cUxOM0ZDZ0E3RGplU1EyUHo1ajdpY2JtSVpuY2N2UFhySlNINFdoekJqeUw4aHBJN1dRcTlDMnFXVUM4cWhVSVQtWThrOUljb01LeHg2XzlPaVM3ZERlYy1PTkVyUTdhc2o2c1hpaWZjcUJRZG1ILVFEaEVBYlVKMGJTRXF6Y0FGR0tlRWlDTjl3X0dtZGJHaUtva0VB?oc=5",
+    "published": "Tue, 24 Nov 2026 19:11:27 GMT",
+    "publisher": "Yahoo Finance",
+    "via": "Google News RSS"
+   }
+  },
+  {
+   "date": "2026-11-25",
    "window": "24h",
    "source": "polymarket",
    "group": "BTC",
@@ -39,27 +60,6 @@
    "to": 0.595,
    "change_pts": 13.0,
    "from_date": "2026-11-24",
-   "news": {
-    "headline": "The Bitcoin Price That Would Signal the Sell-Off Is Over - Yahoo Finance",
-    "url": "https://news.google.com/rss/articles/CBMimgFBVV95cUxOM0ZDZ0E3RGplU1EyUHo1ajdpY2JtSVpuY2N2UFhySlNINFdoekJqeUw4aHBJN1dRcTlDMnFXVUM4cWhVSVQtWThrOUljb01LeHg2XzlPaVM3ZERlYy1PTkVyUTdhc2o2c1hpaWZjcUJRZG1ILVFEaEVBYlVKMGJTRXF6Y0FGR0tlRWlDTjl3X0dtZGJHaUtva0VB?oc=5",
-    "published": "Tue, 24 Nov 2026 19:11:27 GMT",
-    "publisher": "Yahoo Finance",
-    "via": "Google News RSS"
-   }
-  },
-  {
-   "date": "2026-11-24",
-   "window": "7d",
-   "source": "kalshi",
-   "group": "BTC",
-   "market": "How low will BTC get in 2026",
-   "outcome": "Below $55,000.00",
-   "question": null,
-   "url": "https://kalshi.com/markets/kxbtcminy",
-   "from": 0.27,
-   "to": 0.56,
-   "change_pts": 29.0,
-   "from_date": "2026-11-17",
    "news": {
     "headline": "The Bitcoin Price That Would Signal the Sell-Off Is Over - Yahoo Finance",
     "url": "https://news.google.com/rss/articles/CBMimgFBVV95cUxOM0ZDZ0E3RGplU1EyUHo1ajdpY2JtSVpuY2N2UFhySlNINFdoekJqeUw4aHBJN1dRcTlDMnFXVUM4cWhVSVQtWThrOUljb01LeHg2XzlPaVM3ZERlYy1PTkVyUTdhc2o2c1hpaWZjcUJRZG1ILVFEaEVBYlVKMGJTRXF6Y0FGR0tlRWlDTjl3X0dtZGJHaUtva0VB?oc=5",
@@ -103,10 +103,10 @@
    "change_pts": -20.0,
    "from_date": "2026-11-21",
    "news": {
-    "headline": "Can Bitcoin Still Reach $1 Million by 2035? - Yahoo Finance",
-    "url": "https://news.google.com/rss/articles/CBMimgFBVV95cUxNWmx3S0dNT1ZLSU1qRk1fVDRLc0xUbW5kVEpHNkRtLU1udkhNMjNMcmJnaDVaNUcxWVhkSUpnZUc4b2taTUU3dFExVDRNYmQtVERZRU5ndi14bklyMFNKaDFnSllEU2dTYkdIbGpQNHNJdVBCaEhVeUhwR3Axa3NEeE1kb3JSQ05lNGJfSm14ZnBTUFItbGJTU253?oc=5",
-    "published": "Sun, 22 Nov 2026 21:52:57 GMT",
-    "publisher": "Yahoo Finance",
+    "headline": "Bitcoin Futures - CME Group",
+    "url": "https://news.google.com/rss/articles/CBMic0FVX3lxTE9Db1M3SWg3WG9OOU9xZ1QwTjlKUDZvSVpVektnRnFTSXFvdXBmQm5lS2h5ODFwdWl2eFlQT0hRZWR1ZUxfdzFHVXhBZUNKRl9Semw3NG55S0lrUXFXNFR4eVZwdHFtLVZxU1NZeS1Va0RZNU0?oc=5",
+    "published": "Sun, 22 Nov 2026 12:01:11 GMT",
+    "publisher": "CME Group",
     "via": "Google News RSS"
    }
   },
@@ -182,7 +182,7 @@
    "odds": [
     {
      "outcome": "↑ 100,000",
-     "yes": 0.0135
+     "yes": 0.0125
     },
     {
      "outcome": "↓ 55,000",
@@ -220,5 +220,5 @@
    "odds": []
   }
  ],
- "generated_utc": "2026-11-25T03:08:19+00:00"
+ "generated_utc": "2026-11-25T06:58:35+00:00"
 }
