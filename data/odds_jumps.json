@@ -6,6 +6,27 @@
  },
  "jumps": [
   {
+   "date": "2026-11-26",
+   "window": "24h",
+   "source": "polymarket",
+   "group": "BTC",
+   "market": "BTC price targets hit in 2026",
+   "outcome": "↓ 55,000",
+   "question": "Will Bitcoin dip to $55,000 by December 31, 2026?",
+   "url": "https://polymarket.com/event/what-price-will-bitcoin-hit-before-2027",
+   "from": 0.595,
+   "to": 0.485,
+   "change_pts": -11.0,
+   "from_date": "2026-11-25",
+   "news": {
+    "headline": "Bitcoin BTC (BTC-USD) Live Price, News, Chart & Price History - Yahoo! Finance Canada",
+    "url": "https://news.google.com/rss/articles/CBMiVkFVX3lxTE1HSGlGRjBhSUlQdXZtSXRJWmhTcWlLMmt2WEM2WFk0LV9Bd3BzOGNZQzJmQXJycTBZcmpSNWZiWHMzMDdzY3cyQzlKYXNYSk0tUF9MVzdB?oc=5",
+    "published": "Wed, 25 Nov 2026 17:20:01 GMT",
+    "publisher": "Yahoo! Finance Canada",
+    "via": "Google News RSS"
+   }
+  },
+  {
    "date": "2026-11-25",
    "window": "7d",
    "source": "kalshi",
@@ -19,10 +40,10 @@
    "change_pts": 32.0,
    "from_date": "2026-11-18",
    "news": {
-    "headline": "Bitcoin Price Prediction for December 2026: What the Forecasts Say - Yahoo Finance",
-    "url": "https://news.google.com/rss/articles/CBMipgFBVV95cUxNRGZxeFZwMzNDM0ZYRjd1a05kZzBGcFNoTjRsWGYyRzRQaTFPY1ZNSEs4MTByTTFNRDVZaDZlQ1FkY05RcnAtdmFEZjhIUTNDYmNreWdDZzhib1hjYlV0UWxMR3FVLWI3Ny1ySzlCYXlLRml6cEVGUUxvbWhVYzNOa2QyYzZ4TnBIMkR4RjRNVmJyeWVmUElidUNhZFViby1GMHBXZ2Jn?oc=5",
-    "published": "Wed, 25 Nov 2026 16:17:09 GMT",
-    "publisher": "Yahoo Finance",
+    "headline": "Bitcoin BTC (BTC-USD) Live Price, News, Chart & Price History - Yahoo! Finance Canada",
+    "url": "https://news.google.com/rss/articles/CBMiVkFVX3lxTE1HSGlGRjBhSUlQdXZtSXRJWmhTcWlLMmt2WEM2WFk0LV9Bd3BzOGNZQzJmQXJycTBZcmpSNWZiWHMzMDdzY3cyQzlKYXNYSk0tUF9MVzdB?oc=5",
+    "published": "Wed, 25 Nov 2026 14:32:49 GMT",
+    "publisher": "Yahoo! Finance Canada",
     "via": "Google News RSS"
    }
   },
@@ -40,10 +61,31 @@
    "change_pts": 31.0,
    "from_date": "2026-11-18",
    "news": {
-    "headline": "Bitcoin Price Prediction for December 2026: What the Forecasts Say - Yahoo Finance",
-    "url": "https://news.google.com/rss/articles/CBMipgFBVV95cUxNRGZxeFZwMzNDM0ZYRjd1a05kZzBGcFNoTjRsWGYyRzRQaTFPY1ZNSEs4MTByTTFNRDVZaDZlQ1FkY05RcnAtdmFEZjhIUTNDYmNreWdDZzhib1hjYlV0UWxMR3FVLWI3Ny1ySzlCYXlLRml6cEVGUUxvbWhVYzNOa2QyYzZ4TnBIMkR4RjRNVmJyeWVmUElidUNhZFViby1GMHBXZ2Jn?oc=5",
-    "published": "Wed, 25 Nov 2026 16:17:09 GMT",
-    "publisher": "Yahoo Finance",
+    "headline": "Bitcoin BTC (BTC-USD) Live Price, News, Chart & Price History - Yahoo! Finance Canada",
+    "url": "https://news.google.com/rss/articles/CBMiVkFVX3lxTE1HSGlGRjBhSUlQdXZtSXRJWmhTcWlLMmt2WEM2WFk0LV9Bd3BzOGNZQzJmQXJycTBZcmpSNWZiWHMzMDdzY3cyQzlKYXNYSk0tUF9MVzdB?oc=5",
+    "published": "Wed, 25 Nov 2026 14:32:49 GMT",
+    "publisher": "Yahoo! Finance Canada",
+    "via": "Google News RSS"
+   }
+  },
+  {
+   "date": "2026-11-25",
+   "window": "24h",
+   "source": "polymarket",
+   "group": "BTC",
+   "market": "BTC price targets hit in 2026",
+   "outcome": "↓ 55,000",
+   "question": "Will Bitcoin dip to $55,000 by December 31, 2026?",
+   "url": "https://polymarket.com/event/what-price-will-bitcoin-hit-before-2027",
+   "from": 0.465,
+   "to": 0.595,
+   "change_pts": 13.0,
+   "from_date": "2026-11-24",
+   "news": {
+    "headline": "Bitcoin BTC (BTC-USD) Live Price, News, Chart & Price History - Yahoo! Finance Canada",
+    "url": "https://news.google.com/rss/articles/CBMiVkFVX3lxTE1HSGlGRjBhSUlQdXZtSXRJWmhTcWlLMmt2WEM2WFk0LV9Bd3BzOGNZQzJmQXJycTBZcmpSNWZiWHMzMDdzY3cyQzlKYXNYSk0tUF9MVzdB?oc=5",
+    "published": "Wed, 25 Nov 2026 14:32:49 GMT",
+    "publisher": "Yahoo! Finance Canada",
     "via": "Google News RSS"
    }
   },
@@ -165,7 +207,7 @@
     },
     {
      "outcome": "↓ 55,000",
-     "yes": 0.515
+     "yes": 0.485
     }
    ]
   },
@@ -182,7 +224,7 @@
    "odds": [
     {
      "outcome": "Before Jan 1, 2027",
-     "yes": 0.024
+     "yes": 0.018
     }
    ]
   },
@@ -199,5 +241,5 @@
    "odds": []
   }
  ],
- "generated_utc": "2026-11-25T21:51:25+00:00"
+ "generated_utc": "2026-11-26T01:57:56+00:00"
 }
