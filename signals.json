@@ -21,7 +21,7 @@
     "new": "STAY_BTC"
   },
   "_hash_note": "signal_hash changes when the recommendation, also_valid, any preferred peg state (on for the call = RUNNING_HOT/ON, hashed alike; WARMING_UP and COOLING_OFF hash as WATCH, STALLED as SELL; ON held by buybacks hashes as WATCH) or any overheated flag changes; last_changed is the most recent trading day it changed.",
-  "generated_utc": "2026-11-27T01:48:48+00:00",
+  "generated_utc": "2026-11-27T06:42:49+00:00",
   "as_of": "2026-11-25",
   "disclaimer": "Rules-based indicator, not financial advice.",
   "recommendation_detail": {
@@ -1935,10 +1935,10 @@
       "change_pts": -17.0,
       "from_date": "2026-11-25",
       "news": {
-        "headline": "Bitcoin BTC (BTC-USD) Live Price, News, Chart and Price History - Yahoo Finance Singapore",
-        "url": "https://news.google.com/rss/articles/CBMiVkFVX3lxTE5yOVM0ZTRBWjRWRW9KcFF1czB4bV9VbHNOYnZqSTRlXzk2SHBHTEo5RnIzR0xkNklES1Z6ZnZZSTRhM2tjZEFnQ3VEd1BCUDFPcFRBSlhB?oc=5",
-        "published": "Thu, 26 Nov 2026 14:26:40 GMT",
-        "publisher": "Yahoo Finance Singapore",
+        "headline": "Bitcoin price today, BTC to USD live price, marketcap and chart - CoinMarketCap",
+        "url": "https://news.google.com/rss/articles/CBMiWEFVX3lxTE1ldXltRXZTakZoYUpJWXFZdnpLS3dHMFYxRXFKSlJWQVVwYXQteWFuOXV2aW15WURqNERmdlpyZW1lb0xfbTF5OXVmOW40MUQtXzlNckJHNzI?oc=5",
+        "published": "Thu, 26 Nov 2026 23:18:55 GMT",
+        "publisher": "CoinMarketCap",
         "via": "Google News RSS"
       }
     },
@@ -2102,7 +2102,7 @@
         },
         {
           "outcome": "\u2193 55,000",
-          "yes": 0.535
+          "yes": 0.455
         }
       ]
     },
@@ -2144,19 +2144,19 @@
       "top": [
         {
           "outcome": "\u2193 55,000",
-          "yes": 0.535
+          "yes": 0.455
         },
         {
           "outcome": "\u2193 50,000",
-          "yes": 0.3065
+          "yes": 0.275
         },
         {
           "outcome": "\u2193 45,000",
-          "yes": 0.1325
+          "yes": 0.113
         },
         {
           "outcome": "\u2193 40,000",
-          "yes": 0.0835
+          "yes": 0.0805
         }
       ]
     },
@@ -2196,7 +2196,7 @@
       "top": [
         {
           "outcome": "0 (0 bps)",
-          "yes": 0.9835
+          "yes": 0.9845
         },
         {
           "outcome": "1 (25 bps)",
@@ -2219,7 +2219,7 @@
       "top": [
         {
           "outcome": "Clarity Act (H.R.3633) signed into law in 2026?",
-          "yes": 0.0055
+          "yes": 0.004
         }
       ]
     },
@@ -2304,19 +2304,19 @@
       "top": [
         {
           "outcome": "Below $55,000.00",
-          "yes": 0.54
+          "yes": 0.48
         },
         {
           "outcome": "Below $50,000.00",
-          "yes": 0.29
+          "yes": 0.25
         },
         {
           "outcome": "Below $45,000.00",
-          "yes": 0.17
+          "yes": 0.16
         },
         {
           "outcome": "Below $40,000.00",
-          "yes": 0.08
+          "yes": 0.1
         }
       ]
     },
@@ -2341,7 +2341,7 @@
         },
         {
           "outcome": "Hike >25bps",
-          "yes": 0.03
+          "yes": 0.02
         },
         {
           "outcome": "Cut 25bps",
