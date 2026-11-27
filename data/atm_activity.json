@@ -223,5 +223,19 @@
       "source_url": "https://x.com/STRC_live/status/2125696814691057864",
       "note": "no ATM activity; closed $89.94, highest in 5 days, still well below $100"
     }
+  },
+  "2026-11-27": {
+    "STRC": {
+      "shares_sold": 0,
+      "btc_raised": 0,
+      "source_url": "https://x.com/STRC_live/status/2126421589239517326",
+      "note": "no ATM activity; weekly recap: fourteenth straight week with zero ATM; closed $98.90, rebounded from $93.60, up $5.30 on the week"
+    },
+    "SATA": {
+      "shares_sold": 0,
+      "btc_raised": 0,
+      "source_url": "https://x.com/STRC_live/status/2126421626333864111",
+      "note": "no ATM activity; weekly: seventh straight week with zero ATM, all sessions below $100; Friday close $92.00, up $7.00 from last week's $85.00"
+    }
   }
 }
