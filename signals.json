@@ -21,7 +21,7 @@
     "new": "STAY_BTC"
   },
   "_hash_note": "signal_hash changes when the recommendation, also_valid, any preferred peg state (on for the call = RUNNING_HOT/ON, hashed alike; WARMING_UP and COOLING_OFF hash as WATCH, STALLED as SELL; ON held by buybacks hashes as WATCH) or any overheated flag changes; last_changed is the most recent trading day it changed.",
-  "generated_utc": "2026-11-26T18:15:09+00:00",
+  "generated_utc": "2026-11-27T01:48:48+00:00",
   "as_of": "2026-11-25",
   "disclaimer": "Rules-based indicator, not financial advice.",
   "recommendation_detail": {
@@ -1937,28 +1937,7 @@
       "news": {
         "headline": "Bitcoin BTC (BTC-USD) Live Price, News, Chart and Price History - Yahoo Finance Singapore",
         "url": "https://news.google.com/rss/articles/CBMiVkFVX3lxTE5yOVM0ZTRBWjRWRW9KcFF1czB4bV9VbHNOYnZqSTRlXzk2SHBHTEo5RnIzR0xkNklES1Z6ZnZZSTRhM2tjZEFnQ3VEd1BCUDFPcFRBSlhB?oc=5",
-        "published": "Thu, 26 Nov 2026 08:23:34 GMT",
-        "publisher": "Yahoo Finance Singapore",
-        "via": "Google News RSS"
-      }
-    },
-    {
-      "date": "2026-11-26",
-      "window": "24h",
-      "source": "polymarket",
-      "group": "BTC",
-      "market": "BTC price targets hit in 2026",
-      "outcome": "\u2193 55,000",
-      "question": "Will Bitcoin dip to $55,000 by December 31, 2026?",
-      "url": "https://polymarket.com/event/what-price-will-bitcoin-hit-before-2027",
-      "from": 0.595,
-      "to": 0.485,
-      "change_pts": -11.0,
-      "from_date": "2026-11-25",
-      "news": {
-        "headline": "Bitcoin BTC (BTC-USD) Live Price, News, Chart and Price History - Yahoo Finance Singapore",
-        "url": "https://news.google.com/rss/articles/CBMiVkFVX3lxTE5yOVM0ZTRBWjRWRW9KcFF1czB4bV9VbHNOYnZqSTRlXzk2SHBHTEo5RnIzR0xkNklES1Z6ZnZZSTRhM2tjZEFnQ3VEd1BCUDFPcFRBSlhB?oc=5",
-        "published": "Thu, 26 Nov 2026 08:23:34 GMT",
+        "published": "Thu, 26 Nov 2026 14:26:40 GMT",
         "publisher": "Yahoo Finance Singapore",
         "via": "Google News RSS"
       }
@@ -2082,10 +2061,10 @@
       "change_pts": 41.0,
       "from_date": "2026-11-20",
       "news": {
-        "headline": "Current price of Bitcoin for November 20, 2026 - Fortune",
-        "url": "https://news.google.com/rss/articles/CBMiZ0FVX3lxTE5XLVJPckowN01hZzNsTnpXNEx0LTJsSklMX2lCNEstUlVWaXhtM0VGQXowTzBoODZTV244cjFuVE5VSGpLalFMOGhsRVVZQldzOEc0QVJLTll1SjUyMHNhOVBrT1dzMVk?oc=5",
-        "published": "Fri, 20 Nov 2026 12:40:00 GMT",
-        "publisher": "Fortune",
+        "headline": "Bitcoin's regulation bull case is played out. What could drive crypto gains moving forward - CNBC",
+        "url": "https://news.google.com/rss/articles/CBMijAFBVV95cUxQWmZadko1d2NDa3h3cVJUNGZTbHZjcUZGd1ZNYkxOWlBwLWd3Rk9KcHFuVWdVcUVWMUVNQW5iSklCZkEtaC13bGZWZlpKQl9JUmNzSlFBdjViaGZENDBGdWU2Z3FPQk5hZGRNUlVmckQ2aUtOWkIxQlhVa1AwVXFkd2JkYVVva2czQk1NUtIBkgFBVV95cUxPWHg0Ym8yVHNqV2lITW81aDhBSzZyN2M4ekMzelRIQ003YVVGZWkxRjhHMGl1TXBoVWEwUnF0aG9zZ0JFTnFjWWxjQWFnWVhiS2Y3R3ZfallHd2RwczdSQWFoaDYtdmxKSVRiX2ZNeHJqcGVTdldlcjQ3RHpqQWlOVFpjOHU3NHNCWjEzaGZmbFdkdw?oc=5",
+        "published": "Fri, 20 Nov 2026 14:29:45 GMT",
+        "publisher": "CNBC",
         "via": "Google News RSS"
       }
     },
@@ -2103,31 +2082,10 @@
       "change_pts": 17.0,
       "from_date": "2026-11-20",
       "news": {
-        "headline": "Current price of Bitcoin for November 20, 2026 - Fortune",
-        "url": "https://news.google.com/rss/articles/CBMiZ0FVX3lxTE5XLVJPckowN01hZzNsTnpXNEx0LTJsSklMX2lCNEstUlVWaXhtM0VGQXowTzBoODZTV244cjFuVE5VSGpLalFMOGhsRVVZQldzOEc0QVJLTll1SjUyMHNhOVBrT1dzMVk?oc=5",
-        "published": "Fri, 20 Nov 2026 12:40:00 GMT",
-        "publisher": "Fortune",
-        "via": "Google News RSS"
-      }
-    },
-    {
-      "date": "2026-11-19",
-      "window": "24h",
-      "source": "polymarket",
-      "group": "BTC",
-      "market": "BTC price targets hit in 2026",
-      "outcome": "\u2193 55,000",
-      "question": "Will Bitcoin dip to $55,000 by December 31, 2026?",
-      "url": "https://polymarket.com/event/what-price-will-bitcoin-hit-before-2027",
-      "from": 0.285,
-      "to": 0.385,
-      "change_pts": 10.0,
-      "from_date": "2026-11-18",
-      "news": {
-        "headline": "Current price of Bitcoin for November 19, 2026 - Fortune",
-        "url": "https://news.google.com/rss/articles/CBMiZ0FVX3lxTFBaemM4RjBCT0VwNHVnZkdTTUFBVjJoMkQwOW1VMnlhNHJJVnVlbVlQTW1feFZ3SFotcTc3VDE3MnkwNnFyMmFLUkF6cTdSM2tiOUZvdE1GUnZpQ2RiMWVKemNZV1RvSDQ?oc=5",
-        "published": "Thu, 19 Nov 2026 12:00:00 GMT",
-        "publisher": "Fortune",
+        "headline": "Bitcoin's regulation bull case is played out. What could drive crypto gains moving forward - CNBC",
+        "url": "https://news.google.com/rss/articles/CBMijAFBVV95cUxQWmZadko1d2NDa3h3cVJUNGZTbHZjcUZGd1ZNYkxOWlBwLWd3Rk9KcHFuVWdVcUVWMUVNQW5iSklCZkEtaC13bGZWZlpKQl9JUmNzSlFBdjViaGZENDBGdWU2Z3FPQk5hZGRNUlVmckQ2aUtOWkIxQlhVa1AwVXFkd2JkYVVva2czQk1NUtIBkgFBVV95cUxPWHg0Ym8yVHNqV2lITW81aDhBSzZyN2M4ekMzelRIQ003YVVGZWkxRjhHMGl1TXBoVWEwUnF0aG9zZ0JFTnFjWWxjQWFnWVhiS2Y3R3ZfallHd2RwczdSQWFoaDYtdmxKSVRiX2ZNeHJqcGVTdldlcjQ3RHpqQWlOVFpjOHU3NHNCWjEzaGZmbFdkdw?oc=5",
+        "published": "Fri, 20 Nov 2026 14:29:45 GMT",
+        "publisher": "CNBC",
         "via": "Google News RSS"
       }
     }
@@ -2140,11 +2098,11 @@
       "odds": [
         {
           "outcome": "\u2191 100,000",
-          "yes": 0.013
+          "yes": 0.0115
         },
         {
           "outcome": "\u2193 55,000",
-          "yes": 0.485
+          "yes": 0.535
         }
       ]
     },
@@ -2161,7 +2119,7 @@
       "odds": [
         {
           "outcome": "Before Jan 1, 2027",
-          "yes": 0.018
+          "yes": 0.023
         }
       ]
     },
@@ -2186,19 +2144,19 @@
       "top": [
         {
           "outcome": "\u2193 55,000",
-          "yes": 0.485
+          "yes": 0.535
         },
         {
           "outcome": "\u2193 50,000",
-          "yes": 0.2825
+          "yes": 0.3065
         },
         {
           "outcome": "\u2193 45,000",
-          "yes": 0.1335
+          "yes": 0.1325
         },
         {
           "outcome": "\u2193 40,000",
-          "yes": 0.0845
+          "yes": 0.0835
         }
       ]
     },
@@ -2238,11 +2196,11 @@
       "top": [
         {
           "outcome": "0 (0 bps)",
-          "yes": 0.9825
+          "yes": 0.9835
         },
         {
           "outcome": "1 (25 bps)",
-          "yes": 0.0025
+          "yes": 0.0035
         },
         {
           "outcome": "3 (75 bps)",
@@ -2295,7 +2253,7 @@
       "top": [
         {
           "outcome": "1M+",
-          "yes": 0.0045
+          "yes": 0.0135
         }
       ]
     },
@@ -2326,15 +2284,15 @@
           "yes": 0.02
         },
         {
-          "outcome": "Above $129,999.99",
-          "yes": 0.02
-        },
-        {
-          "outcome": "Above $139,999.99",
+          "outcome": "Above $109,999.99",
           "yes": 0.02
         },
         {
           "outcome": "Above $199,999.99",
+          "yes": 0.01
+        },
+        {
+          "outcome": "Above $119,999.99",
           "yes": 0.01
         }
       ]
@@ -2346,11 +2304,11 @@
       "top": [
         {
           "outcome": "Below $55,000.00",
-          "yes": 0.53
+          "yes": 0.54
         },
         {
           "outcome": "Below $50,000.00",
-          "yes": 0.28
+          "yes": 0.29
         },
         {
           "outcome": "Below $45,000.00",
@@ -2358,7 +2316,7 @@
         },
         {
           "outcome": "Below $40,000.00",
-          "yes": 0.09
+          "yes": 0.08
         }
       ]
     },
@@ -2379,11 +2337,11 @@
         },
         {
           "outcome": "Fed maintains rate",
-          "yes": 0.05
+          "yes": 0.04
         },
         {
           "outcome": "Hike >25bps",
-          "yes": 0.02
+          "yes": 0.03
         },
         {
           "outcome": "Cut 25bps",
@@ -2402,15 +2360,15 @@
         },
         {
           "outcome": "Before Oct 1, 2027",
-          "yes": 0.15
-        },
-        {
-          "outcome": "Before Jul 1, 2027",
-          "yes": 0.09
+          "yes": 0.18
         },
         {
           "outcome": "Before Apr 1, 2027",
           "yes": 0.08
+        },
+        {
+          "outcome": "Before Jul 1, 2027",
+          "yes": 0.05
         }
       ]
     },
