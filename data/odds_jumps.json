@@ -6,6 +6,48 @@
  },
  "jumps": [
   {
+   "date": "2026-11-28",
+   "window": "7d",
+   "source": "kalshi",
+   "group": "BTC",
+   "market": "How low will BTC get in 2026",
+   "outcome": "Below $55,000.00",
+   "question": null,
+   "url": "https://kalshi.com/markets/kxbtcminy",
+   "from": 0.86,
+   "to": 0.57,
+   "change_pts": -29.0,
+   "from_date": "2026-11-21",
+   "news": {
+    "headline": "BTC price range on Nov 28, 2026 at 2am EST Crypto Prediction Market - Robinhood",
+    "url": "https://news.google.com/rss/articles/CBMitgFBVV95cUxPdnpaVmg1dy05bWZZcTBycHBRdlhVUVMwWmtDQlpzNzNqQURMSERNcDFxZE1DQnVtdkdvRlhRa2h5aUQtclNVbjZQR1N4LWNKeEVxZkdEZTRFUjdxa2ItZTJSc3V2b2JWMmQyZE1QSms2T19nRXlndXZYUXdzWWRFcWFmbVZPNlhqVG5KX1FtNEpGU290Yk9ZMTdUNFVxNlUwcFB5emt5eVFYaXVrUTBGdTV3dm1vdw?oc=5",
+    "published": "Sat, 28 Nov 2026 06:04:31 GMT",
+    "publisher": "Robinhood",
+    "via": "Google News RSS"
+   }
+  },
+  {
+   "date": "2026-11-28",
+   "window": "24h",
+   "source": "kalshi",
+   "group": "BTC",
+   "market": "How low will BTC get in 2026",
+   "outcome": "Below $55,000.00",
+   "question": null,
+   "url": "https://kalshi.com/markets/kxbtcminy",
+   "from": 0.47,
+   "to": 0.57,
+   "change_pts": 10.0,
+   "from_date": "2026-11-27",
+   "news": {
+    "headline": "BTC price range on Nov 28, 2026 at 2am EST Crypto Prediction Market - Robinhood",
+    "url": "https://news.google.com/rss/articles/CBMitgFBVV95cUxPdnpaVmg1dy05bWZZcTBycHBRdlhVUVMwWmtDQlpzNzNqQURMSERNcDFxZE1DQnVtdkdvRlhRa2h5aUQtclNVbjZQR1N4LWNKeEVxZkdEZTRFUjdxa2ItZTJSc3V2b2JWMmQyZE1QSms2T19nRXlndXZYUXdzWWRFcWFmbVZPNlhqVG5KX1FtNEpGU290Yk9ZMTdUNFVxNlUwcFB5emt5eVFYaXVrUTBGdTV3dm1vdw?oc=5",
+    "published": "Sat, 28 Nov 2026 06:04:31 GMT",
+    "publisher": "Robinhood",
+    "via": "Google News RSS"
+   }
+  },
+  {
    "date": "2026-11-26",
    "window": "24h",
    "source": "kalshi",
@@ -18,27 +60,6 @@
    "to": 0.47,
    "change_pts": -17.0,
    "from_date": "2026-11-25",
-   "news": {
-    "headline": "Current price of Bitcoin for November 25, 2026 - Fortune",
-    "url": "https://news.google.com/rss/articles/CBMiZ0FVX3lxTE5Na2pvV2xpZm03U3B4MlM5LUhQNDM2cGlsRXNmUDF5UTdtUzBkSHlTZVI3MVp0RGg2MHpWYVhiSFVRR0xFaWxZamsxLXdheUlwaTV6R2RXWW9yVzZMVHctOHRydktiXzg?oc=5",
-    "published": "Wed, 25 Nov 2026 12:00:00 GMT",
-    "publisher": "Fortune",
-    "via": "Google News RSS"
-   }
-  },
-  {
-   "date": "2026-11-25",
-   "window": "7d",
-   "source": "kalshi",
-   "group": "BTC",
-   "market": "How low will BTC get in 2026",
-   "outcome": "Below $55,000.00",
-   "question": null,
-   "url": "https://kalshi.com/markets/kxbtcminy",
-   "from": 0.32,
-   "to": 0.64,
-   "change_pts": 32.0,
-   "from_date": "2026-11-18",
    "news": {
     "headline": "Current price of Bitcoin for November 25, 2026 - Fortune",
     "url": "https://news.google.com/rss/articles/CBMiZ0FVX3lxTE5Na2pvV2xpZm03U3B4MlM5LUhQNDM2cGlsRXNmUDF5UTdtUzBkSHlTZVI3MVp0RGg2MHpWYVhiSFVRR0xFaWxZamsxLXdheUlwaTV6R2RXWW9yVzZMVHctOHRydktiXzg?oc=5",
@@ -182,7 +203,7 @@
    "odds": [
     {
      "outcome": "↑ 100,000",
-     "yes": 0.0145
+     "yes": 0.013
     },
     {
      "outcome": "↓ 55,000",
@@ -220,5 +241,5 @@
    "odds": []
   }
  ],
- "generated_utc": "2026-11-28T01:20:40+00:00"
+ "generated_utc": "2026-11-28T06:16:47+00:00"
 }
